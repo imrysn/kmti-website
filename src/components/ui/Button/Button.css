@@ -22,3 +22,88 @@
   background-color: var(--primary-color);
   border-color: var(--primary-color);
 }
+
+/* Contact Button - Gradient Background */
+.btn-contact {
+  background: linear-gradient(90deg, #51A2FF, #FF6467);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-family-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-contact::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  padding: 1px;
+  background: linear-gradient(90deg, #51A2FF, #FF6467);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.btn-contact:hover {
+  background: transparent;
+}
+
+.btn-contact:hover::after {
+  opacity: 1;
+}
+
+/* View Project Button - Transparent with White Border */
+.btn-view-project {
+  background: rgba(29, 41, 61, 0.4);
+  color: white;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  font-family: var(--font-family-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-view-project::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  padding: 1px;
+  background: linear-gradient(90deg, #51A2FF, #FF6467);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.btn-view-project:hover {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.btn-view-project:hover::after {
+  opacity: 1;
+}
