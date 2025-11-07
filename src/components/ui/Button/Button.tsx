@@ -3,7 +3,7 @@ import './Button.css';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'contact' | 'view-project';
   size?: 'sm' | 'md' | 'lg';
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
@@ -34,8 +34,9 @@ const Button: React.FC<ButtonProps> = ({
       className={buttonClasses}
       onClick={onClick}
       disabled={disabled}
+      style={{ position: 'relative' }}
     >
-      {children}
+      <span style={{ position: 'relative', zIndex: 1 }}>{children}</span>
     </button>
   );
 };
