@@ -1,41 +1,34 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
-import type { NavbarProps } from './Navbar.types';
+import headerLogo from '../../../assets/headerKMTIlogo.png';
 
-const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
+const Navbar: React.FC = () => {
   const location = useLocation();
 
-  const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/services', label: 'Services' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/about', label: 'About Us' },
-    { path: '/contact', label: 'Contact Us' },
-    { path: '/careers', label: 'Careers' },
+  const navLinks = [
+    { path: '/', label: 'HOME' },
+    { path: '/services', label: 'SERVICES' },
+    { path: '/projects', label: 'PROJECTS' },
+    { path: '/about', label: 'ABOUT US' },
+    { path: '/contact', label: 'CONTACT US' },
+    { path: '/careers', label: 'CAREERS' },
   ];
 
   return (
-    <nav className={`navbar ${className}`}>
-      <div className="navbar-container container">
+    <nav className="navbar">
+      <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <span className="logo-text">MyCompany</span>
+          <img src={headerLogo} alt="KMTI Logo" />
         </Link>
-        <button className="navbar-toggle" aria-label="Toggle navigation">
-          <span className="hamburger"></span>
-          <span className="hamburger"></span>
-          <span className="hamburger"></span>
-        </button>
-        <ul className="navbar-menu">
-          {navItems.map((item) => (
-            <li key={item.path} className="navbar-item">
+        <ul className="navbar-links">
+          {navLinks.map((link) => (
+            <li key={link.path}>
               <Link
-                to={item.path}
-                className={`navbar-link ${
-                  location.pathname === item.path ? 'navbar-link--active' : ''
-                }`}
+                to={link.path}
+                className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
               >
-                {item.label}
+                {link.label}
               </Link>
             </li>
           ))}
@@ -46,3 +39,4 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
 };
 
 export default Navbar;
+
