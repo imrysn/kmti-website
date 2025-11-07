@@ -1,0 +1,118 @@
+.services-page {
+  width: 100%;
+}
+
+.services-hero {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  padding: var(--spacing-3xl) 0;
+  text-align: center;
+}
+
+.services-hero-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.services-title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+}
+
+.services-subtitle {
+  font-size: var(--font-size-xl);
+  opacity: 0.9;
+  margin-bottom: var(--spacing-xl);
+}
+
+.services-grid-section {
+  padding: var(--spacing-2xl) 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.service-item {
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.service-icon {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.service-name {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+}
+
+.service-description {
+  color: var(--text-light);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+.service-features {
+  list-style: none;
+  margin-bottom: var(--spacing-lg);
+}
+
+.service-feature {
+  padding: var(--spacing-xs) 0;
+  color: var(--text-light);
+  text-align: left;
+  margin-left: var(--spacing-md);
+}
+
+.service-cta {
+  padding: var(--spacing-xl) 0;
+}
+
+.services-cta-card {
+  text-align: center;
+  padding: var(--spacing-2xl);
+}
+
+.services-cta-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+}
+
+.services-cta-description {
+  font-size: var(--font-size-lg);
+  color: var(--text-light);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.6;
+}
+
+.services-cta-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .services-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .services-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}

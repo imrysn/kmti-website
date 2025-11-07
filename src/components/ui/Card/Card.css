@@ -1,0 +1,10 @@
+.card-title {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.card-content {
+  flex: 1;
+}
