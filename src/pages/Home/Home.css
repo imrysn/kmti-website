@@ -108,7 +108,7 @@
   padding-bottom: 3rem;
 }
 
-.services-grid {
+.home-page .services-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;

@@ -561,3 +561,173 @@
 .project-card-link:hover {
   color: #6BB0FF;
 }
+
+/* ============================================
+   SERVICE PAGE CARD COMPONENT
+   ============================================
+   Service page card component for services grid
+   ============================================ */
+
+.service-page-card {
+  /* Card background: #0F172B at 30% opacity */
+  background-color: rgba(15, 23, 43, 0.3);
+
+  /* Border: 1px solid white at 25% opacity */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  /* Rounded corners */
+  border-radius: 16px;
+
+  /* Internal padding */
+  padding: 1.5rem;
+
+  /* Flexbox layout for vertical alignment */
+  display: flex;
+  flex-direction: column;
+
+  /* Position relative for icon and overlay positioning */
+  position: relative;
+
+  /* Smooth transitions */
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+
+  /* Overflow hidden to contain image and overlay */
+  overflow: hidden;
+
+  /* Width constraint */
+  width: 150%;
+  max-width: 420px;
+}
+
+/* ============================================
+   SERVICE PAGE CARD ICON
+   ============================================ */
+
+.service-page-card-icon-container {
+  /* Position absolutely in top left */
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+
+  /* Z-index to place icon above image and overlay */
+  z-index: 3;
+
+  /* Size for icon container */
+  width: 48px;
+  height: 48px;
+
+  /* Flexbox to center icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-page-card-icon-image {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(58%) sepia(95%) saturate(2878%) hue-rotate(195deg) brightness(101%) contrast(101%);
+}
+
+/* ============================================
+   SERVICE PAGE CARD IMAGE
+   ============================================ */
+
+.service-page-card-image-container {
+  /* Position relative for overlay */
+  position: relative;
+
+  /* Width and height for image container */
+  width: 100%;
+  height: 200px;
+
+  /* Margin bottom for spacing */
+  margin-bottom: 1.5rem;
+
+  /* Rounded corners for image */
+  border-radius: 16px;
+
+  /* Overflow hidden to contain image and overlay */
+  overflow: hidden;
+}
+
+.service-page-card-image {
+  /* Full width and height */
+  width: 100%;
+  height: 100%;
+
+  /* Object fit to cover container */
+  object-fit: cover;
+
+  /* Display as block */
+  display: block;
+}
+
+/* Image overlay: #0F172B at 70% opacity */
+.service-page-card-image-overlay {
+  /* Position absolutely to cover image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Dark overlay: #0F172B at 70% opacity */
+  background-color: rgba(15, 23, 43, 0.7);
+
+  /* Z-index to place overlay above image */
+  z-index: 2;
+
+  /* Smooth transition */
+  transition: opacity 0.3s ease;
+}
+
+/* ============================================
+   SERVICE PAGE CARD TITLE
+   ============================================ */
+
+.service-page-card-title {
+  /* Font: FLAME, color: #FFFFFF */
+  font-family: 'Flame', sans-serif;
+  color: #FFFFFF;
+
+  /* Font size */
+  font-size: 1.5rem;
+
+  /* Bold font weight */
+  font-weight: 100;
+
+  /* Bottom margin for spacing */
+  margin-bottom: 1rem;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Left align */
+  text-align: left;
+}
+
+/* ============================================
+   SERVICE PAGE CARD SUBTITLE
+   ============================================ */
+
+.service-page-card-subtitle {
+  /* Font: Segoe UI, color: rgba white */
+  font-family: 'Segoe UI', sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+
+  /* Font size */
+  font-size: 0.95rem;
+
+  /* Line height for readability */
+  line-height: 1.6;
+
+  /* Spacing */
+  margin-bottom: 0;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Left align */
+  text-align: left;
+}

@@ -20,12 +20,8 @@
   /* High z-index to stay above other content */
   z-index: 1000;
 
-  /* Transparent background */
-  background: transparent;
-
-  /* Blur effect for glassmorphism */
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(10px);
+  /* No background */
+  background: none;
 
   /* No box shadow by default */
   box-shadow: none;

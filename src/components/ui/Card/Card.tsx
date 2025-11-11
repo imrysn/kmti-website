@@ -137,4 +137,40 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
+interface ServicePageCardProps {
+  image?: string;
+  icon?: string;
+  title: string;
+  subtitle: string;
+  className?: string;
+  onClick?: () => void;
+}
+
+export const ServicePageCard: React.FC<ServicePageCardProps> = ({
+  image,
+  icon,
+  title,
+  subtitle,
+  className = '',
+  onClick,
+}) => {
+  return (
+    <div className={`service-page-card ${className}`} onClick={onClick}>
+      {icon && (
+        <div className="service-page-card-icon-container">
+          <img src={icon} alt={title} className="service-page-card-icon-image" />
+        </div>
+      )}
+      {image && (
+        <div className="service-page-card-image-container">
+          <img src={image} alt={title} className="service-page-card-image" />
+          <div className="service-page-card-image-overlay"></div>
+        </div>
+      )}
+      <h3 className="service-page-card-title">{title}</h3>
+      <p className="service-page-card-subtitle">{subtitle}</p>
+    </div>
+  );
+};
+
 export default Card;

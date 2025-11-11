@@ -10,8 +10,12 @@
    ============================================ */
 
 .navbar {
-  /* Width with horizontal margins (same as footer) */
+  /* Full width of the container */
   width: calc(100% - 10rem);
+
+  /* Sticky positioning - stays at top when scrolling */
+  position: sticky;
+  top: 0;
 
   /* Top and horizontal margins */
   margin-top: 2rem;
@@ -19,12 +23,8 @@
   margin-right: 5rem;
   margin-bottom: 0;
 
-  /* Transparent background */
+  /* No background */
   background: none;
-
-  /* Blur effect for glassmorphism */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 
   /* Rounded corners */
   border-radius: 24px;
@@ -35,37 +35,11 @@
   padding-left: 2rem;
   padding-right: 2rem;
 
-  /* Position relative for pseudo-elements */
-  position: relative;
-
   /* High z-index to stay on top */
-  z-index: 20;
+  z-index: 1000;
 }
 
-/* Soft glow effect beneath navbar */
-.navbar::before {
-  /* Required for pseudo-element */
-  content: "";
-
-  /* Position absolutely */
-  position: absolute;
-  top: -10px;
-  left: 10px;
-  right: 10px;
-  height: 20px;
-
-  /* Subtle blue glow */
-  background: rgba(33, 87, 238, 0.05);
-
-  /* Blur the glow */
-  filter: blur(12px);
-
-  /* Circular shape */
-  border-radius: 50%;
-
-  /* Behind the navbar */
-  z-index: -1;
-}
+/* Glow effect removed for transparent header */
 
 /* ============================================
    NAVBAR CONTENT

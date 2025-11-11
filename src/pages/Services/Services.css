@@ -1,17 +1,50 @@
-/* ============================================
-   SERVICES PAGE STYLES
-   ============================================
-   This file contains all styles for the services page,
-   including hero section, service grid, and CTA section.
-   ============================================ */
-
-/* ============================================
-   SERVICES PAGE CONTAINER
-   ============================================ */
-
 .services-page {
   /* Full width of the container */
   width: 100%;
+
+  /* Position relative for pseudo-element */
+  position: relative;
+}
+
+/* Background image that extends behind navbar - only for hero section */
+.services-hero {
+  /* Background image from CSS variable */
+  background-image: var(--services-bg-image);
+
+  /* Background properties */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Extend hero section to cover navbar area by using negative margin */
+  margin-top: -8rem;
+  padding-top: 10rem;
+}
+
+/* Additional background layer that extends behind navbar */
+.services-page::before {
+  /* Required for pseudo-element */
+  content: "";
+
+  /* Position fixed to cover navbar and hero area */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Height covers navbar and hero section */
+  height: 100vh;
+  min-height: 100vh;
+
+  /* Background image from CSS variable */
+  background-image: var(--services-bg-image);
+
+  /* Background properties */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Behind overlay and navbar, but visible through transparent navbar */
+  z-index: -1;
 }
 
 /* ============================================
@@ -21,52 +54,189 @@
    ============================================ */
 
 .services-hero {
-  /* Gradient background using primary colors */
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  /* Position relative for overlay */
+  position: relative;
+
+  /* Minimum height for hero section */
+  min-height: 90vh;
+
+  /* Flexbox layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Padding */
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 
   /* White text color */
   color: white;
 
-  /* Vertical padding */
-  padding-top: var(--spacing-3xl);
-  padding-bottom: var(--spacing-3xl);
+  /* Ensure hero is above background */
+  z-index: 1;
+}
 
-  /* Center align text */
-  text-align: center;
+/* Dark blue overlay on top of background image - extends behind navbar and hero */
+.services-hero-overlay {
+  /* Position fixed to cover viewport from top */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Height covers entire viewport */
+  height: 100vh;
+  min-height: 100%;
+
+  /* Dark blue semi-transparent background - #162456 at 45% opacity */
+  background: rgba(22, 36, 86, 0.80);
+
+  /* Z-index to place overlay above background but below navbar (z-index: 1000) and content */
+  z-index: 0;
+
+  /* Pointer events none so clicks pass through */
+  pointer-events: none;
 }
 
 /* Container for hero content */
 .services-hero-container {
+  /* Position relative to stack above overlay */
+  position: relative;
+  z-index: 2;
+
   /* Maximum width for content */
-  max-width: 800px;
+  max-width: 1000px;
 
   /* Center the container */
   margin-left: auto;
   margin-right: auto;
+
+  /* Padding for mobile */
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Hero content wrapper */
+.services-hero-content {
+  /* Center align text */
+  text-align: center;
 }
 
 /* Services page title */
 .services-title {
   /* Extra large font size */
-  font-size: var(--font-size-4xl);
+  font-size: 4rem;
 
   /* Bold font weight */
-  font-weight: 700;
+  font-weight: 100;
+
+  /* White text color */
+  color: white;
 
   /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 1.5rem;
+
+  /* Font family */
+  font-family: var(--font-family-heading, 'Flame', sans-serif);
+
+  /* Line height */
+  line-height: 1.2;
 }
 
 /* Services page subtitle */
 .services-subtitle {
-  /* Extra large font size */
-  font-size: var(--font-size-xl);
+  /* Large font size */
+  font-size: 1.25rem;
 
-  /* Slightly transparent for subtle effect */
-  opacity: 0.9;
+  /* White text color */
+  color: white;
 
   /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 2.5rem;
+
+  /* Font family */
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+
+  /* Line height */
+  line-height: 1.6;
+
+  /* Maximum width for readability */
+  max-width: 800px;
+
+  /* Center the subtitle */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hero button container */
+.services-hero-button {
+  /* Center the button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ============================================
+   SERVICES NAVIGATION SECTION
+   ============================================
+   Service navigation tabs
+   ============================================ */
+
+.services-nav-section {
+  /* Vertical padding */
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+
+  /* Ensure section is above background */
+  position: relative;
+  z-index: 1;
+}
+
+.services-nav-container {
+  /* Maximum width for content */
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.services-nav-tabs {
+  /* Flexbox layout */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20rem;
+  flex-wrap: wrap;
+}
+
+.services-nav-tab {
+  /* Font styling */
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+
+  /* Remove default button styles */
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+
+  /* Smooth transitions */
+  transition: color 0.3s ease;
+
+  /* Remove outline */
+  outline: none;
+}
+
+.services-nav-tab:hover {
+  color: white;
+}
+
+.services-nav-tab.active {
+  color: white;
+  border-bottom: 2px solid white;
 }
 
 /* ============================================
@@ -77,20 +247,65 @@
 
 .services-grid-section {
   /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+
+  /* Ensure section is above background */
+  position: relative;
+  z-index: 1;
+}
+
+.services-grid-container {
+  /* Maximum width for content */
+  max-width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 /* Grid container for services */
-.services-grid {
-  /* CSS Grid layout */
+.services-page .services-grid {
+  /* CSS Grid layout - 2 columns, 2 rows */
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
 
-  /* Responsive grid: auto-fit columns, minimum 350px wide */
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+/* Service card wrapper */
+.service-card-wrapper {
+  /* Display flex column for card and pagination */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
 
-  /* Gap between grid items */
-  gap: var(--spacing-xl);
+/* Service pagination dots */
+.service-pagination {
+  /* Flexbox layout */
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-pagination-dot {
+  /* Dot size */
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  /* Default state - semi-transparent white */
+  background-color: rgba(255, 255, 255, 0.3);
+
+  /* Smooth transition */
+  transition: background-color 0.3s ease;
+}
+
+.service-pagination-dot.active {
+  /* Active state - solid white */
+  background-color: white;
 }
 
 /* ============================================
@@ -191,82 +406,51 @@
    Call-to-action section at bottom of page
    ============================================ */
 
-.services-cta-card {
-  /* Center align text */
+.services-cta-section {
+  /* Vertical padding */
+  padding-top: 6rem;
+  padding-bottom: 7rem;
+
+  /* Center align */
   text-align: center;
 
-  /* Internal padding */
-  padding: var(--spacing-2xl);
+  /* Ensure section is above background */
+  position: relative;
+  z-index: 1;
+}
+
+.services-cta-container {
+  /* Maximum width for content */
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 /* CTA title */
 .services-cta-title {
-  /* 2X large font size */
-  font-size: var(--font-size-2xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* CTA description */
-.services-cta-description {
   /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Light text color */
-  color: var(--text-light);
+  font-size: 1.5rem;
+  font-weight: 400;
 
   /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 2.5rem;
 
-  /* Comfortable line height */
-  line-height: 1.6;
+  /* White text color */
+  color: white;
+
+  /* Font family */
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+
+  /* Center align */
+  text-align: center;
 }
 
-/* Container for CTA buttons */
-.services-cta-buttons {
-  /* Flexbox layout */
+/* CTA button container */
+.services-cta-button {
+  /* Center the button */
   display: flex;
-
-  /* Gap between buttons */
-  gap: var(--spacing-md);
-
-  /* Center buttons horizontally */
   justify-content: center;
-
-  /* Allow buttons to wrap on smaller screens */
-  flex-wrap: wrap;
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================
-   Media queries for different screen sizes
-   ============================================ */
-
-/* Tablets and smaller (max-width: 768px) */
-@media (max-width: 768px) {
-
-  /* Smaller title on mobile */
-  .services-title {
-    font-size: var(--font-size-3xl);
-  }
-
-  /* Stack buttons vertically on mobile */
-  .services-cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Full width buttons on mobile */
-  .btn {
-    width: 100%;
-    max-width: 250px;
-  }
+  align-items: center;
 }
