@@ -1,103 +1,232 @@
+/* ============================================
+   NAVBAR COMPONENT STYLES
+   ============================================
+   This file contains all styles for the navigation bar,
+   including layout, links, and active states.
+   ============================================ */
+
+/* ============================================
+   NAVBAR CONTAINER
+   ============================================ */
+
 .navbar {
+  /* Width with horizontal margins (same as footer) */
   width: calc(100% - 10rem);
-  /* same horizontal margins as footer */
-  margin: 2rem 5rem 0;
+
+  /* Top and horizontal margins */
+  margin-top: 2rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 0;
+
+  /* Transparent background */
   background: none;
-  /* rgba(15, 23, 43, 0.25) */
-  /* lighter glass for transparency */
+
+  /* Blur effect for glassmorphism */
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Rounded corners */
   border-radius: 24px;
-  padding: 1rem 2rem;
+
+  /* Internal padding */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  /* Position relative for pseudo-elements */
   position: relative;
+
+  /* High z-index to stay on top */
   z-index: 20;
 }
 
+/* Soft glow effect beneath navbar */
 .navbar::before {
-  /* soft glow beneath the navbar */
+  /* Required for pseudo-element */
   content: "";
+
+  /* Position absolutely */
   position: absolute;
   top: -10px;
   left: 10px;
   right: 10px;
   height: 20px;
-  background: rgba(81, 162, 255, 0.05);
+
+  /* Subtle blue glow */
+  background: rgba(33, 87, 238, 0.05);
+
+  /* Blur the glow */
   filter: blur(12px);
+
+  /* Circular shape */
   border-radius: 50%;
+
+  /* Behind the navbar */
   z-index: -1;
 }
 
+/* ============================================
+   NAVBAR CONTENT
+   ============================================ */
+
+/* Container for navbar content */
 .navbar-container {
+  /* Maximum width for content */
   max-width: 1600px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Flexbox layout */
   display: flex;
+
+  /* Space between logo and links */
   justify-content: space-between;
+
+  /* Center items vertically */
   align-items: center;
 }
 
+/* ============================================
+   NAVBAR LOGO
+   ============================================ */
+
 .navbar-logo img {
+  /* Logo height */
   height: 55px;
+
+  /* Auto width to maintain aspect ratio */
   width: auto;
+
+  /* Maintain image aspect ratio */
   object-fit: contain;
+
+  /* Negative left margin for alignment */
   margin-left: -4rem;
 }
 
+/* ============================================
+   NAVBAR LINKS
+   ============================================ */
+
+/* Container for navigation links */
 .navbar-links {
+  /* Flexbox layout */
   display: flex;
+
+  /* Remove list styling */
   list-style: none;
+
+  /* Gap between links */
   gap: 2rem;
+
+  /* Remove default margins */
   margin: 0;
+
+  /* Remove default padding */
   padding: 0;
+
+  /* Center items vertically */
   align-items: center;
 }
 
+/* Individual navbar link */
 .navbar-link {
+  /* Remove underline */
   text-decoration: none;
+
+  /* Use body font family */
   font-family: var(--font-family-body);
+
+  /* Small font size */
   font-size: 0.875rem;
+
+  /* Medium font weight */
   font-weight: 500;
+
+  /* Position relative for active indicator */
   position: relative;
+
+  /* Smooth transitions */
   transition: all 0.3s ease;
+
+  /* White text with gradient clipping */
   background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* Navbar link hover state */
 .navbar-link:hover {
+  /* Slightly reduce opacity on hover */
   opacity: 0.9;
 }
 
+/* Active link indicator (gradient underline) */
 .navbar-link.active::after {
+  /* Required for pseudo-element */
   content: '';
+
+  /* Position absolutely */
   position: absolute;
   bottom: -4px;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #51A2FF, #FF6467);
+
+  /* Gradient underline: blue to red */
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+
+  /* Slightly rounded corners */
   border-radius: 1px;
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================
+   Media queries for different screen sizes
+   ============================================ */
+
+/* Large tablets and smaller (max-width: 1024px) */
 @media (max-width: 1024px) {
+
+  /* Adjust navbar width and margins */
   .navbar {
     width: calc(100% - 4rem);
-    margin: 1rem 2rem 0;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 }
 
+/* Tablets and smaller (max-width: 768px) */
 @media (max-width: 768px) {
+
+  /* Further adjust navbar for mobile */
   .navbar {
     width: calc(100% - 2rem);
-    margin: 1rem;
-    padding: 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
+  /* Reduce gap between links */
   .navbar-links {
     gap: 1rem;
+
+    /* Allow links to wrap */
     flex-wrap: wrap;
   }
 
+  /* Smaller font size on mobile */
   .navbar-link {
     font-size: 0.75rem;
   }

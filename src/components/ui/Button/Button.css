@@ -1,109 +1,155 @@
-.btn-sm {
-  padding: var(--spacing-xs) var(--spacing-md);
-  font-size: var(--font-size-sm);
+/* ============================================
+   BUTTON COMPONENT BASE STYLES
+   ============================================ */
+
+button.btn {
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  padding: 13px 40px;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-sizing: border-box;
+  outline: none;
+  isolation: isolate;
+  background-clip: padding-box;
 }
 
-.btn-md {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: var(--font-size-base);
-}
-
-.btn-lg {
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-size: var(--font-size-lg);
-}
-
-.btn-disabled {
+button.btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.btn-disabled:hover {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-/* Contact Button - Gradient Background */
-.btn-contact {
-  background: linear-gradient(90deg, #51A2FF, #FF6467);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-family: var(--font-family-body);
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-contact::after {
+/* Gradient border layer for hover (only shown on hover) */
+button.btn::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 8px;
+  inset: -1px;
+  border-radius: 15px;
   padding: 1px;
-  background: linear-gradient(90deg, #51A2FF, #FF6467);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
+  z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
-.btn-contact:hover {
-  background: transparent;
+/* Inner layer to hide gradient border in default state */
+button.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  z-index: -1;
+  pointer-events: none;
+  transition: background 0.3s ease, background-color 0.3s ease;
 }
 
-.btn-contact:hover::after {
+/* ============================================
+   STYLE 1 - GRADIENT BACKGROUND BUTTON
+   ============================================
+   Used for: CONTACT US (Style 1), VIEW OPEN POSITIONS, TRY CHATBOT NOW
+   
+   Default: Gradient background with drop shadow
+   Hover: Transparent background with gradient border
+   ============================================ */
+
+button.btn.btn-style1 {
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  box-shadow: 0 0 50px rgba(251, 44, 54, 0.3);
+  border: none;
+  border-radius: 15px;
+}
+
+button.btn.btn-style1::after {
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  border-radius: 15px;
+}
+
+button.btn.btn-style1:hover:not(:disabled) {
+  background: transparent !important;
+  box-shadow: none;
+}
+
+button.btn.btn-style1:hover:not(:disabled)::after {
+  background: transparent !important;
+}
+
+button.btn.btn-style1:hover:not(:disabled)::before {
   opacity: 1;
 }
 
-/* View Project Button - Transparent with White Border */
-.btn-view-project {
-  background: rgba(29, 41, 61, 0.4);
-  color: white;
-  border: 1px solid #FFFFFF;
-  border-radius: 8px;
-  font-family: var(--font-family-body);
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+/* ============================================
+   STYLE 2 - SEMI-TRANSPARENT BUTTON
+   ============================================
+   Used for: EXPLORE OUR EXPERTIES, ABOUT US, VIEW PROJECTS, 
+            VISIT FACEBOOK, EXPLORE OUR STORY, VISIT LINKEDIN, 
+            LEARN MORE ABOUT US, CONTACT US (Style 2)
+   
+   Default: Semi-transparent dark background with white border
+   Hover: Transparent background with gradient border
+   ============================================ */
+
+button.btn.btn-style2 {
+  background-color: rgba(29, 41, 61, 0.4) !important;
+  border: 1px solid white !important;
+  border-radius: 15px !important;
 }
 
-.btn-view-project::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 8px;
-  padding: 1px;
-  background: linear-gradient(90deg, #51A2FF, #FF6467);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+button.btn.btn-style2::after {
+  background-color: rgba(29, 41, 61, 0.4);
+  border-radius: 15px;
 }
 
-.btn-view-project:hover {
+button.btn.btn-style2:hover:not(:disabled) {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+button.btn.btn-style2:hover:not(:disabled)::after {
+  background: transparent !important;
+}
+
+button.btn.btn-style2:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+/* ============================================
+   STYLE 3 - OUTLINE BUTTON
+   ============================================
+   Used for: APPLY NOW
+   
+   Default: No background, blue border
+   Hover: No background, gradient border
+   ============================================ */
+
+button.btn.btn-style3 {
+  background: transparent !important;
+  border: 1px solid #51A2FF !important;
+  border-radius: 15px !important;
+}
+
+button.btn.btn-style3::after {
   background: transparent;
-  border: 1px solid transparent;
+  inset: 0;
+  border-radius: 15px;
 }
 
-.btn-view-project:hover::after {
+button.btn.btn-style3:hover:not(:disabled) {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+button.btn.btn-style3:hover:not(:disabled)::after {
+  background: transparent;
+}
+
+button.btn.btn-style3:hover:not(:disabled)::before {
   opacity: 1;
 }

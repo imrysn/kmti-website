@@ -1,116 +1,270 @@
+/* ============================================
+   SERVICES PAGE STYLES
+   ============================================
+   This file contains all styles for the services page,
+   including hero section, service grid, and CTA section.
+   ============================================ */
+
+/* ============================================
+   SERVICES PAGE CONTAINER
+   ============================================ */
+
 .services-page {
+  /* Full width of the container */
   width: 100%;
 }
 
+/* ============================================
+   SERVICES HERO SECTION
+   ============================================
+   Hero section at the top of the services page
+   ============================================ */
+
 .services-hero {
+  /* Gradient background using primary colors */
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+
+  /* White text color */
   color: white;
-  padding: var(--spacing-3xl) 0;
+
+  /* Vertical padding */
+  padding-top: var(--spacing-3xl);
+  padding-bottom: var(--spacing-3xl);
+
+  /* Center align text */
   text-align: center;
 }
 
+/* Container for hero content */
 .services-hero-container {
+  /* Maximum width for content */
   max-width: 800px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Services page title */
 .services-title {
+  /* Extra large font size */
   font-size: var(--font-size-4xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
 }
 
+/* Services page subtitle */
 .services-subtitle {
+  /* Extra large font size */
   font-size: var(--font-size-xl);
+
+  /* Slightly transparent for subtle effect */
   opacity: 0.9;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-xl);
 }
 
+/* ============================================
+   SERVICES GRID SECTION
+   ============================================
+   Section containing the grid of services
+   ============================================ */
+
 .services-grid-section {
-  padding: var(--spacing-2xl) 0;
+  /* Vertical padding */
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
 }
 
+/* Grid container for services */
 .services-grid {
+  /* CSS Grid layout */
   display: grid;
+
+  /* Responsive grid: auto-fit columns, minimum 350px wide */
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+  /* Gap between grid items */
   gap: var(--spacing-xl);
 }
 
+/* ============================================
+   SERVICE ITEM
+   ============================================
+   Individual service card
+   ============================================ */
+
 .service-item {
+  /* Center align text */
   text-align: center;
+
+  /* Internal padding */
   padding: var(--spacing-xl);
 }
 
+/* Service icon */
 .service-icon {
+  /* Extra large font size for icons */
   font-size: var(--font-size-4xl);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
 }
 
+/* Service name/title */
 .service-name {
+  /* Extra large font size */
   font-size: var(--font-size-xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-sm);
+
+  /* Text color from variables */
   color: var(--text-color);
 }
 
+/* Service description */
 .service-description {
+  /* Light text color */
   color: var(--text-light);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
+
+  /* Comfortable line height */
   line-height: 1.6;
 }
 
+/* ============================================
+   SERVICE FEATURES
+   ============================================
+   List of features for each service
+   ============================================ */
+
 .service-features {
+  /* Remove list styling */
   list-style: none;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-lg);
 }
 
+/* Individual service feature */
 .service-feature {
-  padding: var(--spacing-xs) 0;
+  /* Vertical padding */
+  padding-top: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+
+  /* Light text color */
   color: var(--text-light);
+
+  /* Left align text */
   text-align: left;
+
+  /* Left margin for indentation */
   margin-left: var(--spacing-md);
 }
 
+/* ============================================
+   SERVICE CTA
+   ============================================
+   Call-to-action section for services
+   ============================================ */
+
 .service-cta {
-  padding: var(--spacing-xl) 0;
+  /* Vertical padding */
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
 }
 
+/* ============================================
+   SERVICES CTA SECTION
+   ============================================
+   Call-to-action section at bottom of page
+   ============================================ */
+
 .services-cta-card {
+  /* Center align text */
   text-align: center;
+
+  /* Internal padding */
   padding: var(--spacing-2xl);
 }
 
+/* CTA title */
 .services-cta-title {
+  /* 2X large font size */
   font-size: var(--font-size-2xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
+
+  /* Text color from variables */
   color: var(--text-color);
 }
 
+/* CTA description */
 .services-cta-description {
+  /* Large font size */
   font-size: var(--font-size-lg);
+
+  /* Light text color */
   color: var(--text-light);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-xl);
+
+  /* Comfortable line height */
   line-height: 1.6;
 }
 
+/* Container for CTA buttons */
 .services-cta-buttons {
+  /* Flexbox layout */
   display: flex;
+
+  /* Gap between buttons */
   gap: var(--spacing-md);
+
+  /* Center buttons horizontally */
   justify-content: center;
+
+  /* Allow buttons to wrap on smaller screens */
   flex-wrap: wrap;
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================
+   Media queries for different screen sizes
+   ============================================ */
+
+/* Tablets and smaller (max-width: 768px) */
 @media (max-width: 768px) {
+
+  /* Smaller title on mobile */
   .services-title {
     font-size: var(--font-size-3xl);
   }
-  
+
+  /* Stack buttons vertically on mobile */
   .services-cta-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
+  /* Full width buttons on mobile */
   .btn {
     width: 100%;
     max-width: 250px;

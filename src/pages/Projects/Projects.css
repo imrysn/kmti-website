@@ -1,164 +1,383 @@
+/* ============================================
+   PROJECTS PAGE STYLES
+   ============================================
+   This file contains all styles for the projects page,
+   including hero section, filter buttons, and project grid.
+   ============================================ */
+
+/* ============================================
+   PROJECTS PAGE CONTAINER
+   ============================================ */
+
 .projects-page {
+  /* Full width of the container */
   width: 100%;
 }
 
+/* ============================================
+   PROJECTS HERO SECTION
+   ============================================
+   Hero section at the top of the projects page
+   ============================================ */
+
 .projects-hero {
+  /* Gradient background using primary colors */
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+
+  /* White text color */
   color: white;
-  padding: var(--spacing-3xl) 0;
+
+  /* Vertical padding */
+  padding-top: var(--spacing-3xl);
+  padding-bottom: var(--spacing-3xl);
+
+  /* Center align text */
   text-align: center;
 }
 
+/* Container for hero content */
 .projects-hero-container {
+  /* Maximum width for content */
   max-width: 800px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Projects page title */
 .projects-title {
+  /* Extra large font size */
   font-size: var(--font-size-4xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
 }
 
+/* Projects page subtitle */
 .projects-subtitle {
+  /* Extra large font size */
   font-size: var(--font-size-xl);
+
+  /* Slightly transparent for subtle effect */
   opacity: 0.9;
 }
 
+/* ============================================
+   PROJECTS FILTER SECTION
+   ============================================
+   Section containing filter buttons
+   ============================================ */
+
 .projects-filter {
-  padding: var(--spacing-xl) 0;
+  /* Vertical padding */
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+
+  /* Light background color */
   background-color: var(--background-light);
 }
 
+/* Container for filter buttons */
 .projects-filter-container {
+  /* Flexbox layout */
   display: flex;
+
+  /* Center buttons horizontally */
   justify-content: center;
 }
 
+/* Container for filter buttons */
 .filter-buttons {
+  /* Flexbox layout */
   display: flex;
+
+  /* Gap between buttons */
   gap: var(--spacing-sm);
+
+  /* Allow buttons to wrap on smaller screens */
   flex-wrap: wrap;
+
+  /* Center buttons horizontally */
   justify-content: center;
 }
 
+/* Individual filter button */
 .filter-btn {
-  padding: var(--spacing-sm) var(--spacing-lg);
+  /* Vertical and horizontal padding */
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
+
+  /* Border with color from variables */
   border: var(--border-width) solid var(--border-color);
+
+  /* White background */
   background-color: white;
+
+  /* Text color from variables */
   color: var(--text-color);
+
+  /* Extra large border radius for pill shape */
   border-radius: var(--border-radius-xl);
+
+  /* Pointer cursor on hover */
   cursor: pointer;
+
+  /* Smooth transitions */
   transition: var(--transition-base);
+
+  /* Medium font weight */
   font-weight: 500;
 }
 
+/* Filter button hover state */
 .filter-btn:hover {
+  /* Primary color border on hover */
   border-color: var(--primary-color);
+
+  /* Primary color text on hover */
   color: var(--primary-color);
 }
 
+/* Active filter button */
 .filter-btn--active {
+  /* Primary color background */
   background-color: var(--primary-color);
+
+  /* White text */
   color: white;
+
+  /* Primary color border */
   border-color: var(--primary-color);
 }
 
+/* ============================================
+   PROJECTS GRID SECTION
+   ============================================
+   Section containing the grid of projects
+   ============================================ */
+
 .projects-grid-section {
-  padding: var(--spacing-2xl) 0;
+  /* Vertical padding */
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
 }
 
+/* Grid container for projects */
 .projects-grid {
+  /* CSS Grid layout */
   display: grid;
+
+  /* Responsive grid: auto-fit columns, minimum 350px wide */
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+  /* Gap between grid items */
   gap: var(--spacing-xl);
 }
 
+/* ============================================
+   PROJECT CARD
+   ============================================
+   Individual project card
+   ============================================ */
+
 .project-card {
+  /* Internal padding */
   padding: var(--spacing-xl);
+
+  /* Flexbox layout */
   display: flex;
   flex-direction: column;
 }
 
+/* Project category badge */
 .project-category {
+  /* Inline-block display */
   display: inline-block;
+
+  /* Primary color background */
   background-color: var(--primary-color);
+
+  /* White text */
   color: white;
-  padding: var(--spacing-xs) var(--spacing-sm);
+
+  /* Vertical and horizontal padding */
+  padding-top: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+
+  /* Rounded corners */
   border-radius: var(--border-radius);
+
+  /* Small font size */
   font-size: var(--font-size-sm);
+
+  /* Medium font weight */
   font-weight: 500;
+
+  /* Width fits content */
   width: fit-content;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
 }
 
+/* Project title */
 .project-title {
+  /* Extra large font size */
   font-size: var(--font-size-xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-sm);
+
+  /* Text color from variables */
   color: var(--text-color);
 }
 
+/* Project description */
 .project-description {
+  /* Light text color */
   color: var(--text-light);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-lg);
+
+  /* Comfortable line height */
   line-height: 1.6;
+
+  /* Grow to fill available space */
   flex: 1;
 }
 
+/* ============================================
+   PROJECT TECH STACK
+   ============================================
+   Technology tags for projects
+   ============================================ */
+
 .project-tech {
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-lg);
 }
 
+/* Container for tech tags */
 .tech-tags {
+  /* Flexbox layout */
   display: flex;
+
+  /* Allow tags to wrap */
   flex-wrap: wrap;
+
+  /* Gap between tags */
   gap: var(--spacing-xs);
+
+  /* Top margin for spacing */
   margin-top: var(--spacing-xs);
 }
 
+/* Individual tech tag */
 .tech-tag {
+  /* Light background color */
   background-color: var(--background-light);
+
+  /* Text color from variables */
   color: var(--text-color);
-  padding: var(--spacing-xs) var(--spacing-sm);
+
+  /* Vertical and horizontal padding */
+  padding-top: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+
+  /* Rounded corners */
   border-radius: var(--border-radius);
+
+  /* Small font size */
   font-size: var(--font-size-sm);
 }
 
+/* ============================================
+   PROJECTS CTA SECTION
+   ============================================
+   Call-to-action section at bottom of page
+   ============================================ */
+
 .projects-cta {
-  padding: var(--spacing-2xl) 0;
+  /* Vertical padding */
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
 }
 
+/* CTA card container */
 .projects-cta-card {
+  /* Center align text */
   text-align: center;
+
+  /* Internal padding */
   padding: var(--spacing-2xl);
 }
 
+/* CTA title */
 .projects-cta-title {
+  /* 2X large font size */
   font-size: var(--font-size-2xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
+
+  /* Text color from variables */
   color: var(--text-color);
 }
 
+/* CTA description */
 .projects-cta-description {
+  /* Large font size */
   font-size: var(--font-size-lg);
+
+  /* Light text color */
   color: var(--text-light);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-xl);
+
+  /* Comfortable line height */
   line-height: 1.6;
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================
+   Media queries for different screen sizes
+   ============================================ */
+
+/* Tablets and smaller (max-width: 768px) */
 @media (max-width: 768px) {
+
+  /* Smaller title on mobile */
   .projects-title {
     font-size: var(--font-size-3xl);
   }
-  
+
+  /* Allow horizontal scrolling for filter buttons */
   .filter-buttons {
     justify-content: flex-start;
     overflow-x: auto;
     padding-bottom: var(--spacing-sm);
   }
-  
+
+  /* Prevent filter button text from wrapping */
   .filter-btn {
     white-space: nowrap;
   }

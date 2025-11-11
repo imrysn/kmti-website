@@ -1,202 +1,474 @@
 .footer {
+  /* Semi-transparent dark background */
   background: rgba(15, 23, 43, 0.25);
+
+  /* Blur effect for glassmorphism */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+
+  /* Top shadow for depth */
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+
+  /* White text color */
   color: white;
-  margin: 0 5rem 1rem;
+
+  /* Horizontal margins (same as navbar) */
+  margin-top: 0;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 1rem;
+
+  /* Rounded corners */
   border-radius: 24px;
-  padding: 3rem 2rem 1rem;
+
+  /* Internal padding */
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  /* Position relative for pseudo-elements */
   position: relative;
+
+  /* Z-index for stacking */
   z-index: 10;
 }
 
+/* Soft glow effect beneath footer */
 .footer::before {
+  /* Required for pseudo-element */
   content: "";
+
+  /* Position absolutely */
   position: absolute;
   bottom: -10px;
   left: 10px;
   right: 10px;
   height: 20px;
-  background: rgba(81, 162, 255, 0.05);
+
+  /* Subtle blue glow */
+  background: rgba(33, 87, 238, 0.05);
+
+  /* Blur the glow */
   filter: blur(12px);
+
+  /* Circular shape */
   border-radius: 50%;
+
+  /* Behind the footer */
   z-index: -1;
 }
 
+/* ============================================
+   FOOTER INNER CONTENT
+   ============================================ */
+
 .footer__inner {
+  /* Maximum width for content */
   max-width: 1500px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* CSS Grid layout */
   display: grid;
+
+  /* Four columns: brand (3fr), links (1fr each), contact (1.5fr) */
   grid-template-columns: 3fr 1fr 1fr 1.5fr;
+
+  /* Gap between columns */
   gap: 3rem;
+
+  /* Bottom margin for spacing */
   margin-bottom: 2rem;
 }
 
+/* ============================================
+   FOOTER BRAND SECTION
+   ============================================ */
 
 .footer__brand {
+  /* Flexbox layout */
   display: flex;
   flex-direction: column;
+
+  /* Gap between items */
   gap: 1rem;
 }
 
+/* Footer logo container */
 .footer__logo {
+  /* Flexbox for alignment */
   display: flex;
   align-items: center;
+
+  /* Bottom margin for spacing */
   margin-bottom: 0.5rem;
 }
 
+/* Footer logo image */
 .footer__logo img {
+  /* Auto width to maintain aspect ratio */
   width: auto;
+
+  /* Logo height */
   height: 56px;
+
+  /* Maintain image aspect ratio */
   object-fit: contain;
+
+  /* Rounded corners */
   border-radius: 8px;
 }
 
+/* Footer description text */
 .footer__desc {
+  /* Use body font family */
   font-family: var(--font-family-body);
+
+  /* Small font size */
   font-size: 0.875rem;
+
+  /* Semi-transparent white text */
   color: rgba(255, 255, 255, 0.8);
+
+  /* Comfortable line height */
   line-height: 1.6;
+
+  /* Remove default margin */
   margin: 0;
 }
 
+/* ============================================
+   SOCIAL MEDIA LINKS
+   ============================================ */
+
 .footer__socials {
+  /* Flexbox layout */
   display: flex;
+
+  /* Gap between social icons */
   gap: 0.75rem;
-  margin-top: 0rem;
+
+  /* Top margin */
+  margin-top: 0;
 }
 
+/* Individual social media link */
 .footer__socials a {
+  /* Fixed size for social icons */
   width: 40px;
   height: 40px;
+
+  /* Flexbox for centering icon */
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Semi-transparent dark background */
   background: rgba(29, 41, 61, 0.5);
+
+  /* Subtle white border */
   border: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Rounded corners */
   border-radius: 8px;
+
+  /* Gray text color */
   color: #99A1AF;
+
+  /* Remove underline */
   text-decoration: none;
+
+  /* Use body font family */
   font-family: var(--font-family-body);
+
+  /* Base font size */
   font-size: 1rem;
+
+  /* Medium font weight */
   font-weight: 500;
+
+  /* Smooth transitions */
   transition: all 0.3s ease;
 }
 
+/* Social media link hover state */
 .footer__socials a:hover {
+  /* Darker background on hover */
   background: rgba(29, 41, 61, 0.7);
+
+  /* More visible border on hover */
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* ============================================
+   FOOTER LINKS SECTIONS
+   ============================================ */
+
 .footer__links {
+  /* Flexbox layout */
   display: flex;
   flex-direction: column;
+
+  /* No gap (using margin on title instead) */
   gap: 0;
 }
 
+/* Footer column container */
 .footer__col {
+  /* Flexbox layout */
   display: flex;
   flex-direction: column;
+
+  /* Gap between links */
   gap: 0.75rem;
 }
 
+/* Footer column title */
 .footer__col-title {
+  /* Use heading font family */
   font-family: var(--font-family-heading);
+
+  /* Base font size */
   font-size: 1rem;
+
+  /* Normal font weight */
   font-weight: 400;
+
+  /* White text color */
   color: white;
+
+  /* Bottom margin for spacing */
   margin-bottom: 0.5rem;
+
+  /* Uppercase text */
   text-transform: uppercase;
 }
 
+/* Footer link */
 .footer__link {
+  /* Use body font family */
   font-family: var(--font-family-body);
+
+  /* Small font size */
   font-size: 0.875rem;
+
+  /* Semi-transparent white text */
   color: rgba(255, 255, 255, 0.8);
+
+  /* Remove underline */
   text-decoration: none;
+
+  /* Smooth color transition */
   transition: color 0.3s ease;
 }
 
+/* Footer link hover state */
 .footer__link:hover {
+  /* Solid white on hover */
   color: white;
 }
 
+/* ============================================
+   FOOTER CONTACT SECTION
+   ============================================ */
+
 .footer__contact {
+  /* Flexbox layout */
   display: flex;
   flex-direction: column;
+
+  /* Gap between contact items */
   gap: 1rem;
 }
 
+/* Footer contact item */
 .footer__contact-item {
+  /* Flexbox layout */
   display: flex;
   align-items: flex-start;
+
+  /* Gap between icon and text */
   gap: 0.75rem;
+
+  /* Use body font family */
   font-family: var(--font-family-body);
+
+  /* Small font size */
   font-size: 0.813rem;
+
+  /* Semi-transparent white text */
   color: rgba(255, 255, 255, 0.8);
+
+  /* Comfortable line height */
   line-height: 1.6;
 }
 
-.footer__contact-icon {
-  color: #51A2FF;
-  font-size: 1.125rem;
-  margin-top: 0.125rem;
-  flex-shrink: 0;
+/* Footer contact link */
+.footer__contact-link {
+  /* Semi-transparent white text */
+  color: rgba(255, 255, 255, 0.8);
+
+  /* Remove underline */
+  text-decoration: none;
+
+  /* Smooth color transition */
+  transition: color 0.3s ease;
+
+  /* Maintain line height */
+  line-height: 1.6;
 }
+
+/* Footer contact link hover state */
+.footer__contact-link:hover {
+  /* Solid white on hover */
+  color: white;
+
+  /* Add underline on hover */
+  text-decoration: underline;
+}
+
+/* Footer contact icon */
+.footer__contact-icon {
+  /* Icon size for image icons */
+  width: 18px;
+  height: 18px;
+
+  /* Maintain aspect ratio */
+  object-fit: contain;
+
+  /* Slight top margin for alignment */
+  margin-top: 0.125rem;
+
+  /* Prevent icon from shrinking */
+  flex-shrink: 0;
+
+  /* Display as block to remove inline spacing */
+  display: block;
+}
+
+/* Fallback for text/emoji icons (if any remain) */
+.footer__contact-item span.footer__contact-icon {
+  /* Blue icon color (updated to match gradient start) */
+  color: #2157EE;
+
+  /* Icon font size */
+  font-size: 1.125rem;
+
+  /* Display as inline */
+  display: inline;
+}
+
+/* ============================================
+   FOOTER BOTTOM SECTION
+   ============================================ */
 
 .footer__bottom {
+  /* Maximum width for content */
   max-width: 1400px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Top padding */
   padding-top: 1.5rem;
+
+  /* Top border separator */
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Flexbox layout */
   display: flex;
+
+  /* Space between copyright and links */
   justify-content: space-between;
+
+  /* Center items vertically */
   align-items: center;
+
+  /* Use body font family */
   font-family: var(--font-family-body);
+
+  /* Small font size */
   font-size: 0.813rem;
+
+  /* Semi-transparent white text */
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Footer bottom links container */
 .footer__bottom-links {
+  /* Flexbox layout */
   display: flex;
+
+  /* Gap between links */
   gap: 1.5rem;
+
+  /* Center items vertically */
   align-items: center;
 }
 
+/* Footer bottom link */
 .footer__bottom-link {
+  /* Semi-transparent white text */
   color: rgba(255, 255, 255, 0.8);
+
+  /* Remove underline */
   text-decoration: none;
+
+  /* Smooth color transition */
   transition: color 0.3s ease;
 }
 
+/* Footer bottom link hover state */
 .footer__bottom-link:hover {
+  /* Solid white on hover */
   color: white;
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================
+   Media queries for different screen sizes
+   ============================================ */
+
+/* Large tablets and smaller (max-width: 1024px) */
 @media (max-width: 1024px) {
+
+  /* Two column grid on tablets */
   .footer__inner {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
 }
 
+/* Tablets and smaller (max-width: 768px) */
 @media (max-width: 768px) {
+
+  /* Adjust padding on mobile */
   .footer {
-    padding: 2rem 1rem 1rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
+  /* Single column grid on mobile */
   .footer__inner {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
+  /* Stack footer bottom content vertically */
   .footer__bottom {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
   }
 
+  /* Allow bottom links to wrap */
   .footer__bottom-links {
     flex-wrap: wrap;
     justify-content: center;
