@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Services.css';
 import { ServicesPageProps } from './Services.types';
 import { ServicePageCard } from '../../components/ui/Card/Card';
 import Button from '../../components/ui/Button';
+import ServiceModal from '../../components/ui/Modal';
 import servicesBg from '../../assets/servicesbg.png';
 import icon3D from '../../assets/icons/cube.png';
 import icon2D from '../../assets/icons/cubes.png';
@@ -14,9 +15,19 @@ import image2D from '../../assets/servicePage/2DImage.png';
 import inspectionImage from '../../assets/servicePage/inspectionImage.png';
 import assemblyImage from '../../assets/servicePage/assemblyImage.png';
 
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  image: string;
+}
+
 const Services: React.FC<ServicesPageProps> = () => {
   const navigate = useNavigate();
   const servicesGridRef = useRef<HTMLDivElement>(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const scrollToServicesGrid = () => {
     servicesGridRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -26,7 +37,17 @@ const Services: React.FC<ServicesPageProps> = () => {
     navigate('/contact');
   };
 
-  const services = [
+  const handleServiceClick = (service: Service) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+  };
+
+  const services: Service[] = [
     {
       id: 1,
       title: '3D Modeling',
@@ -108,6 +129,7 @@ const Services: React.FC<ServicesPageProps> = () => {
                   title={service.title}
                   subtitle={service.description}
                   className="service-page-card-item"
+                  onClick={() => handleServiceClick(service)}
                 />
               </div>
             ))}
@@ -123,6 +145,12 @@ const Services: React.FC<ServicesPageProps> = () => {
           </div>
         </div>
       </section>
+
+      <ServiceModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        service={selectedService}
+      />
     </div>
   );
 };

@@ -597,6 +597,9 @@
   /* Width constraint */
   width: 100%;
   max-width: 700px;
+
+  /* Cursor pointer to indicate clickable */
+  cursor: pointer;
 }
 
 /* Hover effect with drop shadow */

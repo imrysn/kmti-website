@@ -1,0 +1,361 @@
+/* ============================================
+   SERVICE MODAL OVERLAY
+   ============================================ */
+
+.service-modal-overlay {
+  /* Fixed position to cover entire screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Dark background with transparency */
+  background-color: rgba(0, 0, 0, 0.8);
+
+  /* Center content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Z-index to appear above everything */
+  z-index: 10000;
+
+  /* Smooth fade in */
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   SERVICE MODAL CONTENT
+   ============================================ */
+
+.service-modal-content {
+  /* Dark blue background */
+  background-color: rgba(15, 23, 43, 0.95);
+
+  /* Light blue glowing border */
+  border: 1px solid rgba(81, 162, 255, 0.5);
+  box-shadow: 0 0 20px rgba(81, 162, 255, 0.3), 0 0 40px rgba(81, 162, 255, 0.2);
+
+  /* Rounded corners */
+  border-radius: 16px;
+
+  /* Maximum width and height */
+  max-width: 1400px;
+  max-height: 90vh;
+  width: 95%;
+
+  /* Padding */
+  padding: 2rem;
+
+  /* Position relative for close button */
+  position: relative;
+
+  /* Overflow for scrolling */
+  overflow-y: auto;
+
+  /* Smooth scale in */
+  animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   SERVICE MODAL CLOSE BUTTON
+   ============================================ */
+
+.service-modal-close {
+  /* Position in top right */
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+
+  /* Size */
+  width: 32px;
+  height: 32px;
+
+  /* Styling */
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+
+  /* Text */
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+
+  /* Flexbox to center */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Smooth transition */
+  transition: all 0.3s ease;
+
+  /* Z-index */
+  z-index: 10;
+}
+
+.service-modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(90deg);
+}
+
+/* ============================================
+   SERVICE MODAL BODY
+   ============================================ */
+
+.service-modal-body {
+  /* Grid layout for two columns */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+
+  /* Padding top for close button space */
+  padding-top: 1rem;
+}
+
+/* ============================================
+   SERVICE MODAL LEFT SIDE
+   ============================================ */
+
+.service-modal-left {
+  /* Flexbox column */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.service-modal-title {
+  /* Font styling */
+  font-family: 'Flame', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 100;
+  color: white;
+
+  /* Remove default margins */
+  margin: 0;
+}
+
+.service-modal-description {
+  /* Font styling */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+
+  /* Remove default margins */
+  margin: 0;
+}
+
+/* ============================================
+   SERVICE MODAL STEP INDICATOR
+   ============================================ */
+
+.service-modal-step-indicator {
+  /* Flexbox row */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.service-modal-step-number {
+  /* Circle with number */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  /* Light blue background */
+  background-color: rgba(81, 162, 255, 0.2);
+  border: 1px solid rgba(81, 162, 255, 0.5);
+
+  /* Center text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Text styling */
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.service-modal-step-text {
+  /* Text styling */
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   SERVICE MODAL IMAGES
+   ============================================ */
+
+.service-modal-images {
+  /* Flexbox column */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.service-modal-image-container {
+  /* Container for image */
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.service-modal-image {
+  /* Image styling */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   SERVICE MODAL RIGHT SIDE
+   ============================================ */
+
+.service-modal-right {
+  /* Flexbox column */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.service-modal-flow-title {
+  /* Font styling */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  /* Remove default margins */
+  margin: 0;
+}
+
+/* ============================================
+   SERVICE MODAL FLOW
+   ============================================ */
+
+.service-modal-flow {
+  /* Flexbox column */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.service-modal-flow-step {
+  /* Button styling */
+  background-color: rgba(15, 23, 43, 0.8);
+  border: 1px solid rgba(81, 162, 255, 0.3);
+  border-radius: 8px;
+
+  /* Padding */
+  padding: 1rem 1.5rem;
+
+  /* Text styling */
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+
+  /* Cursor */
+  cursor: pointer;
+
+  /* Smooth transition */
+  transition: all 0.3s ease;
+
+  /* Remove default button styles */
+  outline: none;
+}
+
+.service-modal-flow-step:hover {
+  background-color: rgba(15, 23, 43, 0.9);
+  border-color: rgba(81, 162, 255, 0.5);
+}
+
+.service-modal-flow-step.active {
+  /* Active state - lighter blue */
+  background-color: rgba(81, 162, 255, 0.2);
+  border-color: rgba(81, 162, 255, 0.6);
+  box-shadow: 0 0 10px rgba(81, 162, 255, 0.3);
+}
+
+.service-modal-flow-arrow {
+  /* Arrow styling */
+  color: rgba(81, 162, 255, 0.6);
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .service-modal-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .service-modal-content {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+
+  .service-modal-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-modal-content {
+    padding: 1rem;
+    max-height: 95vh;
+  }
+
+  .service-modal-title {
+    font-size: 1.75rem;
+  }
+
+  .service-modal-description {
+    font-size: 0.9rem;
+  }
+
+  .service-modal-image-container {
+    height: 200px;
+  }
+}
+
