@@ -62,6 +62,24 @@
 
   /* Center items vertically */
   align-items: center;
+
+  /* Background color #0F172B at 40% opacity */
+  background: rgba(15, 23, 43, 0.4);
+
+  /* Drop shadow only at the bottom - #2B7FFF at 10% opacity */
+  box-shadow: 0 4px 12px rgba(43, 127, 255, 0.1);
+
+  /* Border radius */
+  border-radius: 20px;
+
+  /* Equal spacing on left and right sides */
+  padding-left: 3rem;
+  padding-right: 3rem;
+
+  /* Height for visual balance */
+  min-height: 60px;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
 }
 
 /* ============================================
@@ -95,7 +113,7 @@
   list-style: none;
 
   /* Gap between links */
-  gap: 2rem;
+  gap: 2.2rem;
 
   /* Remove default margins */
   margin: 0;
@@ -116,10 +134,10 @@
   font-family: var(--font-family-body);
 
   /* Small font size */
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 
   /* Medium font weight */
-  font-weight: 500;
+  font-weight: 400;
 
   /* Position relative for active indicator */
   position: relative;
@@ -157,51 +175,4 @@
 
   /* Slightly rounded corners */
   border-radius: 1px;
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================
-   Media queries for different screen sizes
-   ============================================ */
-
-/* Large tablets and smaller (max-width: 1024px) */
-@media (max-width: 1024px) {
-
-  /* Adjust navbar width and margins */
-  .navbar {
-    width: calc(100% - 4rem);
-    margin-top: 1rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
-}
-
-/* Tablets and smaller (max-width: 768px) */
-@media (max-width: 768px) {
-
-  /* Further adjust navbar for mobile */
-  .navbar {
-    width: calc(100% - 2rem);
-    margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  /* Reduce gap between links */
-  .navbar-links {
-    gap: 1rem;
-
-    /* Allow links to wrap */
-    flex-wrap: wrap;
-  }
-
-  /* Smaller font size on mobile */
-  .navbar-link {
-    font-size: 0.75rem;
-  }
 }

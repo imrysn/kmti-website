@@ -35,6 +35,11 @@
   height: 100vh;
   min-height: 100vh;
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
   /* Background image from CSS variable */
   background-image: var(--services-bg-image);
 
@@ -58,7 +63,7 @@
   position: relative;
 
   /* Minimum height for hero section */
-  min-height: 90vh;
+  min-height: 93vh;
 
   /* Flexbox layout */
   display: flex;
@@ -76,19 +81,18 @@
   z-index: 1;
 }
 
-/* Dark blue overlay on top of background image - extends behind navbar and hero */
+/* Overlay on top of background image - matches Home page style */
 .services-hero-overlay {
-  /* Position fixed to cover viewport from top */
-  position: fixed;
+  /* Position absolute to cover only hero section */
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  /* Height covers entire viewport */
-  height: 100vh;
-  min-height: 100%;
+  bottom: 0;
 
-  /* Dark blue semi-transparent background - #162456 at 45% opacity */
-  background: rgba(22, 36, 86, 0.80);
+  /* Same gradient background as Home page */
+  background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);
+  opacity: 0.8;
 
   /* Z-index to place overlay above background but below navbar (z-index: 1000) and content */
   z-index: 0;
@@ -133,7 +137,7 @@
   color: white;
 
   /* Bottom margin for spacing */
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 
   /* Font family */
   font-family: var(--font-family-heading, 'Flame', sans-serif);
@@ -182,9 +186,9 @@
    ============================================ */
 
 .services-nav-section {
-  /* Vertical padding */
-  padding-top: 2rem;
-  padding-bottom: 3rem;
+  /* Position right below hero page */
+  padding-top: 0;
+  padding-bottom: 0;
 
   /* Ensure section is above background */
   position: relative;
@@ -192,51 +196,74 @@
 }
 
 .services-nav-container {
-  /* Maximum width for content */
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  /* Full width container */
+  width: 100%;
+  padding: 0;
 }
 
 .services-nav-tabs {
-  /* Flexbox layout */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20rem;
-  flex-wrap: wrap;
+  /* Background color #0F172B at 20% opacity */
+  background: rgba(15, 23, 43, 0.2);
+
+  /* 1px stroke color #FFFFFF at 15% opacity */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  /* Border radius */
+  border-radius: 0;
+
+  /* Padding for content */
+  padding: 1rem 0;
+
+  /* Hide overflow for seamless loop */
+  overflow: hidden;
+
+  /* Position relative for animation */
+  position: relative;
 }
 
-.services-nav-tab {
-  /* Font styling */
+.services-nav-tabs-scroll {
+  /* Hide overflow */
+  overflow: hidden;
+
+  /* White space nowrap to keep text on one line */
+  white-space: nowrap;
+}
+
+.services-nav-tabs-content {
+  /* Inline flex for horizontal layout */
+  display: inline-flex;
+  align-items: center;
+
+  /* Gap between items */
+  gap: 15rem;
+
+  /* Smooth infinite scrolling animation */
+  animation: scrollLoop 35s linear infinite;
+
+  /* Font styling - consistent with original */
   font-family: var(--font-family-body, 'Segoe UI', sans-serif);
   font-size: 0.875rem;
   font-weight: 100;
   color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
-
-  /* Remove default button styles */
-  background: none;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-
-  /* Smooth transitions */
-  transition: color 0.3s ease;
-
-  /* Remove outline */
-  outline: none;
 }
 
-.services-nav-tab:hover {
-  color: white;
+.services-nav-tab-text {
+  /* Display inline */
+  display: inline-block;
+
+  /* Padding for spacing */
+  padding: 0 1.5rem;
 }
 
-.services-nav-tab.active {
-  color: white;
-  border-bottom: 2px solid white;
+@keyframes scrollLoop {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* ============================================
@@ -247,8 +274,8 @@
 
 .services-grid-section {
   /* Vertical padding */
-  padding-top: 1rem;
-  padding-bottom: 0rem;
+  padding-top: 5rem;
+  padding-bottom: 1rem;
 
   /* Ensure section is above background */
   position: relative;
@@ -274,130 +301,10 @@
 
 /* Service card wrapper */
 .service-card-wrapper {
-  /* Display flex column for card and pagination */
+  /* Display flex column for card */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-}
-
-/* Service pagination dots */
-.service-pagination {
-  /* Flexbox layout */
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.service-pagination-dot {
-  /* Dot size */
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-
-  /* Default state - semi-transparent white */
-  background-color: rgba(255, 255, 255, 0.3);
-
-  /* Smooth transition */
-  transition: background-color 0.3s ease;
-}
-
-.service-pagination-dot.active {
-  /* Active state - solid white */
-  background-color: white;
-}
-
-/* ============================================
-   SERVICE ITEM
-   ============================================
-   Individual service card
-   ============================================ */
-
-.service-item {
-  /* Center align text */
-  text-align: center;
-
-  /* Internal padding */
-  padding: var(--spacing-xl);
-}
-
-/* Service icon */
-.service-icon {
-  /* Extra large font size for icons */
-  font-size: var(--font-size-4xl);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-}
-
-/* Service name/title */
-.service-name {
-  /* Extra large font size */
-  font-size: var(--font-size-xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-sm);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Service description */
-.service-description {
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-
-  /* Comfortable line height */
-  line-height: 1.6;
-}
-
-/* ============================================
-   SERVICE FEATURES
-   ============================================
-   List of features for each service
-   ============================================ */
-
-.service-features {
-  /* Remove list styling */
-  list-style: none;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Individual service feature */
-.service-feature {
-  /* Vertical padding */
-  padding-top: var(--spacing-xs);
-  padding-bottom: var(--spacing-xs);
-
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Left align text */
-  text-align: left;
-
-  /* Left margin for indentation */
-  margin-left: var(--spacing-md);
-}
-
-/* ============================================
-   SERVICE CTA
-   ============================================
-   Call-to-action section for services
-   ============================================ */
-
-.service-cta {
-  /* Vertical padding */
-  padding-top: var(--spacing-xl);
-  padding-bottom: var(--spacing-xl);
 }
 
 /* ============================================

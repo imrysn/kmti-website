@@ -165,10 +165,17 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
         <div className="service-page-card-image-container">
           <img src={image} alt={title} className="service-page-card-image" />
           <div className="service-page-card-image-overlay"></div>
+          <div className="service-page-card-text-overlay">
+            <h3 className="service-page-card-title">{title}</h3>
+            <p className="service-page-card-subtitle">{subtitle}</p>
+          </div>
         </div>
       )}
-      <h3 className="service-page-card-title">{title}</h3>
-      <p className="service-page-card-subtitle">{subtitle}</p>
+      <div className="service-pagination">
+        <span className="service-pagination-dot"></span>
+        <span className="service-pagination-dot active"></span>
+        <span className="service-pagination-dot"></span>
+      </div>
     </div>
   );
 };

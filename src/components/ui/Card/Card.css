@@ -595,8 +595,13 @@
   overflow: hidden;
 
   /* Width constraint */
-  width: 150%;
-  max-width: 420px;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Hover effect with drop shadow */
+.service-page-card:hover {
+  box-shadow: 0 0px 20px rgba(81, 162, 255, 0.5);
 }
 
 /* ============================================
@@ -606,20 +611,37 @@
 .service-page-card-icon-container {
   /* Position absolutely in top left */
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
+  top: 2.5rem;
+  left: 2.5rem;
 
   /* Z-index to place icon above image and overlay */
   z-index: 3;
 
-  /* Size for icon container */
-  width: 48px;
-  height: 48px;
+  /* Rounded square background */
+  background-color: rgba(43, 127, 255, 0.1);
+  border: 1px solid rgba(43, 127, 255, 0.2);
+  border-radius: 8px;
+
+  /* Size */
+  width: 50px;
+  height: 50px;
 
   /* Flexbox to center icon */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.service-page-card-icon {
+  /* Icon color */
+  color: #51A2FF;
+  /* Display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Ensure SVG icons inherit color */
+  fill: #51A2FF;
 }
 
 .service-page-card-icon-image {
@@ -639,7 +661,7 @@
 
   /* Width and height for image container */
   width: 100%;
-  height: 200px;
+  height: 320px;
 
   /* Margin bottom for spacing */
   margin-bottom: 1.5rem;
@@ -649,6 +671,27 @@
 
   /* Overflow hidden to contain image and overlay */
   overflow: hidden;
+}
+
+/* Text overlay container for title and subtitle */
+.service-page-card-text-overlay {
+  /* Position absolutely to cover image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Z-index to place text above overlay */
+  z-index: 3;
+
+  /* Flexbox for vertical alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  /* Padding for text */
+  padding: 1.5rem;
 }
 
 .service-page-card-image {
@@ -673,7 +716,7 @@
   bottom: 0;
 
   /* Dark overlay: #0F172B at 70% opacity */
-  background-color: rgba(15, 23, 43, 0.7);
+  background-color: rgba(15, 23, 43, 0.4);
 
   /* Z-index to place overlay above image */
   z-index: 2;
@@ -698,7 +741,7 @@
   font-weight: 100;
 
   /* Bottom margin for spacing */
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 
   /* Remove default margins */
   margin-top: 0;
@@ -730,4 +773,37 @@
 
   /* Left align */
   text-align: left;
+}
+
+/* ============================================
+   SERVICE PAGE CARD PAGINATION
+   ============================================ */
+
+.service-page-card .service-pagination {
+  /* Flexbox layout */
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+
+  /* Margin top for spacing */
+  margin-top: 1rem;
+}
+
+.service-page-card .service-pagination-dot {
+  /* Dot size */
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  /* Default state - semi-transparent white */
+  background-color: rgba(255, 255, 255, 0.3);
+
+  /* Smooth transition */
+  transition: background-color 0.3s ease;
+}
+
+.service-page-card .service-pagination-dot.active {
+  /* Active state - solid white */
+  background-color: white;
 }

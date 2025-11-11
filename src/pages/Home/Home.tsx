@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import { HomePageProps } from './Home.types';
 import homeBg from '../../assets/homebg.jpeg';
@@ -22,6 +23,16 @@ import millingImage from '../../assets/image3D/milling.png';
 import furnaceImage from '../../assets/image3D/furnace.png';
 
 const Home: React.FC<HomePageProps> = () => {
+  const navigate = useNavigate();
+
+  const navigateToProjects = () => {
+    navigate('/projects');
+  };
+
+  const navigateToContact = () => {
+    navigate('/contact');
+  };
+
   const whyChooseUs = [
     {
       id: 1,
@@ -137,8 +148,8 @@ const Home: React.FC<HomePageProps> = () => {
           <div className="hero-content">
             <h1 className="hero-title">BRINGING YOUR VISION <br /> INTO CREATION, WITH <br /> PRECISION</h1>
             <div className="hero-buttons">
-              <Button variant="style1">CONTACT US</Button>
-              <Button variant="style2">VIEW PROJECTS</Button>
+              <Button variant="style1" onClick={navigateToContact}>CONTACT US</Button>
+              <Button variant="style2" onClick={navigateToProjects}>VIEW PROJECTS</Button>
             </div>
           </div>
         </div>
@@ -205,7 +216,7 @@ const Home: React.FC<HomePageProps> = () => {
         <div className="section-container container">
           <h2 className="cta-title">Ready to build your next project?</h2>
           <div className="cta-buttons">
-            <Button variant="style2">CONTACT US</Button>
+            <Button variant="style2" onClick={navigateToContact}>CONTACT US</Button>
           </div>
         </div>
       </section>
