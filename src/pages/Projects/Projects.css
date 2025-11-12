@@ -1,165 +1,151 @@
 .projects-page {
+  /* Full width of the container */
   width: 100%;
 }
 
+/* ============================================
+   PROJECTS HERO SECTION
+   ============================================
+   Hero section at the top of the projects page
+   ============================================ */
+
 .projects-hero {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  /* Background image */
+  background-image: var(--project-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Extend hero section to cover navbar area by using negative margin */
+  margin-top: -8rem;
+  padding-top: 10rem;
+
+  /* Position relative for overlay */
+  position: relative;
+
+  /* Minimum height for hero section - same as services page */
+  min-height: 80vh;
+
+  /* Flexbox layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Padding - override the padding-top from above */
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+
+  /* White text color */
   color: white;
-  padding: var(--spacing-3xl) 0;
+
+  /* Center align text */
   text-align: center;
+
+  /* Ensure hero is above background */
+  z-index: 1;
 }
 
+.projects-hero-overlay {
+  /* Overlay color #162456 at 44% opacity */
+  background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);
+  opacity: 0.8;
+
+  /* Cover entire hero section */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Z-index to be above background but below content */
+  z-index: 1;
+}
+
+/* Container for hero content */
 .projects-hero-container {
+  /* Maximum width for content */
   max-width: 800px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Position relative to be above overlay */
+  position: relative;
+  z-index: 2;
 }
 
+/* Projects page title */
 .projects-title {
-  font-size: var(--font-size-4xl);
-  font-weight: 700;
-  margin-bottom: var(--spacing-md);
-}
+  /* Extra large font size */
+  font-size: 4rem;
 
-.projects-subtitle {
-  font-size: var(--font-size-xl);
-  opacity: 0.9;
-}
+  /* Bold font weight */
+  font-weight: 100;
 
-.projects-filter {
-  padding: var(--spacing-xl) 0;
-  background-color: var(--background-light);
-}
-
-.projects-filter-container {
-  display: flex;
-  justify-content: center;
-}
-
-.filter-buttons {
-  display: flex;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.filter-btn {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border: var(--border-width) solid var(--border-color);
-  background-color: white;
-  color: var(--text-color);
-  border-radius: var(--border-radius-xl);
-  cursor: pointer;
-  transition: var(--transition-base);
-  font-weight: 500;
-}
-
-.filter-btn:hover {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-}
-
-.filter-btn--active {
-  background-color: var(--primary-color);
+  /* White text color */
   color: white;
-  border-color: var(--primary-color);
+
+  /* Bottom margin for spacing */
+  margin-bottom: 0.5rem;
+
+  /* Font family */
+  font-family: var(--font-family-heading, 'Flame', sans-serif);
+
+  /* Line height */
+  line-height: 1.2;
 }
+
+/* Projects page subtitle */
+.projects-subtitle {
+  /* Large font size */
+  font-size: 1.25rem;
+
+  /* White text color */
+  color: white;
+
+  /* Bottom margin for spacing */
+  margin-bottom: 2.5rem;
+
+  /* Font family */
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+
+  /* Line height */
+  line-height: 1.6;
+
+  /* Maximum width for readability */
+  max-width: 800px;
+
+  /* Center the subtitle */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   PROJECTS GRID SECTION
+   ============================================
+   Section containing the grid of project cards
+   ============================================ */
 
 .projects-grid-section {
-  padding: var(--spacing-2xl) 0;
+  /* Vertical padding */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  /* Background gradient - same as Home and Services pages */
+  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--spacing-xl);
-}
+/* Grid container for projects */
+.projects-grid-container {
+  /* Maximum width for content */
+  max-width: 1400px;
 
-.project-card {
-  padding: var(--spacing-xl);
-  display: flex;
-  flex-direction: column;
-}
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
 
-.project-category {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: white;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  width: fit-content;
-  margin-bottom: var(--spacing-md);
-}
-
-.project-title {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  margin-bottom: var(--spacing-sm);
-  color: var(--text-color);
-}
-
-.project-description {
-  color: var(--text-light);
-  margin-bottom: var(--spacing-lg);
-  line-height: 1.6;
-  flex: 1;
-}
-
-.project-tech {
-  margin-bottom: var(--spacing-lg);
-}
-
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-  margin-top: var(--spacing-xs);
-}
-
-.tech-tag {
-  background-color: var(--background-light);
-  color: var(--text-color);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-sm);
-}
-
-.projects-cta {
-  padding: var(--spacing-2xl) 0;
-}
-
-.projects-cta-card {
-  text-align: center;
-  padding: var(--spacing-2xl);
-}
-
-.projects-cta-title {
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
-  margin-bottom: var(--spacing-md);
-  color: var(--text-color);
-}
-
-.projects-cta-description {
-  font-size: var(--font-size-lg);
-  color: var(--text-light);
-  margin-bottom: var(--spacing-xl);
-  line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-  .projects-title {
-    font-size: var(--font-size-3xl);
-  }
-  
-  .filter-buttons {
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding-bottom: var(--spacing-sm);
-  }
-  
-  .filter-btn {
-    white-space: nowrap;
-  }
+  /* Horizontal padding */
+  padding-left: 2rem;
+  padding-right: 2rem;
 }

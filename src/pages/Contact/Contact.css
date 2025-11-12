@@ -1,195 +1,434 @@
+/* ============================================
+   CONTACT PAGE STYLES
+   ============================================
+   This file contains all styles for the contact page,
+   including hero section, contact form, and map section.
+   ============================================ */
+
+/* ============================================
+   CONTACT PAGE CONTAINER
+   ============================================ */
+
 .contact-page {
+  /* Full width of the container */
   width: 100%;
 }
 
+/* ============================================
+   CONTACT HERO SECTION
+   ============================================
+   Hero section at the top of the contact page
+   ============================================ */
+
 .contact-hero {
+  /* Gradient background using primary colors */
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+
+  /* White text color */
   color: white;
-  padding: var(--spacing-3xl) 0;
+
+  /* Vertical padding */
+  padding-top: var(--spacing-3xl);
+  padding-bottom: var(--spacing-3xl);
+
+  /* Center align text */
   text-align: center;
 }
 
+/* Container for hero content */
 .contact-hero-container {
+  /* Maximum width for content */
   max-width: 800px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Contact page title */
 .contact-title {
+  /* Extra large font size */
   font-size: var(--font-size-4xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
 }
 
+/* Contact page subtitle */
 .contact-subtitle {
+  /* Extra large font size */
   font-size: var(--font-size-xl);
+
+  /* Slightly transparent for subtle effect */
   opacity: 0.9;
 }
 
+/* ============================================
+   CONTACT MAIN SECTION
+   ============================================
+   Main section with contact form and info
+   ============================================ */
+
 .contact-main {
-  padding: var(--spacing-2xl) 0;
+  /* Vertical padding */
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
 }
 
+/* Container for contact main content */
 .contact-main-container {
+  /* Maximum width for content */
   max-width: 1200px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Grid layout for contact info and form */
 .contact-grid {
+  /* CSS Grid layout */
   display: grid;
+
+  /* Two columns: info (1fr) and form (2fr) */
   grid-template-columns: 1fr 2fr;
+
+  /* Gap between columns */
   gap: var(--spacing-2xl);
 }
 
+/* ============================================
+   CONTACT INFO SECTION
+   ============================================
+   Sidebar with contact information
+   ============================================ */
+
 .contact-info {
+  /* Light background color */
   background-color: var(--background-light);
+
+  /* Internal padding */
   padding: var(--spacing-xl);
+
+  /* Rounded corners */
   border-radius: var(--border-radius-lg);
+
+  /* Height fits content */
   height: fit-content;
 }
 
+/* Contact info title */
 .contact-info-title {
+  /* Extra large font size */
   font-size: var(--font-size-xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-lg);
+
+  /* Text color from variables */
   color: var(--text-color);
 }
 
+/* Container for contact details */
 .contact-details {
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-xl);
 }
 
+/* Individual contact detail item */
 .contact-detail {
+  /* Flexbox layout */
   display: flex;
   align-items: flex-start;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
 }
 
+/* Contact icon */
 .contact-icon {
+  /* Extra large font size for icons */
   font-size: var(--font-size-xl);
+
+  /* Right margin for spacing */
   margin-right: var(--spacing-md);
+
+  /* Minimum width for alignment */
   min-width: 24px;
 }
 
+/* Contact text container */
 .contact-text {
+  /* Grow to fill available space */
   flex: 1;
 }
 
+/* Strong text in contact details */
 .contact-text strong {
+  /* Block display */
   display: block;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-xs);
+
+  /* Text color from variables */
   color: var(--text-color);
 }
 
+/* ============================================
+   CONTACT HOURS
+   ============================================
+   Business hours section
+   ============================================ */
+
 .contact-hours {
+  /* Top padding for separation */
   padding-top: var(--spacing-lg);
+
+  /* Top border separator */
   border-top: 1px solid var(--border-color);
 }
 
+/* Contact hours heading */
 .contact-hours h3 {
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-sm);
+
+  /* Text color from variables */
   color: var(--text-color);
 }
 
+/* Contact hours paragraphs */
 .contact-hours p {
+  /* Light text color */
   color: var(--text-light);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-xs);
 }
 
+/* ============================================
+   CONTACT FORM
+   ============================================
+   Contact form styles
+   ============================================ */
+
+/* Form title */
 .form-title {
+  /* Extra large font size */
   font-size: var(--font-size-xl);
+
+  /* Bold font weight */
   font-weight: 700;
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-lg);
+
+  /* Text color from variables */
   color: var(--text-color);
 }
 
+/* Form success message */
 .form-success {
+  /* Success color background */
   background-color: var(--success-color);
+
+  /* White text */
   color: white;
+
+  /* Internal padding */
   padding: var(--spacing-md);
+
+  /* Rounded corners */
   border-radius: var(--border-radius);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
 }
 
+/* Form error message */
 .form-error {
+  /* Error color background */
   background-color: var(--error-color);
+
+  /* White text */
   color: white;
+
+  /* Internal padding */
   padding: var(--spacing-md);
+
+  /* Rounded corners */
   border-radius: var(--border-radius);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-md);
 }
 
+/* Contact form element container */
 .contact-form-element {
+  /* Light background color */
   background-color: var(--background-light);
+
+  /* Internal padding */
   padding: var(--spacing-xl);
+
+  /* Rounded corners */
   border-radius: var(--border-radius-lg);
 }
 
+/* Form row (for side-by-side inputs) */
 .form-row {
+  /* CSS Grid layout */
   display: grid;
+
+  /* Two equal columns */
   grid-template-columns: 1fr 1fr;
+
+  /* Gap between columns */
   gap: var(--spacing-lg);
+
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-lg);
 }
 
+/* Form group container */
 .form-group {
+  /* Bottom margin for spacing */
   margin-bottom: var(--spacing-lg);
 }
+
+/* ============================================
+   TEXTAREA FIELD
+   ============================================
+   Multi-line text input
+   ============================================ */
 
 .textarea-field {
+  /* Full width of container */
   width: 100%;
+
+  /* Internal padding */
   padding: var(--spacing-sm);
+
+  /* Border with color from variables */
   border: var(--border-width) solid var(--border-color);
+
+  /* Rounded corners */
   border-radius: var(--border-radius);
+
+  /* Base font size */
   font-size: var(--font-size-base);
+
+  /* Use primary font family */
   font-family: var(--font-family-primary);
+
+  /* Allow vertical resizing only */
   resize: vertical;
+
+  /* Smooth transitions */
   transition: var(--transition-base);
 }
 
+/* Textarea focus state */
 .textarea-field:focus {
+  /* Remove default browser outline */
   outline: none;
+
+  /* Primary color border on focus */
   border-color: var(--primary-color);
+
+  /* Subtle shadow to indicate focus */
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
+/* ============================================
+   SUBMIT BUTTON
+   ============================================
+   Form submit button
+   ============================================ */
+
 .submit-btn {
+  /* Full width of container */
   width: 100%;
+
+  /* Top margin for spacing */
   margin-top: var(--spacing-md);
 }
 
+/* ============================================
+   CONTACT MAP SECTION
+   ============================================
+   Map section at bottom of page
+   ============================================ */
+
 .contact-map {
-  padding: var(--spacing-2xl) 0;
+  /* Vertical padding */
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
 }
 
+/* Container for map */
 .contact-map-container {
+  /* Maximum width for content */
   max-width: 1200px;
-  margin: 0 auto;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Map placeholder (when no map is loaded) */
 .map-placeholder {
+  /* Fixed height */
   height: 400px;
+
+  /* Light background color */
   background-color: var(--background-light);
+
+  /* Dashed border */
   border: 2px dashed var(--border-color);
+
+  /* Flexbox layout for centering */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  /* Rounded corners */
   border-radius: var(--border-radius-lg);
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================
+   Media queries for different screen sizes
+   ============================================ */
+
+/* Tablets and smaller (max-width: 768px) */
 @media (max-width: 768px) {
+
+  /* Smaller title on mobile */
   .contact-title {
     font-size: var(--font-size-3xl);
   }
-  
+
+  /* Single column grid on mobile */
   .contact-grid {
     grid-template-columns: 1fr;
   }
-  
+
+  /* Single column form rows on mobile */
   .form-row {
     grid-template-columns: 1fr;
   }
-  
+
+  /* Smaller map placeholder on mobile */
   .map-placeholder {
     height: 200px;
   }

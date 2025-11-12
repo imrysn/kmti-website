@@ -1,78 +1,178 @@
+/* ============================================
+   NAVBAR COMPONENT STYLES
+   ============================================
+   This file contains all styles for the navigation bar,
+   including layout, links, and active states.
+   ============================================ */
+
+/* ============================================
+   NAVBAR CONTAINER
+   ============================================ */
+
 .navbar {
-  width: 100%;
-  padding: 2rem 2rem;
+  /* Full width of the container */
+  width: calc(100% - 10rem);
+
+  /* Sticky positioning - stays at top when scrolling */
+  position: sticky;
+  top: 0;
+
+  /* Top and horizontal margins */
+  margin-top: 2rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 0;
+
+  /* No background */
+  background: none;
+
+  /* Rounded corners */
+  border-radius: 24px;
+
+  /* Internal padding */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  /* High z-index to stay on top */
+  z-index: 1000;
 }
 
+/* Glow effect removed for transparent header */
+
+/* ============================================
+   NAVBAR CONTENT
+   ============================================ */
+
+/* Container for navbar content */
 .navbar-container {
-  max-width: 1400px;
-  margin: 0 auto;
+  /* Maximum width for content */
+  max-width: 1600px;
+
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Flexbox layout */
   display: flex;
+
+  /* Space between logo and links */
   justify-content: space-between;
+
+  /* Center items vertically */
   align-items: center;
+
+  /* Background color #0F172B at 40% opacity */
+  background: rgba(15, 23, 43, 0.4);
+
+  /* Drop shadow only at the bottom - #2B7FFF at 10% opacity */
+  box-shadow: 0 4px 12px rgba(43, 127, 255, 0.1);
+
+  /* Border radius */
+  border-radius: 20px;
+
+  /* Equal spacing on left and right sides */
+  padding-left: 3rem;
+  padding-right: 3rem;
+
+  /* Height for visual balance */
+  min-height: 60px;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
 }
+
+/* ============================================
+   NAVBAR LOGO
+   ============================================ */
 
 .navbar-logo img {
-  height: 40px;
+  /* Logo height */
+  height: 55px;
+
+  /* Auto width to maintain aspect ratio */
   width: auto;
+
+  /* Maintain image aspect ratio */
   object-fit: contain;
+
+  /* Negative left margin for alignment */
+  margin-left: -4rem;
 }
 
+/* ============================================
+   NAVBAR LINKS
+   ============================================ */
+
+/* Container for navigation links */
 .navbar-links {
+  /* Flexbox layout */
   display: flex;
+
+  /* Remove list styling */
   list-style: none;
-  gap: 2rem;
+
+  /* Gap between links */
+  gap: 2.2rem;
+
+  /* Remove default margins */
   margin: 0;
+
+  /* Remove default padding */
   padding: 0;
+
+  /* Center items vertically */
   align-items: center;
 }
 
+/* Individual navbar link */
 .navbar-link {
+  /* Remove underline */
   text-decoration: none;
+
+  /* Use body font family */
   font-family: var(--font-family-body);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: white;
+
+  /* Small font size */
+  font-size: 0.9rem;
+
+  /* Medium font weight */
+  font-weight: 400;
+
+  /* Position relative for active indicator */
   position: relative;
+
+  /* Smooth transitions */
   transition: all 0.3s ease;
+
+  /* White text with gradient clipping */
   background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* Navbar link hover state */
 .navbar-link:hover {
+  /* Slightly reduce opacity on hover */
   opacity: 0.9;
 }
 
-.navbar-link.active {
-  background: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
+/* Active link indicator (gradient underline) */
 .navbar-link.active::after {
+  /* Required for pseudo-element */
   content: '';
+
+  /* Position absolutely */
   position: absolute;
   bottom: -4px;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #51A2FF, #FF6467);
+
+  /* Gradient underline: blue to red */
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+
+  /* Slightly rounded corners */
   border-radius: 1px;
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem;
-  }
-
-  .navbar-links {
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .navbar-link {
-    font-size: 0.75rem;
-  }
 }

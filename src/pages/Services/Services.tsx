@@ -1,138 +1,201 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './Services.css';
 import { ServicesPageProps } from './Services.types';
-import Card from '../../components/ui/Card';
+import { ServicePageCard } from '../../components/ui/Card/Card';
 import Button from '../../components/ui/Button';
+import ServiceModal from '../../components/ui/Modal';
+import servicesBg from '../../assets/servicesbg.png';
+import icon3D from '../../assets/icons/cube.png';
+import icon2D from '../../assets/icons/cubes.png';
+import inspectionIcon from '../../assets/icons/parts-inspection-icon.png';
+import assemblyIcon from '../../assets/icons/machine-assembly-icon.png';
+import image3D from '../../assets/servicePage/3DImage.png';
+import image2D from '../../assets/servicePage/2DImage.png';
+import inspectionImage from '../../assets/servicePage/inspectionImage.png';
+import assemblyImage from '../../assets/servicePage/assemblyImage.png';
+
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  image: string;
+}
 
 const Services: React.FC<ServicesPageProps> = () => {
-  const services = [
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const servicesGridRef = useRef<HTMLDivElement>(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const hasCheckedUrlParams = useRef(false);
+
+  useEffect(() => {
+    document.documentElement.classList.add('services-page-active');
+    document.body.classList.add('services-page-active');
+
+    return () => {
+      document.documentElement.classList.remove('services-page-active');
+      document.body.classList.remove('services-page-active');
+    };
+  }, []);
+
+  const services: Service[] = [
     {
       id: 1,
-      title: 'Web Development',
-      description: 'Custom web applications and websites built with modern technologies like React, Node.js, and more.',
-      features: [
-        'Responsive design',
-        'SEO optimization',
-        'Performance optimization',
-        'Cross-browser compatibility'
-      ],
-      icon: '💻',
+      title: '3D Modeling',
+      description: 'We create detailed 3D models for high-precision engineering and visualization, ensuring accurate fabrication and assembly.',
+      icon: icon3D,
+      image: image3D,
     },
     {
       id: 2,
-      title: 'Mobile Development',
-      description: 'Cross-platform mobile applications for iOS and Android using React Native and Flutter.',
-      features: [
-        'Native performance',
-        'App store optimization',
-        'Push notifications',
-        'Offline functionality'
-      ],
-      icon: '📱',
+      title: '2D Detailing',
+      description: 'Our 2D detailing services convert 3D models into precise drawings ready for manufacturing and quality checks.',
+      icon: icon2D,
+      image: image2D,
     },
     {
       id: 3,
-      title: 'UI/UX Design',
-      description: 'User-centered design solutions that create engaging and intuitive experiences.',
-      features: [
-        'User research',
-        'Wireframing',
-        'Prototyping',
-        'Usability testing'
-      ],
-      icon: '🎨',
+      title: 'Parts inspection',
+      description: 'We perform parts inspection using precise measuring tools and 3D scanners to guarantee dimensional accuracy.',
+      icon: inspectionIcon,
+      image: inspectionImage,
     },
     {
       id: 4,
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and services to power your digital transformation.',
-      features: [
-        'AWS/Azure integration',
-        'Serverless architecture',
-        'DevOps automation',
-        'Security compliance'
-      ],
-      icon: '☁️',
-    },
-    {
-      id: 5,
-      title: 'E-commerce Solutions',
-      description: 'Complete e-commerce platforms with payment processing and inventory management.',
-      features: [
-        'Shopping cart',
-        'Payment gateway',
-        'Inventory management',
-        'Order tracking'
-      ],
-      icon: '🛒',
-    },
-    {
-      id: 6,
-      title: 'Consulting Services',
-      description: 'Expert consulting to help you navigate technology challenges and business growth.',
-      features: [
-        'Technology strategy',
-        'Digital transformation',
-        'Process optimization',
-        'Team training'
-      ],
-      icon: '咨询服务',
+      title: 'Machine Assembly',
+      description: 'From component integration to full machine assembly, we ensure mechanical, electrical, and pneumatic systems meet industrial standards.',
+      icon: assemblyIcon,
+      image: assemblyImage,
     },
   ];
 
+  useEffect(() => {
+    const serviceParam = searchParams.get('service');
+    if (serviceParam && !hasCheckedUrlParams.current) {
+      const serviceMap: { [key: string]: string } = {
+        '3d-modeling': '3D Modeling',
+        '2d-detailing': '2D Detailing',
+        'parts-inspection': 'Parts inspection',
+        'machine-assembly': 'Machine Assembly',
+      };
+
+      const serviceTitle = serviceMap[serviceParam];
+      if (serviceTitle) {
+        const targetService = services.find(s => s.title === serviceTitle);
+        if (targetService) {
+          setSelectedService(targetService);
+          setIsModalOpen(true);
+          hasCheckedUrlParams.current = true;
+          setSearchParams({}, { replace: true });
+        }
+      }
+    }
+  }, [searchParams, setSearchParams, services]);
+
+  const scrollToServicesGrid = () => {
+    servicesGridRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const navigateToContact = () => {
+    navigate('/contact');
+  };
+
+  const handleServiceClick = (service: Service) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+    hasCheckedUrlParams.current = false;
+    setSearchParams({}, { replace: true });
+  };
+
+  const handleServiceChange = (serviceTitle: string) => {
+    const targetService = services.find(s => s.title === serviceTitle);
+    if (targetService) {
+      setSelectedService(targetService);
+    }
+  };
+
+  const serviceTabs = ['3D MODELING', '2D DETAILING', 'PARTS INSPECTION', 'MACHINE ASSEMBLY'];
+
   return (
-    <div className="services-page">
+    <div className="services-page" style={{ '--services-bg-image': `url(${servicesBg})` } as React.CSSProperties}>
       <section className="services-hero">
+        <div className="services-hero-overlay"></div>
         <div className="services-hero-container container">
-          <h1 className="services-title">Our Services</h1>
-          <p className="services-subtitle">
-            Comprehensive solutions tailored to your business needs
-          </p>
+          <div className="services-hero-content">
+            <h1 className="services-title">Our Services</h1>
+            <p className="services-subtitle">
+              Comprehensive Engineering & Design Solutions from Concept to Assembly
+            </p>
+            <div className="services-hero-button">
+              <Button variant="style2" onClick={scrollToServicesGrid}>EXPLORE OUR EXPERTIES</Button>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="services-grid-section">
+      <section className="services-nav-section">
+        <div className="services-nav-container">
+          <div className="services-nav-tabs">
+            <div className="services-nav-tabs-scroll">
+              <div className="services-nav-tabs-content">
+                {serviceTabs.map((tab, index) => (
+                  <span key={`${tab}-${index}`} className="services-nav-tab-text">
+                    {tab}
+                  </span>
+                ))}
+                {serviceTabs.map((tab, index) => (
+                  <span key={`${tab}-duplicate-${index}`} className="services-nav-tab-text">
+                    {tab}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="services-grid-section" ref={servicesGridRef}>
         <div className="services-grid-container container">
           <div className="services-grid">
             {services.map((service) => (
-              <Card key={service.id} className="service-item">
-                <div className="service-icon">{service.icon}</div>
-                <h2 className="service-name">{service.title}</h2>
-                <p className="service-description">{service.description}</p>
-                <ul className="service-features">
-                  {service.features.map((feature, index) => (
-                    <li key={index} className="service-feature">
-                      ✓ {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="service-cta">
-                  Learn More
-                </Button>
-              </Card>
+              <div key={service.id} className="service-card-wrapper">
+                <ServicePageCard
+                  image={service.image}
+                  icon={service.icon}
+                  title={service.title}
+                  subtitle={service.description}
+                  className="service-page-card-item"
+                  onClick={() => handleServiceClick(service)}
+                />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="services-cta">
+      <section className="services-cta-section">
         <div className="services-cta-container container">
-          <Card className="services-cta-card">
-            <h2 className="services-cta-title">Ready to Transform Your Business?</h2>
-            <p className="services-cta-description">
-              Let's discuss how our services can help achieve your goals.
-            </p>
-            <div className="services-cta-buttons">
-              <Button variant="primary" size="lg">
-                Get Started
-              </Button>
-              <Button variant="outline" size="lg">
-                Contact Sales
-              </Button>
-            </div>
-          </Card>
+          <h2 className="services-cta-title">Have a project in mind? Let's discuss how we can bring it to life</h2>
+          <div className="services-cta-button">
+            <Button variant="style2" onClick={navigateToContact}>CONTACT US</Button>
+          </div>
         </div>
       </section>
+
+      <ServiceModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        service={selectedService}
+        onServiceChange={handleServiceChange}
+      />
     </div>
   );
 };

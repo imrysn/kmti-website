@@ -1,10 +1,1152 @@
-.card-title {
-  margin-bottom: var(--spacing-md);
-  color: var(--text-color);
-  font-size: var(--font-size-lg);
-  font-weight: 600;
+/* ============================================
+   WHY CHOOSE US CARD COMPONENT
+   ============================================
+   Card component matching the reference design
+   ============================================ */
+
+.why-choose-card {
+  /* Card background: #0F172B at 30% opacity */
+  background-color: rgba(15, 23, 43, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Border: 1px solid white at 10% opacity */
+  border-radius: 16px;
+  /* Rounded corners */
+  padding: 1rem;
+  /* Internal padding */
+  /* Flexbox layout for vertical alignment */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  /* Position relative for icon positioning */
+  position: relative;
+
+  /* Smooth transitions */
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.card-content {
-  flex: 1;
+
+
+/* ============================================
+   ICON CONTAINER
+   ============================================ */
+
+.why-choose-card-icon-container {
+  /* Rounded square background */
+  background-color: rgba(43, 127, 255, 0.1);
+  border: 1px solid rgba(43, 127, 255, 0.2);
+  border-radius: 8px;
+
+  /* Size */
+  width: 48px;
+  height: 48px;
+
+  /* Flexbox to center icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Spacing */
+  margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   ICON
+   ============================================ */
+
+.why-choose-card-icon {
+  /* Icon color */
+  color: #51A2FF;
+  /* Display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Ensure SVG icons inherit color */
+  fill: #51A2FF;
+}
+
+.why-choose-card-icon-image {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(58%) sepia(95%) saturate(2878%) hue-rotate(195deg) brightness(101%) contrast(101%);
+}
+
+/* ============================================
+   CARD TITLE
+   ============================================ */
+
+.why-choose-card-title {
+  /* Font: FLAME, color: #FFFFFF */
+  font-family: 'Flame', sans-serif;
+  color: #FFFFFF;
+
+  /* Font size */
+  font-size: 1.3rem;
+
+  /* Uppercase text */
+  text-transform: uppercase;
+
+  /* Font weight */
+  font-weight: 50;
+
+  /* Spacing */
+  margin-bottom: 1rem;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Left align */
+  text-align: left;
+}
+
+/* ============================================
+   CARD SUBTITLE
+   ============================================ */
+
+.why-choose-card-subtitle {
+  /* Font: Segoe UI, color: #99A1AF */
+  font-family: 'Segoe UI', sans-serif;
+  color: #99A1AF;
+
+  /* Font size */
+  font-size: 0.95rem;
+
+  /* Line height for readability */
+  line-height: 1.6;
+
+  /* Spacing */
+  margin-bottom: 1em;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Left align */
+  text-align: left;
+}
+
+
+/* ============================================
+   SERVICE CARD COMPONENT
+   ============================================
+   Service card component matching the reference design
+   ============================================ */
+
+.service-card {
+  /* Card background: #0F172B at 30% opacity */
+  background-color: rgba(15, 23, 43, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Rounded top corners only */
+  border-radius: 0px 0px 0px 0px;
+
+  /* Padding - extra top padding for cutout */
+  padding: 3.5rem 2rem 2rem 2rem;
+
+  /* Flexbox layout for vertical alignment */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  /* Position relative for icon positioning */
+  position: relative;
+
+  /* Allow overflow for icon cutout */
+  overflow: visible;
+
+  /* Consistent card height */
+  height: 120%;
+  width: 100%;
+  min-height: 150px;
+
+  /* Smooth transitions */
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Create the semi-circular cutout border at the top */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 90px;
+  background: transparent;
+  border-radius: 0 0 100px 100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  z-index: 0;
+}
+
+/* ============================================
+   SERVICE CARD ICON CONTAINER (CIRCULAR CUTOUT)
+   ============================================ */
+
+.service-card-icon-container {
+  /* Position relative for absolute positioning of icon */
+  position: relative;
+
+  /* Width to contain the cutout */
+  width: 2000%;
+
+  /* Height for the cutout area */
+  height: 70px;
+
+  /* Negative top margin to position icon in cutout */
+  margin-top: -80px;
+  margin-bottom: 4rem;
+
+  /* Flexbox to center icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Z-index to place icon above cutout border */
+  z-index: 2;
+}
+
+/* ============================================
+   SERVICE CARD ICON
+   ============================================ */
+
+.service-card-icon {
+  /* Icon color */
+  color: #51A2FF;
+
+  /* Font size for emoji icons */
+  font-size: 100px;
+
+  /* Display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Ensure SVG icons inherit color */
+  fill: #51A2FF;
+
+  /* Position relative to sit above the cutout */
+  position: relative;
+  z-index: 2;
+}
+
+.service-card-icon-image {
+  width: 80px;
+  height: 90px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(58%) sepia(95%) saturate(2878%) hue-rotate(195deg) brightness(101%) contrast(101%);
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   SERVICE CARD TITLE
+   ============================================ */
+
+.service-card-title {
+  /* Font: FLAME, color: #FFFFFF */
+  font-family: 'Flame', sans-serif;
+  color: #FFFFFF;
+
+  /* Font size */
+  font-size: 1.5rem;
+
+  /* Uppercase text */
+  text-transform: uppercase;
+
+  /* Font weight */
+  font-weight: 50;
+
+  /* Spacing */
+  margin-bottom: 2rem;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Center align */
+  text-align: center;
+}
+
+/* ============================================
+   SERVICE CARD SUBTITLE
+   ============================================ */
+
+.service-card-subtitle {
+  /* Font: Segoe UI, color: #99A1AF */
+  font-family: 'Segoe UI', sans-serif;
+  color: #99A1AF;
+
+  /* Font size */
+  font-size: 0.95rem;
+
+  /* Line height for readability */
+  line-height: 1.5;
+
+  /* Spacing */
+  margin-bottom: 0rem;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Center align */
+  text-align: center;
+}
+
+/* ============================================
+   SERVICE CARD LINK
+   ============================================ */
+
+.service-card-link {
+  /* Font: Segoe UI */
+  font-family: 'Segoe UI', sans-serif;
+  color: #51A2FF;
+
+  /* Font size */
+  font-size: 0.9rem;
+
+  /* Uppercase text */
+  text-transform: uppercase;
+
+  /* Font weight */
+  font-weight: 100;
+
+  /* Remove underline */
+  text-decoration: none;
+
+  /* Smooth color transition */
+  transition: color 0.3s ease;
+
+  /* Push to bottom */
+  margin-top: auto;
+
+  /* Center align */
+  text-align: center;
+}
+
+/* Service card link hover state */
+.service-card-link:hover {
+  color: #6BB0FF;
+}
+
+/* ============================================
+   PROJECT CARD COMPONENT
+   ============================================
+   Project card component matching the reference design
+   ============================================ */
+
+.project-card-new {
+  /* No background - transparent */
+  background: transparent;
+
+  /* Border: 1px solid white at 20% opacity */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Sharp top corners, rounded bottom corners */
+  border-radius: 16px;
+
+  /* Padding */
+  padding: 1.5rem;
+  padding-top: 2rem;
+
+  /* Flexbox layout for vertical alignment */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+
+  /* Position relative for label positioning */
+  position: relative;
+
+  /* Allow overflow for label that overlaps top */
+  overflow: visible;
+
+  /* Consistent sizing - let flexbox handle height based on constrained content */
+  min-height: auto;
+  height: auto;
+
+  /* Ensure consistent box sizing */
+  box-sizing: border-box;
+
+  /* Smooth transitions */
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* ============================================
+   PROJECT CARD LABEL
+   ============================================ */
+
+.project-card-label {
+  /* Background: #155DFC at 90% opacity */
+  background-color: rgba(21, 93, 252, 0.9);
+
+  /* Border: 1px solid #51A2FF at 30% opacity */
+  border: 1px solid rgba(81, 162, 255, 0.3);
+
+  /* Rounded pill shape */
+  border-radius: 20px;
+
+  /* Font: Segoe UI, white, uppercase */
+  font-family: 'Segoe UI', sans-serif;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 200;
+
+  /* Padding */
+  padding: 0.5rem 1rem;
+
+  /* Position absolute at top-center, slightly overlapping top edge */
+  position: absolute;
+  top: 12px;
+  left: 78%;
+  width: 40%;
+  transform: translateX(-50%);
+
+  /* Z-index to place above border */
+  z-index: 20;
+}
+
+/* ============================================
+   PROJECT CARD IMAGE CONTAINER
+   ============================================ */
+
+.project-card-image-container {
+  /* Width to contain image */
+  width: 100%;
+
+  /* Height for image - fixed to ensure consistency */
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
+
+  /* Flexbox to center image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Margin */
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+
+  /* Allow image to scale within container without overflow */
+  overflow: hidden;
+}
+
+.project-card-image {
+  /* Image styling */
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+/* Scale up image when card is active - within fixed container */
+.project-card-image.active {
+  transform: scale(1.15);
+}
+
+/* ============================================
+   PROJECT CARD TITLE
+   ============================================ */
+
+.project-card-title {
+  /* Font: Flame, color: #FFFFFF */
+  font-family: 'Flame', sans-serif;
+  color: #FFFFFF;
+
+  /* Font size */
+  font-size: 1.2rem;
+
+  /* Uppercase text */
+  text-transform: uppercase;
+
+  /* Font weight */
+  font-weight: 50;
+
+  /* Spacing */
+  margin-bottom: 0.75rem;
+
+  /* Remove default margins */
+  margin-top: 0.5rem;
+
+  /* Center align */
+  text-align: center;
+  width: 100%;
+
+  /* Limit title to 2 lines max for consistency */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+/* ============================================
+   PROJECT CARD SUBTITLE
+   ============================================ */
+
+.project-card-subtitle {
+  /* Font: Segoe UI, color: #99A1AF */
+  font-family: 'Segoe UI', sans-serif;
+  color: #99A1AF;
+
+  /* Font size */
+  font-size: 0.9rem;
+
+  /* Line height for readability */
+  line-height: 1.5;
+
+  /* Spacing */
+  margin-bottom: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Center align */
+  text-align: center;
+  width: 100%;
+
+  /* Limit description to 4 lines max for consistency */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================
+   PROJECT CARD LINK
+   ============================================ */
+
+.project-card-link {
+  /* Font: Segoe UI, color: #99A1AF */
+  font-family: 'Segoe UI', sans-serif;
+  color: #51A2FF;
+
+  /* Font size */
+  font-size: 0.9rem;
+
+  /* Uppercase text */
+  text-transform: uppercase;
+
+  /* Remove underline */
+  text-decoration: none;
+
+  /* Font weight */
+  font-weight: 100;
+
+  /* Smooth color transition */
+  transition: color 0.3s ease;
+
+  /* Push to bottom - consistent positioning */
+  margin-top: auto;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+
+  /* Center align */
+  text-align: center;
+  width: 100%;
+}
+
+/* Project card link hover state */
+.project-card-link:hover {
+  color: #6BB0FF;
+}
+
+/* ============================================
+   PROJECTS CARD COMPONENT
+   ============================================
+   Projects card component - based on project-card-new
+   but with hover effects and not for carousel
+   ============================================ */
+
+.projects-card {
+  /* No background - transparent */
+  background: transparent;
+
+  /* Border: 1px solid white at 20% opacity */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Rounded corners */
+  border-radius: 16px;
+
+  /* Padding - same as project-card-new */
+  padding: 1.5rem;
+  padding-top: 2rem;
+
+  /* Flexbox layout for vertical alignment */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+
+  /* Position relative for label positioning */
+  position: relative;
+
+  /* Allow overflow for label that overlaps top */
+  overflow: visible;
+
+  /* Consistent sizing - let flexbox handle height based on constrained content */
+  min-height: auto;
+  height: auto;
+
+  /* Ensure consistent box sizing */
+  box-sizing: border-box;
+
+  /* Smooth transitions for hover effects */
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Projects card hover state */
+.projects-card:hover {
+  /* Background color: #51A2FF at 10% opacity */
+  background-color: rgba(81, 162, 255, 0.1);
+
+  /* Border: 1px solid #51A2FF */
+  border: 1px solid #51A2FF;
+
+  /* Box shadow with same color as stroke */
+  box-shadow: 0 0 30px rgba(81, 162, 255, 0.5);
+}
+
+/* ============================================
+   PROJECTS CARD LABEL
+   ============================================ */
+
+.projects-card-label {
+  /* Background: #155DFC at 90% opacity */
+  background-color: rgba(21, 93, 252, 0.9);
+
+  /* Border: 1px solid #51A2FF at 30% opacity */
+  border: 1px solid rgba(81, 162, 255, 0.3);
+
+  /* Rounded pill shape */
+  border-radius: 20px;
+
+  /* Font: Segoe UI, white, uppercase */
+  font-family: 'Segoe UI', sans-serif;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 200;
+
+  /* Padding */
+  padding: 0.5rem 1rem;
+
+  /* Position absolute at top-center, slightly overlapping top edge */
+  position: absolute;
+  top: 12px;
+  left: 78%;
+  width: 40%;
+  transform: translateX(-50%);
+
+  /* Z-index to place above border */
+  z-index: 20;
+}
+
+/* ============================================
+   PROJECTS CARD IMAGE CONTAINER
+   ============================================ */
+
+.projects-card-image-container {
+  /* Width to contain image */
+  width: 100%;
+
+  /* Height for image - fixed to ensure consistency */
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
+
+  /* Flexbox to center image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Margin */
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+
+  /* Allow image to overflow slightly on hover */
+  overflow: visible;
+}
+
+.projects-card-image {
+  /* Image styling */
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
+  object-fit: contain;
+
+  /* Smooth scale transition with smart animate-like easing */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+/* Scale up image on card hover - larger scale to overflow slightly */
+.projects-card:hover .projects-card-image {
+  transform: scale(1.5);
+}
+
+/* ============================================
+   PROJECTS CARD TITLE
+   ============================================ */
+
+.projects-card-title {
+  /* Font: Flame, color: #FFFFFF */
+  font-family: 'Flame', sans-serif;
+  color: #FFFFFF;
+
+  /* Font size */
+  font-size: 1.2rem;
+
+  /* Uppercase text */
+  text-transform: uppercase;
+
+  /* Font weight */
+  font-weight: 50;
+
+  /* Spacing */
+  margin-bottom: 0.75rem;
+
+  /* Remove default margins */
+  margin-top: 0.5rem;
+
+  /* Center align */
+  text-align: center;
+  width: 100%;
+
+  /* Limit title to 2 lines max for consistency */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+/* ============================================
+   PROJECTS CARD SUBTITLE
+   ============================================ */
+
+.projects-card-subtitle {
+  /* Font: Segoe UI, color: #99A1AF */
+  font-family: 'Segoe UI', sans-serif;
+  color: #99A1AF;
+
+  /* Font size */
+  font-size: 0.9rem;
+
+  /* Line height for readability */
+  line-height: 1.5;
+
+  /* Spacing */
+  margin-bottom: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Center align */
+  text-align: center;
+  width: 100%;
+
+  /* Limit description to 4 lines max for consistency */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================
+   PROJECTS CARD LINK
+   ============================================ */
+
+.projects-card-link {
+  /* Font: Segoe UI, color: #51A2FF */
+  font-family: 'Segoe UI', sans-serif;
+  color: #51A2FF;
+
+  /* Font size */
+  font-size: 0.9rem;
+
+  /* Uppercase text */
+  text-transform: uppercase;
+
+  /* Remove underline */
+  text-decoration: none;
+
+  /* Font weight */
+  font-weight: 100;
+
+  /* Smooth color transition */
+  transition: color 0.3s ease;
+
+  /* Push to bottom - consistent positioning */
+  margin-top: auto;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+
+  /* Center align */
+  text-align: center;
+  width: 100%;
+}
+
+/* Projects card link hover state */
+.projects-card-link:hover {
+  color: #6BB0FF;
+}
+
+/* ============================================
+   PROJECTS CARD GRID CONTAINER
+   ============================================ */
+
+.projects-card-grid {
+  /* CSS Grid layout - 4 cards per row */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 1400px) {
+  .projects-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .projects-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-card-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN FOR PROJECTS CARD
+   ============================================ */
+
+/* Tablets and smaller (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .projects-card {
+    /* Adjust padding for smaller screens */
+    padding: 1.25rem;
+    padding-top: 1.75rem;
+  }
+
+  .projects-card-image-container {
+    height: 180px;
+    min-height: 180px;
+    max-height: 180px;
+  }
+
+  .projects-card-image {
+    max-height: 180px;
+  }
+
+  .projects-card-title {
+    font-size: 1.1rem;
+  }
+
+  .projects-card-subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .projects-card {
+    padding: 1rem;
+    padding-top: 1.5rem;
+  }
+
+  .projects-card-image-container {
+    height: 160px;
+    min-height: 160px;
+    max-height: 160px;
+    margin-top: 1rem;
+  }
+
+  .projects-card-image {
+    max-height: 160px;
+  }
+
+  .projects-card-title {
+    font-size: 1rem;
+  }
+
+  .projects-card-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .projects-card-link {
+    font-size: 0.85rem;
+  }
+}
+
+/* ============================================
+   SERVICE PAGE CARD COMPONENT
+   ============================================
+   Service page card component for services grid
+   ============================================ */
+
+.service-page-card {
+  /* Card background: #0F172B at 30% opacity */
+  background-color: rgba(15, 23, 43, 0.3);
+
+  /* Border: 1px solid white at 25% opacity */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  /* Rounded corners */
+  border-radius: 16px;
+
+  /* Internal padding */
+  padding: 1.5rem;
+
+  /* Flexbox layout for vertical alignment */
+  display: flex;
+  flex-direction: column;
+
+  /* Position relative for icon and overlay positioning */
+  position: relative;
+
+  /* Smooth transitions */
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+
+  /* Overflow hidden to contain image and overlay */
+  overflow: hidden;
+
+  /* Width constraint */
+  width: 100%;
+  max-width: 700px;
+
+  /* Cursor pointer to indicate clickable */
+  cursor: pointer;
+}
+
+/* Hover effect with drop shadow */
+.service-page-card:hover {
+  box-shadow: 0 0px 20px rgba(81, 162, 255, 0.5);
+}
+
+/* ============================================
+   SERVICE PAGE CARD ICON
+   ============================================ */
+
+.service-page-card-icon-container {
+  /* Position absolutely in top left */
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+
+  /* Z-index to place icon above image and overlay */
+  z-index: 3;
+
+  /* Rounded square background */
+  background-color: rgba(43, 127, 255, 0.1);
+  border: 1px solid rgba(43, 127, 255, 0.2);
+  border-radius: 8px;
+
+  /* Size */
+  width: 50px;
+  height: 50px;
+
+  /* Flexbox to center icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-page-card-icon {
+  /* Icon color */
+  color: #51A2FF;
+  /* Display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Ensure SVG icons inherit color */
+  fill: #51A2FF;
+}
+
+.service-page-card-icon-image {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(58%) sepia(95%) saturate(2878%) hue-rotate(195deg) brightness(101%) contrast(101%);
+}
+
+/* ============================================
+   SERVICE PAGE CARD IMAGE
+   ============================================ */
+
+.service-page-card-image-container {
+  /* Position relative for overlay */
+  position: relative;
+
+  /* Width and height for image container */
+  width: 100%;
+  height: 320px;
+
+  /* Margin bottom for spacing */
+  margin-bottom: 1.5rem;
+
+  /* Rounded corners for image */
+  border-radius: 16px;
+
+  /* Overflow hidden to contain image and overlay */
+  overflow: hidden;
+}
+
+/* Text overlay container for title and subtitle */
+.service-page-card-text-overlay {
+  /* Position absolutely to cover image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Z-index to place text above overlay */
+  z-index: 3;
+
+  /* Flexbox for vertical alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  /* Padding for text */
+  padding: 1.5rem;
+}
+
+.service-page-card-image {
+  /* Full width and height */
+  width: 100%;
+  height: 100%;
+
+  /* Object fit to cover container */
+  object-fit: cover;
+
+  /* Display as block */
+  display: block;
+}
+
+/* Image overlay: #0F172B at 70% opacity */
+.service-page-card-image-overlay {
+  /* Position absolutely to cover image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Dark overlay: #0F172B at 70% opacity */
+  background-color: rgba(15, 23, 43, 0.4);
+
+  /* Z-index to place overlay above image */
+  z-index: 2;
+
+  /* Smooth transition */
+  transition: opacity 0.3s ease;
+}
+
+/* ============================================
+   SERVICE PAGE CARD TITLE
+   ============================================ */
+
+.service-page-card-title {
+  /* Font: FLAME, color: #FFFFFF */
+  font-family: 'Flame', sans-serif;
+  color: #FFFFFF;
+
+  /* Font size */
+  font-size: 1.5rem;
+
+  /* Bold font weight */
+  font-weight: 100;
+
+  /* Bottom margin for spacing */
+  margin-bottom: 0.75rem;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Left align */
+  text-align: left;
+}
+
+/* ============================================
+   SERVICE PAGE CARD SUBTITLE
+   ============================================ */
+
+.service-page-card-subtitle {
+  /* Font: Segoe UI, color: rgba white */
+  font-family: 'Segoe UI', sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+
+  /* Font size */
+  font-size: 0.95rem;
+
+  /* Line height for readability */
+  line-height: 1.6;
+
+  /* Spacing */
+  margin-bottom: 0;
+
+  /* Remove default margins */
+  margin-top: 0;
+
+  /* Left align */
+  text-align: left;
+}
+
+/* ============================================
+   SERVICE PAGE CARD PAGINATION
+   ============================================ */
+
+.service-page-card .service-pagination {
+  /* Flexbox layout */
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+
+  /* Margin top for spacing */
+  margin-top: 1rem;
+}
+
+.service-page-card .service-pagination-dot {
+  /* Dot size */
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  /* Default state - semi-transparent white */
+  background-color: rgba(255, 255, 255, 0.3);
+
+  /* Smooth transition */
+  transition: background-color 0.3s ease;
+}
+
+.service-page-card .service-pagination-dot.active {
+  /* Active state - solid white */
+  background-color: white;
 }

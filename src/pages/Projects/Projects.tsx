@@ -1,138 +1,112 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
-import Card from '../../components/ui/Card';
-import Button from '../../components/ui/Button';
+import projectBg from '../../assets/projectbg.jpg';
+import { ProjectsCard } from '../../components/ui/Card/ProjectsCard';
+import dedemplerImage from '../../assets/image3D/dedempler.png';
+import looperImage from '../../assets/image3D/looper.png';
+import formingImage from '../../assets/image3D/forming.png';
+import shearImage from '../../assets/image3D/shear.png';
+import finishingImage from '../../assets/image3D/finishing.png';
+import finishingLineImage from '../../assets/image3D/finishingLine.png';
+import millingImage from '../../assets/image3D/milling.png';
+import furnaceImage from '../../assets/image3D/furnace.png';
 
 const Projects: React.FC<ProjectsPageProps> = () => {
-  const [filter, setFilter] = useState<string>('all');
-  
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Platform',
-      description: 'Full-featured online shopping platform with inventory management and payment processing.',
-      category: 'web',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      title: 'DEDEMPLER AND FACER',
+      description: 'Tube and pipes that require facing and or internal and external chamfering can be processed in line with the tube mill or off line.',
+      category: 'MECHANICAL TUBE',
+      image: dedemplerImage,
       link: '#',
     },
     {
       id: 2,
-      title: 'Mobile Banking App',
-      description: 'Secure mobile banking application with real-time transactions and account management.',
-      category: 'mobile',
-      technologies: ['React Native', 'Node.js', 'PostgreSQL', 'Firebase'],
+      title: 'LOOPER MACHINE',
+      description: 'Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most efficient and cheapest method of storing strip without causing any surface damage.',
+      category: 'MECHANICAL TUBE',
+      image: looperImage,
       link: '#',
     },
     {
       id: 3,
-      title: 'Analytics Dashboard',
-      description: 'Real-time analytics dashboard for business intelligence and data visualization.',
-      category: 'web',
-      technologies: ['React', 'D3.js', 'Python', 'PostgreSQL'],
+      title: 'FORMING AND SIZING MACHINE',
+      description: 'After metal strips has been welded and combined it will undergo forming to produce the needed shape of steel.',
+      category: 'MECHANICAL TUBE',
+      image: formingImage,
       link: '#',
     },
     {
       id: 4,
-      title: 'IoT Monitoring System',
-      description: 'Comprehensive IoT device monitoring and management platform.',
-      category: 'web',
-      technologies: ['Vue.js', 'Node.js', 'MongoDB', 'AWS IoT'],
+      title: 'SHEAR WELDER MACHINE',
+      description: 'Shear and end welders crop the tail and nose of each coil. The two coil ends are then aligned and the joint welded using TIG, MIG or MAG depending on the material and thickness being welded.',
+      category: 'MECHANICAL TUBE',
+      image: shearImage,
       link: '#',
     },
     {
       id: 5,
-      title: 'Fitness Tracking App',
-      description: 'Mobile application for tracking workouts, nutrition, and health metrics.',
-      category: 'mobile',
-      technologies: ['Flutter', 'Firebase', 'Node.js', 'React Native'],
+      title: 'FINISHING TABLE',
+      description: 'Extension of transfer table in the finishing line.',
+      category: 'FINISHING TABLE',
+      image: finishingImage,
       link: '#',
     },
     {
       id: 6,
-      title: 'Content Management System',
-      description: 'Custom CMS for managing digital content and publishing workflows.',
-      category: 'web',
-      technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
+      title: 'FINISHING LINE',
+      description: 'After pipes were cut into standard lengths it will be passed to the finishing line to be arranged and bundled ready for distribution.',
+      category: 'Run out',
+      image: finishingLineImage,
+      link: '#',
+    },
+    {
+      id: 7,
+      title: 'MILLING CUTOFF MACHINE',
+      description: 'Milling Cutoff Machine uses two milling saws to cut to length pipe and structural section tubes. The cut finishes eliminates the need for facing.',
+      category: 'MECHANICAL TUBE',
+      image: millingImage,
+      link: '#',
+    },
+    {
+      id: 8,
+      title: 'FURNACE',
+      description: 'Furnace is used for melting large batches of glass, in which heat is supplied by a flame playing over the glass surface, and regenerative heating of combustion air.',
+      category: 'STRUCTURAL',
+      image: furnaceImage,
       link: '#',
     },
   ];
 
-  const categories = ['all', 'web', 'mobile', 'design', 'data'];
-
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
-
   return (
     <div className="projects-page">
-      <section className="projects-hero">
+      <section className="projects-hero" style={{ '--project-bg-image': `url(${projectBg})` } as React.CSSProperties}>
+        <div className="projects-hero-overlay"></div>
         <div className="projects-hero-container container">
           <h1 className="projects-title">Our Projects</h1>
           <p className="projects-subtitle">
-            Showcasing our innovative solutions and successful implementations
+            Explore our latest 3D models — designed with precision, innovation, and functionality.
           </p>
-        </div>
-      </section>
-
-      <section className="projects-filter">
-        <div className="projects-filter-container container">
-          <div className="filter-buttons">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`filter-btn ${
-                  filter === category ? 'filter-btn--active' : ''
-                }`}
-                onClick={() => setFilter(category)}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
       <section className="projects-grid-section">
         <div className="projects-grid-container container">
-          <div className="projects-grid">
-            {filteredProjects.map((project) => (
-              <Card key={project.id} className="project-card">
-                <div className="project-category">
-                  {project.category.toUpperCase()}
-                </div>
-                <h2 className="project-title">{project.title}</h2>
-                <p className="project-description">{project.description}</p>
-                <div className="project-tech">
-                  <strong>Technologies:</strong>
-                  <div className="tech-tags">
-                    {project.technologies.map((tech, index) => (
-                      <span key={index} className="tech-tag">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <Button variant="outline" className="project-cta">
-                  View Project
-                </Button>
-              </Card>
+          <div className="projects-card-grid">
+            {projects.map((project) => (
+              <ProjectsCard
+                key={project.id}
+                image={project.image}
+                title={project.title}
+                subtitle={project.description}
+                category={project.category}
+                linkText="VIEW IN 3D"
+                linkHref={project.link}
+              />
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="projects-cta">
-        <div className="projects-cta-container container">
-          <Card className="projects-cta-card">
-            <h2 className="projects-cta-title">Start Your Next Project</h2>
-            <p className="projects-cta-description">
-              Ready to bring your ideas to life? Let's discuss your next project.
-            </p>
-            <Button variant="primary" size="lg">
-              Get Started
-            </Button>
-          </Card>
         </div>
       </section>
     </div>
