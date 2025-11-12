@@ -1,84 +1,34 @@
 /* ============================================
    INPUT COMPONENT STYLES
-   ============================================
-   This file contains all styles for input fields,
-   including labels and input states.
-   ============================================ */
-
-/* ============================================
-   INPUT GROUP
-   ============================================
-   Container for label and input field
    ============================================ */
 
 .input-group {
-  /* Bottom margin for spacing between input groups */
   margin-bottom: var(--spacing-lg);
 }
 
-/* ============================================
-   INPUT LABEL
-   ============================================
-   Label for input fields
-   ============================================ */
-
 .input-label {
-  /* Block display (takes full width) */
   display: block;
-
-  /* Bottom margin for spacing between label and input */
   margin-bottom: var(--spacing-xs);
-
-  /* Medium font weight */
   font-weight: 500;
-
-  /* Text color from variables */
   color: var(--text-color);
 }
 
-/* ============================================
-   INPUT FIELD
-   ============================================
-   The actual input element
-   ============================================ */
-
 .input-field {
-  /* Full width of container */
   width: 100%;
-
-  /* Internal padding */
   padding: var(--spacing-sm);
-
-  /* Border with color from variables */
   border: var(--border-width) solid var(--border-color);
-
-  /* Rounded corners */
   border-radius: var(--border-radius);
-
-  /* Base font size */
   font-size: var(--font-size-base);
-
-  /* Smooth transitions */
   transition: var(--transition-base);
 }
 
-/* Input field focus state */
 .input-field:focus {
-  /* Remove default browser outline */
   outline: none;
-
-  /* Primary color border on focus */
   border-color: var(--primary-color);
-
-  /* Subtle shadow to indicate focus */
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* Input field disabled state */
 .input-field:disabled {
-  /* Light background for disabled state */
   background-color: var(--background-light);
-
-  /* Not-allowed cursor */
   cursor: not-allowed;
 }

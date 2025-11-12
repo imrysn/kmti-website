@@ -1,472 +1,375 @@
-/* ============================================
-   CAREERS PAGE STYLES
-   ============================================
-   This file contains all styles for the careers page,
-   including hero section, benefits, and job listings.
-   ============================================ */
-
-/* ============================================
-   CAREERS PAGE CONTAINER
-   ============================================ */
-
 .careers-page {
-  /* Full width of the container */
   width: 100%;
-}
-
-/* ============================================
-   CAREERS HERO SECTION
-   ============================================
-   Hero section at the top of the careers page
-   ============================================ */
-
-.careers-hero {
-  /* Gradient background using primary colors */
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-
-  /* White text color */
+  min-height: 100vh;
   color: white;
-
-  /* Vertical padding */
-  padding-top: var(--spacing-3xl);
-  padding-bottom: var(--spacing-3xl);
-
-  /* Center align text */
-  text-align: center;
 }
 
-/* Container for hero content */
-.careers-hero-container {
-  /* Maximum width for content */
-  max-width: 800px;
+.careers-page .hero-section {
+  margin-top: -8rem;
+  min-height: 100vh;
+}
 
-  /* Center the container */
+.careers-hero-model {
+  position: absolute;
+  bottom: 0;
+  right: -1rem;
+  max-width: 50%;
+  max-height: 95%;
+  height: 45rem;
+  object-fit: contain;
+  object-position: bottom right;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.careers-page .hero-content {
+  text-align: left;
+  max-width: 800px;
+  margin-left: -4rem;
+  margin-right: auto;
+  margin-top: -6rem;
+}
+
+.careers-page .hero-title {
+  margin-bottom: 0.5rem;
+  text-transform: none;
+  font-size: 4rem;
+}
+
+.careers-hero-description {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.careers-page .hero-buttons {
+  justify-content: flex-start;
+}
+
+.careers-positions-section {
+  padding: 5rem 0;
+}
+
+.careers-positions-container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.careers-positions-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.5rem;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 45%, #FF8C8C 60%, #FF5252 100%);
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.careers-positions-subtitle {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Careers page title */
-.careers-title {
-  /* Extra large font size */
-  font-size: var(--font-size-4xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-}
-
-/* Careers page subtitle */
-.careers-subtitle {
-  /* Extra large font size */
-  font-size: var(--font-size-xl);
-
-  /* Slightly transparent for subtle effect */
-  opacity: 0.9;
-}
-
-/* ============================================
-   CAREERS BENEFITS SECTION
-   ============================================
-   Section displaying company benefits
-   ============================================ */
-
-.careers-benefits {
-  /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-
-  /* Light background color */
-  background-color: var(--background-light);
-}
-
-/* Benefits section title */
-.benefits-title {
-  /* 3X large font size */
-  font-size: var(--font-size-3xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Center align text */
-  text-align: center;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-2xl);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Grid container for benefits */
-.benefits-grid {
-  /* CSS Grid layout */
+.careers-positions-grid {
   display: grid;
-
-  /* Responsive grid: auto-fit columns, minimum 280px wide */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
-  /* Gap between grid items */
-  gap: var(--spacing-xl);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  max-width: 85%;
+  margin: 0 auto;
 }
 
-/* Individual benefit card */
-.benefit-card {
-  /* Center align text */
+@media (max-width: 768px) {
+  .careers-positions-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .careers-positions-title {
+    font-size: 2rem;
+  }
+}
+
+.why-work-withus-section {
+  padding: 5rem 0;
+}
+
+.why-work-withus-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.why-work-withus-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.5rem;
+  font-weight: 100;
   text-align: center;
-
-  /* Internal padding */
-  padding: var(--spacing-xl);
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Benefit icon */
-.benefit-icon {
-  /* Extra large font size for icons */
-  font-size: var(--font-size-4xl);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-}
-
-/* Benefit title */
-.benefit-title {
-  /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-sm);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Benefit description */
-.benefit-description {
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Comfortable line height */
-  line-height: 1.6;
-}
-
-/* ============================================
-   CAREERS OPPORTUNITIES SECTION
-   ============================================
-   Section displaying job openings
-   ============================================ */
-
-.careers-opportunities {
-  /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-}
-
-/* Opportunities section title */
-.opportunities-title {
-  /* 3X large font size */
-  font-size: var(--font-size-3xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Center align text */
+.why-work-withus-subtitle {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
   text-align: center;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-2xl);
-
-  /* Text color from variables */
-  color: var(--text-color);
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* ============================================
-   JOB LISTINGS
-   ============================================
-   List of job openings
-   ============================================ */
+.why-work-withus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
 
-/* Container for job list */
-.jobs-list {
-  /* Flexbox layout */
+.meet-our-team-section {
+  padding: 5rem 0;
+}
+
+.meet-our-team-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.meet-our-team-content {
   display: flex;
   flex-direction: column;
-
-  /* Gap between job cards */
-  gap: var(--spacing-lg);
 }
 
-/* Individual job card */
-.job-card {
-  /* Internal padding */
-  padding: var(--spacing-xl);
+.meet-our-team-title {
+  font-family: var(--font-family-heading);
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  font-weight: 100;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
 }
 
-/* Job card header */
-.job-header {
-  /* Flexbox layout */
-  display: flex;
-
-  /* Space between title and apply button */
-  justify-content: space-between;
-
-  /* Align items to top */
-  align-items: flex-start;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-
-  /* Allow wrapping on smaller screens */
-  flex-wrap: wrap;
-
-  /* Gap between items when wrapped */
-  gap: var(--spacing-md);
-}
-
-/* Job info container */
-.job-info {
-  /* Grow to fill available space */
-  flex: 1;
-
-  /* Minimum width for readability */
-  min-width: 200px;
-}
-
-/* Job title */
-.job-title {
-  /* Extra large font size */
-  font-size: var(--font-size-xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-sm);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Job metadata container */
-.job-meta {
-  /* Flexbox layout */
-  display: flex;
-
-  /* Allow metadata to wrap */
-  flex-wrap: wrap;
-
-  /* Gap between metadata items */
-  gap: var(--spacing-md);
-}
-
-/* Job metadata item */
-.job-meta span {
-  /* Small font size */
-  font-size: var(--font-size-sm);
-
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Vertical and horizontal padding */
-  padding-top: var(--spacing-xs);
-  padding-bottom: var(--spacing-xs);
-  padding-left: var(--spacing-sm);
-  padding-right: var(--spacing-sm);
-
-  /* Light background color */
-  background-color: var(--background-light);
-
-  /* Rounded corners */
-  border-radius: var(--border-radius);
-}
-
-/* Job department badge */
-.job-department {
-  /* Primary color background */
-  background-color: var(--primary-color);
-
-  /* White text */
-  color: white;
-}
-
-/* Job description */
-.job-description {
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-lg);
-
-  /* Comfortable line height */
+.meet-our-team-description {
+  font-family: var(--font-family-body);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
   line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
-/* ============================================
-   JOB DETAILS
-   ============================================
-   Detailed information about the job
-   ============================================ */
-
-/* Container for job details */
-.job-details {
-  /* CSS Grid layout */
-  display: grid;
-
-  /* Two equal columns */
-  grid-template-columns: 1fr 1fr;
-
-  /* Gap between columns */
-  gap: var(--spacing-xl);
-}
-
-/* Job detail section */
-.job-section {
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Last job section (no bottom margin) */
-.job-section:last-child {
-  margin-bottom: 0;
-}
-
-/* Job section title */
-.job-section-title {
-  /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Semi-bold font weight */
-  font-weight: 600;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* ============================================
-   JOB LIST
-   ============================================
-   List of job requirements or responsibilities
-   ============================================ */
-
-/* Job list container */
-.job-list {
-  /* Remove list styling */
+.meet-our-team-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 2rem;
 }
 
-/* Individual job list item */
-.job-list-item {
-  /* Vertical padding */
-  padding-top: var(--spacing-xs);
-  padding-bottom: var(--spacing-xs);
-
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Position relative for bullet */
-  position: relative;
-
-  /* Left padding for bullet */
-  padding-left: var(--spacing-lg);
-}
-
-/* Bullet point for list items */
-.job-list-item::before {
-  /* Bullet character */
-  content: '•';
-
-  /* Position absolutely */
-  position: absolute;
-  left: 0;
-
-  /* Primary color for bullet */
-  color: var(--primary-color);
-}
-
-/* ============================================
-   CAREERS CTA SECTION
-   ============================================
-   Call-to-action section at bottom of page
-   ============================================ */
-
-.careers-cta {
-  /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-}
-
-/* CTA card container */
-.careers-cta-card {
-  /* Center align text */
-  text-align: center;
-
-  /* Internal padding */
-  padding: var(--spacing-2xl);
-}
-
-/* CTA title */
-.careers-cta-title {
-  /* 2X large font size */
-  font-size: var(--font-size-2xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* CTA description */
-.careers-cta-description {
-  /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-xl);
-
-  /* Comfortable line height */
+.meet-our-team-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-family-body);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
   line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: left;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================
-   Media queries for different screen sizes
-   ============================================ */
+.meet-our-team-check-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
 
-/* Tablets and smaller (max-width: 768px) */
-@media (max-width: 768px) {
+.meet-our-team-button {
+  margin-top: 1rem;
+}
 
-  /* Smaller title on mobile */
-  .careers-title {
-    font-size: var(--font-size-3xl);
+.meet-our-team-image-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.meet-our-team-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .why-work-withus-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  /* Stack job header vertically on mobile */
-  .job-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  /* Full width apply button on mobile */
-  .job-apply-btn {
-    width: 100%;
-  }
-
-  /* Single column job details on mobile */
-  .job-details {
+  .meet-our-team-container {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .meet-our-team-content {
+    order: 1;
+  }
+
+  .meet-our-team-image-wrapper {
+    order: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-work-withus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .why-work-withus-title {
+    font-size: 2rem;
+  }
+
+  .meet-our-team-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-work-withus-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.how-to-apply-section {
+  padding: 5rem 0;
+}
+
+.how-to-apply-container {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.how-to-apply-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.5rem;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.how-to-apply-subtitle {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.how-to-apply-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 4rem;
+  max-width: 100%;
+}
+
+.ready-to-join-section {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 3rem;
+}
+
+.ready-to-join-title {
+  font-family: var(--font-family-heading);
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+.ready-to-join-description {
+  font-family: var(--font-family-body);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.ready-to-join-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .how-to-apply-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .how-to-apply-title {
+    font-size: 2rem;
+  }
+
+  .ready-to-join-title {
+    font-size: 2rem;
+  }
+
+  .ready-to-join-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ready-to-join-buttons button {
+    width: 100%;
+    max-width: 300px;
   }
 }
