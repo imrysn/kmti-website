@@ -6,6 +6,9 @@ import aboutCompany1 from '../../assets/aboutPage/aboutcompany1.png';
 import aboutCompany2 from '../../assets/aboutPage/aboutcomapny2.png';
 import Button from '../../components/ui/Button';
 import { OurStoryModal } from '../../components/ui/Modal/Modal';
+import Card from '../../components/ui/Card/Card';
+import visionIcon from '../../assets/icons/vision-icon.png';
+import missionIcon from '../../assets/icons/mission-icon.png';
 
 const About: React.FC<AboutPageProps> = () => {
   const [isOurStoryModalOpen, setIsOurStoryModalOpen] = useState(false);
@@ -58,6 +61,23 @@ const About: React.FC<AboutPageProps> = () => {
                 <Button variant="style2" onClick={handleOpenOurStory}>EXPLORE OUR STORY</Button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="about-vision-mission-section">
+        <div className="about-vision-mission-container container">
+          <div className="about-vision-mission-grid">
+            <Card
+              icon={visionIcon}
+              title="Our Vision"
+              subtitle="Be the world's leading machine design engineering company by achieving extraordinary results for our clients, building gratifying careers for our people, and earning a fair return on the value we distribute."
+            />
+            <Card
+              icon={missionIcon}
+              title="Our Mission"
+              subtitle="To utilize our knowledge and upgrade them by incorporating expertise from two of the most known industry leaders Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cove other industries."
+            />
           </div>
         </div>
       </section>

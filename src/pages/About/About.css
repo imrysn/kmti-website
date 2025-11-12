@@ -19,21 +19,6 @@
   z-index: 1;
 }
 
-.about-page::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  min-height: 100vh;
-  background-image: var(--about-bg-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
-
 .about-hero-overlay {
   position: absolute;
   top: 0;
@@ -91,7 +76,6 @@
 
 .about-company-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
 }
 
 .about-company-container {
@@ -178,6 +162,24 @@
 
 .about-company-button {
   margin-top: 1rem;
+}
+
+.about-vision-mission-section {
+  padding: 2em 0 6rem 0;
+}
+
+.about-vision-mission-container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.about-vision-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
 @media (max-width: 768px) {
