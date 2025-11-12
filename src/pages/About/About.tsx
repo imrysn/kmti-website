@@ -35,7 +35,7 @@ const About: React.FC<AboutPageProps> = () => {
         </div>
       </section>
 
-      <section className="about-company-section">
+      <section className="about-company-section" data-aos="fade-up">
         <div className="about-company-container container">
           <div className="about-company-grid">
             <div className="about-company-images">
