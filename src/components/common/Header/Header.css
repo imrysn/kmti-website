@@ -1,10 +1,28 @@
+/* ============================================
+   HEADER COMPONENT STYLES
+   ============================================
+   This file contains styles for the header component,
+   which wraps the navbar and provides sticky positioning.
+   ============================================ */
+
+/* ============================================
+   HEADER CONTAINER
+   ============================================ */
+
 .header {
+  /* Full width of the container */
   width: 100%;
+
+  /* Sticky positioning - stays at top when scrolling */
   position: sticky;
   top: 0;
+
+  /* High z-index to stay above other content */
   z-index: 1000;
-  background: rgba(15, 23, 43, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(43, 127, 255, 0.1);
+
+  /* No background */
+  background: none;
+
+  /* No box shadow by default */
+  box-shadow: none;
 }
