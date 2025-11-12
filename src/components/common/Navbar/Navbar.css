@@ -123,6 +123,9 @@
 
   /* Center items vertically */
   align-items: center;
+
+  /* Position relative for slider */
+  position: relative;
 }
 
 /* Individual navbar link */
@@ -158,21 +161,19 @@
   opacity: 0.9;
 }
 
-/* Active link indicator (gradient underline) */
-.navbar-link.active::after {
-  /* Required for pseudo-element */
-  content: '';
-
-  /* Position absolutely */
+/* Slider for active tab indicator */
+.navbar-slider {
+  /* Position absolutely within the ul */
   position: absolute;
   bottom: -4px;
-  left: 0;
-  right: 0;
   height: 2px;
 
-  /* Gradient underline: blue to red */
+  /* Gradient background: blue to red */
   background: linear-gradient(90deg, #2157EE, #DF0515);
 
   /* Slightly rounded corners */
   border-radius: 1px;
+
+  /* Initially hidden if no active tab */
+  opacity: 1;
 }

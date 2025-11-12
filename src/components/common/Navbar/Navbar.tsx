@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import headerLogo from '../../../assets/headerKMTIlogo.png';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
+  const activeLinkRef = useRef<HTMLAnchorElement>(null);
+  const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
 
   const navLinks = [
     { path: '/', label: 'HOME' },
@@ -15,6 +17,19 @@ const Navbar: React.FC = () => {
     { path: '/contact', label: 'CONTACT US' },
 
   ];
+
+  useEffect(() => {
+    if (activeLinkRef.current) {
+      const rect = activeLinkRef.current.getBoundingClientRect();
+      const ulRect = activeLinkRef.current.parentElement?.parentElement?.getBoundingClientRect();
+      if (ulRect) {
+        setSliderStyle({
+          width: rect.width,
+          left: rect.left - ulRect.left,
+        });
+      }
+    }
+  }, [location.pathname]);
 
   return (
     <nav className="navbar">
@@ -28,11 +43,19 @@ const Navbar: React.FC = () => {
               <Link
                 to={link.path}
                 className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
+                ref={location.pathname === link.path ? activeLinkRef : null}
               >
                 {link.label}
               </Link>
             </li>
           ))}
+          <div
+            className="navbar-slider"
+            style={{
+              ...sliderStyle,
+              transition: 'all 0.6s ease',
+            }}
+          />
         </ul>
       </div>
     </nav>
@@ -40,4 +63,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
