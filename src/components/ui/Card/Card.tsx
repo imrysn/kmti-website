@@ -180,4 +180,25 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
   );
 };
 
+interface ManagementTeamCardProps {
+  image: string;
+  role: string;
+  className?: string;
+  isLarge?: boolean;
+}
+
+export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
+  image,
+  role,
+  className = '',
+  isLarge = false,
+}) => {
+  return (
+    <div className={`management-team-card ${isLarge ? 'management-team-card-large' : ''} ${className}`}>
+      <h3 className="management-team-card-role">{role}</h3>
+      <img src={image} alt={role} className="management-team-card-image" />
+    </div>
+  );
+};
+
 export default Card;

@@ -7,8 +7,14 @@ import aboutCompany2 from '../../assets/aboutPage/aboutcomapny2.png';
 import Button from '../../components/ui/Button';
 import { OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
+import { ManagementTeamCard } from '../../components/ui/Card/Card';
 import visionIcon from '../../assets/icons/vision-icon.png';
 import missionIcon from '../../assets/icons/mission-icon.png';
+import pauImage from '../../assets/management/pau.png';
+import michaelImage from '../../assets/management/michael.png';
+import siryuImage from '../../assets/management/siryu.png';
+import mennjoImage from '../../assets/management/mennjo.png';
+import teodyImage from '../../assets/management/teody.png';
 
 const About: React.FC<AboutPageProps> = () => {
   const [isOurStoryModalOpen, setIsOurStoryModalOpen] = useState(false);
@@ -77,6 +83,35 @@ const About: React.FC<AboutPageProps> = () => {
               icon={missionIcon}
               title="Our Mission"
               subtitle="To utilize our knowledge and upgrade them by incorporating expertise from two of the most known industry leaders Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cove other industries."
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="about-management-team-section">
+        <div className="about-management-team-container container">
+          <h2 className="about-management-team-title">OUR MANAGEMENT TEAM</h2>
+          <div className="about-management-team-grid">
+            <ManagementTeamCard
+              image={pauImage}
+              role="ACCOUNTING / ADMIN MANAGER"
+            />
+            <ManagementTeamCard
+              image={michaelImage}
+              role="ENGINEERING MANAGER"
+            />
+            <ManagementTeamCard
+              image={siryuImage}
+              role="PRESIDENT / CEO"
+              isLarge={true}
+            />
+            <ManagementTeamCard
+              image={mennjoImage}
+              role="ENGINEERING MANAGER"
+            />
+            <ManagementTeamCard
+              image={teodyImage}
+              role="ENGINEERING SUPERVISOR"
             />
           </div>
         </div>
