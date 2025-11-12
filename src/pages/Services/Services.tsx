@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Services.css';
 import { ServicesPageProps } from './Services.types';
@@ -28,6 +28,17 @@ const Services: React.FC<ServicesPageProps> = () => {
   const servicesGridRef = useRef<HTMLDivElement>(null);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Add class to body when services page is mounted
+  useEffect(() => {
+    document.documentElement.classList.add('services-page-active');
+    document.body.classList.add('services-page-active');
+
+    return () => {
+      document.documentElement.classList.remove('services-page-active');
+      document.body.classList.remove('services-page-active');
+    };
+  }, []);
 
   const scrollToServicesGrid = () => {
     servicesGridRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -77,6 +88,15 @@ const Services: React.FC<ServicesPageProps> = () => {
       image: assemblyImage,
     },
   ];
+
+  const handleServiceChange = (serviceTitle: string) => {
+    // Find the service by title and switch to it
+    const targetService = services.find(s => s.title === serviceTitle);
+    if (targetService) {
+      setSelectedService(targetService);
+      // Modal is already open, just update the service
+    }
+  };
 
   const serviceTabs = ['3D MODELING', '2D DETAILING', 'PARTS INSPECTION', 'MACHINE ASSEMBLY'];
 
@@ -150,6 +170,7 @@ const Services: React.FC<ServicesPageProps> = () => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         service={selectedService}
+        onServiceChange={handleServiceChange}
       />
     </div>
   );

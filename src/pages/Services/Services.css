@@ -6,6 +6,39 @@
   position: relative;
 }
 
+/* Custom scrollbar styling for services page */
+/* Apply scrollbar styles to html and body when services-page-active class is present */
+html.services-page-active,
+body.services-page-active {
+  /* Custom scrollbar for Firefox */
+  scrollbar-width: thin !important;
+  scrollbar-color: #2157EE transparent !important;
+}
+
+html.services-page-active::-webkit-scrollbar,
+body.services-page-active::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+html.services-page-active::-webkit-scrollbar-track,
+body.services-page-active::-webkit-scrollbar-track {
+  background: transparent !important;
+  border-radius: 10px;
+}
+
+html.services-page-active::-webkit-scrollbar-thumb,
+body.services-page-active::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #2157EE, #DF0515) !important;
+  border-radius: 10px;
+}
+
+html.services-page-active::-webkit-scrollbar-thumb:hover,
+body.services-page-active::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #2157EE, #DF0515) !important;
+  opacity: 0.9;
+}
+
 /* Background image that extends behind navbar - only for hero section */
 .services-hero {
   /* Background image from CSS variable */
@@ -280,6 +313,10 @@
   /* Ensure section is above background */
   position: relative;
   z-index: 1;
+
+  /* Custom scrollbar for Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #2157EE transparent;
 }
 
 .services-grid-container {
@@ -289,6 +326,10 @@
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
+
+  /* Custom scrollbar for Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #2157EE transparent;
 }
 
 /* Grid container for services */
@@ -297,6 +338,73 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
+
+  /* Custom scrollbar for Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #2157EE transparent;
+}
+
+/* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) - services-grid-section */
+.services-grid-section::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.services-grid-section::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.services-grid-section::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  border-radius: 10px;
+}
+
+.services-grid-section::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  opacity: 0.9;
+}
+
+/* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) - services-grid-container */
+.services-grid-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.services-grid-container::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.services-grid-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  border-radius: 10px;
+}
+
+.services-grid-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  opacity: 0.9;
+}
+
+/* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) - services-grid */
+.services-page .services-grid::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.services-page .services-grid::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.services-page .services-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  border-radius: 10px;
+}
+
+.services-page .services-grid::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  opacity: 0.9;
 }
 
 /* Service card wrapper */

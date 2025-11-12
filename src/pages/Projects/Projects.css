@@ -1,14 +1,3 @@
-/* ============================================
-   PROJECTS PAGE STYLES
-   ============================================
-   This file contains all styles for the projects page,
-   including hero section, filter buttons, and project grid.
-   ============================================ */
-
-/* ============================================
-   PROJECTS PAGE CONTAINER
-   ============================================ */
-
 .projects-page {
   /* Full width of the container */
   width: 100%;
@@ -21,18 +10,55 @@
    ============================================ */
 
 .projects-hero {
-  /* Gradient background using primary colors */
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  /* Background image */
+  background-image: var(--project-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Extend hero section to cover navbar area by using negative margin */
+  margin-top: -8rem;
+  padding-top: 10rem;
+
+  /* Position relative for overlay */
+  position: relative;
+
+  /* Minimum height for hero section - same as services page */
+  min-height: 80vh;
+
+  /* Flexbox layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Padding - override the padding-top from above */
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 
   /* White text color */
   color: white;
 
-  /* Vertical padding */
-  padding-top: var(--spacing-3xl);
-  padding-bottom: var(--spacing-3xl);
-
   /* Center align text */
   text-align: center;
+
+  /* Ensure hero is above background */
+  z-index: 1;
+}
+
+.projects-hero-overlay {
+  /* Overlay color #162456 at 44% opacity */
+  background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);
+  opacity: 0.8;
+
+  /* Cover entire hero section */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Z-index to be above background but below content */
+  z-index: 1;
 }
 
 /* Container for hero content */
@@ -43,342 +69,83 @@
   /* Center the container */
   margin-left: auto;
   margin-right: auto;
+
+  /* Position relative to be above overlay */
+  position: relative;
+  z-index: 2;
 }
 
 /* Projects page title */
 .projects-title {
   /* Extra large font size */
-  font-size: var(--font-size-4xl);
+  font-size: 4rem;
 
   /* Bold font weight */
-  font-weight: 700;
+  font-weight: 100;
+
+  /* White text color */
+  color: white;
 
   /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 0.5rem;
+
+  /* Font family */
+  font-family: var(--font-family-heading, 'Flame', sans-serif);
+
+  /* Line height */
+  line-height: 1.2;
 }
 
 /* Projects page subtitle */
 .projects-subtitle {
-  /* Extra large font size */
-  font-size: var(--font-size-xl);
+  /* Large font size */
+  font-size: 1.25rem;
 
-  /* Slightly transparent for subtle effect */
-  opacity: 0.9;
-}
-
-/* ============================================
-   PROJECTS FILTER SECTION
-   ============================================
-   Section containing filter buttons
-   ============================================ */
-
-.projects-filter {
-  /* Vertical padding */
-  padding-top: var(--spacing-xl);
-  padding-bottom: var(--spacing-xl);
-
-  /* Light background color */
-  background-color: var(--background-light);
-}
-
-/* Container for filter buttons */
-.projects-filter-container {
-  /* Flexbox layout */
-  display: flex;
-
-  /* Center buttons horizontally */
-  justify-content: center;
-}
-
-/* Container for filter buttons */
-.filter-buttons {
-  /* Flexbox layout */
-  display: flex;
-
-  /* Gap between buttons */
-  gap: var(--spacing-sm);
-
-  /* Allow buttons to wrap on smaller screens */
-  flex-wrap: wrap;
-
-  /* Center buttons horizontally */
-  justify-content: center;
-}
-
-/* Individual filter button */
-.filter-btn {
-  /* Vertical and horizontal padding */
-  padding-top: var(--spacing-sm);
-  padding-bottom: var(--spacing-sm);
-  padding-left: var(--spacing-lg);
-  padding-right: var(--spacing-lg);
-
-  /* Border with color from variables */
-  border: var(--border-width) solid var(--border-color);
-
-  /* White background */
-  background-color: white;
-
-  /* Text color from variables */
-  color: var(--text-color);
-
-  /* Extra large border radius for pill shape */
-  border-radius: var(--border-radius-xl);
-
-  /* Pointer cursor on hover */
-  cursor: pointer;
-
-  /* Smooth transitions */
-  transition: var(--transition-base);
-
-  /* Medium font weight */
-  font-weight: 500;
-}
-
-/* Filter button hover state */
-.filter-btn:hover {
-  /* Primary color border on hover */
-  border-color: var(--primary-color);
-
-  /* Primary color text on hover */
-  color: var(--primary-color);
-}
-
-/* Active filter button */
-.filter-btn--active {
-  /* Primary color background */
-  background-color: var(--primary-color);
-
-  /* White text */
+  /* White text color */
   color: white;
 
-  /* Primary color border */
-  border-color: var(--primary-color);
+  /* Bottom margin for spacing */
+  margin-bottom: 2.5rem;
+
+  /* Font family */
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+
+  /* Line height */
+  line-height: 1.6;
+
+  /* Maximum width for readability */
+  max-width: 800px;
+
+  /* Center the subtitle */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ============================================
    PROJECTS GRID SECTION
    ============================================
-   Section containing the grid of projects
+   Section containing the grid of project cards
    ============================================ */
 
 .projects-grid-section {
   /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  /* Background gradient - same as Home and Services pages */
+  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
 }
 
 /* Grid container for projects */
-.projects-grid {
-  /* CSS Grid layout */
-  display: grid;
+.projects-grid-container {
+  /* Maximum width for content */
+  max-width: 1400px;
 
-  /* Responsive grid: auto-fit columns, minimum 350px wide */
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  /* Center the container */
+  margin-left: auto;
+  margin-right: auto;
 
-  /* Gap between grid items */
-  gap: var(--spacing-xl);
-}
-
-/* ============================================
-   PROJECT CARD
-   ============================================
-   Individual project card
-   ============================================ */
-
-.project-card {
-  /* Internal padding */
-  padding: var(--spacing-xl);
-
-  /* Flexbox layout */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Project category badge */
-.project-category {
-  /* Inline-block display */
-  display: inline-block;
-
-  /* Primary color background */
-  background-color: var(--primary-color);
-
-  /* White text */
-  color: white;
-
-  /* Vertical and horizontal padding */
-  padding-top: var(--spacing-xs);
-  padding-bottom: var(--spacing-xs);
-  padding-left: var(--spacing-sm);
-  padding-right: var(--spacing-sm);
-
-  /* Rounded corners */
-  border-radius: var(--border-radius);
-
-  /* Small font size */
-  font-size: var(--font-size-sm);
-
-  /* Medium font weight */
-  font-weight: 500;
-
-  /* Width fits content */
-  width: fit-content;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-}
-
-/* Project title */
-.project-title {
-  /* Extra large font size */
-  font-size: var(--font-size-xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-sm);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Project description */
-.project-description {
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-lg);
-
-  /* Comfortable line height */
-  line-height: 1.6;
-
-  /* Grow to fill available space */
-  flex: 1;
-}
-
-/* ============================================
-   PROJECT TECH STACK
-   ============================================
-   Technology tags for projects
-   ============================================ */
-
-.project-tech {
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Container for tech tags */
-.tech-tags {
-  /* Flexbox layout */
-  display: flex;
-
-  /* Allow tags to wrap */
-  flex-wrap: wrap;
-
-  /* Gap between tags */
-  gap: var(--spacing-xs);
-
-  /* Top margin for spacing */
-  margin-top: var(--spacing-xs);
-}
-
-/* Individual tech tag */
-.tech-tag {
-  /* Light background color */
-  background-color: var(--background-light);
-
-  /* Text color from variables */
-  color: var(--text-color);
-
-  /* Vertical and horizontal padding */
-  padding-top: var(--spacing-xs);
-  padding-bottom: var(--spacing-xs);
-  padding-left: var(--spacing-sm);
-  padding-right: var(--spacing-sm);
-
-  /* Rounded corners */
-  border-radius: var(--border-radius);
-
-  /* Small font size */
-  font-size: var(--font-size-sm);
-}
-
-/* ============================================
-   PROJECTS CTA SECTION
-   ============================================
-   Call-to-action section at bottom of page
-   ============================================ */
-
-.projects-cta {
-  /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-}
-
-/* CTA card container */
-.projects-cta-card {
-  /* Center align text */
-  text-align: center;
-
-  /* Internal padding */
-  padding: var(--spacing-2xl);
-}
-
-/* CTA title */
-.projects-cta-title {
-  /* 2X large font size */
-  font-size: var(--font-size-2xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* CTA description */
-.projects-cta-description {
-  /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-xl);
-
-  /* Comfortable line height */
-  line-height: 1.6;
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================
-   Media queries for different screen sizes
-   ============================================ */
-
-/* Tablets and smaller (max-width: 768px) */
-@media (max-width: 768px) {
-
-  /* Smaller title on mobile */
-  .projects-title {
-    font-size: var(--font-size-3xl);
-  }
-
-  /* Allow horizontal scrolling for filter buttons */
-  .filter-buttons {
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding-bottom: var(--spacing-sm);
-  }
-
-  /* Prevent filter button text from wrapping */
-  .filter-btn {
-    white-space: nowrap;
-  }
+  /* Horizontal padding */
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
