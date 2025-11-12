@@ -2,7 +2,7 @@ import React from 'react';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import projectBg from '../../assets/projectbg.jpg';
-import { ProjectsCard } from '../../components/ui/Card/ProjectsCard';
+import { ProjectsCard } from '../../components/ui/Card/Card';
 import dedemplerImage from '../../assets/image3D/dedempler.png';
 import looperImage from '../../assets/image3D/looper.png';
 import formingImage from '../../assets/image3D/forming.png';

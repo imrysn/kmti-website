@@ -10,7 +10,6 @@ import Projects from './pages/Projects';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
-import './styles/globals.css';
 
 function App() {
   useEffect(() => {

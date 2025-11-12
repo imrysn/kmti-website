@@ -15,13 +15,38 @@ const Navbar: React.FC = () => {
     { path: '/about', label: 'ABOUT US' },
     { path: '/careers', label: 'CAREERS' },
     { path: '/contact', label: 'CONTACT US' },
-
   ];
 
+  /* ----------------------------------
+      Scroll-to-top behavior
+  ---------------------------------- */
+  const handleNavClick = (
+    path: string,
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    const currentPathname = location.pathname;
+    if (path === currentPathname) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  /* ----------------------------------
+      Slider animation logic
+  ---------------------------------- */
   useEffect(() => {
     if (activeLinkRef.current) {
       const rect = activeLinkRef.current.getBoundingClientRect();
-      const ulRect = activeLinkRef.current.parentElement?.parentElement?.getBoundingClientRect();
+      const ulRect =
+        activeLinkRef.current.parentElement?.parentElement?.getBoundingClientRect();
+
       if (ulRect) {
         setSliderStyle({
           width: rect.width,
@@ -34,25 +59,32 @@ const Navbar: React.FC = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo" onClick={handleLogoClick}>
           <img src={headerLogo} alt="KMTI Logo" />
         </Link>
+
         <ul className="navbar-links">
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link
                 to={link.path}
-                className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
+                className={`navbar-link ${
+                  location.pathname === link.path ? 'active' : ''
+                }`}
                 ref={location.pathname === link.path ? activeLinkRef : null}
+                onClick={(e) => handleNavClick(link.path, e)}
               >
                 {link.label}
               </Link>
             </li>
           ))}
+
+          {/* Sliding underline */}
           <div
             className="navbar-slider"
             style={{
-              ...sliderStyle,
+              width: sliderStyle.width,
+              left: sliderStyle.left,
               transition: 'all 0.6s ease',
             }}
           />
