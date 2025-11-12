@@ -1,27 +1,14 @@
-/* ============================================
-   SERVICE MODAL OVERLAY
-   ============================================ */
-
 .service-modal-overlay {
-  /* Fixed position to cover entire screen */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
-  /* Dark background with transparency */
   background-color: rgba(0, 0, 0, 0.6);
-
-  /* Center content */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Z-index to appear above everything */
   z-index: 1000;
-
-  /* Smooth fade in */
   animation: fadeIn 0.3s ease;
 }
 
@@ -35,44 +22,22 @@
   }
 }
 
-/* ============================================
-   SERVICE MODAL CONTENT
-   ============================================ */
-
 .service-modal-content {
-  /* Dark blue background */
   background-color: #162456;
-
-  /* Light blue glowing border */
   border: 1px solid rgba(81, 162, 255, 0.5);
   box-shadow: 0 0 30px #51A2FF;
-
-  /* Rounded corners */
   border-radius: 16px;
-
-  /* Maximum width and height */
   max-width: 1100px;
   max-height: 90vh;
   width: 95%;
-
-  /* Padding */
   padding: 3rem;
-
-  /* Position relative for close button */
   position: relative;
-
-  /* Overflow for scrolling */
   overflow-y: auto;
-
-  /* Smooth scale in */
   animation: scaleIn 0.3s ease;
-
-  /* Custom scrollbar for Firefox */
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
-/* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) */
 .service-modal-content::-webkit-scrollbar {
   width: 8px;
 }
@@ -103,39 +68,23 @@
   }
 }
 
-/* ============================================
-   SERVICE MODAL CLOSE BUTTON
-   ============================================ */
-
 .service-modal-close {
-  /* Position in top right */
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-
-  /* Remove fixed size - let it be based on text content */
   width: auto;
   height: auto;
-
-  /* Styling - no border, no border radius */
   background: transparent;
   border: none;
   border-radius: 0;
-
-  /* Text */
   color: white;
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
-
-  /* Padding for clickable area */
   padding: 0.5rem;
-
-  /* Smooth transition */
   transition: all 0.3s ease;
-
-  /* Z-index */
-  z-index: 10;
+  z-index: 1001;
+  pointer-events: auto;
 }
 
 .service-modal-close:hover {
@@ -144,85 +93,54 @@
   transform: rotate(90deg);
 }
 
-/* ============================================
-   SERVICE MODAL BODY
-   ============================================ */
-
 .service-modal-body {
-  /* Grid layout for two columns */
   display: grid;
   grid-template-columns: 1fr 0.7fr;
   gap: 3rem;
-
-  /* Padding top for close button space */
   padding-top: 1rem;
 }
 
 .service-modal-body-single {
-  /* Single column layout for Parts inspection and Machine Assembly */
   grid-template-columns: 1fr;
 }
 
-/* ============================================
-   SERVICE MODAL LEFT SIDE
-   ============================================ */
-
 .service-modal-left {
-  /* Flexbox column */
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
 .service-modal-title {
-  /* Font styling */
   font-family: 'Flame', sans-serif;
   font-size: 2.5rem;
   font-weight: 100;
   color: white;
-
-  /* Remove default margins */
   margin: 0;
 }
 
 .service-modal-description {
-  /* Font styling */
   font-family: 'Segoe UI', sans-serif;
   font-size: 0.9rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.9);
-
-  /* Remove default margins */
   margin: 0;
 }
 
-/* ============================================
-   SERVICE MODAL STEP INDICATOR
-   ============================================ */
-
 .service-modal-step-indicator {
-  /* Flexbox row */
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
 .service-modal-step-number {
-  /* Circle with number */
   width: 48px;
   height: 48px;
   border-radius: 50%;
-
-  /* Light blue background */
   background-color: rgba(81, 162, 255, 0.2);
   border: 1px solid rgba(81, 162, 255, 0.5);
-
-  /* Center text */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Text styling */
   color: white;
   font-size: 1.5rem;
   font-weight: 600;
@@ -230,7 +148,6 @@
 }
 
 .service-modal-step-text {
-  /* Text styling */
   color: white;
   font-size: 1rem;
   font-weight: 500;
@@ -239,48 +156,33 @@
   letter-spacing: 0.05em;
 }
 
-/* ============================================
-   SERVICE MODAL SECTIONS (2D Detailing)
-   ============================================ */
-
 .service-modal-sections {
-  /* Flexbox column for multiple sections */
   display: flex;
   flex-direction: column;
   gap: 4rem;
 }
 
 .service-modal-section {
-  /* Individual section container */
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 .service-modal-section-description {
-  /* Font styling for section descriptions */
   font-family: 'Segoe UI', sans-serif;
   font-size: 0.9rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.9);
-
-  /* Remove default margins */
   margin: 0;
 }
 
-/* ============================================
-   SERVICE MODAL IMAGES
-   ============================================ */
-
 .service-modal-images {
-  /* Flexbox column */
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 .service-modal-image-container {
-  /* Container for image - centered within slide */
   width: 100%;
   max-width: 100%;
   height: 100%;
@@ -295,7 +197,6 @@
 }
 
 .service-modal-image {
-  /* Image styling */
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -304,19 +205,13 @@
   border-radius: 0;
 }
 
-/* ============================================
-   SERVICE MODAL CAROUSEL (Parts Inspection)
-   ============================================ */
-
 .service-modal-carousel {
-  /* Carousel container */
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
 .service-modal-carousel-container {
-  /* Container for slides with background box */
   position: relative;
   width: 80%;
   min-height: 450px;
@@ -330,7 +225,6 @@
 }
 
 .service-modal-carousel-slide {
-  /* Individual slide - centered image area */
   position: absolute;
   top: 2rem;
   left: 2rem;
@@ -344,13 +238,11 @@
 }
 
 .service-modal-carousel-slide.active {
-  /* Active slide */
   opacity: 1;
   z-index: 1;
 }
 
 .service-modal-carousel-indicators {
-  /* Container for dots - positioned inside background box */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -364,7 +256,6 @@
 }
 
 .service-modal-carousel-dot {
-  /* Individual dot indicator - dark for inactive */
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -376,23 +267,16 @@
 }
 
 .service-modal-carousel-dot.active {
-  /* Active dot - white */
   background-color: white;
 }
 
-/* ============================================
-   SERVICE MODAL RIGHT SIDE
-   ============================================ */
-
 .service-modal-right {
-  /* Flexbox column */
   display: flex;
   flex-direction: column;
   gap: 0rem;
 }
 
 .service-modal-flow-title {
-  /* Font styling */
   font-family: 'Segoe UI', sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
@@ -400,18 +284,11 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-align: center;
-
-  /* Remove default margins */
   margin: 2rem;
   margin-top: 6rem;
 }
 
-/* ============================================
-   SERVICE MODAL FLOW
-   ============================================ */
-
 .service-modal-flow {
-  /* Flexbox column */
   display: flex;
   flex-direction: column;
   gap: 0rem;
@@ -419,34 +296,22 @@
 }
 
 .service-modal-flow-step {
-  /* Button styling */
   background-color: rgba(15, 23, 43, 0.4);
   border: 1px solid rgba(81, 162, 255, 0.5);
   border-radius: 8px;
-
-  /* Padding */
   padding: 1rem 1.5rem;
-
-  /* Text styling */
   color: white;
   font-family: 'Segoe UI', sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
   text-align: center;
-
-  /* Width and centering */
   max-width: 80%;
   margin: 0 auto;
-
-  /* Smooth transition */
   transition: all 0.3s ease;
-
-  /* Remove default button styles */
   outline: none;
 }
 
 .service-modal-flow-step.clickable {
-  /* Clickable step styling */
   cursor: pointer;
 }
 
@@ -457,34 +322,98 @@
 }
 
 .service-modal-flow-step.not-clickable {
-  /* Non-clickable step styling */
   cursor: default;
   opacity: 0.8;
 }
 
 .service-modal-flow-step.not-clickable:hover {
-  /* No hover effect for non-clickable */
   background-color: rgba(15, 23, 43, 0.4);
   border-color: rgba(81, 162, 255, 0.5);
 }
 
 .service-modal-flow-step.active {
-  /* Active state - lighter blue */
   background-color: rgba(81, 162, 255, 0.2);
   border-color: rgba(81, 162, 255, 0.6);
   box-shadow: 0 0 10px rgba(81, 162, 255, 0.3);
 }
 
 .service-modal-flow-step.active.clickable:hover {
-  /* Active and clickable hover */
   background-color: rgba(81, 162, 255, 0.3);
   border-color: rgba(81, 162, 255, 0.8);
 }
 
 .service-modal-flow-arrow {
-  /* Arrow styling */
   color: rgba(81, 162, 255, 0.6);
   font-size: 1.5rem;
   text-align: center;
   padding: 0rem 0;
+}
+
+.our-story-modal-content {
+  max-width: 1100px;
+}
+
+.our-story-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.our-story-modal-title {
+  font-size: 2.5rem;
+  font-weight: 100;
+  color: white;
+  margin: 0;
+  margin-bottom: 1rem;
+  font-family: var(--font-family-heading, 'Flame', sans-serif);
+  text-align: center;
+}
+
+.our-story-photo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.our-story-photo {
+  width: 95%;
+  height: auto;
+  max-height: 500px;
+  border-radius: 0px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.our-story-caption {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+}
+
+.our-story-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.our-story-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 95%;
+}
+
+.our-story-text {
+  font-size: 1rem;
+  color: white;
+  line-height: 1.5;
+  margin: 0;
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+  text-align: justify;
+  text-indent: 2rem;
 }

@@ -96,7 +96,7 @@ body.services-page-active::-webkit-scrollbar-thumb:hover {
   position: relative;
 
   /* Minimum height for hero section */
-  min-height: 93vh;
+  min-height: 94vh;
 
   /* Flexbox layout */
   display: flex;

@@ -38,10 +38,10 @@ const Footer: React.FC = () => {
         <div className="footer__links">
           <div className="footer__col">
             <div className="footer__col-title">SERVICES</div>
-            <a className="footer__link" href="/services#3d">3D Modeling</a>
-            <a className="footer__link" href="/services#2d">2D Detailing</a>
-            <a className="footer__link" href="/services#inspections">Parts Inspections</a>
-            <a className="footer__link" href="/services#assembly">Machine Assembly</a>
+            <a className="footer__link" href="/services?service=3d-modeling">3D Modeling</a>
+            <a className="footer__link" href="/services?service=2d-detailing">2D Detailing</a>
+            <a className="footer__link" href="/services?service=parts-inspection">Parts Inspections</a>
+            <a className="footer__link" href="/services?service=machine-assembly">Machine Assembly</a>
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './Services.css';
 import { ServicesPageProps } from './Services.types';
 import { ServicePageCard } from '../../components/ui/Card/Card';
@@ -25,11 +25,12 @@ interface Service {
 
 const Services: React.FC<ServicesPageProps> = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const servicesGridRef = useRef<HTMLDivElement>(null);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const hasCheckedUrlParams = useRef(false);
 
-  // Add class to body when services page is mounted
   useEffect(() => {
     document.documentElement.classList.add('services-page-active');
     document.body.classList.add('services-page-active');
@@ -39,24 +40,6 @@ const Services: React.FC<ServicesPageProps> = () => {
       document.body.classList.remove('services-page-active');
     };
   }, []);
-
-  const scrollToServicesGrid = () => {
-    servicesGridRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const navigateToContact = () => {
-    navigate('/contact');
-  };
-
-  const handleServiceClick = (service: Service) => {
-    setSelectedService(service);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedService(null);
-  };
 
   const services: Service[] = [
     {
@@ -89,12 +72,53 @@ const Services: React.FC<ServicesPageProps> = () => {
     },
   ];
 
+  useEffect(() => {
+    const serviceParam = searchParams.get('service');
+    if (serviceParam && !hasCheckedUrlParams.current) {
+      const serviceMap: { [key: string]: string } = {
+        '3d-modeling': '3D Modeling',
+        '2d-detailing': '2D Detailing',
+        'parts-inspection': 'Parts inspection',
+        'machine-assembly': 'Machine Assembly',
+      };
+
+      const serviceTitle = serviceMap[serviceParam];
+      if (serviceTitle) {
+        const targetService = services.find(s => s.title === serviceTitle);
+        if (targetService) {
+          setSelectedService(targetService);
+          setIsModalOpen(true);
+          hasCheckedUrlParams.current = true;
+          setSearchParams({}, { replace: true });
+        }
+      }
+    }
+  }, [searchParams, setSearchParams, services]);
+
+  const scrollToServicesGrid = () => {
+    servicesGridRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const navigateToContact = () => {
+    navigate('/contact');
+  };
+
+  const handleServiceClick = (service: Service) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+    hasCheckedUrlParams.current = false;
+    setSearchParams({}, { replace: true });
+  };
+
   const handleServiceChange = (serviceTitle: string) => {
-    // Find the service by title and switch to it
     const targetService = services.find(s => s.title === serviceTitle);
     if (targetService) {
       setSelectedService(targetService);
-      // Modal is already open, just update the service
     }
   };
 

@@ -13,6 +13,7 @@ import assemblyImage2 from '../../../assets/modalImage/assembly2modal.png';
 import assemblyImage3 from '../../../assets/modalImage/assmebly3mpdal.png';
 import assemblyImage4 from '../../../assets/modalImage/assembly4modal.png';
 import assemblyImage5 from '../../../assets/modalImage/assembly5modal.png';
+import ourStoryPhoto from '../../../assets/aboutPage/ourstoryImage.png';
 
 interface ServiceModalProps {
   isOpen: boolean;
@@ -28,7 +29,6 @@ interface ServiceModalProps {
 }
 
 const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, onServiceChange }) => {
-  // Carousel state for Parts inspection and Machine Assembly
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const inspectionImages = [
     inspectionImage1,
@@ -45,7 +45,6 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
     assemblyImage5,
   ];
 
-  // Get current carousel images based on service
   const getCurrentCarouselImages = () => {
     if (service?.title === 'Parts inspection') return inspectionImages;
     if (service?.title === 'Machine Assembly') return assemblyImages;
@@ -54,18 +53,16 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
 
   const currentCarouselImages = getCurrentCarouselImages();
 
-  // Auto-advance carousel for Parts inspection and Machine Assembly
   useEffect(() => {
     if (!isOpen || !service || (service.title !== 'Parts inspection' && service.title !== 'Machine Assembly')) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % currentCarouselImages.length);
-    }, 4000); // Change image every 4 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [isOpen, service, currentCarouselImages.length]);
 
-  // Reset carousel when modal opens/closes or service changes
   useEffect(() => {
     if (service?.title === 'Parts inspection' || service?.title === 'Machine Assembly') {
       setCurrentImageIndex(0);
@@ -74,7 +71,6 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
 
   if (!isOpen || !service) return null;
 
-  // Production flow steps
   const productionFlowSteps = [
     'INQUIRY WITH ORDER SHEET',
     'REFERENCE DATA',
@@ -85,17 +81,16 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
     'DELIVERY OR PRODUCTS',
   ];
 
-  // Get the current step index based on service
   const getCurrentStepIndex = () => {
     switch (service.title) {
       case '3D Modeling':
-        return 2; // 3D MODELING WITH MODIFICATION
+        return 2;
       case '2D Detailing':
-        return 3; // 2D MODELING
+        return 3;
       case 'Parts inspection':
-        return 5; // FABRICATION / ASSEMBLY
+        return 5;
       case 'Machine Assembly':
-        return 5; // FABRICATION / ASSEMBLY
+        return 5;
       default:
         return 2;
     }
@@ -103,25 +98,20 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
 
   const currentStepIndex = getCurrentStepIndex();
 
-  // Handle flow step click - only for 3D and 2D modals
   const handleFlowStepClick = (stepIndex: number) => {
     if (!onServiceChange) return;
 
-    // Only allow clicks on specific steps in 3D and 2D modals
     if (service.title === '3D Modeling') {
-      // In 3D modal, only "2D MODELING" (index 3) is clickable
       if (stepIndex === 3) {
         onServiceChange('2D Detailing');
       }
     } else if (service.title === '2D Detailing') {
-      // In 2D modal, only "3D MODELING WITH MODIFICATION" (index 2) is clickable
       if (stepIndex === 2) {
         onServiceChange('3D Modeling');
       }
     }
   };
 
-  // Check if a step is clickable
   const isStepClickable = (stepIndex: number) => {
     if (!onServiceChange) return false;
     if (service.title === '3D Modeling' && stepIndex === 3) return true;
@@ -129,7 +119,6 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
     return false;
   };
 
-  // Get detailed description for services
   const getDetailedDescription = () => {
     if (service.title === '3D Modeling') {
       return "By converting clients 3D model, we can easily check any possible errors or interference that may occur. During this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing.";
@@ -146,7 +135,6 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
     return service.description;
   };
 
-  // Get 2D Detailing sections data
   const get2DDetailingSections = () => {
     return [
       {
@@ -168,24 +156,33 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
     ];
   };
 
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
   return (
-    <div className="service-modal-overlay" onClick={onClose}>
+    <div className="service-modal-overlay" onClick={handleClose}>
       <div className="service-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="service-modal-close" onClick={onClose}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
           ×
         </button>
 
         <div className={`service-modal-body ${service.title === 'Parts inspection' || service.title === 'Machine Assembly' ? 'service-modal-body-single' : ''}`}>
-          {/* Left Side - Service Details */}
           <div className="service-modal-left">
             <h2 className="service-modal-title">
-              {service.title === 'Machine Assembly' ? 'Assembly' : service.title}
+              {service.title}
             </h2>
             <p className="service-modal-description">{getDetailedDescription()}</p>
 
-            {/* Render different layouts based on service type */}
             {service.title === '2D Detailing' ? (
-              /* 2D Detailing - Multiple Numbered Sections */
               <div className="service-modal-sections">
                 {get2DDetailingSections().map((section) => (
                   <div key={section.number} className="service-modal-section">
@@ -207,7 +204,6 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
                 ))}
               </div>
             ) : service.title === 'Parts inspection' || service.title === 'Machine Assembly' ? (
-              /* Parts Inspection / Machine Assembly - Carousel with Indicators (No Step Indicator) */
               <div className="service-modal-carousel">
                 <div className="service-modal-carousel-container">
                   {currentCarouselImages.map((image, index) => (
@@ -226,7 +222,6 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
                     </div>
                   ))}
 
-                  {/* Carousel Indicators - Inside background box */}
                   <div className="service-modal-carousel-indicators">
                     {currentCarouselImages.map((_, index) => (
                       <button
@@ -241,14 +236,12 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
                 </div>
               </div>
             ) : (
-              /* Default Layout - Single Step Indicator and Images */
               <>
                 <div className="service-modal-step-indicator">
                   <div className="service-modal-step-number">1</div>
                   <span className="service-modal-step-text">{service.title.toUpperCase()}</span>
                 </div>
 
-                {/* CAD Images */}
                 <div className="service-modal-images">
                   <div className="service-modal-image-container">
                     <img src={modalImage1} alt={`${service.title} - View 1`} className="service-modal-image" />
@@ -261,7 +254,6 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
             )}
           </div>
 
-          {/* Right Side - Production Flow */}
           {service.title !== 'Parts inspection' && service.title !== 'Machine Assembly' && (
             <div className="service-modal-right">
               <h3 className="service-modal-flow-title">ACTUAL PRODUCTION FLOW</h3>
@@ -294,3 +286,75 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
 
 export default ServiceModal;
 
+interface OurStoryModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const OurStoryModal: React.FC<OurStoryModalProps> = ({ isOpen, onClose }) => {
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content our-story-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="our-story-modal-body">
+          <h2 className="our-story-modal-title">Our Story</h2>
+
+          <div className="our-story-photo-section">
+            <img
+              src={ourStoryPhoto}
+              alt="Company leadership"
+              className="our-story-photo"
+            />
+            <p className="our-story-caption">
+              (From left in the photo, President Maeno, Director General of the Philippines Special Economic Zone Agency Delima, Director Masahiko Hasegawa)
+            </p>
+          </div>
+
+          <div className="our-story-content">
+            <div className="our-story-section">
+              <p className="our-story-text">
+                Kusakabe Electric Co., Ltd. was founded in Kobe in 1916 and has entered the pipe industry since 1959, and has been stepping up its business development with the history of the pipe industry since then. Currently we have a wide range of products related to pipe mills and related equipment, and as one of the few manufacturers in the world that can consistently design and manufacture pipe mills, we have earned higher trust and appraisal than pipe manufacturers around the world. We manufacture and assemble in our own factory, constantly making high-quality pipe mills under thorough quality control, and actively conducting R & D, the overwhelming market share in Japan It also leads to delivery results in 26 countries abroad.
+              </p>
+            </div>
+
+            <div className="our-story-section">
+              <p className="our-story-text">
+                Maeno Giken was founded in the Philippines in 2001 and has technologies and facilities that consistently contracts up to hot dip galvanizing (JIS accredited factory) accompanying it, can making, welding and machining, surface treatment such as painting, utilizing the abundant experience of the founder's long-time gear reducer, steelmaking machine, transportation machine, construction machine and their installation work, mold manufacturing etc., while cultivating young excellent talent in this country, I am running. Not only cost reduction of manufacturing but also design aid and prototype support are done at the same time, we realize a total solution satisfying customers.
+              </p>
+            </div>
+
+            <div className="our-story-section">
+              <p className="our-story-text">
+                Next Engineering Co., LTD. was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at its own facilities. In recent years, it has expanded into IT and semiconductor fields. In April 2025, the company will merge with Nishinippon Sekkei Co., Ltd., enhancing its capabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing.
+
+              </p>
+            </div>
+
+            <div className="our-story-section">
+              <p className="our-story-text">
+                KMTI combines the experiences of machining that matches the Japanese market that Kusakabe Electric possesses, with Maeno Giken's production experience of various high-quality equipments in Filin, as well as the skills of both parties, ensuring peace of mind through outstanding drawing management capabilities We aim to become an engineering group that can provide. In the future, we will also take into consideration the OEM manufacturing of machinery, and we will make it possible to consistently handle from software to hardware with secure confidentiality agreement and execution. By converting two-dimensional drawings to three-dimensional drawings and making them three-dimensional, it is possible to discover defects at the time of production in advance, to reduce the manufacturing cost at the same time as approaching mistakes to zero, and to strongly support customers' manufacturing Although it is our primary strength, we will continue to expand the business domain with continued trusting relationships while responding to the needs of each customer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

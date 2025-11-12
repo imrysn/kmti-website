@@ -1,449 +1,213 @@
-/* ============================================
-   ABOUT PAGE STYLES
-   ============================================
-   This file contains all styles for the about page,
-   including hero section, mission, milestones, and team.
-   ============================================ */
-
-/* ============================================
-   ABOUT PAGE CONTAINER
-   ============================================ */
-
 .about-page {
-  /* Full width of the container */
   width: 100%;
 }
 
-/* ============================================
-   ABOUT HERO SECTION
-   ============================================
-   Hero section at the top of the about page
-   ============================================ */
-
 .about-hero {
-  /* Gradient background using primary colors */
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-
-  /* White text color */
-  color: white;
-
-  /* Vertical padding */
-  padding-top: var(--spacing-3xl);
-  padding-bottom: var(--spacing-3xl);
-
-  /* Center align text */
-  text-align: center;
-}
-
-/* Container for hero content */
-.about-hero-container {
-  /* Maximum width for content */
-  max-width: 800px;
-
-  /* Center the container */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* About page title */
-.about-title {
-  /* Extra large font size */
-  font-size: var(--font-size-4xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-}
-
-/* About page subtitle */
-.about-subtitle {
-  /* Extra large font size */
-  font-size: var(--font-size-xl);
-
-  /* Slightly transparent for subtle effect */
-  opacity: 0.9;
-}
-
-/* ============================================
-   ABOUT MISSION SECTION
-   ============================================
-   Section describing company mission
-   ============================================ */
-
-.about-mission {
-  /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-}
-
-/* Container for mission content */
-.about-mission-container {
-  /* CSS Grid layout */
-  display: grid;
-
-  /* Responsive grid: auto-fit columns, minimum 300px wide */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-  /* Gap between grid items */
-  gap: var(--spacing-xl);
-}
-
-/* Mission title */
-.mission-title {
-  /* Extra large font size */
-  font-size: var(--font-size-xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Mission description */
-.mission-description {
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Comfortable line height */
-  line-height: 1.6;
-}
-
-/* ============================================
-   ABOUT MILESTONES SECTION
-   ============================================
-   Timeline of company milestones
-   ============================================ */
-
-.about-milestones {
-  /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-
-  /* Light background color */
-  background-color: var(--background-light);
-}
-
-/* Milestones section title */
-.milestones-title {
-  /* 3X large font size */
-  font-size: var(--font-size-3xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Center align text */
-  text-align: center;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-2xl);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Timeline container */
-.milestones-timeline {
-  /* Position relative for absolute children */
+  background-image: var(--about-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: -8rem;
   position: relative;
-
-  /* Maximum width for content */
-  max-width: 800px;
-
-  /* Center the container */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Individual milestone item */
-.milestone-item {
-  /* Position relative for absolute bullet */
-  position: relative;
-
-  /* Vertical padding */
-  padding-top: var(--spacing-lg);
-  padding-bottom: var(--spacing-lg);
-
-  /* Left padding for timeline line */
-  padding-left: var(--spacing-xl);
-
-  /* Left border for timeline */
-  border-left: 2px solid var(--border-color);
-}
-
-/* Milestone item spacing (except last) */
-.milestone-item:not(:last-child) {
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Timeline bullet point */
-.milestone-item::before {
-  /* Required for pseudo-element */
-  content: '';
-
-  /* Position absolutely */
-  position: absolute;
-  left: -9px;
-  top: var(--spacing-lg);
-
-  /* Bullet size */
-  width: 16px;
-  height: 16px;
-
-  /* Primary color background */
-  background-color: var(--primary-color);
-
-  /* Circular shape */
-  border-radius: 50%;
-}
-
-/* Milestone year */
-.milestone-year {
-  /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Primary color text */
-  color: var(--primary-color);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-sm);
-}
-
-/* Milestone title */
-.milestone-title {
-  /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Semi-bold font weight */
-  font-weight: 600;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-sm);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Milestone description */
-.milestone-description {
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Comfortable line height */
-  line-height: 1.6;
-}
-
-/* ============================================
-   ABOUT TEAM SECTION
-   ============================================
-   Section displaying team members
-   ============================================ */
-
-.about-team {
-  /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-}
-
-/* Team section title */
-.team-title {
-  /* 3X large font size */
-  font-size: var(--font-size-3xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Center align text */
-  text-align: center;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-2xl);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Grid container for team members */
-.team-grid {
-  /* CSS Grid layout */
-  display: grid;
-
-  /* Responsive grid: auto-fit columns, minimum 280px wide */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
-  /* Gap between grid items */
-  gap: var(--spacing-xl);
-}
-
-/* Individual team member card */
-.team-member {
-  /* Center align text */
-  text-align: center;
-
-  /* Internal padding */
-  padding: var(--spacing-xl);
-}
-
-/* Team member image container */
-.team-member-image {
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-}
-
-/* Avatar placeholder (when no image) */
-.avatar-placeholder {
-  /* Fixed size for avatar */
-  width: 100px;
-  height: 100px;
-
-  /* Circular shape */
-  border-radius: 50%;
-
-  /* Primary color background */
-  background-color: var(--primary-color);
-
-  /* White text */
-  color: white;
-
-  /* Flexbox for centering content */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  color: white;
+  z-index: 1;
+}
 
-  /* 2X large font size */
-  font-size: var(--font-size-2xl);
+.about-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  min-height: 100vh;
+  background-image: var(--about-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
 
-  /* Bold font weight */
-  font-weight: 700;
+.about-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+}
 
-  /* Center and add bottom margin */
+.about-hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: var(--spacing-md);
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-/* Team member name */
-.team-member-name {
-  /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-xs);
-
-  /* Text color from variables */
-  color: var(--text-color);
-}
-
-/* Team member role */
-.team-member-role {
-  /* Primary color text */
-  color: var(--primary-color);
-
-  /* Medium font weight */
-  font-weight: 500;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-sm);
-}
-
-/* Team member bio */
-.team-member-bio {
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Comfortable line height */
-  line-height: 1.6;
-}
-
-/* ============================================
-   ABOUT CTA SECTION
-   ============================================
-   Call-to-action section at bottom of page
-   ============================================ */
-
-.about-cta {
-  /* Vertical padding */
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-}
-
-/* CTA card container */
-.about-cta-card {
-  /* Center align text */
+.about-hero-content {
   text-align: center;
-
-  /* Internal padding */
-  padding: var(--spacing-2xl);
 }
 
-/* CTA title */
-.about-cta-title {
-  /* 2X large font size */
-  font-size: var(--font-size-2xl);
-
-  /* Bold font weight */
-  font-weight: 700;
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-md);
-
-  /* Text color from variables */
-  color: var(--text-color);
+.about-title {
+  font-size: 4rem;
+  font-weight: 100;
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-family-heading, 'Flame', sans-serif);
+  line-height: 1.2;
 }
 
-/* CTA description */
-.about-cta-description {
-  /* Large font size */
-  font-size: var(--font-size-lg);
-
-  /* Light text color */
-  color: var(--text-light);
-
-  /* Bottom margin for spacing */
-  margin-bottom: var(--spacing-xl);
-
-  /* Comfortable line height */
+.about-subtitle {
+  font-size: 1.25rem;
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
   line-height: 1.6;
+  font-style: italic;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================
-   Media queries for different screen sizes
-   ============================================ */
+.about-description {
+  font-size: 1rem;
+  color: white;
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+}
 
-/* Tablets and smaller (max-width: 768px) */
+.about-company-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
+}
+
+.about-company-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.about-company-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-company-images {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  position: relative;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.about-company-image-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #51A2FF;
+  box-shadow: 0 0 20px rgba(81, 162, 255, 0.6);
+  background: transparent;
+  padding: 0;
+  flex: 1;
+}
+
+.about-company-image-wrapper:first-child {
+  margin-top: -1rem;
+  z-index: 2;
+}
+
+.about-company-image-wrapper:last-child {
+  margin-top: 3rem;
+  z-index: 1;
+}
+
+.about-company-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.about-company-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+}
+
+.about-company-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 10%, #FF8C8C 60%, #FF5252 100%);
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-company-description {
+  font-size: 1rem;
+  color: white;
+  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+  line-height: 1.8;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.about-company-button {
+  margin-top: 1rem;
+}
+
 @media (max-width: 768px) {
-
-  /* Smaller title on mobile */
-  .about-title {
-    font-size: var(--font-size-3xl);
+  .about-company-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  /* Add left padding to timeline on mobile */
-  .milestones-timeline {
-    padding-left: var(--spacing-md);
+  .about-company-images {
+    flex-direction: column;
+    align-items: center;
+    order: 1;
   }
 
-  /* Adjust milestone item padding on mobile */
-  .milestone-item {
-    padding-left: var(--spacing-lg);
+  .about-company-image-wrapper:first-child {
+    margin-top: 0;
+    width: 100%;
   }
 
-  /* Adjust bullet position on mobile */
-  .milestone-item::before {
-    left: -11px;
+  .about-company-image-wrapper:last-child {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .about-company-content {
+    order: 2;
+    text-align: center;
+  }
+
+  .about-company-title {
+    font-size: 2rem;
   }
 }
