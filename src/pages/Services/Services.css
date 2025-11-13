@@ -1,212 +1,103 @@
 .services-page {
-  /* Full width of the container */
   width: 100%;
-
-  /* Position relative for pseudo-element */
   position: relative;
 }
 
-/* Custom scrollbar styling for services page */
-/* Apply scrollbar styles to html and body when services-page-active class is present */
 html.services-page-active,
 body.services-page-active {
-  /* Custom scrollbar for Firefox */
-  scrollbar-width: thin !important;
-  scrollbar-color: #2157EE transparent !important;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 html.services-page-active::-webkit-scrollbar,
 body.services-page-active::-webkit-scrollbar {
-  width: 8px !important;
-  height: 8px !important;
+  display: none;
 }
 
-html.services-page-active::-webkit-scrollbar-track,
-body.services-page-active::-webkit-scrollbar-track {
-  background: transparent !important;
-  border-radius: 10px;
-}
-
-html.services-page-active::-webkit-scrollbar-thumb,
-body.services-page-active::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #2157EE, #DF0515) !important;
-  border-radius: 10px;
-}
-
-html.services-page-active::-webkit-scrollbar-thumb:hover,
-body.services-page-active::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #2157EE, #DF0515) !important;
-  opacity: 0.9;
-}
-
-/* Background image that extends behind navbar - only for hero section */
-.services-hero {
-  /* Background image from CSS variable */
-  background-image: var(--services-bg-image);
-
-  /* Background properties */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* Extend hero section to cover navbar area by using negative margin */
-  margin-top: -8rem;
-  padding-top: 10rem;
-}
-
-/* Additional background layer that extends behind navbar */
 .services-page::before {
-  /* Required for pseudo-element */
   content: "";
-
-  /* Position fixed to cover navbar and hero area */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  /* Height covers navbar and hero section */
   height: 100vh;
   min-height: 100vh;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  /* Background image from CSS variable */
   background-image: var(--services-bg-image);
-
-  /* Background properties */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  /* Behind overlay and navbar, but visible through transparent navbar */
   z-index: -1;
 }
 
 /* ============================================
    SERVICES HERO SECTION
-   ============================================
-   Hero section at the top of the services page
    ============================================ */
 
 .services-hero {
-  /* Position relative for overlay */
+  background-image: var(--services-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: -8rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
   position: relative;
-
-  /* Minimum height for hero section */
   min-height: 94vh;
-
-  /* Flexbox layout */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Padding */
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-
-  /* White text color */
   color: white;
-
-  /* Ensure hero is above background */
+  text-align: center;
   z-index: 1;
 }
 
-/* Overlay on top of background image - matches Home page style */
 .services-hero-overlay {
-  /* Position absolute to cover only hero section */
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
-  /* Same gradient background as Home page */
   background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);
   opacity: 0.8;
-
-  /* Z-index to place overlay above background but below navbar (z-index: 1000) and content */
   z-index: 0;
-
-  /* Pointer events none so clicks pass through */
   pointer-events: none;
 }
 
-/* Container for hero content */
 .services-hero-container {
-  /* Position relative to stack above overlay */
   position: relative;
   z-index: 2;
-
-  /* Maximum width for content */
   max-width: 1000px;
-
-  /* Center the container */
   margin-left: auto;
   margin-right: auto;
-
-  /* Padding for mobile */
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-/* Hero content wrapper */
 .services-hero-content {
-  /* Center align text */
   text-align: center;
 }
 
-/* Services page title */
 .services-title {
-  /* Extra large font size */
   font-size: 4rem;
-
-  /* Bold font weight */
   font-weight: 100;
-
-  /* White text color */
   color: white;
-
-  /* Bottom margin for spacing */
   margin-bottom: 0.5rem;
-
-  /* Font family */
-  font-family: var(--font-family-heading, 'Flame', sans-serif);
-
-  /* Line height */
+  font-family: var(--font-family-heading);
   line-height: 1.2;
 }
 
-/* Services page subtitle */
 .services-subtitle {
-  /* Large font size */
   font-size: 1.25rem;
-
-  /* White text color */
   color: white;
-
-  /* Bottom margin for spacing */
   margin-bottom: 2.5rem;
-
-  /* Font family */
-  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
-
-  /* Line height */
+  font-family: var(--font-family-body);
   line-height: 1.6;
-
-  /* Maximum width for readability */
   max-width: 800px;
-
-  /* Center the subtitle */
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Hero button container */
 .services-hero-button {
-  /* Center the button */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -214,67 +105,40 @@ body.services-page-active::-webkit-scrollbar-thumb:hover {
 
 /* ============================================
    SERVICES NAVIGATION SECTION
-   ============================================
-   Service navigation tabs
    ============================================ */
 
 .services-nav-section {
-  /* Position right below hero page */
   padding-top: 0;
   padding-bottom: 0;
-
-  /* Ensure section is above background */
   position: relative;
   z-index: 1;
 }
 
 .services-nav-container {
-  /* Full width container */
   width: 100%;
   padding: 0;
 }
 
 .services-nav-tabs {
-  /* Background color #0F172B at 20% opacity */
   background: rgba(15, 23, 43, 0.2);
-
-  /* 1px stroke color #FFFFFF at 15% opacity */
   border: 1px solid rgba(255, 255, 255, 0.15);
-
-  /* Border radius */
   border-radius: 0;
-
-  /* Padding for content */
   padding: 1rem 0;
-
-  /* Hide overflow for seamless loop */
   overflow: hidden;
-
-  /* Position relative for animation */
   position: relative;
 }
 
 .services-nav-tabs-scroll {
-  /* Hide overflow */
   overflow: hidden;
-
-  /* White space nowrap to keep text on one line */
   white-space: nowrap;
 }
 
 .services-nav-tabs-content {
-  /* Inline flex for horizontal layout */
   display: inline-flex;
   align-items: center;
-
-  /* Gap between items */
   gap: 15rem;
-
-  /* Smooth infinite scrolling animation */
   animation: scrollLoop 35s linear infinite;
-
-  /* Font styling - consistent with original */
-  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
+  font-family: var(--font-family-body);
   font-size: 0.875rem;
   font-weight: 100;
   color: rgba(255, 255, 255, 0.8);
@@ -282,10 +146,7 @@ body.services-page-active::-webkit-scrollbar-thumb:hover {
 }
 
 .services-nav-tab-text {
-  /* Display inline */
   display: inline-block;
-
-  /* Padding for spacing */
   padding: 0 1.5rem;
 }
 
@@ -301,115 +162,42 @@ body.services-page-active::-webkit-scrollbar-thumb:hover {
 
 /* ============================================
    SERVICES GRID SECTION
-   ============================================
-   Section containing the grid of services
    ============================================ */
 
 .services-grid-section {
-  /* Vertical padding */
   padding-top: 5rem;
   padding-bottom: 1rem;
-
-  /* Ensure section is above background */
   position: relative;
   z-index: 1;
-
-  /* Custom scrollbar for Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: #2157EE transparent;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .services-grid-container {
-  /* Maximum width for content */
-  max-width: 150px;
+  max-width: 1500px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
-
-  /* Custom scrollbar for Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: #2157EE transparent;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Grid container for services */
 .services-page .services-grid {
-  /* CSS Grid layout - 2 columns, 2 rows */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
-
-  /* Custom scrollbar for Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: #2157EE transparent;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) - services-grid-section */
-.services-grid-section::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.services-grid-section::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 10px;
-}
-
-.services-grid-section::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #2157EE, #DF0515);
-  border-radius: 10px;
-}
-
-.services-grid-section::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #2157EE, #DF0515);
-  opacity: 0.9;
-}
-
-/* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) - services-grid-container */
-.services-grid-container::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.services-grid-container::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 10px;
-}
-
-.services-grid-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #2157EE, #DF0515);
-  border-radius: 10px;
-}
-
-.services-grid-container::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #2157EE, #DF0515);
-  opacity: 0.9;
-}
-
-/* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) - services-grid */
+.services-grid-section::-webkit-scrollbar,
+.services-grid-container::-webkit-scrollbar,
 .services-page .services-grid::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  display: none;
 }
 
-.services-page .services-grid::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 10px;
-}
-
-.services-page .services-grid::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #2157EE, #DF0515);
-  border-radius: 10px;
-}
-
-.services-page .services-grid::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #2157EE, #DF0515);
-  opacity: 0.9;
-}
-
-/* Service card wrapper */
 .service-card-wrapper {
-  /* Display flex column for card */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -417,25 +205,17 @@ body.services-page-active::-webkit-scrollbar-thumb:hover {
 
 /* ============================================
    SERVICES CTA SECTION
-   ============================================
-   Call-to-action section at bottom of page
    ============================================ */
 
 .services-cta-section {
-  /* Vertical padding */
   padding-top: 6rem;
   padding-bottom: 7rem;
-
-  /* Center align */
   text-align: center;
-
-  /* Ensure section is above background */
   position: relative;
   z-index: 1;
 }
 
 .services-cta-container {
-  /* Maximum width for content */
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -443,28 +223,16 @@ body.services-page-active::-webkit-scrollbar-thumb:hover {
   padding-right: 2rem;
 }
 
-/* CTA title */
 .services-cta-title {
-  /* Large font size */
   font-size: 1.5rem;
   font-weight: 400;
-
-  /* Bottom margin for spacing */
   margin-bottom: 2.5rem;
-
-  /* White text color */
   color: white;
-
-  /* Font family */
-  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
-
-  /* Center align */
+  font-family: var(--font-family-body);
   text-align: center;
 }
 
-/* CTA button container */
 .services-cta-button {
-  /* Center the button */
   display: flex;
   justify-content: center;
   align-items: center;

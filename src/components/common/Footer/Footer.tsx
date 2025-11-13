@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Footer.css";
 import footerLogo from "../../../assets/footerKMTIlogo.png";
 import mapsIcon from "../../../assets/icons/maps-icon.png";
@@ -6,13 +7,32 @@ import contactIcon from '../../../assets/icons/contact.png';
 import emailIcon from '../../../assets/icons/email-icon.png';
 
 const Footer: React.FC = () => {
+  const location = useLocation();
+
+  const handleFooterLinkClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    const currentPathname = location.pathname;
+    const targetPath = path.split('?')[0];
+    
+    if (targetPath === currentPathname) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="footer" role="contentinfo">
       <div className="footer__inner">
         <div className="footer__brand">
-          <div className="footer__logo">
+          <Link to="/" className="footer__logo" onClick={handleLogoClick}>
             <img src={footerLogo} alt="KMTI footer logo" />
-          </div>
+          </Link>
           <p className="footer__desc">
             Leading innovation in 3D modeling, 2D detailing, parts inspections <br />and  machine assembly design with precision and purpose.
           </p>
@@ -26,22 +46,22 @@ const Footer: React.FC = () => {
         <div className="footer__links">
           <div className="footer__col">
             <div className="footer__col-title">QUICK LINKS</div>
-            <a className="footer__link" href="/">Home</a>
-            <a className="footer__link" href="/services">Services</a>
-            <a className="footer__link" href="/projects">Projects</a>
-            <a className="footer__link" href="/about">About Us</a>
-            <a className="footer__link" href="/contact">Contact Us</a>
-            <a className="footer__link" href="/careers">Careers</a>
+            <Link to="/" className="footer__link" onClick={(e) => handleFooterLinkClick('/', e)}>Home</Link>
+            <Link to="/services" className="footer__link" onClick={(e) => handleFooterLinkClick('/services', e)}>Services</Link>
+            <Link to="/projects" className="footer__link" onClick={(e) => handleFooterLinkClick('/projects', e)}>Projects</Link>
+            <Link to="/about" className="footer__link" onClick={(e) => handleFooterLinkClick('/about', e)}>About Us</Link>
+            <Link to="/contact" className="footer__link" onClick={(e) => handleFooterLinkClick('/contact', e)}>Contact Us</Link>
+            <Link to="/careers" className="footer__link" onClick={(e) => handleFooterLinkClick('/careers', e)}>Careers</Link>
           </div>
         </div>
 
         <div className="footer__links">
           <div className="footer__col">
             <div className="footer__col-title">SERVICES</div>
-            <a className="footer__link" href="/services?service=3d-modeling">3D Modeling</a>
-            <a className="footer__link" href="/services?service=2d-detailing">2D Detailing</a>
-            <a className="footer__link" href="/services?service=parts-inspection">Parts Inspections</a>
-            <a className="footer__link" href="/services?service=machine-assembly">Machine Assembly</a>
+            <Link to="/services?service=3d-modeling" className="footer__link" onClick={(e) => handleFooterLinkClick('/services?service=3d-modeling', e)}>3D Modeling</Link>
+            <Link to="/services?service=2d-detailing" className="footer__link" onClick={(e) => handleFooterLinkClick('/services?service=2d-detailing', e)}>2D Detailing</Link>
+            <Link to="/services?service=parts-inspection" className="footer__link" onClick={(e) => handleFooterLinkClick('/services?service=parts-inspection', e)}>Parts Inspections</Link>
+            <Link to="/services?service=machine-assembly" className="footer__link" onClick={(e) => handleFooterLinkClick('/services?service=machine-assembly', e)}>Machine Assembly</Link>
           </div>
         </div>
 

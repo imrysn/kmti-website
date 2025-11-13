@@ -14,6 +14,29 @@ import assemblyImage3 from '../../../assets/modalImage/assmebly3mpdal.png';
 import assemblyImage4 from '../../../assets/modalImage/assembly4modal.png';
 import assemblyImage5 from '../../../assets/modalImage/assembly5modal.png';
 import ourStoryPhoto from '../../../assets/aboutPage/ourstoryImage.png';
+import pauImage from '../../../assets/management/pau.png';
+import michaelImage from '../../../assets/management/michael.png';
+import siryuImage from '../../../assets/management/siryu.png';
+import mennjoImage from '../../../assets/management/mennjo.png';
+import teodyImage from '../../../assets/management/teody.png';
+import shelaImage from '../../../assets/management/shela.png';
+import erikImage from '../../../assets/management/erik.png';
+import louieImage from '../../../assets/management/louie.png'
+import kerbyImage from '../../../assets/management/kerby.png';
+import kissImage from '../../../assets/management/kiss.png';
+import lorieImage from '../../../assets/management/lorie.png';
+import jethroImage from '../../../assets/management/jethro.png';
+import joyceImage from '../../../assets/management/joyce.png';
+import jcImage from '../../../assets/management/jc.png';
+import jennyImage from '../../../assets/management/jenny.png';
+import nylImage from '../../../assets/management/nyl.png';
+import jonathanImage from '../../../assets/management/jonathan.png';
+import noelImage from '../../../assets/management/noel.png';
+import royImage from '../../../assets/management/roy.png';
+import jojoImage from '../../../assets/management/jojo.png';
+
+
+import { ManagementTeamCard } from '../Card/Card';
 
 interface ServiceModalProps {
   isOpen: boolean;
@@ -352,6 +375,87 @@ export const OurStoryModal: React.FC<OurStoryModalProps> = ({ isOpen, onClose })
                 KMTI combines the experiences of machining that matches the Japanese market that Kusakabe Electric possesses, with Maeno Giken's production experience of various high-quality equipments in Filin, as well as the skills of both parties, ensuring peace of mind through outstanding drawing management capabilities We aim to become an engineering group that can provide. In the future, we will also take into consideration the OEM manufacturing of machinery, and we will make it possible to consistently handle from software to hardware with secure confidentiality agreement and execution. By converting two-dimensional drawings to three-dimensional drawings and making them three-dimensional, it is possible to discover defects at the time of production in advance, to reduce the manufacturing cost at the same time as approaching mistakes to zero, and to strongly support customers' manufacturing Although it is our primary strength, we will continue to expand the business domain with continued trusting relationships while responding to the needs of each customer.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface ManagementTeamModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const ManagementTeamModal: React.FC<ManagementTeamModalProps> = ({ isOpen, onClose }) => {
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  const managementTeam = [
+    { image: pauImage, role: 'ACCOUNTING / ADMIN MANAGER' },
+    { image: michaelImage, role: 'ENGINEERING MANAGER' },
+    { image: siryuImage, role: 'PRESIDENT / CEO', isLarge: true },
+    { image: mennjoImage, role: 'ENGINEERING MANAGER' },
+    { image: teodyImage, role: 'ENGINEERING SUPERVISOR' },
+    { image: shelaImage, role: 'ENGINEERING SUPERVISOR' },
+    { image: erikImage, role: 'ENGINEERING TEAM LEADER' },
+    { image: louieImage, role: 'ENGINEERING ASSISTANT TL' },
+    { image: kerbyImage, role: 'ENGINEERING IT/STAFF' },
+    { image: kissImage, role: 'ENGINEERING STAFF/SO' },
+    { image: lorieImage, role: 'ENGINEERING STAFF' },
+    { image: jethroImage, role: 'ENGINEERING STAFF' },
+    { image: joyceImage, role: 'ENGINEERING STAFF' },
+    { image: jcImage, role: 'ENGINEERING STAFF' },
+    { image: jennyImage, role: 'ENGINEERING STAFF' },
+    { image: nylImage, role: 'ENGINEERING STAFF' },
+    { image: jonathanImage, role: 'ENGINEERING STAFF' },
+    { image: noelImage, role: 'COMPANY DRIVER' },
+    { image: royImage, role: 'COMPANY DRIVER' },
+    { image: jojoImage, role: 'MAINTENANCE/UTILITY PEROSNEL' },
+  ];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content management-team-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="management-team-modal-body">
+          <h2 className="management-team-modal-title">Meet Our Management Team</h2>
+          <p className="management-team-modal-description">
+            At the heart of our company is a team of dedicated professionals who bring experience, leadership, and passion to every project. Together, they ensure that our operations run efficiently and that our goals are achieved with excellence.
+          </p>
+
+          <div className="management-team-modal-grid">
+            {managementTeam.map((member, index) => {
+              const isFirstRow = index < 5;
+              const isLargeCard = member.isLarge && isFirstRow;
+
+              return (
+                <React.Fragment key={index}>
+                  {isFirstRow && index === 2 && (
+                    <div className="management-team-card-placeholder"></div>
+                  )}
+                  <ManagementTeamCard
+                    image={member.image}
+                    role={member.role}
+                    isLarge={isLargeCard}
+                  />
+                </React.Fragment>
+              );
+            })}
           </div>
         </div>
       </div>
