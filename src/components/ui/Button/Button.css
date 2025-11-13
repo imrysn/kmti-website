@@ -3,7 +3,7 @@
    ============================================ */
 
 button.btn {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: white;
   padding: 13px 40px;
   border-radius: 15px;
@@ -22,7 +22,6 @@ button.btn:disabled {
   cursor: not-allowed;
 }
 
-/* Gradient border layer for hover (only shown on hover) */
 button.btn::before {
   content: '';
   position: absolute;
@@ -40,7 +39,6 @@ button.btn::before {
   pointer-events: none;
 }
 
-/* Inner layer to hide gradient border in default state */
 button.btn::after {
   content: '';
   position: absolute;
@@ -53,11 +51,6 @@ button.btn::after {
 
 /* ============================================
    STYLE 1 - GRADIENT BACKGROUND BUTTON
-   ============================================
-   Used for: CONTACT US (Style 1), VIEW OPEN POSITIONS, TRY CHATBOT NOW
-   
-   Default: Gradient background with drop shadow
-   Hover: Transparent background with gradient border
    ============================================ */
 
 button.btn.btn-style1 {
@@ -87,13 +80,6 @@ button.btn.btn-style1:hover:not(:disabled)::before {
 
 /* ============================================
    STYLE 2 - SEMI-TRANSPARENT BUTTON
-   ============================================
-   Used for: EXPLORE OUR EXPERTIES, ABOUT US, VIEW PROJECTS, 
-            VISIT FACEBOOK, EXPLORE OUR STORY, VISIT LINKEDIN, 
-            LEARN MORE ABOUT US, CONTACT US (Style 2)
-   
-   Default: Semi-transparent dark background with white border
-   Hover: Transparent background with gradient border
    ============================================ */
 
 button.btn.btn-style2 {
@@ -122,11 +108,6 @@ button.btn.btn-style2:hover:not(:disabled)::before {
 
 /* ============================================
    STYLE 3 - OUTLINE BUTTON
-   ============================================
-   Used for: APPLY NOW
-   
-   Default: No background, blue border
-   Hover: No background, gradient border
    ============================================ */
 
 button.btn.btn-style3 {

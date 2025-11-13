@@ -13,13 +13,27 @@ const Navbar: React.FC = () => {
     { path: '/about', label: 'ABOUT US' },
     { path: '/careers', label: 'CAREERS' },
     { path: '/contact', label: 'CONTACT US' },
-
   ];
+
+  const handleNavClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    const currentPathname = location.pathname;
+    if (path === currentPathname) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo" onClick={handleLogoClick}>
           <img src={headerLogo} alt="KMTI Logo" />
         </Link>
         <ul className="navbar-links">
@@ -28,6 +42,7 @@ const Navbar: React.FC = () => {
               <Link
                 to={link.path}
                 className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
+                onClick={(e) => handleNavClick(link.path, e)}
               >
                 {link.label}
               </Link>
@@ -40,4 +55,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-

@@ -1,34 +1,15 @@
 /* ============================================
    LAYOUT COMPONENT STYLES
-   ============================================
-   This file contains styles for the main layout component,
-   which provides the page structure and background.
-   ============================================ */
-
-/* ============================================
-   LAYOUT CONTAINER
    ============================================ */
 
 .layout {
-  /* Minimum height to fill the viewport */
   min-height: 100vh;
-
-  /* Flexbox layout */
   display: flex;
   flex-direction: column;
-
-  /* Dark gradient background: top dark blue, middle lighter blue, bottom dark blue */
   background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
 }
 
-/* ============================================
-   MAIN CONTENT AREA
-   ============================================ */
-
 .main-content {
-  /* Grow to fill available space */
   flex: 1;
-
-  /* No padding (padding handled by individual pages) */
   padding: 0;
 }
