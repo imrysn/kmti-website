@@ -1,95 +1,43 @@
 /* ============================================
    CSS RESET
-   ============================================
-   This file resets default browser styles to ensure
-   consistent rendering across different browsers.
    ============================================ */
 
-/* ============================================
-   UNIVERSAL BOX SIZING
-   ============================================
-   Makes all elements use border-box sizing by default
-   ============================================ */
-
-/* Apply box-sizing to all elements and pseudo-elements */
 *,
 *::before,
 *::after {
-  /* Include padding and border in element's total width and height */
   box-sizing: border-box;
 }
 
-/* ============================================
-   RESET MARGINS AND PADDING
-   ============================================
-   Remove default margins and padding from all elements
-   ============================================ */
-
 * {
-  /* Remove all margins */
   margin: 0;
-
-  /* Remove all padding */
   padding: 0;
 }
 
-/* ============================================
-   HTML AND BODY
-   ============================================
-   Set up base styles for html and body elements
-   ============================================ */
-
 html,
 body {
-  /* Full height of viewport */
   height: 100%;
 }
 
 body {
-  /* Comfortable line height for readability */
   line-height: 1.5;
-
-  /* Smooth font rendering on macOS/iOS */
   -webkit-font-smoothing: antialiased;
 }
-
-/* ============================================
-   MEDIA ELEMENTS
-   ============================================
-   Make media elements responsive by default
-   ============================================ */
 
 img,
 picture,
 video,
 canvas,
 svg {
-  /* Block display to remove inline spacing */
   display: block;
-
-  /* Never exceed container width */
   max-width: 100%;
 }
-
-/* ============================================
-   FORM ELEMENTS
-   ============================================
-   Make form elements inherit font styles
-   ============================================ */
 
 input,
 button,
 textarea,
 select {
-  /* Inherit font family, size, and weight from parent */
   font: inherit;
 }
-
-/* ============================================
-   TEXT ELEMENTS
-   ============================================
-   Prevent text overflow issues
-   ============================================ */
 
 p,
 h1,
@@ -98,18 +46,10 @@ h3,
 h4,
 h5,
 h6 {
-  /* Break long words to prevent overflow */
   overflow-wrap: break-word;
 }
 
-/* ============================================
-   ROOT ELEMENTS
-   ============================================
-   Set up isolation for React root elements
-   ============================================ */
-
 #root,
 #__next {
-  /* Create new stacking context */
   isolation: isolate;
 }

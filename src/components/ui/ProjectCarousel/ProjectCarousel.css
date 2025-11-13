@@ -22,7 +22,6 @@
   height: 550px;
   width: 100%;
   overflow: visible;
-  /* Ensure consistent spacing between cards */
   gap: 0;
 }
 
@@ -35,13 +34,9 @@
   cursor: grab;
   will-change: transform, opacity;
   transform-origin: center center;
-  /* Ensure consistent box sizing */
   box-sizing: border-box;
-  /* Fixed dimensions - scale transform will not affect layout dimensions */
-  /* Height is set to ensure all cards have same layout size */
   min-height: 480px;
   height: 480px;
-  /* Ensure filters don't affect layout dimensions */
   isolation: isolate;
 }
 
@@ -51,44 +46,31 @@
 
 .project-carousel-card.active {
   cursor: default;
-  /* Filter doesn't affect layout dimensions - only visual effect */
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
-  /* Dimensions are set via inline styles - same for all cards regardless of active state */
-  /* No layout dimension changes - only visual styling (filter) */
 }
 
 .project-carousel-card .project-card-new {
   margin: 0 auto;
-  /* Fill parent container - dimensions match carousel card exactly */
   height: 100% !important;
   min-height: 100% !important;
   max-height: 100% !important;
   width: 100%;
   max-width: 100%;
-  /* Ensure consistent sizing */
   box-sizing: border-box;
-  /* Allow scaling to work properly - parent handles transform */
   transform: none;
-  /* Allow label overflow (positioned absolutely) but prevent content layout shifts */
   overflow: visible;
-  /* Ensure flexbox layout distributes space within fixed height */
   display: flex;
   flex-direction: column;
 }
 
 .project-carousel-card:not(.active):hover {
-  /* Filter doesn't affect layout dimensions - only visual effect */
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-  /* Dimensions are set via inline styles - no layout changes */
 }
 
 .project-carousel-card:not(.active) {
-  /* Filter doesn't affect layout dimensions - only visual effect */
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
-  /* Dimensions are set via inline styles - no layout changes */
 }
 
-/* Navigation buttons */
 .project-carousel-nav {
   display: flex;
   justify-content: center;
@@ -128,4 +110,13 @@
 
 .carousel-nav-btn:focus {
   outline: none;
+}
+
+.project-carousel-container .project-card-image-container {
+  overflow: visible;
+}
+
+.project-carousel-container .project-card-image.active {
+  max-height: none !important;
+  object-fit: contain;
 }

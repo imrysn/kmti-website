@@ -1,6 +1,13 @@
 import React from 'react';
 import './Card.css';
 
+const isImageIcon = (icon: string | React.ReactNode): icon is string => {
+  return typeof icon === 'string' &&
+    (icon.includes('.png') || icon.includes('.jpg') || icon.includes('.jpeg') ||
+      icon.includes('.svg') || icon.includes('.gif') || icon.includes('.webp') ||
+      icon.startsWith('/') || icon.startsWith('http') || icon.startsWith('data:'));
+};
+
 interface CardProps {
   icon?: string | React.ReactNode;
   title: string;
@@ -20,18 +27,12 @@ const Card: React.FC<CardProps> = ({
   className = '',
   onClick,
 }) => {
-  // Check if icon is an image (string with image extensions or starts with / or http)
-  const isImageIcon = typeof icon === 'string' &&
-    (icon.includes('.png') || icon.includes('.jpg') || icon.includes('.jpeg') ||
-      icon.includes('.svg') || icon.includes('.gif') || icon.includes('.webp') ||
-      icon.startsWith('/') || icon.startsWith('http') || icon.startsWith('data:'));
-
   return (
     <div className={`why-choose-card ${className}`} onClick={onClick}>
       {icon && (
         <div className="why-choose-card-icon-container">
-          {isImageIcon ? (
-            <img src={icon as string} alt={title} className="why-choose-card-icon-image" />
+          {isImageIcon(icon) ? (
+            <img src={icon} alt={title} className="why-choose-card-icon-image" />
           ) : (
             <div className="why-choose-card-icon">{icon}</div>
           )}
@@ -67,18 +68,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   className = '',
   onClick,
 }) => {
-  // Check if icon is an image (string with image extensions or starts with / or http)
-  const isImageIcon = typeof icon === 'string' &&
-    (icon.includes('.png') || icon.includes('.jpg') || icon.includes('.jpeg') ||
-      icon.includes('.svg') || icon.includes('.gif') || icon.includes('.webp') ||
-      icon.startsWith('/') || icon.startsWith('http') || icon.startsWith('data:'));
-
   return (
     <div className={`service-card ${className}`} onClick={onClick}>
       {icon && (
         <div className="service-card-icon-container">
-          {isImageIcon ? (
-            <img src={icon as string} alt={title} className="service-card-icon-image" />
+          {isImageIcon(icon) ? (
+            <img src={icon} alt={title} className="service-card-icon-image" />
           ) : (
             <div className="service-card-icon">{icon}</div>
           )}
@@ -176,6 +171,112 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
         <span className="service-pagination-dot active"></span>
         <span className="service-pagination-dot"></span>
       </div>
+    </div>
+  );
+};
+
+interface ManagementTeamCardProps {
+  image: string;
+  role: string;
+  className?: string;
+  isLarge?: boolean;
+}
+
+export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
+  image,
+  role,
+  className = '',
+  isLarge = false,
+}) => {
+  return (
+    <div className={`management-team-card ${isLarge ? 'management-team-card-large' : ''} ${className}`}>
+      <h3 className="management-team-card-role">{role}</h3>
+      <img src={image} alt={role} className="management-team-card-image" />
+    </div>
+  );
+};
+
+interface RelatedCompanyCardProps {
+  logo: string;
+  companyName: string;
+  description: string;
+  className?: string;
+  href?: string;
+}
+
+export const RelatedCompanyCard: React.FC<RelatedCompanyCardProps> = ({
+  logo,
+  companyName,
+  description,
+  className = '',
+  href,
+}) => {
+  const cardContent = (
+    <>
+      <div className="related-company-logo-container">
+        <img src={logo} alt={companyName} className="related-company-logo" />
+      </div>
+      <h3 className="related-company-name">{companyName}</h3>
+      <p className="related-company-description">{description}</p>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`related-company-card ${className}`}
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
+  return (
+    <div className={`related-company-card ${className}`}>
+      {cardContent}
+    </div>
+  );
+};
+
+interface ProjectsCardProps {
+  image: string;
+  title: string;
+  subtitle: string;
+  category?: string;
+  linkText?: string;
+  linkHref?: string;
+  className?: string;
+  onClick?: () => void;
+}
+
+export const ProjectsCard: React.FC<ProjectsCardProps> = ({
+  image,
+  title,
+  subtitle,
+  category,
+  linkText = 'VIEW IN 3D',
+  linkHref = '#',
+  className = '',
+  onClick,
+}) => {
+  return (
+    <div className={`projects-card ${className}`} onClick={onClick}>
+      {category && <div className="projects-card-label">{category}</div>}
+      <div className="projects-card-image-container">
+        <img
+          src={image}
+          alt={title}
+          className="projects-card-image"
+        />
+      </div>
+      <h3 className="projects-card-title">{title}</h3>
+      <p className="projects-card-subtitle">{subtitle}</p>
+      <a href={linkHref} className="projects-card-link">
+        {linkText}
+      </a>
     </div>
   );
 };

@@ -1,151 +1,82 @@
 .projects-page {
-  /* Full width of the container */
   width: 100%;
 }
 
 /* ============================================
    PROJECTS HERO SECTION
-   ============================================
-   Hero section at the top of the projects page
    ============================================ */
 
 .projects-hero {
-  /* Background image */
   background-image: var(--project-bg-image);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  /* Extend hero section to cover navbar area by using negative margin */
   margin-top: -8rem;
-  padding-top: 10rem;
-
-  /* Position relative for overlay */
+  padding-top: 2rem;
+  padding-bottom: 1rem;
   position: relative;
-
-  /* Minimum height for hero section - same as services page */
   min-height: 80vh;
-
-  /* Flexbox layout */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Padding - override the padding-top from above */
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-
-  /* White text color */
   color: white;
-
-  /* Center align text */
   text-align: center;
-
-  /* Ensure hero is above background */
   z-index: 1;
 }
 
 .projects-hero-overlay {
-  /* Overlay color #162456 at 44% opacity */
   background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);
   opacity: 0.8;
-
-  /* Cover entire hero section */
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
-  /* Z-index to be above background but below content */
   z-index: 1;
 }
 
-/* Container for hero content */
 .projects-hero-container {
-  /* Maximum width for content */
   max-width: 800px;
-
-  /* Center the container */
   margin-left: auto;
   margin-right: auto;
-
-  /* Position relative to be above overlay */
   position: relative;
   z-index: 2;
 }
 
-/* Projects page title */
 .projects-title {
-  /* Extra large font size */
   font-size: 4rem;
-
-  /* Bold font weight */
   font-weight: 100;
-
-  /* White text color */
   color: white;
-
-  /* Bottom margin for spacing */
   margin-bottom: 0.5rem;
-
-  /* Font family */
-  font-family: var(--font-family-heading, 'Flame', sans-serif);
-
-  /* Line height */
+  font-family: var(--font-family-heading);
   line-height: 1.2;
 }
 
-/* Projects page subtitle */
 .projects-subtitle {
-  /* Large font size */
   font-size: 1.25rem;
-
-  /* White text color */
   color: white;
-
-  /* Bottom margin for spacing */
   margin-bottom: 2.5rem;
-
-  /* Font family */
-  font-family: var(--font-family-body, 'Segoe UI', sans-serif);
-
-  /* Line height */
+  font-family: var(--font-family-body);
   line-height: 1.6;
-
-  /* Maximum width for readability */
   max-width: 800px;
-
-  /* Center the subtitle */
   margin-left: auto;
   margin-right: auto;
 }
 
 /* ============================================
    PROJECTS GRID SECTION
-   ============================================
-   Section containing the grid of project cards
    ============================================ */
 
 .projects-grid-section {
-  /* Vertical padding */
   padding-top: 4rem;
   padding-bottom: 4rem;
-
-  /* Background gradient - same as Home and Services pages */
   background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
 }
 
-/* Grid container for projects */
 .projects-grid-container {
-  /* Maximum width for content */
   max-width: 1400px;
-
-  /* Center the container */
   margin-left: auto;
   margin-right: auto;
-
-  /* Horizontal padding */
   padding-left: 2rem;
   padding-right: 2rem;
 }

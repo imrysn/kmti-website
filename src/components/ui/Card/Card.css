@@ -5,49 +5,31 @@
    ============================================ */
 
 .why-choose-card {
-  /* Card background: #0F172B at 30% opacity */
   background-color: rgba(15, 23, 43, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  /* Border: 1px solid white at 10% opacity */
   border-radius: 16px;
-  /* Rounded corners */
   padding: 1rem;
-  /* Internal padding */
-  /* Flexbox layout for vertical alignment */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-
-  /* Position relative for icon positioning */
   position: relative;
-
-  /* Smooth transitions */
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
-
-
 
 /* ============================================
    ICON CONTAINER
    ============================================ */
 
 .why-choose-card-icon-container {
-  /* Rounded square background */
   background-color: rgba(43, 127, 255, 0.1);
   border: 1px solid rgba(43, 127, 255, 0.2);
   border-radius: 8px;
-
-  /* Size */
   width: 48px;
   height: 48px;
-
-  /* Flexbox to center icon */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Spacing */
   margin-bottom: 1.5rem;
 }
 
@@ -56,14 +38,10 @@
    ============================================ */
 
 .why-choose-card-icon {
-  /* Icon color */
   color: #51A2FF;
-  /* Display */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Ensure SVG icons inherit color */
   fill: #51A2FF;
 }
 
@@ -79,26 +57,13 @@
    ============================================ */
 
 .why-choose-card-title {
-  /* Font: FLAME, color: #FFFFFF */
-  font-family: 'Flame', sans-serif;
+  font-family: var(--font-family-heading);
   color: #FFFFFF;
-
-  /* Font size */
   font-size: 1.3rem;
-
-  /* Uppercase text */
   text-transform: uppercase;
-
-  /* Font weight */
   font-weight: 50;
-
-  /* Spacing */
   margin-bottom: 1rem;
-
-  /* Remove default margins */
   margin-top: 0;
-
-  /* Left align */
   text-align: left;
 }
 
@@ -107,26 +72,14 @@
    ============================================ */
 
 .why-choose-card-subtitle {
-  /* Font: Segoe UI, color: #99A1AF */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #99A1AF;
-
-  /* Font size */
   font-size: 0.95rem;
-
-  /* Line height for readability */
   line-height: 1.6;
-
-  /* Spacing */
   margin-bottom: 1em;
-
-  /* Remove default margins */
   margin-top: 0;
-
-  /* Left align */
   text-align: left;
 }
-
 
 /* ============================================
    SERVICE CARD COMPONENT
@@ -135,38 +88,22 @@
    ============================================ */
 
 .service-card {
-  /* Card background: #0F172B at 30% opacity */
   background-color: rgba(15, 23, 43, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
-
-  /* Rounded top corners only */
   border-radius: 0px 0px 0px 0px;
-
-  /* Padding - extra top padding for cutout */
   padding: 3.5rem 2rem 2rem 2rem;
-
-  /* Flexbox layout for vertical alignment */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-
-  /* Position relative for icon positioning */
   position: relative;
-
-  /* Allow overflow for icon cutout */
   overflow: visible;
-
-  /* Consistent card height */
   height: 120%;
   width: 100%;
   min-height: 150px;
-
-  /* Smooth transitions */
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-/* Create the semi-circular cutout border at the top */
 .service-card::before {
   content: '';
   position: absolute;
@@ -187,25 +124,14 @@
    ============================================ */
 
 .service-card-icon-container {
-  /* Position relative for absolute positioning of icon */
   position: relative;
-
-  /* Width to contain the cutout */
   width: 2000%;
-
-  /* Height for the cutout area */
   height: 70px;
-
-  /* Negative top margin to position icon in cutout */
   margin-top: -80px;
   margin-bottom: 4rem;
-
-  /* Flexbox to center icon */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Z-index to place icon above cutout border */
   z-index: 2;
 }
 
@@ -214,21 +140,12 @@
    ============================================ */
 
 .service-card-icon {
-  /* Icon color */
   color: #51A2FF;
-
-  /* Font size for emoji icons */
   font-size: 100px;
-
-  /* Display */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Ensure SVG icons inherit color */
   fill: #51A2FF;
-
-  /* Position relative to sit above the cutout */
   position: relative;
   z-index: 2;
 }
@@ -247,26 +164,13 @@
    ============================================ */
 
 .service-card-title {
-  /* Font: FLAME, color: #FFFFFF */
-  font-family: 'Flame', sans-serif;
+  font-family: var(--font-family-heading);
   color: #FFFFFF;
-
-  /* Font size */
   font-size: 1.5rem;
-
-  /* Uppercase text */
   text-transform: uppercase;
-
-  /* Font weight */
   font-weight: 50;
-
-  /* Spacing */
   margin-bottom: 2rem;
-
-  /* Remove default margins */
   margin-top: 0;
-
-  /* Center align */
   text-align: center;
 }
 
@@ -275,23 +179,12 @@
    ============================================ */
 
 .service-card-subtitle {
-  /* Font: Segoe UI, color: #99A1AF */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #99A1AF;
-
-  /* Font size */
   font-size: 0.95rem;
-
-  /* Line height for readability */
   line-height: 1.5;
-
-  /* Spacing */
   margin-bottom: 0rem;
-
-  /* Remove default margins */
   margin-top: 0;
-
-  /* Center align */
   text-align: center;
 }
 
@@ -300,29 +193,14 @@
    ============================================ */
 
 .service-card-link {
-  /* Font: Segoe UI */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #51A2FF;
-
-  /* Font size */
   font-size: 0.9rem;
-
-  /* Uppercase text */
   text-transform: uppercase;
-
-  /* Font weight */
   font-weight: 100;
-
-  /* Remove underline */
   text-decoration: none;
-
-  /* Smooth color transition */
   transition: color 0.3s ease;
-
-  /* Push to bottom */
   margin-top: auto;
-
-  /* Center align */
   text-align: center;
 }
 
@@ -338,39 +216,20 @@
    ============================================ */
 
 .project-card-new {
-  /* No background - transparent */
   background: transparent;
-
-  /* Border: 1px solid white at 20% opacity */
   border: 1px solid rgba(255, 255, 255, 0.2);
-
-  /* Sharp top corners, rounded bottom corners */
   border-radius: 16px;
-
-  /* Padding */
   padding: 1.5rem;
   padding-top: 2rem;
-
-  /* Flexbox layout for vertical alignment */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: center;
-
-  /* Position relative for label positioning */
   position: relative;
-
-  /* Allow overflow for label that overlaps top */
   overflow: visible;
-
-  /* Consistent sizing - let flexbox handle height based on constrained content */
   min-height: auto;
   height: auto;
-
-  /* Ensure consistent box sizing */
   box-sizing: border-box;
-
-  /* Smooth transitions */
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
@@ -379,33 +238,20 @@
    ============================================ */
 
 .project-card-label {
-  /* Background: #155DFC at 90% opacity */
   background-color: rgba(21, 93, 252, 0.9);
-
-  /* Border: 1px solid #51A2FF at 30% opacity */
   border: 1px solid rgba(81, 162, 255, 0.3);
-
-  /* Rounded pill shape */
   border-radius: 20px;
-
-  /* Font: Segoe UI, white, uppercase */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #FFFFFF;
   text-transform: uppercase;
   font-size: 0.75rem;
   font-weight: 200;
-
-  /* Padding */
   padding: 0.5rem 1rem;
-
-  /* Position absolute at top-center, slightly overlapping top edge */
   position: absolute;
   top: 12px;
   left: 78%;
   width: 40%;
   transform: translateX(-50%);
-
-  /* Z-index to place above border */
   z-index: 20;
 }
 
@@ -414,40 +260,29 @@
    ============================================ */
 
 .project-card-image-container {
-  /* Width to contain image */
   width: 100%;
-
-  /* Height for image - fixed to ensure consistency */
   height: 200px;
   min-height: 200px;
   max-height: 200px;
-
-  /* Flexbox to center image */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Margin */
   margin-bottom: 0.75rem;
   margin-top: 1.5rem;
-
-  /* Allow image to scale within container without overflow */
   overflow: hidden;
 }
 
 .project-card-image {
-  /* Image styling */
   width: 100%;
-  height: 100%;
-  max-height: 200px;
+  height: 120%;
+  max-height: 220px;
   object-fit: contain;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center center;
 }
 
-/* Scale up image when card is active - within fixed container */
 .project-card-image.active {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
 /* ============================================
@@ -455,30 +290,15 @@
    ============================================ */
 
 .project-card-title {
-  /* Font: Flame, color: #FFFFFF */
-  font-family: 'Flame', sans-serif;
+  font-family: var(--font-family-heading);
   color: #FFFFFF;
-
-  /* Font size */
   font-size: 1.2rem;
-
-  /* Uppercase text */
   text-transform: uppercase;
-
-  /* Font weight */
   font-weight: 50;
-
-  /* Spacing */
   margin-bottom: 0.75rem;
-
-  /* Remove default margins */
   margin-top: 0.5rem;
-
-  /* Center align */
   text-align: center;
   width: 100%;
-
-  /* Limit title to 2 lines max for consistency */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -492,29 +312,16 @@
    ============================================ */
 
 .project-card-subtitle {
-  /* Font: Segoe UI, color: #99A1AF */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #99A1AF;
-
-  /* Font size */
   font-size: 0.9rem;
-
-  /* Line height for readability */
   line-height: 1.5;
-
-  /* Spacing */
   margin-bottom: 1rem;
   margin-left: 0;
   margin-right: 0;
-
-  /* Remove default margins */
   margin-top: 0;
-
-  /* Center align */
   text-align: center;
   width: 100%;
-
-  /* Limit description to 4 lines max for consistency */
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
@@ -527,32 +334,17 @@
    ============================================ */
 
 .project-card-link {
-  /* Font: Segoe UI, color: #99A1AF */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #51A2FF;
-
-  /* Font size */
   font-size: 0.9rem;
-
-  /* Uppercase text */
   text-transform: uppercase;
-
-  /* Remove underline */
   text-decoration: none;
-
-  /* Font weight */
   font-weight: 100;
-
-  /* Smooth color transition */
   transition: color 0.3s ease;
-
-  /* Push to bottom - consistent positioning */
   margin-top: auto;
   margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
-
-  /* Center align */
   text-align: center;
   width: 100%;
 }
@@ -570,51 +362,26 @@
    ============================================ */
 
 .projects-card {
-  /* No background - transparent */
   background: transparent;
-
-  /* Border: 1px solid white at 20% opacity */
   border: 1px solid rgba(255, 255, 255, 0.2);
-
-  /* Rounded corners */
   border-radius: 16px;
-
-  /* Padding - same as project-card-new */
   padding: 1.5rem;
   padding-top: 2rem;
-
-  /* Flexbox layout for vertical alignment */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: center;
-
-  /* Position relative for label positioning */
   position: relative;
-
-  /* Allow overflow for label that overlaps top */
   overflow: visible;
-
-  /* Consistent sizing - let flexbox handle height based on constrained content */
   min-height: auto;
   height: auto;
-
-  /* Ensure consistent box sizing */
   box-sizing: border-box;
-
-  /* Smooth transitions for hover effects */
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Projects card hover state */
 .projects-card:hover {
-  /* Background color: #51A2FF at 10% opacity */
   background-color: rgba(81, 162, 255, 0.1);
-
-  /* Border: 1px solid #51A2FF */
   border: 1px solid #51A2FF;
-
-  /* Box shadow with same color as stroke */
   box-shadow: 0 0 30px rgba(81, 162, 255, 0.5);
 }
 
@@ -623,33 +390,20 @@
    ============================================ */
 
 .projects-card-label {
-  /* Background: #155DFC at 90% opacity */
   background-color: rgba(21, 93, 252, 0.9);
-
-  /* Border: 1px solid #51A2FF at 30% opacity */
   border: 1px solid rgba(81, 162, 255, 0.3);
-
-  /* Rounded pill shape */
   border-radius: 20px;
-
-  /* Font: Segoe UI, white, uppercase */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #FFFFFF;
   text-transform: uppercase;
   font-size: 0.75rem;
   font-weight: 200;
-
-  /* Padding */
   padding: 0.5rem 1rem;
-
-  /* Position absolute at top-center, slightly overlapping top edge */
   position: absolute;
   top: 12px;
   left: 78%;
   width: 40%;
   transform: translateX(-50%);
-
-  /* Z-index to place above border */
   z-index: 20;
 }
 
@@ -658,40 +412,27 @@
    ============================================ */
 
 .projects-card-image-container {
-  /* Width to contain image */
   width: 100%;
-
-  /* Height for image - fixed to ensure consistency */
   height: 200px;
   min-height: 200px;
   max-height: 200px;
-
-  /* Flexbox to center image */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Margin */
   margin-bottom: 1rem;
   margin-top: 1.5rem;
-
-  /* Allow image to overflow slightly on hover */
   overflow: visible;
 }
 
 .projects-card-image {
-  /* Image styling */
   width: 100%;
   height: 100%;
   max-height: 200px;
   object-fit: contain;
-
-  /* Smooth scale transition with smart animate-like easing */
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center center;
 }
 
-/* Scale up image on card hover - larger scale to overflow slightly */
 .projects-card:hover .projects-card-image {
   transform: scale(1.5);
 }
@@ -701,30 +442,15 @@
    ============================================ */
 
 .projects-card-title {
-  /* Font: Flame, color: #FFFFFF */
-  font-family: 'Flame', sans-serif;
+  font-family: var(--font-family-heading);
   color: #FFFFFF;
-
-  /* Font size */
   font-size: 1.2rem;
-
-  /* Uppercase text */
   text-transform: uppercase;
-
-  /* Font weight */
   font-weight: 50;
-
-  /* Spacing */
   margin-bottom: 0.75rem;
-
-  /* Remove default margins */
   margin-top: 0.5rem;
-
-  /* Center align */
   text-align: center;
   width: 100%;
-
-  /* Limit title to 2 lines max for consistency */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -738,29 +464,16 @@
    ============================================ */
 
 .projects-card-subtitle {
-  /* Font: Segoe UI, color: #99A1AF */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #99A1AF;
-
-  /* Font size */
   font-size: 0.9rem;
-
-  /* Line height for readability */
   line-height: 1.5;
-
-  /* Spacing */
   margin-bottom: 1rem;
   margin-left: 0;
   margin-right: 0;
-
-  /* Remove default margins */
   margin-top: 0;
-
-  /* Center align */
   text-align: center;
   width: 100%;
-
-  /* Limit description to 4 lines max for consistency */
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
@@ -773,32 +486,17 @@
    ============================================ */
 
 .projects-card-link {
-  /* Font: Segoe UI, color: #51A2FF */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: #51A2FF;
-
-  /* Font size */
   font-size: 0.9rem;
-
-  /* Uppercase text */
   text-transform: uppercase;
-
-  /* Remove underline */
   text-decoration: none;
-
-  /* Font weight */
   font-weight: 100;
-
-  /* Smooth color transition */
   transition: color 0.3s ease;
-
-  /* Push to bottom - consistent positioning */
   margin-top: auto;
   margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
-
-  /* Center align */
   text-align: center;
   width: 100%;
 }
@@ -813,7 +511,6 @@
    ============================================ */
 
 .projects-card-grid {
-  /* CSS Grid layout - 4 cards per row */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
@@ -844,10 +541,8 @@
    RESPONSIVE DESIGN FOR PROJECTS CARD
    ============================================ */
 
-/* Tablets and smaller (max-width: 1024px) */
 @media (max-width: 1024px) {
   .projects-card {
-    /* Adjust padding for smaller screens */
     padding: 1.25rem;
     padding-top: 1.75rem;
   }
@@ -871,7 +566,6 @@
   }
 }
 
-/* Mobile devices (max-width: 768px) */
 @media (max-width: 768px) {
   .projects-card {
     padding: 1rem;
@@ -909,40 +603,20 @@
    ============================================ */
 
 .service-page-card {
-  /* Card background: #0F172B at 30% opacity */
   background-color: rgba(15, 23, 43, 0.3);
-
-  /* Border: 1px solid white at 25% opacity */
   border: 1px solid rgba(255, 255, 255, 0.25);
-
-  /* Rounded corners */
   border-radius: 16px;
-
-  /* Internal padding */
   padding: 1.5rem;
-
-  /* Flexbox layout for vertical alignment */
   display: flex;
   flex-direction: column;
-
-  /* Position relative for icon and overlay positioning */
   position: relative;
-
-  /* Smooth transitions */
   transition: transform 0.2s ease, box-shadow 0.3s ease;
-
-  /* Overflow hidden to contain image and overlay */
   overflow: hidden;
-
-  /* Width constraint */
   width: 100%;
   max-width: 700px;
-
-  /* Cursor pointer to indicate clickable */
   cursor: pointer;
 }
 
-/* Hover effect with drop shadow */
 .service-page-card:hover {
   box-shadow: 0 0px 20px rgba(81, 162, 255, 0.5);
 }
@@ -952,38 +626,25 @@
    ============================================ */
 
 .service-page-card-icon-container {
-  /* Position absolutely in top left */
   position: absolute;
   top: 2.5rem;
   left: 2.5rem;
-
-  /* Z-index to place icon above image and overlay */
   z-index: 3;
-
-  /* Rounded square background */
   background-color: rgba(43, 127, 255, 0.1);
   border: 1px solid rgba(43, 127, 255, 0.2);
   border-radius: 8px;
-
-  /* Size */
   width: 50px;
   height: 50px;
-
-  /* Flexbox to center icon */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .service-page-card-icon {
-  /* Icon color */
   color: #51A2FF;
-  /* Display */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Ensure SVG icons inherit color */
   fill: #51A2FF;
 }
 
@@ -999,72 +660,42 @@
    ============================================ */
 
 .service-page-card-image-container {
-  /* Position relative for overlay */
   position: relative;
-
-  /* Width and height for image container */
   width: 100%;
   height: 320px;
-
-  /* Margin bottom for spacing */
   margin-bottom: 1.5rem;
-
-  /* Rounded corners for image */
   border-radius: 16px;
-
-  /* Overflow hidden to contain image and overlay */
   overflow: hidden;
 }
 
-/* Text overlay container for title and subtitle */
 .service-page-card-text-overlay {
-  /* Position absolutely to cover image */
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
-  /* Z-index to place text above overlay */
   z-index: 3;
-
-  /* Flexbox for vertical alignment */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  /* Padding for text */
   padding: 1.5rem;
 }
 
 .service-page-card-image {
-  /* Full width and height */
   width: 100%;
   height: 100%;
-
-  /* Object fit to cover container */
   object-fit: cover;
-
-  /* Display as block */
   display: block;
 }
 
-/* Image overlay: #0F172B at 70% opacity */
 .service-page-card-image-overlay {
-  /* Position absolutely to cover image */
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
-  /* Dark overlay: #0F172B at 70% opacity */
   background-color: rgba(15, 23, 43, 0.4);
-
-  /* Z-index to place overlay above image */
   z-index: 2;
-
-  /* Smooth transition */
   transition: opacity 0.3s ease;
 }
 
@@ -1073,23 +704,12 @@
    ============================================ */
 
 .service-page-card-title {
-  /* Font: FLAME, color: #FFFFFF */
-  font-family: 'Flame', sans-serif;
+  font-family: var(--font-family-heading);
   color: #FFFFFF;
-
-  /* Font size */
   font-size: 1.5rem;
-
-  /* Bold font weight */
   font-weight: 100;
-
-  /* Bottom margin for spacing */
   margin-bottom: 0.75rem;
-
-  /* Remove default margins */
   margin-top: 0;
-
-  /* Left align */
   text-align: left;
 }
 
@@ -1098,23 +718,12 @@
    ============================================ */
 
 .service-page-card-subtitle {
-  /* Font: Segoe UI, color: rgba white */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family-body);
   color: rgba(255, 255, 255, 0.9);
-
-  /* Font size */
   font-size: 0.95rem;
-
-  /* Line height for readability */
   line-height: 1.6;
-
-  /* Spacing */
   margin-bottom: 0;
-
-  /* Remove default margins */
   margin-top: 0;
-
-  /* Left align */
   text-align: left;
 }
 
@@ -1123,30 +732,90 @@
    ============================================ */
 
 .service-page-card .service-pagination {
-  /* Flexbox layout */
   display: flex;
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
-
-  /* Margin top for spacing */
   margin-top: 1rem;
 }
 
 .service-page-card .service-pagination-dot {
-  /* Dot size */
   width: 8px;
   height: 8px;
   border-radius: 50%;
-
-  /* Default state - semi-transparent white */
   background-color: rgba(255, 255, 255, 0.3);
-
-  /* Smooth transition */
   transition: background-color 0.3s ease;
 }
 
 .service-page-card .service-pagination-dot.active {
-  /* Active state - solid white */
   background-color: white;
+}
+
+.management-team-card {
+  background-color: rgba(15, 23, 43, 0.2);
+  border: 1px solid #51A2FF;
+  border-radius: 16px;
+  padding: 1rem 1rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  flex: 0 0 250px;
+  min-width: 160px;
+  height: auto;
+  overflow: hidden;
+  box-shadow: 0 0px 15px rgba(81, 162, 255, 0.5);
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.management-team-card-large {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: -2rem;
+  flex: none;
+  width: 350px;
+  min-width: 320px;
+  max-width: 320px;
+  z-index: 2;
+  height: 420px;
+}
+
+.management-team-card-image {
+  width: calc(100% + 2rem);
+  height: 300px;
+  object-fit: cover;
+  object-position: center center;
+  margin-top: 0.8rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: -0.1rem;
+}
+
+.management-team-card-large .management-team-card-image {
+  height: 450px;
+  margin-bottom: -0.9rem;
+  margin-top: -0.4rem;
+}
+
+.management-team-card-large .management-team-card-role {
+  font-size: 1.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.management-team-card-role {
+  font-family: var(--font-family-heading);
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  font-weight: 1;
+  margin: 0.3rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+  line-height: 1.3;
+  width: 100%;
 }

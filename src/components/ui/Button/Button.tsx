@@ -2,19 +2,12 @@ import React from "react";
 import "./Button.css";
 
 interface ButtonProps {
-  // The text label to display on the button
   children: React.ReactNode;
-  // The style variant: style1, style2, or style3
   variant: "style1" | "style2" | "style3";
-  // Optional click handler function
   onClick?: () => void;
-  // Optional button type (button, submit, or reset)
   type?: "button" | "submit" | "reset";
-  // Optional disabled state
   disabled?: boolean;
-  // Optional custom width
   width?: string | number;
-  // Optional custom height
   height?: string | number;
 }
 
@@ -51,4 +44,3 @@ const Button: React.FC<ButtonProps> = ({
 };
 
 export default Button;
-
