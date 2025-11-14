@@ -49,7 +49,7 @@ const Home: React.FC<HomePageProps> = () => {
     {
       id: 3,
       title: 'EXPERIENCE',
-      description: 'With years of expertise in machine design and fabrication, we provide reliable solutions built on proven knowldge and dedication.',
+      description: 'With years of expertise in machine design and fabrication, we provide reliable solutions built on proven knowledge and dedication.',
       icon: experienceIcon,
     },
   ];
@@ -70,7 +70,7 @@ const Home: React.FC<HomePageProps> = () => {
     {
       id: 3,
       title: 'PARTS INSPECTIONS',
-      description: 'We conduct thorough inspection and quality checks on fabricated parts to ensure accuracy and consistency with design specifications. Using advanced measuring tools, we guarantee top-notch quality before assembly.',
+      description: 'We conduct through inspection and quality checks on fabricated parts to ensure accuracy and consistency with design specifications. Using advanced measuring tools, we guarantee top-notch quality before assembly.',
       icon: inspectionIcon,
     },
     {
@@ -84,7 +84,7 @@ const Home: React.FC<HomePageProps> = () => {
   const projects = [
     {
       id: 1,
-      title: 'DEDEMPLER AND FACER',
+      title: 'DEDIMPLER AND FACER',
       description: 'Tube and pipes that require facing and or internal and external chamfering can be processed in line with the tube mill or off line.',
       category: 'MECHANICAL TUBE',
       image: dedemplerImage,
@@ -98,7 +98,7 @@ const Home: React.FC<HomePageProps> = () => {
     },
     {
       id: 3,
-      title: 'FORMING AND SIZING MACHINE',
+      title: 'FORMING AND SIZING',
       description: 'After metal strips has been welded and combined it will undergo forming to produce the needed shape of steel.',
       category: 'MECHANICAL TUBE',
       image: formingImage,
@@ -196,7 +196,7 @@ const Home: React.FC<HomePageProps> = () => {
         <div className="section-container container">
           <h2 className="section-title">BRINGING VISION TO REALITY</h2>
           <p className="section-subtitle">
-            See how our precision - driven designs turn ideas into succesful engineering solutions.
+            See how our precision - driven designs turn ideas into successful engineering solutions.
           </p>
           <ProjectCarousel projects={projects} />
         </div>
@@ -206,7 +206,7 @@ const Home: React.FC<HomePageProps> = () => {
         <div className="section-container container">
           <h2 className="section-title">ABOUT US</h2>
           <p className="about-description">
-            Kusakabe & Maeno Tech., Inc. is a trusted engineering partner specializing in precision design, fabrication, and assembly. With years of industry experience and strong partnerships with Kusakabe Electric & Machinery Co., Ltd. Next Engineering Co., Ltd and Maeno Giken Inc., we deliver high-quality engineering solutions tailored to meet our clients’ specific needs. Our team of skilled professionals combines innovation, technology, and expertise to transform ideas into efficient, reliable, and practical designs. We take pride in our commitment to accuracy, quality, and customer satisfaction — bringing your vision into reality, one project at a time.
+            Kusakabe & Maeno Tech., Inc. is a trusted engineering partner specializing in precision design, fabrication, and assembly. With years of industry experience and strong partnerships with Kusakabe Electric & Machinery Co., Ltd. Next Engineering Co., Ltd and Maeno Giken Inc., we deliver high-quality engineering solutions tailored to meet our clients’ specific needs. Our team of skilled professionals combines innovation, technology, and expertise to transform ideas into efficient, reliable, and practical designs. We take pride in our commitment to accuracy, quality, and customer satisfaction — bringing your vision into creation, with precision.
           </p>
           <a href="/about" className="about-link">Learn more about us →</a>
         </div>

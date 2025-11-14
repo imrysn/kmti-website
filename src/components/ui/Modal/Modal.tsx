@@ -147,7 +147,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
       return "By converting clients 3D model, we can easily check any possible errors or interference that may occur. During this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing.";
     }
     if (service.title === '2D Detailing') {
-      return "Detailing is a crucial part of the design process. It involves creating comprehensive technical drawings that specify materials, dimensions, tolerances, and manufacturing requirements. Throughout this phase, we work closely with clients to ensure all design elements are clearly documented and meet their specifications. Our detailed drawings serve as the foundation for accurate fabrication and assembly.";
+      return "Detailing is a critical part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We give a keen eye on every detail of the design, together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involve in the process and everything is according to their plan to avoid any further iterations due to miscommunication.";
     }
     if (service.title === 'Parts inspection') {
       return "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepancies from the design and the actual parts.";
@@ -169,12 +169,12 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
       {
         number: 3,
         title: 'QUALITY CHECKING',
-        description: 'We perform thorough quality checks on all 2D drawings to ensure accuracy and precision. Our team reviews dimensions, tolerances, and material specifications, checking for any inconsistencies or potential issues. If corrections are needed, we modify the designs to ensure they meet the highest standards before proceeding to manufacturing.',
+        description: 'After detailing, the design will run through series of checking and correction making sure that the design is precise and the chance of error is close to zero. When the design is already checked and final, we will send it to the client for confirmation.',
       },
       {
         number: 4,
         title: 'DESIGN QUALIFICATIONS',
-        description: 'Based on client feedback and quality checks, we apply necessary modifications to the designs. We ensure all design qualifications and requirements are met, making adjustments as needed. Once the designs are finalized and approved, they are ready for manufacturing, ensuring that the final product will meet all specifications and quality standards.',
+        description: 'If there\'s still suggestions or if ever the client change their mind in some aspect of the design, further modifications will be applied to the design to meet their desired outcome.',
       },
     ];
   };
@@ -417,7 +417,7 @@ export const ManagementTeamModal: React.FC<ManagementTeamModalProps> = ({ isOpen
     { image: jonathanImage, role: 'ENGINEERING STAFF' },
     { image: noelImage, role: 'COMPANY DRIVER' },
     { image: royImage, role: 'COMPANY DRIVER' },
-    { image: jojoImage, role: 'MAINTENANCE/UTILITY PEROSNEL' },
+    { image: jojoImage, role: 'MAINTENANCE/UTILITY PERSONNEL' },
   ];
 
   return (

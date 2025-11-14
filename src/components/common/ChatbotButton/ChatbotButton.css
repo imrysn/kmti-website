@@ -1,0 +1,53 @@
+/* ============================================
+   CHATBOT BUTTON COMPONENT
+   ============================================ */
+
+.chatbot-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #2157EE, #DF0515);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(81, 162, 255, 0.4);
+  z-index: 9999;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 0;
+  overflow: hidden;
+}
+
+.chatbot-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(81, 162, 255, 0.6);
+}
+
+.chatbot-button:active {
+  transform: scale(1.05);
+}
+
+.chatbot-button-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 768px) {
+  .chatbot-button {
+    width: 56px;
+    height: 56px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .chatbot-button-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
