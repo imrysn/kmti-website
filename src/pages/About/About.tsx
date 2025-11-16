@@ -76,7 +76,7 @@ const About: React.FC<AboutPageProps> = () => {
               Driven by Precision, Built with Passion
             </p>
             <p className="about-description">
-              At Kusakabe & Maeno Technologies inc., we combine Japanese engineering excellence and Filipino craftmanship to deliver reliable and innovative industrial solutions.
+              At Kusakabe & Maeno Technologies Inc., we combine Japanese engineering excellence and Filipino craftmanship to deliver reliable and innovative industrial solutions.
             </p>
           </div>
         </div>
@@ -120,7 +120,7 @@ const About: React.FC<AboutPageProps> = () => {
             <Card
               icon={missionIcon}
               title="Our Mission"
-              subtitle="To utilize our knowledge and upgrade them by incorporating expertise from two of the most known industry leaders Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cove other industries."
+              subtitle="To utilize our knowledge and upgrade them by incorporating expertise from three of the most known industry leaders Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cove other industries."
             />
           </div>
         </div>
@@ -198,19 +198,19 @@ const About: React.FC<AboutPageProps> = () => {
             <RelatedCompanyCard
               logo={kemcoLogo}
               companyName="KUSAKABE ELECTRIC & MACHINERY CO., LTD"
-              description="Foundedin 1916 and began it's involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high wuality workmanship of the manufacturing and installation teams has made Kusakabe a leading and invetive tube and pipe mill and associated equipemnet supplier."
+              description="Founded in 1916 and began it's involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high quality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipment supplier."
               href="https://www.kusakabe.com/jpn/index.htm"
             />
             <RelatedCompanyCard
               logo={nextengLogo}
               companyName="NEXT ENGINEERING CO., LTD."
-              description="Next Engineering Co., LTD. was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at it's own facilities. In recent years, it has expanded into IT and semiconductor fields. In April 2025, the company will merge with Nishinippon Sekkei Co., Ltd., enhancing its cpabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing."
+              description="Next Engineering Co., LTD. was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at it's own facilities. In recent years, it has expanded into IT and semiconductor fields. In April 2025, the company will merge with Nishinippon Sekkei Co., Ltd., enhancing its capabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing."
               href="https://www.nexteng.co.jp/"
             />
             <RelatedCompanyCard
               logo={mgkLogo}
               companyName="MAENO GIKEN INC."
-              description="MGK specializes in fabrication, utilizing experties of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. Ande every product undergoes strict quality compliance to meet their client's satisfation, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competetive by means of transferring every technological knowledge in this kind of busiess."
+              description="MGK specializes in fabrication, utilizing expertise of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. And every product undergoes strict quality compliance to meet their client's satisfaction, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competetive by means of transferring every technological knowledge in this kind of busiess."
               href="http://www.maenogiken.com/"
             />
           </div>
