@@ -58,6 +58,9 @@
   margin: 0;
   padding: 0;
   align-items: center;
+
+  /* Position relative for slider */
+  position: relative;
 }
 
 .navbar-link {
@@ -77,13 +80,17 @@
   opacity: 0.9;
 }
 
-.navbar-link.active::after {
-  content: '';
+/* Slider for active tab indicator */
+.navbar-slider {
+  /* Position absolutely within the ul */
   position: absolute;
   bottom: -4px;
-  left: 0;
-  right: 0;
   height: 2px;
+
+  /* Gradient background: blue to red */
   background: linear-gradient(90deg, #2157EE, #DF0515);
   border-radius: 1px;
+
+  /* Initially hidden if no active tab */
+  opacity: 1;
 }
