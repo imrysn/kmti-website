@@ -63,12 +63,11 @@ body.services-page-active::-webkit-scrollbar {
   pointer-events: none;
 }
 
-.services-hero-container {
+.service-hero-container {
   position: relative;
   z-index: 2;
   max-width: 1000px;
   margin-left: auto;
-  margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
 }
@@ -107,14 +106,14 @@ body.services-page-active::-webkit-scrollbar {
    SERVICES NAVIGATION SECTION
    ============================================ */
 
-.services-nav-section {
+.service-nav-section {
   padding-top: 0;
   padding-bottom: 0;
   position: relative;
   z-index: 1;
 }
 
-.services-nav-container {
+.service-nav-container {
   width: 100%;
   padding: 0;
 }
@@ -137,11 +136,11 @@ body.services-page-active::-webkit-scrollbar {
   display: inline-flex;
   align-items: center;
   gap: 15rem;
-  animation: scrollLoop 35s linear infinite;
+  animation: scrollloop 35s llnear infinite;
   font-family: var(--font-family-body);
   font-size: 0.875rem;
   font-weight: 100;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
 }
 
