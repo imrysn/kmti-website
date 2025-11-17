@@ -4,8 +4,7 @@ import './ChatbotButton.css';
 
 const ChatbotButton: React.FC = () => {
   const handleClick = () => {
-    // Chatbot functionality will be added later
-    console.log('Chatbot button clicked');
+    // Chatbot functionality placeholder
   };
 
   return (
@@ -16,4 +15,3 @@ const ChatbotButton: React.FC = () => {
 };
 
 export default ChatbotButton;
-

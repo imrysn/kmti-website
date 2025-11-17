@@ -35,7 +35,6 @@ import noelImage from '../../../assets/management/noel.png';
 import royImage from '../../../assets/management/roy.png';
 import jojoImage from '../../../assets/management/jojo.png';
 
-
 import { ManagementTeamCard } from '../Card/Card';
 
 interface ServiceModalProps {
@@ -75,6 +74,20 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
   };
 
   const currentCarouselImages = getCurrentCarouselImages();
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      // Store the original overflow value
+      const originalOverflow = document.body.style.overflow;
+      // Disable body scroll
+      document.body.style.overflow = 'hidden';
+      // Restore original overflow when modal closes or component unmounts
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen || !service || (service.title !== 'Parts inspection' && service.title !== 'Machine Assembly')) return;
@@ -315,6 +328,20 @@ interface OurStoryModalProps {
 }
 
 export const OurStoryModal: React.FC<OurStoryModalProps> = ({ isOpen, onClose }) => {
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      // Store the original overflow value
+      const originalOverflow = document.body.style.overflow;
+      // Disable body scroll
+      document.body.style.overflow = 'hidden';
+      // Restore original overflow when modal closes or component unmounts
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
   const handleClose = (e?: React.MouseEvent) => {
     if (e) {
       e.stopPropagation();
@@ -388,6 +415,20 @@ interface ManagementTeamModalProps {
 }
 
 export const ManagementTeamModal: React.FC<ManagementTeamModalProps> = ({ isOpen, onClose }) => {
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      // Store the original overflow value
+      const originalOverflow = document.body.style.overflow;
+      // Disable body scroll
+      document.body.style.overflow = 'hidden';
+      // Restore original overflow when modal closes or component unmounts
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
   const handleClose = (e?: React.MouseEvent) => {
     if (e) {
       e.stopPropagation();
