@@ -350,6 +350,45 @@
 }
 
 @media (max-width: 768px) {
+  .careers-hero-model {
+    max-width: 40%;
+    height: 35rem;
+    right: -0.5rem;
+  }
+
+  .careers-page .hero-content {
+    margin-left: -2rem;
+    margin-top: -4rem;
+  }
+
+  .careers-page .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .careers-hero-description {
+    font-size: 0.9rem;
+  }
+
+  .careers-positions-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .why-work-withus-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .meet-our-team-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .how-to-apply-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .how-to-apply-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -371,5 +410,69 @@
   .ready-to-join-buttons button {
     width: 100%;
     max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .careers-hero-model {
+    display: none;
+  }
+
+  .careers-page .hero-content {
+    text-align: center;
+    margin-left: 0;
+    margin-top: -2rem;
+  }
+
+  .careers-page .hero-title {
+    font-size: 2rem;
+  }
+
+  .careers-hero-description {
+    font-size: 0.85rem;
+  }
+
+  .careers-page .hero-buttons {
+    justify-content: center;
+  }
+
+  .careers-positions-title {
+    font-size: 1.8rem;
+  }
+
+  .careers-positions-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .why-work-withus-title {
+    font-size: 1.8rem;
+  }
+
+  .why-work-withus-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .meet-our-team-title {
+    font-size: 1.8rem;
+  }
+
+  .meet-our-team-description {
+    font-size: 0.9rem;
+  }
+
+  .how-to-apply-title {
+    font-size: 1.8rem;
+  }
+
+  .how-to-apply-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .ready-to-join-title {
+    font-size: 1.8rem;
+  }
+
+  .ready-to-join-description {
+    font-size: 0.9rem;
   }
 }
