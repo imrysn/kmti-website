@@ -550,3 +550,209 @@
   line-height: 1.3;
   width: 100%;
 }
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .service-modal-content {
+    max-width: 95%;
+    padding: 2rem;
+    max-height: 85vh;
+  }
+
+  .service-modal-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .service-modal-title {
+    font-size: 2rem;
+  }
+
+  .our-story-modal-content {
+    max-width: 95%;
+    padding: 2rem;
+  }
+
+  .our-story-modal-title {
+    font-size: 2rem;
+  }
+
+  .management-team-modal-content {
+    max-width: 95%;
+    padding: 2rem;
+  }
+
+  .management-team-modal-title {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile (481px - 767px) */
+@media (max-width: 767px) {
+  .service-modal-content {
+    width: 98%;
+    padding: 1.5rem;
+    max-height: 90vh;
+  }
+
+  .service-modal-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .service-modal-body {
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .service-modal-title {
+    font-size: 1.75rem;
+  }
+
+  .service-modal-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .service-modal-description {
+    font-size: 0.9rem;
+  }
+
+  .service-modal-features {
+    gap: 1rem;
+  }
+
+  .service-modal-feature-title {
+    font-size: 0.95rem;
+  }
+
+  .service-modal-feature-text {
+    font-size: 0.85rem;
+  }
+
+  .our-story-modal-content {
+    width: 98%;
+    padding: 1.5rem;
+  }
+
+  .our-story-modal-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .our-story-modal-title {
+    font-size: 1.75rem;
+  }
+
+  .our-story-modal-content-text {
+    font-size: 0.9rem;
+  }
+
+  .management-team-modal-content {
+    width: 98%;
+    padding: 1.5rem;
+  }
+
+  .management-team-modal-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .management-team-modal-title {
+    font-size: 1.75rem;
+  }
+
+  .management-team-modal-grid {
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .management-team-card {
+    min-width: 140px;
+    max-width: 160px;
+  }
+
+  .management-team-card-large {
+    width: 240px;
+    min-width: 180px;
+    max-width: 260px;
+    height: 350px;
+  }
+
+  .management-team-card-image {
+    height: 200px;
+  }
+
+  .management-team-card-large .management-team-card-image {
+    height: 350px;
+  }
+
+  .management-team-card-name {
+    font-size: 0.75rem;
+  }
+
+  .management-team-card-large .management-team-card-name {
+    font-size: 1rem;
+  }
+
+  .management-team-card-role {
+    font-size: 0.7rem;
+  }
+
+  .management-team-card-large .management-team-card-role {
+    font-size: 1.3rem;
+  }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .service-modal-content {
+    padding: 1rem;
+  }
+
+  .service-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .service-modal-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .our-story-modal-content {
+    padding: 1rem;
+  }
+
+  .our-story-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .management-team-modal-content {
+    padding: 1rem;
+  }
+
+  .management-team-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .management-team-card {
+    min-width: 120px;
+    max-width: 140px;
+  }
+
+  .management-team-card-large {
+    width: 200px;
+    min-width: 160px;
+    max-width: 220px;
+    height: 300px;
+  }
+
+  .management-team-card-large .management-team-card-image {
+    height: 300px;
+  }
+}

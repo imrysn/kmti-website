@@ -1,0 +1,41 @@
+/* ============================================
+   FLAME FONT FACE DECLARATIONS
+   ============================================
+   Local font files for consistent rendering across machines
+   ============================================ */
+
+@font-face {
+  font-family: 'Flame';
+  src: url('../assets/fonts/flame/Flame-Regular.woff2') format('woff2'),
+       url('../assets/fonts/flame/Flame-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Flame';
+  src: url('../assets/fonts/flame/Flame-Bold.woff2') format('woff2'),
+       url('../assets/fonts/flame/Flame-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-primary: 'Flame', 'Inter', 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font-primary);
+}
+
+/* ============================================
+   FONT SMOOTHING
+   ============================================ */
+
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

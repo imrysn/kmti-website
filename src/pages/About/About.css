@@ -353,7 +353,74 @@
   background-color: white;
 }
 
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .about-hero-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .about-title {
+    font-size: 3rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .about-company-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .about-vision-mission-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .related-companies-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .about-hero {
+    min-height: 80vh;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .about-hero-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-description {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-company-section {
+    padding: 3rem 0;
+  }
+
+  .about-company-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .about-company-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -382,6 +449,153 @@
 
   .about-company-title {
     font-size: 2rem;
+    text-align: center;
+  }
+
+  .about-company-description {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .about-company-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-vision-mission-section {
+    padding: 2rem 0;
+  }
+
+  .about-vision-mission-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-vision-mission-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-management-team-section {
+    padding: 3rem 0 4rem 0;
+  }
+
+  .about-management-team-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-management-team-grid {
+    padding: 0 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .our-people-section {
+    padding: 0 0 2rem 0;
+  }
+
+  .our-people-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .our-people-title {
+    font-size: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .our-people-subtitle {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .our-people-carousel-container {
+    min-height: 600px;
+  }
+
+  .related-companies-section {
+    padding: 0 0 3rem 0;
+  }
+
+  .related-companies-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .related-companies-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .related-companies-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-cta-section {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .about-cta-section .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-cta-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .about-cta-buttons button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .about-company-title {
+    font-size: 1.75rem;
+  }
+
+  .about-management-team-title {
+    font-size: 1.75rem;
+  }
+
+  .our-people-title {
+    font-size: 1.75rem;
+  }
+
+  .related-companies-title {
+    font-size: 1.75rem;
+  }
+
+  .about-cta-title {
+    font-size: 1.25rem;
+  }
+
+  .our-people-carousel-container {
+    min-height: 500px;
   }
 }
 

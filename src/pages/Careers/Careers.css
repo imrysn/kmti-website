@@ -349,18 +349,171 @@
   flex-wrap: wrap;
 }
 
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .careers-page .hero-content {
+    margin-left: 0;
+    margin-top: -4rem;
+  }
+
+  .careers-page .hero-title {
+    font-size: 3rem;
+  }
+
+  .careers-hero-model {
+    max-width: 40%;
+    height: 35rem;
+  }
+
+  .careers-positions-grid {
+    max-width: 100%;
+  }
+
+  .why-work-withus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .how-to-apply-grid {
+  .careers-page .hero-section {
+    min-height: 80vh;
+  }
+
+  .careers-page .hero-content {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .careers-page .hero-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .careers-hero-description {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .careers-page .hero-buttons {
+    justify-content: center;
+  }
+
+  .careers-hero-model {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    margin: 2rem auto 0;
+    right: auto;
+    bottom: auto;
+  }
+
+  .careers-positions-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .careers-positions-title {
+    font-size: 2rem;
+  }
+
+  .careers-positions-subtitle {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .careers-positions-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    max-width: 100%;
+  }
+
+  .why-work-withus-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .why-work-withus-title {
+    font-size: 2rem;
+  }
+
+  .why-work-withus-subtitle {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .why-work-withus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .meet-our-team-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .meet-our-team-content {
+    order: 1;
+  }
+
+  .meet-our-team-image-wrapper {
+    order: 2;
+  }
+
+  .meet-our-team-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .meet-our-team-description {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .meet-our-team-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  .how-to-apply-container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .how-to-apply-title {
     font-size: 2rem;
   }
 
+  .how-to-apply-subtitle {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .how-to-apply-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .ready-to-join-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .ready-to-join-title {
     font-size: 2rem;
+  }
+
+  .ready-to-join-description {
+    font-size: 0.9rem;
   }
 
   .ready-to-join-buttons {
@@ -371,5 +524,40 @@
   .ready-to-join-buttons button {
     width: 100%;
     max-width: 300px;
+  }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .careers-page .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .careers-hero-description {
+    font-size: 0.85rem;
+  }
+
+  .careers-positions-title {
+    font-size: 1.75rem;
+  }
+
+  .why-work-withus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-work-withus-title {
+    font-size: 1.75rem;
+  }
+
+  .meet-our-team-title {
+    font-size: 1.75rem;
+  }
+
+  .how-to-apply-title {
+    font-size: 1.75rem;
+  }
+
+  .ready-to-join-title {
+    font-size: 1.75rem;
   }
 }

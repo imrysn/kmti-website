@@ -15,7 +15,7 @@
   padding-top: 2rem;
   padding-bottom: 1rem;
   position: relative;
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,4 +79,80 @@
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .projects-hero {
+    min-height: 70vh;
+  }
+
+  .projects-hero-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .projects-title {
+    font-size: 3rem;
+  }
+
+  .projects-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .projects-grid-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Mobile (481px - 767px) */
+@media (max-width: 767px) {
+  .projects-hero {
+    min-height: 60vh;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .projects-hero-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .projects-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .projects-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .projects-grid-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .projects-grid-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .projects-title {
+    font-size: 1.5rem;
+  }
+
+  .projects-subtitle {
+    font-size: 0.9rem;
+  }
 }

@@ -297,3 +297,140 @@
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .chatbot-card {
+    max-width: 420px;
+  }
+
+  .chatbot-card-header-title {
+    font-size: 1.1rem;
+  }
+
+  .chatbot-card-menu-button-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile (481px - 767px) */
+@media (max-width: 767px) {
+  .chatbot-card {
+    max-width: 90%;
+    width: 90%;
+  }
+
+  .chatbot-card-header {
+    padding: 1rem;
+  }
+
+  .chatbot-card-header-title {
+    font-size: 1rem;
+  }
+
+  .chatbot-card-greeting {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+
+  .chatbot-card-menu-buttons {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .chatbot-card-menu-button {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .chatbot-card-menu-button-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .chatbot-card-menu-button-text {
+    font-size: 0.8rem;
+  }
+
+  .chatbot-card-footer {
+    padding: 0.75rem;
+  }
+
+  .chatbot-card-input {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .chatbot-card-menu-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .chatbot-card-menu-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .chatbot-card {
+    max-width: 95%;
+    width: 95%;
+  }
+
+  .chatbot-card-header {
+    padding: 0.75rem;
+  }
+
+  .chatbot-card-header-title {
+    font-size: 0.9rem;
+  }
+
+  .chatbot-card-greeting {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+
+  .chatbot-card-menu-buttons {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .chatbot-card-menu-button {
+    padding: 0.6rem;
+    gap: 0.4rem;
+  }
+
+  .chatbot-card-menu-button-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .chatbot-card-menu-button-text {
+    font-size: 0.75rem;
+  }
+
+  .chatbot-card-footer {
+    padding: 0.6rem;
+  }
+
+  .chatbot-card-input {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .chatbot-card-menu-icon-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+
+  .chatbot-card-menu-icon {
+    width: 16px;
+    height: 16px;
+  }
+}

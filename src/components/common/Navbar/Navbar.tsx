@@ -7,6 +7,7 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const activeLinkRef = useRef<HTMLAnchorElement>(null);
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
     { path: '/', label: 'HOME' },
@@ -36,6 +37,19 @@ const Navbar: React.FC = () => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleMobileNavClick = (
+    path: string,
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    handleNavClick(path, e);
+    setIsMobileMenuOpen(false);
   };
 
   /* ----------------------------------
@@ -63,14 +77,14 @@ const Navbar: React.FC = () => {
           <img src={headerLogo} alt="KMTI Logo" />
         </Link>
 
+        {/* Desktop Navigation */}
         <ul className="navbar-links">
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link
                 to={link.path}
-                className={`navbar-link ${
-                  location.pathname === link.path ? 'active' : ''
-                }`}
+                className={`navbar-link ${location.pathname === link.path ? 'active' : ''
+                  }`}
                 ref={location.pathname === link.path ? activeLinkRef : null}
                 onClick={(e) => handleNavClick(link.path, e)}
               >
@@ -88,6 +102,35 @@ const Navbar: React.FC = () => {
               transition: 'all 0.6s ease',
             }}
           />
+        </ul>
+
+        {/* Mobile Menu Button */}
+        <button
+          className={`navbar-burger ${isMobileMenuOpen ? 'active' : ''}`}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`navbar-mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+        <ul className="navbar-mobile-links">
+          {navLinks.map((link) => (
+            <li key={link.path}>
+              <Link
+                to={link.path}
+                className={`navbar-mobile-link ${location.pathname === link.path ? 'active' : ''
+                  }`}
+                onClick={(e) => handleMobileNavClick(link.path, e)}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
