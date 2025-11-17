@@ -15,6 +15,8 @@
   text-align: left;
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 /* ============================================
@@ -96,6 +98,8 @@
   text-align: left;
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .why-work-withus-card-icon-container {
@@ -155,7 +159,8 @@
   transition: transform 0.2s ease, box-shadow 0.3s ease;
   height: 100%;
   box-sizing: border-box;
-  max-width: 70%;
+  width: 100%;
+  max-width: 100%;
 }
 
 .how-to-apply-card-header {
@@ -333,9 +338,10 @@
   text-align: center;
   position: relative;
   overflow: visible;
-  height: 120%;
-  width: 95%;
+  height: 100%;
+  width: 100%;
   min-height: 150px;
+  margin-bottom: 1rem;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
@@ -453,7 +459,7 @@
   position: relative;
   overflow: visible;
   min-height: auto;
-  height: auto;
+  height: 100%;
   box-sizing: border-box;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
@@ -599,7 +605,7 @@
   position: relative;
   overflow: visible;
   min-height: auto;
-  height: auto;
+  height: 100%;
   box-sizing: border-box;
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -838,7 +844,8 @@
   transition: transform 0.2s ease, box-shadow 0.3s ease;
   overflow: hidden;
   width: 100%;
-  max-width: 700px;
+  max-width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 
@@ -986,7 +993,7 @@
   align-items: center;
   text-align: center;
   position: relative;
-  flex: 0 0 250px;
+  flex: 1;
   min-width: 160px;
   height: auto;
   overflow: hidden;
@@ -1003,9 +1010,9 @@
   margin-right: auto;
   top: -2rem;
   flex: none;
-  width: 350px;
-  min-width: 320px;
-  max-width: 320px;
+  width: 100%;
+  min-width: auto;
+  max-width: 100%;
   z-index: 2;
   height: 420px;
 }
@@ -1205,4 +1212,384 @@
   margin-top: auto;
   width: 100%;
   padding-top: 1rem;
+}
+
+/* ============================================
+   MOBILE RESPONSIVENESS FOR ALL CARDS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* WHY CHOOSE CARD */
+  .why-choose-card {
+    padding: 0.75rem;
+  }
+
+  .why-choose-card-icon-container {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+
+  .why-choose-card-icon-image {
+    width: 20px;
+    height: 20px;
+  }
+
+  .why-choose-card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-choose-card-subtitle {
+    font-size: 0.85rem;
+  }
+
+  /* WHY WORK WITH US CARD */
+  .why-work-withus-card {
+    padding: 0.75rem;
+  }
+
+  .why-work-withus-card-icon-container {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+
+  .why-work-withus-card-icon-image {
+    width: 20px;
+    height: 20px;
+  }
+
+  .why-work-withus-card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-work-withus-card-subtitle {
+    font-size: 0.85rem;
+  }
+
+  /* HOW TO APPLY CARD */
+  .how-to-apply-card {
+    padding: 1rem;
+  }
+
+  .how-to-apply-card-title {
+    font-size: 1rem;
+  }
+
+  .how-to-apply-card-content {
+    font-size: 0.85rem;
+  }
+
+  /* CONTACT OPTION CARD */
+  .contact-option-card {
+    padding: 0.75rem;
+  }
+
+  .contact-option-card-icon-container {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+
+  .contact-option-card-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-option-card-title {
+    font-size: 0.9rem;
+  }
+
+  .contact-option-card-description {
+    font-size: 0.85rem;
+  }
+
+  /* SERVICE CARD */
+  .service-card {
+    padding: 1.5rem 0.75rem 1.5rem 1.5rem;
+  }
+
+  .service-card::before {
+    width: 150px;
+    height: 135px;
+    top: -67.5px;
+  }
+
+  .service-card-icon-container {
+    top: -35px;
+  }
+
+  .service-card-icon-image {
+    width: 60px;
+  }
+
+  .service-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .service-card-link {
+    font-size: 0.8rem;
+  }
+
+  /* PROJECT CARD NEW */
+  .project-card-new {
+    padding: 1rem;
+    padding-top: 1.5rem;
+  }
+
+  .project-card-image-container {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-card-image {
+    max-height: 150px;
+  }
+
+  .project-card-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .project-card-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-card-link {
+    font-size: 0.8rem;
+  }
+
+  /* SERVICE PAGE CARD */
+  .service-page-card {
+    padding: 1rem;
+  }
+
+  .service-page-card-icon-container {
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .service-page-card-icon-image {
+    width: 20px;
+    height: 20px;
+  }
+
+  .service-page-card-image-container {
+    height: 250px;
+    margin-bottom: 1rem;
+  }
+
+  .service-page-card-text-overlay {
+    padding: 1rem;
+  }
+
+  .service-page-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-page-card-subtitle {
+    font-size: 0.85rem;
+  }
+
+  /* MANAGEMENT TEAM CARD */
+  .management-team-card {
+    padding: 0.75rem 0.75rem 0 0.75rem;
+    min-width: 120px;
+  }
+
+  .management-team-card-image {
+    height: 200px;
+    margin-top: 0.5rem;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+    margin-bottom: -0.1rem;
+  }
+
+  .management-team-card-role {
+    font-size: 0.75rem;
+    margin: 0.2rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .management-team-card-large {
+    width: 100%;
+    min-width: 250px;
+    max-width: 100%;
+    height: 350px;
+  }
+
+  .management-team-card-large .management-team-card-image {
+    height: 350px;
+    margin-bottom: -0.7rem;
+    margin-top: -0.3rem;
+  }
+
+  .management-team-card-large .management-team-card-role {
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* APPLY CARD */
+  .apply-card {
+    padding: 1.5rem;
+  }
+
+  .apply-card-fulltime-badge {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.4rem 1.5rem;
+    font-size: 0.65rem;
+  }
+
+  .apply-card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .apply-card-meta {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .apply-card-location,
+  .apply-card-type {
+    font-size: 0.8rem;
+  }
+
+  .apply-card-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .apply-card-description {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .apply-card-skills {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .apply-card-skill-tag {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .apply-card-requirements {
+    margin-bottom: 0.75rem;
+  }
+
+  .apply-card-section-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .apply-card-requirements-list li {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .apply-card-courses {
+    margin-bottom: 0.75rem;
+  }
+
+  .apply-card-course-tag {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .apply-card-button-wrapper {
+    padding-top: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* SERVICE CARD */
+  .service-card {
+    padding: 1rem 0.5rem 1rem 1rem;
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+
+  .service-card::before {
+    width: 120px;
+    height: 108px;
+    top: -54px;
+  }
+
+  .service-card-icon-container {
+    top: -28px;
+  }
+
+  .service-card-icon-image {
+    width: 45px;
+  }
+
+  .service-card-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .service-card-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .service-card-link {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 375px) {
+  /* SERVICE CARD */
+  .service-card {
+    padding: 0.75rem 0.25rem 0.75rem 0.75rem;
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+
+  .service-card::before {
+    width: 100px;
+    height: 90px;
+    top: -45px;
+  }
+
+  .service-card-icon-container {
+    top: -22px;
+  }
+
+  .service-card-icon-image {
+    width: 35px;
+  }
+
+  .service-card-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .service-card-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .service-card-link {
+    font-size: 0.65rem;
+  }
 }

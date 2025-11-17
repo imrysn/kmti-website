@@ -27,6 +27,9 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const isSwiping = useRef(false);
 
   useEffect(() => {
     const updateCardDimensions = () => {
@@ -136,6 +139,47 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
     carouselRef.current.style.cursor = 'grabbing';
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('.carousel-nav-btn') || target.closest('a') || target.closest('button')) {
+      return;
+    }
+    if (!carouselRef.current) return;
+    const touch = e.touches[0];
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+    isSwiping.current = true;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isSwiping.current) return;
+    e.preventDefault(); // Prevent scrolling while swiping
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isSwiping.current) return;
+
+    const touch = e.changedTouches[0];
+    const deltaX = touchStartX.current - touch.clientX;
+    const deltaY = touchStartY.current - touch.clientY;
+    const minSwipeDistance = 20;
+    const maxVerticalDistance = 100;
+
+    // Only trigger swipe if horizontal movement is greater than vertical
+    // and exceeds minimum swipe distance
+    if (Math.abs(deltaX) > minSwipeDistance && Math.abs(deltaY) < maxVerticalDistance) {
+      if (deltaX > 0) {
+        // Swipe left - go to next
+        goToNext();
+      } else {
+        // Swipe right - go to previous
+        goToPrevious();
+      }
+    }
+
+    isSwiping.current = false;
+  };
+
   return (
     <div className="project-carousel-container">
       <div className="project-carousel-wrapper">
@@ -143,6 +187,9 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
           className="project-carousel"
           ref={carouselRef}
           onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           style={{ cursor: 'grab' }}
         >
           {projectsExtended.map((project, index) => {
@@ -181,7 +228,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
                   transition: transitionEnabled ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, filter 0.6s ease' : 'none',
                 }}
                 onClick={() => {
-                  if (!isDragging.current && !isActive) {
+                  if (!isDragging.current && !isSwiping.current && !isActive) {
                     setCurrentIndex(index);
                   }
                 }}
