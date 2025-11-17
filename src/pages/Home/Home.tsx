@@ -155,7 +155,7 @@ const Home: React.FC<HomePageProps> = () => {
         </div>
       </section>
 
-      <section className="why-choose-us-section">
+      <section className="why-choose-us-section" data-aos="fade-up">
         <div className="section-container container">
           <h2 className="section-title">WHY CHOOSE US</h2>
           <div className="cards-grid">
@@ -171,7 +171,7 @@ const Home: React.FC<HomePageProps> = () => {
         </div>
       </section>
 
-      <section className="services-section">
+      <section className="services-section" data-aos="fade-up">
         <div className="section-container container">
           <h2 className="section-title">OUR SERVICES</h2>
           <p className="section-subtitle">
@@ -192,7 +192,7 @@ const Home: React.FC<HomePageProps> = () => {
         </div>
       </section>
 
-      <section className="vision-reality-section">
+      <section className="vision-reality-section" data-aos="fade-up">
         <div className="section-container container">
           <h2 className="section-title">BRINGING VISION TO REALITY</h2>
           <p className="section-subtitle">
@@ -202,7 +202,7 @@ const Home: React.FC<HomePageProps> = () => {
         </div>
       </section>
 
-      <section className="about-section">
+      <section className="about-section" data-aos="fade-up">
         <div className="section-container container">
           <h2 className="section-title">ABOUT US</h2>
           <p className="about-description">
@@ -212,7 +212,7 @@ const Home: React.FC<HomePageProps> = () => {
         </div>
       </section>
 
-      <section className="cta-section">
+      <section className="cta-section" data-aos="fade-up">
         <div className="section-container container">
           <h2 className="cta-title">Ready to build your next project?</h2>
           <div className="cta-buttons">

@@ -141,7 +141,7 @@ const Services: React.FC<ServicesPageProps> = () => {
         </div>
       </section>
 
-      <section className="services-nav-section">
+      <section className="services-nav-section" data-aos="fade-up">
         <div className="services-nav-container">
           <div className="services-nav-tabs">
             <div className="services-nav-tabs-scroll">
@@ -162,7 +162,7 @@ const Services: React.FC<ServicesPageProps> = () => {
         </div>
       </section>
 
-      <section className="services-grid-section" ref={servicesGridRef}>
+      <section className="services-grid-section" ref={servicesGridRef} data-aos="fade-up">
         <div className="services-grid-container container">
           <div className="services-grid">
             {services.map((service) => (
@@ -181,7 +181,7 @@ const Services: React.FC<ServicesPageProps> = () => {
         </div>
       </section>
 
-      <section className="services-cta-section">
+      <section className="services-cta-section" data-aos="fade-up">
         <div className="services-cta-container container">
           <h2 className="services-cta-title">Have a project in mind? Let's discuss how we can bring it to life</h2>
           <div className="services-cta-button">

@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
 import Home from './pages/Home';
@@ -9,6 +12,13 @@ import Contact from './pages/Contact';
 import Careers from './pages/Careers';
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
