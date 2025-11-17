@@ -6,34 +6,24 @@
   width: calc(100% - 10rem);
   position: sticky;
   top: 0;
-  margin-top: 2rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
-  margin-bottom: 0;
+  margin: 2rem 5rem 0 5rem;
   background: none;
   border-radius: 24px;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 1rem 2rem;
   z-index: 1000;
 }
 
 .navbar-container {
   max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: rgba(15, 23, 43, 0.4);
   box-shadow: 0 4px 12px rgba(43, 127, 255, 0.1);
   border-radius: 20px;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding: 0 3rem;
   min-height: 60px;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
 }
 
 /* ============================================
@@ -58,9 +48,7 @@
   margin: 0;
   padding: 0;
   align-items: center;
-
-  /* Position relative for slider */
-  position: relative;
+  position: relative; /* required for slider */
 }
 
 .navbar-link {
@@ -69,28 +57,39 @@
   font-size: 0.9rem;
   font-weight: 400;
   position: relative;
-  transition: all 0.3s ease;
+  transition: opacity 0.2s ease, color 0.2s ease;
   background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.navbar-link:hover {
-  opacity: 0.9;
+/* Active link keeps text bold or pure white */
+.navbar-link.active {
+  font-weight: 500;
+  opacity: 1;
 }
 
-/* Slider for active tab indicator */
+/* Subtle hover effect */
+.navbar-link:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   ACTIVE TAB SLIDER / UNDERLINE
+   ============================================ */
 .navbar-slider {
-  /* Position absolutely within the ul */
   position: absolute;
-  bottom: -4px;
-  height: 2px;
+  bottom: -6px; /* sits just below the text */
+  height: 3px;
+  border-radius: 2px;
 
-  /* Gradient background: blue to red */
+  /* Gradient underline */
   background: linear-gradient(90deg, #2157EE, #DF0515);
-  border-radius: 1px;
 
-  /* Initially hidden if no active tab */
+  /* animated via JS (width + left) */
+  transition: width 0.6s ease, left 0.6s ease;
+
+  /* Always visible */
   opacity: 1;
 }
