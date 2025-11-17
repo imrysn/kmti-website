@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Contact.css';
 import { ContactPageProps } from './Contact.types';
 import contactBg from '../../assets/contactusbg.jpg';
@@ -10,32 +9,30 @@ import mapsIcon from '../../assets/icons/maps-icon.png';
 import chatIcon from '../../assets/icons/chat-icon.png';
 import circleIcon from '../../assets/icons/circle-icon.png';
 import innovationIcon from '../../assets/icons/innovation-icon.png';
-import { ContactOptionCard, ChatbotCard } from '../../components/ui/Card/Card';
+import { ContactOptionCard } from '../../components/ui/Card/Card';
+import { ChatbotCard } from '../../components/ui/Card/chatbot';
 import Button from '../../components/ui/Button/Button';
 
 const Contact: React.FC<ContactPageProps> = () => {
-  const navigate = useNavigate();
 
   const handleGeneralInquiries = () => {
     window.location.href = 'mailto:info@kmti.com.ph';
   };
 
   const handleLineMessenger = () => {
-    // LINE Messenger functionality will be added later
     window.open('https://line.me/R/ti/p/@kmti', '_blank');
   };
 
   const handleCareerApplication = () => {
-    navigate('/careers');
+    window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/jobs/', '_blank');
   };
 
   const handleOfficeVisit = () => {
-    window.open('https://www.google.com/maps/search/?api=1&query=Team+Quest+Building+FCIE+Langkaan+Dasmarinas+City+Cavite', '_blank');
+    window.open('https://maps.app.goo.gl/efZ1dkgQFWRrP1M17', '_blank');
   };
 
   const handleTryChatbot = () => {
-    // Chatbot functionality will be added later
-    console.log('Try chatbot clicked');
+    // Chatbot functionality placeholder
   };
 
   const handleChatbotLine = () => {
@@ -92,6 +89,16 @@ const Contact: React.FC<ContactPageProps> = () => {
         </div>
       </section>
 
+      {/* OR Divider */}
+      <div className="or-divider-container">
+        <div className="or-divider-wrapper">
+          <div className="or-divider-line"></div>
+          <span className="or-divider-text">OR</span>
+          <div className="or-divider-line"></div>
+        </div>
+        <p className="or-divider-description">Chat with our AI Assistant Anytime</p>
+      </div>
+
       {/* Chat With Us Section */}
       <section className="chat-with-us-section">
         <div className="chat-with-us-container container">
@@ -105,6 +112,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                   CHAT WITH US <span className="chat-with-us-title-highlight">ANYTIME</span>
                 </h2>
               </div>
+              <div className="chat-with-us-header-line"></div>
               <p className="chat-with-us-description">
                 Our AI assistant can answer common questions about our services - Machine Design, Assembly, and Parts Inspection - and connect directly to our LINE support for real assistance.
               </p>

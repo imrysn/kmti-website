@@ -26,8 +26,8 @@ const Careers: React.FC<CareersPageProps> = () => {
   };
 
   const navigateToPositions = () => {
-    // Navigate to positions or scroll to positions section
-    // You can modify this based on your routing needs
+    const positionsContainer = document.querySelector('.careers-positions-container');
+    positionsContainer?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const whyWorkWithUs = [

@@ -1,8 +1,8 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import "./Footer.css";
-import footerLogo from "../../../assets/footerKMTIlogo.png";
-import mapsIcon from "../../../assets/icons/maps-icon.png";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Footer.css';
+import footerLogo from '../../../assets/footerKMTIlogo.png';
+import mapsIcon from '../../../assets/icons/maps-icon.png';
 import contactIcon from '../../../assets/icons/contact.png';
 import emailIcon from '../../../assets/icons/email-icon.png';
 
