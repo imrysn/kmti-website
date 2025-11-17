@@ -236,3 +236,90 @@ body.services-page-active::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .services-title {
+    font-size: 3.5rem;
+  }
+
+  .services-grid-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-hero-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .services-title {
+    font-size: 2.5rem;
+  }
+
+  .services-subtitle {
+    font-size: 1rem;
+  }
+
+  .services-nav-tabs-content {
+    gap: 10rem;
+    font-size: 0.75rem;
+  }
+
+  .services-grid-section {
+    padding-top: 3rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .services-grid-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .services-page .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .services-cta-section {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+  }
+
+  .services-cta-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .services-cta-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-title {
+    font-size: 2rem;
+  }
+
+  .services-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .services-nav-tabs-content {
+    gap: 5rem;
+    font-size: 0.7rem;
+  }
+
+  .services-page .services-grid {
+    gap: 1.5rem;
+  }
+
+  .services-cta-title {
+    font-size: 1.3rem;
+  }
+}

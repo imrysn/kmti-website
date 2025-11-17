@@ -521,3 +521,166 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .about-title {
+    font-size: 3.5rem;
+  }
+
+  .about-company-grid {
+    gap: 4rem;
+  }
+
+  .about-vision-mission-grid {
+    gap: 1.5rem;
+  }
+
+  .related-companies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-management-team-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 1rem;
+  }
+
+  .about-description {
+    font-size: 0.9rem;
+  }
+
+  .about-company-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-company-title {
+    font-size: 2rem;
+  }
+
+  .about-company-description {
+    font-size: 0.9rem;
+  }
+
+  .about-vision-mission-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-management-team-title {
+    font-size: 2rem;
+  }
+
+  .about-management-team-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .our-people-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .our-people-title {
+    font-size: 2rem;
+  }
+
+  .our-people-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .our-people-carousel-container {
+    min-height: 600px;
+  }
+
+  .related-companies-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .related-companies-title {
+    font-size: 2rem;
+  }
+
+  .related-companies-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-cta-section .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-cta-title {
+    font-size: 1.5rem;
+  }
+
+  .about-cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .about-description {
+    font-size: 0.85rem;
+  }
+
+  .about-company-title {
+    font-size: 1.8rem;
+  }
+
+  .about-company-description {
+    font-size: 0.85rem;
+  }
+
+  .about-management-team-title {
+    font-size: 1.8rem;
+  }
+
+  .our-people-title {
+    font-size: 1.8rem;
+  }
+
+  .our-people-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .our-people-carousel-container {
+    min-height: 500px;
+  }
+
+  .related-companies-title {
+    font-size: 1.8rem;
+  }
+
+  .about-cta-title {
+    font-size: 1.3rem;
+  }
+}
