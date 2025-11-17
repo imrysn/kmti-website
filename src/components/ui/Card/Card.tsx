@@ -1,10 +1,6 @@
 import React from 'react';
 import './Card.css';
 import Button from '../Button/Button';
-import defaultProfileImage from '../../../assets/profile.png';
-import lineIcon from '../../../assets/icons/line.png';
-import facebookIcon from '../../../assets/icons/facebook.png';
-import menuIcon from '../../../assets/icons/menu-icon.png';
 
 const isImageIcon = (icon: string | React.ReactNode): icon is string => {
   return typeof icon === 'string' &&
@@ -449,75 +445,6 @@ export const ContactOptionCard: React.FC<ContactOptionCardProps> = ({
         <Button variant="style2" onClick={onButtonClick} width="100%">
           {buttonText}
         </Button>
-      </div>
-    </div>
-  );
-};
-
-interface ChatbotCardProps {
-  profileImage?: string;
-  onLineClick?: () => void;
-  onFacebookClick?: () => void;
-  className?: string;
-}
-
-export const ChatbotCard: React.FC<ChatbotCardProps> = ({
-  profileImage,
-  onLineClick,
-  onFacebookClick,
-  className = '',
-}) => {
-
-  return (
-    <div className={`chatbot-card ${className}`}>
-      {/* Profile Section */}
-      <div className="chatbot-card-profile-section">
-        <div className="chatbot-card-profile-background">
-          <img
-            src={profileImage || defaultProfileImage}
-            alt="Profile"
-            className="chatbot-card-profile-image"
-            onError={(e) => {
-              // Fallback if image fails to load
-              e.currentTarget.style.display = 'none';
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Top Part */}
-      <div className="chatbot-card-top">
-        {/* Top part content can be empty or have additional elements */}
-      </div>
-
-      {/* Body Section */}
-      <div className="chatbot-card-body">
-        <div
-          className="chatbot-card-message-option"
-          onClick={onLineClick}
-        >
-          <img src={lineIcon} alt="LINE" className="chatbot-card-message-icon" />
-          <span className="chatbot-card-message-text">MESSAGE US ON LINE</span>
-        </div>
-        <div
-          className="chatbot-card-message-option"
-          onClick={onFacebookClick}
-        >
-          <img src={facebookIcon} alt="Facebook" className="chatbot-card-message-icon" />
-          <span className="chatbot-card-message-text">CHAT US ON FACEBOOK</span>
-        </div>
-      </div>
-
-      {/* Footer Section */}
-      <div className="chatbot-card-footer">
-        <input
-          type="text"
-          placeholder="Type a message..."
-          className="chatbot-card-input"
-        />
-        <div className="chatbot-card-menu-icon-wrapper">
-          <img src={menuIcon} alt="Menu" className="chatbot-card-menu-icon" />
-        </div>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@
 }
 
 .contact-page .hero-title {
+  margin-top: 21rem;
   margin-bottom: 0.5rem;
   text-transform: none;
   font-size: 2.5rem;
@@ -20,7 +21,7 @@
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
-  margin-bottom: 3rem;
+  margin-bottom: 15rem;
   text-align: center;
   max-width: 800px;
   margin-left: auto;
@@ -31,7 +32,7 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  margin-top: 3rem;
+  margin-top: auto;
 }
 
 .contact-options-grid {
@@ -41,8 +42,58 @@
   align-items: stretch;
   max-width: 100%;
   margin-left: auto;
-  margin-right: auto;
+  padding: 0rem;
+  margin-top: 3rem;
+
+}
+
+/* ============================================
+   OR DIVIDER
+   ============================================ */
+
+.or-divider-container {
+  max-width: 1200px;
+  margin: 3rem auto;
   padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.or-divider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.or-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #51A2FF;
+  max-width: 100px;
+}
+
+.or-divider-text {
+  font-family: var(--font-family-heading);
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+.or-divider-description {
+  font-family: var(--font-family-body);
+  color: #FFFFFF;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  line-height: 1.6;
 }
 
 /* ============================================
@@ -51,11 +102,10 @@
 
 .chat-with-us-section {
   padding: 5rem 0;
-  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
 }
 
 .chat-with-us-container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
@@ -81,6 +131,14 @@
   margin-bottom: 1.5rem;
 }
 
+.chat-with-us-header-line {
+  width: 30%;
+  height: 2px;
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 20%, #FF8C8C 60%, #FF5252 100%);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
 .chat-with-us-icon-container {
   background-color: rgba(43, 127, 255, 0.1);
   border: 1px solid rgba(43, 127, 255, 0.2);
@@ -104,17 +162,13 @@
   font-family: var(--font-family-heading);
   font-size: 2.5rem;
   font-weight: 500;
-  color: #FFFFFF;
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 20%, #FF8C8C 60%, #FF5252 100%);
+  background-clip: text;
+  color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
   line-height: 1.2;
-}
-
-.chat-with-us-title-highlight {
-  background: linear-gradient(90deg, #FF5252 0%, #FF8C8C 100%);
-  background-clip: text;
-  color: transparent;
 }
 
 .chat-with-us-description {
@@ -179,30 +233,4 @@
   display: flex;
   justify-content: center;
   align-items: start;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .chat-with-us-content {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .chat-with-us-right {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .chat-with-us-section {
-    padding: 3rem 0;
-  }
-
-  .chat-with-us-title {
-    font-size: 2rem;
-  }
-
-  .chat-with-us-content {
-    gap: 2rem;
-  }
 }
