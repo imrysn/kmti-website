@@ -15,7 +15,12 @@ interface ProjectCarouselProps {
 }
 
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
-  const [currentIndex, setCurrentIndex] = useState(2);
+  const projectsExtended = [];
+  for (let i = 0; i < 10; i++) {
+    projectsExtended.push(...projects);
+  }
+  const [currentIndex, setCurrentIndex] = useState(5 * projects.length);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [cardWidth, setCardWidth] = useState(350);
   const [cardHeight, setCardHeight] = useState(480);
   const [spacing, setSpacing] = useState(349);
@@ -56,15 +61,11 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
   }, []);
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? projects.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => prevIndex - 1);
   };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === projects.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
   const getCardPosition = (index: number) => {
@@ -83,11 +84,11 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
 
       if (Math.abs(deltaX) > threshold) {
         if (deltaX > 0) {
-          setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+          setCurrentIndex((prev) => prev - 1);
           isDragging.current = false;
           dragStartX.current = e.clientX;
         } else {
-          setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+          setCurrentIndex((prev) => prev + 1);
           isDragging.current = false;
           dragStartX.current = e.clientX;
         }
@@ -110,7 +111,19 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [cardWidth, projects.length]);
+  }, [cardWidth]);
+
+  useEffect(() => {
+    if (currentIndex < 2 * projects.length) {
+      setTransitionEnabled(false);
+      setCurrentIndex(currentIndex + 6 * projects.length);
+      setTimeout(() => setTransitionEnabled(true), 0);
+    } else if (currentIndex >= 8 * projects.length) {
+      setTransitionEnabled(false);
+      setCurrentIndex(currentIndex - 6 * projects.length);
+      setTimeout(() => setTransitionEnabled(true), 0);
+    }
+  }, [currentIndex, projects.length]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -132,7 +145,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
           onMouseDown={handleMouseDown}
           style={{ cursor: 'grab' }}
         >
-          {projects.map((project, index) => {
+          {projectsExtended.map((project, index) => {
             const { distance, isActive } = getCardPosition(index);
             const absDistance = Math.abs(distance);
 
@@ -152,7 +165,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
 
             return (
               <div
-                key={project.id}
+                key={index}
                 className={`project-carousel-card ${isActive ? 'active' : ''}`}
                 style={{
                   width: `${cardWidth}px`,
@@ -165,6 +178,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
                   pointerEvents: absDistance > 3 ? 'none' : 'auto',
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
+                  transition: transitionEnabled ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, filter 0.6s ease' : 'none',
                 }}
                 onClick={() => {
                   if (!isDragging.current && !isActive) {

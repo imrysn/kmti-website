@@ -17,6 +17,10 @@
   padding-bottom: clamp(0.75rem, 1.5vw, 1rem);
   padding-left: clamp(1rem, 2.5vw, 2rem);
   padding-right: clamp(1rem, 2.5vw, 2rem);
+  margin: 2rem 5rem 0 5rem;
+  background: none;
+  border-radius: 24px;
+  padding: 1rem 2rem;
   z-index: 1000;
   box-sizing: border-box;
 }
@@ -26,6 +30,8 @@
   max-width: min(1600px, 95vw);
   margin-left: auto;
   margin-right: auto;
+  max-width: 1600px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,6 +44,9 @@
   padding-top: 0;
   padding-bottom: 0;
   box-sizing: border-box;
+  border-radius: 20px;
+  padding: 0 3rem;
+  min-height: 60px;
 }
 
 /* ============================================
@@ -66,6 +75,7 @@
   flex-wrap: wrap;
   /* Position relative for slider */
   position: relative;
+  position: relative; /* required for slider */
 }
 
 .navbar-link {
@@ -74,7 +84,7 @@
   font-size: clamp(0.8rem, 1.1vw, 0.9rem);
   font-weight: 400;
   position: relative;
-  transition: all 0.3s ease;
+  transition: opacity 0.2s ease, color 0.2s ease;
   background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -84,22 +94,33 @@
   overflow-wrap: break-word;
 }
 
-.navbar-link:hover {
-  opacity: 0.9;
+/* Active link keeps text bold or pure white */
+.navbar-link.active {
+  font-weight: 500;
+  opacity: 1;
 }
 
-/* Slider for active tab indicator */
+/* Subtle hover effect */
+.navbar-link:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   ACTIVE TAB SLIDER / UNDERLINE
+   ============================================ */
 .navbar-slider {
-  /* Position absolutely within the ul */
   position: absolute;
-  bottom: -4px;
-  height: 2px;
+  bottom: -6px; /* sits just below the text */
+  height: 3px;
+  border-radius: 2px;
 
-  /* Gradient background: blue to red */
+  /* Gradient underline */
   background: linear-gradient(90deg, #2157EE, #DF0515);
-  border-radius: 1px;
 
-  /* Initially hidden if no active tab */
+  /* animated via JS (width + left) */
+  transition: width 0.6s ease, left 0.6s ease;
+
+  /* Always visible */
   opacity: 1;
 }
 
