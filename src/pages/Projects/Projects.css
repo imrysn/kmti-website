@@ -80,3 +80,53 @@
   padding-left: 2rem;
   padding-right: 2rem;
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .projects-title {
+    font-size: 3.5rem;
+  }
+
+  .projects-grid-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-hero-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .projects-title {
+    font-size: 2.5rem;
+  }
+
+  .projects-subtitle {
+    font-size: 1rem;
+  }
+
+  .projects-grid-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .projects-grid-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-title {
+    font-size: 2rem;
+  }
+
+  .projects-subtitle {
+    font-size: 0.9rem;
+  }
+}
