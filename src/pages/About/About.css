@@ -414,6 +414,7 @@
   letter-spacing: 1px;
 }
 
+
 .related-companies-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
