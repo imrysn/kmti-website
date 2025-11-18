@@ -65,7 +65,7 @@ body.services-page-active::-webkit-scrollbar {
 
 .service-hero-container {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   max-width: 1000px;
   margin-left: auto;
   padding-left: 2rem;
@@ -74,6 +74,8 @@ body.services-page-active::-webkit-scrollbar {
 
 .services-hero-content {
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
 .services-title {
@@ -83,6 +85,8 @@ body.services-page-active::-webkit-scrollbar {
   margin-bottom: 0.5rem;
   font-family: var(--font-family-heading);
   line-height: 1.2;
+  position: relative;
+  z-index: 10;
 }
 
 .services-subtitle {
@@ -94,12 +98,16 @@ body.services-page-active::-webkit-scrollbar {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .services-hero-button {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 10;
 }
 
 /* ============================================

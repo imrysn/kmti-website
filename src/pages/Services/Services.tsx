@@ -127,7 +127,6 @@ const Services: React.FC<ServicesPageProps> = () => {
   return (
     <div className="services-page" style={{ '--services-bg-image': `url(${servicesBg})` } as React.CSSProperties}>
       <section className="services-hero">
-        <div className="services-hero-overlay"></div>
         <div className="services-hero-container container">
           <div className="services-hero-content">
             <h1 className="services-title">Our Services</h1>
@@ -139,6 +138,7 @@ const Services: React.FC<ServicesPageProps> = () => {
             </div>
           </div>
         </div>
+        <div className="services-hero-overlay"></div>
       </section>
 
       <section className="services-nav-section" data-aos="fade-up">
