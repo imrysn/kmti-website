@@ -627,13 +627,13 @@
   font-family: var(--font-family-body);
   color: #FFFFFF;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 200;
   padding: 0.5rem 1rem;
   position: absolute;
   top: 12px;
-  left: 78%;
-  width: 40%;
+  left: 74%;
+  width: 45%;
   transform: translateX(-50%);
   z-index: 20;
 }
@@ -651,7 +651,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   overflow: visible;
 }
 
@@ -664,8 +664,60 @@
   transform-origin: center center;
 }
 
-.projects-card:hover .projects-card-image {
-  transform: scale(1.5);
+.projects-card-image:hover {
+  transform: scale(2);
+}
+
+/* ============================================
+   PROJECTS CARD TOOLTIP
+   Cursor-following tooltip that appears on hover
+   ============================================ */
+
+.projects-card-tooltip {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-family: var(--font-family-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  animation: tooltipFadeIn 0.2s ease forwards;
+  transform: translate(0, 0);
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(0, -0.5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.projects-card-tooltip.fading-out {
+  animation: tooltipFadeOut 0.10s ease forwards;
+}
+
+@keyframes tooltipFadeOut {
+  from {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(0, -5px);
+  }
 }
 
 /* ============================================
@@ -730,6 +782,7 @@
   margin-right: 0;
   text-align: center;
   width: 100%;
+  cursor: pointer;
 }
 
 /* Projects card link hover state */
