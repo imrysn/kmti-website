@@ -348,10 +348,10 @@
 .service-card::before {
   content: '';
   position: absolute;
-  top: -90px;
+  top: -105px;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
+  width: 180px;
   height: 180px;
   background: linear-gradient(to bottom, rgb(17, 30, 78), rgb(18, 35, 71) 100%);
   border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
@@ -382,7 +382,7 @@
    ============================================ */
 
 .service-card-icon-image {
-  width: 95px;
+  width: 85px;
   height: auto;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(58%) sepia(95%) saturate(2878%) hue-rotate(195deg) brightness(101%) contrast(101%);
@@ -397,11 +397,11 @@
 .service-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   font-weight: 50;
-  margin-bottom: 2rem;
-  margin-top: 5REM;
+  margin-bottom: 1rem;
+  margin-top: 3.5rem;
   text-align: center;
 }
 
@@ -412,9 +412,9 @@
 .service-card-subtitle {
   font-family: var(--font-family-body);
   color: #99A1AF;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.5;
-  margin-bottom: 0rem;
+  margin-bottom: 1rem;
   margin-top: 0;
   text-align: center;
 }
@@ -994,7 +994,7 @@
   text-align: center;
   position: relative;
   flex: 1;
-  min-width: 160px;
+  min-width: 100px;
   height: auto;
   overflow: hidden;
   box-shadow: 0 0px 15px rgba(81, 162, 255, 0.5);
@@ -1010,7 +1010,7 @@
   margin-right: auto;
   top: -2rem;
   flex: none;
-  width: 100%;
+  width: 20%;
   min-width: auto;
   max-width: 100%;
   z-index: 2;
@@ -1219,6 +1219,7 @@
    ============================================ */
 
 @media (max-width: 768px) {
+
   /* WHY CHOOSE CARD */
   .why-choose-card {
     padding: 0.75rem;
@@ -1521,6 +1522,7 @@
 }
 
 @media (max-width: 480px) {
+
   /* SERVICE CARD */
   .service-card {
     padding: 1rem 0.5rem 1rem 1rem;
@@ -1558,6 +1560,7 @@
 }
 
 @media (max-width: 375px) {
+
   /* SERVICE CARD */
   .service-card {
     padding: 0.75rem 0.25rem 0.75rem 0.75rem;

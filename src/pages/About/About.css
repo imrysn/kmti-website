@@ -183,7 +183,7 @@
 }
 
 .about-management-team-section {
-  padding: 4rem 0 6rem 0;
+  padding: 5rem 0 6rem 0;
 }
 
 .about-management-team-container {
@@ -212,7 +212,7 @@
   align-items: stretch;
   justify-content: center;
   gap: 2rem;
-  padding: 0 2rem;
+  padding: 0 0rem;
   box-sizing: border-box;
   width: 100%;
   flex-wrap: nowrap;
@@ -413,6 +413,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
 
 .related-companies-grid {
   display: grid;
