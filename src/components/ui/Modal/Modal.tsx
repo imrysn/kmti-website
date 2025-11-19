@@ -36,6 +36,28 @@ import royImage from '../../../assets/management/roy.png';
 import jojoImage from '../../../assets/management/jojo.png';
 
 import { ManagementTeamCard } from '../Card/Card';
+import dedemplerImage from '../../../assets/image3D/dedempler.png';
+import bundlingImage from '../../../assets/image3D/bundling.png';
+import bindingImage from '../../../assets/image3D/binding.png';
+import horizontalLooperImage from '../../../assets/image3D/horizontal-looper.png';
+import formingImage from '../../../assets/image3D/forming.png';
+import shearImage from '../../../assets/image3D/shear.png';
+import uncoilerImage from '../../../assets/image3D/uncoiler.png';
+import levelerImage from '../../../assets/image3D/leveler.png';
+import finishingImage from '../../../assets/image3D/finishing.png';
+import bundleSeparatorImage from '../../../assets/image3D/bundle-separator.png';
+import pipeDryingImage from '../../../assets/image3D/pipe-drying.png';
+import pipeBundlingImage from '../../../assets/image3D/pipe-bundling.png';
+import productStorageFSImage from '../../../assets/image3D/product-storage-FS.png';
+import transferTableImage from '../../../assets/image3D/transfer-table.png';
+import finishingLineImage from '../../../assets/image3D/finishingLine.png';
+import airBlowImage from '../../../assets/image3D/air-blow.png';
+import transferTableLifterImage from '../../../assets/image3D/transfer-table-lifter.png';
+import dedimplerFacerImage from '../../../assets/image3D/dedimpler&facer.png';
+import bundlingMachineImage from '../../../assets/image3D/bundling-machine.png';
+import millingCutoffImage from '../../../assets/image3D/milling.png';
+import furnaceImage from '../../../assets/image3D/furnace.png';
+
 
 interface ServiceModalProps {
   isOpen: boolean;
@@ -497,6 +519,1062 @@ export const ManagementTeamModal: React.FC<ManagementTeamModalProps> = ({ isOpen
                 </React.Fragment>
               );
             })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface ProjectModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const projectImages = [
+    {
+      image: dedemplerImage,
+      title: 'Dedimpler and Facer',
+      category: 'Mechanical > Tube',
+      description: 'Tube and pipes that require facing and or internal and external chamfering can be processed in line with the tube mill or off line.',
+      application: 'Required to rectify the end of the tube after single cut shear and where facing and or chamfering is a customer requirement.',
+      advantages: 'Dedimpling inline with the mill reduces stock holding and optimises the use of floor space, labour and capital.',
+    },
+    {
+      image: bundlingImage,
+      title: 'Bundling Machine',
+      category: 'Mechanical > Tube',
+      description: 'High speed tube and pipe bundling and strapping machines take the tube direclty from the mill and pack the tube ready for transport and safe. No need to store tube in bulk prior to packing.',
+      advantages: 'Bundling is carried out in line with the mill, no need to stock tube in bulk waiting for packing. Minimise stock holding. Professional looking bundles. Quiet method of bundling',
+    },
+    {
+      image: bindingImage,
+      title: 'Binding Machine',
+      category: 'Mechanical > Tube',
+      description: 'Binding Machine used to bind finished products ready for delivery.',
+    },
+  ];
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
+  // Reset to first image when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  if (!isOpen) return null;
+
+  const currentProject = projectImages[selectedImageIndex];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <div className="project-modal-media">
+              <div className="project-modal-main-image-container">
+                <img
+                  src={currentProject.image}
+                  alt={currentProject.title}
+                  className="project-modal-main-image"
+                  key={selectedImageIndex}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="project-modal-right">
+            <div className="project-modal-details">
+              <h2 className="project-modal-title">{currentProject.title}</h2>
+              <p className="project-modal-category">{currentProject.category}</p>
+
+              <div className="project-modal-section">
+                <h3 className="project-modal-section-title">Description:</h3>
+                <p className="project-modal-section-text">{currentProject.description}</p>
+              </div>
+
+              {currentProject.application && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Application:</h3>
+                  <p className="project-modal-section-text">{currentProject.application}</p>
+                </div>
+              )}
+
+              {currentProject.advantages && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Advantages:</h3>
+                  <p className="project-modal-section-text">{currentProject.advantages}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {projectImages.length > 1 && (
+          <div className="project-modal-thumbnails-section">
+            <div className="project-modal-thumbnails">
+              {projectImages.map((project, index) => (
+                <button
+                  key={index}
+                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                  onClick={() => handleThumbnailClick(index)}
+                  type="button"
+                  aria-label={`View ${project.title}`}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="project-modal-thumbnail-image"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+interface LooperModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const LooperModal: React.FC<LooperModalProps> = ({ isOpen, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const looperImages = [
+    {
+      image: formingImage,
+      title: 'Looper Machine',
+      category: 'Mechanical > Tube',
+      description: 'Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most efficient and cheapest method of storing strip withouth causing any surface damage.',
+      application: 'Suitable for all tube sizes and materials.',
+      advantages: 'Improved productivity, Reduced Downtime, Reduced Scrap, Reduced Strip Damage',
+    },
+    {
+      image: horizontalLooperImage,
+      title: 'Horizontal Looper Machine',
+      category: 'Mechanical > Tube',
+      description: 'Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is most efficient and cheapest method of storing strip without causing any surface damage. There are two main types; the Spiral Accumulator and the Free Loop Accumulator.',
+      application: 'Suitable for all tube sizes and materials',
+      advantages: 'Improved productivity, Reduced Downtime, Reduced Scrap, Reduced Strip Damage.',
+    },
+  ];
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
+  // Reset to first image when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  if (!isOpen) return null;
+
+  const currentLooper = looperImages[selectedImageIndex];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <div className="project-modal-media">
+              <div className="project-modal-main-image-container">
+                <img
+                  src={currentLooper.image}
+                  alt={currentLooper.title}
+                  className="project-modal-main-image"
+                  key={selectedImageIndex}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="project-modal-right">
+            <div className="project-modal-details">
+              <h2 className="project-modal-title">{currentLooper.title}</h2>
+              <p className="project-modal-category">{currentLooper.category}</p>
+
+              <div className="project-modal-section">
+                <h3 className="project-modal-section-title">Description:</h3>
+                <p className="project-modal-section-text">{currentLooper.description}</p>
+              </div>
+
+              {currentLooper.application && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Application:</h3>
+                  <p className="project-modal-section-text">{currentLooper.application}</p>
+                </div>
+              )}
+
+              {currentLooper.advantages && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Advantages:</h3>
+                  <p className="project-modal-section-text">{currentLooper.advantages}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {looperImages.length > 1 && (
+          <div className="project-modal-thumbnails-section">
+            <div className="project-modal-thumbnails">
+              {looperImages.map((looper, index) => (
+                <button
+                  key={index}
+                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                  onClick={() => handleThumbnailClick(index)}
+                  type="button"
+                  aria-label={`View ${looper.title}`}
+                >
+                  <img
+                    src={looper.image}
+                    alt={looper.title}
+                    className="project-modal-thumbnail-image"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+interface FormingModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const FormingModal: React.FC<FormingModalProps> = ({ isOpen, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const formingImages: Array<{
+    image: string;
+    title: string;
+    category: string;
+    description: string;
+    application?: string;
+    advantages?: string;
+  }> = [
+      {
+        image: formingImage,
+        title: 'Forming and Sizing Machine',
+        category: 'Mechanical > Tube',
+        description: 'After metal strips has been welded and combined it will undergo forming to produce the needed shape of steel.',
+      },
+    ];
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
+  // Reset to first image when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  if (!isOpen) return null;
+
+  const currentForming = formingImages[selectedImageIndex];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <div className="project-modal-media">
+              <div className="project-modal-main-image-container">
+                <img
+                  src={currentForming.image}
+                  alt={currentForming.title}
+                  className="project-modal-main-image"
+                  key={selectedImageIndex}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="project-modal-right">
+            <div className="project-modal-details">
+              <h2 className="project-modal-title">{currentForming.title}</h2>
+              <p className="project-modal-category">{currentForming.category}</p>
+
+              <div className="project-modal-section">
+                <h3 className="project-modal-section-title">Description:</h3>
+                <p className="project-modal-section-text">{currentForming.description}</p>
+              </div>
+
+              {currentForming.application && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Application:</h3>
+                  <p className="project-modal-section-text">{currentForming.application}</p>
+                </div>
+              )}
+
+              {currentForming.advantages && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Advantages:</h3>
+                  <p className="project-modal-section-text">{currentForming.advantages}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {formingImages.length > 1 && (
+          <div className="project-modal-thumbnails-section">
+            <div className="project-modal-thumbnails">
+              {formingImages.map((forming, index) => (
+                <button
+                  key={index}
+                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                  onClick={() => handleThumbnailClick(index)}
+                  type="button"
+                  aria-label={`View ${forming.title}`}
+                >
+                  <img
+                    src={forming.image}
+                    alt={forming.title}
+                    className="project-modal-thumbnail-image"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+interface StripEntryModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const StripEntryModal: React.FC<StripEntryModalProps> = ({ isOpen, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const stripEntryImages: Array<{
+    image: string;
+    title: string;
+    category: string;
+    description: string;
+    application?: string;
+    advantages?: string;
+    specification?: string;
+  }> = [
+      {
+        image: shearImage,
+        title: 'Shear Welder Machine',
+        category: 'Mechanical > Tube',
+        description: 'Shear and end welders crop the tail and nose of each coil. The two coil ends are then aligned and the joint welded using TIG, MIG or MAG depending on the materials and thickness being welded. Single and twin torch vesions are available.',
+        application: 'Shear and end welders are available for all tube and pipe mills. From small Aluminum mills to large API Mills.',
+        advantages: 'High weld quality, very consistent cycle times resulting in improved productivity and reduced scrap.',
+        specification: 'A range of Shear end welders can be supplied, from small semi conductor systems to large fully automatic systems.',
+      },
+      {
+        image: uncoilerImage,
+        title: 'Uncoiler Machine',
+        category: 'Mechanical > Tube',
+        description: 'The uncoiler safely holds the coil of strip and enables the strip to be unstrapped and presented to the strap peeling and  leveling equipment. For high productivity double sided uncoilers are used. However, where there is available storage and time sigle sided uncoilers can be used.',
+        application: 'Vertical and horizontal uncoilers are avaiable for most applications i.e ERW, TIG and Lase using steel, steel alloy, stainless steel. copper, copper alloy, and Aluminum. Uncoilers for other applications and materials available on request.',
+        advantages: 'Al the heavy material handling is safely carried out by machine. Less material damage - faster with consistent and reliable cycle times.',
+      },
+      {
+        image: levelerImage,
+        title: 'Leveler Machine',
+        category: 'Mechanical > Tube',
+        description: 'Leveling machines are used to level metal strips in throughtput, e.g. in a cut-to-length line or to level single metal sheets of parts',
+      },
+    ];
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
+  // Reset to first image when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  if (!isOpen) return null;
+
+  const currentStripEntry = stripEntryImages[selectedImageIndex];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <div className="project-modal-media">
+              <div className="project-modal-main-image-container">
+                <img
+                  src={currentStripEntry.image}
+                  alt={currentStripEntry.title}
+                  className="project-modal-main-image"
+                  key={selectedImageIndex}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="project-modal-right">
+            <div className="project-modal-details">
+              <h2 className="project-modal-title">{currentStripEntry.title}</h2>
+              <p className="project-modal-category">{currentStripEntry.category}</p>
+
+              <div className="project-modal-section">
+                <h3 className="project-modal-section-title">Description:</h3>
+                <p className="project-modal-section-text">{currentStripEntry.description}</p>
+              </div>
+
+              {currentStripEntry.application && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Application:</h3>
+                  <p className="project-modal-section-text">{currentStripEntry.application}</p>
+                </div>
+              )}
+
+              {currentStripEntry.advantages && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Advantages:</h3>
+                  <p className="project-modal-section-text">{currentStripEntry.advantages}</p>
+                </div>
+              )}
+
+              {currentStripEntry.specification && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Specification:</h3>
+                  <p className="project-modal-section-text">{currentStripEntry.specification}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {stripEntryImages.length > 1 && (
+          <div className="project-modal-thumbnails-section">
+            <div className="project-modal-thumbnails">
+              {stripEntryImages.map((stripEntry, index) => (
+                <button
+                  key={index}
+                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                  onClick={() => handleThumbnailClick(index)}
+                  type="button"
+                  aria-label={`View ${stripEntry.title}`}
+                >
+                  <img
+                    src={stripEntry.image}
+                    alt={stripEntry.title}
+                    className="project-modal-thumbnail-image"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+interface TransferTableLineModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const TransferTableLineModal: React.FC<TransferTableLineModalProps> = ({ isOpen, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const transferTableLineImages: Array<{
+    image: string;
+    title: string;
+    category: string;
+    description?: string;
+  }> = [
+      {
+        image: finishingImage,
+        title: 'Transfer Table',
+        category: 'FINISHING TABLE  ',
+        description: 'Extension of transfer table in the finishing line.',
+      },
+      {
+        image: bundleSeparatorImage,
+        title: 'Bundle Separator',
+        category: 'MECHANICAL > TUBE (Sub Machine)',
+      },
+      {
+        image: pipeDryingImage,
+        title: 'Pipe Drying Section',
+        category: 'MECHANICAL > TUBE (Sub Machine)',
+      },
+      {
+        image: pipeBundlingImage,
+        title: 'Transfer Table',
+        category: 'MECHANICAL > TUBE (Sub Machine)',
+      },
+      {
+        image: productStorageFSImage,
+        title: 'Pipe Bundling',
+        category: 'MECHANICAL > TUBE (Sub Machine)',
+      },
+      {
+        image: transferTableImage,
+        title: 'Product Storage',
+        category: 'MECHANICAL > TUBE (Sub Machine)',
+      },
+    ];
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
+  // Reset to first image when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  if (!isOpen) return null;
+
+  const currentImage = transferTableLineImages[selectedImageIndex];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <div className="project-modal-media">
+              <div className="project-modal-main-image-container">
+                <img
+                  src={currentImage.image}
+                  alt={currentImage.title}
+                  className="project-modal-main-image"
+                  key={selectedImageIndex}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="project-modal-right">
+            <div className="project-modal-details">
+              <h2 className="project-modal-title">{currentImage.title}</h2>
+              <p className="project-modal-category">{currentImage.category}</p>
+
+              {currentImage.description && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Description:</h3>
+                  <p className="project-modal-section-text">{currentImage.description}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {transferTableLineImages.length > 1 && (
+          <div className="project-modal-thumbnails-section">
+            <div className="project-modal-thumbnails">
+              {transferTableLineImages.map((image, index) => (
+                <button
+                  key={index}
+                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                  onClick={() => handleThumbnailClick(index)}
+                  type="button"
+                  aria-label={`View ${image.title}`}
+                >
+                  <img
+                    src={image.image}
+                    alt={image.title}
+                    className="project-modal-thumbnail-image"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+interface FinishingLineModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const FinishingLineModal: React.FC<FinishingLineModalProps> = ({ isOpen, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const finishingLineImages: Array<{
+    image: string;
+    title: string;
+    category: string;
+    description?: string;
+  }> = [
+      {
+        image: finishingLineImage,
+        title: 'Finishing Line',
+        category: 'RUN OUT, TRANSPORT TABLE, DEDIMPLER AND FACER, AND BUNDLING MACHINE',
+        description: 'After pipes were cut into standard lengths it will be passed to the finishing line to be arranged and bundled ready for distribution.',
+      },
+      {
+        image: airBlowImage,
+        title: 'Air Blow',
+        category: 'MECHANICAL > TUBE (SUB MACHINE)',
+      },
+      {
+        image: transferTableLifterImage,
+        title: 'Transfer Table (Lifter)',
+        category: 'MECHANICAL > TUBE (SUB MACHINE)',
+      },
+      {
+        image: dedimplerFacerImage,
+        title: 'Dedimpler & Facer',
+        category: 'MECHANICAL > TUBE (SUB MACHINE)',
+      },
+      {
+        image: bundlingMachineImage,
+        title: 'Bundling Machine',
+        category: 'MECHANICAL > TUBE (SUB MACHINE)',
+      },
+      {
+        image: productStorageFSImage,
+        title: 'Product Storage',
+        category: 'MECHANICAL > TUBE (SUB MACHINE)',
+      },
+    ];
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
+  // Reset to first image when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  if (!isOpen) return null;
+
+  const currentImage = finishingLineImages[selectedImageIndex];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <div className="project-modal-media">
+              <div className="project-modal-main-image-container">
+                <img
+                  src={currentImage.image}
+                  alt={currentImage.title}
+                  className="project-modal-main-image"
+                  key={selectedImageIndex}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="project-modal-right">
+            <div className="project-modal-details">
+              <h2 className="project-modal-title">{currentImage.title}</h2>
+              <p className="project-modal-category">{currentImage.category}</p>
+
+              {currentImage.description && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Description:</h3>
+                  <p className="project-modal-section-text">{currentImage.description}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {finishingLineImages.length > 1 && (
+          <div className="project-modal-thumbnails-section">
+            <div className="project-modal-thumbnails">
+              {finishingLineImages.map((image, index) => (
+                <button
+                  key={index}
+                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                  onClick={() => handleThumbnailClick(index)}
+                  type="button"
+                  aria-label={`View ${image.title}`}
+                >
+                  <img
+                    src={image.image}
+                    alt={image.title}
+                    className="project-modal-thumbnail-image"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+interface CutOffModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const CutOffModal: React.FC<CutOffModalProps> = ({ isOpen, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const cutOffImages = [
+    {
+      image: millingCutoffImage,
+      title: 'Milling Cutoff Machine',
+      category: 'CUT OFF',
+      description: 'Milling Cutoff Machine uses two milling saws to cut to length pipe and structural section tubes. The cut finishes eliminates the need for facing.',
+      application: 'Ideal for achieving clean, square cuts on tubes without secondary finishing.',
+    },
+  ];
+
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  const currentImage = cutOffImages[selectedImageIndex];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <div className="project-modal-media">
+              <div className="project-modal-main-image-container">
+                <img
+                  src={currentImage.image}
+                  alt={currentImage.title}
+                  className="project-modal-main-image"
+                  key={selectedImageIndex}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="project-modal-right">
+            <div className="project-modal-details">
+              <h2 className="project-modal-title">{currentImage.title}</h2>
+              <p className="project-modal-category">{currentImage.category}</p>
+
+              <div className="project-modal-section">
+                <h3 className="project-modal-section-title">Description:</h3>
+                <p className="project-modal-section-text">{currentImage.description}</p>
+              </div>
+
+              {currentImage.application && (
+                <div className="project-modal-section">
+                  <h3 className="project-modal-section-title">Application:</h3>
+                  <p className="project-modal-section-text">{currentImage.application}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface FurnaceModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const FurnaceModal: React.FC<FurnaceModalProps> = ({ isOpen, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const furnaceImages = [
+    {
+      image: furnaceImage,
+      title: 'Furnace',
+      category: 'FURNACE',
+      description: 'Furnace is used for melting large batches of glass, in which heat is supplied by a flame playing over the glass surface, and regenerative heating of combustion air.',
+    },
+  ];
+
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  const currentImage = furnaceImages[selectedImageIndex];
+
+  return (
+    <div className="service-modal-overlay" onClick={handleClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="service-modal-close"
+          onClick={handleClose}
+          type="button"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <div className="project-modal-media">
+              <div className="project-modal-main-image-container">
+                <img
+                  src={currentImage.image}
+                  alt={currentImage.title}
+                  className="project-modal-main-image"
+                  key={selectedImageIndex}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="project-modal-right">
+            <div className="project-modal-details">
+              <h2 className="project-modal-title">{currentImage.title}</h2>
+              <p className="project-modal-category">{currentImage.category}</p>
+
+              <div className="project-modal-section">
+                <h3 className="project-modal-section-title">Description:</h3>
+                <p className="project-modal-section-text">{currentImage.description}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
