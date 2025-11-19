@@ -10,6 +10,7 @@ import Projects from './pages/Projects';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
+import { initTextSelectionPrevention } from './utils/preventTextSelection';
 
 function App() {
   useEffect(() => {
@@ -17,6 +18,10 @@ function App() {
       duration: 1000,
       once: true,
     });
+
+    // Initialize text selection prevention
+    const cleanup = initTextSelectionPrevention();
+    return cleanup;
   }, []);
 
   return (
