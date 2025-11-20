@@ -220,11 +220,11 @@
     display: none;
   }
 
-  .navbar-burger {
-    display: block;
+  .navbar-mobile-links .navbar-link{
+    font-size: 20px;
   }
 
-  .navbar-mobile-overlay {
+  .navbar-burger {
     display: block;
   }
 }
