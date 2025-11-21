@@ -80,7 +80,7 @@ body.services-page-active::-webkit-scrollbar {
 
 .services-title {
   font-size: 4rem;
-  font-weight: 100;
+  font-weight: 500;
   color: white;
   margin-bottom: 0.5rem;
   font-family: var(--font-family-heading);
@@ -232,7 +232,7 @@ body.services-page-active::-webkit-scrollbar {
 
 .services-cta-title {
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 2.5rem;
   color: white;
   font-family: var(--font-family-body);
@@ -379,7 +379,7 @@ body.services-page-active::-webkit-scrollbar {
 .service-section-title {
   font-family: var(--font-family-heading);
   font-size: 2.5rem;
-  font-weight: 100;
+  font-weight: 500;
   color: white;
   margin: 0;
   text-align: left;

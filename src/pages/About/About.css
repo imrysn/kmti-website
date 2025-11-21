@@ -47,7 +47,7 @@
 
 .about-title {
   font-size: 4rem;
-  font-weight: 100;
+  font-weight: 500;
   color: white;
   margin-bottom: 0.5rem;
   font-family: var(--font-family-heading);
@@ -523,6 +523,8 @@
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 /* ============================================
@@ -589,11 +591,35 @@
 
   .about-management-team-title {
     font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-management-team-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .about-management-team-grid {
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Keep the same horizontal layout, just scale down */
+  .management-team-card {
+    min-width: 80px;
+    flex: 1;
+  }
+
+  .management-team-card-placeholder {
+    flex: 0.8 0 60px;
+    min-width: 60px;
+  }
+
+  .management-team-card-large {
+    width: 18%;
+    min-width: 120px;
+    max-width: 150px;
+    top: -1.5rem;
   }
 
   .our-people-container {
@@ -649,12 +675,6 @@
     margin-left: 0;
     margin-right: 0;
   }
-
-  /* Adjust management team grid padding */
-  .about-management-team-grid {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -694,6 +714,28 @@
 
   .about-management-team-title {
     font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-management-team-grid {
+    gap: 0.4rem;
+    padding: 0 0.25rem;
+  }
+
+  .management-team-card {
+    min-width: 70px;
+  }
+
+  .management-team-card-placeholder {
+    flex: 0.8 0 50px;
+    min-width: 50px;
+  }
+
+  .management-team-card-large {
+    width: 18%;
+    min-width: 100px;
+    max-width: 130px;
+    top: -1.2rem;
   }
 
   .our-people-title {
@@ -780,6 +822,28 @@
   .related-companies-title {
     font-size: 1.5rem;
     letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .about-management-team-grid {
+    gap: 0.3rem;
+    padding: 0 0.15rem;
+  }
+
+  .management-team-card {
+    min-width: 60px;
+  }
+
+  .management-team-card-placeholder {
+    flex: 0.8 0 40px;
+    min-width: 40px;
+  }
+
+  .management-team-card-large {
+    width: 18%;
+    min-width: 85px;
+    max-width: 110px;
+    top: -1rem;
   }
 
   .our-people-subtitle {
