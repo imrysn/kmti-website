@@ -21,25 +21,21 @@ const Navbar: React.FC = () => {
 
   /* ----------------------------------
       Scroll-to-top behavior
-      Only scroll to top if the page is scrolled near the bottom
+      Scroll to top when clicking the same page link
   ---------------------------------- */
   const handleNavClick = (
     path: string,
     e: React.MouseEvent<HTMLAnchorElement>
   ) => {
     const currentPathname = location.pathname;
-    const isNearBottom = window.scrollY + window.innerHeight >=
-                         document.documentElement.scrollHeight - 100;
-    if (path === currentPathname && isNearBottom) {
+    if (path === currentPathname) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const isNearBottom = window.scrollY + window.innerHeight >=
-                         document.documentElement.scrollHeight - 100;
-    if (location.pathname === '/' && isNearBottom) {
+    if (location.pathname === '/') {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

@@ -45,6 +45,13 @@ interface ServiceSectionProps {
 
 const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ service, onServiceChange }, ref) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageScale, setImageScale] = useState(1);
+  const [panX, setPanX] = useState(0);
+  const [panY, setPanY] = useState(0);
+  const [isPanning, setIsPanning] = useState(false);
+  const [lastMouseX, setLastMouseX] = useState(0);
+  const [lastMouseY, setLastMouseY] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
   const inspectionImages = [
     inspectionImage1,
     inspectionImage2,
@@ -83,6 +90,23 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
       setCurrentImageIndex(0);
     }
   }, [service.title]);
+
+  useEffect(() => {
+    if (service.title === '2D Detailing') {
+      setImageScale(1);
+      setPanX(0);
+      setPanY(0);
+    }
+  }, [service.title]);
+
+  useEffect(() => {
+    if (service.title !== '2D Detailing' || !isHovering) return;
+
+    const handler = (e: Event) => e.preventDefault();
+    window.addEventListener('wheel', handler, { passive: false });
+
+    return () => window.removeEventListener('wheel', handler);
+  }, [service.title, isHovering]);
 
   const productionFlowSteps = [
     'INQUIRY WITH ORDER SHEET',
@@ -189,8 +213,43 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
                     </div>
                     {section.hasImages && (
                       <div className="service-section-images">
-                        <div className="service-section-image-container">
-                          <img src={modalImage2D} alt="2D Detail" className="service-section-image service-section-image-2d" />
+                        <div className="service-section-image-container" onWheel={(e) => e.preventDefault()}>
+                          <img
+                            src={modalImage2D}
+                            alt="2D Detail"
+                            className="service-section-image service-section-image-2d"
+                            onMouseEnter={() => setIsHovering(true)}
+                            onMouseLeave={() => setIsHovering(false)}
+                            onWheel={(e) => {
+                              e.preventDefault();
+                              setImageScale(prev => Math.max(0.5, Math.min(3, prev + (e.deltaY > 0 ? -0.1 : 0.1))));
+                            }}
+                            onMouseDown={(e) => {
+                              if (e.button === 0 && imageScale > 1) {
+                                e.preventDefault();
+                                setIsPanning(true);
+                                setLastMouseX(e.clientX);
+                                setLastMouseY(e.clientY);
+                              }
+                            }}
+                            onMouseMove={(e) => {
+                              if (isPanning) {
+                                e.preventDefault();
+                                const deltaX = e.clientX - lastMouseX;
+                                const deltaY = e.clientY - lastMouseY;
+                                setPanX(prev => prev + deltaX);
+                                setPanY(prev => prev + deltaY);
+                                setLastMouseX(e.clientX);
+                                setLastMouseY(e.clientY);
+                              }
+                            }}
+                            onMouseUp={() => setIsPanning(false)}
+                            style={{
+                              transform: `translate(${panX}px, ${panY}px) scale(${imageScale})`,
+                              cursor: imageScale > 1 ? (isPanning ? 'grabbing' : 'grab') : 'zoom-in',
+                              transition: isPanning ? 'none' : 'transform 0.1s ease',
+                            }}
+                          />
                         </div>
                       </div>
                     )}
