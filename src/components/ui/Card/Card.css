@@ -816,6 +816,20 @@
 
 @media (max-width: 768px) {
   .projects-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .projects-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .projects-card-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
@@ -877,6 +891,41 @@
 
   .projects-card-link {
     font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .projects-card {
+    padding: 0.75rem;
+    padding-top: 1.25rem;
+  }
+
+  .projects-card-image-container {
+    height: 140px;
+    min-height: 140px;
+    max-height: 140px;
+    margin-top: 0.75rem;
+  }
+
+  .projects-card-image {
+    max-height: 140px;
+  }
+
+  .projects-card-title {
+    font-size: 0.9rem;
+  }
+
+  .projects-card-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .projects-card-link {
+    font-size: 0.8rem;
+  }
+
+  .projects-card-label {
+    font-size: 0.7rem;
+    width: 50%;
   }
 }
 
