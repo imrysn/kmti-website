@@ -24,7 +24,7 @@ body.services-page-active::-webkit-scrollbar {
   height: 100vh;
   min-height: 100vh;
   background-image: var(--services-bg-image);
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
