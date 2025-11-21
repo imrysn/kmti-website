@@ -1,6 +1,7 @@
 .services-page {
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 html.services-page-active,
@@ -310,25 +311,29 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 @media (max-width: 480px) {
-  .services-title {
-    font-size: 2rem;
+  .service-section {
+    padding: 2rem 2rem;
   }
 
-  .services-subtitle {
-    font-size: 0.9rem;
+  .service-section-description {
+    text-align: justify;
   }
 
-  .services-nav-tabs-content {
-    gap: 5rem;
-    font-size: 0.7rem;
+  .service-section-title {
+    font-size: 1.75rem;
+  }
+
+  .service-section-flow-title {
+    font-size: 1rem;
+    margin-top: 1rem;
   }
 
   .services-page .services-grid {
-    gap: 1.5rem;
-  }
-
-  .services-cta-title {
-    font-size: 1.3rem;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    gap: 0rem;
   }
 }
 
@@ -355,7 +360,7 @@ body.services-page-active::-webkit-scrollbar {
 
 .service-section-body {
   display: grid;
-  grid-template-columns: 1fr 0.7fr;
+  grid-template-columns: 1fr 1fr;
   gap: 3rem;
   padding-bottom: 1rem;
 }
@@ -482,17 +487,16 @@ body.services-page-active::-webkit-scrollbar {
   flex-direction: column;
   gap: 0;
   align-items: center;
-  margin-left: 20%;
 }
 
 .service-section-carousel-container {
   position: relative;
-  width: 60%;
+  width: 100%;
   min-height: 450px;
   padding: 2rem;
   padding-bottom: 4rem;
   background-color: rgba(15, 23, 43, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.0);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -668,7 +672,7 @@ body.services-page-active::-webkit-scrollbar {
 
 @media (max-width: 480px) {
   .service-section {
-    padding: 2rem 0;
+    padding: 2rem 2rem;
   }
 
   .service-section-title {
@@ -679,4 +683,13 @@ body.services-page-active::-webkit-scrollbar {
     font-size: 1rem;
     margin-top: 1rem;
   }
+
+  .services-page .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    width: 96%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    gap: .7rem;
+  }
+
 }

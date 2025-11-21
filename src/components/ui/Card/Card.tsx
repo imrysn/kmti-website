@@ -421,7 +421,6 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
   skills = [],
   requirements = [],
   preferredCourses = [],
-  onApply,
   className = '',
 }) => {
   return (
@@ -466,11 +465,10 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
           </div>
         </div>
       )}
+
       <div className="apply-card-button-wrapper">
         <Button
           variant="style3"
-          onClick={onApply || (() => window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/jobs/', '_blank'))}
-          width="100%"
         >
           APPLY NOW
         </Button>
