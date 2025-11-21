@@ -421,6 +421,7 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
   skills = [],
   requirements = [],
   preferredCourses = [],
+  onApply,
   className = '',
 }) => {
   return (
@@ -469,6 +470,7 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
       <div className="apply-card-button-wrapper">
         <Button
           variant="style3"
+          onClick={onApply || (() => {})}
         >
           APPLY NOW
         </Button>
