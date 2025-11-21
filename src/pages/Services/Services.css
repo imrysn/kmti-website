@@ -1,7 +1,6 @@
 .services-page {
   width: 100%;
   position: relative;
-  overflow: hidden;
 }
 
 html.services-page-active,

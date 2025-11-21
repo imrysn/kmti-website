@@ -130,3 +130,33 @@
     font-size: 0.9rem;
   }
 }
+
+@media (max-width: 375px) {
+  .projects-hero {
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .projects-hero-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .projects-title {
+    font-size: 1.75rem;
+  }
+
+  .projects-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .projects-grid-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .projects-grid-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
