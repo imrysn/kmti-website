@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
   const handleFooterLinkClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     const currentPathname = location.pathname;
     const targetPath = path.split('?')[0];
-    
+
     if (targetPath === currentPathname) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
