@@ -167,11 +167,6 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
           </div>
         </div>
       )}
-      <div className="service-pagination">
-        <span className="service-pagination-dot"></span>
-        <span className="service-pagination-dot active"></span>
-        <span className="service-pagination-dot"></span>
-      </div>
     </div>
   );
 };
