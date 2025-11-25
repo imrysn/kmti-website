@@ -25,10 +25,8 @@ const ChatbotButton: React.FC = () => {
 
   const handleToggle = () => {
     if (!isChatOpen) {
-      // Reset chatbot state when opening via chatbot-button
-      // Use the same reset mechanism as "TRY CHATBOT NOW" button
-      // Dispatch reset event first to ensure proper state reset
-      window.dispatchEvent(new CustomEvent('reset-chatbot'));
+      // Open chatbot without resetting - preserve previous state
+      // Only "TRY CHATBOT NOW" button triggers reset via reset-chatbot event
       setIsChatOpen(true);
     }
   };
