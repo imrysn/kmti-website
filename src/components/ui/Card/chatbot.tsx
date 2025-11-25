@@ -13,6 +13,8 @@ interface ChatbotCardProps {
   onFacebookClick?: () => void;
   onClose?: () => void;
   className?: string;
+  resetTrigger?: number;
+  isOpen?: boolean;
 }
 
 type MessageType = 'bot' | 'user' | 'typing';
@@ -35,8 +37,6 @@ interface ButtonOption {
   action: string;
 }
 
-
-
 interface ActionButton {
   id: string;
   text: string;
@@ -52,15 +52,52 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
   onFacebookClick,
   onClose,
   className = '',
+  resetTrigger,
+  isOpen = false,
 }) => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
-  const [isInitializing, setIsInitializing] = useState(true);
+  const [isInitializing, setIsInitializing] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const initializationRef = useRef(false);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
+  const hasInitializedRef = useRef(false);
+
+  // Reset chatbot when resetTrigger changes
+  useEffect(() => {
+    if (resetTrigger !== undefined && resetTrigger > 0) {
+      // Clear all timeouts first to prevent any ongoing animations
+      timeoutRefs.current.forEach((timeout) => clearTimeout(timeout));
+      timeoutRefs.current = [];
+
+      // Reset initialization ref first to allow re-initialization
+      initializationRef.current = false;
+      hasInitializedRef.current = false;
+
+      // Clear all messages including any leftover typing indicators
+      setMessages([]);
+      setInputValue('');
+
+      // Set isInitializing to true after ensuring messages are cleared
+      // Use double requestAnimationFrame to ensure state updates are fully processed
+      // This prevents race conditions where initialization might start before messages are cleared
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsInitializing(true);
+        });
+      });
+    }
+  }, [resetTrigger]);
+
+  // Initialize when chatbot opens for the first time
+  useEffect(() => {
+    if (isOpen && !hasInitializedRef.current && messages.length === 0 && !initializationRef.current) {
+      setIsInitializing(true);
+      hasInitializedRef.current = true;
+    }
+  }, [isOpen, messages.length]);
 
   // Auto-scroll to bottom when new messages are added
   useEffect(() => {
@@ -73,7 +110,10 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
     // 1. isInitializing is true (first mount or explicit reset)
     // 2. initializationRef is false (hasn't been initialized yet)
     // 3. messages array is empty (fresh page load/refresh)
-    if (!isInitializing || initializationRef.current || messages.length > 0) return;
+    // 4. chatbot is open
+    // Additional check: ensure no typing indicators are present
+    const hasTypingIndicators = messages.some((msg) => msg.type === 'typing');
+    if (!isInitializing || initializationRef.current || messages.length > 0 || hasTypingIndicators || !isOpen) return;
     initializationRef.current = true;
 
     const typingDelay = 1000; // Delay for typing indicator
@@ -228,27 +268,38 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       });
     };
 
-    // Step 1: Show greeting (no typing indicator)
-    showGreeting();
-
-    // Step 2: Show typing indicator, then LINE message
+    // Step 1: Show typing indicator first
+    const typingId1 = showTypingIndicator('greeting');
     const timeout1 = setTimeout(() => {
-      const typingId2 = showTypingIndicator('line');
-      const timeout2 = setTimeout(() => {
-        removeTypingIndicator(typingId2);
-        showLineMessage();
+      removeTypingIndicator(typingId1);
+      // Step 2: Show greeting with all buttons after typing stops
+      showGreeting();
 
-        // Step 3: Show typing indicator, then Facebook message
-        const typingId3 = showTypingIndicator('facebook');
+      // Step 3: Show typing indicator again
+      const timeout2 = setTimeout(() => {
+        const typingId2 = showTypingIndicator('line');
         const timeout3 = setTimeout(() => {
-          removeTypingIndicator(typingId3);
-          showFacebookMessage();
-          setIsInitializing(false);
+          removeTypingIndicator(typingId2);
+          // Step 4: Show LINE message after typing stops
+          showLineMessage();
+
+          // Step 5: Show typing indicator again
+          const timeout4 = setTimeout(() => {
+            const typingId3 = showTypingIndicator('facebook');
+            const timeout5 = setTimeout(() => {
+              removeTypingIndicator(typingId3);
+              // Step 6: Show Facebook message after typing stops
+              showFacebookMessage();
+              setIsInitializing(false);
+            }, typingDelay);
+            timeoutRefs.current.push(timeout5);
+          }, delays[1] + typingDelay);
+          timeoutRefs.current.push(timeout4);
         }, typingDelay);
         timeoutRefs.current.push(timeout3);
-      }, delays[1] + typingDelay);
+      }, delays[0] + typingDelay);
       timeoutRefs.current.push(timeout2);
-    }, delays[0]);
+    }, typingDelay);
     timeoutRefs.current.push(timeout1);
 
     return () => {
@@ -258,7 +309,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       initializationRef.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isInitializing]);
+  }, [isInitializing, isOpen]);
 
   const handleButtonClick = (action: string, buttonText: string) => {
     // Handle special navigation actions
@@ -482,7 +533,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: "I'm not sure how to help with that. Would you like to return to the main menu?",
             actionButtons: [
-              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+              { id: 'back-main', text: '🔙Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
             ],
           },
           timestamp: new Date(),
@@ -573,7 +624,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
               { id: '2d-detailing', text: '2D Detailing', action: '2d-detailing' },
               { id: 'parts-inspection', text: 'Parts Inspection', action: 'parts-inspection' },
               { id: 'machine-assembly', text: 'Machine Assembly', action: 'machine-assembly' },
-              { id: 'back-main', text: 'Back to Main Menu', action: 'main-menu' },
+              { id: 'back-main', text: '🔙Back to Main Menu', action: 'main-menu' },
             ],
           },
           timestamp: new Date(),
@@ -584,7 +635,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'Our 3D Modeling service creates detailed models for high-precision engineering and visualization, ensuring accurate fabrication and assembly. \n\nWant to learn more about our projects?',
+            text: 'Our 3D Modeling service creates detailed models for high-precision engineering and visualization, ensuring accurate fabrication and assembly. \n\n⏩Want to learn more about our projects?',
             buttons: [
               { id: 'learn-more-3d', text: 'Learn More', action: 'learn-more-3d' },
               { id: 'back-services', text: 'Back to Services', action: 'services' },
@@ -612,7 +663,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'WE inspect fabricated parts based on our design to ensure quality before assembly. Each part undergoes a series of tests usigng hightech devices to verify accuracy and precicion.',
+            text: 'We inspect fabricated parts based on our design to ensure quality before assembly. Each part undergoes a series of tests usigng hightech devices to verify accuracy and precicion.',
             buttons: [
               { id: 'learn-more-inspection', text: 'Learn More', action: 'learn-more-inspection' },
               { id: 'back-services', text: 'Back to Services', action: 'services' },
@@ -642,13 +693,13 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'Interested in joining KMTI? We\'re always looking for skilled and passionate individuals. What would you like to know?',
             buttons: [
-              { id: 'view-positions', text: 'View Open Positions', action: 'view-positions' },
-              { id: 'how-to-apply', text: 'How to Apply', action: 'how-to-apply' },
-              { id: 'hiring-process', text: 'Hiring Process', action: 'hiring-process' },
-              { id: 'career-opportunities', text: 'Career Opportunities', action: 'career-opportunities' },
-              { id: 'working-schedule', text: 'Working Schedule', action: 'working-schedule' },
-              { id: 'contact-hr', text: 'Contact HR', action: 'contact-hr' },
-              { id: 'back-main', text: 'Back to Main Menu', action: 'main-menu' },
+              { id: 'view-positions', text: '🔎View Open Positions', action: 'view-positions' },
+              { id: 'how-to-apply', text: '📔How to Apply', action: 'how-to-apply' },
+              { id: 'hiring-process', text: '⏲️Hiring Process', action: 'hiring-process' },
+              { id: 'career-opportunities', text: '🚀Career Opportunities', action: 'career-opportunities' },
+              { id: 'working-schedule', text: '⏰Working Schedule', action: 'working-schedule' },
+              { id: 'contact-hr', text: '📞Contact HR', action: 'contact-hr' },
+              { id: 'back-main', text: '🔙Back to Main Menu', action: 'main-menu' },
             ],
           },
           timestamp: new Date(),
@@ -700,7 +751,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'Current openings include:\n•Engineering Staff / CAD Operator\n•Accounting / Admin Staff\n📍 Located in Dasmarinas, Cavite',
+            text: 'Current openings include:\n• Engineering Staff / CAD Operator / OJT\n• Accounting / Admin Staff\n📍 Located in Dasmarinas, Cavite',
             actionButtons: [
               { id: 'apply-now', text: 'Apply Now', action: 'apply', url: 'https://www.facebook.com/kmti.com.ph/' },
             ],
@@ -798,7 +849,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
             text: 'KMTI (Kusakabe & Maeno Tech., Inc.) is a leading engineering services company providing innovative solutions in 3D modeling, 2D detailing, parts inspection, and machine assembly.',
             buttons: [
               { id: 'learn-more-about', text: 'Learn More', action: 'learn-more-about' },
-              { id: 'back-main', text: 'Back to Main Menu', action: 'main-menu' },
+              { id: 'back-main', text: '🔙Back to Main Menu', action: 'main-menu' },
             ],
           },
           timestamp: new Date(),
@@ -811,7 +862,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'KMTI is committed to delivering high-quality engineering solutions with precision and excellence. Our team of skilled professionals works closely with clients to ensure their projects meet the highest standards.',
             buttons: [
-              { id: 'back-main', text: 'Back to Main Menu', action: 'main-menu' },
+              { id: 'back-main', text: '🔙Back to Main Menu', action: 'main-menu' },
             ],
           },
           timestamp: new Date(),
@@ -900,7 +951,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'I\'m not sure how to help with that. Would you like to return to the main menu?',
             buttons: [
-              { id: 'back-main', text: 'Back to Main Menu', action: 'main-menu' },
+              { id: 'back-main', text: '🔙Back to Main Menu', action: 'main-menu' },
             ],
           },
           timestamp: new Date(),
