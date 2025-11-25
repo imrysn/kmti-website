@@ -16,12 +16,8 @@
   background-repeat: repeat;
   padding-top: 2rem;
   padding-bottom: 6rem;
-test
   /* Subtle, continuous background zoom */
-  animation: heroBackgroundZoom 20s linear infinite;
-
   animation: heroBackgroundZoom 40s linear infinite;
-main
 }
 
 @keyframes heroBackgroundZoom {
