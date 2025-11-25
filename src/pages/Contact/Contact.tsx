@@ -10,7 +10,7 @@ import chatIcon from '../../assets/icons/chat-icon.png';
 import circleIcon from '../../assets/icons/circle-icon.png';
 import innovationIcon from '../../assets/icons/innovation-icon.png';
 import { ContactOptionCard } from '../../components/ui/Card/Card';
-import { ChatbotCard } from '../../components/ui/Card/chatbot';
+import { ChatWithUsRightCard } from '../../components/ui/Card/ChatWithUsRightCard';
 import Button from '../../components/ui/Button/Button';
 
 const Contact: React.FC<ContactPageProps> = () => {
@@ -32,16 +32,25 @@ const Contact: React.FC<ContactPageProps> = () => {
   };
 
   const handleTryChatbot = () => {
-    // Chatbot functionality placeholder
+    // Dispatch reset event to reset chatbot to beginning
+    window.dispatchEvent(new CustomEvent('reset-chatbot'));
+
+    // Ensure chatbot is open
+    const chatbotButton = document.querySelector('.chatbot-button') as HTMLButtonElement;
+    if (chatbotButton && chatbotButton.disabled) {
+      // Chatbot is already open, just scroll to it
+      setTimeout(() => {
+        const chatbotPanel = document.querySelector('.chatbot-panel');
+        if (chatbotPanel) {
+          chatbotPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 100);
+    } else if (chatbotButton && !chatbotButton.disabled) {
+      // Chatbot is closed, open it (reset will happen via event)
+      chatbotButton.click();
+    }
   };
 
-  const handleChatbotLine = () => {
-    window.open('https://line.me/R/ti/p/@kmti', '_blank');
-  };
-
-  const handleChatbotFacebook = () => {
-    window.open('https://www.facebook.com/kmti', '_blank');
-  };
 
   return (
     <div className="contact-page">
@@ -153,10 +162,7 @@ const Contact: React.FC<ContactPageProps> = () => {
               </div>
             </div>
             <div className="chat-with-us-right">
-              <ChatbotCard
-                onLineClick={handleChatbotLine}
-                onFacebookClick={handleChatbotFacebook}
-              />
+              <ChatWithUsRightCard />
             </div>
           </div>
         </div>
