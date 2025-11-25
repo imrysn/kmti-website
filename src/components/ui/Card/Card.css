@@ -1201,13 +1201,14 @@
   background-color: rgba(15, 23, 43, 0.3);
   border: 1px solid #51A2FF;
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   height: 100%;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 .apply-card:hover {
@@ -1218,11 +1219,11 @@
 
 .apply-card-fulltime-badge {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1.25rem;
+  right: 1.25rem;
   background: rgba(21, 93, 252, 0.9);
   color: white;
-  padding: 0.5rem 2.5rem;
+  padding: 0.5rem 2rem;
   border-radius: 16px;
   font-family: var(--font-family-body);
   font-size: 0.75rem;
@@ -1234,10 +1235,10 @@
 .apply-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 100;
   text-transform: uppercase;
-  margin-top: 0;
+  margin-top: 0rem;
   margin-bottom: 0.75rem;
   line-height: 1.4;
 }
@@ -1353,6 +1354,10 @@
   margin-top: auto;
   width: 100%;
   padding-top: 1rem;
+}
+
+.apply-card-button-wrapper button {
+  width: 100%;
 }
 
 /* ============================================

@@ -90,13 +90,12 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   align-items: stretch;
-  max-width: 85%;
-  margin: 0 auto;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 @media (max-width: 1024px) {
   .careers-positions-grid {
-    max-width: 90%;
     gap: 1.25rem;
   }
 }
@@ -105,7 +104,8 @@
   .careers-positions-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    max-width: 90%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .careers-positions-title {
@@ -117,7 +117,8 @@
   .careers-positions-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-    max-width: 95%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -125,6 +126,8 @@
   .careers-positions-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -301,6 +304,13 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
+
+  .how-to-apply-grid {
+    width: 100%;
+    gap: 0.2rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .how-to-apply-section {
@@ -308,7 +318,7 @@
 }
 
 .how-to-apply-container {
-  max-width: 100px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
@@ -341,11 +351,12 @@
 
 .how-to-apply-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
   align-items: stretch;
   margin-bottom: 4rem;
-  max-width: 100%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .ready-to-join-section {
@@ -428,8 +439,8 @@
   }
 
   .how-to-apply-grid {
-    grid-template-columns: 1fr;
     gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
   }
 
   .how-to-apply-title {
@@ -518,5 +529,13 @@
 
   .ready-to-join-description {
     font-size: 0.9rem;
+  }
+
+  .how-to-apply-grid {
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
