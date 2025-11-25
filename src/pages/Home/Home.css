@@ -17,7 +17,7 @@
   padding-top: 2rem;
   padding-bottom: 6rem;
   /* Subtle, continuous background zoom */
-  animation: heroBackgroundZoom 40s linear infinite;
+  animation: heroBackgroundZoom 20s linear infinite;
 }
 
 @keyframes heroBackgroundZoom {
@@ -26,7 +26,7 @@
   }
 
   50% {
-    background-size: 110%;
+    background-size: 100%;
   }
 
   100% {
