@@ -555,7 +555,9 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
   const handleActionButtonClick = (action: ActionButton) => {
     switch (action.action) {
       case 'line':
-        if (onLineClick) {
+        if (action.url) {
+          window.open(action.url, '_blank');
+        } else if (onLineClick) {
           onLineClick();
         } else {
           window.open('https://line.me/ti/p/~emji000', '_blank');
@@ -710,7 +712,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'You can apply in two ways:\n1️Submit your resume directly at our office:\n🏛Team Quest Building, FCIE, Dasmarinas Cavite\n2️Apply online through our LinkedIn page\n3️For more personal or quick inquiries, message our HR directly on Facebook Messenger',
+            text: 'You can apply in two ways:\n1️ Submit your resume directly at our office:\n🏛 Team Quest Building, FCIE, Dasmarinas Cavite\n2️ Apply online through our LinkedIn page\n3️ For more personal or quick inquiries, message our HR directly on Facebook Messenger',
             actionButtons: [
               { id: 'apply-linkedin', text: 'Apply via LinkedIn', action: 'apply', url: 'https://www.linkedin.com/company/kusakabe-maeno-tech-inc/' },
               { id: 'message-hr-fb', text: 'Message HR on Facebook', action: 'message', url: 'https://www.facebook.com/kmti.com.ph/' },
@@ -764,7 +766,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'Our company operates on a compressed work schedule:\nWork Days: Monday to Friday\nWork Hours:\nMonday to Thursday: 7:00 AM - 6:00 PM\nFriday: 7:00 AM - 4:00 PM',
+            text: 'Our company operates on a compressed work schedule:\n Work Days: Monday to Friday\n Work Hours:\n  • Monday to Thursday: 7:00 AM - 6:00 PM\n  • Friday: 7:00 AM - 4:00 PM',
             actionButtons: [
               { id: 'apply-now', text: 'Apply Now', action: 'apply', url: 'https://www.facebook.com/kmti.com.ph/' },
             ],
@@ -777,9 +779,9 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'You can reach our HR team through:\n💌info@kmti.com.ph\n☎️(046) 413-4509\n💬Or message us on Facebook Messenger for faster response.',
+            text: 'You can reach our HR team through:\n💌 info@kmti.com.ph\n☎️ (046) 413-4509\n💬 Or message us on Facebook Messenger for faster response.',
             actionButtons: [
-              { id: 'email-hr', text: 'Email HR', action: 'email', url: 'https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=Hello%20KMTI%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you!' },
+              { id: 'email-hr', text: '✉️ Email HR', action: 'email', url: 'https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=Hello%20KMTI%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you!' },
               { id: 'message-hr-fb', text: 'Message HR on Facebook', action: 'message', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'back-careers', text: 'Back', action: 'back', navigateAction: 'careers' },
             ],
@@ -792,7 +794,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'Our main office is located at:\n\n🏢Vital Industrial Prop. Inc. Bldg. B, nit 2-B, First Cavite Industrial Estate Langkaan 1, Dasmarinas City, Cavite 4126 Philippines\nNeed Directions? ',
+            text: 'Our main office is located at:\n\n📍 Vital Industrial Prop. Inc. Bldg. B. Unit 2-B. First Cavite Industrial Estate Langkaan 1. Dasmarinas City, Cavite 4126 Philippines \nNeed Directions? ',
             actionButtons: [
               { id: 'open-maps', text: 'Open in Google Maps', action: 'maps' },
             ],
@@ -806,10 +808,10 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           type: 'bot',
           content: {
             text: 'Need help with something else? You can reach our support team directly for:\n• Service or project inquiries\n• Technical assistance\n• Sales inquiries',
-            buttons: [
-              { id: 'message-fb', text: 'Message us on FB', action: 'message-fb' },
-              { id: 'call-us', text: 'Call us', action: 'call-us' },
-              { id: 'back-main', text: 'Back', action: 'main-menu' },
+            actionButtons: [
+              { id: 'line-btn', text: 'Message us on LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'email-us', text: 'Email us', action: 'email', url: 'https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=Hello%20KMTI%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you!' },
+              { id: 'back-main', text: 'Back', action: 'back', navigateAction: 'main-menu' },
             ],
           },
           timestamp: new Date(),
@@ -1043,18 +1045,19 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
                         {message.content.actionButtons.map((actionBtn) => (
                           <button
                             key={actionBtn.id}
-                            className={`chatbot-card-action-button ${actionBtn.action === 'line' ? 'chatbot-card-line-button' :
-                              actionBtn.action === 'facebook' ? 'chatbot-card-facebook-button' :
-                                actionBtn.action === 'maps' ? 'chatbot-card-apply-button' :
-                                  actionBtn.action === 'apply' ? 'chatbot-card-apply-button' :
-                                    actionBtn.action === 'call' ? 'chatbot-card-apply-button' :
-                                      actionBtn.action === 'back' ? 'chatbot-card-apply-button' :
-                                        actionBtn.action === 'email' ? 'chatbot-card-apply-button' :
-                                          'chatbot-card-message-button'
+                            className={`chatbot-card-action-button ${(actionBtn.action === 'line' && !actionBtn.url) ? 'chatbot-card-line-button' :
+                              actionBtn.action === 'line' ? 'chatbot-card-apply-button' :
+                                actionBtn.action === 'facebook' ? 'chatbot-card-facebook-button' :
+                                  actionBtn.action === 'maps' ? 'chatbot-card-apply-button' :
+                                    actionBtn.action === 'apply' ? 'chatbot-card-apply-button' :
+                                      actionBtn.action === 'call' ? 'chatbot-card-apply-button' :
+                                        actionBtn.action === 'back' ? 'chatbot-card-apply-button' :
+                                          actionBtn.action === 'email' ? 'chatbot-card-apply-button' :
+                                            'chatbot-card-message-button'
                               }`}
                             onClick={() => handleActionButtonClick(actionBtn)}
                           >
-                            {(actionBtn.action === 'line' || actionBtn.action === 'facebook' || actionBtn.action === 'message' || (actionBtn.action === 'apply' && actionBtn.url && actionBtn.url.includes('linkedin.com'))) && (
+                            {((actionBtn.action === 'line' && !actionBtn.url) || (actionBtn.action === 'facebook' && !actionBtn.url) || (actionBtn.action === 'message' && !actionBtn.url) || (actionBtn.action === 'apply' && actionBtn.url && actionBtn.url.includes('linkedin.com') && actionBtn.id !== 'apply-linkedin')) && (
                               <img
                                 src={actionBtn.action === 'line' ? lineIcon :
                                   actionBtn.action === 'facebook' ? facebookIcon :
