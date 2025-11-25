@@ -21,6 +21,7 @@ const Navbar: React.FC = () => {
 
   /* ----------------------------------
       Scroll-to-top behavior
+      Scroll to top when clicking the same page link
   ---------------------------------- */
   const handleNavClick = (
     path: string,
