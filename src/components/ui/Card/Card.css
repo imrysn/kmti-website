@@ -1001,8 +1001,13 @@
 .service-page-card-image-container {
   position: relative;
   width: 100%;
+ test
+  height: 320px;
+  margin-bottom: 0rem;
+
   height: 280px;
   margin-bottom: 1.5rem;
+ main
   border-radius: 16px;
   overflow: hidden;
 }
@@ -1124,30 +1129,6 @@
   }
 }
 
-/* ============================================
-   SERVICE PAGE CARD PAGINATION
-   ============================================ */
-
-.service-page-card .service-pagination {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.service-page-card .service-pagination-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
-  transition: background-color 0.3s ease;
-}
-
-.service-page-card .service-pagination-dot.active {
-  background-color: white;
-}
-
 .management-team-card {
   background-color: rgba(15, 23, 43, 0.2);
   border: 1px solid #51A2FF;
@@ -1173,24 +1154,24 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  top: -2rem;
+  top: -1.5rem;
   flex: none;
   width: 20%;
   min-width: auto;
   max-width: 100%;
   z-index: 2;
-  height: 420px;
+  height: 425px;
 }
 
 .management-team-card-image {
   width: calc(100% + 2rem);
-  height: 300px;
+  height: 320px;
   object-fit: cover;
   object-position: center center;
   margin-top: 0.8rem;
   margin-left: -1rem;
   margin-right: -1rem;
-  margin-bottom: -0.1rem;
+  margin-bottom: 0rem;
 }
 
 .management-team-card-large .management-team-card-image {

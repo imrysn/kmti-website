@@ -57,6 +57,7 @@ import dedimplerFacerImage from '../../../assets/image3D/dedimpler&facer.png';
 import bundlingMachineImage from '../../../assets/image3D/bundling-machine.png';
 import millingCutoffImage from '../../../assets/image3D/milling.png';
 import furnaceImage from '../../../assets/image3D/furnace.png';
+import looperImage from '../../../assets/image3D/looper.png'
 
 
 interface ServiceModalProps {
@@ -680,7 +681,7 @@ export const LooperModal: React.FC<LooperModalProps> = ({ isOpen, onClose }) => 
 
   const looperImages = [
     {
-      image: formingImage,
+      image: looperImage,
       title: 'Looper Machine',
       category: 'Mechanical > Tube',
       description: 'Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most efficient and cheapest method of storing strip withouth causing any surface damage.',
