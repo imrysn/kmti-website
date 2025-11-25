@@ -16,8 +16,12 @@
   background-repeat: repeat;
   padding-top: 2rem;
   padding-bottom: 6rem;
+test
   /* Subtle, continuous background zoom */
   animation: heroBackgroundZoom 20s linear infinite;
+
+  animation: heroBackgroundZoom 40s linear infinite;
+main
 }
 
 @keyframes heroBackgroundZoom {
@@ -66,7 +70,7 @@
 .hero-title {
   font-family: var(--font-family-heading);
   font-size: 4rem;
-  font-weight: 100;
+  font-weight: 500;
   color: white;
   margin-bottom: 3rem;
   line-height: 1.2;
@@ -150,7 +154,7 @@
   font-family: var(--font-family-body);
   font-size: 1rem;
   font-weight: 350;
-  color: rgba(255, 255, 255, 0.8);
+  color: #fff;
   line-height: 1.8;
   max-width: 2000px;
   margin-left: auto;
@@ -261,6 +265,11 @@
     transform-origin: center;
   }
 
+  .about-section {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .about-section .section-container {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -285,6 +294,8 @@
     padding-top: 1rem;
     padding-bottom: 4rem;
     min-height: 80vh;
+    background-repeat: no-repeat;
+    background-position: -100% 50%;
   }
 
   .hero-container {
@@ -364,11 +375,14 @@
   .about-section {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 
   .about-description {
+    padding-top: 1rem;
     font-size: 0.85rem;
-    line-height: 1.6;
+    line-height: 1.8;
   }
 
   .cta-section {
@@ -383,8 +397,8 @@
   }
 
   .cta-buttons .btn {
-    min-width: 90% !important;
-    width: 90%;
+    min-width: 50% !important;
+    width: 50%;
   }
 }
 
@@ -472,6 +486,8 @@
   .about-section {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   .about-description {
@@ -491,7 +507,7 @@
   }
 
   .cta-buttons .btn {
-    min-width: 90% !important;
-    width: 90%;
+    min-width: 50% !important;
+    width: 50%;
   }
 }
