@@ -374,7 +374,7 @@
   font-family: var(--font-family-body);
   color: #FFFFFF;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* LINE Button */
@@ -397,16 +397,6 @@
   background-color: #166FE5;
 }
 
-/* Maps Button */
-.chatbot-card-maps-button {
-  background: linear-gradient(90deg, #2157EE, #DF0515);
-  color: #FFFFFF;
-}
-
-.chatbot-card-maps-button:hover {
-  background: linear-gradient(90deg, #1A46D4, #C90412);
-}
-
 /* Apply Button */
 .chatbot-card-apply-button {
   background: transparent;
@@ -419,16 +409,6 @@
   border-color: #51A2FF;
 }
 
-/* Call Button */
-.chatbot-card-call-button {
-  background: linear-gradient(90deg, #2157EE, #DF0515);
-  color: #FFFFFF;
-}
-
-.chatbot-card-call-button:hover {
-  background: linear-gradient(90deg, #1A46D4, #C90412);
-}
-
 /* Message Button */
 .chatbot-card-message-button {
   background: transparent;
@@ -439,38 +419,6 @@
 .chatbot-card-message-button:hover {
   background: rgba(81, 162, 255, 0.1);
   border-color: #51A2FF;
-}
-
-/* Legacy LINE Button (for backward compatibility) - now handled by action-button */
-
-.chatbot-card-line-button-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.chatbot-card-line-button-text {
-  font-family: var(--font-family-body);
-  color: #FFFFFF;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-/* Legacy Facebook Button (for backward compatibility) - now handled by action-button */
-
-.chatbot-card-facebook-button-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.chatbot-card-facebook-button-text {
-  font-family: var(--font-family-body);
-  color: #FFFFFF;
-  font-size: 0.85rem;
-  font-weight: 500;
 }
 
 /* Footer Section */
@@ -551,4 +499,31 @@
   height: 20px;
   object-fit: contain;
   filter: brightness(0) invert(1);
+}
+
+.chatbot-card-menu-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(29, 41, 69, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  flex-shrink: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.chatbot-card-menu-icon-clickable:active {
+  transform: scale(0.95);
+}
+
+.chatbor-card-menu-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+
 }

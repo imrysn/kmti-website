@@ -1,0 +1,85 @@
+/* Static Chat With Us Right Card - Slightly Reduced Width */
+.chat-with-us-right-card {
+  max-width: 450px;
+  width: 100%;
+  max-height: 700px;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Disable scrolling on body */
+.chat-with-us-right-card .chatbot-card-body {
+  overflow: hidden;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+/* Reduce spacing in message bubbles */
+.chat-with-us-right-card .chatbot-card-message-bubble {
+  margin-bottom: 0.25rem;
+}
+
+.chat-with-us-right-card .chatbot-card-message-content {
+  gap: 0.4rem;
+}
+
+/* Reduce menu buttons spacing */
+.chat-with-us-right-card .chatbot-card-menu-buttons {
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+  margin-left: 30px;
+}
+
+.chat-with-us-right-card .chatbot-card-menu-button {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+/* Reduce action buttons spacing */
+.chat-with-us-right-card .chatbot-card-action-buttons {
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.chat-with-us-right-card .chatbot-card-action-button {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+/* Reduce message text size slightly */
+.chat-with-us-right-card .chatbot-card-message-text-content {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+/* Reduce footer padding */
+.chat-with-us-right-card .chatbot-card-footer {
+  padding: 0.5rem;
+}
+
+.chat-with-us-right-card .chatbot-card-input {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+/* Ensure buttons are not clickable */
+.chat-with-us-right-card .chatbot-card-menu-button {
+  cursor: default;
+  pointer-events: none;
+}
+
+.chat-with-us-right-card .chatbot-card-action-button {
+  cursor: default;
+  pointer-events: none;
+}
+
+.chat-with-us-right-card .chatbot-card-menu-icon-wrapper {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Make input field look static */
+.chat-with-us-right-card .chatbot-card-input {
+  cursor: default;
+  pointer-events: none;
+}

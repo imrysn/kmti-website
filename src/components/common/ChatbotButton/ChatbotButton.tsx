@@ -1,13 +1,34 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import botIcon from '../../../assets/icons/bot-icon.png';
 import { ChatbotCard } from '../../ui/Card/chatbot';
 import './ChatbotButton.css';
 
 const ChatbotButton: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [resetTrigger, setResetTrigger] = useState(0);
+
+  // Listen for reset event from other components
+  useEffect(() => {
+    const handleResetChatbot = () => {
+      setResetTrigger((prev) => prev + 1);
+      // Ensure chatbot is open when reset
+      if (!isChatOpen) {
+        setIsChatOpen(true);
+      }
+    };
+
+    window.addEventListener('reset-chatbot', handleResetChatbot);
+    return () => {
+      window.removeEventListener('reset-chatbot', handleResetChatbot);
+    };
+  }, [isChatOpen]);
 
   const handleToggle = () => {
     if (!isChatOpen) {
+      // Reset chatbot state when opening via chatbot-button
+      // Use the same reset mechanism as "TRY CHATBOT NOW" button
+      // Dispatch reset event first to ensure proper state reset
+      window.dispatchEvent(new CustomEvent('reset-chatbot'));
       setIsChatOpen(true);
     }
   };
@@ -43,6 +64,8 @@ const ChatbotButton: React.FC = () => {
           onLineClick={handleLineClick}
           onFacebookClick={handleFacebookClick}
           onClose={handleClose}
+          resetTrigger={resetTrigger}
+          isOpen={isChatOpen}
         />
       </div>
     </>
