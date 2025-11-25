@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import projectBg from '../../assets/projectbg.jpg';
@@ -14,6 +15,7 @@ import millingImage from '../../assets/image3D/milling.png';
 import furnaceImage from '../../assets/image3D/furnace.png';
 
 const Projects: React.FC<ProjectsPageProps> = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [isLooperModalOpen, setIsLooperModalOpen] = useState(false);
   const [isFormingModalOpen, setIsFormingModalOpen] = useState(false);
@@ -22,6 +24,31 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   const [isFinishingLineModalOpen, setIsFinishingLineModalOpen] = useState(false);
   const [isCutOffModalOpen, setIsCutOffModalOpen] = useState(false);
   const [isFurnaceModalOpen, setIsFurnaceModalOpen] = useState(false);
+  const hasCheckedUrlParams = useRef(false);
+
+  // Handle query parameters to open modals
+  useEffect(() => {
+    const projectParam = searchParams.get('project');
+    if (projectParam && !hasCheckedUrlParams.current) {
+      const projectMap: { [key: string]: () => void } = {
+        'dedimpler-and-facer': () => setIsProjectModalOpen(true),
+        'looper-machine': () => setIsLooperModalOpen(true),
+        'forming-and-sizing': () => setIsFormingModalOpen(true),
+        'shear-welder-machine': () => setIsStripEntryModalOpen(true),
+        'finishing-table': () => setIsTransferTableLineModalOpen(true),
+        'finishing-line': () => setIsFinishingLineModalOpen(true),
+        'milling-cutoff-machine': () => setIsCutOffModalOpen(true),
+        'furnace': () => setIsFurnaceModalOpen(true),
+      };
+
+      const openModal = projectMap[projectParam];
+      if (openModal) {
+        openModal();
+        hasCheckedUrlParams.current = true;
+        setSearchParams({}, { replace: true });
+      }
+    }
+  }, [searchParams, setSearchParams]);
   const projects = [
     {
       id: 1,
@@ -140,42 +167,74 @@ const Projects: React.FC<ProjectsPageProps> = () => {
 
       <ProjectModal
         isOpen={isProjectModalOpen}
-        onClose={() => setIsProjectModalOpen(false)}
+        onClose={() => {
+          setIsProjectModalOpen(false);
+          hasCheckedUrlParams.current = false;
+          setSearchParams({}, { replace: true });
+        }}
       />
 
       <LooperModal
         isOpen={isLooperModalOpen}
-        onClose={() => setIsLooperModalOpen(false)}
+        onClose={() => {
+          setIsLooperModalOpen(false);
+          hasCheckedUrlParams.current = false;
+          setSearchParams({}, { replace: true });
+        }}
       />
 
       <FormingModal
         isOpen={isFormingModalOpen}
-        onClose={() => setIsFormingModalOpen(false)}
+        onClose={() => {
+          setIsFormingModalOpen(false);
+          hasCheckedUrlParams.current = false;
+          setSearchParams({}, { replace: true });
+        }}
       />
 
       <StripEntryModal
         isOpen={isStripEntryModalOpen}
-        onClose={() => setIsStripEntryModalOpen(false)}
+        onClose={() => {
+          setIsStripEntryModalOpen(false);
+          hasCheckedUrlParams.current = false;
+          setSearchParams({}, { replace: true });
+        }}
       />
 
       <TransferTableLineModal
         isOpen={isTransferTableLineModalOpen}
-        onClose={() => setIsTransferTableLineModalOpen(false)}
+        onClose={() => {
+          setIsTransferTableLineModalOpen(false);
+          hasCheckedUrlParams.current = false;
+          setSearchParams({}, { replace: true });
+        }}
       />
 
       <FinishingLineModal
         isOpen={isFinishingLineModalOpen}
-        onClose={() => setIsFinishingLineModalOpen(false)}
+        onClose={() => {
+          setIsFinishingLineModalOpen(false);
+          hasCheckedUrlParams.current = false;
+          setSearchParams({}, { replace: true });
+        }}
       />
 
       <CutOffModal
         isOpen={isCutOffModalOpen}
-        onClose={() => setIsCutOffModalOpen(false)}
+        onClose={() => {
+          setIsCutOffModalOpen(false);
+          hasCheckedUrlParams.current = false;
+          setSearchParams({}, { replace: true });
+        }}
       />
 
       <FurnaceModal
         isOpen={isFurnaceModalOpen}
-        onClose={() => setIsFurnaceModalOpen(false)}
+        onClose={() => {
+          setIsFurnaceModalOpen(false);
+          hasCheckedUrlParams.current = false;
+          setSearchParams({}, { replace: true });
+        }}
       />
     </div>
   );
