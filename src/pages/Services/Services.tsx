@@ -68,7 +68,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
   ];
 
   const getCurrentCarouselImages = () => {
-    if (service.title === 'Parts Inspection') return inspectionImages;
+    if (service.title === 'Parts inspection') return inspectionImages;
     if (service.title === 'Machine Assembly') return assemblyImages;
     return [];
   };
@@ -76,7 +76,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
   const currentCarouselImages = getCurrentCarouselImages();
 
   useEffect(() => {
-    if (service.title !== 'Parts Inspection' && service.title !== 'Machine Assembly') return;
+    if (service.title !== 'Parts inspection' && service.title !== 'Machine Assembly') return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % currentCarouselImages.length);
@@ -86,7 +86,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
   }, [service.title, currentCarouselImages.length]);
 
   useEffect(() => {
-    if (service.title === 'Parts Inspection' || service.title === 'Machine Assembly') {
+    if (service.title === 'Parts inspection' || service.title === 'Machine Assembly') {
       setCurrentImageIndex(0);
     }
   }, [service.title]);
@@ -124,7 +124,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
         return 2;
       case '2D Detailing':
         return 3;
-      case 'Parts Inspection':
+      case 'Parts inspection':
         return 5;
       case 'Machine Assembly':
         return 5;
@@ -163,7 +163,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
     if (service.title === '2D Detailing') {
       return "Detailing is a critical part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We give a keen eye on every detail of the design, together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involve in the process and everything is according to their plan to avoid any further iterations due to miscommunication.";
     }
-    if (service.title === 'Parts Inspection') {
+    if (service.title === 'Parts inspection') {
       return "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepancies from the design and the actual parts.";
     }
     if (service.title === 'Machine Assembly') {
@@ -259,7 +259,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
                   </div>
                 ))}
               </div>
-            ) : service.title !== 'Parts Inspection' && service.title !== 'Machine Assembly' ? (
+            ) : service.title !== 'Parts inspection' && service.title !== 'Machine Assembly' ? (
               <>
                 <div className="service-section-step-indicator">
                   <div className="service-section-step-number">1</div>
@@ -279,7 +279,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
           </div>
 
           <div className="service-section-right">
-            {service.title === 'Parts Inspection' || service.title === 'Machine Assembly' ? (
+            {service.title === 'Parts inspection' || service.title === 'Machine Assembly' ? (
               <div className="service-section-carousel">
                 <div className="service-section-carousel-container">
                   {currentCarouselImages.map((image, index) => (
@@ -380,7 +380,7 @@ const Services: React.FC<ServicesPageProps> = () => {
     },
     {
       id: 3,
-      title: 'Parts Inspection',
+      title: 'Parts inspection',
       description: 'We perform Parts Inspection using precise measuring tools and 3D scanners to guarantee dimensional accuracy.',
       icon: inspectionIcon,
       image: inspectionImage,
@@ -400,7 +400,7 @@ const Services: React.FC<ServicesPageProps> = () => {
       const serviceMap: { [key: string]: string } = {
         '3d-modeling': '3D Modeling',
         '2d-detailing': '2D Detailing',
-        'parts-inspection': 'Parts Inspection',
+        'parts-inspection': 'Parts inspection',
         'machine-assembly': 'Machine Assembly',
       };
 

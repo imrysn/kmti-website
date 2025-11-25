@@ -353,6 +353,16 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       return;
     }
 
+    if (action === 'learn-more-about') {
+      // Close chatbot
+      if (onClose) {
+        onClose();
+      }
+      // Navigate to about page
+      navigate('/about');
+      return;
+    }
+
     // Add user message
     const userMessage: Message = {
       id: `user-${Date.now()}-${Math.random()}`,
