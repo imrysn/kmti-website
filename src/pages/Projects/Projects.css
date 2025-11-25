@@ -163,9 +163,6 @@
   .projects-subtitle {
     font-size: 0.9rem;
   }
- test
-}
-
 }
 
 @media (max-width: 375px) {
@@ -197,4 +194,3 @@
     padding-right: 1rem;
   }
 }
-main
