@@ -12,17 +12,15 @@ const Footer: React.FC = () => {
   const handleFooterLinkClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     const currentPathname = location.pathname;
     const targetPath = path.split('?')[0];
- test
 
     if (targetPath === currentPathname) {
+      const isNearBottom = window.scrollY + window.innerHeight >=
+                           document.documentElement.scrollHeight - 100;
 
-    const isNearBottom = window.scrollY + window.innerHeight >=
-                         document.documentElement.scrollHeight - 100;
-
-    if (targetPath === currentPathname && isNearBottom) {
-main
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (isNearBottom) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 
