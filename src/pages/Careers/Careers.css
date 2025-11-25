@@ -89,15 +89,23 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
-  align-items: start;
+  align-items: stretch;
   max-width: 85%;
   margin: 0 auto;
 }
 
+@media (max-width: 1024px) {
+  .careers-positions-grid {
+    max-width: 90%;
+    gap: 1.25rem;
+  }
+}
+
 @media (max-width: 768px) {
   .careers-positions-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 90%;
   }
 
   .careers-positions-title {
@@ -106,6 +114,14 @@
 }
 
 @media (max-width: 480px) {
+  .careers-positions-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 375px) {
   .careers-positions-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -261,6 +277,7 @@
 @media (max-width: 768px) {
   .why-work-withus-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .why-work-withus-title {
@@ -274,7 +291,15 @@
 
 @media (max-width: 480px) {
   .why-work-withus-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .why-work-withus-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 }
 
@@ -363,6 +388,12 @@
     right: -0.5rem;
   }
 
+  .careers-page .hero-section {
+    background-size: cover !important;
+    background-position: center !important;
+    animation: none !important;
+  }
+
   .careers-page .hero-content {
     margin-left: -2rem;
     margin-top: -4rem;
@@ -423,6 +454,12 @@
 @media (max-width: 480px) {
   .careers-hero-model {
     display: none;
+  }
+
+  .careers-page .hero-section {
+    background-size: cover !important;
+    background-position: center !important;
+    animation: none !important;
   }
 
   .careers-page .hero-content {
