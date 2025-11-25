@@ -437,7 +437,7 @@
 
 /* Service card link hover state */
 .service-card-link:hover {
-  color: #6BB0FF;
+  color: rgba(81, 162, 255, 0.5);
 }
 
 /* ============================================
@@ -582,7 +582,7 @@
 
 /* Project card link hover state */
 .project-card-link:hover {
-  color: #6BB0FF;
+  color: rgba(81, 162, 255, 0.5);
 }
 
 /* ============================================
@@ -1001,14 +1001,12 @@
 .service-page-card-image-container {
   position: relative;
   width: 100%;
- test
-  height: 320px;
+  test height: 320px;
   margin-bottom: 0rem;
 
   height: 280px;
   margin-bottom: 1.5rem;
- main
-  border-radius: 16px;
+  main border-radius: 16px;
   overflow: hidden;
 }
 
