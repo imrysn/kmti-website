@@ -131,6 +131,12 @@
 }
 
 @media (max-width: 768px) {
+  .projects-hero {
+    background-size: cover;
+    background-position: center;
+    animation: none;
+  }
+
   .projects-hero-container {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -156,6 +162,12 @@
 }
 
 @media (max-width: 480px) {
+  .projects-hero {
+    background-size: cover;
+    background-position: center;
+    animation: none;
+  }
+
   .projects-title {
     font-size: 2rem;
   }
