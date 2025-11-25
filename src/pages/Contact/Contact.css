@@ -268,7 +268,7 @@
   }
 
   .contact-options-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     margin-top: 2rem;
   }
@@ -324,6 +324,11 @@
     margin-bottom: 5rem;
   }
 
+  .contact-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
   .or-divider-description {
     font-size: 0.85rem;
   }
@@ -342,5 +347,12 @@
 
   .chat-with-us-feature-text {
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .contact-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
   }
 }
