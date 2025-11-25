@@ -1010,8 +1010,8 @@
 
   /* Further adjust hero container for very small screens */
   .about-hero-container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   /* Adjust related companies cards */
@@ -1053,8 +1053,8 @@
   .about-vision-mission-container,
   .our-people-container,
   .about-management-team-container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .about-company-title {
