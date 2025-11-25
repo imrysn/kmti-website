@@ -48,7 +48,13 @@
   margin: 0;
   padding: 0;
   align-items: center;
-  position: relative; /* required for slider */
+  position: relative;
+  /* required for slider */
+}
+
+/* Ensure dropdown items are positioned correctly */
+.navbar-links>li {
+  position: relative;
 }
 
 .navbar-link {
@@ -80,7 +86,8 @@
    ============================================ */
 .navbar-slider {
   position: absolute;
-  bottom: -6px; /* sits just below the text */
+  bottom: -6px;
+  /* sits just below the text */
   height: 3px;
   border-radius: 2px;
 
@@ -148,6 +155,11 @@
   padding: 0;
   margin: 0;
   text-align: center;
+  width: 100%;
+}
+
+.navbar-mobile-links>li {
+  width: 100%;
 }
 
 .navbar-mobile-links li {
@@ -190,6 +202,7 @@
     width: 0;
     opacity: 0;
   }
+
   to {
     width: 60%;
     opacity: 1;
@@ -220,7 +233,7 @@
     display: none;
   }
 
-  .navbar-mobile-links .navbar-link{
+  .navbar-mobile-links .navbar-link {
     font-size: 20px;
   }
 
