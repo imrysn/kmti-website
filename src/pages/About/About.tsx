@@ -6,7 +6,7 @@ import aboutBg from '../../assets/aboutPage/aboutbg.jpg';
 import aboutCompany1 from '../../assets/aboutPage/aboutcompany1.png';
 import aboutCompany2 from '../../assets/aboutPage/aboutcomapny2.png';
 import Button from '../../components/ui/Button';
-import { OurStoryModal, ManagementTeamModal } from '../../components/ui/Modal/Modal';
+import { OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
 import { ManagementTeamCard, RelatedCompanyCard } from '../../components/ui/Card/Card';
 import visionIcon from '../../assets/icons/vision-icon.png';
@@ -16,6 +16,21 @@ import michaelImage from '../../assets/management/michael.png';
 import siryuImage from '../../assets/management/siryu.png';
 import mennjoImage from '../../assets/management/mennjo.png';
 import teodyImage from '../../assets/management/teody.png';
+import shelaImage from '../../assets/management/shela.png';
+import erikImage from '../../assets/management/erik.png';
+import louieImage from '../../assets/management/louie.png';
+import kerbyImage from '../../assets/management/kerby.png';
+import kissImage from '../../assets/management/kiss.png';
+import lorieImage from '../../assets/management/lorie.png';
+import jethroImage from '../../assets/management/jethro.png';
+import joyceImage from '../../assets/management/joyce.png';
+import jcImage from '../../assets/management/jc.png';
+import jennyImage from '../../assets/management/jenny.png';
+import nylImage from '../../assets/management/nyl.png';
+import jonathanImage from '../../assets/management/jonathan.png';
+import noelImage from '../../assets/management/noel.png';
+import royImage from '../../assets/management/roy.png';
+import jojoImage from '../../assets/management/jojo.png';
 import ourPeople1 from '../../assets/aboutPage/ourpeople1.jpg';
 import ourPeople3 from '../../assets/aboutPage/ourpeople3.jpg';
 import ourPeople2 from '../../assets/aboutPage/ourpeople2.jpg';
@@ -28,7 +43,7 @@ import mgkLogo from '../../assets/aboutPage/mgkLogo.png';
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();
   const [isOurStoryModalOpen, setIsOurStoryModalOpen] = useState(false);
-  const [isManagementTeamModalOpen, setIsManagementTeamModalOpen] = useState(false);
+  const [isManagementTeamExpanded, setIsManagementTeamExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const ourPeopleImages = [ourPeople1, ourPeople2, ourPeople3, ourPeople4, ourPeople5];
@@ -57,12 +72,8 @@ const About: React.FC<AboutPageProps> = () => {
     setIsOurStoryModalOpen(false);
   };
 
-  const handleOpenManagementTeam = () => {
-    setIsManagementTeamModalOpen(true);
-  };
-
-  const handleCloseManagementTeam = () => {
-    setIsManagementTeamModalOpen(false);
+  const toggleManagementTeam = () => {
+    setIsManagementTeamExpanded(!isManagementTeamExpanded);
   };
 
   return (
@@ -128,32 +139,84 @@ const About: React.FC<AboutPageProps> = () => {
 
       <section className="about-management-team-section">
         <div className="about-management-team-container container">
-          <h2 className="about-management-team-title">OUR MANAGEMENT TEAM</h2>
-          <div className="about-management-team-grid">
-            <ManagementTeamCard
-              image={pauImage}
-              role="ACCOUNTING / ADMIN MANAGER"
-            />
-            <ManagementTeamCard
-              image={michaelImage}
-              role="ENGINEERING MANAGER"
-            />
-            <div className="management-team-card-placeholder"></div>
-            <ManagementTeamCard
-              image={siryuImage}
-              role="PRESIDENT / CEO"
-              isLarge={true}
-            />
-            <ManagementTeamCard
-              image={mennjoImage}
-              role="ENGINEERING MANAGER"
-            />
-            <ManagementTeamCard
-              image={teodyImage}
-              role="ENGINEERING SUPERVISOR"
-            />
-          </div>
-          <a href="#" className="about-see-more-link" onClick={(e) => { e.preventDefault(); handleOpenManagementTeam(); }}>See more...</a>
+          {!isManagementTeamExpanded ? (
+            <>
+              <h2 className="about-management-team-title">OUR MANAGEMENT TEAM</h2>
+              <div className="about-management-team-grid">
+                <ManagementTeamCard
+                  image={pauImage}
+                  role="ACCOUNTING / ADMIN MANAGER"
+                />
+                <ManagementTeamCard
+                  image={michaelImage}
+                  role="ENGINEERING MANAGER"
+                />
+                <div className="management-team-card-placeholder"></div>
+                <ManagementTeamCard
+                  image={siryuImage}
+                  role="PRESIDENT / CEO"
+                  isLarge={true}
+                />
+                <ManagementTeamCard
+                  image={mennjoImage}
+                  role="ENGINEERING MANAGER"
+                />
+                <ManagementTeamCard
+                  image={teodyImage}
+                  role="ENGINEERING SUPERVISOR"
+                />
+              </div>
+              <a href="#" className="about-see-more-link" onClick={(e) => { e.preventDefault(); toggleManagementTeam(); }}>See more...</a>
+            </>
+          ) : (
+            <div className="management-team-modal-body">
+              <h2 className="management-team-modal-title">Meet Our Management Team</h2>
+              <p className="management-team-modal-description">
+                At the heart of our company is a team of dedicated professionals who bring experience, leadership, and passion to every project. Together, they ensure that our operations run efficiently and that our goals are achieved with excellence.
+              </p>
+              <div className="management-team-modal-grid">
+                {[
+                  { image: pauImage, role: 'ACCOUNTING / ADMIN MANAGER' },
+                  { image: michaelImage, role: 'ENGINEERING MANAGER' },
+                  { image: siryuImage, role: 'PRESIDENT / CEO', isLarge: true },
+                  { image: mennjoImage, role: 'ENGINEERING MANAGER' },
+                  { image: teodyImage, role: 'ENGINEERING SUPERVISOR' },
+                  { image: shelaImage, role: 'ENGINEERING SUPERVISOR' },
+                  { image: erikImage, role: 'ENGINEERING TEAM LEADER' },
+                  { image: louieImage, role: 'ENGINEERING ASSISTANT TL' },
+                  { image: kerbyImage, role: 'ENGINEERING IT/STAFF' },
+                  { image: kissImage, role: 'ENGINEERING STAFF/SO' },
+                  { image: lorieImage, role: 'ENGINEERING STAFF' },
+                  { image: jethroImage, role: 'ENGINEERING STAFF' },
+                  { image: joyceImage, role: 'ENGINEERING STAFF' },
+                  { image: jcImage, role: 'ENGINEERING STAFF' },
+                  { image: jennyImage, role: 'ENGINEERING STAFF' },
+                  { image: nylImage, role: 'ENGINEERING STAFF' },
+                  { image: jonathanImage, role: 'ENGINEERING STAFF' },
+                  { image: noelImage, role: 'COMPANY DRIVER' },
+                  { image: royImage, role: 'COMPANY DRIVER' },
+                  { image: jojoImage, role: 'MAINTENANCE/UTILITY PERSONNEL' },
+                ].map((member, index) => {
+                  const isFirstRow = index < 5;
+                  const isLargeCard = member.isLarge && isFirstRow;
+
+                  return (
+                    <React.Fragment key={index}>
+                      {isFirstRow && index === 2 && (
+                        <div className="management-team-card-placeholder"></div>
+                      )}
+                      <ManagementTeamCard
+                        image={member.image}
+                        role={member.role}
+                        isLarge={isLargeCard}
+                      />
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+              <a href="#" className="about-see-more-link" onClick={(e) => { e.preventDefault(); toggleManagementTeam(); }}>See Less</a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -228,7 +291,6 @@ const About: React.FC<AboutPageProps> = () => {
       </section>
 
       <OurStoryModal isOpen={isOurStoryModalOpen} onClose={handleCloseOurStory} />
-      <ManagementTeamModal isOpen={isManagementTeamModalOpen} onClose={handleCloseManagementTeam} />
     </div>
   );
 };

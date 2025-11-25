@@ -230,7 +230,7 @@
 
 .about-see-more-link {
   display: block;
-  color: #99A1AF;
+  color: #51A2FF;
   font-family: var(--font-family-body);
   font-size: 1rem;
   text-decoration: none;
@@ -241,7 +241,139 @@
 }
 
 .about-see-more-link:hover {
-  color: rgba(153, 161, 175, 0.8);
+  color: rgba(81, 162, 255, 0.5);
+}
+
+/* ============================================
+   INLINE MANAGEMENT TEAM EXPANDED CONTENT
+   ============================================ */
+
+.about-management-team-container .management-team-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 0rem;
+}
+
+.about-management-team-container .management-team-modal-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: -1rem;
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-management-team-container .management-team-modal-description {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 0 auto 5rem auto;
+}
+
+.about-management-team-container .management-team-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  position: relative;
+  padding: 0 3rem;
+}
+
+.about-management-team-container .management-team-modal-grid .management-team-card-placeholder {
+  flex: 0.8 0 80px;
+  min-width: 160px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.about-management-team-container .management-team-modal-grid .management-team-card {
+  background-color: rgba(15, 23, 43, 0.2);
+  border: 1px solid rgba(81, 162, 255, 0.4);
+  border-radius: 16px;
+  padding: 1rem 1rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  flex: 0 0 100px;
+  min-width: 100px;
+  height: auto;
+  overflow: hidden;
+  box-shadow: 0 0px 15px rgba(81, 162, 255, 0.5);
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.about-management-team-container .management-team-modal-grid .management-team-card-image {
+  width: calc(100% + 2rem);
+  height: 320px;
+  object-fit: cover;
+  object-position: center center;
+  margin-top: 0.4rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: -0.1rem;
+}
+
+.about-management-team-container .management-team-modal-grid .management-team-card-role {
+  font-family: var(--font-family-heading);
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  font-weight: 1;
+  margin: 0.3rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+  line-height: 1.3;
+  width: 100%;
+}
+
+.about-management-team-container .management-team-modal-grid .management-team-card-large {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: -2rem;
+  flex: none;
+  width: 280px;
+  min-width: 200px;
+  max-width: 300px;
+  z-index: 2;
+  height: 400px;
+}
+
+.about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-image {
+  width: calc(100% + 2rem);
+  height: 400px;
+  object-fit: cover;
+  object-position: center center;
+  margin-top: -0.4rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: -0rem;
+}
+
+.about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-role {
+  font-family: var(--font-family-heading);
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 1;
+  margin: 0.3rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+  line-height: 1.3;
+  width: 100%;
 }
 
 /* ============================================
@@ -278,7 +410,7 @@
   font-size: 1rem;
   color: white;
   text-align: center;
-  margin-bottom: 0rem;
+  margin-bottom: -2rem;
   line-height: 1.6;
   max-width: 800px;
   margin-left: auto;
@@ -531,6 +663,32 @@
    MOBILE RESPONSIVENESS
    ============================================ */
 
+@media (max-width: 1400px) {
+  .about-management-team-container .management-team-modal-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    padding: 0 2rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large {
+    width: 260px;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .about-management-team-container .management-team-modal-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 0 1.5rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large {
+    width: 240px;
+    max-width: 260px;
+  }
+}
+
 @media (max-width: 1024px) {
   .about-title {
     font-size: 3.5rem;
@@ -550,6 +708,44 @@
 
   .about-management-team-grid {
     gap: 1.5rem;
+  }
+
+  .about-management-team-container .management-team-modal-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-management-team-container .management-team-modal-description {
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card {
+    min-width: 90px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-image {
+    height: 280px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large {
+    width: 220px;
+    max-width: 240px;
+    height: 360px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-image {
+    height: 360px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-role {
+    font-size: 1.4rem;
   }
 }
 
@@ -622,6 +818,22 @@
     top: -1.5rem;
   }
 
+  .about-management-team-container .management-team-modal-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-management-team-container .management-team-modal-description {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+  }
+
   .our-people-container {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -689,7 +901,7 @@
   .about-description {
     font-size: 0.85rem;
   }
-  
+
   .about-company-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -736,6 +948,44 @@
     min-width: 100px;
     max-width: 130px;
     top: -1.2rem;
+  }
+
+  .about-management-team-container .management-team-modal-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-management-team-container .management-team-modal-description {
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card {
+    min-width: 80px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-image {
+    height: 240px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large {
+    width: 180px;
+    max-width: 200px;
+    height: 320px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-image {
+    height: 320px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-role {
+    font-size: 1.2rem;
   }
 
   .our-people-title {
@@ -844,6 +1094,44 @@
     min-width: 85px;
     max-width: 110px;
     top: -1rem;
+  }
+
+  .about-management-team-container .management-team-modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-management-team-container .management-team-modal-description {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+    padding: 0 0.15rem;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card {
+    min-width: 70px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-image {
+    height: 220px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large {
+    width: 160px;
+    max-width: 180px;
+    height: 300px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-image {
+    height: 300px;
+  }
+
+  .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-role {
+    font-size: 1rem;
   }
 
   .our-people-subtitle {
