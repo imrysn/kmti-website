@@ -47,7 +47,7 @@
 
 .about-title {
   font-size: 4rem;
-  font-weight: 100;
+  font-weight: 500;
   color: white;
   margin-bottom: 0.5rem;
   font-family: var(--font-family-heading);
@@ -169,7 +169,7 @@
 }
 
 .about-vision-mission-container {
-  max-width: 1000px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
@@ -180,6 +180,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .about-management-team-section {
@@ -197,7 +199,7 @@
 .about-management-team-title {
   font-family: var(--font-family-heading);
   font-size: 2.5rem;
-  font-weight: 100;
+  font-weight: 500;
   text-align: center;
   margin-bottom: 5rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
@@ -261,7 +263,7 @@
 .our-people-title {
   font-family: var(--font-family-heading);
   font-size: 2.5rem;
-  font-weight: 100;
+  font-weight: 500;
   text-align: center;
   margin-bottom: 1rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
@@ -404,7 +406,7 @@
 .related-companies-title {
   font-family: var(--font-family-heading);
   font-size: 2.5rem;
-  font-weight: 100;
+  font-weight: 500;
   text-align: center;
   margin-bottom: 4rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
@@ -471,7 +473,7 @@
   font-family: var(--font-family-heading);
   color: #FFFFFF;
   font-size: 1.1rem;
-  font-weight: 100;
+  font-weight: 500;
   text-transform: uppercase;
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
@@ -521,6 +523,8 @@
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 /* ============================================
@@ -587,11 +591,35 @@
 
   .about-management-team-title {
     font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-management-team-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .about-management-team-grid {
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Keep the same horizontal layout, just scale down */
+  .management-team-card {
+    min-width: 80px;
+    flex: 1;
+  }
+
+  .management-team-card-placeholder {
+    flex: 0.8 0 60px;
+    min-width: 60px;
+  }
+
+  .management-team-card-large {
+    width: 18%;
+    min-width: 120px;
+    max-width: 150px;
+    top: -1.5rem;
   }
 
   .our-people-container {
@@ -638,6 +666,15 @@
     flex-direction: column;
     gap: 1rem;
   }
+
+  /* Vision-mission grid remains 2 columns 1 row centered on mobile */
+  .about-vision-mission-grid {
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: .5rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -652,9 +689,23 @@
   .about-description {
     font-size: 0.85rem;
   }
+  
+  .about-company-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
 
   .about-company-title {
     font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .about-vision-mission-grid {
+    width: 100%;
+    gap: .2rem;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .about-company-description {
@@ -663,6 +714,28 @@
 
   .about-management-team-title {
     font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-management-team-grid {
+    gap: 0.4rem;
+    padding: 0 0.25rem;
+  }
+
+  .management-team-card {
+    min-width: 70px;
+  }
+
+  .management-team-card-placeholder {
+    flex: 0.8 0 50px;
+    min-width: 50px;
+  }
+
+  .management-team-card-large {
+    width: 18%;
+    min-width: 100px;
+    max-width: 130px;
+    top: -1.2rem;
   }
 
   .our-people-title {
@@ -683,5 +756,114 @@
 
   .about-cta-title {
     font-size: 1.3rem;
+  }
+
+  /* Further adjust hero container for very small screens */
+  .about-hero-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Adjust related companies cards */
+  .related-company-card {
+    padding: 1.5rem;
+  }
+
+  .related-company-logo-container {
+    height: 120px;
+    padding: 1rem;
+  }
+
+  .related-company-name {
+    font-size: 1rem;
+  }
+
+  .related-company-description {
+    font-size: 0.8rem;
+    text-indent: 1.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .about-title {
+    font-size: 1.75rem;
+  }
+
+  .about-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .about-description {
+    font-size: 0.8rem;
+  }
+
+  .about-company-container,
+  .related-companies-container,
+  .about-vision-mission-container,
+  .our-people-container,
+  .about-management-team-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .about-company-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .about-company-description {
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .about-management-team-title,
+  .our-people-title,
+  .related-companies-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .about-management-team-grid {
+    gap: 0.3rem;
+    padding: 0 0.15rem;
+  }
+
+  .management-team-card {
+    min-width: 60px;
+  }
+
+  .management-team-card-placeholder {
+    flex: 0.8 0 40px;
+    min-width: 40px;
+  }
+
+  .management-team-card-large {
+    width: 18%;
+    min-width: 85px;
+    max-width: 110px;
+    top: -1rem;
+  }
+
+  .our-people-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .our-people-carousel-container {
+    min-height: 400px;
+  }
+
+  .about-cta-title {
+    font-size: 1.2rem;
+  }
+
+  .about-cta-buttons {
+    gap: 0.75rem;
+  }
+
+  /* Enhance vision/mission cards for very small screens */
+  .about-vision-mission-grid {
+    gap: 1rem;
   }
 }
