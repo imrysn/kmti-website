@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Card.css';
 import Button from '../Button/Button';
 
@@ -69,6 +70,75 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   className = '',
   onClick,
 }) => {
+  const navigate = useNavigate();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Handle navigation for specific service cards
+    let targetHash = '';
+    let targetSelectors: string[] = [];
+
+    if (title === '3D MODELING' || title === '3D Modeling') {
+      e.preventDefault();
+      targetHash = 'service-3d-modeling-service-section.3d';
+      targetSelectors = [
+        'service-3d-modeling-service-section.3d',
+        'service-3d-modeling',
+        '.service-3d-modeling-service-section',
+        '.3d-modeling-section'
+      ];
+    } else if (title === '2D DETAILING' || title === '2D Detailing') {
+      e.preventDefault();
+      targetHash = 'service-2d-detailing-service-section.2d';
+      targetSelectors = [
+        'service-2d-detailing-service-section.2d',
+        'service-2d-detailing',
+        '.service-2d-detailing-service-section',
+        '.2d-detailing-section'
+      ];
+    } else if (title === 'PARTS INSPECTIONS' || title === 'PARTS INSPECTION' || title === 'Parts Inspection' || title === 'Parts inspection') {
+      e.preventDefault();
+      targetHash = 'service-parts-inspection.service-section.parts-inspection';
+      targetSelectors = [
+        'service-parts-inspection.service-section.parts-inspection',
+        'service-parts-inspection',
+        '.service-parts-inspection.service-section',
+        '.parts-inspection-section',
+        '.parts-inspections-section'
+      ];
+    } else if (title === 'MACHINE ASSEMBLY' || title === 'Machine Assembly') {
+      e.preventDefault();
+      targetHash = 'service-machine-assembly.service-section-machine-assembly-section';
+      targetSelectors = [
+        'service-machine-assembly.service-section-machine-assembly-section',
+        'service-machine-assembly',
+        '.service-machine-assembly.service-section',
+        '.machine-assembly-section'
+      ];
+    }
+
+    // If we have a target, navigate and scroll
+    if (targetHash) {
+      navigate(`/services#${targetHash}`);
+      // Scroll to the section after navigation
+      setTimeout(() => {
+        let element: HTMLElement | null = null;
+        // Try each selector until we find the element
+        for (const selector of targetSelectors) {
+          if (selector.startsWith('.')) {
+            element = document.querySelector(selector) as HTMLElement;
+          } else {
+            element = document.getElementById(selector);
+          }
+          if (element) break;
+        }
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+    // For other cards, use default behavior (linkHref)
+  };
+
   return (
     <div className={`service-card ${className}`} onClick={onClick}>
       {icon && (
@@ -83,7 +153,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       <h3 className="service-card-title">{title}</h3>
       <p className="service-card-subtitle">{subtitle}</p>
       {linkText && linkHref && (
-        <a href={linkHref} className="service-card-link">
+        <a href={linkHref} className="service-card-link" onClick={handleLinkClick}>
           {linkText}
         </a>
       )}
@@ -114,6 +184,29 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   onClick,
   isActive = false,
 }) => {
+  const navigate = useNavigate();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Map project titles to query parameter values
+    const projectMap: { [key: string]: string } = {
+      'DEDIMPLER AND FACER': 'dedimpler-and-facer',
+      'LOOPER MACHINE': 'looper-machine',
+      'FORMING AND SIZING': 'forming-and-sizing',
+      'SHEAR WELDER MACHINE': 'shear-welder-machine',
+      'FINISHING TABLE': 'finishing-table',
+      'FINISHING LINE': 'finishing-line',
+      'MILLING CUTOFF MACHINE': 'milling-cutoff-machine',
+      'FURNACE': 'furnace',
+    };
+
+    const projectParam = projectMap[title];
+    if (projectParam) {
+      e.preventDefault();
+      navigate(`/projects?project=${projectParam}`);
+    }
+    // For other projects, use default behavior (linkHref)
+  };
+
   return (
     <div className={`project-card-new ${className}`} onClick={onClick}>
       {category && <div className="project-card-label">{category}</div>}
@@ -126,7 +219,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
       <h3 className="project-card-title">{title}</h3>
       <p className="project-card-subtitle">{subtitle}</p>
-      <a href={linkHref} className="project-card-link">
+      <a href={linkHref} className="project-card-link" onClick={handleLinkClick}>
         {linkText}
       </a>
     </div>
@@ -465,7 +558,7 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
       <div className="apply-card-button-wrapper">
         <Button
           variant="style3"
-          onClick={onApply || (() => {})}
+          onClick={onApply || (() => { })}
         >
           APPLY NOW
         </Button>
