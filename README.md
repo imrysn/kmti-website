@@ -147,7 +147,6 @@ kmti-website/
 │   │       ├── Card/             # Card components (Service, Project, etc.)
 │   │       ├── Input/            # Form input component
 │   │       ├── Modal/            # Modal dialog component
-│   │       ├── NavDropdown/      # Navigation dropdown
 │   │       └── ProjectCarousel/  # Project carousel component
 │   ├── pages/                # Page components
 │   │   ├── About/            # About Us page
