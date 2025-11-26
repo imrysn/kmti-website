@@ -52,7 +52,7 @@
   /* required for slider */
 }
 
-/* Ensure dropdown items are positioned correctly */
+/* Ensure list items are positioned correctly */
 .navbar-links>li {
   position: relative;
 }

@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import headerLogo from '../../../assets/headerKMTIlogo.png';
 import menuIcon from '../../../assets/icons/menu-icon.png';
-import NavDropdown from '../../ui/NavDropdown/NavDropdown';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -18,14 +17,6 @@ const Navbar: React.FC = () => {
     { path: '/about', label: 'ABOUT US' },
     { path: '/careers', label: 'CAREERS' },
     { path: '/contact', label: 'CONTACT US' },
-  ];
-
-  // Services dropdown items
-  const servicesDropdownItems = [
-    { path: '/services', label: '3D Modeling', hash: '#service-3d-modeling' },
-    { path: '/services', label: '2D Detailing', hash: '#service-2d-detailing' },
-    { path: '/services', label: 'Parts Inspection', hash: '#service-parts-inspection' },
-    { path: '/services', label: 'Machine Assembly', hash: '#service-machine-assembly' },
   ];
 
   /* ----------------------------------
@@ -67,24 +58,11 @@ const Navbar: React.FC = () => {
             left: rect.left - ulRect.left,
           });
         }
-      } else {
-        // Check if SERVICES dropdown is active
-        const servicesDropdown = document.querySelector('.nav-dropdown-toggle.active');
-        if (servicesDropdown) {
-          const rect = servicesDropdown.getBoundingClientRect();
-          const ulRect = servicesDropdown.parentElement?.parentElement?.getBoundingClientRect();
-          if (ulRect) {
-            setSliderStyle({
-              width: rect.width,
-              left: rect.left - ulRect.left,
-            });
-          }
-        }
       }
     }, 50);
 
     return () => clearTimeout(timer);
-  }, [location.pathname, location.hash]);
+  }, [location.pathname]);
 
   /* ----------------------------------
       Mobile menu toggle
@@ -110,44 +88,22 @@ const Navbar: React.FC = () => {
         </button>
 
         <ul className={`navbar-links ${isMenuOpen ? 'navbar-links--open' : ''}`}>
-          {navLinks.map((link) => {
-            // Use dropdown for SERVICES
-            if (link.path === '/services') {
-              const isServicesActive = location.pathname === '/services' ||
-                servicesDropdownItems.some(item =>
-                  location.pathname === item.path && location.hash === item.hash
-                );
-              return (
-                <NavDropdown
-                  key={`desktop-${link.path}`}
-                  parentPath={link.path}
-                  parentLabel={link.label}
-                  items={servicesDropdownItems}
-                  isActive={isServicesActive}
-                  onNavigate={closeMenu}
-                  activeRef={isServicesActive ? activeLinkRef : undefined}
-                />
-              );
-            }
-
-            // Regular links for other items
-            return (
-              <li key={`desktop-${link.path}`}>
-                <Link
-                  to={link.path}
-                  className={`navbar-link ${location.pathname === link.path ? 'active' : ''
-                    }`}
-                  ref={location.pathname === link.path ? activeLinkRef : null}
-                  onClick={(e) => {
-                    handleNavClick(link.path, e);
-                    closeMenu();
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
+          {navLinks.map((link) => (
+            <li key={`desktop-${link.path}`}>
+              <Link
+                to={link.path}
+                className={`navbar-link ${location.pathname === link.path ? 'active' : ''
+                  }`}
+                ref={location.pathname === link.path ? activeLinkRef : null}
+                onClick={(e) => {
+                  handleNavClick(link.path, e);
+                  closeMenu();
+                }}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
 
           {/* Sliding underline */}
           <div
@@ -162,50 +118,23 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`navbar-mobile-overlay ${isMenuOpen ? 'active' : ''}`} onClick={(e) => {
-        // Don't close if clicking inside dropdown
-        if ((e.target as HTMLElement).closest('.nav-dropdown')) {
-          return;
-        }
-        closeMenu();
-      }}>
+      <div className={`navbar-mobile-overlay ${isMenuOpen ? 'active' : ''}`} onClick={closeMenu}>
         <ul className="navbar-mobile-links">
-          {navLinks.map((link) => {
-            // Use dropdown for SERVICES in mobile too
-            if (link.path === '/services') {
-              const isServicesActive = location.pathname === '/services' ||
-                servicesDropdownItems.some(item =>
-                  location.pathname === item.path && location.hash === item.hash
-                );
-              return (
-                <NavDropdown
-                  key={`mobile-${link.path}`}
-                  parentPath={link.path}
-                  parentLabel={link.label}
-                  items={servicesDropdownItems}
-                  isActive={isServicesActive}
-                  onNavigate={closeMenu}
-                />
-              );
-            }
-
-            // Regular links for other items
-            return (
-              <li key={`mobile-${link.path}`}>
-                <Link
-                  to={link.path}
-                  className={`navbar-link ${location.pathname === link.path ? 'active' : ''
-                    }`}
-                  onClick={(e) => {
-                    handleNavClick(link.path, e);
-                    closeMenu();
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
+          {navLinks.map((link) => (
+            <li key={`mobile-${link.path}`}>
+              <Link
+                to={link.path}
+                className={`navbar-link ${location.pathname === link.path ? 'active' : ''
+                  }`}
+                onClick={(e) => {
+                  handleNavClick(link.path, e);
+                  closeMenu();
+                }}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
