@@ -450,7 +450,6 @@ const Services: React.FC<ServicesPageProps> = () => {
 
   const serviceTabs = ['3D MODELING', '2D DETAILING', 'Parts Inspection', 'MACHINE ASSEMBLY'];
   const [activeTab, setActiveTab] = useState<string | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
@@ -468,19 +467,6 @@ const Services: React.FC<ServicesPageProps> = () => {
       }
     }
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const progress = (scrollTop / (documentHeight - windowHeight)) * 100;
-      setScrollProgress(Math.min(100, Math.max(0, progress)));
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const observerOptions = {
@@ -526,7 +512,6 @@ const Services: React.FC<ServicesPageProps> = () => {
 
   return (
     <div className="services-page" style={{ '--services-bg-image': `url(${servicesBg})` } as React.CSSProperties}>
-      <div className="services-scroll-progress" style={{ width: `${scrollProgress}%` }}></div>
       <section className="services-hero">
         <div className="services-hero-container container">
           <div className="services-hero-content">
