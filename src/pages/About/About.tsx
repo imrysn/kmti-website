@@ -76,6 +76,18 @@ const About: React.FC<AboutPageProps> = () => {
     setIsManagementTeamExpanded(!isManagementTeamExpanded);
   };
 
+  const handleSeeLess = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    toggleManagementTeam();
+    // Scroll to management team container after state update
+    setTimeout(() => {
+      const managementTeamContainer = document.querySelector('.about-management-team-container');
+      if (managementTeamContainer) {
+        managementTeamContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   return (
     <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})` } as React.CSSProperties}>
       <section className="about-hero">
@@ -214,7 +226,7 @@ const About: React.FC<AboutPageProps> = () => {
                   );
                 })}
               </div>
-              <a href="#" className="about-see-more-link" onClick={(e) => { e.preventDefault(); toggleManagementTeam(); }}>See Less</a>
+              <a href="#" className="about-see-more-link" onClick={handleSeeLess}>See Less</a>
             </div>
           )}
         </div>

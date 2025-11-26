@@ -236,7 +236,7 @@ const NavDropdown: React.FC<NavDropdownProps> = ({
         aria-label={`${parentLabel} submenu`}
       >
         {items.map((item, index) => (
-          <li key={item.path} role="none">
+          <li key={`${item.path}-${item.hash || index}`} role="none">
             <Link
               to={item.hash ? `${item.path}${item.hash}` : item.path}
               className={`nav-dropdown-item ${isItemActive(item) ? 'active' : ''}`}
