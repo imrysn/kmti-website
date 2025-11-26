@@ -4,7 +4,7 @@ A modern, interactive company website built with React and TypeScript, featuring
 
 ## 📋 Overview
 
-This is the official website for KMTI (Kusakabe Maeno Tech Inc.), showcasing the company's engineering services, project portfolio, team information, and career opportunities. The website provides an engaging user experience through interactive elements, smooth animations, and an intelligent chatbot assistant.
+This is the official website for KMTI (Kusakabe & Maeno Tech Inc.), showcasing the company's engineering services, project portfolio, team information, and career opportunities. The website provides an engaging user experience through interactive ellements, smooth animations, and an intelligent chatbot assistant.
 
 ## ✨ Features
 

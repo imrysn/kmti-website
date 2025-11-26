@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
                 );
               return (
                 <NavDropdown
-                  key={link.path}
+                  key={`desktop-${link.path}`}
                   parentPath={link.path}
                   parentLabel={link.label}
                   items={servicesDropdownItems}
@@ -132,7 +132,7 @@ const Navbar: React.FC = () => {
 
             // Regular links for other items
             return (
-              <li key={link.path}>
+              <li key={`desktop-${link.path}`}>
                 <Link
                   to={link.path}
                   className={`navbar-link ${location.pathname === link.path ? 'active' : ''
@@ -179,7 +179,7 @@ const Navbar: React.FC = () => {
                 );
               return (
                 <NavDropdown
-                  key={link.path}
+                  key={`mobile-${link.path}`}
                   parentPath={link.path}
                   parentLabel={link.label}
                   items={servicesDropdownItems}
@@ -191,7 +191,7 @@ const Navbar: React.FC = () => {
 
             // Regular links for other items
             return (
-              <li key={link.path}>
+              <li key={`mobile-${link.path}`}>
                 <Link
                   to={link.path}
                   className={`navbar-link ${location.pathname === link.path ? 'active' : ''
