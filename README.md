@@ -262,31 +262,31 @@ npm run preview
 
 ### Homepage
 <!-- Add screenshot: Homepage hero section with call-to-action buttons -->
-![Homepage Hero Section](./screenshots/homepage-hero.jpg)
+![Homepage Hero Section](./src/assets/screenshots/homepage-hero.jpg)
 
 <!-- Add screenshot: Why Choose Us section with feature cards -->
-![Why Choose Us Section](./screenshots/why-choose-us.jpg)
+![Why Choose Us Section](./src/assets/screenshots/why-choose-us.jpg)
 
 <!-- Add screenshot: Service cards and project carousel -->
-![Services and Projects Preview](./screenshots/services-projects.jpg)
+![Services and Projects Preview](./src/assets/screenshots/services-projects.jpg)
 
 ### Services Page
 <!-- Add screenshot: Services grid layout -->
-![Services Grid](./screenshots/services-grid.jpg)
+![Services Grid](./src/assets/screenshots/services-grid.jpg)
 
 <!-- Add screenshot: Detailed service section with carousel -->
-![Service Details](./screenshots/service-details.jpg)
+![Service Details](./src/assets/screenshots/service-details.jpg)
 
 ### Projects Page
 <!-- Add screenshot: Project gallery grid -->
-![Projects Gallery](./screenshots/projects-gallery.jpg)
+![Projects Gallery](./src/assets/screenshots/projects-gallery.jpg)
 
 <!-- Add screenshot: Project modal with details -->
-![Project Modal](./screenshots/project-modal.jpg)
+![Project Modal](./src/assets/screenshots/project-modal.jpg)
 
 ### Chatbot
 <!-- Add screenshot: Chatbot interface with conversation -->
-![Chatbot Interface](./screenshots/chatbot.jpg)
+![Chatbot Interface](./src/assets/screenshots/chatbot.jpg)
 
 ## 🎯 Key Highlights
 
