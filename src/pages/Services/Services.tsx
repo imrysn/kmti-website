@@ -449,9 +449,84 @@ const Services: React.FC<ServicesPageProps> = () => {
   };
 
   const serviceTabs = ['3D MODELING', '2D DETAILING', 'Parts Inspection', 'MACHINE ASSEMBLY'];
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    const tabMap: { [key: string]: string } = {
+      '3D MODELING': '3d-modeling',
+      '2D DETAILING': '2d-detailing',
+      'Parts Inspection': 'parts-inspection',
+      'MACHINE ASSEMBLY': 'machine-assembly',
+    };
+    const sectionKey = tabMap[tab];
+    if (sectionKey) {
+      const sectionRef = serviceRefs.current[sectionKey];
+      if (sectionRef) {
+        sectionRef.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const progress = (scrollTop / (documentHeight - windowHeight)) * 100;
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0.1,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          const tabMap: { [key: string]: string } = {
+            'service-3d-modeling': '3D MODELING',
+            'service-2d-detailing': '2D DETAILING',
+            'service-parts-inspection': 'Parts Inspection',
+            'service-machine-assembly': 'MACHINE ASSEMBLY',
+          };
+          const tab = tabMap[sectionId];
+          if (tab) {
+            setActiveTab(tab);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    Object.values(serviceRefs.current).forEach((ref) => {
+      if (ref) {
+        observer.observe(ref);
+      }
+    });
+
+    return () => {
+      Object.values(serviceRefs.current).forEach((ref) => {
+        if (ref) {
+          observer.unobserve(ref);
+        }
+      });
+    };
+  }, [services]);
 
   return (
     <div className="services-page" style={{ '--services-bg-image': `url(${servicesBg})` } as React.CSSProperties}>
+      <div className="services-scroll-progress" style={{ width: `${scrollProgress}%` }}></div>
       <section className="services-hero">
         <div className="services-hero-container container">
           <div className="services-hero-content">
@@ -473,14 +548,24 @@ const Services: React.FC<ServicesPageProps> = () => {
             <div className="services-nav-tabs-scroll">
               <div className="services-nav-tabs-content">
                 {serviceTabs.map((tab, index) => (
-                  <span key={`${tab}-${index}`} className="services-nav-tab-text">
+                  <button
+                    key={`${tab}-${index}`}
+                    className={`services-nav-tab-text ${activeTab === tab ? 'active' : ''}`}
+                    onClick={() => handleTabClick(tab)}
+                    aria-label={`Navigate to ${tab}`}
+                  >
                     {tab}
-                  </span>
+                  </button>
                 ))}
                 {serviceTabs.map((tab, index) => (
-                  <span key={`${tab}-duplicate-${index}`} className="services-nav-tab-text">
+                  <button
+                    key={`${tab}-duplicate-${index}`}
+                    className={`services-nav-tab-text ${activeTab === tab ? 'active' : ''}`}
+                    onClick={() => handleTabClick(tab)}
+                    aria-label={`Navigate to ${tab}`}
+                  >
                     {tab}
-                  </span>
+                  </button>
                 ))}
               </div>
             </div>
