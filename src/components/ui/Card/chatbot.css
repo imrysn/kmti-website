@@ -500,30 +500,3 @@
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
-
-.chatbot-card-menu-icon-wrapper {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(29, 41, 69, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-  flex-shrink: 0;
-  pointer-events: none;
-  transition: all 0.2s ease;
-}
-
-.chatbot-card-menu-icon-clickable:active {
-  transform: scale(0.95);
-}
-
-.chatbor-card-menu-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-
-}
