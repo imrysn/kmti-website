@@ -262,38 +262,31 @@ npm run preview
 
 ### Homepage
 <!-- Add screenshot: Homepage hero section with call-to-action buttons -->
-![Homepage Hero Section](./screenshots/homepage-hero.png)
+![Homepage Hero Section](./screenshots/homepage-hero.jpg)
 
 <!-- Add screenshot: Why Choose Us section with feature cards -->
-![Why Choose Us Section](./screenshots/why-choose-us.png)
+![Why Choose Us Section](./screenshots/why-choose-us.jpg)
 
 <!-- Add screenshot: Service cards and project carousel -->
-![Services and Projects Preview](./screenshots/services-projects.png)
+![Services and Projects Preview](./screenshots/services-projects.jpg)
 
 ### Services Page
 <!-- Add screenshot: Services grid layout -->
-![Services Grid](./screenshots/services-grid.png)
+![Services Grid](./screenshots/services-grid.jpg)
 
 <!-- Add screenshot: Detailed service section with carousel -->
-![Service Details](./screenshots/service-details.png)
+![Service Details](./screenshots/service-details.jpg)
 
 ### Projects Page
 <!-- Add screenshot: Project gallery grid -->
-![Projects Gallery](./screenshots/projects-gallery.png)
+![Projects Gallery](./screenshots/projects-gallery.jpg)
 
 <!-- Add screenshot: Project modal with details -->
-![Project Modal](./screenshots/project-modal.png)
+![Project Modal](./screenshots/project-modal.jpg)
 
 ### Chatbot
 <!-- Add screenshot: Chatbot interface with conversation -->
-![Chatbot Interface](./screenshots/chatbot.png)
-
-### Responsive Design
-<!-- Add screenshot: Mobile view of homepage -->
-![Mobile Homepage](./screenshots/mobile-homepage.png)
-
-<!-- Add screenshot: Mobile navigation menu -->
-![Mobile Navigation](./screenshots/mobile-nav.png)
+![Chatbot Interface](./screenshots/chatbot.jpg)
 
 ## 🎯 Key Highlights
 
