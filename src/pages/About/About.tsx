@@ -73,19 +73,18 @@ const About: React.FC<AboutPageProps> = () => {
   };
 
   const toggleManagementTeam = () => {
-    setIsManagementTeamExpanded(!isManagementTeamExpanded);
-  };
-
-  const handleSeeLess = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    toggleManagementTeam();
-    // Scroll to management team container after state update
-    setTimeout(() => {
-      const managementTeamContainer = document.querySelector('.about-management-team-container');
-      if (managementTeamContainer) {
-        managementTeamContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
+    const newState = !isManagementTeamExpanded;
+    setIsManagementTeamExpanded(newState);
+    
+    // If collapsing, scroll back to the management team section
+    if (!newState) {
+      setTimeout(() => {
+        const section = document.querySelector('.about-management-team-section');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
   };
 
   return (
@@ -99,7 +98,7 @@ const About: React.FC<AboutPageProps> = () => {
               Driven by Precision, Built with Passion
             </p>
             <p className="about-description">
-              At Kusakabe & Maeno Technologies Inc., we combine Japanese engineering excellence and Filipino craftmanship to deliver reliable and innovative industrial solutions.
+              At Kusakabe & Maeno Technologies Inc., we combine Japanese engineering excellence and Filipino craftsmanship to deliver reliable and innovative industrial solutions.
             </p>
           </div>
         </div>
@@ -150,85 +149,114 @@ const About: React.FC<AboutPageProps> = () => {
       </section>
 
       <section className="about-management-team-section">
-        <div className="about-management-team-container container">
-          {!isManagementTeamExpanded ? (
-            <>
-              <h2 className="about-management-team-title">OUR MANAGEMENT TEAM</h2>
+        <div className={`about-management-team-container container ${isManagementTeamExpanded ? 'expanded' : ''}`}>
+          <h2 className="about-management-team-title">OUR MANAGEMENT TEAM</h2>
+          <div className="about-management-team-grid">
+            <ManagementTeamCard
+              image={pauImage}
+              role="ACCOUNTING / ADMIN MANAGER"
+            />
+            <ManagementTeamCard
+              image={michaelImage}
+              role="ENGINEERING MANAGER"
+            />
+            <div className="management-team-card-placeholder"></div>
+            <ManagementTeamCard
+              image={siryuImage}
+              role="PRESIDENT / CEO"
+              isLarge={true}
+            />
+            <ManagementTeamCard
+              image={mennjoImage}
+              role="ENGINEERING MANAGER"
+            />
+            <ManagementTeamCard
+              image={teodyImage}
+              role="ENGINEERING SUPERVISOR"
+            />
+          </div>
+
+          {isManagementTeamExpanded && (
+            <div className="about-management-team-expanded-rows">
               <div className="about-management-team-grid">
                 <ManagementTeamCard
-                  image={pauImage}
-                  role="ACCOUNTING / ADMIN MANAGER"
-                />
-                <ManagementTeamCard
-                  image={michaelImage}
-                  role="ENGINEERING MANAGER"
-                />
-                <div className="management-team-card-placeholder"></div>
-                <ManagementTeamCard
-                  image={siryuImage}
-                  role="PRESIDENT / CEO"
-                  isLarge={true}
-                />
-                <ManagementTeamCard
-                  image={mennjoImage}
-                  role="ENGINEERING MANAGER"
-                />
-                <ManagementTeamCard
-                  image={teodyImage}
+                  image={shelaImage}
                   role="ENGINEERING SUPERVISOR"
                 />
+                <ManagementTeamCard
+                  image={erikImage}
+                  role="ENGINEERING TEAM LEADER"
+                />
+                <ManagementTeamCard
+                  image={louieImage}
+                  role="ENGINEERING ASSISTANT TL"
+                />
+                <ManagementTeamCard
+                  image={kerbyImage}
+                  role="ENGINEERING IT/STAFF"
+                />
+                <ManagementTeamCard
+                  image={kissImage}
+                  role="ENGINEERING STAFF/SO"
+                />
               </div>
-              <a href="#" className="about-see-more-link" onClick={(e) => { e.preventDefault(); toggleManagementTeam(); }}>See more...</a>
-            </>
-          ) : (
-            <div className="management-team-modal-body">
-              <h2 className="management-team-modal-title">Meet Our Management Team</h2>
-              <p className="management-team-modal-description">
-                At the heart of our company is a team of dedicated professionals who bring experience, leadership, and passion to every project. Together, they ensure that our operations run efficiently and that our goals are achieved with excellence.
-              </p>
-              <div className="management-team-modal-grid">
-                {[
-                  { image: pauImage, role: 'ACCOUNTING / ADMIN MANAGER' },
-                  { image: michaelImage, role: 'ENGINEERING MANAGER' },
-                  { image: siryuImage, role: 'PRESIDENT / CEO', isLarge: true },
-                  { image: mennjoImage, role: 'ENGINEERING MANAGER' },
-                  { image: teodyImage, role: 'ENGINEERING SUPERVISOR' },
-                  { image: shelaImage, role: 'ENGINEERING SUPERVISOR' },
-                  { image: erikImage, role: 'ENGINEERING TEAM LEADER' },
-                  { image: louieImage, role: 'ENGINEERING ASSISTANT TL' },
-                  { image: kerbyImage, role: 'ENGINEERING IT/STAFF' },
-                  { image: kissImage, role: 'ENGINEERING STAFF/SO' },
-                  { image: lorieImage, role: 'ENGINEERING STAFF' },
-                  { image: jethroImage, role: 'ENGINEERING STAFF' },
-                  { image: joyceImage, role: 'ENGINEERING STAFF' },
-                  { image: jcImage, role: 'ENGINEERING STAFF' },
-                  { image: jennyImage, role: 'ENGINEERING STAFF' },
-                  { image: nylImage, role: 'ENGINEERING STAFF' },
-                  { image: jonathanImage, role: 'ENGINEERING STAFF' },
-                  { image: noelImage, role: 'COMPANY DRIVER' },
-                  { image: royImage, role: 'COMPANY DRIVER' },
-                  { image: jojoImage, role: 'MAINTENANCE/UTILITY PERSONNEL' },
-                ].map((member, index) => {
-                  const isFirstRow = index < 5;
-                  const isLargeCard = member.isLarge && isFirstRow;
-
-                  return (
-                    <React.Fragment key={index}>
-                      {isFirstRow && index === 2 && (
-                        <div className="management-team-card-placeholder"></div>
-                      )}
-                      <ManagementTeamCard
-                        image={member.image}
-                        role={member.role}
-                        isLarge={isLargeCard}
-                      />
-                    </React.Fragment>
-                  );
-                })}
+              <div className="about-management-team-grid">
+                <ManagementTeamCard
+                  image={lorieImage}
+                  role="ENGINEERING STAFF"
+                />
+                <ManagementTeamCard
+                  image={jethroImage}
+                  role="ENGINEERING STAFF"
+                />
+                <ManagementTeamCard
+                  image={joyceImage}
+                  role="ENGINEERING STAFF"
+                />
+                <ManagementTeamCard
+                  image={jcImage}
+                  role="ENGINEERING STAFF"
+                />
+                <ManagementTeamCard
+                  image={jennyImage}
+                  role="ENGINEERING STAFF"
+                />
               </div>
-              <a href="#" className="about-see-more-link" onClick={handleSeeLess}>See Less</a>
+              <div className="about-management-team-grid">
+                <ManagementTeamCard
+                  image={nylImage}
+                  role="ENGINEERING STAFF"
+                />
+                <ManagementTeamCard
+                  image={jonathanImage}
+                  role="ENGINEERING STAFF"
+                />
+                <ManagementTeamCard
+                  image={noelImage}
+                  role="COMPANY DRIVER"
+                />
+                <ManagementTeamCard
+                  image={royImage}
+                  role="COMPANY DRIVER"
+                />
+                <ManagementTeamCard
+                  image={jojoImage}
+                  role="MAINTENANCE/UTILITY PERSONNEL"
+                />
+              </div>
             </div>
           )}
+
+          <a
+            href="#"
+            className="about-see-more-link"
+            onClick={(e) => {
+              e.preventDefault();
+              toggleManagementTeam();
+            }}
+          >
+            {isManagementTeamExpanded ? 'See Less' : 'See more...'}
+          </a>
         </div>
       </section>
 
@@ -285,7 +313,7 @@ const About: React.FC<AboutPageProps> = () => {
             <RelatedCompanyCard
               logo={mgkLogo}
               companyName="MAENO GIKEN INC."
-              description="MGK specializes in fabrication, utilizing expertise of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. And every product undergoes strict quality compliance to meet their client's satisfaction, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competetive by means of transferring every technological knowledge in this kind of busiess."
+              description="MGK specializes in fabrication, utilizing expertise of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. And every product undergoes strict quality compliance to meet their client's satisfaction, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competitive by means of transferring every technological knowledge in this kind of business."
               href="http://www.maenogiken.com/"
             />
           </div>

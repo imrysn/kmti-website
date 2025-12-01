@@ -130,6 +130,9 @@ const Projects: React.FC<ProjectsPageProps> = () => {
 
       <section className="projects-grid-section">
         <div className="projects-grid-container container">
+          <p className="projects-grid-description">
+            Click on any project card below to view detailed information, 3D models, and specifications in an interactive modal.
+          </p>
           <div className="projects-card-grid">
             {projects.map((project) => (
               <ProjectsCard
