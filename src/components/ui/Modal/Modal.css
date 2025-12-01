@@ -447,16 +447,21 @@
 
 .management-team-modal-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(5, minmax(240px, 240px));
+  gap: 1.75rem;
   align-items: start;
   position: relative;
   padding: 0 3rem;
+  justify-items: center;
+  justify-content: center;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .management-team-modal-grid .management-team-card-placeholder {
-  flex: 0.8 0 80px;
-  min-width: 160px;
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
   visibility: hidden;
   pointer-events: none;
 }
@@ -475,13 +480,15 @@
   align-items: center;
   text-align: center;
   position: relative;
-  flex: 0 0 100px;
-  min-width: 100px;
+  width: 250px;
+  min-width: 300px;
+  max-width: 300px;
   height: auto;
   overflow: hidden;
   box-shadow: 0 0px 15px rgba(81, 162, 255, 0.5);
   box-sizing: border-box;
   margin: 0;
+  flex-shrink: 0;
 }
 
 .management-team-modal-grid .management-team-card-image {
@@ -489,10 +496,10 @@
   height: 320px;
   object-fit: cover;
   object-position: center center;
-  margin-top: 0.4rem;
+  margin-top: 0.8rem;
   margin-left: -1rem;
   margin-right: -1rem;
-  margin-bottom: -0.1rem;
+  margin-bottom: 0rem;
 }
 
 .management-team-modal-grid .management-team-card-role {
@@ -518,30 +525,30 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  top: -2rem;
+  top: -4rem;
   flex: none;
-  width: 280px;
-  min-width: 200px;
+  width: 300px;
+  min-width: 300px;
   max-width: 300px;
   z-index: 2;
-  height: 400px;
+  height: 425px;
 }
 
 .management-team-modal-grid .management-team-card-large .management-team-card-image {
   width: calc(100% + 2rem);
-  height: 400px;
+  height: 450px;
   object-fit: cover;
   object-position: center center;
   margin-top: -0.4rem;
   margin-left: -1rem;
   margin-right: -1rem;
-  margin-bottom: -0rem;
+  margin-bottom: -0.9rem;
 }
 
 .management-team-modal-grid .management-team-card-large .management-team-card-role {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   text-transform: uppercase;
   font-weight: 1;
   margin: 0.3rem;
@@ -557,14 +564,24 @@
 
 @media (max-width: 1400px) {
   .management-team-modal-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(4, minmax(240px, 240px));
+    gap: 1.5rem;
     padding: 0 2rem;
+    justify-items: center;
+    justify-content: center;
+  }
+
+  .management-team-modal-grid .management-team-card {
+    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
+    flex-shrink: 0;
   }
 
   .management-team-modal-grid .management-team-card-large {
-    width: 260px;
-    max-width: 280px;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
   }
 }
 
@@ -575,14 +592,24 @@
   }
 
   .management-team-modal-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(240px, 240px));
+    gap: 1.25rem;
     padding: 0 1.5rem;
+    justify-items: center;
+    justify-content: center;
+  }
+
+  .management-team-modal-grid .management-team-card {
+    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
+    flex-shrink: 0;
   }
 
   .management-team-modal-grid .management-team-card-large {
-    width: 240px;
-    max-width: 260px;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
   }
 }
 
@@ -601,13 +628,18 @@
   }
 
   .management-team-modal-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(200px, 200px));
     gap: 1rem;
     padding: 0 1rem;
+    justify-items: center;
+    justify-content: center;
   }
 
   .management-team-modal-grid .management-team-card {
-    min-width: 90px;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    flex-shrink: 0;
   }
 
   .management-team-modal-grid .management-team-card-image {
