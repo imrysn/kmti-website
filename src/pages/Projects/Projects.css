@@ -115,6 +115,19 @@
   padding-right: 2rem;
 }
 
+.projects-grid-description {
+  font-family: var(--font-family-body);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
 /* ============================================
    MOBILE RESPONSIVENESS
    ============================================ */
@@ -158,6 +171,12 @@
   .projects-grid-container {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .projects-grid-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
   }
 }
 
