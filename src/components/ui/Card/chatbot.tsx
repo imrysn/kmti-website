@@ -41,7 +41,7 @@ interface ActionButton {
   id: string;
   text: string;
   icon?: string;
-  action: 'line' | 'facebook' | 'maps' | 'apply' | 'call' | 'message' | 'back' | 'email';
+  action: 'line' | 'facebook' | 'maps' | 'apply' | 'call' | 'message' | 'back' | 'email' | 'start-over' | 'talk-to-human';
   url?: string;
   navigateAction?: string;
 }
@@ -312,6 +312,19 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
   }, [isInitializing, isOpen]);
 
   const handleButtonClick = (action: string, buttonText: string) => {
+    // Handle start-over action
+    if (action === 'start-over') {
+      // Reset chatbot to beginning
+      window.dispatchEvent(new CustomEvent('reset-chatbot'));
+      // Clear messages and reinitialize
+      setMessages([]);
+      setInputValue('');
+      initializationRef.current = false;
+      hasInitializedRef.current = false;
+      setIsInitializing(true);
+      return;
+    }
+
     // Handle special navigation actions
     if (action === 'learn-more-3d') {
       // Close chatbot
@@ -360,6 +373,16 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       }
       // Navigate to about page
       navigate('/about');
+      return;
+    }
+
+    if (action === 'go-projects' || action === 'view-projects') {
+      // Close chatbot
+      if (onClose) {
+        onClose();
+      }
+      // Navigate to projects page
+      navigate('/projects');
       return;
     }
 
@@ -490,6 +513,124 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'menu': 'main-menu',
       'home': 'main-menu',
       'back': 'main-menu',
+
+      // Start over / Reset
+      'start over': 'start-over',
+      'startover': 'start-over',
+      'reset': 'start-over',
+      'restart': 'start-over',
+      'new conversation': 'start-over',
+      'clear': 'start-over',
+
+      // Talk to human
+      'talk to human': 'talk-to-human',
+      'talk to a human': 'talk-to-human',
+      'human': 'talk-to-human',
+      'speak to someone': 'talk-to-human',
+      'contact human': 'talk-to-human',
+      'real person': 'talk-to-human',
+      'agent': 'talk-to-human',
+
+      // Pricing & Quotes (Client Questions)
+      'price': 'pricing',
+      'pricing': 'pricing',
+      'cost': 'pricing',
+      'quote': 'pricing',
+      'quotation': 'pricing',
+      'estimate': 'pricing',
+      'budget': 'pricing',
+      'how much': 'pricing',
+      'fee': 'pricing',
+      'rates': 'pricing',
+
+      // Project Timeline (Client Questions)
+      'timeline': 'timeline',
+      'duration': 'timeline',
+      'how long': 'timeline',
+      'delivery time': 'timeline',
+      'completion time': 'timeline',
+      'deadline': 'timeline',
+      'delivery': 'timeline',
+      'when': 'timeline',
+      'timeframe': 'timeline',
+
+      // Projects & Portfolio (Client Questions)
+      'projects': 'projects',
+      'portfolio': 'projects',
+      'examples': 'projects',
+      'samples': 'projects',
+      'previous work': 'projects',
+      'past projects': 'projects',
+      'work': 'projects',
+      'show me projects': 'projects',
+
+      // Qualifications & Experience (Client Questions)
+      'qualifications': 'qualifications',
+      'experience': 'qualifications',
+      'expertise': 'qualifications',
+      'certifications': 'qualifications',
+      'credentials': 'qualifications',
+      'years of experience': 'qualifications',
+
+      // Process & Workflow (Client Questions)
+      'workflow': 'process',
+      'how it works': 'process',
+      'steps': 'process',
+      'procedure': 'process',
+      'method': 'process',
+
+      // Requirements (Client Questions)
+      'requirements': 'requirements',
+      'what do i need': 'requirements',
+      'specifications': 'requirements',
+      'specs': 'requirements',
+      'what is needed': 'requirements',
+
+      // Payment & Billing (Client Questions)
+      'payment': 'payment',
+      'payment terms': 'payment',
+      'billing': 'payment',
+      'invoice': 'payment',
+      'how to pay': 'payment',
+      'payment method': 'payment',
+
+      // Consultation (Client Questions)
+      'consultation': 'consultation',
+      'meeting': 'consultation',
+      'discuss': 'consultation',
+      'talk about': 'consultation',
+      'schedule meeting': 'consultation',
+
+      // Benefits (Applicant Questions)
+      'benefits': 'benefits',
+      'compensation': 'benefits',
+      'salary': 'benefits',
+      'pay': 'benefits',
+      'perks': 'benefits',
+      'what are the benefits': 'benefits',
+
+      // Application Requirements (Applicant Questions)
+      'what are the requirements': 'application-requirements',
+      'skills needed': 'application-requirements',
+      'experience needed': 'application-requirements',
+      'qualifications needed': 'application-requirements',
+      'what do i need to apply': 'application-requirements',
+
+      // Training & Development (Applicant Questions)
+      'training': 'training',
+      'development': 'training',
+      'learning': 'training',
+      'growth': 'training',
+      'career development': 'training',
+      'training program': 'training',
+
+      // Application Status (Applicant Questions)
+      'application status': 'application-status',
+      'status': 'application-status',
+      'update': 'application-status',
+      'follow up': 'application-status',
+      'check application': 'application-status',
+      'my application': 'application-status',
     };
 
     // Direct match
@@ -541,9 +682,11 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: `bot-${Date.now()}`,
           type: 'bot',
           content: {
-            text: "I'm not sure how to help with that. Would you like to return to the main menu?",
+            text: "I'm not sure how to help with that. Would you like to return to the main menu, start over, or talk to a human?",
             actionButtons: [
               { id: 'back-main', text: '🔙Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+              { id: 'start-over', text: '🔄Start Over', action: 'start-over' },
+              { id: 'talk-to-human', text: '👤Talk to a Human', action: 'talk-to-human' },
             ],
           },
           timestamp: new Date(),
@@ -616,6 +759,51 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           window.open(action.url, '_blank');
         } else {
           window.open('https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=Hello%20KMTI%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you!', '_blank');
+        }
+        break;
+      case 'start-over':
+        // Reset chatbot to beginning
+        window.dispatchEvent(new CustomEvent('reset-chatbot'));
+        // Clear messages and reinitialize
+        setMessages([]);
+        setInputValue('');
+        initializationRef.current = false;
+        hasInitializedRef.current = false;
+        setIsInitializing(true);
+        break;
+      case 'talk-to-human':
+        // Show options to contact a human
+        const userMessage: Message = {
+          id: `user-${Date.now()}-${Math.random()}`,
+          type: 'user',
+          content: { text: 'Talk to a Human' },
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, userMessage]);
+
+        setTimeout(() => {
+          const humanContactMessage: Message = {
+            id: `bot-${Date.now()}`,
+            type: 'bot',
+            content: {
+              text: 'I\'d be happy to connect you with our team! How would you like to reach us?',
+              actionButtons: [
+                { id: 'line-human', text: '💬 Message us on LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+                { id: 'email-human', text: '✉️ Email us', action: 'email', url: 'mailto:info@kmti.com.ph' },
+                { id: 'facebook-human', text: '📘 Message us on Facebook', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
+                { id: 'call-human', text: '📞 Call us (046) 413-4509', action: 'call' },
+                { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+              ],
+            },
+            timestamp: new Date(),
+          };
+          setMessages((prev) => [...prev, humanContactMessage]);
+        }, 800);
+        break;
+      default:
+        // Handle navigation actions
+        if (action.navigateAction) {
+          handleButtonClick(action.navigateAction, action.text);
         }
         break;
     }
@@ -847,7 +1035,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'You can reach us at:\n(046) 413-4509',
             actionButtons: [
-              { id: 'call-button', text: 'Call us', action: 'call' },
+              { id: 'call-button', text: 'Call us (046) 413-4509', action: 'call' },
             ],
           },
           timestamp: new Date(),
@@ -875,6 +1063,266 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
             text: 'KMTI is committed to delivering high-quality engineering solutions with precision and excellence. Our team of skilled professionals works closely with clients to ensure their projects meet the highest standards.',
             buttons: [
               { id: 'back-main', text: '🔙Back to Main Menu', action: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'start-over':
+        // This will be handled by handleActionButtonClick, but we need a response
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'Starting fresh! How can I help you today?',
+            buttons: [
+              {
+                id: 'services',
+                text: 'Our Services',
+                action: 'services',
+              },
+              {
+                id: 'careers',
+                text: 'Careers & Application',
+                action: 'careers',
+              },
+              {
+                id: 'location',
+                text: 'Office Location',
+                action: 'location',
+              },
+              {
+                id: 'support',
+                text: 'Contact Support',
+                action: 'support',
+              },
+              {
+                id: 'about',
+                text: 'About KMTI',
+                action: 'about',
+              },
+            ],
+            actionButtons: [
+              { id: 'talk-to-human', text: '👤Talk to a Human', action: 'talk-to-human' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'talk-to-human':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'I\'d be happy to connect you with our team! How would you like to reach us?',
+            actionButtons: [
+              { id: 'line-human', text: '💬 Message us on LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'email-human', text: '✉️ Email us', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'facebook-human', text: '📘 Message us on Facebook', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
+              { id: 'call-human', text: '📞 Call us', action: 'call' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'pricing':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'For pricing and quotes, we provide customized estimates based on your project requirements. To get an accurate quote, please contact us with your project details.',
+            actionButtons: [
+              { id: 'line-quote', text: '💬 Get Quote via LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'email-quote', text: '✉️ Email for Quote', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'timeline':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'Project timelines vary depending on complexity and scope. Typically:\n• 3D Modeling: 1-4 weeks\n• 2D Detailing: 1-3 weeks\n• Parts Inspection: 1-2 weeks\n• Machine Assembly: 2-6 weeks\n\nFor specific timelines, please contact us with your project details.',
+            actionButtons: [
+              { id: 'line-timeline', text: '💬 Discuss Timeline', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'email-timeline', text: '✉️ Email for Timeline', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'projects':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'Want to see our work? We have completed projects including Transfer Tables, Finishing Lines, Air Blow Systems, and more. Check out our portfolio!',
+            buttons: [
+              { id: 'view-projects', text: 'View Projects', action: 'view-projects' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'view-projects':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'I\'ll take you to our projects page where you can see detailed information, 3D models, and specifications.',
+            buttons: [
+              { id: 'go-projects', text: 'Go to Projects', action: 'go-projects' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'go-projects':
+        // This will be handled in handleButtonClick
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'Redirecting to projects...',
+          },
+          timestamp: new Date(),
+        };
+
+      case 'qualifications':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'KMTI has years of experience in engineering services, working with industry leaders like Kusakabe Electric & Machinery Co., Ltd. and Maeno Giken Inc. Our team uses advanced technology and follows international standards.',
+            actionButtons: [
+              { id: 'learn-more-about-btn', text: 'Learn More About KMTI', action: 'back', navigateAction: 'learn-more-about' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'process':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'Our process typically involves:\n1️⃣ Consultation & Requirements Gathering\n2️⃣ Design & 3D Modeling\n3️⃣ 2D Detailing & Quality Checking\n4️⃣ Client Review & Modifications\n5️⃣ Final Approval & Delivery\n\nWe keep clients involved at every stage!',
+            actionButtons: [
+              { id: 'line-process', text: '💬 Discuss Process', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'requirements':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'To get started, we typically need:\n• Project specifications\n• Design requirements\n• Material preferences\n• Timeline expectations\n• Budget considerations\n\nContact us to discuss your specific needs!',
+            actionButtons: [
+              { id: 'line-requirements', text: '💬 Discuss Requirements', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'email-requirements', text: '✉️ Email Requirements', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'payment':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'Payment terms are discussed during project consultation and are customized based on project scope. We accept various payment methods and can provide flexible payment schedules.',
+            actionButtons: [
+              { id: 'line-payment', text: '💬 Discuss Payment', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'email-payment', text: '✉️ Email for Payment Info', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'consultation':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'We\'d love to discuss your project! You can schedule a consultation through:\n• LINE Messenger (fastest response)\n• Email\n• Phone call\n• Office visit',
+            actionButtons: [
+              { id: 'line-consult', text: '💬 Schedule via LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'email-consult', text: '✉️ Email for Consultation', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'call-consult', text: '📞 Call us (046) 413-4509', action: 'call' },
+              { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'benefits':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'KMTI offers competitive compensation and benefits including:\n• Competitive salary\n• Training opportunities in Japan\n• Career growth and development\n• Compressed work schedule (Mon-Fri)\n• Professional development programs',
+            actionButtons: [
+              { id: 'contact-hr-benefits', text: '📞 Contact HR for Details', action: 'back', navigateAction: 'contact-hr' },
+              { id: 'back-careers', text: 'Back to Careers', action: 'back', navigateAction: 'careers' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'application-requirements':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'Requirements vary by position, but generally include:\n• Relevant educational background\n• Technical skills (CAD, engineering)\n• Willingness to learn\n• Attention to detail\n• Team collaboration skills\n\nCheck specific positions for detailed requirements!',
+            actionButtons: [
+              { id: 'view-positions-req', text: '🔎View Open Positions', action: 'back', navigateAction: 'view-positions' },
+              { id: 'contact-hr-req', text: '📞 Contact HR', action: 'back', navigateAction: 'contact-hr' },
+              { id: 'back-careers', text: 'Back to Careers', action: 'back', navigateAction: 'careers' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'training':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'KMTI offers excellent training opportunities:\n• On-the-job training\n• Technical skill development\n• Training programs in Japan\n• Continuous learning and growth\n• Mentorship from experienced engineers',
+            actionButtons: [
+              { id: 'career-opportunities-training', text: '🚀Learn About Career Growth', action: 'back', navigateAction: 'career-opportunities' },
+              { id: 'back-careers', text: 'Back to Careers', action: 'back', navigateAction: 'careers' },
+            ],
+          },
+          timestamp: new Date(),
+        };
+
+      case 'application-status':
+        return {
+          id: messageId,
+          type: 'bot',
+          content: {
+            text: 'To check your application status, please contact our HR team directly. They can provide updates on your application and next steps.',
+            actionButtons: [
+              { id: 'email-hr-status', text: '✉️ Email HR', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'message-hr-status', text: '💬 Message HR on Facebook', action: 'message', url: 'https://www.facebook.com/kmti.com.ph/' },
+              { id: 'call-hr-status', text: '📞 Call HR (046) 413-4509', action: 'call' },
+              { id: 'back-careers', text: 'Back to Careers', action: 'back', navigateAction: 'careers' },
             ],
           },
           timestamp: new Date(),
@@ -952,6 +1400,10 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
                 ),
               },
             ],
+            actionButtons: [
+              { id: 'talk-to-human', text: '👤Talk to a Human', action: 'talk-to-human' },
+              { id: 'start-over', text: '🔄Start Over', action: 'start-over' },
+            ],
           },
           timestamp: new Date(),
         };
@@ -961,9 +1413,11 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'I\'m not sure how to help with that. Would you like to return to the main menu?',
-            buttons: [
-              { id: 'back-main', text: '🔙Back to Main Menu', action: 'main-menu' },
+            text: 'I\'m not sure how to help with that. Would you like to return to the main menu, start over, or talk to a human?',
+            actionButtons: [
+              { id: 'back-main', text: '🔙Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
+              { id: 'start-over', text: '🔄Start Over', action: 'start-over' },
+              { id: 'talk-to-human', text: '👤Talk to a Human', action: 'talk-to-human' },
             ],
           },
           timestamp: new Date(),

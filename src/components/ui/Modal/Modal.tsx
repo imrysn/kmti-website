@@ -91,7 +91,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
   ];
 
   const getCurrentCarouselImages = () => {
-    if (service?.title === 'Parts inspection') return inspectionImages;
+    if (service?.title === 'Parts Inspection') return inspectionImages;
     if (service?.title === 'Machine Assembly') return assemblyImages;
     return [];
   };
@@ -113,7 +113,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
   }, [isOpen]);
 
   useEffect(() => {
-    if (!isOpen || !service || (service.title !== 'Parts inspection' && service.title !== 'Machine Assembly')) return;
+    if (!isOpen || !service || (service.title !== 'Parts Inspection' && service.title !== 'Machine Assembly')) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % currentCarouselImages.length);
@@ -123,7 +123,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
   }, [isOpen, service, currentCarouselImages.length]);
 
   useEffect(() => {
-    if (service?.title === 'Parts inspection' || service?.title === 'Machine Assembly') {
+    if (service?.title === 'Parts Inspection' || service?.title === 'Machine Assembly') {
       setCurrentImageIndex(0);
     }
   }, [service, isOpen]);
@@ -146,7 +146,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
         return 2;
       case '2D Detailing':
         return 3;
-      case 'Parts inspection':
+      case 'Parts Inspection':
         return 5;
       case 'Machine Assembly':
         return 5;
@@ -185,7 +185,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
     if (service.title === '2D Detailing') {
       return "Detailing is a critical part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We give a keen eye on every detail of the design, together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involve in the process and everything is according to their plan to avoid any further iterations due to miscommunication.";
     }
-    if (service.title === 'Parts inspection') {
+    if (service.title === 'Parts Inspection') {
       return "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepancies from the design and the actual parts.";
     }
     if (service.title === 'Machine Assembly') {
@@ -234,7 +234,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
           ×
         </button>
 
-        <div className={`service-modal-body ${service.title === 'Parts inspection' || service.title === 'Machine Assembly' ? 'service-modal-body-single' : ''}`}>
+        <div className={`service-modal-body ${service.title === 'Parts Inspection' || service.title === 'Machine Assembly' ? 'service-modal-body-single' : ''}`}>
           <div className="service-modal-left">
             <h2 className="service-modal-title">
               {service.title}
@@ -262,7 +262,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
                   </div>
                 ))}
               </div>
-            ) : service.title === 'Parts inspection' || service.title === 'Machine Assembly' ? (
+            ) : service.title === 'Parts Inspection' || service.title === 'Machine Assembly' ? (
               <div className="service-modal-carousel">
                 <div className="service-modal-carousel-container">
                   {currentCarouselImages.map((image, index) => (
@@ -313,7 +313,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service, o
             )}
           </div>
 
-          {service.title !== 'Parts inspection' && service.title !== 'Machine Assembly' && (
+          {service.title !== 'Parts Inspection' && service.title !== 'Machine Assembly' && (
             <div className="service-modal-right">
               <h3 className="service-modal-flow-title">ACTUAL PRODUCTION FLOW</h3>
               <div className="service-modal-flow">

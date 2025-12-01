@@ -75,7 +75,7 @@
 }
 
 .about-company-section {
-  padding: 5rem 0;
+  padding: 6rem 0;
 }
 
 .about-company-container {
@@ -96,7 +96,7 @@
 .about-company-images {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 1.5rem;
   position: relative;
   align-items: flex-start;
   height: 100%;
@@ -107,25 +107,25 @@
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #51A2FF;
-  box-shadow: 0 0 20px rgba(81, 162, 255, 0.6);
+  box-shadow: 0 0 15px rgba(81, 162, 255, 0.6);
   background: transparent;
   padding: 0;
   flex: 1;
 }
 
 .about-company-image-wrapper:first-child {
-  margin-top: -1rem;
+  margin-top: 1rem;
   z-index: 2;
 }
 
 .about-company-image-wrapper:last-child {
-  margin-top: 3rem;
+  margin-top: 5rem;
   z-index: 1;
 }
 
 .about-company-image {
   width: 100%;
-  height: auto;
+  height: 11rem;
   display: block;
   border-radius: 10px;
   object-fit: cover;
@@ -152,7 +152,7 @@
 }
 
 .about-company-description {
-  font-size: 1rem;
+  font-size: 0.98rem;
   color: white;
   font-family: var(--font-family-body);
   line-height: 1.8;
@@ -165,7 +165,7 @@
 }
 
 .about-vision-mission-section {
-  padding: 2em 0 3rem 0;
+  padding: 4rem 0;
 }
 
 .about-vision-mission-container {
@@ -185,7 +185,7 @@
 }
 
 .about-management-team-section {
-  padding: 5rem 0 6rem 0;
+  padding: 6rem 0;
 }
 
 .about-management-team-container {
@@ -214,16 +214,58 @@
   align-items: stretch;
   justify-content: center;
   gap: 2rem;
-  padding: 0 0rem;
+  padding: 0 2rem;
   box-sizing: border-box;
   width: 100%;
   flex-wrap: nowrap;
   position: relative;
 }
 
+.about-management-team-expanded-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  animation: fadeInExpand 0.5s ease-out;
+}
+
+.about-management-team-expanded-rows .about-management-team-grid {
+  margin-top: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  width: 100%;
+  flex-wrap: nowrap;
+  position: relative;
+}
+
+.about-management-team-expanded-rows .management-team-card {
+  flex: 0 0 250px !important;
+  min-width: 260px !important;
+  max-width: 250px !important;
+  width: 250px !important;
+}
+
+@keyframes fadeInExpand {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .management-team-card-placeholder {
-  flex: 0.8 0 80px;
-  min-width: 160px;
+  flex: 0 0 300px;
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
   visibility: hidden;
   pointer-events: none;
 }
@@ -237,7 +279,12 @@
   margin-top: 5rem;
   padding: 0 2rem;
   text-align: center;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.about-management-team-container.expanded .about-see-more-link {
+  margin-top: 3rem;
 }
 
 .about-see-more-link:hover {
@@ -280,16 +327,21 @@
 
 .about-management-team-container .management-team-modal-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(5, minmax(240px, 240px));
+  gap: 1.75rem;
   align-items: start;
   position: relative;
   padding: 0 3rem;
+  justify-items: center;
+  justify-content: center;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .about-management-team-container .management-team-modal-grid .management-team-card-placeholder {
-  flex: 0.8 0 80px;
-  min-width: 160px;
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
   visibility: hidden;
   pointer-events: none;
 }
@@ -304,13 +356,15 @@
   align-items: center;
   text-align: center;
   position: relative;
-  flex: 0 0 100px;
-  min-width: 100px;
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
   height: auto;
   overflow: hidden;
   box-shadow: 0 0px 15px rgba(81, 162, 255, 0.5);
   box-sizing: border-box;
   margin: 0;
+  flex-shrink: 0;
 }
 
 .about-management-team-container .management-team-modal-grid .management-team-card-image {
@@ -318,10 +372,10 @@
   height: 320px;
   object-fit: cover;
   object-position: center center;
-  margin-top: 0.4rem;
+  margin-top: 0.8rem;
   margin-left: -1rem;
   margin-right: -1rem;
-  margin-bottom: -0.1rem;
+  margin-bottom: 0rem;
 }
 
 .about-management-team-container .management-team-modal-grid .management-team-card-role {
@@ -343,30 +397,30 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  top: -2rem;
+  top: -3rem;
   flex: none;
-  width: 280px;
-  min-width: 200px;
+  width: 300px;
+  min-width: 300px;
   max-width: 300px;
   z-index: 2;
-  height: 400px;
+  height: 425px;
 }
 
 .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-image {
   width: calc(100% + 2rem);
-  height: 400px;
+  height: 450px;
   object-fit: cover;
   object-position: center center;
   margin-top: -0.4rem;
   margin-left: -1rem;
   margin-right: -1rem;
-  margin-bottom: -0rem;
+  margin-bottom: -0.9rem;
 }
 
 .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-role {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   text-transform: uppercase;
   font-weight: 1;
   margin: 0.3rem;
@@ -381,7 +435,7 @@
    ============================================ */
 
 .our-people-section {
-  padding: 0rem 0 2.5rem 0;
+  padding: 2rem 0;
 }
 
 .our-people-container {
@@ -397,7 +451,7 @@
   font-size: 2.5rem;
   font-weight: 500;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;
@@ -410,7 +464,7 @@
   font-size: 1rem;
   color: white;
   text-align: center;
-  margin-bottom: -2rem;
+  margin-bottom: -4rem;
   line-height: 1.6;
   max-width: 800px;
   margin-left: auto;
@@ -524,11 +578,11 @@
    ============================================ */
 
 .related-companies-section {
-  padding: 0rem 0 5rem 0;
+  padding: 2rem 0;
 }
 
 .related-companies-container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
@@ -627,8 +681,8 @@
 
 /* ABOUT CTA SECTION */
 .about-cta-section {
-  padding-top: 2rem;
-  padding-bottom: 5rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
   text-align: center;
 }
 
