@@ -125,32 +125,51 @@
 }
 
 /* ============================================
-   MOBILE MENU OVERLAY
+   MOBILE MENU BACKDROP (for outside click)
    ============================================ */
-.navbar-mobile-overlay {
+.navbar-mobile-backdrop {
   position: fixed;
   top: 0;
-  left: 180px;
+  left: 0;
   right: 0;
-  bottom: 30%;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-bottom-left-radius: 10px;
-  z-index: 999;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.navbar-mobile-overlay.active {
+.navbar-mobile-backdrop.active {
   opacity: 1;
   visibility: visible;
 }
 
+/* ============================================
+   MOBILE MENU PANEL (slide-in nav)
+   ============================================ */
+.navbar-mobile-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;
+  max-width: 320px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(2, 6, 24, 0.98) 0%, rgba(22, 36, 86, 0.98) 50%, rgba(2, 6, 24, 0.98) 100%);
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-mobile-panel.active {
+  transform: translateX(0);
+}
+
 .navbar-mobile-links {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -210,8 +229,19 @@
 }
 
 /* ============================================
-   MOBILE RESPONSIVENESS
+   RESPONSIVE BREAKPOINTS
    ============================================ */
+
+/* Tablet/Medium screens - Show burger menu at 1242px */
+@media (max-width: 1242px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-burger {
+    display: block;
+  }
+}
 
 @media (max-width: 768px) {
   .navbar {
@@ -229,16 +259,17 @@
     margin-left: 0;
   }
 
-  .navbar-links {
-    display: none;
+  .navbar-mobile-panel {
+    width: 70%;
+    max-width: 280px;
   }
 
   .navbar-mobile-links .navbar-link {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
-  .navbar-burger {
-    display: block;
+  .navbar-mobile-links li {
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -256,8 +287,17 @@
     height: 35px;
   }
 
+  .navbar-mobile-panel {
+    width: 75%;
+    max-width: 260px;
+  }
+
   .navbar-mobile-links .navbar-link {
-    font-size: 14px;
+    font-size: 1.1rem;
+  }
+
+  .navbar-mobile-links li {
+    margin-bottom: 1.25rem;
   }
 }
 
@@ -281,8 +321,17 @@
     height: 20px;
   }
 
+  .navbar-mobile-panel {
+    width: 80%;
+    max-width: 240px;
+  }
+
   .navbar-mobile-links .navbar-link {
-    font-size: 14px;
-    padding: 0.2px 0.8px;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .navbar-mobile-links li {
+    margin-bottom: 1rem;
   }
 }
