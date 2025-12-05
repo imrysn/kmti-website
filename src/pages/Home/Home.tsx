@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import { HomePageProps } from './Home.types';
@@ -24,6 +24,12 @@ import furnaceImage from '../../assets/image3D/furnace.png';
 
 const Home: React.FC<HomePageProps> = () => {
   const navigate = useNavigate();
+  const [animationKey, setAnimationKey] = useState(0);
+
+  // Force animation restart when navigating back to this page
+  useEffect(() => {
+    setAnimationKey(prev => prev + 1);
+  }, []);
 
   const navigateToProjects = () => {
     navigate('/projects');
@@ -142,7 +148,7 @@ const Home: React.FC<HomePageProps> = () => {
 
   return (
     <div className="home-page">
-      <section className="hero-section" style={{ backgroundImage: `url(${homeBg})` }}>
+      <section key={animationKey} className="hero-section" style={{ backgroundImage: `url(${homeBg})` }}>
         <div className="hero-overlay"></div>
         <div className="hero-container container">
           <div className="hero-content">

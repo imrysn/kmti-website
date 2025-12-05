@@ -36,6 +36,8 @@ import royImage from '../../../assets/management/roy.png';
 import jojoImage from '../../../assets/management/jojo.png';
 
 import { ManagementTeamCard } from '../Card/Card';
+import Button from '../Button/Button';
+import Model3DViewerModal from './Model3DViewerModal';
 import dedemplerImage from '../../../assets/image3D/dedempler.png';
 import bundlingImage from '../../../assets/image3D/bundling.png';
 import bindingImage from '../../../assets/image3D/binding.png';
@@ -534,6 +536,8 @@ interface ProjectModalProps {
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModelTitle, setSelected3DModelTitle] = useState('');
 
   const projectImages = [
     {
@@ -645,28 +649,46 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose }) =
           </div>
         </div>
 
-        {projectImages.length > 1 && (
+        {(projectImages.length > 1 || currentProject.title === 'Binding Machine') && (
           <div className="project-modal-thumbnails-section">
-            <div className="project-modal-thumbnails">
-              {projectImages.map((project, index) => (
-                <button
-                  key={index}
-                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
-                  onClick={() => handleThumbnailClick(index)}
-                  type="button"
-                  aria-label={`View ${project.title}`}
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="project-modal-thumbnail-image"
-                  />
-                </button>
-              ))}
+            <div className="project-modal-thumbnails-wrapper">
+              {projectImages.length > 1 && (
+                <div className="project-modal-thumbnails">
+                  {projectImages.map((project, index) => (
+                    <button
+                      key={index}
+                      className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                      onClick={() => handleThumbnailClick(index)}
+                      type="button"
+                      aria-label={`View ${project.title}`}
+                    >
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="project-modal-thumbnail-image"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+              {currentProject.title === 'Binding Machine' && (
+                <Button variant="style1" onClick={() => {
+                  setSelected3DModelTitle('Binding Machine');
+                  setIs3DViewerOpen(true);
+                }}>
+                  View 3D Model
+                </Button>
+              )}
             </div>
           </div>
         )}
       </div>
+
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => setIs3DViewerOpen(false)}
+        modelTitle={selected3DModelTitle}
+      />
     </div>
   );
 };
@@ -678,6 +700,8 @@ interface LooperModalProps {
 
 export const LooperModal: React.FC<LooperModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModelTitle, setSelected3DModelTitle] = useState('');
 
   const looperImages = [
     {
@@ -784,28 +808,42 @@ export const LooperModal: React.FC<LooperModalProps> = ({ isOpen, onClose }) => 
           </div>
         </div>
 
-        {looperImages.length > 1 && (
-          <div className="project-modal-thumbnails-section">
-            <div className="project-modal-thumbnails">
-              {looperImages.map((looper, index) => (
-                <button
-                  key={index}
-                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
-                  onClick={() => handleThumbnailClick(index)}
-                  type="button"
-                  aria-label={`View ${looper.title}`}
-                >
-                  <img
-                    src={looper.image}
-                    alt={looper.title}
-                    className="project-modal-thumbnail-image"
-                  />
-                </button>
-              ))}
-            </div>
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails-wrapper">
+            {looperImages.length > 1 && (
+              <div className="project-modal-thumbnails">
+                {looperImages.map((looper, index) => (
+                  <button
+                    key={index}
+                    className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                    onClick={() => handleThumbnailClick(index)}
+                    type="button"
+                    aria-label={`View ${looper.title}`}
+                  >
+                    <img
+                      src={looper.image}
+                      alt={looper.title}
+                      className="project-modal-thumbnail-image"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+            <Button variant="style1" onClick={() => {
+              setSelected3DModelTitle(currentLooper.title);
+              setIs3DViewerOpen(true);
+            }}>
+              View 3D Model
+            </Button>
           </div>
-        )}
+        </div>
       </div>
+
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => setIs3DViewerOpen(false)}
+        modelTitle={selected3DModelTitle}
+      />
     </div>
   );
 };
@@ -953,6 +991,8 @@ interface StripEntryModalProps {
 
 export const StripEntryModal: React.FC<StripEntryModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModelTitle, setSelected3DModelTitle] = useState('');
 
   const stripEntryImages: Array<{
     image: string;
@@ -1081,28 +1121,42 @@ export const StripEntryModal: React.FC<StripEntryModalProps> = ({ isOpen, onClos
           </div>
         </div>
 
-        {stripEntryImages.length > 1 && (
-          <div className="project-modal-thumbnails-section">
-            <div className="project-modal-thumbnails">
-              {stripEntryImages.map((stripEntry, index) => (
-                <button
-                  key={index}
-                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
-                  onClick={() => handleThumbnailClick(index)}
-                  type="button"
-                  aria-label={`View ${stripEntry.title}`}
-                >
-                  <img
-                    src={stripEntry.image}
-                    alt={stripEntry.title}
-                    className="project-modal-thumbnail-image"
-                  />
-                </button>
-              ))}
-            </div>
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails-wrapper">
+            {stripEntryImages.length > 1 && (
+              <div className="project-modal-thumbnails">
+                {stripEntryImages.map((stripEntry, index) => (
+                  <button
+                    key={index}
+                    className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                    onClick={() => handleThumbnailClick(index)}
+                    type="button"
+                    aria-label={`View ${stripEntry.title}`}
+                  >
+                    <img
+                      src={stripEntry.image}
+                      alt={stripEntry.title}
+                      className="project-modal-thumbnail-image"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+            <Button variant="style1" onClick={() => {
+              setSelected3DModelTitle(currentStripEntry.title);
+              setIs3DViewerOpen(true);
+            }}>
+              View 3D Model
+            </Button>
           </div>
-        )}
+        </div>
       </div>
+
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => setIs3DViewerOpen(false)}
+        modelTitle={selected3DModelTitle}
+      />
     </div>
   );
 };
@@ -1503,6 +1557,7 @@ interface FurnaceModalProps {
 
 export const FurnaceModal: React.FC<FurnaceModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
 
   const furnaceImages = [
     {
@@ -1578,7 +1633,21 @@ export const FurnaceModal: React.FC<FurnaceModalProps> = ({ isOpen, onClose }) =
             </div>
           </div>
         </div>
+
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails-wrapper">
+            <Button variant="style1" onClick={() => setIs3DViewerOpen(true)}>
+              View 3D Model
+            </Button>
+          </div>
+        </div>
       </div>
+
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => setIs3DViewerOpen(false)}
+        modelTitle="Furnace"
+      />
     </div>
   );
 };

@@ -75,7 +75,7 @@ const About: React.FC<AboutPageProps> = () => {
   const toggleManagementTeam = () => {
     const newState = !isManagementTeamExpanded;
     setIsManagementTeamExpanded(newState);
-    
+
     // If collapsing, scroll back to the management team section
     if (!newState) {
       setTimeout(() => {
@@ -151,6 +151,11 @@ const About: React.FC<AboutPageProps> = () => {
       <section className="about-management-team-section">
         <div className={`about-management-team-container container ${isManagementTeamExpanded ? 'expanded' : ''}`}>
           <h2 className="about-management-team-title">OUR MANAGEMENT TEAM</h2>
+          {isManagementTeamExpanded && (
+            <p className="about-management-team-description">
+              At the heart of our company is a team of dedicated professionals who bring experience, leadership, and passion to every project. Together, they ensure that our operations run efficiently and that our goals are achieved with excellence.
+            </p>
+          )}
           <div className="about-management-team-grid">
             <ManagementTeamCard
               image={pauImage}
