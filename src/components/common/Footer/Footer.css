@@ -219,6 +219,12 @@
   color: white;
 }
 
+.visit-counter-digits {
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 4px rgba(81, 162, 255, 8);
+}
+
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */

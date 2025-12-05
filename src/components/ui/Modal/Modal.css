@@ -22,6 +22,34 @@
   }
 }
 
+/* ============================================
+   INVISIBLE SCROLLBAR FOR ALL MODALS
+   Hides scrollbar while keeping content scrollable
+   ============================================ */
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.service-modal-content::-webkit-scrollbar,
+.service-modal-body::-webkit-scrollbar,
+.our-story-modal-body::-webkit-scrollbar,
+.project-modal-body::-webkit-scrollbar,
+.project-modal-details::-webkit-scrollbar,
+.management-team-modal-body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Hide scrollbar for Firefox and IE/Edge */
+.service-modal-content,
+.service-modal-body,
+.our-story-modal-body,
+.project-modal-body,
+.project-modal-details,
+.management-team-modal-body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .service-modal-content {
   background-color: #162456;
   border: 1px solid rgba(81, 162, 255, 0.5);
@@ -34,12 +62,6 @@
   position: relative;
   overflow-y: auto;
   animation: scaleIn 0.3s ease;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.service-modal-content::-webkit-scrollbar {
-  display: none;
 }
 
 @keyframes scaleIn {
@@ -335,14 +357,48 @@
   padding: 0rem 0;
 }
 
+/* ============================================
+   CUSTOMIZABLE CSS VARIABLES - Our Story Modal
+   Adjust these values to control modal width
+   and dimensions at different screen sizes
+   (Matches project-modal-content for consistency)
+   ============================================ */
+:root {
+  /* Desktop (default) */
+  --our-story-modal-max-width: 1200px;
+  --our-story-modal-width: 95%;
+  --our-story-modal-max-height: 90vh;
+
+  /* Tablet (1024px and below) */
+  --our-story-modal-max-width-tablet: 700px;
+  --our-story-modal-width-tablet: 90%;
+
+  /* Mobile (768px and below) */
+  --our-story-modal-max-width-mobile: 500px;
+  --our-story-modal-width-mobile: 88%;
+
+  /* Small Mobile (480px and below) */
+  --our-story-modal-max-width-small: 360px;
+  --our-story-modal-width-small: 92%;
+}
+
 .our-story-modal-content {
-  max-width: 1100px;
+  max-width: var(--our-story-modal-max-width);
+  width: var(--our-story-modal-width);
+  max-height: var(--our-story-modal-max-height);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .our-story-modal-body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .our-story-modal-title {
@@ -404,9 +460,93 @@
   text-indent: 2rem;
 }
 
-.our-story-text {
-  font-size: 1rem;
-  color: white;
+/* ----------------------------------------
+   RESPONSIVE: Our Story Modal - Tablet (1024px and below)
+   ---------------------------------------- */
+@media (max-width: 1024px) {
+  .our-story-modal-content {
+    max-width: var(--our-story-modal-max-width-tablet);
+    width: var(--our-story-modal-width-tablet);
+  }
+
+  .our-story-modal-title {
+    font-size: 2rem;
+  }
+
+  .our-story-photo {
+    max-height: 400px;
+  }
+}
+
+/* ----------------------------------------
+   RESPONSIVE: Our Story Modal - Mobile (768px and below)
+   ---------------------------------------- */
+@media (max-width: 768px) {
+  .our-story-modal-content {
+    max-width: var(--our-story-modal-max-width-mobile);
+    width: var(--our-story-modal-width-mobile);
+    padding: 1.5rem;
+  }
+
+  .our-story-modal-title {
+    font-size: 1.75rem;
+  }
+
+  .our-story-photo {
+    width: 100%;
+    max-height: 300px;
+  }
+
+  .our-story-section {
+    width: 100%;
+  }
+
+  .our-story-text {
+    font-size: 0.9rem;
+    text-indent: 1.5rem;
+  }
+
+  .our-story-caption {
+    font-size: 0.85rem;
+  }
+}
+
+/* ----------------------------------------
+   RESPONSIVE: Our Story Modal - Small Mobile (480px and below)
+   ---------------------------------------- */
+@media (max-width: 480px) {
+  .our-story-modal-content {
+    max-width: var(--our-story-modal-max-width-small);
+    width: var(--our-story-modal-width-small);
+    padding: 1.25rem;
+  }
+
+  .our-story-modal-body {
+    gap: 1.5rem;
+  }
+
+  .our-story-modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .our-story-photo {
+    max-height: 220px;
+  }
+
+  .our-story-content {
+    gap: 1.5rem;
+  }
+
+  .our-story-text {
+    font-size: 0.85rem;
+    text-indent: 1rem;
+    line-height: 1.6;
+  }
+
+  .our-story-caption {
+    font-size: 0.8rem;
+  }
 }
 
 /* ============================================
@@ -480,7 +620,7 @@
   align-items: center;
   text-align: center;
   position: relative;
-  width: 250px;
+  width: 300px;
   min-width: 300px;
   max-width: 300px;
   height: auto;
@@ -499,7 +639,9 @@
   margin-top: 0.8rem;
   margin-left: -1rem;
   margin-right: -1rem;
-  margin-bottom: 0rem;
+  margin-bottom: -1rem;
+  display: block;
+  border-radius: 0 0 16px 16px;
 }
 
 .management-team-modal-grid .management-team-card-role {
@@ -533,6 +675,8 @@
   z-index: 2;
   height: 425px;
 }
+
+
 
 .management-team-modal-grid .management-team-card-large .management-team-card-image {
   width: calc(100% + 2rem);
@@ -844,9 +988,38 @@
    PROJECT MODAL
    ============================================ */
 
+/* ============================================
+   CUSTOMIZABLE CSS VARIABLES - Project Modal
+   Adjust these values to control modal width
+   and dimensions at different screen sizes
+   ============================================ */
+:root {
+  /* Desktop (default) */
+  --project-modal-max-width: 1200px;
+  --project-modal-width: 95%;
+  --project-modal-max-height: 90vh;
+
+  /* Tablet (1024px and below) */
+  --project-modal-max-width-tablet: 700px;
+  --project-modal-width-tablet: 90%;
+
+  /* Mobile (768px and below) */
+  --project-modal-max-width-mobile: 500px;
+  --project-modal-width-mobile: 88%;
+
+  /* Small Mobile (480px and below) */
+  --project-modal-max-width-small: 360px;
+  --project-modal-width-small: 92%;
+}
+
 .project-modal-content {
-  max-width: 1200px;
-  width: 100%;
+  max-width: var(--project-modal-max-width);
+  width: var(--project-modal-width);
+  max-height: var(--project-modal-max-height);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .project-modal-body {
@@ -855,6 +1028,9 @@
   gap: 2.5rem;
   padding-top: 1rem;
   align-items: stretch;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .project-modal-left {
@@ -905,12 +1081,30 @@
   border-top: 1px solid rgba(81, 162, 255, 0.25);
 }
 
+.project-modal-thumbnails-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* When only button exists (no thumbnails), position to the right */
+.project-modal-thumbnails-wrapper .btn:only-child {
+  margin-left: auto;
+}
+
+.project-modal-thumbnails-wrapper .btn {
+  flex-shrink: 0;
+}
+
 .project-modal-thumbnails {
   display: flex;
   gap: 1rem;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  flex: 1;
 }
 
 .project-modal-thumbnail {
@@ -956,6 +1150,8 @@
   flex-direction: column;
   gap: 1.25rem;
   height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .project-modal-title {
@@ -1001,8 +1197,15 @@
   text-align: justify;
 }
 
-/* Responsive styles for project modal */
+/* ----------------------------------------
+   RESPONSIVE: Tablet (1024px and below)
+   ---------------------------------------- */
 @media (max-width: 1024px) {
+  .project-modal-content {
+    max-width: var(--project-modal-max-width-tablet);
+    width: var(--project-modal-width-tablet);
+  }
+
   .project-modal-body {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -1020,11 +1223,20 @@
   .project-modal-thumbnails {
     justify-content: center;
   }
+
+  .project-modal-thumbnails-wrapper {
+    justify-content: center;
+  }
 }
 
+/* ----------------------------------------
+   RESPONSIVE: Mobile (768px and below)
+   ---------------------------------------- */
 @media (max-width: 768px) {
   .project-modal-content {
-    padding: 2rem;
+    max-width: var(--project-modal-max-width-mobile);
+    width: var(--project-modal-width-mobile);
+    padding: 1.5rem;
   }
 
   .project-modal-media {
@@ -1032,17 +1244,17 @@
   }
 
   .project-modal-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .project-modal-main-image-container {
-    max-height: 300px;
-    min-height: 250px;
+    max-height: 280px;
+    min-height: 220px;
   }
 
   .project-modal-thumbnail {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
   }
 
   .project-modal-section-title {
@@ -1052,19 +1264,35 @@
   .project-modal-section-text {
     font-size: 0.85rem;
   }
+
+  .project-modal-thumbnails-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .project-modal-thumbnails-wrapper .btn {
+    width: 100%;
+    max-width: 200px;
+  }
 }
 
+/* ----------------------------------------
+   RESPONSIVE: Small Mobile (480px and below)
+   ---------------------------------------- */
 @media (max-width: 480px) {
   .project-modal-content {
-    padding: 1.5rem;
+    max-width: var(--project-modal-max-width-small);
+    width: var(--project-modal-width-small);
+    padding: 1.25rem;
   }
 
   .project-modal-right {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .project-modal-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .project-modal-category {
@@ -1072,17 +1300,17 @@
   }
 
   .project-modal-main-image-container {
-    max-height: 250px;
-    min-height: 200px;
+    max-height: 220px;
+    min-height: 180px;
   }
 
   .project-modal-thumbnails {
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .project-modal-thumbnail {
-    width: 70px;
-    height: 70px;
+    width: 55px;
+    height: 55px;
   }
 
   .project-modal-section-title {
@@ -1091,5 +1319,15 @@
 
   .project-modal-section-text {
     font-size: 0.8rem;
+  }
+
+  .project-modal-thumbnails-wrapper {
+    gap: 0.75rem;
+  }
+
+  .project-modal-thumbnails-wrapper .btn {
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+    max-width: 180px;
   }
 }

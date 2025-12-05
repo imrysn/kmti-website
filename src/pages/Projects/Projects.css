@@ -1,5 +1,22 @@
 .projects-page {
   width: 100%;
+
+  /* ============================================
+     CUSTOMIZABLE CSS VARIABLES - Projects Hero
+     Adjust these values to control hero height
+     and spacing at different screen sizes
+     ============================================ */
+  --projects-hero-height-desktop: 100vh;
+  --projects-hero-height-tablet: 100vh;
+  --projects-hero-height-mobile: 100vh;
+  --projects-hero-height-small: 104vh;
+
+  --projects-hero-padding-top-desktop: 2rem;
+  --projects-hero-padding-top-mobile: 1.5rem;
+  --projects-hero-padding-top-small: 1rem;
+
+  --projects-hero-padding-bottom-desktop: 1rem;
+  --projects-hero-padding-bottom-mobile: 0rem;
 }
 
 /* ============================================
@@ -12,10 +29,10 @@
   background-position: center;
   background-repeat: no-repeat;
   margin-top: -8rem;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding-top: var(--projects-hero-padding-top-desktop);
+  padding-bottom: var(--projects-hero-padding-bottom-desktop);
   position: relative;
-  min-height: 100vh;
+  min-height: var(--projects-hero-height-desktop);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,11 +121,10 @@
 .projects-grid-section {
   padding-top: 4rem;
   padding-bottom: 4rem;
-  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
 }
 
 .projects-grid-container {
-  max-width: 1400px;
+  max-width: 1500px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
@@ -120,7 +136,7 @@
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 4rem;
   line-height: 1.6;
   max-width: 700px;
   margin-left: auto;
@@ -129,10 +145,52 @@
 }
 
 /* ============================================
+   PROJECTS CTA SECTION
+   ============================================ */
+
+.projects-cta-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  text-align: center;
+}
+
+.projects-cta-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.projects-cta-title {
+  font-family: var(--font-family-body);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 2.5rem;
+}
+
+.projects-cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================
    MOBILE RESPONSIVENESS
    ============================================ */
 
+/* ----------------------------------------
+   CUSTOMIZABLE: Tablet (1024px and below)
+   ---------------------------------------- */
 @media (max-width: 1024px) {
+  .projects-hero {
+    min-height: var(--projects-hero-height-tablet) !important;
+    padding-top: var(--projects-hero-padding-top-desktop) !important;
+    padding-bottom: var(--projects-hero-padding-bottom-desktop) !important;
+  }
+
   .projects-title {
     font-size: 3.5rem;
   }
@@ -143,8 +201,14 @@
   }
 }
 
+/* ----------------------------------------
+   CUSTOMIZABLE: Mobile (768px and below)
+   ---------------------------------------- */
 @media (max-width: 768px) {
   .projects-hero {
+    min-height: var(--projects-hero-height-mobile) !important;
+    padding-top: var(--projects-hero-padding-top-mobile) !important;
+    padding-bottom: var(--projects-hero-padding-bottom-mobile) !important;
     background-size: cover;
     background-position: center;
     animation: none;
@@ -178,10 +242,30 @@
     margin-bottom: 2rem;
     padding: 0 0.5rem;
   }
+
+  .projects-cta-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .projects-cta-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .projects-cta-title {
+    font-size: 1.5rem;
+  }
 }
 
+/* ----------------------------------------
+   CUSTOMIZABLE: Small Mobile (480px and below)
+   ---------------------------------------- */
 @media (max-width: 480px) {
   .projects-hero {
+    min-height: var(--projects-hero-height-small) !important;
+    padding-top: var(--projects-hero-padding-top-small) !important;
+    padding-bottom: var(--projects-hero-padding-bottom-mobile) !important;
     background-size: cover;
     background-position: center;
     animation: none;
@@ -194,12 +278,26 @@
   .projects-subtitle {
     font-size: 0.9rem;
   }
+
+  .projects-cta-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .projects-cta-title {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
 }
 
+/* ----------------------------------------
+   CUSTOMIZABLE: Extra Small (375px and below)
+   ---------------------------------------- */
 @media (max-width: 375px) {
   .projects-hero {
-    padding-top: 1.5rem;
-    padding-bottom: 0.5rem;
+    min-height: var(--projects-hero-height-small) !important;
+    padding-top: var(--projects-hero-padding-top-small) !important;
+    padding-bottom: var(--projects-hero-padding-bottom-mobile) !important;
   }
 
   .projects-hero-container {
