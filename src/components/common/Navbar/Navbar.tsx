@@ -117,8 +117,18 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`navbar-mobile-overlay ${isMenuOpen ? 'active' : ''}`} onClick={closeMenu}>
+      {/* Mobile Menu Backdrop - clicking this closes the menu */}
+      <div 
+        className={`navbar-mobile-backdrop ${isMenuOpen ? 'active' : ''}`} 
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
+      
+      {/* Mobile Menu Panel */}
+      <div 
+        className={`navbar-mobile-panel ${isMenuOpen ? 'active' : ''}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <ul className="navbar-mobile-links">
           {navLinks.map((link) => (
             <li key={`mobile-${link.path}`}>

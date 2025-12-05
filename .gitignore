@@ -40,4 +40,11 @@ build/
 .DS_Store
 .env.local
 .env.*.local
-!docs/.vitepress/cache
+!docs/.vitepress/cachekmti-website-backup/
+
+# 3D Model files (large GLB files)
+src/assets/3DMODELS/
+*.glb
+
+# 3D Models
+src/assets/3DMODELS/

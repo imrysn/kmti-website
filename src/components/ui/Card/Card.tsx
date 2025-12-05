@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Card.css';
 import Button from '../Button/Button';
+import ElectricBorder from '../ElectricBorder';
 
 const isImageIcon = (icon: string | React.ReactNode): icon is string => {
   return typeof icon === 'string' &&
@@ -173,6 +174,7 @@ interface ProjectCardProps {
   isActive?: boolean;
 }
 
+
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   image,
   title,
@@ -279,6 +281,14 @@ export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
 }) => {
   return (
     <div className={`management-team-card ${isLarge ? 'management-team-card-large' : ''} ${className}`}>
+      <ElectricBorder
+        color="#51A2FF"
+        speed={1}
+        chaos={0.5}
+        thickness={2}
+        style={{ borderRadius: 16 }}
+        isOverlay={true}
+      />
       <h3 className="management-team-card-role">{role}</h3>
       <img src={image} alt={role} className="management-team-card-image" />
     </div>
@@ -351,121 +361,23 @@ export const ProjectsCard: React.FC<ProjectsCardProps> = ({
   className = '',
   onClick,
 }) => {
-  const [tooltipVisible, setTooltipVisible] = React.useState(false);
-  const [tooltipPosition, setTooltipPosition] = React.useState({ x: 0, y: 0 });
-  const [isHoverDevice, setIsHoverDevice] = React.useState(false);
-  const [isFadingOut, setIsFadingOut] = React.useState(false);
-  const imageContainerRef = React.useRef<HTMLDivElement>(null);
-  const tooltipRef = React.useRef<HTMLDivElement>(null);
-  const fadeOutTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  // Detect if device supports hover (not touch devices)
-  React.useEffect(() => {
-    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
-    setIsHoverDevice(mediaQuery.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsHoverDevice(e.matches);
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
-
-  const handleMouseEnter = () => {
-    if (isHoverDevice) {
-      // Clear any pending fade out
-      if (fadeOutTimeoutRef.current) {
-        clearTimeout(fadeOutTimeoutRef.current);
-        fadeOutTimeoutRef.current = null;
-      }
-      setIsFadingOut(false);
-      setTooltipVisible(true);
-    }
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isHoverDevice) return;
-
-    const offset = 12; // Distance from cursor
-    let x = e.clientX + offset;
-    let y = e.clientY + offset;
-
-    // If tooltip is rendered, adjust based on its dimensions
-    if (tooltipRef.current) {
-      const tooltip = tooltipRef.current;
-      const tooltipRect = tooltip.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-
-      // Adjust if tooltip would go off right edge
-      if (x + tooltipRect.width > viewportWidth) {
-        x = e.clientX - tooltipRect.width - offset;
-      }
-
-      // Adjust if tooltip would go off bottom edge
-      if (y + tooltipRect.height > viewportHeight) {
-        y = e.clientY - tooltipRect.height - offset;
-      }
-
-      // Ensure tooltip doesn't go off left edge
-      if (x < 0) {
-        x = offset;
-      }
-
-      // Ensure tooltip doesn't go off top edge
-      if (y < 0) {
-        y = offset;
-      }
-    }
-
-    setTooltipPosition({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setIsFadingOut(true);
-    fadeOutTimeoutRef.current = setTimeout(() => {
-      setTooltipVisible(false);
-      setIsFadingOut(false);
-    }, 150); // Match fadeOut animation duration
-  };
-
-  // Cleanup timeout on unmount
-  React.useEffect(() => {
-    return () => {
-      if (fadeOutTimeoutRef.current) {
-        clearTimeout(fadeOutTimeoutRef.current);
-      }
-    };
-  }, []);
-
   return (
     <div className={`projects-card ${className}`}>
+      <ElectricBorder
+        color="#51A2FF"
+        speed={1}
+        chaos={0.8}
+        thickness={2}
+        style={{ borderRadius: 16 }}
+        isOverlay={true}
+      />
       {category && <div className="projects-card-label">{category}</div>}
-      <div
-        ref={imageContainerRef}
-        className="projects-card-image-container"
-        onMouseEnter={handleMouseEnter}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="projects-card-image-container">
         <img
           src={image}
           alt={title}
           className="projects-card-image"
         />
-        {tooltipVisible && isHoverDevice && (
-          <div
-            ref={tooltipRef}
-            className={`projects-card-tooltip ${isFadingOut ? 'fading-out' : ''}`}
-            style={{
-              left: `${tooltipPosition.x}px`,
-              top: `${tooltipPosition.y}px`,
-            }}
-          >
-            VIEW IN 3D
-          </div>
-        )}
       </div>
       <h3 className="projects-card-title">{title}</h3>
       <p className="projects-card-subtitle">{subtitle}</p>

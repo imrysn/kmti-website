@@ -19,21 +19,6 @@
   box-sizing: border-box;
 }
 
-.why-choose-card {
-  background-color: rgba(15, 23, 43, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  height: 100%;
-  box-sizing: border-box;
-}
-
 /* ============================================
    ICON CONTAINER
    ============================================ */
@@ -116,6 +101,7 @@
   height: 100%;
   box-sizing: border-box;
 }
+
 
 .why-work-withus-card-icon-container {
   background-color: rgba(43, 127, 255, 0.1);
@@ -485,6 +471,7 @@
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
+R
 /* ============================================
    PROJECT CARD LABEL
    ============================================ */
@@ -639,8 +626,16 @@
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+/* When image is hovered, raise entire card above other cards' electric borders */
+.projects-card:has(.projects-card-image-container:hover) {
+  z-index: 100;
+}
+
 /* ============================================
-   PROJECTS CARD LABEL
+   PROJECTS CARD LABEL - CUSTOMIZABLE
+   ============================================
+   To customize, change the values below directly.
+   All values use !important to ensure they apply.
    ============================================ */
 
 .projects-card-label {
@@ -650,15 +645,22 @@
   font-family: var(--font-family-body);
   color: #FFFFFF;
   text-transform: uppercase;
-  font-size: 0.8rem;
   font-weight: 200;
-  padding: 0.3rem 0rem;
   position: absolute;
   top: 13px;
-  left: 71%;
-  width: 50%;
-  transform: translateX(-50%);
   z-index: 20;
+  white-space: nowrap;
+  text-align: center;
+
+  /* CUSTOMIZABLE VALUES - Desktop */
+  /* Using right positioning to keep label inside card */
+  right: 10px !important;
+  left: auto !important;
+  transform: none !important;
+  width: auto !important;
+  max-width: calc(100% - 20px) !important;
+  font-size: 0.75rem !important;
+  padding: 0.3rem 0.8rem !important;
 }
 
 /* ============================================
@@ -676,6 +678,13 @@
   margin-bottom: 1rem;
   margin-top: 1rem;
   overflow: visible;
+  position: relative;
+  z-index: 1;
+  transition: z-index 0s;
+}
+
+.projects-card-image-container:hover {
+  z-index: 9999;
 }
 
 .projects-card-image {
@@ -689,58 +698,6 @@
 
 .projects-card-image:hover {
   transform: scale(2);
-}
-
-/* ============================================
-   PROJECTS CARD TOOLTIP
-   Cursor-following tooltip that appears on hover
-   ============================================ */
-
-.projects-card-tooltip {
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  font-family: var(--font-family-body);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 10000;
-  opacity: 0;
-  animation: tooltipFadeIn 0.2s ease forwards;
-  transform: translate(0, 0);
-}
-
-@keyframes tooltipFadeIn {
-  from {
-    opacity: 0;
-    transform: translate(0, -0.5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-}
-
-.projects-card-tooltip.fading-out {
-  animation: tooltipFadeOut 0.10s ease forwards;
-}
-
-@keyframes tooltipFadeOut {
-  from {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translate(0, -5px);
-  }
 }
 
 /* ============================================
@@ -845,17 +802,66 @@
   }
 }
 
+/* 1 card per row on small screens (480px and below) - Desktop size cards */
+@media (max-width: 480px) {
+  .projects-card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    justify-items: center !important;
+  }
+
+  .projects-card {
+    max-width: 320px !important;
+    width: 100% !important;
+    padding: 1.5rem !important;
+    padding-top: 2rem !important;
+  }
+
+  .projects-card-image-container {
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
+  }
+
+  .projects-card-image {
+    max-height: 200px !important;
+  }
+}
+
 @media (max-width: 375px) {
   .projects-card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+    justify-items: center !important;
+  }
+
+  .projects-card {
+    max-width: 300px !important;
+    width: 100% !important;
   }
 }
 
 @media (max-width: 320px) {
   .projects-card-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    justify-items: center !important;
+  }
+
+  .projects-card {
+    max-width: 280px !important;
+    width: 100% !important;
+  }
+
+  /* Projects Card Label - Consistent position */
+  .projects-card-label {
+    right: 10px !important;
+    left: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(100% - 20px) !important;
+    font-size: 0.75rem !important;
+    padding: 0.3rem 0.8rem !important;
   }
 }
 
@@ -916,6 +922,30 @@
   .projects-card-link {
     font-size: 0.85rem;
   }
+
+  /* CUSTOMIZABLE: Projects Card Label - Tablet (768px) - Consistent position */
+  .projects-card-label {
+    right: 10px !important;
+    left: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(100% - 20px) !important;
+    font-size: 0.7rem !important;
+    padding: 0.25rem 0.6rem !important;
+  }
+}
+
+/* CUSTOMIZABLE: Projects Card Label - Mobile (480px) - Consistent position */
+@media (max-width: 480px) {
+  .projects-card-label {
+    right: 10px !important;
+    left: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(100% - 20px) !important;
+    font-size: 0.75rem !important;
+    padding: 0.3rem 0.8rem !important;
+  }
 }
 
 @media (max-width: 375px) {
@@ -947,9 +977,15 @@
     font-size: 0.8rem;
   }
 
+  /* CUSTOMIZABLE: Projects Card Label - Small Mobile (375px) - Consistent position */
   .projects-card-label {
-    font-size: 0.7rem;
-    width: 50%;
+    right: 10px !important;
+    left: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(100% - 20px) !important;
+    font-size: 0.75rem !important;
+    padding: 0.3rem 0.8rem !important;
   }
 }
 
@@ -1151,7 +1187,7 @@
 
 .management-team-card {
   background-color: rgba(15, 23, 43, 0.2);
-  border: 1px solid #51A2FF;
+  border: none;
   border-radius: 16px;
   padding: 1rem 1rem 0 1rem;
   display: flex;
@@ -1159,10 +1195,10 @@
   align-items: center;
   text-align: center;
   position: relative;
-  flex: 0 0 250px;
-  min-width: 250px;
-  max-width: 250px;
-  width: 250px;
+  flex: 0 0 300px;
+  min-width: 300px;
+  max-width: 300px;
+  width: 300px;
   height: auto;
   overflow: hidden;
   box-shadow: 0 0px 15px rgba(81, 162, 255, 0.5);
@@ -1187,17 +1223,22 @@
 
 .management-team-card-image {
   width: calc(100% + 2rem);
-  height: 320px;
+  min-height: 320px;
+  height: auto;
+  flex: 1;
   object-fit: cover;
-  object-position: center center;
+  object-position: center top;
   margin-top: 0.8rem;
   margin-left: -1rem;
   margin-right: -1rem;
-  margin-bottom: 0rem;
+  margin-bottom: -1rem;
+  display: block;
+  border-radius: 0 0 16px 16px;
 }
 
 .management-team-card-large .management-team-card-image {
   height: 450px;
+  min-height: unset;
   margin-bottom: -0.9rem;
   margin-top: -0.4rem;
 }
@@ -1218,6 +1259,7 @@
   text-align: center;
   line-height: 1.3;
   width: 100%;
+  flex-shrink: 0;
 }
 
 /* ============================================

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
+import Button from '../../components/ui/Button/Button';
 import projectBg from '../../assets/projectbg.jpg';
 import { ProjectsCard } from '../../components/ui/Card/Card';
 import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
@@ -15,6 +16,7 @@ import millingImage from '../../assets/image3D/milling.png';
 import furnaceImage from '../../assets/image3D/furnace.png';
 
 const Projects: React.FC<ProjectsPageProps> = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [isLooperModalOpen, setIsLooperModalOpen] = useState(false);
@@ -128,7 +130,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
         </div>
       </section>
 
-      <section className="projects-grid-section">
+      <div className="projects-grid-section">
         <div className="projects-grid-container container">
           <p className="projects-grid-description">
             Click on any project card below to view detailed information, 3D models, and specifications in an interactive modal.
@@ -166,7 +168,16 @@ const Projects: React.FC<ProjectsPageProps> = () => {
             ))}
           </div>
         </div>
-      </section>
+      </div>
+
+      <div className="projects-cta-section">
+        <div className="projects-cta-container container">
+          <h2 className="projects-cta-title">Interested in our engineering solutions?</h2>
+          <div className="projects-cta-buttons">
+            <Button variant="style2" onClick={() => navigate('/contact')}>CONTACT US</Button>
+          </div>
+        </div>
+      </div>
 
       <ProjectModal
         isOpen={isProjectModalOpen}
