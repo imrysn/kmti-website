@@ -191,7 +191,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // Map project titles to query parameter values
     const projectMap: { [key: string]: string } = {
-      'DEDIMPLER AND FACER': 'dedimpler-and-facer',
+      'DEDIMPLER & FACER': 'dedimpler-and-facer',
       'LOOPER MACHINE': 'looper-machine',
       'FORMING AND SIZING': 'forming-and-sizing',
       'SHEAR WELDER MACHINE': 'shear-welder-machine',

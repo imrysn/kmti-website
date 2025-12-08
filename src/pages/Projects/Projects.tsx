@@ -54,7 +54,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   const projects = [
     {
       id: 1,
-      title: 'DEDIMPLER AND FACER',
+      title: 'DEDIMPLER & FACER',
       description: 'Tube and pipes that require facing and or internal and external chamfering can be processed in line with the tube mill or off line.',
       category: 'FINISHING EQUIPMENT',
       image: dedemplerImage,
@@ -146,7 +146,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                 linkText="VIEW MORE"
                 linkHref={project.link}
                 onClick={
-                  project.title === 'DEDIMPLER AND FACER'
+                  project.title === 'DEDIMPLER & FACER'
                     ? () => setIsProjectModalOpen(true)
                     : project.title === 'LOOPER MACHINE'
                       ? () => setIsLooperModalOpen(true)
