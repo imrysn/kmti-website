@@ -82,7 +82,7 @@ const Careers: React.FC<CareersPageProps> = () => {
         </div>
       </section>
 
-      <section className="careers-positions-section">
+      <section className="careers-positions-section" data-aos="fade-up">
         <div className="careers-positions-container container">
           <h2 className="careers-positions-title">OPEN POSITION</h2>
           <p className="careers-positions-subtitle">
@@ -135,7 +135,7 @@ const Careers: React.FC<CareersPageProps> = () => {
         </div>
       </section>
 
-      <section className="why-work-withus-section">
+      <section className="why-work-withus-section" data-aos="fade-up">
         <div className="why-work-withus-container container">
           <h2 className="why-work-withus-title">WHY WORK WITH US</h2>
           <p className="why-work-withus-subtitle">
@@ -154,7 +154,7 @@ const Careers: React.FC<CareersPageProps> = () => {
         </div>
       </section>
 
-      <section className="meet-our-team-section">
+      <section className="meet-our-team-section" data-aos="fade-up">
         <div className="meet-our-team-container container">
           <div className="meet-our-team-content">
             <h2 className="meet-our-team-title">Meet Our Team</h2>
@@ -185,7 +185,7 @@ const Careers: React.FC<CareersPageProps> = () => {
         </div>
       </section>
 
-      <section className="how-to-apply-section">
+      <section className="how-to-apply-section" data-aos="fade-up">
         <div className="how-to-apply-container container">
           <h2 className="how-to-apply-title">HOW TO APPLY</h2>
           <p className="how-to-apply-subtitle">

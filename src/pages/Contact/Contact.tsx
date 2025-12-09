@@ -63,7 +63,7 @@ const Contact: React.FC<ContactPageProps> = () => {
               You can reach our team directly through the options below - whether it's about our services, business inquiries, or career opportunities.
             </p>
           </div>
-          <div className="contact-options-container">
+          <div className="contact-options-container" data-aos="fade-up">
             <div className="contact-options-grid">
               <ContactOptionCard
                 icon={emailIcon}
@@ -109,7 +109,7 @@ const Contact: React.FC<ContactPageProps> = () => {
       </div>
 
       {/* Chat With Us Section */}
-      <section className="chat-with-us-section">
+      <section className="chat-with-us-section" data-aos="fade-up">
         <div className="chat-with-us-container container">
           <div className="chat-with-us-content">
             <div className="chat-with-us-left">

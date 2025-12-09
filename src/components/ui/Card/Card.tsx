@@ -281,14 +281,6 @@ export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
 }) => {
   return (
     <div className={`management-team-card ${isLarge ? 'management-team-card-large' : ''} ${className}`}>
-      <ElectricBorder
-        color="#51A2FF"
-        speed={1}
-        chaos={0.5}
-        thickness={2}
-        style={{ borderRadius: 16 }}
-        isOverlay={true}
-      />
       <h3 className="management-team-card-role">{role}</h3>
       <img src={image} alt={role} className="management-team-card-image" />
     </div>

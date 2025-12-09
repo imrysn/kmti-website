@@ -95,7 +95,8 @@
   background: linear-gradient(90deg, #2157EE, #DF0515);
 
   /* animated via JS (width + left) */
-  transition: width 0.6s ease, left 0.6s ease;
+  transition: width 0.45s cubic-bezier(0.25, 1.25, 0.5, 1),
+    left 0.35s cubic-bezier(0.25, 1.25, 0.5, 1);
 
   /* Always visible */
   opacity: 1;
