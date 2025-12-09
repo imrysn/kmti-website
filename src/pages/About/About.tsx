@@ -131,7 +131,7 @@ const About: React.FC<AboutPageProps> = () => {
         </div>
       </section>
 
-      <section className="about-vision-mission-section">
+      <section className="about-vision-mission-section" data-aos="fade-up">
         <div className="about-vision-mission-container container">
           <div className="about-vision-mission-grid">
             <Card
@@ -148,7 +148,7 @@ const About: React.FC<AboutPageProps> = () => {
         </div>
       </section>
 
-      <section className="about-management-team-section">
+      <section className="about-management-team-section" data-aos="fade-up">
         <div className={`about-management-team-container container ${isManagementTeamExpanded ? 'expanded' : ''}`}>
           <h2 className="about-management-team-title">OUR MANAGEMENT TEAM</h2>
           {isManagementTeamExpanded && (
@@ -265,7 +265,7 @@ const About: React.FC<AboutPageProps> = () => {
         </div>
       </section>
 
-      <section className="our-people-section">
+      <section className="our-people-section" data-aos="fade-up">
         <div className="our-people-container container">
           <h2 className="our-people-title">OUR PEOPLE</h2>
           <p className="our-people-subtitle">Our People, Our Strength - behind every innovation is a team dedicated to quality and collaboration.</p>
@@ -299,7 +299,7 @@ const About: React.FC<AboutPageProps> = () => {
         </div>
       </section>
 
-      <section className="related-companies-section">
+      <section className="related-companies-section" data-aos="fade-up">
         <div className="related-companies-container container">
           <h2 className="related-companies-title">RELATED COMPANIES</h2>
           <div className="related-companies-grid">
@@ -325,7 +325,7 @@ const About: React.FC<AboutPageProps> = () => {
         </div>
       </section>
 
-      <section className="about-cta-section">
+      <section className="about-cta-section" data-aos="fade-up">
         <div className="section-container container">
           <h2 className="about-cta-title">Building Innovation, Together.</h2>
           <div className="about-cta-buttons">

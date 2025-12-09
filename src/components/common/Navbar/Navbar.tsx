@@ -118,14 +118,14 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu Backdrop - clicking this closes the menu */}
-      <div 
-        className={`navbar-mobile-backdrop ${isMenuOpen ? 'active' : ''}`} 
+      <div
+        className={`navbar-mobile-backdrop ${isMenuOpen ? 'active' : ''}`}
         onClick={closeMenu}
         aria-hidden="true"
       />
-      
+
       {/* Mobile Menu Panel */}
-      <div 
+      <div
         className={`navbar-mobile-panel ${isMenuOpen ? 'active' : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
