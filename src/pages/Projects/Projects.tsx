@@ -130,7 +130,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
         </div>
       </section>
 
-      <div className="projects-grid-section">
+      <div className="projects-grid-section" data-aos="fade-up">
         <div className="projects-grid-container container">
           <p className="projects-grid-description">
             Click on any project card below to view detailed information, 3D models, and specifications in an interactive modal.
@@ -170,7 +170,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
         </div>
       </div>
 
-      <div className="projects-cta-section">
+      <div className="projects-cta-section" data-aos="fade-up">
         <div className="projects-cta-container container">
           <h2 className="projects-cta-title">Interested in our engineering solutions?</h2>
           <div className="projects-cta-buttons">

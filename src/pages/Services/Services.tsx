@@ -194,7 +194,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
   };
 
   return (
-    <section ref={ref} className={`service-section ${service.title.toLowerCase().replace(' ', '-')}-section`} id={`service-${service.title.toLowerCase().replace(' ', '-')}`}>
+    <section ref={ref} className={`service-section ${service.title.toLowerCase().replace(' ', '-')}-section`} id={`service-${service.title.toLowerCase().replace(' ', '-')}`} data-aos="fade-up">
       <div className="service-section-container container">
         <div className="service-section-body">
           <div className="service-section-left">
