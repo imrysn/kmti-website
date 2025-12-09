@@ -34,16 +34,24 @@ interface ModelProps {
   modelPath: string;
   modelScale?: number;
   onLoaded?: () => void;
+  isInteracting?: boolean;
 }
 
-const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded }) => {
+const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isInteracting }) => {
   const { scene } = useGLTF(modelPath);
   const modelRef = useRef<THREE.Group>(null);
   const { camera } = useThree();
   const [clonedScene, setClonedScene] = useState<THREE.Group | null>(null);
+  const cameraInitializedRef = useRef(false);
+
+  // Reset cloned scene when model path changes
+  useEffect(() => {
+    setClonedScene(null);
+    cameraInitializedRef.current = false;
+  }, [modelPath]);
 
   useEffect(() => {
-    if (scene) {
+    if (scene && !clonedScene) {
       // Clone the scene to avoid modifying the cached original
       const clone = scene.clone();
 
@@ -76,20 +84,21 @@ const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded }) =>
 
       setClonedScene(clone);
 
-      // Adjust camera position
-      if (camera instanceof THREE.PerspectiveCamera) {
+      // Adjust camera position only on initial load
+      if (camera instanceof THREE.PerspectiveCamera && !cameraInitializedRef.current) {
         camera.position.set(5, 3, 5);
         camera.lookAt(0, 0, 0);
         camera.updateProjectionMatrix();
+        cameraInitializedRef.current = true;
       }
 
       onLoaded?.();
     }
-  }, [scene, camera, modelScale, onLoaded]);
+  }, [scene, camera, modelScale, onLoaded, clonedScene]);
 
-  // Auto-rotate the model slowly
+  // Auto-rotate the model slowly, but only when not being interacted with
   useFrame(() => {
-    if (modelRef.current) {
+    if (modelRef.current && !isInteracting) {
       modelRef.current.rotation.y += 0.002;
     }
   });
@@ -112,13 +121,49 @@ interface ModelViewerProps {
 
 const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
   const internalCanvasRef = useRef<HTMLCanvasElement>(null);
+  const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const activeCanvasRef = canvasRef || internalCanvasRef;
 
-  // Reset loading state when model path changes
+  // Handle interaction start
+  const handleInteractionStart = () => {
+    setIsInteracting(true);
+    // Clear any pending timeout
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
+  };
+
+  // Handle interaction end - resume auto-rotation after a short delay
+  const handleInteractionEnd = () => {
+    // Clear any existing timeout
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
+    // Resume auto-rotation after 1 second of inactivity
+    interactionTimeoutRef.current = setTimeout(() => {
+      setIsInteracting(false);
+    }, 1000);
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Reset loading state and camera initialization when model path changes
   useEffect(() => {
     setIsLoaded(false);
+    setIsInteracting(false);
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
   }, [modelPath]);
 
   return (
@@ -153,18 +198,21 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
 
         {/* Suspense with null fallback - we use our own loading overlay above */}
         <Suspense fallback={null}>
-          <Model modelPath={modelPath} modelScale={modelScale} onLoaded={() => setIsLoaded(true)} />
+          <Model modelPath={modelPath} modelScale={modelScale} onLoaded={() => setIsLoaded(true)} isInteracting={isInteracting} />
         </Suspense>
 
         <OrbitControls
           enableZoom={true}
           enablePan={true}
           enableRotate={true}
-          minDistance={2}
-          maxDistance={15}
+          minDistance={0.1}
+          maxDistance={50}
           target={[0, 0, 0]}
           autoRotate={false}
           makeDefault
+          onStart={handleInteractionStart}
+          onEnd={handleInteractionEnd}
+          enableDamping={false}
         />
       </Canvas>
     </div>
