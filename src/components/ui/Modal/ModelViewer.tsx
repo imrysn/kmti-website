@@ -35,14 +35,19 @@ interface ModelProps {
   modelScale?: number;
   onLoaded?: () => void;
   isInteracting?: boolean;
+  cameraPosition?: [number, number, number];
+  onInteractionStart?: () => void;
 }
 
-const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isInteracting }) => {
+const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isInteracting, cameraPosition, onInteractionStart }) => {
   const { scene } = useGLTF(modelPath);
   const modelRef = useRef<THREE.Group>(null);
-  const { camera } = useThree();
+  const { camera, controls } = useThree();
   const [clonedScene, setClonedScene] = useState<THREE.Group | null>(null);
   const cameraInitializedRef = useRef(false);
+  const targetPosition = useRef(new THREE.Vector3());
+  const currentPosition = useRef(new THREE.Vector3());
+  const isTransitioning = useRef(false);
 
   // Reset cloned scene when model path changes
   useEffect(() => {
@@ -96,10 +101,69 @@ const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isIn
     }
   }, [scene, camera, modelScale, onLoaded, clonedScene]);
 
+  // Handle camera position changes with smooth animation
+  useEffect(() => {
+    if (cameraPosition && camera instanceof THREE.PerspectiveCamera) {
+      const newTarget = new THREE.Vector3(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
+      
+      // Only update if position actually changed
+      if (!targetPosition.current.equals(newTarget)) {
+        targetPosition.current.copy(newTarget);
+        isTransitioning.current = true;
+      }
+    }
+  }, [cameraPosition, camera]);
+
+  // Cancel transition when user starts interacting
+  useEffect(() => {
+    if (isInteracting && isTransitioning.current) {
+      isTransitioning.current = false;
+      // Update target position to current position to prevent snapping back
+      if (camera instanceof THREE.PerspectiveCamera) {
+        targetPosition.current.copy(camera.position);
+      }
+      onInteractionStart?.();
+    }
+  }, [isInteracting, camera, onInteractionStart]);
+
   // Auto-rotate the model slowly, but only when not being interacted with
+  // Also handle smooth camera transitions
   useFrame(() => {
-    if (modelRef.current && !isInteracting) {
-      modelRef.current.rotation.y += 0.002;
+    if (modelRef.current && !isInteracting && !isTransitioning.current) {
+      modelRef.current.rotation.y += 0.001; // Slightly slower for smoother feel
+    }
+
+    // Smooth camera transition with easing - ONLY when not interacting
+    if (camera instanceof THREE.PerspectiveCamera && isTransitioning.current && !isInteracting) {
+      currentPosition.current.copy(camera.position);
+      const distance = currentPosition.current.distanceTo(targetPosition.current);
+      
+      // Use easing for smoother transition
+      if (distance > 0.01) {
+        // Ease-out cubic for smooth deceleration
+        const lerpFactor = 0.08;
+        camera.position.lerp(targetPosition.current, lerpFactor);
+        camera.lookAt(0, 0, 0);
+        
+        // Update orbit controls target if available
+        if (controls) {
+          (controls as any).target.set(0, 0, 0);
+          (controls as any).update();
+        }
+      } else {
+        // Snap to final position and end transition
+        camera.position.copy(targetPosition.current);
+        camera.lookAt(0, 0, 0);
+        isTransitioning.current = false;
+        
+        if (controls) {
+          (controls as any).target.set(0, 0, 0);
+          (controls as any).update();
+        }
+      }
+    } else if (controls && (controls as any).enableDamping) {
+      // Update controls for damping to work properly when NOT transitioning
+      (controls as any).update();
     }
   });
 
@@ -117,15 +181,30 @@ interface ModelViewerProps {
   modelPath: string;
   modelScale?: number;
   canvasRef?: React.RefObject<HTMLCanvasElement | null>;
+  cameraView?: string;
 }
 
-const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef }) => {
+const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
   const internalCanvasRef = useRef<HTMLCanvasElement>(null);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const activeCanvasRef = canvasRef || internalCanvasRef;
+
+  // Camera positions for different views
+  const getCameraPosition = (): [number, number, number] => {
+    const distance = 8;
+    switch (cameraView) {
+      case 'front': return [0, 0, distance];
+      case 'back': return [0, 0, -distance];
+      case 'left': return [-distance, 0, 0];
+      case 'right': return [distance, 0, 0];
+      case 'top': return [0, distance, 0];
+      case 'isometric':
+      default: return [5, 3, 5];
+    }
+  };
 
   // Handle interaction start
   const handleInteractionStart = () => {
@@ -134,6 +213,11 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     if (interactionTimeoutRef.current) {
       clearTimeout(interactionTimeoutRef.current);
     }
+  };
+
+  // Callback when user starts interacting during camera transition
+  const handleTransitionCancel = () => {
+    // Additional cleanup if needed
   };
 
   // Handle interaction end - resume auto-rotation after a short delay
@@ -198,7 +282,14 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
 
         {/* Suspense with null fallback - we use our own loading overlay above */}
         <Suspense fallback={null}>
-          <Model modelPath={modelPath} modelScale={modelScale} onLoaded={() => setIsLoaded(true)} isInteracting={isInteracting} />
+          <Model 
+            modelPath={modelPath} 
+            modelScale={modelScale} 
+            onLoaded={() => setIsLoaded(true)} 
+            isInteracting={isInteracting}
+            cameraPosition={getCameraPosition()}
+            onInteractionStart={handleTransitionCancel}
+          />
         </Suspense>
 
         <OrbitControls
@@ -212,7 +303,11 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           makeDefault
           onStart={handleInteractionStart}
           onEnd={handleInteractionEnd}
-          enableDamping={false}
+          enableDamping={true}
+          dampingFactor={0.05}
+          rotateSpeed={0.8}
+          zoomSpeed={0.8}
+          panSpeed={0.8}
         />
       </Canvas>
     </div>
