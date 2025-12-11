@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ModelViewer from './ModelViewer';
 import './Model3DViewerModal.css';
 
@@ -27,6 +27,19 @@ const MODEL_MAP: { [key: string]: ModelConfig } = {
   'Binding Machine': { path: bindingMachineModel, scale: 5 },
 };
 
+// Define camera view types
+export type CameraView = 'isometric' | 'front' | 'back' | 'left' | 'right' | 'top';
+
+// Camera positions for different views
+export const CAMERA_POSITIONS: Record<CameraView, [number, number, number]> = {
+  isometric: [5, 3, 5],
+  front: [0, 0, 8],
+  back: [0, 0, -8],
+  left: [-8, 0, 0],
+  right: [8, 0, 0],
+  top: [0, 8, 0],
+};
+
 interface Model3DViewerModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -38,6 +51,14 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   onClose,
   modelTitle
 }) => {
+  const [cameraView, setCameraView] = useState<CameraView>('isometric');
+  // Reset camera view when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setCameraView('isometric');
+    }
+  }, [isOpen]);
+
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -95,7 +116,57 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
         </div>
 
         <div className="model-3d-viewer-wrapper">
-          <ModelViewer modelPath={modelConfig.path} modelScale={modelConfig.scale} />
+          <ModelViewer 
+            modelPath={modelConfig.path} 
+            modelScale={modelConfig.scale}
+            cameraView={cameraView}
+          />
+
+          {/* Camera View Buttons */}
+          <div className="camera-view-buttons">
+            <button
+              className={`camera-view-btn ${cameraView === 'isometric' ? 'active' : ''}`}
+              onClick={() => setCameraView('isometric')}
+              title="Isometric View"
+            >
+              Isometric
+            </button>
+            <button
+              className={`camera-view-btn ${cameraView === 'front' ? 'active' : ''}`}
+              onClick={() => setCameraView('front')}
+              title="Front View"
+            >
+              Front
+            </button>
+            <button
+              className={`camera-view-btn ${cameraView === 'back' ? 'active' : ''}`}
+              onClick={() => setCameraView('back')}
+              title="Back View"
+            >
+              Back
+            </button>
+            <button
+              className={`camera-view-btn ${cameraView === 'left' ? 'active' : ''}`}
+              onClick={() => setCameraView('left')}
+              title="Left View"
+            >
+              Left
+            </button>
+            <button
+              className={`camera-view-btn ${cameraView === 'right' ? 'active' : ''}`}
+              onClick={() => setCameraView('right')}
+              title="Right View"
+            >
+              Right
+            </button>
+            <button
+              className={`camera-view-btn ${cameraView === 'top' ? 'active' : ''}`}
+              onClick={() => setCameraView('top')}
+              title="Top View"
+            >
+              Top
+            </button>
+          </div>
 
           <div className="model-3d-controls-overlay">
             <div className="model-3d-controls-info">
