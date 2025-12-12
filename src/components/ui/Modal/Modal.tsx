@@ -547,6 +547,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose }) =
       description: 'Tube and pipes that require facing and or internal and external chamfering can be processed in line with the tube mill or off line.',
       application: 'Required to rectify the end of the tube after single cut shear and where facing and or chamfering is a customer requirement.',
       advantages: 'Dedimpling inline with the mill reduces stock holding and optimises the use of floor space, labour and capital.',
+      // modelFile: 'dedimpler-facer.glb',
     },
     {
       image: bundlingImage,
@@ -554,12 +555,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose }) =
       category: 'Mechanical > Tube',
       description: 'High speed tube and pipe bundling and strapping machines take the tube direclty from the mill and pack the tube ready for transport and safe. No need to store tube in bulk prior to packing.',
       advantages: 'Bundling is carried out in line with the mill, no need to stock tube in bulk waiting for packing. Minimise stock holding. Professional looking bundles. Quiet method of bundling',
+      // modelFile: 'bundling-machine.glb',
     },
     {
       image: bindingImage,
       title: 'Binding Machine',
       category: 'Mechanical > Tube',
       description: 'Binding Machine used to bind finished products ready for delivery.',
+      // modelFile: 'binding-machine.glb',
     },
   ];
 
@@ -649,39 +652,35 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose }) =
           </div>
         </div>
 
-        {(projectImages.length > 1 || currentProject.title === 'Binding Machine') && (
-          <div className="project-modal-thumbnails-section">
-            <div className="project-modal-thumbnails-wrapper">
-              {projectImages.length > 1 && (
-                <div className="project-modal-thumbnails">
-                  {projectImages.map((project, index) => (
-                    <button
-                      key={index}
-                      className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
-                      onClick={() => handleThumbnailClick(index)}
-                      type="button"
-                      aria-label={`View ${project.title}`}
-                    >
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="project-modal-thumbnail-image"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-              {currentProject.title === 'Binding Machine' && (
-                <Button variant="style1" onClick={() => {
-                  setSelected3DModelTitle('Binding Machine');
-                  setIs3DViewerOpen(true);
-                }}>
-                  View 3D Model
-                </Button>
-              )}
-            </div>
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails-wrapper">
+            {projectImages.length > 1 && (
+              <div className="project-modal-thumbnails">
+                {projectImages.map((project, index) => (
+                  <button
+                    key={index}
+                    className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                    onClick={() => handleThumbnailClick(index)}
+                    type="button"
+                    aria-label={`View ${project.title}`}
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project-modal-thumbnail-image"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+            <Button variant="style1" onClick={() => {
+              setSelected3DModelTitle(currentProject.title);
+              setIs3DViewerOpen(true);
+            }}>
+              View 3D Model
+            </Button>
           </div>
-        )}
+        </div>
       </div>
 
       <Model3DViewerModal
@@ -711,6 +710,7 @@ export const LooperModal: React.FC<LooperModalProps> = ({ isOpen, onClose }) => 
       description: 'Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most efficient and cheapest method of storing strip withouth causing any surface damage.',
       application: 'Suitable for all tube sizes and materials.',
       advantages: 'Improved productivity, Reduced Downtime, Reduced Scrap, Reduced Strip Damage',
+      // modelFile: 'looper-machine.glb',
     },
     {
       image: horizontalLooperImage,
@@ -719,6 +719,7 @@ export const LooperModal: React.FC<LooperModalProps> = ({ isOpen, onClose }) => 
       description: 'Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is most efficient and cheapest method of storing strip without causing any surface damage. There are two main types; the Spiral Accumulator and the Free Loop Accumulator.',
       application: 'Suitable for all tube sizes and materials',
       advantages: 'Improved productivity, Reduced Downtime, Reduced Scrap, Reduced Strip Damage.',
+      // modelFile: 'horizontal-looper-machine.glb',
     },
   ];
 
@@ -855,6 +856,8 @@ interface FormingModalProps {
 
 export const FormingModal: React.FC<FormingModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModelTitle, setSelected3DModelTitle] = useState('');
 
   const formingImages: Array<{
     image: string;
@@ -869,6 +872,7 @@ export const FormingModal: React.FC<FormingModalProps> = ({ isOpen, onClose }) =
         title: 'Forming and Sizing Machine',
         category: 'Mechanical > Tube',
         description: 'After metal strips has been welded and combined it will undergo forming to produce the needed shape of steel.',
+        // modelFile: 'forming-sizing-machine.glb',
       },
     ];
 
@@ -958,28 +962,42 @@ export const FormingModal: React.FC<FormingModalProps> = ({ isOpen, onClose }) =
           </div>
         </div>
 
-        {formingImages.length > 1 && (
-          <div className="project-modal-thumbnails-section">
-            <div className="project-modal-thumbnails">
-              {formingImages.map((forming, index) => (
-                <button
-                  key={index}
-                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
-                  onClick={() => handleThumbnailClick(index)}
-                  type="button"
-                  aria-label={`View ${forming.title}`}
-                >
-                  <img
-                    src={forming.image}
-                    alt={forming.title}
-                    className="project-modal-thumbnail-image"
-                  />
-                </button>
-              ))}
-            </div>
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails-wrapper">
+            {formingImages.length > 1 && (
+              <div className="project-modal-thumbnails">
+                {formingImages.map((forming, index) => (
+                  <button
+                    key={index}
+                    className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                    onClick={() => handleThumbnailClick(index)}
+                    type="button"
+                    aria-label={`View ${forming.title}`}
+                  >
+                    <img
+                      src={forming.image}
+                      alt={forming.title}
+                      className="project-modal-thumbnail-image"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+            <Button variant="style1" onClick={() => {
+              setSelected3DModelTitle(currentForming.title);
+              setIs3DViewerOpen(true);
+            }}>
+              View 3D Model
+            </Button>
           </div>
-        )}
+        </div>
       </div>
+
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => setIs3DViewerOpen(false)}
+        modelTitle={selected3DModelTitle}
+      />
     </div>
   );
 };
@@ -1011,6 +1029,7 @@ export const StripEntryModal: React.FC<StripEntryModalProps> = ({ isOpen, onClos
         application: 'Shear and end welders are available for all tube and pipe mills. From small Aluminum mills to large API Mills.',
         advantages: 'High weld quality, very consistent cycle times resulting in improved productivity and reduced scrap.',
         specification: 'A range of Shear end welders can be supplied, from small semi conductor systems to large fully automatic systems.',
+        // modelFile: 'shear-welder-machine.glb',
       },
       {
         image: uncoilerImage,
@@ -1019,12 +1038,14 @@ export const StripEntryModal: React.FC<StripEntryModalProps> = ({ isOpen, onClos
         description: 'The uncoiler safely holds the coil of strip and enables the strip to be unstrapped and presented to the strap peeling and  leveling equipment. For high productivity double sided uncoilers are used. However, where there is available storage and time sigle sided uncoilers can be used.',
         application: 'Vertical and horizontal uncoilers are avaiable for most applications i.e ERW, TIG and Lase using steel, steel alloy, stainless steel. copper, copper alloy, and Aluminum. Uncoilers for other applications and materials available on request.',
         advantages: 'Al the heavy material handling is safely carried out by machine. Less material damage - faster with consistent and reliable cycle times.',
+        // modelFile: 'uncoiler-machine.glb',
       },
       {
         image: levelerImage,
         title: 'Leveler Machine',
         category: 'Mechanical > Tube',
         description: 'Leveling machines are used to level metal strips in throughtput, e.g. in a cut-to-length line or to level single metal sheets of parts',
+        // modelFile: 'leveler-machine.glb',
       },
     ];
 
@@ -1168,6 +1189,8 @@ interface TransferTableLineModalProps {
 
 export const TransferTableLineModal: React.FC<TransferTableLineModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModelTitle, setSelected3DModelTitle] = useState('');
 
   const transferTableLineImages: Array<{
     image: string;
@@ -1180,31 +1203,37 @@ export const TransferTableLineModal: React.FC<TransferTableLineModalProps> = ({ 
         title: 'Transfer Table',
         category: 'FINISHING TABLE  ',
         description: 'Extension of transfer table in the finishing line.',
+        // modelFile: 'transfer-table.glb',
       },
       {
         image: bundleSeparatorImage,
         title: 'Bundle Separator',
         category: 'MECHANICAL > TUBE (Sub Machine)',
+        // modelFile: 'bundle-separator.glb',
       },
       {
         image: pipeDryingImage,
         title: 'Pipe Drying Section',
         category: 'MECHANICAL > TUBE (Sub Machine)',
+        // modelFile: 'pipe-drying-section.glb',
       },
       {
         image: pipeBundlingImage,
         title: 'Transfer Table',
         category: 'MECHANICAL > TUBE (Sub Machine)',
+        // modelFile: 'transfer-table-2.glb',
       },
       {
         image: productStorageFSImage,
         title: 'Pipe Bundling',
         category: 'MECHANICAL > TUBE (Sub Machine)',
+        // modelFile: 'pipe-bundling.glb',
       },
       {
         image: transferTableImage,
         title: 'Product Storage',
         category: 'MECHANICAL > TUBE (Sub Machine)',
+        // modelFile: 'product-storage.glb',
       },
     ];
 
@@ -1282,28 +1311,42 @@ export const TransferTableLineModal: React.FC<TransferTableLineModalProps> = ({ 
           </div>
         </div>
 
-        {transferTableLineImages.length > 1 && (
-          <div className="project-modal-thumbnails-section">
-            <div className="project-modal-thumbnails">
-              {transferTableLineImages.map((image, index) => (
-                <button
-                  key={index}
-                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
-                  onClick={() => handleThumbnailClick(index)}
-                  type="button"
-                  aria-label={`View ${image.title}`}
-                >
-                  <img
-                    src={image.image}
-                    alt={image.title}
-                    className="project-modal-thumbnail-image"
-                  />
-                </button>
-              ))}
-            </div>
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails-wrapper">
+            {transferTableLineImages.length > 1 && (
+              <div className="project-modal-thumbnails">
+                {transferTableLineImages.map((image, index) => (
+                  <button
+                    key={index}
+                    className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                    onClick={() => handleThumbnailClick(index)}
+                    type="button"
+                    aria-label={`View ${image.title}`}
+                  >
+                    <img
+                      src={image.image}
+                      alt={image.title}
+                      className="project-modal-thumbnail-image"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+            <Button variant="style1" onClick={() => {
+              setSelected3DModelTitle(currentImage.title);
+              setIs3DViewerOpen(true);
+            }}>
+              View 3D Model
+            </Button>
           </div>
-        )}
+        </div>
       </div>
+
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => setIs3DViewerOpen(false)}
+        modelTitle={selected3DModelTitle}
+      />
     </div>
   );
 };
@@ -1315,6 +1358,8 @@ interface FinishingLineModalProps {
 
 export const FinishingLineModal: React.FC<FinishingLineModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModelTitle, setSelected3DModelTitle] = useState('');
 
   const finishingLineImages: Array<{
     image: string;
@@ -1327,31 +1372,37 @@ export const FinishingLineModal: React.FC<FinishingLineModalProps> = ({ isOpen, 
         title: 'Finishing Line',
         category: 'RUN OUT, TRANSPORT TABLE, DEDIMPLER AND FACER, AND BUNDLING MACHINE',
         description: 'After pipes were cut into standard lengths it will be passed to the finishing line to be arranged and bundled ready for distribution.',
+        // modelFile: 'finishing-line.glb',
       },
       {
         image: airBlowImage,
         title: 'Air Blow',
         category: 'MECHANICAL > TUBE (SUB MACHINE)',
+        // modelFile: 'air-blow.glb',
       },
       {
         image: transferTableLifterImage,
         title: 'Transfer Table (Lifter)',
         category: 'MECHANICAL > TUBE (SUB MACHINE)',
+        // modelFile: 'transfer-table-lifter.glb',
       },
       {
         image: dedimplerFacerImage,
         title: 'Dedimpler & Facer',
         category: 'MECHANICAL > TUBE (SUB MACHINE)',
+        // modelFile: 'dedimpler-facer.glb',
       },
       {
         image: bundlingMachineImage,
         title: 'Bundling Machine',
         category: 'MECHANICAL > TUBE (SUB MACHINE)',
+        // modelFile: 'bundling-machine-fs.glb',
       },
       {
         image: productStorageFSImage,
         title: 'Product Storage',
         category: 'MECHANICAL > TUBE (SUB MACHINE)',
+        // modelFile: 'product-storage-fs.glb',
       },
     ];
 
@@ -1429,28 +1480,42 @@ export const FinishingLineModal: React.FC<FinishingLineModalProps> = ({ isOpen, 
           </div>
         </div>
 
-        {finishingLineImages.length > 1 && (
-          <div className="project-modal-thumbnails-section">
-            <div className="project-modal-thumbnails">
-              {finishingLineImages.map((image, index) => (
-                <button
-                  key={index}
-                  className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
-                  onClick={() => handleThumbnailClick(index)}
-                  type="button"
-                  aria-label={`View ${image.title}`}
-                >
-                  <img
-                    src={image.image}
-                    alt={image.title}
-                    className="project-modal-thumbnail-image"
-                  />
-                </button>
-              ))}
-            </div>
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails-wrapper">
+            {finishingLineImages.length > 1 && (
+              <div className="project-modal-thumbnails">
+                {finishingLineImages.map((image, index) => (
+                  <button
+                    key={index}
+                    className={`project-modal-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
+                    onClick={() => handleThumbnailClick(index)}
+                    type="button"
+                    aria-label={`View ${image.title}`}
+                  >
+                    <img
+                      src={image.image}
+                      alt={image.title}
+                      className="project-modal-thumbnail-image"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+            <Button variant="style1" onClick={() => {
+              setSelected3DModelTitle(currentImage.title);
+              setIs3DViewerOpen(true);
+            }}>
+              View 3D Model
+            </Button>
           </div>
-        )}
+        </div>
       </div>
+
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => setIs3DViewerOpen(false)}
+        modelTitle={selected3DModelTitle}
+      />
     </div>
   );
 };
@@ -1462,6 +1527,8 @@ interface CutOffModalProps {
 
 export const CutOffModal: React.FC<CutOffModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModelTitle, setSelected3DModelTitle] = useState('');
 
   const cutOffImages = [
     {
@@ -1470,6 +1537,7 @@ export const CutOffModal: React.FC<CutOffModalProps> = ({ isOpen, onClose }) => 
       category: 'CUT OFF',
       description: 'Milling Cutoff Machine uses two milling saws to cut to length pipe and structural section tubes. The cut finishes eliminates the need for facing.',
       application: 'Ideal for achieving clean, square cuts on tubes without secondary finishing.',
+      // modelFile: 'milling-cutoff-machine.glb',
     },
   ];
 
@@ -1545,7 +1613,24 @@ export const CutOffModal: React.FC<CutOffModalProps> = ({ isOpen, onClose }) => 
             </div>
           </div>
         </div>
+
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails-wrapper">
+            <Button variant="style1" onClick={() => {
+              setSelected3DModelTitle(currentImage.title);
+              setIs3DViewerOpen(true);
+            }}>
+              View 3D Model
+            </Button>
+          </div>
+        </div>
       </div>
+
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => setIs3DViewerOpen(false)}
+        modelTitle={selected3DModelTitle}
+      />
     </div>
   );
 };
@@ -1558,6 +1643,7 @@ interface FurnaceModalProps {
 export const FurnaceModal: React.FC<FurnaceModalProps> = ({ isOpen, onClose }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModelTitle, setSelected3DModelTitle] = useState('');
 
   const furnaceImages = [
     {
@@ -1565,6 +1651,7 @@ export const FurnaceModal: React.FC<FurnaceModalProps> = ({ isOpen, onClose }) =
       title: 'Furnace',
       category: 'FURNACE',
       description: 'Furnace is used for melting large batches of glass, in which heat is supplied by a flame playing over the glass surface, and regenerative heating of combustion air.',
+      // modelFile: 'furnace.glb',
     },
   ];
 
@@ -1636,7 +1723,10 @@ export const FurnaceModal: React.FC<FurnaceModalProps> = ({ isOpen, onClose }) =
 
         <div className="project-modal-thumbnails-section">
           <div className="project-modal-thumbnails-wrapper">
-            <Button variant="style1" onClick={() => setIs3DViewerOpen(true)}>
+            <Button variant="style1" onClick={() => {
+              setSelected3DModelTitle(currentImage.title);
+              setIs3DViewerOpen(true);
+            }}>
               View 3D Model
             </Button>
           </div>
@@ -1646,7 +1736,7 @@ export const FurnaceModal: React.FC<FurnaceModalProps> = ({ isOpen, onClose }) =
       <Model3DViewerModal
         isOpen={is3DViewerOpen}
         onClose={() => setIs3DViewerOpen(false)}
-        modelTitle="Furnace"
+        modelTitle={selected3DModelTitle}
       />
     </div>
   );
