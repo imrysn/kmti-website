@@ -1,3 +1,18 @@
+/**
+ * ============================================
+ * 🎨 3D MODEL VIEWER WITH SMOOTH CONTROLS
+ * ============================================
+ * 
+ * Optimizations for smooth interactions:
+ * - Increased damping factor (0.15) for buttery deceleration
+ * - Improved lerp factor (0.12) for smoother camera transitions
+ * - Enhanced rotate/zoom/pan speeds for responsive controls
+ * - High-performance rendering with adaptive pixel ratio
+ * - Smooth scroll wheel zoom and touch controls
+ * 
+ * ============================================
+ */
+
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
@@ -105,7 +120,7 @@ const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isIn
   useEffect(() => {
     if (cameraPosition && camera instanceof THREE.PerspectiveCamera) {
       const newTarget = new THREE.Vector3(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
-      
+
       // Only update if position actually changed
       if (!targetPosition.current.equals(newTarget)) {
         targetPosition.current.copy(newTarget);
@@ -137,14 +152,14 @@ const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isIn
     if (camera instanceof THREE.PerspectiveCamera && isTransitioning.current && !isInteracting) {
       currentPosition.current.copy(camera.position);
       const distance = currentPosition.current.distanceTo(targetPosition.current);
-      
-      // Use easing for smoother transition
+
+      // Use easing for smoother transition with improved interpolation
       if (distance > 0.01) {
-        // Ease-out cubic for smooth deceleration
-        const lerpFactor = 0.08;
+        // Smooth ease-out interpolation for buttery camera movement
+        const lerpFactor = 0.12; // Increased from 0.08 for smoother, faster transitions
         camera.position.lerp(targetPosition.current, lerpFactor);
         camera.lookAt(0, 0, 0);
-        
+
         // Update orbit controls target if available
         if (controls) {
           (controls as any).target.set(0, 0, 0);
@@ -155,7 +170,7 @@ const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isIn
         camera.position.copy(targetPosition.current);
         camera.lookAt(0, 0, 0);
         isTransitioning.current = false;
-        
+
         if (controls) {
           (controls as any).target.set(0, 0, 0);
           (controls as any).update();
@@ -269,8 +284,13 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           alpha: true,
           outputColorSpace: THREE.SRGBColorSpace,
           toneMapping: THREE.NoToneMapping,
+          // Performance optimizations for smoother rendering
+          powerPreference: 'high-performance',
         }}
         style={{ background: 'transparent' }}
+        // Enable smooth frame rate
+        frameloop="always"
+        dpr={[1, 2]} // Adaptive pixel ratio for performance
       >
         {/* Configure renderer for accurate color reproduction */}
         <RendererConfig />
@@ -282,10 +302,10 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
 
         {/* Suspense with null fallback - we use our own loading overlay above */}
         <Suspense fallback={null}>
-          <Model 
-            modelPath={modelPath} 
-            modelScale={modelScale} 
-            onLoaded={() => setIsLoaded(true)} 
+          <Model
+            modelPath={modelPath}
+            modelScale={modelScale}
+            onLoaded={() => setIsLoaded(true)}
             isInteracting={isInteracting}
             cameraPosition={getCameraPosition()}
             onInteractionStart={handleTransitionCancel}
@@ -303,11 +323,24 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           makeDefault
           onStart={handleInteractionStart}
           onEnd={handleInteractionEnd}
+          // Smooth damping settings for buttery interactions
           enableDamping={true}
-          dampingFactor={0.05}
-          rotateSpeed={0.8}
-          zoomSpeed={0.8}
-          panSpeed={0.8}
+          dampingFactor={0.15}  // Increased from 0.05 for smoother deceleration
+          // Adjusted speeds for more responsive yet smooth controls
+          rotateSpeed={1.0}     // Slightly increased for better responsiveness
+          zoomSpeed={1.2}       // Increased for smoother zoom
+          panSpeed={1.0}        // Increased for smoother panning
+          // Smooth zoom with scroll wheel
+          mouseButtons={{
+            LEFT: THREE.MOUSE.ROTATE,
+            MIDDLE: THREE.MOUSE.DOLLY,
+            RIGHT: THREE.MOUSE.PAN
+          }}
+          // Smooth touch controls
+          touches={{
+            ONE: THREE.TOUCH.ROTATE,
+            TWO: THREE.TOUCH.DOLLY_PAN
+          }}
         />
       </Canvas>
     </div>
