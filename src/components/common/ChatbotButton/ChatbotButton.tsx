@@ -36,10 +36,6 @@ const ChatbotButton: React.FC = () => {
     // Don't reset - maintain conversation state
   }, []);
 
-  const handleLineClick = () => {
-    window.open('https://line.me/ti/p/~emji000', '_blank');
-  };
-
   const handleFacebookClick = () => {
     window.open('https://www.facebook.com/kmti.com.ph/', '_blank');
   };
@@ -59,7 +55,6 @@ const ChatbotButton: React.FC = () => {
 
       <div className={`chatbot-panel ${isChatOpen ? 'chatbot-panel-open' : 'chatbot-panel-closed'}`}>
         <ChatbotCard
-          onLineClick={handleLineClick}
           onFacebookClick={handleFacebookClick}
           onClose={handleClose}
           resetTrigger={resetTrigger}
