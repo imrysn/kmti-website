@@ -488,7 +488,7 @@
   z-index: 20;
   white-space: nowrap;
   text-align: center;
-  
+
   /* Matching Projects Page label styling */
   right: 10px !important;
   left: auto !important;
@@ -1192,7 +1192,7 @@
 
 .management-team-card {
   background-color: rgba(15, 23, 43, 0.2);
-  border: 2px solid #51A2FF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 1rem 1rem 0 1rem;
   display: flex;
@@ -1206,7 +1206,6 @@
   width: 300px;
   height: auto;
   overflow: hidden;
-  box-shadow: 0 0px 15px rgba(81, 162, 255, 0.5);
   box-sizing: border-box;
   margin: 0;
 }
@@ -1277,7 +1276,7 @@
 
 .apply-card {
   background-color: rgba(15, 23, 43, 0.3);
-  border: 1px solid #51A2FF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 1.5rem;
   display: flex;

@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Card.css';
 import Button from '../Button/Button';
-import ElectricBorder from '../ElectricBorder';
 
 const isImageIcon = (icon: string | React.ReactNode): icon is string => {
   return typeof icon === 'string' &&
@@ -355,14 +354,6 @@ export const ProjectsCard: React.FC<ProjectsCardProps> = ({
 }) => {
   return (
     <div className={`projects-card ${className}`}>
-      <ElectricBorder
-        color="#51A2FF"
-        speed={1}
-        chaos={0.8}
-        thickness={2}
-        style={{ borderRadius: 16 }}
-        isOverlay={true}
-      />
       {category && <div className="projects-card-label">{category}</div>}
       <div className="projects-card-image-container">
         <img

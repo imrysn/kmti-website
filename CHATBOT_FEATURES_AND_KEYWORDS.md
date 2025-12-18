@@ -17,7 +17,7 @@
 
 ### 2. **Talk to a Human**
 - Connects users directly with the team
-- Provides multiple contact options (LINE, Email, Facebook, Phone)
+- Provides multiple contact options (Email, Facebook, Phone)
 - Keywords: `talk to human`, `human`, `speak to someone`, `agent`, `real person`
 
 ### 3. **Navigation Actions**
@@ -27,7 +27,6 @@
 - Navigate to Careers page
 
 ### 4. **Contact Actions**
-- LINE Messenger integration
 - Email integration
 - Facebook Messenger integration
 - Phone call integration
@@ -312,8 +311,8 @@ Need Directions?"
 • Technical assistance
 • Sales inquiries"
 **Action Buttons:**
-- Message us on LINE
 - Email us
+- Message us on Facebook
 - Back
 
 ---
@@ -338,8 +337,8 @@ Need Directions?"
 #### `pricing`
 **Response:** "For pricing and quotes, we provide customized estimates based on your project requirements. To get an accurate quote, please contact us with your project details."
 **Action Buttons:**
-- 💬 Get Quote via LINE
 - ✉️ Email for Quote
+- 💬 Message for Quote
 - Back to Main Menu
 
 #### `timeline`
@@ -351,8 +350,8 @@ Need Directions?"
 
 For specific timelines, please contact us with your project details."
 **Action Buttons:**
-- 💬 Discuss Timeline
 - ✉️ Email for Timeline
+- 💬 Message for Timeline
 - Back to Main Menu
 
 #### `projects`
@@ -383,7 +382,8 @@ For specific timelines, please contact us with your project details."
 
 We keep clients involved at every stage!"
 **Action Buttons:**
-- 💬 Discuss Process
+- ✉️ Discuss Process
+- 💬 Message for Details
 - Back to Main Menu
 
 #### `requirements`
@@ -396,25 +396,25 @@ We keep clients involved at every stage!"
 
 Contact us to discuss your specific needs!"
 **Action Buttons:**
-- 💬 Discuss Requirements
 - ✉️ Email Requirements
+- 💬 Message for Details
 - Back to Main Menu
 
 #### `payment`
 **Response:** "Payment terms are discussed during project consultation and are customized based on project scope. We accept various payment methods and can provide flexible payment schedules."
 **Action Buttons:**
-- 💬 Discuss Payment
 - ✉️ Email for Payment Info
+- 💬 Message for Payment Info
 - Back to Main Menu
 
 #### `consultation`
 **Response:** "We'd love to discuss your project! You can schedule a consultation through:
-• LINE Messenger (fastest response)
+• Facebook Messenger (fastest response)
 • Email
 • Phone call
 • Office visit"
 **Action Buttons:**
-- 💬 Schedule via LINE
+- 💬 Schedule via Facebook
 - ✉️ Email for Consultation
 - 📞 Call us (046) 413-4509
 - Back to Main Menu
@@ -437,7 +437,6 @@ Contact us to discuss your specific needs!"
 #### `talk-to-human`
 **Response:** "I'd be happy to connect you with our team! How would you like to reach us?"
 **Action Buttons:**
-- 💬 Message us on LINE
 - ✉️ Email us
 - 📘 Message us on Facebook
 - 📞 Call us (046) 413-4509
@@ -468,32 +467,27 @@ Contact us to discuss your specific needs!"
 
 ### **Contact Actions**
 
-1. **LINE Messenger**
-   - Action: `line`
-   - URL: `https://line.me/ti/p/~emji000`
-   - Opens LINE Messenger in new tab
-
-2. **Email**
+1. **Email**
    - Action: `email`
    - URL: `mailto:info@kmti.com.ph` or Gmail compose link
    - Opens email client or Gmail compose
 
-3. **Facebook**
+2. **Facebook**
    - Action: `facebook`
    - URL: `https://www.facebook.com/kmti.com.ph/`
    - Opens Facebook page in new tab
 
-4. **Phone Call**
+3. **Phone Call**
    - Action: `call`
    - Phone: `(046) 413-4509`
    - Initiates phone call on mobile devices
 
-5. **Google Maps**
+4. **Google Maps**
    - Action: `maps`
    - URL: `https://maps.app.goo.gl/CyS8xB8sLNPaSYoc8`
    - Opens Google Maps in new tab
 
-6. **Apply (LinkedIn/Careers)**
+5. **Apply (LinkedIn/Careers)**
    - Action: `apply`
    - URL: LinkedIn or Facebook
    - Opens application page or navigates to Careers page
@@ -504,7 +498,7 @@ Contact us to discuss your specific needs!"
 
 - **Total Keywords:** 100+
 - **Total Response Cases:** 30+
-- **Contact Methods:** 5 (LINE, Email, Facebook, Phone, Maps)
+- **Contact Methods:** 4 (Email, Facebook, Phone, Maps)
 - **Navigation Actions:** 4 (Services, Projects, About, Careers)
 - **Special Features:** 2 (Start Over, Talk to Human)
 
@@ -515,9 +509,7 @@ Contact us to discuss your specific needs!"
 When the chatbot opens, it automatically shows:
 1. **Greeting Message:** "Hi there! I'm KMTI Assistant 👋 How can I help you today?"
    - With menu buttons: Our Services, Careers & Application, Office Location, Contact Support, About KMTI
-2. **LINE Message:** "Got product or service inquiries? Message our support team on LINE."
-   - With LINE button
-3. **Facebook Message:** "Interested in joining us? Chat with our HR team on Facebook."
+2. **Facebook Message:** "Interested in joining us? Chat with our HR team on Facebook."
    - With Facebook button
 
 ---
@@ -538,6 +530,5 @@ The chatbot can be reset via:
 - Contact information is consistent across all responses
 - Phone number format: `(046) 413-4509`
 - Email: `info@kmti.com.ph`
-- LINE: `https://line.me/ti/p/~emji000`
 - Facebook: `https://www.facebook.com/kmti.com.ph/`
 
