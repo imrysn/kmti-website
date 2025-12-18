@@ -23,6 +23,7 @@ interface ModelConfig {
   scale?: number;
 }
 
+
 const MODEL_MAP: { [key: string]: ModelConfig } = {
   'Dedimpler and Facer': { path: dedimplerFacerModel, scale: 5 },
   'Dedimpler & Facer': { path: dedimplerFacerModel, scale: 5 },
