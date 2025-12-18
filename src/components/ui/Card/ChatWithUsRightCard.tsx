@@ -1,7 +1,6 @@
 import React from 'react';
 import './chatbot.css';
 import defaultProfileImage from '../../../assets/profile.png';
-import lineIcon from '../../../assets/icons/line.png';
 import facebookIcon from '../../../assets/icons/facebook.png';
 import menuIcon from '../../../assets/icons/menu-icon.png';
 import './ChatWithUsRightCard.css';
@@ -99,34 +98,6 @@ const ChatWithUsRightCard: React.FC<ChatWithUsRightCardProps> = ({
                   <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle" dominantBaseline="middle">i</text>
                 </svg>
                 <span className="chatbot-card-menu-button-text">About KMTI</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* LINE Message */}
-        <div className="chatbot-card-message-bubble">
-          <div className="chatbot-card-message-icon-left">
-            <img
-              src={profileImage || defaultProfileImage}
-              alt="Bot"
-              className="chatbot-card-message-bot-icon"
-            />
-          </div>
-          <div className="chatbot-card-message-content">
-            <div className="chatbot-card-message-text-content">
-              <p style={{ margin: 0, marginBottom: '0.5rem' }}>
-                Got product or service inquiries? Message our support team on LINE.
-              </p>
-              <div className="chatbot-card-action-buttons">
-                <div className="chatbot-card-action-button chatbot-card-line-button">
-                  <img
-                    src={lineIcon}
-                    alt="LINE"
-                    className="chatbot-card-action-button-icon"
-                  />
-                  <span className="chatbot-card-action-button-text">Message us on LINE</span>
-                </div>
               </div>
             </div>
           </div>

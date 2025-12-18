@@ -37,14 +37,15 @@
 
 .contact-options-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   align-items: stretch;
-  max-width: 100%;
+  max-width: 1100px;
   margin-left: auto;
+  margin-right: auto;
   padding: 0rem;
   margin-top: 3rem;
-
+  justify-content: center;
 }
 
 /* ============================================
@@ -242,8 +243,9 @@
 
 @media (max-width: 1024px) {
   .contact-options-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
   }
 
   .chat-with-us-content {
@@ -268,9 +270,10 @@
   }
 
   .contact-options-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
     margin-top: 2rem;
+    max-width: 750px;
   }
 
   .or-divider-container {
@@ -325,8 +328,9 @@
   }
 
   .contact-options-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 450px;
   }
 
   .or-divider-description {
@@ -352,7 +356,9 @@
 
 @media (max-width: 375px) {
   .contact-options-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    max-width: 100%;
+    padding: 0 1rem;
   }
 }

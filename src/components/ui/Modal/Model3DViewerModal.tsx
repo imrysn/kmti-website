@@ -6,6 +6,17 @@ import dedimplerFacerModel from '../../../assets/3DMODELS/Dedimpler&Facer.glb';
 import bundlingMachineModel from '../../../assets/3DMODELS/BundlingMachine.glb';
 import productStorageModel from '../../../assets/3DMODELS/ProductStorage.glb';
 import transferTableModel from '../../../assets/3DMODELS/TransferTable.glb';
+import formingSizingModel from '../../../assets/3DMODELS/Forming&Sizing.glb';
+import airBlowModel from '../../../assets/3DMODELS/AirBlow.glb';
+import bundleSeparatorModel from '../../../assets/3DMODELS/BundleSeparator.glb';
+import pipeDryingSectionModel from '../../../assets/3DMODELS/PipeDryingSection.glb';
+import bindingMachineModel from '../../../assets/3DMODELS/BindingMachine.glb';
+import looperModel from '../../../assets/3DMODELS/looper.glb';
+import horizontalLooperModel from '../../../assets/3DMODELS/horizontalLooper.glb';
+import shearWelderModel from '../../../assets/3DMODELS/shearwelder.glb';
+import uncoilerModel from '../../../assets/3DMODELS/uncoiler.glb';
+import levelerModel from '../../../assets/3DMODELS/leveler.glb';
+import furnaceModel from '../../../assets/3DMODELS/furnace.glb';
 
 interface ModelConfig {
   path: string | null;
@@ -19,21 +30,22 @@ const MODEL_MAP: { [key: string]: ModelConfig } = {
   'Product Storage': { path: productStorageModel, scale: 5 },
   'Pipe Bundling': { path: productStorageModel, scale: 5 },
   'Transfer Table (Lifter)': { path: transferTableModel, scale: 5 },
-  'Transfer Table': { path: transferTableModel, scale: 5 },
-  'Looper Machine': { path: null, scale: 5 },
-  'Horizontal Looper Machine': { path: null, scale: 5 },
-  'Shear Welder Machine': { path: null, scale: 5 },
-  'Uncoiler Machine': { path: null, scale: 5 },
-  'Leveler Machine': { path: null, scale: 5 },
-  'Furnace': { path: null, scale: 5 },
-  'Binding Machine': { path: null, scale: 5 },
-  'Forming and Sizing Machine': { path: null, scale: 5 },
+  'Transfer Table': { path: null, scale: 5 },
+  'Looper Machine': { path: looperModel, scale: 5 },
+  'Horizontal Looper Machine': { path: horizontalLooperModel, scale: 5 },
+  'Shear Welder Machine': { path: shearWelderModel, scale: 5 },
+  'Uncoiler Machine': { path: uncoilerModel, scale: 5 },
+  'Leveler Machine': { path: levelerModel, scale: 5 },
+  'Furnace': { path: furnaceModel, scale: 5 },
+  'Binding Machine': { path: bindingMachineModel, scale: 5 },
+  'Forming and Sizing Machine': { path: formingSizingModel, scale: 5 },
   'Milling Cutoff Machine': { path: null, scale: 5 },
-  'Bundle Separator': { path: null, scale: 5 },
-  'Pipe Drying Section': { path: null, scale: 5 },
+  'Bundle Separator': { path: bundleSeparatorModel, scale: 5 },
+  'Pipe Drying Section': { path: pipeDryingSectionModel, scale: 5 },
   'Finishing Line': { path: null, scale: 5 },
-  'Air Blow': { path: null, scale: 5 },
+  'Air Blow': { path: airBlowModel, scale: 5 },
 };
+
 
 export type CameraView = 'isometric' | 'front' | 'back' | 'left' | 'right' | 'top';
 
