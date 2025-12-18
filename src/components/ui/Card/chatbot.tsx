@@ -2,14 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './chatbot.css';
 import defaultProfileImage from '../../../assets/profile.png';
-import lineIcon from '../../../assets/icons/line.png';
 import facebookIcon from '../../../assets/icons/facebook.png';
 import linkedinIcon from '../../../assets/icons/linkedin-icon.png';
 import menuIcon from '../../../assets/icons/menu-icon.png';
 
 interface ChatbotCardProps {
   profileImage?: string;
-  onLineClick?: () => void;
   onFacebookClick?: () => void;
   onClose?: () => void;
   className?: string;
@@ -41,14 +39,13 @@ interface ActionButton {
   id: string;
   text: string;
   icon?: string;
-  action: 'line' | 'facebook' | 'maps' | 'apply' | 'call' | 'message' | 'back' | 'email' | 'start-over' | 'talk-to-human';
+  action: 'facebook' | 'maps' | 'apply' | 'call' | 'message' | 'back' | 'email' | 'start-over' | 'talk-to-human';
   url?: string;
   navigateAction?: string;
 }
 
 const ChatbotCard: React.FC<ChatbotCardProps> = ({
   profileImage,
-  onLineClick,
   onFacebookClick,
   onClose,
   className = '',
@@ -218,31 +215,6 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       });
     };
 
-    const showLineMessage = () => {
-      setMessages((prev) => {
-        const lineExists = prev.some((msg) => msg.id === 'line-1');
-        if (lineExists) return prev;
-
-        const lineMessage: Message = {
-          id: 'line-1',
-          type: 'bot',
-          content: {
-            text: 'Got product or service inquiries? Message our support team on LINE.',
-            actionButtons: [
-              {
-                id: 'line-btn',
-                text: 'Message us on LINE',
-                action: 'line',
-                icon: 'line',
-              },
-            ],
-          },
-          timestamp: new Date(),
-        };
-        return [...prev, lineMessage];
-      });
-    };
-
     const showFacebookMessage = () => {
       setMessages((prev) => {
         const facebookExists = prev.some((msg) => msg.id === 'facebook-1');
@@ -277,24 +249,12 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
 
       // Step 3: Show typing indicator again
       const timeout2 = setTimeout(() => {
-        const typingId2 = showTypingIndicator('line');
+        const typingId2 = showTypingIndicator('facebook');
         const timeout3 = setTimeout(() => {
           removeTypingIndicator(typingId2);
-          // Step 4: Show LINE message after typing stops
-          showLineMessage();
-
-          // Step 5: Show typing indicator again
-          const timeout4 = setTimeout(() => {
-            const typingId3 = showTypingIndicator('facebook');
-            const timeout5 = setTimeout(() => {
-              removeTypingIndicator(typingId3);
-              // Step 6: Show Facebook message after typing stops
-              showFacebookMessage();
-              setIsInitializing(false);
-            }, typingDelay);
-            timeoutRefs.current.push(timeout5);
-          }, delays[1] + typingDelay);
-          timeoutRefs.current.push(timeout4);
+          // Step 4: Show Facebook message after typing stops
+          showFacebookMessage();
+          setIsInitializing(false);
         }, typingDelay);
         timeoutRefs.current.push(timeout3);
       }, delays[0] + typingDelay);
@@ -707,15 +667,6 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
 
   const handleActionButtonClick = (action: ActionButton) => {
     switch (action.action) {
-      case 'line':
-        if (action.url) {
-          window.open(action.url, '_blank');
-        } else if (onLineClick) {
-          onLineClick();
-        } else {
-          window.open('https://line.me/ti/p/~emji000', '_blank');
-        }
-        break;
       case 'facebook':
         if (onFacebookClick) {
           onFacebookClick();
@@ -788,7 +739,6 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
             content: {
               text: 'I\'d be happy to connect you with our team! How would you like to reach us?',
               actionButtons: [
-                { id: 'line-human', text: '💬 Message us on LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
                 { id: 'email-human', text: '✉️ Email us', action: 'email', url: 'mailto:info@kmti.com.ph' },
                 { id: 'facebook-human', text: '📘 Message us on Facebook', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
                 { id: 'call-human', text: '📞 Call us (046) 413-4509', action: 'call' },
@@ -1007,8 +957,8 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'Need help with something else? You can reach our support team directly for:\n• Service or project inquiries\n• Technical assistance\n• Sales inquiries',
             actionButtons: [
-              { id: 'line-btn', text: 'Message us on LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
               { id: 'email-us', text: 'Email us', action: 'email', url: 'https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=Hello%20KMTI%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you!' },
+              { id: 'facebook-us', text: 'Message us on Facebook', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'back-main', text: 'Back', action: 'back', navigateAction: 'main-menu' },
             ],
           },
@@ -1020,7 +970,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'Got product or service inquiries? Message our support team on LINE.',
+            text: 'Got product or service inquiries? Message our support team on Facebook.',
             actionButtons: [
               { id: 'chat-fb', text: 'Chat with our FB team', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
             ],
@@ -1116,7 +1066,6 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'I\'d be happy to connect you with our team! How would you like to reach us?',
             actionButtons: [
-              { id: 'line-human', text: '💬 Message us on LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
               { id: 'email-human', text: '✉️ Email us', action: 'email', url: 'mailto:info@kmti.com.ph' },
               { id: 'facebook-human', text: '📘 Message us on Facebook', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'call-human', text: '📞 Call us', action: 'call' },
@@ -1133,8 +1082,8 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'For pricing and quotes, we provide customized estimates based on your project requirements. To get an accurate quote, please contact us with your project details.',
             actionButtons: [
-              { id: 'line-quote', text: '💬 Get Quote via LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
               { id: 'email-quote', text: '✉️ Email for Quote', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'facebook-quote', text: '💬 Message for Quote', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
             ],
           },
@@ -1148,8 +1097,8 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'Project timelines vary depending on complexity and scope. Typically:\n• 3D Modeling: 1-4 weeks\n• 2D Detailing: 1-3 weeks\n• Parts Inspection: 1-2 weeks\n• Machine Assembly: 2-6 weeks\n\nFor specific timelines, please contact us with your project details.',
             actionButtons: [
-              { id: 'line-timeline', text: '💬 Discuss Timeline', action: 'line', url: 'https://line.me/ti/p/~emji000' },
               { id: 'email-timeline', text: '✉️ Email for Timeline', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'facebook-timeline', text: '💬 Message for Timeline', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
             ],
           },
@@ -1216,7 +1165,8 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'Our process typically involves:\n1️⃣ Consultation & Requirements Gathering\n2️⃣ Design & 3D Modeling\n3️⃣ 2D Detailing & Quality Checking\n4️⃣ Client Review & Modifications\n5️⃣ Final Approval & Delivery\n\nWe keep clients involved at every stage!',
             actionButtons: [
-              { id: 'line-process', text: '💬 Discuss Process', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'email-process', text: '✉️ Discuss Process', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'facebook-process', text: '💬 Message for Details', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
             ],
           },
@@ -1230,8 +1180,8 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'To get started, we typically need:\n• Project specifications\n• Design requirements\n• Material preferences\n• Timeline expectations\n• Budget considerations\n\nContact us to discuss your specific needs!',
             actionButtons: [
-              { id: 'line-requirements', text: '💬 Discuss Requirements', action: 'line', url: 'https://line.me/ti/p/~emji000' },
               { id: 'email-requirements', text: '✉️ Email Requirements', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'facebook-requirements', text: '💬 Message for Details', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
             ],
           },
@@ -1245,8 +1195,8 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           content: {
             text: 'Payment terms are discussed during project consultation and are customized based on project scope. We accept various payment methods and can provide flexible payment schedules.',
             actionButtons: [
-              { id: 'line-payment', text: '💬 Discuss Payment', action: 'line', url: 'https://line.me/ti/p/~emji000' },
               { id: 'email-payment', text: '✉️ Email for Payment Info', action: 'email', url: 'mailto:info@kmti.com.ph' },
+              { id: 'facebook-payment', text: '💬 Message for Payment Info', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
             ],
           },
@@ -1258,9 +1208,9 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'We\'d love to discuss your project! You can schedule a consultation through:\n• LINE Messenger (fastest response)\n• Email\n• Phone call\n• Office visit',
+            text: 'We\'d love to discuss your project! You can schedule a consultation through:\n• Facebook Messenger (fastest response)\n• Email\n• Phone call\n• Office visit',
             actionButtons: [
-              { id: 'line-consult', text: '💬 Schedule via LINE', action: 'line', url: 'https://line.me/ti/p/~emji000' },
+              { id: 'facebook-consult', text: '💬 Schedule via Facebook', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'email-consult', text: '✉️ Email for Consultation', action: 'email', url: 'mailto:info@kmti.com.ph' },
               { id: 'call-consult', text: '📞 Call us (046) 413-4509', action: 'call' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
@@ -1509,24 +1459,21 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
                         {message.content.actionButtons.map((actionBtn) => (
                           <button
                             key={actionBtn.id}
-                            className={`chatbot-card-action-button ${(actionBtn.action === 'line' && !actionBtn.url) ? 'chatbot-card-line-button' :
-                              actionBtn.action === 'line' ? 'chatbot-card-apply-button' :
-                                actionBtn.action === 'facebook' ? 'chatbot-card-facebook-button' :
-                                  actionBtn.action === 'maps' ? 'chatbot-card-apply-button' :
-                                    actionBtn.action === 'apply' ? 'chatbot-card-apply-button' :
-                                      actionBtn.action === 'call' ? 'chatbot-card-apply-button' :
-                                        actionBtn.action === 'back' ? 'chatbot-card-apply-button' :
-                                          actionBtn.action === 'email' ? 'chatbot-card-apply-button' :
-                                            'chatbot-card-message-button'
+                            className={`chatbot-card-action-button ${actionBtn.action === 'facebook' ? 'chatbot-card-facebook-button' :
+                                actionBtn.action === 'maps' ? 'chatbot-card-apply-button' :
+                                  actionBtn.action === 'apply' ? 'chatbot-card-apply-button' :
+                                    actionBtn.action === 'call' ? 'chatbot-card-apply-button' :
+                                      actionBtn.action === 'back' ? 'chatbot-card-apply-button' :
+                                        actionBtn.action === 'email' ? 'chatbot-card-apply-button' :
+                                          'chatbot-card-message-button'
                               }`}
                             onClick={() => handleActionButtonClick(actionBtn)}
                           >
-                            {((actionBtn.action === 'line' && !actionBtn.url) || (actionBtn.action === 'facebook' && !actionBtn.url) || (actionBtn.action === 'message' && !actionBtn.url) || (actionBtn.action === 'apply' && actionBtn.url && actionBtn.url.includes('linkedin.com') && actionBtn.id !== 'apply-linkedin')) && (
+                            {((actionBtn.action === 'facebook' && !actionBtn.url) || (actionBtn.action === 'message' && !actionBtn.url) || (actionBtn.action === 'apply' && actionBtn.url && actionBtn.url.includes('linkedin.com') && actionBtn.id !== 'apply-linkedin')) && (
                               <img
-                                src={actionBtn.action === 'line' ? lineIcon :
-                                  actionBtn.action === 'facebook' ? facebookIcon :
-                                    actionBtn.action === 'apply' && actionBtn.url && actionBtn.url.includes('linkedin.com') ? linkedinIcon :
-                                      facebookIcon}
+                                src={actionBtn.action === 'facebook' ? facebookIcon :
+                                  actionBtn.action === 'apply' && actionBtn.url && actionBtn.url.includes('linkedin.com') ? linkedinIcon :
+                                    facebookIcon}
                                 alt={actionBtn.action}
                                 className="chatbot-card-action-button-icon"
                               />

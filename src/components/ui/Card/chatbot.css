@@ -376,16 +376,6 @@
   font-weight: 400;
 }
 
-/* LINE Button */
-.chatbot-card-line-button {
-  background-color: #06C755;
-  color: #FFFFFF;
-}
-
-.chatbot-card-line-button:hover {
-  background-color: #05B048;
-}
-
 /* Facebook Button */
 .chatbot-card-facebook-button {
   background-color: transparent;

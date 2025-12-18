@@ -134,7 +134,6 @@ const Footer: React.FC = () => {
           <div className="footer__socials" aria-hidden>
             <a href="https://www.linkedin.com/company/kusakabe-maeno-tech-inc/" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
             <a href="https://www.facebook.com/kmti.com.ph/" title="Facebook" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
-            <a href="https://line.me/ti/p/~emji000" title="LINE" aria-label="LINE" target="_blank" rel="noopener noreferrer">LINE</a>
           </div>
         </div>
 

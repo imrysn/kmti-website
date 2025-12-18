@@ -3,7 +3,6 @@ import './Contact.css';
 import { ContactPageProps } from './Contact.types';
 import contactBg from '../../assets/contactusbg.jpg';
 import emailIcon from '../../assets/icons/email-icon.png';
-import lineIcon from '../../assets/icons/line-icon.png';
 import linkedinIcon from '../../assets/icons/linkedin-icon.png';
 import mapsIcon from '../../assets/icons/maps-icon.png';
 import chatIcon from '../../assets/icons/chat-icon.png';
@@ -17,10 +16,6 @@ const Contact: React.FC<ContactPageProps> = () => {
 
   const handleGeneralInquiries = () => {
     window.location.href = 'mailto:info@kmti.com.ph';
-  };
-
-  const handleLineMessenger = () => {
-    window.open('https://line.me/R/ti/p/@kmti', '_blank');
   };
 
   const handleCareerApplication = () => {
@@ -73,13 +68,6 @@ const Contact: React.FC<ContactPageProps> = () => {
                 onButtonClick={handleGeneralInquiries}
               />
               <ContactOptionCard
-                icon={lineIcon}
-                title="SERVICE & PROJECT QUOTES"
-                description="Chat via LINE Messenger"
-                buttonText="MESSAGE US"
-                onButtonClick={handleLineMessenger}
-              />
-              <ContactOptionCard
                 icon={linkedinIcon}
                 title="CAREER APPLICATION"
                 description="Apply through LinkedIn"
@@ -123,7 +111,7 @@ const Contact: React.FC<ContactPageProps> = () => {
               </div>
               <div className="chat-with-us-header-line"></div>
               <p className="chat-with-us-description">
-                Our AI assistant can answer common questions about our services - Machine Design, Assembly, and Parts Inspection - and connect directly to our LINE support for real assistance.
+                Our AI assistant can answer common questions about our services - Machine Design, Assembly, and Parts Inspection - and connect directly to our support team for real assistance.
               </p>
               <ul className="chat-with-us-features">
                 <li className="chat-with-us-feature">
@@ -136,15 +124,15 @@ const Contact: React.FC<ContactPageProps> = () => {
                 <li className="chat-with-us-feature">
                   <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
-                    <strong className="chat-with-us-feature-title">Direct LINE Connection:</strong>
-                    <span className="chat-with-us-feature-text">Need personalized help? Chat instantly with our team through LINE messenger.</span>
+                    <strong className="chat-with-us-feature-title">Smart & Helpful:</strong>
+                    <span className="chat-with-us-feature-text">Our AI is trained on KMTI's expertise to provide accurate and relevant information.</span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">
                   <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
-                    <strong className="chat-with-us-feature-title">Smart & Helpful:</strong>
-                    <span className="chat-with-us-feature-text">Our AI is trained on KMTI's expertise to provide accurate and relevant information.</span>
+                    <strong className="chat-with-us-feature-title">Direct Team Connection:</strong>
+                    <span className="chat-with-us-feature-text">Need personalized help? Chat instantly with our team through Facebook Messenger or email.</span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">

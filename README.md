@@ -11,7 +11,7 @@ This is the official website for KMTI (Kusakabe & Maeno Tech Inc.), showcasing t
 ### 🤖 AI Chatbot Assistant
 - **Interactive FAQ System**: AI-powered chatbot that answers common questions about services, careers, and company information
 - **Contextual Navigation**: Chatbot can navigate users to specific pages and sections
-- **Action Buttons**: Direct links to LINE Messenger, Facebook, LinkedIn, email, and Google Maps
+- **Action Buttons**: Direct links to Facebook, LinkedIn, email, and Google Maps
 - **Conversation Flow**: Multi-step conversation system with typing indicators and message history
 - **Reset Functionality**: Ability to restart conversations and reset chatbot state
 
@@ -59,7 +59,7 @@ This is the official website for KMTI (Kusakabe & Maeno Tech Inc.), showcasing t
 - **Apply Now Functionality**: Direct links to application portals
 
 #### Contact Page
-- **Contact Options**: Multiple contact methods (Email, LINE Messenger, LinkedIn, Google Maps)
+- **Contact Options**: Multiple contact methods (Email, LinkedIn, Google Maps)
 - **Chatbot Integration**: Direct access to AI assistant from contact page
 - **Social Media Links**: Quick access to company social media profiles
 - **Interactive Cards**: Clickable contact option cards with hover effects
@@ -230,7 +230,7 @@ npm run preview
 1. **Opening the Chatbot**: Click the chatbot button (usually in the bottom-right corner)
 2. **Starting a Conversation**: The chatbot greets you with initial options
 3. **Navigation**: Click buttons to navigate to different topics or pages
-4. **External Links**: Use action buttons to open LINE, Facebook, LinkedIn, or Maps
+4. **External Links**: Use action buttons to open Facebook, LinkedIn, or Maps
 5. **Resetting**: Click "Back" or close/reopen the chatbot to restart
 
 ### Navigating Projects
