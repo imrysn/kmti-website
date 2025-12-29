@@ -276,7 +276,7 @@ Check specific positions for detailed requirements!"
   • Training programs in Japan
   • Continuous learning and growth
   • Mentorship from experienced engineers" 
-  
+
 **Action Buttons:** 
 - 🚀Learn About Career Growth
 - Back to Careers
@@ -291,7 +291,7 @@ Check specific positions for detailed requirements!"
 
 ---
 
-### **LOCATION**
+### **LOCATION**i
 
 #### `location`
 **Response:** "Our main office is located at:
@@ -347,6 +347,11 @@ Need Directions?"
 • 2D Detailing: 1-3 weeks
 • Parts Inspection: 1-2 weeks
 • Machine Assembly: 2-6 weeks
+
+3D modeling: 1-4 weeks 
+2D Detailing: 1-3 weeks
+Parts inspection: 1-2 weeks
+Machine Assembly 
 
 For specific timelines, please contact us with your project details."
 **Action Buttons:**

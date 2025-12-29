@@ -167,7 +167,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
       return "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepancies from the design and the actual parts.";
     }
     if (service.title === 'Machine Assembly') {
-      return "In collaboration with our business partners Kusakabe Electric & Machinery Co., Ltd and Maeno Giken Inc., two of the most known pioneers and leaders in the industry. We give our clients the confidence to have high quality and top notch performance products ready for a productive business.";
+      return "In collaboration with our business partners Kusakabe Electric & Machinery Co., Ltd. Next Engineering Co., Ltd. and Maeno Giken Inc., three of the most known pioneers and leaders in the industry. We give our clients the confidence to have high quality and top notch performance products ready for a productive business.";
     }
     return service.description;
   };
