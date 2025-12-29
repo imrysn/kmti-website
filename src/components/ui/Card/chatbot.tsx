@@ -813,7 +813,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'We inspect fabricated parts based on our design to ensure quality before assembly. Each part undergoes a series of tests usigng hightech devices to verify accuracy and precicion.',
+            text: 'We inspect fabricated parts based on your design to ensure quality before assembly. Each part undergoes a series of tests using hightech devices to verify accuracy and precision.',
             buttons: [
               { id: 'learn-more-inspection', text: 'Learn More', action: 'learn-more-inspection' },
               { id: 'back-services', text: 'Back to Services', action: 'services' },
@@ -827,7 +827,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'In collaboration with industry pioneers Kusakabe Electric & Machinery Co., Ltd., Next Engineering, and Maeno Giken Inc., we ensure our clients receive hight-performance products built for effieciency and long-term success.',
+            text: 'In collaboration with industry pioneers Kusakabe Electric & Machinery Co., Ltd., Next Engineering, and Maeno Giken Inc., we ensure our clients receive high-performance products built for effieciency and long-term success.',
             buttons: [
               { id: 'learn-more-assembly', text: 'Learn More', action: 'learn-more-assembly' },
               { id: 'back-services', text: 'Back to Services', action: 'services' },
@@ -927,7 +927,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'You can reach our HR team through:\n💌 info@kmti.com.ph\n☎️ (046) 413-4509\n💬 Or message us on Facebook Messenger for faster response.',
+            text: 'You can reach our HR team through:\n💌 info@kmti.com.ph\n☎️ (046) 413-4509\n💬 Or message us on Facebook Messenger for a faster response.',
             actionButtons: [
               { id: 'email-hr', text: '✉️ Email HR', action: 'email', url: 'https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=Hello%20KMTI%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you!' },
               { id: 'message-hr-fb', text: 'Message HR on Facebook', action: 'message', url: 'https://www.facebook.com/kmti.com.ph/' },
@@ -1068,7 +1068,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
             actionButtons: [
               { id: 'email-human', text: '✉️ Email us', action: 'email', url: 'mailto:info@kmti.com.ph' },
               { id: 'facebook-human', text: '📘 Message us on Facebook', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
-              { id: 'call-human', text: '📞 Call us', action: 'call' },
+              { id: 'call-human', text: '📞 Call us (046) 413-4509', action: 'call' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
             ],
           },
@@ -1149,7 +1149,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'KMTI has years of experience in engineering services, working with industry leaders like Kusakabe Electric & Machinery Co., Ltd. and Maeno Giken Inc. Our team uses advanced technology and follows international standards.',
+            text: 'KMTI has years of experience in engineering services, working with industry leaders like Kusakabe Electric & Machinery Co., Ltd., Next Engineering Co., Ltd., and Maeno Giken Inc. Our team uses advanced technology and follows international standards.',
             actionButtons: [
               { id: 'learn-more-about-btn', text: 'Learn More About KMTI', action: 'back', navigateAction: 'learn-more-about' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
@@ -1208,9 +1208,8 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           id: messageId,
           type: 'bot',
           content: {
-            text: 'We\'d love to discuss your project! You can schedule a consultation through:\n• Facebook Messenger (fastest response)\n• Email\n• Phone call\n• Office visit',
+            text: 'We\'d love to discuss your project! You can schedule a consultation through:\n• Email\n• Phone call\n• Office visit',
             actionButtons: [
-              { id: 'facebook-consult', text: '💬 Schedule via Facebook', action: 'facebook', url: 'https://www.facebook.com/kmti.com.ph/' },
               { id: 'email-consult', text: '✉️ Email for Consultation', action: 'email', url: 'mailto:info@kmti.com.ph' },
               { id: 'call-consult', text: '📞 Call us (046) 413-4509', action: 'call' },
               { id: 'back-main', text: 'Back to Main Menu', action: 'back', navigateAction: 'main-menu' },
@@ -1460,12 +1459,12 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
                           <button
                             key={actionBtn.id}
                             className={`chatbot-card-action-button ${actionBtn.action === 'facebook' ? 'chatbot-card-facebook-button' :
-                                actionBtn.action === 'maps' ? 'chatbot-card-apply-button' :
-                                  actionBtn.action === 'apply' ? 'chatbot-card-apply-button' :
-                                    actionBtn.action === 'call' ? 'chatbot-card-apply-button' :
-                                      actionBtn.action === 'back' ? 'chatbot-card-apply-button' :
-                                        actionBtn.action === 'email' ? 'chatbot-card-apply-button' :
-                                          'chatbot-card-message-button'
+                              actionBtn.action === 'maps' ? 'chatbot-card-apply-button' :
+                                actionBtn.action === 'apply' ? 'chatbot-card-apply-button' :
+                                  actionBtn.action === 'call' ? 'chatbot-card-apply-button' :
+                                    actionBtn.action === 'back' ? 'chatbot-card-apply-button' :
+                                      actionBtn.action === 'email' ? 'chatbot-card-apply-button' :
+                                        'chatbot-card-message-button'
                               }`}
                             onClick={() => handleActionButtonClick(actionBtn)}
                           >
