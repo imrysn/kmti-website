@@ -142,7 +142,7 @@ const About: React.FC<AboutPageProps> = () => {
             <Card
               icon={missionIcon}
               title="Our Mission"
-              subtitle="To utilize our knowledge and upgrade them by incorporating expertise from three of the most known industry leaders Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cove other industries."
+              subtitle="To utilize our knowledge and upgrade them by incorporating expertise from three of the most known industry leaders Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cover other industries."
             />
           </div>
         </div>
