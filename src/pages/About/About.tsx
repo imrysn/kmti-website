@@ -142,7 +142,7 @@ const About: React.FC<AboutPageProps> = () => {
             <Card
               icon={missionIcon}
               title="Our Mission"
-              subtitle="To utilize our knowledge and upgrade them by incorporating expertise from three of the most known industry leaders Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cover other industries."
+              subtitle="To utilize our knowledge and upgrade them by incorporating expertise from three of the most know industry leaders, Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cover the industries."
             />
           </div>
         </div>
@@ -306,7 +306,7 @@ const About: React.FC<AboutPageProps> = () => {
             <RelatedCompanyCard
               logo={kemcoLogo}
               companyName="KUSAKABE ELECTRIC & MACHINERY CO., LTD"
-              description="Founded in 1916 and began it's involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high quality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipment supplier."
+              description="Founded in 1916 and began its involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high qquality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipment supplier."
               href="https://www.kusakabe.com/jpn/index.htm"
             />
             <RelatedCompanyCard
@@ -318,7 +318,7 @@ const About: React.FC<AboutPageProps> = () => {
             <RelatedCompanyCard
               logo={mgkLogo}
               companyName="MAENO GIKEN INC."
-              description="MGK specializes in fabrication, utilizing expertise of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. And every product undergoes strict quality compliance to meet their client's satisfaction, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competitive by means of transferring every technological knowledge in this kind of business."
+              description="MGK specializes in fabrication, utilizing expertise of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. And every product undergoes strict quality compliance to meet their client's satisfaction, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competetive by means of transferring every technological knowledge in this kind of business."
               href="http://www.maenogiken.com/"
             />
           </div>
