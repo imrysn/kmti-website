@@ -1220,19 +1220,19 @@ export const TransferTableLineModal: React.FC<TransferTableLineModalProps> = ({ 
       },
       {
         image: pipeBundlingImage,
-        title: 'Transfer Table',
+        title: 'Pipe Bundling',
         category: 'MECHANICAL > TUBE (Sub Machine)',
         // modelFile: 'transfer-table-2.glb',
       },
       {
         image: productStorageFSImage,
-        title: 'Pipe Bundling',
+        title: 'Product Storage',
         category: 'MECHANICAL > TUBE (Sub Machine)',
         // modelFile: 'pipe-bundling.glb',
       },
       {
         image: transferTableImage,
-        title: 'Product Storage',
+        title: 'Transfer Table',
         category: 'MECHANICAL > TUBE (Sub Machine)',
         // modelFile: 'product-storage.glb',
       },
