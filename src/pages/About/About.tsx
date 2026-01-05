@@ -306,13 +306,13 @@ const About: React.FC<AboutPageProps> = () => {
             <RelatedCompanyCard
               logo={kemcoLogo}
               companyName="KUSAKABE ELECTRIC & MACHINERY CO., LTD"
-              description="Founded in 1916 and began its involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high qquality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipment supplier."
+              description="Founded in 1916 and began its involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high quality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipement supplier. "
               href="https://www.kusakabe.com/jpn/index.htm"
             />
             <RelatedCompanyCard
               logo={nextengLogo}
               companyName="NEXT ENGINEERING CO., LTD."
-              description="Next Engineering Co., LTD. was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at it's own facilities. In recent years, it has expanded into IT and semiconductor fields. In April 2025, the company will merge with Nishinippon Sekkei Co., Ltd., enhancing its capabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing."
+              description="Next Engineering Co., Ltd., was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at it's own facilities. In recent years, it has expanded into IT and semiconductor fields. In April 2025, the company will merge with Nishinippon Sekkei Co., Ltd., enhancig its capabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing."
               href="https://www.nexteng.co.jp/"
             />
             <RelatedCompanyCard
