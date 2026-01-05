@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "home": "HOME",
+    "services": "SERVICES",
+    "projects": "PROJECTS",
+    "about": "ABOUT US",
+    "careers": "CAREERS",
+    "contact": "CONTACT US"
+  },
+  "common": {
+    "contact_us": "CONTACT US",
+    "view_projects": "VIEW PROJECTS",
+    "learn_more": "LEARN MORE"
+  },
+  "home": {
+    "hero": {
+      "title": "BRINGING YOUR VISION\nINTO CREATION, WITH\nPRECISION"
+    },
+    "why_choose": {
+      "title": "WHY CHOOSE US",
+      "precision": {
+        "title": "PRECISION",
+        "desc": "Our team delivers accurate and efficient results through advanced design techniques and strict attention to detail in every project."
+      },
+      "innovation": {
+        "title": "INNOVATION",
+        "desc": "We develop creative engineering solutions using the latest tools and technology to bring your ideas to life with efficiency and quality."
+      },
+      "experience": {
+        "title": "EXPERIENCE",
+        "desc": "With years of expertise in machine design and fabrication, we provide reliable solutions built on proven knowledge and dedication."
+      }
+    },
+    "services": {
+      "title": "OUR SERVICES",
+      "subtitle": "Comprehensive engineering solutions tailored to your needs, powered by cutting-edge technology and decades of expertise.",
+      "items": {
+        "3d": {
+          "title": "3D MODELING",
+          "desc": "We transform client data into accurate 3D models to visualize designs and detect potential issues early. This process allows for easy review, modification, and validation before proceeding to detailed drawings."
+        },
+        "2d": {
+          "title": "2D DETAILING",
+          "desc": "Our 2D detailing process ensures every dimension, material and component is clearly defined for production. We create precise technical drawings that serve as the foundation for efficient manufacturing."
+        },
+        "inspection": {
+          "title": "PARTS INSPECTIONS",
+          "desc": "We conduct through inspection and quality checks on fabricated parts to ensure accuracy and consistency with design specifications. Using advanced measuring tools, we guarantee top-notch quality before assembly."
+        },
+        "assembly": {
+          "title": "MACHINE ASSEMBLY",
+          "desc": "In collaboration with our trusted partners, we provide reliable assembly services for completed parts and machinery. Our goal is to deliver high-performance, ready-to-use systems built with precision and efficiency."
+        }
+      }
+    },
+    "projects": {
+      "title": "BRINGING VISION TO REALITY",
+      "subtitle": "See how our precision - driven designs turn ideas into successful engineering solutions.",
+      "items": {
+        "dedimpler": {
+          "title": "DEDIMPLER AND FACER",
+          "desc": "Tube and pipes require facing and or internal and external chamfering can be processed in line with the tube mill or off line.",
+          "cat": "FINISHING EQUIPMENT"
+        },
+        "looper": {
+          "title": "LOOPER MACHINE",
+          "desc": "Horizontal loopers store strips on a horizontal rotary table. Where the space is available this is the most efficient and cheapest method of storing strips without causing any surface damage.",
+          "cat": "LOOPER"
+        },
+        "forming": {
+          "title": "FORMING AND SIZING MACHINE",
+          "desc": "After metal has been welded and combined it will undergo forming to produce the needed shape of steel.",
+          "cat": "FORMING"
+        },
+        "shear": {
+          "title": "SHEAR WELDER MACHINE",
+          "desc": "Shear and end welders crop the tail and nose of each coil. The two coil ends are then aligned and the joint welded using TIG, MIG or MAG depending on the material and thickness being welded.",
+          "cat": "STRIP ENTRY"
+        },
+        "table": {
+          "title": "FINISHING TABLE",
+          "desc": "Extension of transfer table in the finishing line.",
+          "cat": "TRANSFER TABLE LINE"
+        },
+        "line": {
+          "title": "FINISHING LINE",
+          "desc": "After pipes are cut into standard lengths it will be passed to the finishing line to be arranged and bundled ready for distribution.",
+          "cat": "FINISHING LINE"
+        },
+        "milling": {
+          "title": "MILLING CUTOFF MACHINE",
+          "desc": "Milling Cutoff Machine uses two milling saws to cut length pipe and structural section tubes. The cut finishes eliminates the need for facing.",
+          "cat": "CUT OFF"
+        },
+        "furnace": {
+          "title": "FURNACE",
+          "desc": "Furnace is used for melting large batches of glass, in which heat is supplied by a flame playing over the glass surface.",
+          "cat": "FURNACE"
+        }
+      }
+    },
+    "about": {
+      "title": "ABOUT US",
+      "desc": "Kusakabe & Maeno Tech., Inc. is a trusted engineering partner specializing in precision design, fabrication and assembly. With years of industry experience and strong partnerships with Kusakabe Electric & Machinery Co., Ltd. Next Engineering Co., Ltd. and Maeno Giken Inc., we deliver high-quality engineering solutions tailored to meet our client's specific needs.",
+      "link": "Learn more about us"
+    },
+    "cta": {
+      "title": "Ready to build your next project?"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Our Services",
+      "subtitle": "Comprehensive Engineering & Design Solutions from Concept to Assembly",
+      "cta": "EXPLORE OUR EXPERTISE"
+    },
+    "workflow": {
+      "title": "ACTUAL PRODUCTION FLOW",
+      "steps": {
+        "inquiry": "INQUIRY WITH ORDER SHEET",
+        "reference": "REFERENCE DATA",
+        "modeling": "3D MODELING WITH MODIFICATION",
+        "detailing": "2D MODELING",
+        "design": "MANUFACTURING DESIGN",
+        "fabrication": "FABRICATION / ASSEMBLY",
+        "delivery": "DELIVERY OR PRODUCTS"
+      }
+    },
+    "items": {
+      "3d": {
+        "title": "3D MODELING",
+        "short_desc": "We create detailed 3D models for high-precision engineering and visualization.",
+        "detailed_desc": "By converting clients 3D model, we can easily check any possible errors or interference that may occur. Consultation is key to ensure everything is according to plan."
+      },
+      "2d": {
+        "title": "2D DETAILING",
+        "short_desc": "Our 2D detailing services convert 3D models into precise drawings ready for manufacturing.",
+        "detailed_desc": "Detailing is a critical part of the design process since almost all the information on how the project is going to be built is in this part.",
+        "section_titles": {
+          "detail": "2D DETAIL",
+          "checking": "QUALITY CHECKING",
+          "qualifications": "DESIGN QUALIFICATIONS"
+        },
+        "section_desc": {
+          "checking": "After detailing, the design will run through series of checking and correction.",
+          "qualifications": "Modifications will be applied to meet desired outcomes."
+        }
+      },
+      "inspection": {
+        "title": "Parts Inspection",
+        "short_desc": "We perform Parts Inspection using precise measuring tools and 3D scanners.",
+        "detailed_desc": "We support inspection of parts fabricated from our design to ensure quality before they send it for assembly."
+      },
+      "assembly": {
+        "title": "Machine Assembly",
+        "short_desc": "From component integration to full machine assembly, we ensure mechanical systems meet industrial standards.",
+        "detailed_desc": "In collaboration with our business partners, we give our clients the confidence to have high quality performance products."
+      }
+    },
+    "footer_cta": {
+      "title": "Have a project in mind? Let's discuss how we can bring it to life"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './Services.css';
 import { ServicesPageProps } from './Services.types';
 import { ServicePageCard } from '../../components/ui/Card/Card';
@@ -44,6 +45,7 @@ interface ServiceSectionProps {
 }
 
 const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ service, onServiceChange }, ref) => {
+  const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageScale, setImageScale] = useState(1);
   const [panX, setPanX] = useState(0);
@@ -52,20 +54,9 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
   const [lastMouseX, setLastMouseX] = useState(0);
   const [lastMouseY, setLastMouseY] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
-  const inspectionImages = [
-    inspectionImage1,
-    inspectionImage2,
-    inspectionImage3,
-    inspectionImage4,
-    inspectionImage5,
-  ];
-  const assemblyImages = [
-    assemblyImage1,
-    assemblyImage2,
-    assemblyImage3,
-    assemblyImage4,
-    assemblyImage5,
-  ];
+
+  const inspectionImages = [inspectionImage1, inspectionImage2, inspectionImage3, inspectionImage4, inspectionImage5];
+  const assemblyImages = [assemblyImage1, assemblyImage2, assemblyImage3, assemblyImage4, assemblyImage5];
 
   const getCurrentCarouselImages = () => {
     if (service.title === 'Parts Inspection') return inspectionImages;
@@ -77,59 +68,29 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
 
   useEffect(() => {
     if (service.title !== 'Parts Inspection' && service.title !== 'Machine Assembly') return;
-
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % currentCarouselImages.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, [service.title, currentCarouselImages.length]);
 
-  useEffect(() => {
-    if (service.title === 'Parts Inspection' || service.title === 'Machine Assembly') {
-      setCurrentImageIndex(0);
-    }
-  }, [service.title]);
-
-  useEffect(() => {
-    if (service.title === '2D Detailing') {
-      setImageScale(1);
-      setPanX(0);
-      setPanY(0);
-    }
-  }, [service.title]);
-
-  useEffect(() => {
-    if (service.title !== '2D Detailing' || !isHovering) return;
-
-    const handler = (e: Event) => e.preventDefault();
-    window.addEventListener('wheel', handler, { passive: false });
-
-    return () => window.removeEventListener('wheel', handler);
-  }, [service.title, isHovering]);
-
   const productionFlowSteps = [
-    'INQUIRY WITH ORDER SHEET',
-    'REFERENCE DATA',
-    '3D MODELING WITH MODIFICATION',
-    '2D MODELING',
-    'MANUFACTURING DESIGN',
-    'FABRICATION / ASSEMBLY',
-    'DELIVERY OR PRODUCTS',
+    t('services.workflow.steps.inquiry'),
+    t('services.workflow.steps.reference'),
+    t('services.workflow.steps.modeling'),
+    t('services.workflow.steps.detailing'),
+    t('services.workflow.steps.design'),
+    t('services.workflow.steps.fabrication'),
+    t('services.workflow.steps.delivery'),
   ];
 
   const getCurrentStepIndex = () => {
     switch (service.title) {
-      case '3D Modeling':
-        return 2;
-      case '2D Detailing':
-        return 3;
-      case 'Parts inspection':
-        return 5;
-      case 'Machine Assembly':
-        return 5;
-      default:
-        return 2;
+      case '3D Modeling': return 2;
+      case '2D Detailing': return 3;
+      case 'Parts Inspection': return 5;
+      case 'Machine Assembly': return 5;
+      default: return 2;
     }
   };
 
@@ -137,59 +98,29 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
 
   const handleFlowStepClick = (stepIndex: number) => {
     if (!onServiceChange) return;
-
-    if (service.title === '3D Modeling') {
-      if (stepIndex === 3) {
-        onServiceChange('2D Detailing');
-      }
-    } else if (service.title === '2D Detailing') {
-      if (stepIndex === 2) {
-        onServiceChange('3D Modeling');
-      }
-    }
+    if (service.title === '3D Modeling' && stepIndex === 3) onServiceChange('2D Detailing');
+    else if (service.title === '2D Detailing' && stepIndex === 2) onServiceChange('3D Modeling');
   };
 
   const isStepClickable = (stepIndex: number) => {
-    if (!onServiceChange) return false;
     if (service.title === '3D Modeling' && stepIndex === 3) return true;
     if (service.title === '2D Detailing' && stepIndex === 2) return true;
     return false;
   };
 
   const getDetailedDescription = () => {
-    if (service.title === '3D Modeling') {
-      return "By converting clients 3D model, we can easily check any possible errors or interference that may occur. During this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing.";
-    }
-    if (service.title === '2D Detailing') {
-      return "Detailing is a critical part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We give a keen eye on every detail of the design, together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involve in the process and everything is according to their plan to avoid any further iterations due to miscommunication.";
-    }
-    if (service.title === 'Parts Inspection') {
-      return "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepancies from the design and the actual parts.";
-    }
-    if (service.title === 'Machine Assembly') {
-      return "In collaboration with our business partners Kusakabe Electric & Machinery Co., Ltd. Next Engineering Co., Ltd. and Maeno Giken Inc., three of the most known pioneers and leaders in the industry. We give our clients the confidence to have high quality and top notch performance products ready for a productive business.";
-    }
+    if (service.title === '3D Modeling') return t('services.items.3d.detailed_desc');
+    if (service.title === '2D Detailing') return t('services.items.2d.detailed_desc');
+    if (service.title === 'Parts Inspection') return t('services.items.inspection.detailed_desc');
+    if (service.title === 'Machine Assembly') return t('services.items.assembly.detailed_desc');
     return service.description;
   };
 
   const get2DDetailingSections = () => {
     return [
-      {
-        number: 2,
-        title: '2D DETAIL',
-        description: '',
-        hasImages: true,
-      },
-      {
-        number: 3,
-        title: 'QUALITY CHECKING',
-        description: 'After detailing, the design will run through series of checking and correction making sure that the design is precise and the chance of error is close to zero. When the design is already checked and final, we will send it to the client for confirmation.',
-      },
-      {
-        number: 4,
-        title: 'DESIGN QUALIFICATIONS',
-        description: 'If there\'s still suggestions or if ever the client change their mind in some aspect of the design, further modifications will be applied to the design to meet their desired outcome.',
-      },
+      { number: 2, title: t('services.items.2d.section_titles.detail'), description: '', hasImages: true },
+      { number: 3, title: t('services.items.2d.section_titles.checking'), description: t('services.items.2d.section_desc.checking') },
+      { number: 4, title: t('services.items.2d.section_titles.qualifications'), description: t('services.items.2d.section_desc.qualifications') },
     ];
   };
 
@@ -198,9 +129,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
       <div className="service-section-container container">
         <div className="service-section-body">
           <div className="service-section-left">
-            <h2 className="service-section-title">
-              {service.title}
-            </h2>
+            <h2 className="service-section-title">{t(`services.items.${service.id === 1 ? '3d' : service.id === 2 ? '2d' : service.id === 3 ? 'inspection' : 'assembly'}.title`)}</h2>
             <p className="service-section-description">{getDetailedDescription()}</p>
 
             {service.title === '2D Detailing' ? (
@@ -253,9 +182,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
                         </div>
                       </div>
                     )}
-                    {section.description && (
-                      <p className="service-section-section-description">{section.description}</p>
-                    )}
+                    {section.description && <p className="service-section-section-description">{section.description}</p>}
                   </div>
                 ))}
               </div>
@@ -265,14 +192,9 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
                   <div className="service-section-step-number">1</div>
                   <span className="service-section-step-text">{service.title.toUpperCase()}</span>
                 </div>
-
                 <div className="service-section-images">
-                  <div className="service-section-image-container">
-                    <img src={modalImage1} alt={`${service.title} - View 1`} className="service-section-image service-section-image-3d" />
-                  </div>
-                  <div className="service-section-image-container">
-                    <img src={modalImage2} alt={`${service.title} - View 2`} className="service-section-image service-section-image-3d" />
-                  </div>
+                  <div className="service-section-image-container"><img src={modalImage1} alt="View 1" className="service-section-image" /></div>
+                  <div className="service-section-image-container"><img src={modalImage2} alt="View 2" className="service-section-image" /></div>
                 </div>
               </>
             ) : null}
@@ -282,56 +204,29 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
             {service.title === 'Parts Inspection' || service.title === 'Machine Assembly' ? (
               <div className="service-section-carousel">
                 <div className="service-section-carousel-container">
-                  {currentCarouselImages.map((image, index) => (
-                    <div
-                      key={index}
-                      className={`service-section-carousel-slide ${index === currentImageIndex ? 'active' : ''
-                        }`}
-                    >
-                      <div className="service-section-image-container">
-                        <img
-                          src={image}
-                          alt={`${service.title} ${index + 1}`}
-                          className="service-section-image"
-                        />
-                      </div>
+                  {currentCarouselImages.map((img, idx) => (
+                    <div key={idx} className={`service-section-carousel-slide ${idx === currentImageIndex ? 'active' : ''}`}>
+                      <img src={img} alt={`${service.title} ${idx + 1}`} className="service-section-image" />
                     </div>
                   ))}
-
-                  <div className="service-section-carousel-indicators">
-                    {currentCarouselImages.map((_, index) => (
-                      <button
-                        key={index}
-                        className={`service-section-carousel-dot ${index === currentImageIndex ? 'active' : ''
-                          }`}
-                        onClick={() => setCurrentImageIndex(index)}
-                        aria-label={`Go to image ${index + 1}`}
-                      />
-                    ))}
-                  </div>
                 </div>
               </div>
             ) : (
               <>
-                <h3 className="service-section-flow-title">ACTUAL PRODUCTION FLOW</h3>
+                <h3 className="service-section-flow-title">{t('services.workflow.title')}</h3>
                 <div className="service-section-flow">
-                  {productionFlowSteps.map((step, index) => {
-                    const isClickable = isStepClickable(index);
-                    return (
-                      <React.Fragment key={index}>
-                        <button
-                          className={`service-section-flow-step ${index === currentStepIndex ? 'active' : ''} ${isClickable ? 'clickable' : 'not-clickable'}`}
-                          onClick={() => handleFlowStepClick(index)}
-                          disabled={!isClickable}
-                        >
-                          {step}
-                        </button>
-                        {index < productionFlowSteps.length - 1 && (
-                          <div className="service-section-flow-arrow">↓</div>
-                        )}
-                      </React.Fragment>
-                    );
-                  })}
+                  {productionFlowSteps.map((step, idx) => (
+                    <React.Fragment key={idx}>
+                      <button
+                        className={`service-section-flow-step ${idx === currentStepIndex ? 'active' : ''} ${isStepClickable(idx) ? 'clickable' : 'not-clickable'}`}
+                        onClick={() => handleFlowStepClick(idx)}
+                        disabled={!isStepClickable(idx)}
+                      >
+                        {step}
+                      </button>
+                      {idx < productionFlowSteps.length - 1 && <div className="service-section-flow-arrow">↓</div>}
+                    </React.Fragment>
+                  ))}
                 </div>
               </>
             )}
@@ -343,20 +238,19 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
 });
 
 const Services: React.FC<ServicesPageProps> = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const servicesGridRef = useRef<HTMLDivElement>(null);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const hasCheckedUrlParams = useRef(false);
-
-  // Refs for each service section
   const serviceRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const [activeTab, setActiveTab] = useState<string | null>(null);
 
   useEffect(() => {
     document.documentElement.classList.add('services-page-active');
     document.body.classList.add('services-page-active');
-
     return () => {
       document.documentElement.classList.remove('services-page-active');
       document.body.classList.remove('services-page-active');
@@ -364,34 +258,17 @@ const Services: React.FC<ServicesPageProps> = () => {
   }, []);
 
   const services: Service[] = [
-    {
-      id: 1,
-      title: '3D Modeling',
-      description: 'We create detailed 3D models for high-precision engineering and visualization, ensuring accurate fabrication and assembly.',
-      icon: icon3D,
-      image: image3D,
-    },
-    {
-      id: 2,
-      title: '2D Detailing',
-      description: 'Our 2D detailing services convert 3D models into precise drawings ready for manufacturing and quality checks.',
-      icon: icon2D,
-      image: image2D,
-    },
-    {
-      id: 3,
-      title: 'Parts Inspection',
-      description: 'We perform Parts Inspection using precise measuring tools and 3D scanners to guarantee dimensional accuracy.',
-      icon: inspectionIcon,
-      image: inspectionImage,
-    },
-    {
-      id: 4,
-      title: 'Machine Assembly',
-      description: 'From component integration to full machine assembly, we ensure mechanical, electrical, and pneumatic systems meet industrial standards.',
-      icon: assemblyIcon,
-      image: assemblyImage,
-    },
+    { id: 1, title: '3D Modeling', description: t('services.items.3d.short_desc'), icon: icon3D, image: image3D },
+    { id: 2, title: '2D Detailing', description: t('services.items.2d.short_desc'), icon: icon2D, image: image2D },
+    { id: 3, title: 'Parts Inspection', description: t('services.items.inspection.short_desc'), icon: inspectionIcon, image: inspectionImage },
+    { id: 4, title: 'Machine Assembly', description: t('services.items.assembly.short_desc'), icon: assemblyIcon, image: assemblyImage },
+  ];
+
+  const serviceTabs = [
+    t('services.items.3d.title'),
+    t('services.items.2d.title'),
+    t('services.items.inspection.title'),
+    t('services.items.assembly.title')
   ];
 
   useEffect(() => {
@@ -403,7 +280,6 @@ const Services: React.FC<ServicesPageProps> = () => {
         'parts-inspection': 'Parts Inspection',
         'machine-assembly': 'Machine Assembly',
       };
-
       const serviceTitle = serviceMap[serviceParam];
       if (serviceTitle) {
         const targetService = services.find(s => s.title === serviceTitle);
@@ -417,20 +293,16 @@ const Services: React.FC<ServicesPageProps> = () => {
     }
   }, [searchParams, setSearchParams, services]);
 
-  const scrollToServicesGrid = () => {
-    servicesGridRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const handleServiceClick = (serviceTitle: string) => {
+    const sectionKey = serviceTitle.toLowerCase().replace(' ', '-');
+    serviceRefs.current[sectionKey]?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const navigateToContact = () => {
-    navigate('/contact');
-  };
-
-  const handleServiceClick = (service: Service) => {
-    const sectionKey = service.title.toLowerCase().replace(' ', '-');
-    const sectionRef = serviceRefs.current[sectionKey];
-    if (sectionRef) {
-      sectionRef.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleTabClick = (tab: string, index: number) => {
+    const internalTitles = ['3D Modeling', '2D Detailing', 'Parts Inspection', 'Machine Assembly'];
+    const targetTitle = internalTitles[index % internalTitles.length];
+    setActiveTab(tab);
+    handleServiceClick(targetTitle);
   };
 
   const handleCloseModal = () => {
@@ -440,87 +312,37 @@ const Services: React.FC<ServicesPageProps> = () => {
     setSearchParams({}, { replace: true });
   };
 
-  const handleServiceChange = (serviceTitle: string) => {
-    const sectionKey = serviceTitle.toLowerCase().replace(' ', '-');
-    const sectionRef = serviceRefs.current[sectionKey];
-    if (sectionRef) {
-      sectionRef.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const serviceTabs = ['3D MODELING', '2D DETAILING', 'Parts Inspection', 'MACHINE ASSEMBLY'];
-  const [activeTab, setActiveTab] = useState<string | null>(null);
-
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
-    const tabMap: { [key: string]: string } = {
-      '3D MODELING': '3d-modeling',
-      '2D DETAILING': '2d-detailing',
-      'Parts Inspection': 'parts-inspection',
-      'MACHINE ASSEMBLY': 'machine-assembly',
-    };
-    const sectionKey = tabMap[tab];
-    if (sectionKey) {
-      const sectionRef = serviceRefs.current[sectionKey];
-      if (sectionRef) {
-        sectionRef.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -60% 0px',
-      threshold: 0.1,
-    };
-
+    const observerOptions = { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0.1 };
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id;
-          const tabMap: { [key: string]: string } = {
-            'service-3d-modeling': '3D MODELING',
-            'service-2d-detailing': '2D DETAILING',
-            'service-parts-inspection': 'Parts Inspection',
-            'service-machine-assembly': 'MACHINE ASSEMBLY',
+          const tabMap: { [key: string]: number } = {
+            'service-3d-modeling': 0,
+            'service-2d-detailing': 1,
+            'service-parts-inspection': 2,
+            'service-machine-assembly': 3,
           };
-          const tab = tabMap[sectionId];
-          if (tab) {
-            setActiveTab(tab);
-          }
+          const index = tabMap[sectionId];
+          if (index !== undefined) setActiveTab(serviceTabs[index]);
         }
       });
     };
-
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    Object.values(serviceRefs.current).forEach((ref) => {
-      if (ref) {
-        observer.observe(ref);
-      }
-    });
-
-    return () => {
-      Object.values(serviceRefs.current).forEach((ref) => {
-        if (ref) {
-          observer.unobserve(ref);
-        }
-      });
-    };
-  }, [services]);
+    Object.values(serviceRefs.current).forEach((ref) => { if (ref) observer.observe(ref); });
+    return () => { Object.values(serviceRefs.current).forEach((ref) => { if (ref) observer.unobserve(ref); }); };
+  }, [serviceTabs]);
 
   return (
     <div className="services-page" style={{ '--services-bg-image': `url(${servicesBg})` } as React.CSSProperties}>
       <section className="services-hero">
         <div className="services-hero-container container">
           <div className="services-hero-content">
-            <h1 className="services-title">Our Services</h1>
-            <p className="services-subtitle">
-              Comprehensive Engineering & Design Solutions from Concept to Assembly
-            </p>
+            <h1 className="services-title">{t('services.hero.title')}</h1>
+            <p className="services-subtitle">{t('services.hero.subtitle')}</p>
             <div className="services-hero-button">
-              <Button variant="style2" onClick={scrollToServicesGrid}>EXPLORE OUR EXPERTISE</Button>
+              <Button variant="style2" onClick={() => servicesGridRef.current?.scrollIntoView({ behavior: 'smooth' })}>{t('services.hero.cta')}</Button>
             </div>
           </div>
         </div>
@@ -532,23 +354,8 @@ const Services: React.FC<ServicesPageProps> = () => {
           <div className="services-nav-tabs">
             <div className="services-nav-tabs-scroll">
               <div className="services-nav-tabs-content">
-                {serviceTabs.map((tab, index) => (
-                  <button
-                    key={`${tab}-${index}`}
-                    className={`services-nav-tab-text ${activeTab === tab ? 'active' : ''}`}
-                    onClick={() => handleTabClick(tab)}
-                    aria-label={`Navigate to ${tab}`}
-                  >
-                    {tab}
-                  </button>
-                ))}
-                {serviceTabs.map((tab, index) => (
-                  <button
-                    key={`${tab}-duplicate-${index}`}
-                    className={`services-nav-tab-text ${activeTab === tab ? 'active' : ''}`}
-                    onClick={() => handleTabClick(tab)}
-                    aria-label={`Navigate to ${tab}`}
-                  >
+                {serviceTabs.concat(serviceTabs).map((tab, index) => (
+                  <button key={index} className={`services-nav-tab-text ${activeTab === tab ? 'active' : ''}`} onClick={() => handleTabClick(tab, index)}>
                     {tab}
                   </button>
                 ))}
@@ -558,44 +365,29 @@ const Services: React.FC<ServicesPageProps> = () => {
         </div>
       </section>
 
-      <section className="services-grid-section" ref={servicesGridRef} data-aos="fade-up">
+      <section className="services-grid-section" ref={servicesGridRef}>
         <div className="services-grid-container container">
           <div className="services-grid">
-            {services.map((service) => (
-              <div key={service.id} className="service-card-wrapper">
-                <ServicePageCard
-                  image={service.image}
-                  icon={service.icon}
-                  title={service.title}
-                  subtitle={service.description}
-                  className="service-page-card-item"
-                  onClick={() => handleServiceClick(service)}
-                />
-              </div>
+            {services.map((s) => (
+              <ServicePageCard key={s.id} image={s.image} icon={s.icon} title={t(`services.items.${s.id === 1 ? '3d' : s.id === 2 ? '2d' : s.id === 3 ? 'inspection' : 'assembly'}.title`)} subtitle={s.description} onClick={() => handleServiceClick(s.title)} />
             ))}
           </div>
         </div>
       </section>
 
-      {services.map((service) => (
+      {services.map((s) => (
         <ServiceSection
-          key={service.id}
-          service={service}
-          onServiceChange={handleServiceChange}
-          ref={(ref) => {
-            if (ref) {
-              serviceRefs.current[service.title.toLowerCase().replace(' ', '-')] = ref;
-            }
-          }}
+          key={s.id}
+          service={s}
+          onServiceChange={handleServiceClick}
+          ref={(el) => { if (el) serviceRefs.current[s.title.toLowerCase().replace(' ', '-')] = el; }}
         />
       ))}
 
-      <section className="services-cta-section" data-aos="fade-up">
+      <section className="services-cta-section">
         <div className="services-cta-container container">
-          <h2 className="services-cta-title">Have a project in mind? Let's discuss how we can bring it to life</h2>
-          <div className="services-cta-button">
-            <Button variant="style2" onClick={navigateToContact}>CONTACT US</Button>
-          </div>
+          <h2 className="services-cta-title">{t('services.footer_cta.title')}</h2>
+          <Button variant="style2" onClick={() => navigate('/contact')}>{t('common.contact_us')}</Button>
         </div>
       </section>
 
@@ -603,12 +395,7 @@ const Services: React.FC<ServicesPageProps> = () => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         service={selectedService}
-        onServiceChange={(title) => {
-          const targetService = services.find(s => s.title === title);
-          if (targetService) {
-            handleServiceChange(title);
-          }
-        }}
+        onServiceChange={handleServiceClick}
       />
     </div>
   );
