@@ -29,7 +29,7 @@ const MODEL_MAP: { [key: string]: ModelConfig } = {
   'Dedimpler & Facer': { path: dedimplerFacerModel, scale: 5 },
   'Bundling Machine': { path: bundlingMachineModel, scale: 5 },
   'Product Storage': { path: productStorageModel, scale: 5 },
-  'Pipe Bundling': { path: productStorageModel, scale: 5 },
+  'Pipe Bundling': { path: null, scale: 5 },
   'Transfer Table (Lifter)': { path: transferTableModel, scale: 5 },
   'Transfer Table': { path: null, scale: 5 },
   'Looper Machine': { path: looperModel, scale: 5 },
