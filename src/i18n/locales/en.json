@@ -10,7 +10,8 @@
   "common": {
     "contact_us": "CONTACT US",
     "view_projects": "VIEW PROJECTS",
-    "learn_more": "LEARN MORE"
+    "learn_more": "LEARN MORE",
+    "view_more": "VIEW MORE"
   },
   "home": {
     "hero": {
@@ -159,6 +160,18 @@
     },
     "footer_cta": {
       "title": "Have a project in mind? Let's discuss how we can bring it to life"
+    }
+  },
+  "projects": {
+    "hero": {
+      "title": "Our Projects",
+      "subtitle": "Explore our latest 3D models - designed with precision, innovation, and functionality."
+    },
+    "grid": {
+      "description": "Click on any project card below to view detailed information, 3D models, and specification in an interactive modal."
+    },
+    "cta": {
+      "title": "Interested in our engineering solutions?"
     }
   }
 }
