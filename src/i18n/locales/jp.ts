@@ -14,8 +14,11 @@ const jp = {
     contact_us: "お問い合わせ",
     view_projects: "プロジェクトを見る",
     view_project: "プロジェクトを見る",
-    learn_more: "詳細はこちら",
-    view_more: "もっと見る"
+    learn_more: "詳細を見る",
+    view_more: "もっと見る",
+    chatbot: {
+      teaser: "こんにちは！KMTIアシスタントです👋 何かお手伝いしましょうか？"
+    }
   },
 
   // --- HOME PAGE ---

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './Careers.css';
 import { CareersPageProps } from './Careers.types';
 import careersBg from '../../assets/careersbg.jpg';
@@ -20,6 +21,7 @@ import { ApplyCard, WhyWorkWithUsCard, HowToApplyCard } from '../../components/u
 
 const Careers: React.FC<CareersPageProps> = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const navigateToAbout = () => {
     navigate('/about');
@@ -33,32 +35,32 @@ const Careers: React.FC<CareersPageProps> = () => {
   const whyWorkWithUs = [
     {
       id: 1,
-      title: 'MEDICAL INSURANCE',
-      description: '100% Company paid medical insurance for regular employees',
+      title: t('careers.why_work.benefits.insurance.title'),
+      description: t('careers.why_work.benefits.insurance.desc'),
       icon: insuranceIcon,
     },
     {
       id: 2,
-      title: 'GOVERNMENT BENEFITS',
-      description: 'Complete mandated statutory benefits including SSS, Pag-IBIG, and PhilHealth',
+      title: t('careers.why_work.benefits.gov.title'),
+      description: t('careers.why_work.benefits.gov.desc'),
       icon: benefitsIcon,
     },
     {
       id: 3,
-      title: '13TH MONTH PAY',
-      description: 'Guaranteed 13th month pay as mandated by Philippine labor law',
+      title: t('careers.why_work.benefits.thirteenth.title'),
+      description: t('careers.why_work.benefits.thirteenth.desc'),
       icon: thirteenthMonthIcon,
     },
     {
       id: 4,
-      title: 'MULTIPLE ALLOWANCE',
-      description: 'Transportation, meal, uniform, and rice subsidy allowances for regular employees',
+      title: t('careers.why_work.benefits.allowance.title'),
+      description: t('careers.why_work.benefits.allowance.desc'),
       icon: allowanceIcon,
     },
     {
       id: 5,
-      title: 'LONG-TERM CAREER',
-      description: 'Stable employment with opportunities for long-term professional growth',
+      title: t('careers.why_work.benefits.career.title'),
+      description: t('careers.why_work.benefits.career.desc'),
       icon: careerIcon,
     },
   ];
@@ -70,13 +72,13 @@ const Careers: React.FC<CareersPageProps> = () => {
         <img src={kmtiModel} alt="KMTI Team" className="careers-hero-model" />
         <div className="hero-container container">
           <div className="hero-content">
-            <h1 className="hero-title">Build the future with us</h1>
+            <h1 className="hero-title">{t('careers.hero.title')}</h1>
             <p className="careers-hero-description">
-              Join a team of passionate innovators creating technology that makes a real difference. <br /> We're looking for talented individuals who share our vision of building exceptional products.
+              {t('careers.hero.description1')} <br /> {t('careers.hero.description2')}
             </p>
             <div className="hero-buttons">
-              <Button variant="style1" onClick={navigateToPositions} width="255px" height="55px">VIEW OPEN POSITIONS</Button>
-              <Button variant="style2" onClick={navigateToAbout} width="255px" height="55px">ABOUT US</Button>
+              <Button variant="style1" onClick={navigateToPositions} width="255px" height="55px">{t('careers.hero.cta_positions')}</Button>
+              <Button variant="style2" onClick={navigateToAbout} width="255px" height="55px">{t('nav.about')}</Button>
             </div>
           </div>
         </div>
@@ -84,52 +86,39 @@ const Careers: React.FC<CareersPageProps> = () => {
 
       <section className="careers-positions-section" data-aos="fade-up">
         <div className="careers-positions-container container">
-          <h2 className="careers-positions-title">OPEN POSITION</h2>
+          <h2 className="careers-positions-title">{t('careers.positions.title')}</h2>
           <p className="careers-positions-subtitle">
-            Find your next career opportunity and help us build something amazing
+            {t('careers.positions.subtitle')}
           </p>
           <div className="careers-positions-grid">
             <ApplyCard
-              title="ENGINEERING STAFF / CAD OPERATOR"
-              location="Dasmariñas City, Cavite"
-              type="Full-Time"
+              title={t('careers.positions.eng.title')}
+              location={t('careers.positions.eng.location')}
+              type={t('careers.positions.eng.type')}
               locationIcon={mapsIcon}
               typeIcon={clockIcon}
-              description="Join our engineering team with expertise in AutoCAD, SolidWorks and iCAD for 2D & 3D drawing. Seeking candidates with strong leadership, teamwork abilities, and mathematical knowledge who are willing to learn and work under minimum supervision."
+              description={t('careers.positions.eng.desc')}
               skills={['AutoCAD', 'SolidWorks', 'iCAD', '2D Detailing', '3D Drawing', 'Mathematics']}
-              requirements={[
-                'Male / Female 18 years old and above',
-                'Knowledge in AutoCAD, SolidWorks and iCAD (2D & 3D Drawing)',
-                'Knowledgeable in relevant mathematical concepts',
-                'Strong leadership and teamwork skills',
-                'Attention to detail and precision'
-              ]}
-              preferredCourses={['Mechanical Engineering', 'Civil Engineering', 'Architecture', 'On-the-job Training', 'Industrial Engineering']}
+              requirements={t('careers.positions.eng.requirements', { returnObjects: true }) as string[]}
+              preferredCourses={t('careers.positions.eng.courses', { returnObjects: true }) as string[]}
               onApply={() => {
                 window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/jobs/', '_blank');
               }}
+              applyText={t('careers.positions.apply_btn')}
             />
             <ApplyCard
-              title="ACCOUNTING / ADMIN STAFF"
-              location="Dasmarinas City, Cavite"
-              type="Full-Time"
+              title={t('careers.positions.admin.title')}
+              location={t('careers.positions.admin.location')}
+              type={t('careers.positions.admin.type')}
               locationIcon={mapsIcon}
               typeIcon={clockIcon}
-              description="Assist with day-to-day operations of the Admin functions and duties. Provide clerical and administrative support. Conduct end-to-end recruitment process. Responsible for Comprehensation and Benefits, and for DOLE Monthly/Annual Reports."
-              requirements={[
-                'Computer literate',
-                'Good to excellent communication skills (oral and written)',
-                'Strong personality and positive work attitude',
-                'Results oriented and can work under pressure',
-                'Strong time-management skills and multitasking',
-                'Fresh graduates are encouraged to applu',
-                'Knowledge of accounting principles',
-                'Experience with DOLE reporting is a plus'
-              ]}
-              preferredCourses={['Human Resource Development Management', 'BS in Business Administration', 'Accounting', 'Management']}
+              description={t('careers.positions.admin.desc')}
+              requirements={t('careers.positions.admin.requirements', { returnObjects: true }) as string[]}
+              preferredCourses={t('careers.positions.admin.courses', { returnObjects: true }) as string[]}
               onApply={() => {
                 window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/jobs/', '_blank');
               }}
+              applyText={t('careers.positions.apply_btn')}
             />
           </div>
         </div>
@@ -137,9 +126,9 @@ const Careers: React.FC<CareersPageProps> = () => {
 
       <section className="why-work-withus-section" data-aos="fade-up">
         <div className="why-work-withus-container container">
-          <h2 className="why-work-withus-title">WHY WORK WITH US</h2>
+          <h2 className="why-work-withus-title">{t('careers.why_work.title')}</h2>
           <p className="why-work-withus-subtitle">
-            We believe in taking care of our team so they can do their best work.
+            {t('careers.why_work.subtitle')}
           </p>
           <div className="why-work-withus-grid">
             {whyWorkWithUs.map((item) => (
@@ -157,26 +146,26 @@ const Careers: React.FC<CareersPageProps> = () => {
       <section className="meet-our-team-section" data-aos="fade-up">
         <div className="meet-our-team-container container">
           <div className="meet-our-team-content">
-            <h2 className="meet-our-team-title">Meet Our Team</h2>
+            <h2 className="meet-our-team-title">{t('careers.team.title')}</h2>
             <p className="meet-our-team-description">
-              We're a diverse group of makers, thinkers, and problem-solvers. We bring different perspectives, experiences, and expertise to every project.
+              {t('careers.team.description')}
             </p>
             <ul className="meet-our-team-list">
               <li>
                 <img src={checkIcon} alt="Check" className="meet-our-team-check-icon" />
-                <span>Collaborative and inclusive environment</span>
+                <span>{t('careers.team.list.item1')}</span>
               </li>
               <li>
                 <img src={checkIcon} alt="Check" className="meet-our-team-check-icon" />
-                <span>Opportunities for growth and learning</span>
+                <span>{t('careers.team.list.item2')}</span>
               </li>
               <li>
                 <img src={checkIcon} alt="Check" className="meet-our-team-check-icon" />
-                <span>Work on meaningful projects with real impact</span>
+                <span>{t('careers.team.list.item3')}</span>
               </li>
             </ul>
             <div className="meet-our-team-button">
-              <Button variant="style2" onClick={navigateToAbout}>LEARN MORE ABOUT US</Button>
+              <Button variant="style2" onClick={navigateToAbout}>{t('careers.team.cta')}</Button>
             </div>
           </div>
           <div className="meet-our-team-image-wrapper">
@@ -187,59 +176,59 @@ const Careers: React.FC<CareersPageProps> = () => {
 
       <section className="how-to-apply-section" data-aos="fade-up">
         <div className="how-to-apply-container container">
-          <h2 className="how-to-apply-title">HOW TO APPLY</h2>
+          <h2 className="how-to-apply-title">{t('careers.apply.title')}</h2>
           <p className="how-to-apply-subtitle">
-            Ready to start your engineering career with KMTI? Here's how to get in touch with us.
+            {t('careers.apply.subtitle')}
           </p>
           <div className="how-to-apply-grid">
             <HowToApplyCard
               icon={mapsIcon}
-              title="VISIT OUR OFFICE"
+              title={t('careers.apply.visit.title')}
             >
-              <p>Submit your resume in person at our KMTI office:</p>
+              <p>{t('careers.apply.visit.text')}</p>
               <div className="address">
                 Team Quest Building FCIE<br />
                 Langkaan Dasmarinas City, Cavite<br />
                 (Near PLDT)
               </div>
-              <p>Contact Person: Ms. Raine Royo</p>
+              <p>{t('careers.apply.visit.person')}: Ms. Raine Royo</p>
             </HowToApplyCard>
             <HowToApplyCard
-              title="CONTACT"
+              title={t('careers.apply.contact.title')}
             >
               <div className="contact-item">
                 <img src={contactIcon} alt="Phone" className="contact-item-icon" />
                 <div className="contact-item-content">
-                  <div className="contact-item-label">Phone</div>
+                  <div className="contact-item-label">{t('careers.apply.contact.phone_label')}</div>
                   <div className="contact-item-value">(046) 413-4509</div>
                 </div>
               </div>
               <div className="contact-item">
                 <img src={emailIcon} alt="Email" className="contact-item-icon" />
                 <div className="contact-item-content">
-                  <div className="contact-item-label">Email</div>
+                  <div className="contact-item-label">{t('careers.apply.contact.email_label')}</div>
                   <div className="contact-item-value">info@kmti.com.ph</div>
                 </div>
               </div>
             </HowToApplyCard>
           </div>
           <div className="ready-to-join-section">
-            <h2 className="ready-to-join-title">Ready to Join Us?</h2>
+            <h2 className="ready-to-join-title">{t('careers.ready.title')}</h2>
             <p className="ready-to-join-description">
-              We're always looking for exceptional engineering talent. Even if you don't see a perfect match, we'd love to hear from you and learn about your unique skills and interests.
+              {t('careers.ready.description')}
             </p>
             <div className="ready-to-join-buttons">
               <Button
                 variant="style2"
                 onClick={() => window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/', '_blank')}
               >
-                VISIT LINKEDIN
+                {t('careers.ready.linkedin')}
               </Button>
               <Button
                 variant="style2"
                 onClick={() => window.open('https://www.facebook.com', '_blank')}
               >
-                VISIT FACEBOOK
+                {t('careers.ready.facebook')}
               </Button>
             </div>
           </div>
