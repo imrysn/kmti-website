@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Home.css';
 import { HomePageProps } from './Home.types';
@@ -53,14 +53,14 @@ const Home: React.FC<HomePageProps> = () => {
   ];
 
   const projects = [
-    { id: 1, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage },
-    { id: 2, title: t('home.projects.items.looper.title'), description: t('home.projects.items.looper.desc'), category: t('home.projects.items.looper.cat'), image: looperImage },
-    { id: 3, title: t('home.projects.items.forming.title'), description: t('home.projects.items.forming.desc'), category: t('home.projects.items.forming.cat'), image: formingImage },
-    { id: 4, title: t('home.projects.items.shear.title'), description: t('home.projects.items.shear.desc'), category: t('home.projects.items.shear.cat'), image: shearImage },
-    { id: 5, title: t('home.projects.items.table.title'), description: t('home.projects.items.table.desc'), category: t('home.projects.items.table.cat'), image: finishingImage },
-    { id: 6, title: t('home.projects.items.line.title'), description: t('home.projects.items.line.desc'), category: t('home.projects.items.line.cat'), image: finishingLineImage },
-    { id: 7, title: t('home.projects.items.milling.title'), description: t('home.projects.items.milling.desc'), category: t('home.projects.items.milling.cat'), image: millingImage },
-    { id: 8, title: t('home.projects.items.furnace.title'), description: t('home.projects.items.furnace.desc'), category: t('home.projects.items.furnace.cat'), image: furnaceImage },
+    { id: 1, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage, link: '/projects?project=dedimpler-and-facer' },
+    { id: 2, title: t('home.projects.items.looper.title'), description: t('home.projects.items.looper.desc'), category: t('home.projects.items.looper.cat'), image: looperImage, link: '/projects?project=looper-machine' },
+    { id: 3, title: t('home.projects.items.forming.title'), description: t('home.projects.items.forming.desc'), category: t('home.projects.items.forming.cat'), image: formingImage, link: '/projects?project=forming-and-sizing' },
+    { id: 4, title: t('home.projects.items.shear.title'), description: t('home.projects.items.shear.desc'), category: t('home.projects.items.shear.cat'), image: shearImage, link: '/projects?project=shear-welder-machine' },
+    { id: 5, title: t('home.projects.items.table.title'), description: t('home.projects.items.table.desc'), category: t('home.projects.items.table.cat'), image: finishingImage, link: '/projects?project=finishing-table' },
+    { id: 6, title: t('home.projects.items.line.title'), description: t('home.projects.items.line.desc'), category: t('home.projects.items.line.cat'), image: finishingLineImage, link: '/projects?project=finishing-line' },
+    { id: 7, title: t('home.projects.items.milling.title'), description: t('home.projects.items.milling.desc'), category: t('home.projects.items.milling.cat'), image: millingImage, link: '/projects?project=milling-cutoff-machine' },
+    { id: 8, title: t('home.projects.items.furnace.title'), description: t('home.projects.items.furnace.desc'), category: t('home.projects.items.furnace.cat'), image: furnaceImage, link: '/projects?project=furnace' },
   ];
 
   return (
@@ -132,7 +132,7 @@ const Home: React.FC<HomePageProps> = () => {
         <div className="section-container container">
           <h2 className="section-title">{t('home.about.title')}</h2>
           <p className="about-description">{t('home.about.desc')}</p>
-          <a href="/about" className="about-link">{t('home.about.link')} →</a>
+          <Link to="/about" className="about-link">{t('home.about.link')} →</Link>
         </div>
       </section>
 

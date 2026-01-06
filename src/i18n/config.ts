@@ -2,8 +2,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 // Remove LanguageDetector import if you want to force Japanese
 
-import en from './locales/en.json';
-import jp from './locales/jp.json';
+import en from './locales/en';
+import jp from './locales/jp';
 
 i18n
   .use(initReactI18next)
