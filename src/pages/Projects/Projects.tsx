@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Added for translation
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
 import projectBg from '../../assets/projectbg.jpg';
 import { ProjectsCard } from '../../components/ui/Card/Card';
 import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
+
+// Images
 import dedemplerImage from '../../assets/image3D/dedempler.png';
 import looperImage from '../../assets/image3D/looper.png';
 import formingImage from '../../assets/image3D/forming.png';
@@ -17,7 +20,10 @@ import furnaceImage from '../../assets/image3D/furnace.png';
 
 const Projects: React.FC<ProjectsPageProps> = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Initialize translation hook
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // Modal states 
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [isLooperModalOpen, setIsLooperModalOpen] = useState(false);
   const [isFormingModalOpen, setIsFormingModalOpen] = useState(false);
@@ -28,7 +34,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   const [isFurnaceModalOpen, setIsFurnaceModalOpen] = useState(false);
   const hasCheckedUrlParams = useRef(false);
 
-  // Handle query parameters to open modals
+  // Handle query parameters to open modals 
   useEffect(() => {
     const projectParam = searchParams.get('project');
     if (projectParam && !hasCheckedUrlParams.current) {
@@ -51,68 +57,78 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       }
     }
   }, [searchParams, setSearchParams]);
+
+  // Project data mapped to translation keys
   const projects = [
     {
       id: 1,
-      title: 'DEDIMPLER & FACER',
-      description: 'Tube and pipes that require facing and or internal and external chamfering can be processed in line with the tube mill or off line.',
-      category: 'FINISHING EQUIPMENT',
+      internalTitle: 'DEDIMPLER & FACER',
+      title: t('home.projects.items.dedimpler.title'),
+      description: t('home.projects.items.dedimpler.desc'),
+      category: t('home.projects.items.dedimpler.cat'),
       image: dedemplerImage,
       link: '#',
     },
     {
       id: 2,
-      title: 'LOOPER MACHINE',
-      description: 'Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most efficient and cheapest method of storing strip without causing any surface damage.',
-      category: 'LOOPER',
+      internalTitle: 'LOOPER MACHINE',
+      title: t('home.projects.items.looper.title'),
+      description: t('home.projects.items.looper.desc'),
+      category: t('home.projects.items.looper.cat'),
       image: looperImage,
       link: '#',
     },
     {
       id: 3,
-      title: 'FORMING AND SIZING MACHINE',
-      description: 'After metal strips has been welded and combined it will undergo forming to produce the needed shape of steel.',
-      category: 'FORMING',
+      internalTitle: 'FORMING AND SIZING MACHINE',
+      title: t('home.projects.items.forming.title'),
+      description: t('home.projects.items.forming.desc'),
+      category: t('home.projects.items.forming.cat'),
       image: formingImage,
       link: '#',
     },
     {
       id: 4,
-      title: 'SHEAR WELDER MACHINE',
-      description: 'Shear and end welders crop the tail and nose of each coil. The two coil ends are then aligned and the joint welded using TIG, MIG or MAG depending on the material and thickness being welded.',
-      category: 'STRIP ENTRY',
+      internalTitle: 'SHEAR WELDER MACHINE',
+      title: t('home.projects.items.shear.title'),
+      description: t('home.projects.items.shear.desc'),
+      category: t('home.projects.items.shear.cat'),
       image: shearImage,
       link: '#',
     },
     {
       id: 5,
-      title: 'FINISHING TABLE',
-      description: 'Extension of transfer table in the finishing line.',
-      category: 'TRANSFER TABLE LINE',
+      internalTitle: 'FINISHING TABLE',
+      title: t('home.projects.items.table.title'),
+      description: t('home.projects.items.table.desc'),
+      category: t('home.projects.items.table.cat'),
       image: finishingImage,
       link: '#',
     },
     {
       id: 6,
-      title: 'FINISHING LINE',
-      description: 'After pipes were cut into standard lengths it will be passed to the finishing line to be arranged and bundled ready for distribution.',
-      category: 'FINISHING LINE',
+      internalTitle: 'FINISHING LINE',
+      title: t('home.projects.items.line.title'),
+      description: t('home.projects.items.line.desc'),
+      category: t('home.projects.items.line.cat'),
       image: finishingLineImage,
       link: '#',
     },
     {
       id: 7,
-      title: 'MILLING CUTOFF MACHINE',
-      description: 'Milling Cutoff Machine uses two milling saws to cut to length pipe and structural section tubes. The cut finishes eliminates the need for facing.',
-      category: 'CUT OFF',
+      internalTitle: 'MILLING CUTOFF MACHINE',
+      title: t('home.projects.items.milling.title'),
+      description: t('home.projects.items.milling.desc'),
+      category: t('home.projects.items.milling.cat'),
       image: millingImage,
       link: '#',
     },
     {
       id: 8,
-      title: 'FURNACE',
-      description: 'Furnace is used for melting large batches of glass, in which heat is supplied by a flame playing over the glass surface, and regenerative heating of combustion air.',
-      category: 'FURNACE',
+      internalTitle: 'FURNACE',
+      title: t('home.projects.items.furnace.title'),
+      description: t('home.projects.items.furnace.desc'),
+      category: t('home.projects.items.furnace.cat'),
       image: furnaceImage,
       link: '#',
     },
@@ -123,18 +139,14 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       <section className="projects-hero" style={{ '--project-bg-image': `url(${projectBg})` } as React.CSSProperties}>
         <div className="projects-hero-overlay"></div>
         <div className="projects-hero-container container">
-          <h1 className="projects-title">Our Projects</h1>
-          <p className="projects-subtitle">
-            Explore our latest 3D models — designed with precision, innovation, and functionality.
-          </p>
+          <h1 className="projects-title">{t('projects.hero.title')}</h1>
+          <p className="projects-subtitle">{t('projects.hero.subtitle')}</p>
         </div>
       </section>
 
       <div className="projects-grid-section" data-aos="fade-up">
         <div className="projects-grid-container container">
-          <p className="projects-grid-description">
-            Click on any project card below to view detailed information, 3D models, and specifications in an interactive modal.
-          </p>
+          <p className="projects-grid-description">{t('projects.grid.description')}</p>
           <div className="projects-card-grid">
             {projects.map((project) => (
               <ProjectsCard
@@ -143,24 +155,24 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                 title={project.title}
                 subtitle={project.description}
                 category={project.category}
-                linkText="VIEW MORE"
+                linkText={t('common.view_more')}
                 linkHref={project.link}
                 onClick={
-                  project.title === 'DEDIMPLER & FACER'
+                  project.internalTitle === 'DEDIMPLER & FACER'
                     ? () => setIsProjectModalOpen(true)
-                    : project.title === 'LOOPER MACHINE'
+                    : project.internalTitle === 'LOOPER MACHINE'
                       ? () => setIsLooperModalOpen(true)
-                      : project.title === 'FORMING AND SIZING MACHINE'
+                      : project.internalTitle === 'FORMING AND SIZING MACHINE'
                         ? () => setIsFormingModalOpen(true)
-                        : project.title === 'SHEAR WELDER MACHINE'
+                        : project.internalTitle === 'SHEAR WELDER MACHINE'
                           ? () => setIsStripEntryModalOpen(true)
-                          : project.title === 'FINISHING TABLE'
+                          : project.internalTitle === 'FINISHING TABLE'
                             ? () => setIsTransferTableLineModalOpen(true)
-                            : project.title === 'FINISHING LINE'
+                            : project.internalTitle === 'FINISHING LINE'
                               ? () => setIsFinishingLineModalOpen(true)
-                              : project.title === 'MILLING CUTOFF MACHINE'
+                              : project.internalTitle === 'MILLING CUTOFF MACHINE'
                                 ? () => setIsCutOffModalOpen(true)
-                                : project.title === 'FURNACE'
+                                : project.internalTitle === 'FURNACE'
                                   ? () => setIsFurnaceModalOpen(true)
                                   : undefined
                 }
@@ -172,84 +184,22 @@ const Projects: React.FC<ProjectsPageProps> = () => {
 
       <div className="projects-cta-section" data-aos="fade-up">
         <div className="projects-cta-container container">
-          <h2 className="projects-cta-title">Interested in our engineering solutions?</h2>
+          <h2 className="projects-cta-title">{t('projects.cta.title')}</h2>
           <div className="projects-cta-buttons">
-            <Button variant="style2" onClick={() => navigate('/contact')}>CONTACT US</Button>
+            <Button variant="style2" onClick={() => navigate('/contact')}>{t('common.contact_us')}</Button>
           </div>
         </div>
       </div>
 
-      <ProjectModal
-        isOpen={isProjectModalOpen}
-        onClose={() => {
-          setIsProjectModalOpen(false);
-          hasCheckedUrlParams.current = false;
-          setSearchParams({}, { replace: true });
-        }}
-      />
-
-      <LooperModal
-        isOpen={isLooperModalOpen}
-        onClose={() => {
-          setIsLooperModalOpen(false);
-          hasCheckedUrlParams.current = false;
-          setSearchParams({}, { replace: true });
-        }}
-      />
-
-      <FormingModal
-        isOpen={isFormingModalOpen}
-        onClose={() => {
-          setIsFormingModalOpen(false);
-          hasCheckedUrlParams.current = false;
-          setSearchParams({}, { replace: true });
-        }}
-      />
-
-      <StripEntryModal
-        isOpen={isStripEntryModalOpen}
-        onClose={() => {
-          setIsStripEntryModalOpen(false);
-          hasCheckedUrlParams.current = false;
-          setSearchParams({}, { replace: true });
-        }}
-      />
-
-      <TransferTableLineModal
-        isOpen={isTransferTableLineModalOpen}
-        onClose={() => {
-          setIsTransferTableLineModalOpen(false);
-          hasCheckedUrlParams.current = false;
-          setSearchParams({}, { replace: true });
-        }}
-      />
-
-      <FinishingLineModal
-        isOpen={isFinishingLineModalOpen}
-        onClose={() => {
-          setIsFinishingLineModalOpen(false);
-          hasCheckedUrlParams.current = false;
-          setSearchParams({}, { replace: true });
-        }}
-      />
-
-      <CutOffModal
-        isOpen={isCutOffModalOpen}
-        onClose={() => {
-          setIsCutOffModalOpen(false);
-          hasCheckedUrlParams.current = false;
-          setSearchParams({}, { replace: true });
-        }}
-      />
-
-      <FurnaceModal
-        isOpen={isFurnaceModalOpen}
-        onClose={() => {
-          setIsFurnaceModalOpen(false);
-          hasCheckedUrlParams.current = false;
-          setSearchParams({}, { replace: true });
-        }}
-      />
+      {/* Modal logic preserved - ensure Modal components themselves handle internal translation if needed */}
+      <ProjectModal isOpen={isProjectModalOpen} onClose={() => { setIsProjectModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <LooperModal isOpen={isLooperModalOpen} onClose={() => { setIsLooperModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <FormingModal isOpen={isFormingModalOpen} onClose={() => { setIsFormingModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <StripEntryModal isOpen={isStripEntryModalOpen} onClose={() => { setIsStripEntryModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <TransferTableLineModal isOpen={isTransferTableLineModalOpen} onClose={() => { setIsTransferTableLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <FinishingLineModal isOpen={isFinishingLineModalOpen} onClose={() => { setIsFinishingLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <CutOffModal isOpen={isCutOffModalOpen} onClose={() => { setIsCutOffModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <FurnaceModal isOpen={isFurnaceModalOpen} onClose={() => { setIsFurnaceModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
     </div>
   );
 };

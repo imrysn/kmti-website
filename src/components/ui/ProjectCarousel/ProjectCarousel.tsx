@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ProjectCard } from '../Card/Card';
 import './ProjectCarousel.css';
 
@@ -8,6 +9,7 @@ interface Project {
   description: string;
   category?: string;
   image: string;
+  link?: string;
 }
 
 interface ProjectCarouselProps {
@@ -15,6 +17,7 @@ interface ProjectCarouselProps {
 }
 
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
+  const { t } = useTranslation();
   const projectsExtended = [];
   for (let i = 0; i < 10; i++) {
     projectsExtended.push(...projects);
@@ -238,8 +241,8 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
                   title={project.title}
                   subtitle={project.description}
                   category={project.category}
-                  linkText="VIEW PROJECT"
-                  linkHref="/projects"
+                  linkText={t('common.view_project')}
+                  linkHref={project.link || "/projects"}
                   isActive={isActive}
                 />
               </div>

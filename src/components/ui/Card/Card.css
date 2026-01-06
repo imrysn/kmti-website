@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+.why-choose-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(81, 162, 255, 0.15);
+}
+
 /* ============================================
    ICON CONTAINER
    ============================================ */
@@ -332,7 +337,7 @@
   background-color: #0f172b33;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0px 0px 0px 0px;
-  padding: 2rem 1rem 2rem 2rem;
+  padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -340,7 +345,7 @@
   position: relative;
   overflow: visible;
   height: 100%;
-  width: 100%;
+  width: 105%;
   min-height: 150px;
   margin-bottom: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -407,7 +412,7 @@
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 1rem;
-  margin-top: 3.5rem;
+  margin-top: 4rem;
   text-align: center;
   letter-spacing: 0.5px;
 }
@@ -423,6 +428,7 @@
   line-height: 1.6;
   margin-bottom: 1rem;
   margin-top: 0;
+  width: 111%;
   text-align: center;
 }
 
@@ -469,6 +475,11 @@
   height: 100%;
   box-sizing: border-box;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.project-card-new:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(81, 162, 255, 0.15);
 }
 
 /* ============================================
