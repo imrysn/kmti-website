@@ -15,7 +15,10 @@ const en = {
     view_projects: "VIEW PROJECTS",
     view_project: "VIEW PROJECT",
     learn_more: "LEARN MORE",
-    view_more: "VIEW MORE"
+    view_more: "VIEW MORE",
+    chatbot: {
+      teaser: "Hi there! I’m KMTI Assistant 👋 How can I help?"
+    }
   },
 
   // --- HOME PAGE ---
@@ -237,6 +240,92 @@ const en = {
     },
     cta: {
       title: "Interested in our engineering solutions?"
+    }
+  },
+
+  // ... CAREERS PAGE ...
+  careers: {
+    hero: {
+      title: "Build the future with us",
+      description1: "Join a team of passionate innovators creating technology that makes a real difference.",
+      description2: "We're looking for talented individuals who share our vision of building exceptional products.",
+      cta_positions: "VIEW OPEN POSITIONS"
+    },
+    positions: {
+      title: "OPEN POSITION",
+      subtitle: "Find your next career opportunity and help us build something amazing.",
+      apply_btn: " APPLY NOW",
+      eng: {
+        title: "ENGINEERING STAFF / CAD OPERATOR",
+        location: "Dasmarinas City, Cavite",
+        type: "Full-Time",
+        desc: "Join our engineering team with expertise in AutoCAD, SolidWorks, and iCAD for 2D & 3D drawing. Seeking candidates with strong leadership, teamwork abilities, and mathematical knowledge who are willing to learn and work under minimum supervision.",
+        requirements: [
+          "Male / Female 18 years old and above",
+          "Knowledgable in AutoCAD, SolidWorks and iCAD (2D & 3D Drawing)",
+          "Knowledgeable in relevant mathematical concepts",
+          "Strong leadership and teamwork skills",
+          "Attention to detail and precision"
+        ],
+        courses: ["Mechanical Engineering", "Civil Engineering", "Architecture", "On-the-job Training", "Industrial Engineering",]
+      },
+      admin: {
+        title: "ACCOUNTING / ADMIN STAFF",
+        location: "Dasmarinas City, Cavite",
+        type: "Full-Time",
+        desc: "Assist with day-to--day operations of the Admin functions and duties. Provide clerical and administrative support. Conduct end-to-end recruitment process. Responsible for Compensation and Benefits, and for DOLE Monthly/Annual Reports.",
+        requirements: [
+          "Computer Literate",
+          "Good to excellent communication skills (oral and written",
+          "Strong personality and positive work attitude",
+          "Results oriented and can work under pressure",
+          "Fresh graduates are encouraged to applu",
+          "Knowledge of accounting principles",
+          "Experience with DOLE reporting is a plus"
+        ],
+        courses: ["Human Resource Development Management", "BS in Business Administration", "Accounting", "Management"]
+      }
+    },
+    why_work: {
+      title: "WHY WORK WITH US",
+      subtitle: "We believe in taking care of our team so they do their best work.",
+      benefits: {
+        insurance: { title: "MEDICAL INSURANCE", desc: "100% Company paid medical insurance for regular employees" },
+        gov: { title: "GOVERMENT BENEFITS", desc: "Complete mandated statutory benefits including SSS, Pag-IBIG, and PhilHealth" },
+        thirteenth: { title: "13TH MONTH PAY", desc: "Guaranteed 13th month pay as mandated by Philippine labor law" },
+        allowance: { title: "MULTIPLE ALLOWANCE", desc: "Transportation, meal, uniform, and rice subsidy allowances for regular employees" },
+        career: { title: "LONG-TERM CAREER", desc: "stable employment with opportunities for long-term professional growth" }
+      }
+    },
+    team: {
+      title: "Meet Our Team",
+      description: "We're a diverse group of makers, thinkers, and problem-solvers from around the world. Our team brings together different perspectives, experiences, and expertise to create something truly special.",
+      list: {
+        item1: "Collaboration and inclusive environment",
+        item2: "Opportunities for growth and learning",
+        item3: "Work on meaningful projects with real impact"
+      },
+      cta: "LEARN MORE ABOUT US,"
+    },
+    apply: {
+      title: "HOW TO APPLY",
+      subtitle: "Ready to start your engineering careeer with KMTI? Here's how to get in touch with us.",
+      visit: {
+        title: "VISIT OUR OFFICE",
+        text: "Submit ypur resume in person at our KMTI office:",
+        person: "Contact Person:"
+      },
+      contact: {
+        title: "CONTACT",
+        phone_label1: "Phone",
+        phone_label2: "Email"
+      }
+    },
+    ready: {
+      title: "Ready to Join Us?",
+      description: "We're always looking for exceptional engineering talent. Even if you don't see a perfect match, we'd love to hear from you and learn about your unique skills and interests.",
+      Linkedin: "VISIT LINKEDIN",
+      facebook: "VISIT FACEBOOK"
     }
   }
 };
