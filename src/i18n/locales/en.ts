@@ -15,7 +15,10 @@ const en = {
     view_projects: "VIEW PROJECTS",
     view_project: "VIEW PROJECT",
     learn_more: "LEARN MORE",
-    view_more: "VIEW MORE"
+    view_more: "VIEW MORE",
+    chatbot: {
+      teaser: "Hi there! I’m KMTI Assistant 👋 How can I help?"
+    }
   },
 
   // --- HOME PAGE ---
