@@ -188,24 +188,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const navigate = useNavigate();
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Map project titles to query parameter values
-    const projectMap: { [key: string]: string } = {
-      'DEDIMPLER & FACER': 'dedimpler-and-facer',
-      'LOOPER MACHINE': 'looper-machine',
-      'FORMING AND SIZING': 'forming-and-sizing',
-      'SHEAR WELDER MACHINE': 'shear-welder-machine',
-      'FINISHING TABLE': 'finishing-table',
-      'FINISHING LINE': 'finishing-line',
-      'MILLING CUTOFF MACHINE': 'milling-cutoff-machine',
-      'FURNACE': 'furnace',
-    };
-
-    const projectParam = projectMap[title];
-    if (projectParam) {
+    // If a link is provided (and not just '#'), navigate to it
+    if (linkHref && linkHref !== '#') {
       e.preventDefault();
-      navigate(`/projects?project=${projectParam}`);
+      // Check if it's an internal link
+      if (linkHref.startsWith('/')) {
+        navigate(linkHref);
+      } else {
+        window.location.href = linkHref;
+      }
     }
-    // For other projects, use default behavior (linkHref)
+    // If no specific link behavior is defined, follow default behavior or onClick
   };
 
   return (

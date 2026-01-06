@@ -53,7 +53,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
   const [isPanning, setIsPanning] = useState(false);
   const [lastMouseX, setLastMouseX] = useState(0);
   const [lastMouseY, setLastMouseY] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
+
 
   const inspectionImages = [inspectionImage1, inspectionImage2, inspectionImage3, inspectionImage4, inspectionImage5];
   const assemblyImages = [assemblyImage1, assemblyImage2, assemblyImage3, assemblyImage4, assemblyImage5];
@@ -147,8 +147,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
                             src={modalImage2D}
                             alt="2D Detail"
                             className="service-section-image service-section-image-2d"
-                            onMouseEnter={() => setIsHovering(true)}
-                            onMouseLeave={() => setIsHovering(false)}
+
                             onWheel={(e) => {
                               e.preventDefault();
                               setImageScale(prev => Math.max(0.5, Math.min(3, prev + (e.deltaY > 0 ? -0.1 : 0.1))));

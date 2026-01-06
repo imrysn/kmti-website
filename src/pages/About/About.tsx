@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './About.css';
 import { AboutPageProps } from './About.types';
 import aboutBg from '../../assets/aboutPage/aboutbg.jpg';
@@ -11,6 +12,8 @@ import Card from '../../components/ui/Card/Card';
 import { ManagementTeamCard, RelatedCompanyCard } from '../../components/ui/Card/Card';
 import visionIcon from '../../assets/icons/vision-icon.png';
 import missionIcon from '../../assets/icons/mission-icon.png';
+
+// Management Team Images
 import pauImage from '../../assets/management/pau.png';
 import michaelImage from '../../assets/management/michael.png';
 import siryuImage from '../../assets/management/siryu.png';
@@ -31,58 +34,48 @@ import jonathanImage from '../../assets/management/jonathan.png';
 import noelImage from '../../assets/management/noel.png';
 import royImage from '../../assets/management/roy.png';
 import jojoImage from '../../assets/management/jojo.png';
+
+// Carousel Images
 import ourPeople1 from '../../assets/aboutPage/ourpeople1.jpg';
-import ourPeople3 from '../../assets/aboutPage/ourpeople3.jpg';
 import ourPeople2 from '../../assets/aboutPage/ourpeople2.jpg';
+import ourPeople3 from '../../assets/aboutPage/ourpeople3.jpg';
 import ourPeople4 from '../../assets/aboutPage/ourpeople4.jpg';
 import ourPeople5 from '../../assets/aboutPage/ourpeople5.jpg';
+
+// Logo Images
 import kemcoLogo from '../../assets/aboutPage/kemcoLogo.png';
 import nextengLogo from '../../assets/aboutPage/nextengLogo.png';
 import mgkLogo from '../../assets/aboutPage/mgkLogo.png';
 
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isOurStoryModalOpen, setIsOurStoryModalOpen] = useState(false);
   const [isManagementTeamExpanded, setIsManagementTeamExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const ourPeopleImages = [ourPeople1, ourPeople2, ourPeople3, ourPeople4, ourPeople5];
 
-  const navigateToContact = () => {
-    navigate('/contact');
-  };
-
-  const navigateToProjects = () => {
-    navigate('/projects');
-  };
+  const navigateToContact = () => navigate('/contact');
+  const navigateToProjects = () => navigate('/projects');
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % ourPeopleImages.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, [ourPeopleImages.length]);
 
-  const handleOpenOurStory = () => {
-    setIsOurStoryModalOpen(true);
-  };
-
-  const handleCloseOurStory = () => {
-    setIsOurStoryModalOpen(false);
-  };
+  const handleOpenOurStory = () => setIsOurStoryModalOpen(true);
+  const handleCloseOurStory = () => setIsOurStoryModalOpen(false);
 
   const toggleManagementTeam = () => {
     const newState = !isManagementTeamExpanded;
     setIsManagementTeamExpanded(newState);
-
-    // If collapsing, scroll back to the management team section
     if (!newState) {
       setTimeout(() => {
         const section = document.querySelector('.about-management-team-section');
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }
   };
@@ -93,13 +86,9 @@ const About: React.FC<AboutPageProps> = () => {
         <div className="about-hero-overlay"></div>
         <div className="about-hero-container container">
           <div className="about-hero-content">
-            <h1 className="about-title">Who We Are</h1>
-            <p className="about-subtitle">
-              Driven by Precision, Built with Passion
-            </p>
-            <p className="about-description">
-              At Kusakabe & Maeno Technologies Inc., we combine Japanese engineering excellence and Filipino craftsmanship to deliver reliable and innovative industrial solutions.
-            </p>
+            <h1 className="about-title">{t('about.hero.title')}</h1>
+            <p className="about-subtitle">{t('about.hero.subtitle')}</p>
+            <p className="about-description">{t('about.hero.description')}</p>
           </div>
         </div>
       </section>
@@ -116,15 +105,11 @@ const About: React.FC<AboutPageProps> = () => {
               </div>
             </div>
             <div className="about-company-content">
-              <h2 className="about-company-title">ABOUT OUR COMPANY</h2>
-              <p className="about-company-description">
-                Established through the collaboration of Kusakabe Electric & Machinery Co., Ltd, Next Engineering Co., Ltd. and Maeno Giken Inc., we bring together decades of experience in engineering, fabrication, and machine design.
-              </p>
-              <p className="about-company-description">
-                Our mission is to deliver total engineering solutions, from design and prototyping to manufacturing, ensuring precision and excellence in every project we take on.
-              </p>
+              <h2 className="about-company-title">{t('about.company.title')}</h2>
+              <p className="about-company-description">{t('about.company.para1')}</p>
+              <p className="about-company-description">{t('about.company.para2')}</p>
               <div className="about-company-button">
-                <Button variant="style2" onClick={handleOpenOurStory}>EXPLORE OUR STORY</Button>
+                <Button variant="style2" onClick={handleOpenOurStory}>{t('about.company.cta')}</Button>
               </div>
             </div>
           </div>
@@ -136,13 +121,13 @@ const About: React.FC<AboutPageProps> = () => {
           <div className="about-vision-mission-grid">
             <Card
               icon={visionIcon}
-              title="Our Vision"
-              subtitle="Be the world's leading machine design engineering company by achieving extraordinary results for our clients, building gratifying careers for our people, and earning a fair return on the value we distribute."
+              title={t('about.vision.title')}
+              subtitle={t('about.vision.text')}
             />
             <Card
               icon={missionIcon}
-              title="Our Mission"
-              subtitle="To utilize our knowledge and upgrade them by incorporating expertise from three of the most know industry leaders, Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cover the industries."
+              title={t('about.mission.title')}
+              subtitle={t('about.mission.text')}
             />
           </div>
         </div>
@@ -150,104 +135,41 @@ const About: React.FC<AboutPageProps> = () => {
 
       <section className="about-management-team-section" data-aos="fade-up">
         <div className={`about-management-team-container container ${isManagementTeamExpanded ? 'expanded' : ''}`}>
-          <h2 className="about-management-team-title">OUR MANAGEMENT TEAM</h2>
+          <h2 className="about-management-team-title">{t('about.management.title')}</h2>
           {isManagementTeamExpanded && (
-            <p className="about-management-team-description">
-              At the heart of our company is a team of dedicated professionals who bring experience, leadership, and passion to every project. Together, they ensure that our operations run efficiently and that our goals are achieved with excellence.
-            </p>
+            <p className="about-management-team-description">{t('about.management.description')}</p>
           )}
           <div className="about-management-team-grid">
-            <ManagementTeamCard
-              image={pauImage}
-              role="ACCOUNTING / ADMIN MANAGER"
-            />
-            <ManagementTeamCard
-              image={michaelImage}
-              role="ENGINEERING MANAGER"
-            />
+            <ManagementTeamCard image={pauImage} role={t('about.management.roles.accounting')} />
+            <ManagementTeamCard image={michaelImage} role={t('about.management.roles.eng_mgr')} />
             <div className="management-team-card-placeholder"></div>
-            <ManagementTeamCard
-              image={siryuImage}
-              role="PRESIDENT / CEO"
-              isLarge={true}
-            />
-            <ManagementTeamCard
-              image={mennjoImage}
-              role="ENGINEERING MANAGER"
-            />
-            <ManagementTeamCard
-              image={teodyImage}
-              role="ENGINEERING SUPERVISOR"
-            />
+            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} isLarge={true} />
+            <ManagementTeamCard image={mennjoImage} role={t('about.management.roles.eng_mgr')} />
+            <ManagementTeamCard image={teodyImage} role={t('about.management.roles.eng_sup')} />
           </div>
 
           {isManagementTeamExpanded && (
             <div className="about-management-team-expanded-rows">
               <div className="about-management-team-grid">
-                <ManagementTeamCard
-                  image={shelaImage}
-                  role="ENGINEERING SUPERVISOR"
-                />
-                <ManagementTeamCard
-                  image={erikImage}
-                  role="ENGINEERING TEAM LEADER"
-                />
-                <ManagementTeamCard
-                  image={louieImage}
-                  role="ENGINEERING ASSISTANT TL"
-                />
-                <ManagementTeamCard
-                  image={kerbyImage}
-                  role="ENGINEERING IT/STAFF"
-                />
-                <ManagementTeamCard
-                  image={kissImage}
-                  role="ENGINEERING STAFF/SO"
-                />
+                <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} />
+                <ManagementTeamCard image={erikImage} role={t('about.management.roles.eng_tl')} />
+                <ManagementTeamCard image={louieImage} role={t('about.management.roles.eng_atl')} />
+                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.it_staff')} />
+                <ManagementTeamCard image={kissImage} role={t('about.management.roles.staff_so')} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard
-                  image={lorieImage}
-                  role="ENGINEERING STAFF"
-                />
-                <ManagementTeamCard
-                  image={jethroImage}
-                  role="ENGINEERING STAFF"
-                />
-                <ManagementTeamCard
-                  image={joyceImage}
-                  role="ENGINEERING STAFF"
-                />
-                <ManagementTeamCard
-                  image={jcImage}
-                  role="ENGINEERING STAFF"
-                />
-                <ManagementTeamCard
-                  image={jennyImage}
-                  role="ENGINEERING STAFF"
-                />
+                <ManagementTeamCard image={lorieImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={jethroImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={joyceImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={jcImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={jennyImage} role={t('about.management.roles.staff')} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard
-                  image={nylImage}
-                  role="ENGINEERING STAFF"
-                />
-                <ManagementTeamCard
-                  image={jonathanImage}
-                  role="ENGINEERING STAFF"
-                />
-                <ManagementTeamCard
-                  image={noelImage}
-                  role="COMPANY DRIVER"
-                />
-                <ManagementTeamCard
-                  image={royImage}
-                  role="COMPANY DRIVER"
-                />
-                <ManagementTeamCard
-                  image={jojoImage}
-                  role="MAINTENANCE/UTILITY PERSONNEL"
-                />
+                <ManagementTeamCard image={nylImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={jonathanImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={noelImage} role={t('about.management.roles.driver')} />
+                <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} />
+                <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} />
               </div>
             </div>
           )}
@@ -260,15 +182,15 @@ const About: React.FC<AboutPageProps> = () => {
               toggleManagementTeam();
             }}
           >
-            {isManagementTeamExpanded ? 'See Less' : 'See more...'}
+            {isManagementTeamExpanded ? t('about.management.see_less') : t('about.management.see_more')}
           </a>
         </div>
       </section>
 
       <section className="our-people-section" data-aos="fade-up">
         <div className="our-people-container container">
-          <h2 className="our-people-title">OUR PEOPLE</h2>
-          <p className="our-people-subtitle">Our People, Our Strength - behind every innovation is a team dedicated to quality and collaboration.</p>
+          <h2 className="our-people-title">{t('about.people.title')}</h2>
+          <p className="our-people-subtitle">{t('about.people.subtitle')}</p>
           <div className="our-people-carousel-container">
             {ourPeopleImages.map((image, index) => (
               <div
@@ -277,11 +199,7 @@ const About: React.FC<AboutPageProps> = () => {
                 style={{ opacity: index === currentImageIndex ? 1 : 0, zIndex: index === currentImageIndex ? 1 : 0 }}
               >
                 <div className="our-people-image-container">
-                  <img
-                    src={image}
-                    alt={`Our People ${index + 1}`}
-                    className="our-people-image"
-                  />
+                  <img src={image} alt={`Our People ${index + 1}`} className="our-people-image" />
                 </div>
               </div>
             ))}
@@ -301,24 +219,24 @@ const About: React.FC<AboutPageProps> = () => {
 
       <section className="related-companies-section" data-aos="fade-up">
         <div className="related-companies-container container">
-          <h2 className="related-companies-title">RELATED COMPANIES</h2>
+          <h2 className="related-companies-title">{t('about.related.title')}</h2>
           <div className="related-companies-grid">
             <RelatedCompanyCard
               logo={kemcoLogo}
               companyName="KUSAKABE ELECTRIC & MACHINERY CO., LTD"
-              description="Founded in 1916 and began its involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high quality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipement supplier. "
+              description={t('about.related.kemco')}
               href="https://www.kusakabe.com/jpn/index.htm"
             />
             <RelatedCompanyCard
               logo={nextengLogo}
               companyName="NEXT ENGINEERING CO., LTD."
-              description="Next Engineering Co., Ltd., was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at it's own facilities. In recent years, it has expanded into IT and semiconductor fields. In April 2025, the company will merge with Nishinippon Sekkei Co., Ltd., enhancig its capabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing."
+              description={t('about.related.nexteng')}
               href="https://www.nexteng.co.jp/"
             />
             <RelatedCompanyCard
               logo={mgkLogo}
               companyName="MAENO GIKEN INC."
-              description="MGK specializes in fabrication, utilizing expertise of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. And every product undergoes strict quality compliance to meet their client's satisfaction, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competetive by means of transferring every technological knowledge in this kind of business."
+              description={t('about.related.mgk')}
               href="http://www.maenogiken.com/"
             />
           </div>
@@ -327,10 +245,10 @@ const About: React.FC<AboutPageProps> = () => {
 
       <section className="about-cta-section" data-aos="fade-up">
         <div className="section-container container">
-          <h2 className="about-cta-title">Building Innovation, Together.</h2>
+          <h2 className="about-cta-title">{t('about.cta.title')}</h2>
           <div className="about-cta-buttons">
-            <Button variant="style2" onClick={navigateToContact}>CONTACT US</Button>
-            <Button variant="style2" onClick={navigateToProjects}>VIEW PROJECTS</Button>
+            <Button variant="style2" onClick={navigateToContact}>{t('common.contact_us')}</Button>
+            <Button variant="style2" onClick={navigateToProjects}>{t('common.view_projects')}</Button>
           </div>
         </div>
       </section>
