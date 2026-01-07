@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next'; // Added for translation
 import ModelViewer from './ModelViewer';
 import './Model3DViewerModal.css';
 
@@ -23,7 +24,7 @@ interface ModelConfig {
   scale?: number;
 }
 
-
+// Keep the internal MODEL_MAP as is since these keys map to technical data
 const MODEL_MAP: { [key: string]: ModelConfig } = {
   'Dedimpler and Facer': { path: dedimplerFacerModel, scale: 5 },
   'Dedimpler & Facer': { path: dedimplerFacerModel, scale: 5 },
@@ -47,17 +48,7 @@ const MODEL_MAP: { [key: string]: ModelConfig } = {
   'Air Blow': { path: airBlowModel, scale: 5 },
 };
 
-
 export type CameraView = 'isometric' | 'front' | 'back' | 'left' | 'right' | 'top';
-
-export const CAMERA_POSITIONS: Record<CameraView, [number, number, number]> = {
-  isometric: [5, 3, 5],
-  front: [0, 0, 8],
-  back: [0, 0, -8],
-  left: [-8, 0, 0],
-  right: [8, 0, 0],
-  top: [0, 8, 0],
-};
 
 interface Model3DViewerModalProps {
   isOpen: boolean;
@@ -70,13 +61,15 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   onClose,
   modelTitle
 }) => {
+  const { t } = useTranslation(); // Initialize translation hook
   const [cameraView, setCameraView] = useState<CameraView>('isometric');
 
-  useEffect(() => {
-    if (isOpen) {
-      setCameraView('isometric');
+  const handleClose = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
     }
-  }, [isOpen]);
+    onClose();
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -99,17 +92,9 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  const handleClose = (e?: React.MouseEvent) => {
-    if (e) {
-      e.stopPropagation();
-    }
-    onClose();
-  };
-
   if (!isOpen) return null;
 
   const modelConfig = MODEL_MAP[modelTitle];
-
   if (!modelConfig) {
     console.error(`No 3D model configuration found for: ${modelTitle}`);
     return null;
@@ -130,9 +115,11 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
         </button>
 
         <div className="model-3d-modal-header">
+          {/* We use modelTitle directly here as it is often a proper product name, 
+              but we translate the subtitle and placeholder text */}
           <h2 className="model-3d-modal-title">{modelTitle}</h2>
           <p className="model-3d-modal-subtitle">
-            {hasModel ? 'Interactive 3D Model Viewer' : '3D Model Viewer'}
+            {hasModel ? t('projects.viewer.subtitle_interactive') : t('projects.viewer.subtitle_standard')}
           </p>
         </div>
 
@@ -146,63 +133,31 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
               />
 
               <div className="camera-view-buttons">
-                <button
-                  className={`camera-view-btn ${cameraView === 'isometric' ? 'active' : ''}`}
-                  onClick={() => setCameraView('isometric')}
-                  title="Isometric View"
-                >
-                  Isometric
-                </button>
-                <button
-                  className={`camera-view-btn ${cameraView === 'front' ? 'active' : ''}`}
-                  onClick={() => setCameraView('front')}
-                  title="Front View"
-                >
-                  Front
-                </button>
-                <button
-                  className={`camera-view-btn ${cameraView === 'back' ? 'active' : ''}`}
-                  onClick={() => setCameraView('back')}
-                  title="Back View"
-                >
-                  Back
-                </button>
-                <button
-                  className={`camera-view-btn ${cameraView === 'left' ? 'active' : ''}`}
-                  onClick={() => setCameraView('left')}
-                  title="Left View"
-                >
-                  Left
-                </button>
-                <button
-                  className={`camera-view-btn ${cameraView === 'right' ? 'active' : ''}`}
-                  onClick={() => setCameraView('right')}
-                  title="Right View"
-                >
-                  Right
-                </button>
-                <button
-                  className={`camera-view-btn ${cameraView === 'top' ? 'active' : ''}`}
-                  onClick={() => setCameraView('top')}
-                  title="Top View"
-                >
-                  Top
-                </button>
+                {(['isometric', 'front', 'back', 'left', 'right', 'top'] as CameraView[]).map((view) => (
+                  <button
+                    key={view}
+                    className={`camera-view-btn ${cameraView === view ? 'active' : ''}`}
+                    onClick={() => setCameraView(view)}
+                    title={t(`projects.viewer.camera.${view}_title`)}
+                  >
+                    {t(`projects.viewer.camera.${view}`)}
+                  </button>
+                ))}
               </div>
 
               <div className="model-3d-controls-overlay">
                 <div className="model-3d-controls-info">
                   <div className="model-3d-control-hint">
                     <span className="model-3d-control-icon">🖱️</span>
-                    <span>Drag to rotate</span>
+                    <span>{t('projects.viewer.controls.rotate')}</span>
                   </div>
                   <div className="model-3d-control-hint">
                     <span className="model-3d-control-icon">🔍</span>
-                    <span>Scroll to zoom</span>
+                    <span>{t('projects.viewer.controls.zoom')}</span>
                   </div>
                   <div className="model-3d-control-hint">
                     <span className="model-3d-control-icon">⌨️</span>
-                    <span>Right-click to pan</span>
+                    <span>{t('projects.viewer.controls.pan')}</span>
                   </div>
                 </div>
               </div>
@@ -211,19 +166,15 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
             <div className="model-3d-placeholder">
               <div className="model-3d-placeholder-content">
                 <div className="model-3d-placeholder-icon">📦</div>
-                <h3 className="model-3d-placeholder-title">3D MODEL NOT AVAILABLE YET</h3>
-                <p className="model-3d-placeholder-text">
-                  The 3D model for this machine is currently being prepared.
-                  Please check back soon!
-                </p>
+                <h3 className="model-3d-placeholder-title">{t('projects.viewer.unavailable_title')}</h3>
+                <p className="model-3d-placeholder-text">{t('projects.viewer.unavailable_text')}</p>
               </div>
             </div>
           )}
         </div>
-
       </div>
     </div>
   );
 };
 
-export default Model3DViewerModal;
+export default Model3DViewerModal; ``

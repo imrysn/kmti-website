@@ -187,9 +187,9 @@ const Careers: React.FC<CareersPageProps> = () => {
             >
               <p>{t('careers.apply.visit.text')}</p>
               <div className="address">
-                Team Quest Building FCIE<br />
-                Langkaan Dasmarinas City, Cavite<br />
-                (Near PLDT)
+                {t('careers.apply.visit.address.line1')}<br />
+                {t('careers.apply.visit.address.line2')}<br />
+                {t('careers.apply.visit.address.line3')}
               </div>
               <p>{t('careers.apply.visit.person')}: Ms. Raine Royo</p>
             </HowToApplyCard>
@@ -222,7 +222,7 @@ const Careers: React.FC<CareersPageProps> = () => {
                 variant="style2"
                 onClick={() => window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/', '_blank')}
               >
-                {t('careers.ready.linkedin')}
+                {t('careers.ready.Linkedin')}
               </Button>
               <Button
                 variant="style2"
