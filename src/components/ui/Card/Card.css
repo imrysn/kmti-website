@@ -21,7 +21,7 @@
 
 .why-choose-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(81, 162, 255, 0.15);
+  box-shadow: 0 0px 20px rgba(81, 162, 255, 0.5);
 }
 
 /* ============================================
@@ -107,6 +107,11 @@
   box-sizing: border-box;
 }
 
+.why-work-withus-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0px 20px rgba(81, 162, 255, 0.5);
+}
+
 
 .why-work-withus-card-icon-container {
   background-color: rgba(43, 127, 255, 0.1);
@@ -167,6 +172,11 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
+}
+
+.how-to-apply-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0px 20px rgba(81, 162, 255, 0.5);
 }
 
 .how-to-apply-card-header {
@@ -345,7 +355,7 @@
   position: relative;
   overflow: visible;
   height: 100%;
-  width: 105%;
+  width: 100%;
   min-height: 150px;
   margin-bottom: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -353,7 +363,7 @@
 
 .service-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(81, 162, 255, 0.15);
+  box-shadow: 0 0px 20px rgba(81, 162, 255, 0.5);
 }
 
 .service-card::before {
@@ -479,7 +489,7 @@
 
 .project-card-new:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(81, 162, 255, 0.15);
+  box-shadow: 0 0px 20px rgba(81, 162, 255, 0.5);
 }
 
 /* ============================================
