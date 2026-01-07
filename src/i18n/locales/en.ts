@@ -120,7 +120,7 @@ const en = {
     },
     management: {
       title: "OUR MANAGEMENT TEAM",
-      description: "A team of dedicated professionals who bring experience, leadership, and passion to every project.",
+      description: "At the heart of our company is a team of dedicated professionals who bring experience, leadership, and passion to every project. Together, they ensure that our operations run efficiently and that our goals are achieved with excellence. ",
       see_more: "See more...",
       see_less: "See Less",
       roles: {
@@ -174,7 +174,7 @@ const en = {
     modal: {
       detailed_desc: {
         "3d": "By converting clients 3D model, we can easily check any possible errors or interference that may occur. during this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing.",
-        "2d": "Detailing is a critical part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part, We give a keen eye on every detail of the design, together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involve in the process and everything is according to their plan to avoid any further iterations due to miscommunication.",
+        "2d": "Detailing is a crucial part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We give a keen eye on every detail of the design, together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involved in the process and everything is according to their plan to avoid any further interactions due to miscommunications.",
         "inspection": "We support inspection of parts fabricated from our design to ensure quaity of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepancies from the design and the actual parts.",
         "assembly": "In collaboration with our business partners Kusakabe Electric & Machinery Co., Ltd and Maeno Giken Inc., two of the most known pioneers and leaders in the industry. We give our clients the confidence to have high quality and top notch performance products ready for a productive business."
       },
@@ -368,7 +368,7 @@ const en = {
         title: "Milling Cutoff Machine",
         category: "CUT OFF",
         description: "Milling Cutoff Machine uses two milling saws to cut to length pipe and structural section tubes. The cut finishes eliminates the need for facing.",
-        application: "Ideal for achieving clean, square cuts on tubes withouth secondary finishing."
+        application: "Ideal for achieving clean, square cuts on tubes without secondary finishing."
       },
       furnace: {
         title: "Furnace",
