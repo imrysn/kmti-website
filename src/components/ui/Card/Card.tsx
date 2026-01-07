@@ -384,6 +384,7 @@ interface ApplyCardProps {
   requirements?: string[];
   preferredCourses?: string[];
   onApply?: () => void;
+  applyText?: string;
   className?: string;
 }
 
@@ -398,6 +399,7 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
   requirements = [],
   preferredCourses = [],
   onApply,
+  applyText = 'APPLY NOW',
   className = '',
 }) => {
   return (
@@ -448,7 +450,7 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
           variant="style3"
           onClick={onApply || (() => { })}
         >
-          APPLY NOW
+          {applyText}
         </Button>
       </div>
     </div>

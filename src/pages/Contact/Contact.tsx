@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './Contact.css';
 import { ContactPageProps } from './Contact.types';
 import contactBg from '../../assets/contactusbg.jpg';
@@ -13,6 +14,7 @@ import { ChatWithUsRightCard } from '../../components/ui/Card/ChatWithUsRightCar
 import Button from '../../components/ui/Button/Button';
 
 const Contact: React.FC<ContactPageProps> = () => {
+  const { t } = useTranslation();
 
   const handleGeneralInquiries = () => {
     window.location.href = 'mailto:info@kmti.com.ph';
@@ -27,13 +29,10 @@ const Contact: React.FC<ContactPageProps> = () => {
   };
 
   const handleTryChatbot = () => {
-    // Dispatch reset event to reset chatbot to beginning
     window.dispatchEvent(new CustomEvent('reset-chatbot'));
-
-    // Ensure chatbot is open
     const chatbotButton = document.querySelector('.chatbot-button') as HTMLButtonElement;
+
     if (chatbotButton && chatbotButton.disabled) {
-      // Chatbot is already open, just scroll to it
       setTimeout(() => {
         const chatbotPanel = document.querySelector('.chatbot-panel');
         if (chatbotPanel) {
@@ -41,11 +40,9 @@ const Contact: React.FC<ContactPageProps> = () => {
         }
       }, 100);
     } else if (chatbotButton && !chatbotButton.disabled) {
-      // Chatbot is closed, open it (reset will happen via event)
       chatbotButton.click();
     }
   };
-
 
   return (
     <div className="contact-page">
@@ -53,32 +50,30 @@ const Contact: React.FC<ContactPageProps> = () => {
         <div className="hero-overlay"></div>
         <div className="hero-container container">
           <div className="hero-content">
-            <h1 className="hero-title">Need help or have a specific inquiry?</h1>
-            <p className="contact-hero-description">
-              You can reach our team directly through the options below - whether it's about our services, business inquiries, or career opportunities.
-            </p>
+            <h1 className="hero-title">{t('contact.hero.title')}</h1>
+            <p className="contact-hero-description">{t('contact.hero.description')}</p>
           </div>
           <div className="contact-options-container" data-aos="fade-up">
             <div className="contact-options-grid">
               <ContactOptionCard
                 icon={emailIcon}
-                title="GENERAL INQUIRIES"
+                title={t('contact.options.email.title')}
                 description="info@kmti.com.ph"
-                buttonText="SEND EMAIL"
+                buttonText={t('contact.options.email.btn')}
                 onButtonClick={handleGeneralInquiries}
               />
               <ContactOptionCard
                 icon={linkedinIcon}
-                title="CAREER APPLICATION"
-                description="Apply through LinkedIn"
-                buttonText="VISIT CAREERS"
+                title={t('contact.options.career.title')}
+                description={t('contact.options.career.desc')}
+                buttonText={t('contact.options.career.btn')}
                 onButtonClick={handleCareerApplication}
               />
               <ContactOptionCard
                 icon={mapsIcon}
-                title="OFFICE VISIT"
-                description="View Map & Directions"
-                buttonText="OPEN IN GOOGLE MAPS"
+                title={t('contact.options.visit.title')}
+                description={t('contact.options.visit.desc')}
+                buttonText={t('contact.options.visit.btn')}
                 onButtonClick={handleOfficeVisit}
               />
             </div>
@@ -86,17 +81,15 @@ const Contact: React.FC<ContactPageProps> = () => {
         </div>
       </section>
 
-      {/* OR Divider */}
       <div className="or-divider-container">
         <div className="or-divider-wrapper">
           <div className="or-divider-line"></div>
-          <span className="or-divider-text">OR</span>
+          <span className="or-divider-text">{t('contact.divider.text')}</span>
           <div className="or-divider-line"></div>
         </div>
-        <p className="or-divider-description">Chat with our AI Assistant Anytime</p>
+        <p className="or-divider-description">{t('contact.divider.desc')}</p>
       </div>
 
-      {/* Chat With Us Section */}
       <section className="chat-with-us-section" data-aos="fade-up">
         <div className="chat-with-us-container container">
           <div className="chat-with-us-content">
@@ -106,46 +99,45 @@ const Contact: React.FC<ContactPageProps> = () => {
                   <img src={chatIcon} alt="Chat" className="chat-with-us-icon" />
                 </div>
                 <h2 className="chat-with-us-title">
-                  CHAT WITH US <span className="chat-with-us-title-highlight">ANYTIME</span>
+                  {t('contact.chat.title_main')} <span className="chat-with-us-title-highlight">{t('contact.chat.title_highlight')}</span>
                 </h2>
               </div>
               <div className="chat-with-us-header-line"></div>
-              <p className="chat-with-us-description">
-                Our AI assistant can answer common questions about our services - Machine Design, Assembly, and Parts Inspection - and connect directly to our support team for real assistance.
-              </p>
+              <p className="chat-with-us-description">{t('contact.chat.description')}</p>
+
               <ul className="chat-with-us-features">
                 <li className="chat-with-us-feature">
                   <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
-                    <strong className="chat-with-us-feature-title">24/7 Instant Answers:</strong>
-                    <span className="chat-with-us-feature-text">Get quick responses to FAQs about our services, careers & application, and processes.</span>
+                    <strong className="chat-with-us-feature-title">{t('contact.chat.features.f1.title')}</strong>
+                    <span className="chat-with-us-feature-text">{t('contact.chat.features.f1.text')}</span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">
                   <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
-                    <strong className="chat-with-us-feature-title">Smart & Helpful:</strong>
-                    <span className="chat-with-us-feature-text">Our AI is trained on KMTI's expertise to provide accurate and relevant information.</span>
+                    <strong className="chat-with-us-feature-title">{t('contact.chat.features.f2.title')}</strong>
+                    <span className="chat-with-us-feature-text">{t('contact.chat.features.f2.text')}</span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">
                   <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
-                    <strong className="chat-with-us-feature-title">Direct Team Connection:</strong>
-                    <span className="chat-with-us-feature-text">Need personalized help? Chat instantly with our team through Facebook Messenger or email.</span>
+                    <strong className="chat-with-us-feature-title">{t('contact.chat.features.f3.title')}</strong>
+                    <span className="chat-with-us-feature-text">{t('contact.chat.features.f3.text')}</span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">
                   <img src={innovationIcon} alt="Feature" className="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
-                    <strong className="chat-with-us-feature-title">For Applicants:</strong>
-                    <span className="chat-with-us-feature-text">For job inquiries or application updates, please reach us through our Facebook page or connect with us on LinkedIn via our Career Page.</span>
+                    <strong className="chat-with-us-feature-title">{t('contact.chat.features.f4.title')}</strong>
+                    <span className="chat-with-us-feature-text">{t('contact.chat.features.f4.text')}</span>
                   </div>
                 </li>
               </ul>
               <div className="chat-with-us-button-wrapper">
                 <Button variant="style1" onClick={handleTryChatbot}>
-                  TRY CHATBOT NOW
+                  {t('contact.chat.btn')}
                 </Button>
               </div>
             </div>
