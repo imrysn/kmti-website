@@ -1029,8 +1029,8 @@
 
 .project-modal-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 480px;
-  gap: 5rem;
+  grid-template-columns: minmax(0, 1fr) 500px;
+  gap: 10rem;
   padding-top: 1rem;
   align-items: stretch;
   flex: 1;
@@ -1161,7 +1161,7 @@
 
 .project-modal-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 100;
   color: white;
   margin: 0;
@@ -1335,4 +1335,13 @@
     padding: 0.6rem 1rem;
     max-width: 180px;
   }
+}
+
+/* ============================================
+   LANGUAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Japanese Language Overrides for Modal Titles */
+.lang-jp .project-modal-title {
+  font-weight: 500;
 }
