@@ -1317,8 +1317,8 @@
 
 .apply-card-fulltime-badge {
   position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
+  top: 1rem;
+  right: 1rem;
   background: rgba(21, 93, 252, 0.9);
   color: white;
   padding: 0.5rem 2rem;
@@ -1336,7 +1336,7 @@
   font-size: 1.2rem;
   font-weight: 100;
   text-transform: uppercase;
-  margin-top: 0rem;
+  margin-top: 2rem;
   margin-bottom: 0.75rem;
   line-height: 1.4;
 }
@@ -2241,4 +2241,23 @@
   .service-card-link {
     font-size: 0.65rem;
   }
+}
+
+/* ============================================
+   LANGUAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Japanese Language Overrides for Card Titles to match service-card-title style */
+.lang-jp .why-choose-card-title,
+.lang-jp .project-card-title,
+.lang-jp .projects-card-title,
+.lang-jp .contact-option-card-title,
+.lang-jp .why-work-withus-card-title,
+.lang-jp .apply-card-title,
+.lang-jp .how-to-apply-card-title {
+  font-weight: 500;
+}
+
+.lang-jp .management-team-card-role {
+  font-weight: 500 !important;
 }

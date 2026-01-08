@@ -251,9 +251,9 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
   if (!isOpen) return null;
 
   const projects = [
-    { image: dedemplerImage, key: 'dedimpler' },
-    { image: bundlingImage, key: 'bundling' },
-    { image: bindingImage, key: 'binding' }
+    { image: dedemplerImage, key: 'dedimpler', modelKey: 'Dedimpler and Facer' },
+    { image: bundlingImage, key: 'bundling', modelKey: 'Bundling Machine' },
+    { image: bindingImage, key: 'binding', modelKey: 'Binding Machine' }
   ];
 
   const curr = projects[idx];
@@ -298,7 +298,12 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
       </div>
-      <Model3DViewerModal isOpen={is3D} onClose={() => setIs3D(false)} modelTitle={t(`projects.modal_items.${curr.key}.title`)} />
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
     </div>
   );
 };
@@ -311,8 +316,8 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
   if (!isOpen) return null;
 
   const items = [
-    { image: looperImage, key: 'looper' },
-    { image: horizontalLooperImage, key: 'horizontal' }
+    { image: looperImage, key: 'looper', modelKey: 'Looper Machine' },
+    { image: horizontalLooperImage, key: 'horizontal', modelKey: 'Horizontal Looper Machine' }
   ];
 
   const curr = items[idx];
@@ -357,7 +362,12 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
       </div>
-      <Model3DViewerModal isOpen={is3D} onClose={() => setIs3D(false)} modelTitle={t(`projects.modal_items.${curr.key}.title`)} />
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
     </div>
   );
 };
@@ -366,7 +376,7 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
 export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const [is3D, setIs3D] = useState(false);
-  const curr = { image: formingImage, key: 'forming' };
+  const curr = { image: formingImage, key: 'forming', modelKey: 'Forming and Sizing Machine' };
 
   if (!isOpen) return null;
 
@@ -397,7 +407,12 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
       </div>
-      <Model3DViewerModal isOpen={is3D} onClose={() => setIs3D(false)} modelTitle={t(`projects.modal_items.${curr.key}.title`)} />
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
     </div>
   );
 };
@@ -411,9 +426,9 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void }>
   if (!isOpen) return null;
 
   const items = [
-    { image: shearImage, key: 'shear' },
-    { image: uncoilerImage, key: 'uncoiler' },
-    { image: levelerImage, key: 'leveler' }
+    { image: shearImage, key: 'shear', modelKey: 'Shear Welder Machine' },
+    { image: uncoilerImage, key: 'uncoiler', modelKey: 'Uncoiler Machine' },
+    { image: levelerImage, key: 'leveler', modelKey: 'Leveler Machine' }
   ];
   const curr = items[idx];
 
@@ -457,7 +472,12 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void }>
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
       </div>
-      <Model3DViewerModal isOpen={is3D} onClose={() => setIs3D(false)} modelTitle={t(`projects.modal_items.${curr.key}.title`)} />
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
     </div>
   );
 };
@@ -471,12 +491,12 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
   if (!isOpen) return null;
 
   const items = [
-    { image: transferTableImage, key: 'transfer_table' },
-    { image: bundleSeparatorImage, key: 'bundle' },
-    { image: pipeDryingImage, key: 'pipe_drying' },
-    { image: pipeBundlingImage, key: 'pipe_bundling' },
-    { image: productImage, key: 'product' },
-    { image: transferTableImage, key: 'transfer' },
+    { image: transferTableImage, key: 'transfer_table', modelKey: 'Transfer Table (Lifter)' },
+    { image: bundleSeparatorImage, key: 'bundle', modelKey: 'Bundle Separator' },
+    { image: pipeDryingImage, key: 'pipe_drying', modelKey: 'Pipe Drying Section' },
+    { image: pipeBundlingImage, key: 'pipe_bundling', modelKey: 'Pipe Bundling' },
+    { image: productImage, key: 'product', modelKey: 'Product Storage' },
+    { image: transferTableImage, key: 'transfer', modelKey: 'Transfer Table (Lifter)' },
   ];
   const curr = items[idx];
 
@@ -510,7 +530,12 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
       </div>
-      <Model3DViewerModal isOpen={is3D} onClose={() => setIs3D(false)} modelTitle={t(`projects.modal_items.${curr.key}.title`)} />
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
     </div>
   );
 };
@@ -524,12 +549,12 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
   if (!isOpen) return null;
 
   const items = [
-    { image: finishingImage, key: 'finishing' },
-    { image: airBlowImage, key: 'air_blow' },
-    { image: transferLifterImage, key: 'transfertable_lifter' },
-    { image: dedimplerFacerImage, key: 'dedimpler_facer' },
-    { image: bundlingMachineImage, key: 'bunding_machine' },
-    { image: productStorageImage, key: 'product_storage' },
+    { image: finishingImage, key: 'finishing', modelKey: 'Finishing Line' },
+    { image: airBlowImage, key: 'air_blow', modelKey: 'Air Blow' },
+    { image: transferLifterImage, key: 'transfertable_lifter', modelKey: 'Transfer Table (Lifter)' },
+    { image: dedimplerFacerImage, key: 'dedimpler_facer', modelKey: 'Dedimpler and Facer' },
+    { image: bundlingMachineImage, key: 'bunding_machine', modelKey: 'Bundling Machine' },
+    { image: productStorageImage, key: 'product_storage', modelKey: 'Product Storage' },
   ];
   const curr = items[idx];
 
@@ -563,7 +588,12 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
       </div>
-      <Model3DViewerModal isOpen={is3D} onClose={() => setIs3D(false)} modelTitle={t(`projects.modal_items.${curr.key}.title`)} />
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
     </div>
   );
 };
@@ -572,7 +602,7 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
 export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const [is3D, setIs3D] = useState(false);
-  const curr = { image: millingImage, key: 'cutoff' };
+  const curr = { image: millingImage, key: 'cutoff', modelKey: 'Milling Cutoff Machine' };
 
   if (!isOpen) return null;
 
@@ -608,7 +638,12 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
       </div>
-      <Model3DViewerModal isOpen={is3D} onClose={() => setIs3D(false)} modelTitle={t(`projects.modal_items.${curr.key}.title`)} />
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
     </div>
   );
 };
@@ -617,7 +652,7 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
 export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const [is3D, setIs3D] = useState(false);
-  const curr = { image: furnaceImage, key: 'furnace' };
+  const curr = { image: furnaceImage, key: 'furnace', modelKey: 'Furnace' };
 
   if (!isOpen) return null;
 
@@ -647,7 +682,12 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
       </div>
-      <Model3DViewerModal isOpen={is3D} onClose={() => setIs3D(false)} modelTitle={t(`projects.modal_items.${curr.key}.title`)} />
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
     </div>
   );
 };

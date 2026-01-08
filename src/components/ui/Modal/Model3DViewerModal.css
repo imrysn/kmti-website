@@ -209,7 +209,7 @@
 
 .model-3d-placeholder-content {
   text-align: center;
-  max-width: 500px;
+  max-width: 1000px;
   padding: 2rem;
   animation: placeholderSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
 }
@@ -258,8 +258,8 @@
 
 .model-3d-placeholder-text {
   font-family: var(--font-family-body);
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
   margin: 0;
   letter-spacing: 0.02em;
@@ -688,4 +688,11 @@
 .model-3d-modal-content {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ============================================
+   LANGUAGE SPECIFIC OVERRIDES
+   ============================================ */
+.lang-jp .model-3d-modal-title {
+  font-weight: 500;
 }
