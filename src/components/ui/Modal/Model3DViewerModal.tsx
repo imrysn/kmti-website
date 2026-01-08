@@ -54,12 +54,14 @@ interface Model3DViewerModalProps {
   isOpen: boolean;
   onClose: () => void;
   modelTitle: string;
+  modelKey?: string; // stable identifier for map lookup
 }
 
 const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   isOpen,
   onClose,
-  modelTitle
+  modelTitle,
+  modelKey
 }) => {
   const { t } = useTranslation(); // Initialize translation hook
   const [cameraView, setCameraView] = useState<CameraView>('isometric');
@@ -94,9 +96,12 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
 
   if (!isOpen) return null;
 
-  const modelConfig = MODEL_MAP[modelTitle];
+  // Use modelKey if available, otherwise fallback to modelTitle (backward compatibility/English default)
+  const lookupKey = modelKey || modelTitle;
+  const modelConfig = MODEL_MAP[lookupKey];
+
   if (!modelConfig) {
-    console.error(`No 3D model configuration found for: ${modelTitle}`);
+    console.error(`No 3D model configuration found for: ${lookupKey}`);
     return null;
   }
 

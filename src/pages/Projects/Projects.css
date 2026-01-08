@@ -87,7 +87,7 @@
 }
 
 .projects-hero-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -109,7 +109,7 @@
   margin-bottom: 2.5rem;
   font-family: var(--font-family-body);
   line-height: 1.6;
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
