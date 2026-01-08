@@ -189,7 +189,7 @@ const ServiceSection = React.forwardRef<HTMLDivElement, ServiceSectionProps>(({ 
               <>
                 <div className="service-section-step-indicator">
                   <div className="service-section-step-number">1</div>
-                  <span className="service-section-step-text">{service.title.toUpperCase()}</span>
+                  <span className="service-section-step-text">{t('services.items.3d.section_title')}</span>
                 </div>
                 <div className="service-section-images">
                   <div className="service-section-image-container"><img src={modalImage1} alt="View 1" className="service-section-image" /></div>

@@ -188,7 +188,8 @@ const en = {
       "3d": {
         title: "3D MODELING",
         short_desc: "We create detailed 3D models for high-precision engineering and visualization, ensuring accurate fabrication and assembly.",
-        detailed_desc: "By converting clients 3D model, we can easily check any possible errors or interference that may occur. During this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing."
+        detailed_desc: "By converting clients 3D model, we can easily check any possible errors or interference that may occur. During this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing.",
+        section_title: "3D MODELING"
       },
       "2d": {
         title: "2D DETAILING",
@@ -441,6 +442,7 @@ const en = {
           "Good to excellent communication skills (oral and written",
           "Strong personality and positive work attitude",
           "Results oriented and can work under pressure",
+          "Strong time management skills and multitasking",
           "Fresh graduates are encouraged to applu",
           "Knowledge of accounting principles",
           "Experience with DOLE reporting is a plus"
@@ -480,7 +482,7 @@ const en = {
           line2: "Langkaan Dasmarinas City, Cavite",
           line3: "(Near PLDT)"
         },
-        person: "Contact Person:"
+        person: "Contact Person"
       },
       contact: {
         title: "CONTACT",
@@ -544,6 +546,8 @@ const en = {
       placeholder: "Type a message..."
     }
   },
+
+  // ... FOOTER ...
   footer: {
     description: "Leading innovation in 3D modeling, 2D detailing, parts inspections and machine assembly design with precision and purpose.",
     cols: {
