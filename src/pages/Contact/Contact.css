@@ -16,6 +16,13 @@
   font-size: 2.5rem;
 }
 
+.contact-page .hero-content {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 .contact-hero-description {
   font-family: var(--font-family-body);
   font-size: 1rem;
@@ -23,7 +30,7 @@
   line-height: 1.6;
   margin-bottom: 15rem;
   text-align: center;
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -106,7 +113,7 @@
 }
 
 .chat-with-us-container {
-  max-width: 1300px;
+  max-width: 1500px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
@@ -161,12 +168,12 @@
 
 .chat-with-us-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 500;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 20%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 1px;
   margin: 0;
   line-height: 1.2;

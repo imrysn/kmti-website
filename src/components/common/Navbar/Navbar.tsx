@@ -42,6 +42,12 @@ const Navbar: React.FC = () => {
   };
 
   useEffect(() => {
+    // Update body class for language-specific styling
+    document.body.classList.remove('lang-en', 'lang-jp');
+    document.body.classList.add(`lang-${i18n.language}`);
+  }, [i18n.language]);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       if (activeLinkRef.current) {
         const rect = activeLinkRef.current.getBoundingClientRect();

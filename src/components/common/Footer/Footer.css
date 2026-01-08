@@ -383,3 +383,12 @@
     display: none;
   }
 }
+
+/* ============================================
+   LANGUAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Japanese Language Overrides for Footer Column Titles */
+.lang-jp .footer__col-title {
+  font-weight: 500;
+}
