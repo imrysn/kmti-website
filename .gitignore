@@ -42,9 +42,14 @@ build/
 .env.*.local
 !docs/.vitepress/cachekmti-website-backup/
 
+# ... (rest of your file)
+
 # 3D Model files (large GLB files)
-src/assets/3DMODELS/
+# Adding a leading slash ensures it targets the root directory
+/src/assets/3DMODELS/
 *.glb
 
-# 3D Models
-src/assets/3DMODELS/
+# Backup and Large Files
+# This matches the error from your terminal exactly
+.git_backup_large/
+kmti-website-backup/

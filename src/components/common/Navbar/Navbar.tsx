@@ -15,10 +15,9 @@ const Navbar: React.FC = () => {
   // Labels are now pulled from translation files 
   const navLinks = [
     { path: '/', label: t('nav.home') },
-
+    { path: '/about', label: t('nav.about') },
     { path: '/services', label: t('nav.services') },
     { path: '/projects', label: t('nav.projects') },
-    { path: '/about', label: t('nav.about') },
     { path: '/careers', label: t('nav.careers') },
     { path: '/contact', label: t('nav.contact') },
   ];
