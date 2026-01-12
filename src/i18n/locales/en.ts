@@ -524,7 +524,7 @@ const en = {
     }
   },
 
-  // ..... CHATWITHUSRIGHTCARD .....
+  // ..... CHATBOT SYSTEM CONTENT  .....
   chatbot_card: {
     header: {
       name: "KMTI Bot Assistant",
@@ -536,14 +536,306 @@ const en = {
       fb_btn: "Chat us on Facebook"
     },
     menu: {
-      services: "Our Services",
+      services: "Our Service",
       careers: "Careers & Application",
-      location: "Office Location",
+      office: "Office Location",
       support: "Contact Support",
       about: "About KMTI"
     },
     footer: {
       placeholder: "Type a message..."
+    },
+    responses: {
+
+      // ... GENERAL FLOW ... 
+      default: {
+        text: "I'm not sure how to help you with that. Would you like to return to the main menu, start over, or talk to a human?",
+        actionButtons: [
+          { id: "def1", text: "🔙 Back to Main Menu", action: "back", navigateAction: "main-menu" },
+          { id: "def2", text: "🔄 Start Over", action: "start-over" },
+          { id: "def3", text: "👤 Talk to a Human", action: "talk-to-human" }
+        ]
+      },
+      "initial-greeting": {
+        text: "Hi there I'm KMTI Assistant 👋 How can I help you today?",
+        buttons: [
+          { id: "ig1", text: "Our Services", action: "services" },
+          { id: "ig2", text: "Careers & Application", action: "careers" },
+          { id: "ig3", text: "Office Location", action: "location" },
+          { id: "ig4", text: "Contact Support", action: "support" },
+          { id: "ig5", text: "About KMTI", action: "about" }
+        ]
+      },
+      "facebook-teaser": {
+        text: "Interested in joining us? Chat with our HR team on Facebook",
+        actionButtons: [
+          { id: "ft1", text: "Chat us on Facebook", action: "facebook" }
+        ]
+      },
+      "main-menu": {
+        text: "How can I help you today?",
+        buttons: [
+          { id: "mm1", text: "Our Services", action: "services" },
+          { id: "mm2", text: "Careers & Application", action: "careers" },
+          { id: "mm3", text: "Office Location", action: "location" },
+          { id: "mm4", text: "Contact Support", action: "support" },
+          { id: "mm5", text: "About KMTI", action: "about" }
+        ],
+        actionButtons: [
+          { id: "mma1", text: "👤 Talk to a human", action: "talk-to-human" },
+          { id: "mma2", text: "🔄 Start Over", action: "start-over" }
+        ]
+      },
+      "start-over": {
+        text: "Starting fresh! How can I help you today?",
+        buttons: [
+          { id: "so1", text: "Our Services", action: "services" },
+          { id: "so2", text: "Careers & Application", action: "careers" },
+          { id: "so3", text: "Office Location", action: "location" },
+          { id: "so4", text: "Contact Support", action: "supoort" },
+          { id: "so5", text: "About KMTI", action: "about" }
+        ],
+        actionButtons: [
+          { id: "so6", text: "👤 Talk to a Human", action: "talk-to-human" }
+        ]
+      },
+
+      // ... SERVICES BRANCH ...
+      services: {
+        text: "Which service would you like to learn more about?",
+        buttons: [
+          { id: "s1", text: "3D Modeling", action: "3d-modeling" },
+          { id: "s2", text: "2D Detailing", action: "2d-detailing" },
+          { id: "s3", text: "Parts Inspection", action: "parts-inspection" },
+          { id: "s4", text: "Machine Assembly", action: "machine-assembly" },
+          { id: "s5", text: "Back to Main Menu", action: "main-menu" }
+        ]
+      },
+      "3d-modeling": {
+        text: "Our 3D Modeling service creates detailed models for high-precision engineering and visualization, ensuring accurate fabrication and assembly.",
+        buttons: [
+          { id: "3d1", text: "Learn More", action: "learn-more-3d" },
+          { id: "3d2", text: "Back to Services", action: "services" }
+        ]
+      },
+      "2d-detailing": {
+        text: "Our 2D Detailing converts 3D models into precise manufacturing drawings and quality check documents.",
+        buttons: [
+          { id: "2d1", text: "Learn More", action: "learn-more-2d" },
+          { id: "2d2", text: "Back to Services", action: "services" }
+        ]
+      },
+      "parts-inspection": {
+        text: "We inspect fabricated parts based on our design to ensure quality before assembly. Each part undergoes a series of tests using high-tech devices to verify accuracy and precision.",
+        buttons: [
+          { id: "pi1", text: "Learn More", action: "learn-more-inspection" },
+          { id: "pi2", text: "Back to Services", action: "services" }
+        ]
+      },
+      "machine-assembly": {
+        text: "In collaboration with industry pioneers Kusakabe Electric & Machinery Co., Ltd., Next Engineering Co., Ltd., and Maeno Giken Inc., we ensure our clients receive high-performance.",
+        buttons: [
+          { id: "ma1", text: "Learn More", action: "learn-more-assembly" },
+          { id: "ma2", text: "Back to Services", action: "services" }
+        ]
+      },
+
+
+      // ... CAREERS BRANCH ...
+      careers: {
+        text: "Interested in joining KMTI? We're always looking for skilled and passionate individuals. What would you like to know?",
+        buttons: [
+          { id: "c1", text: "View Open Positions", action: "view-positions" },
+          { id: "c2", text: "How to Apply", action: "how-to-apply" },
+          { id: "c3", text: "Hiring Process", action: "hiring-process" },
+          { id: "c4", text: "Career Opportunities", action: "career-opportunities" },
+          { id: "c5", text: "Working Schedule", action: "working-schedule" },
+          { id: "c6", text: "Contact HR", action: "contact-hr" },
+          { id: "c7", text: "Back to Main Menu", action: "main-menu" }
+        ]
+      },
+      "how-to-apply": {
+        text: "You can apply in two ways:\n 1️⃣Submit your resume directly at our office:\n 🏛 Team Quest Building, FCIE, Dasmarinas Cavite\n 2️⃣Apply online through our LinkedIn page\n 3️⃣For more personal or quick inquiries, message our HR directly on Facebook Messenger",
+        actionButtons: [
+          { id: "ha1", text: "Apply via LinkedIn", action: "apply", url: "https://www.linkedin.com/company/kusakabe-maeno-tech-inc/" },
+          { id: "ha2", text: "Message HR on Facebook", action: "message" },
+          { id: "ha3", text: "Back", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "hiring-process": {
+        text: "The hiring process form the initial interview to final assessment usually takes about one day.",
+        actionButtons: [
+          { id: "hp1", text: "Back", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "career-opportunities": {
+        text: "We beleive in continous improvement. One of the great opportunities for career growth at KMTI is the chance to undergo training in Japan to develop technical skills.",
+        actionButtons: [
+          { id: "co1", text: "Apply Now", action: "apply" }
+        ]
+      },
+      "view-positions": {
+        text: "Current openings include:\n• Engineering Staff / CAD Operator / OJT\n• Accounting / Admin Staff\n📍 Located in Dasmarinas, Cavite",
+        actionButtons: [
+          { id: "vp1", text: "Apply Now", action: "apply" }
+        ]
+      },
+      "working-schedule": {
+        text: "Our company operates on a compressed work schedule:\nWork Days: Monday to Friday\nWork Hours:\n• Monday to Thursday: 7:00 AM - 6:00 PM\n• Friday: 7:00 AM -4:00 PM ",
+        actionButtons: [
+          { id: "ws1", text: "Apply Now", action: "apply" }
+        ]
+      },
+      "contact-hr": {
+        text: "You can reach our HR team through:\n💌 info@kmti.com.ph\n☎️ (046)-413-4509\n💬 Or message us on Facebook Messenger for faster response.",
+        actionButtons: [
+          { id: "ch1", text: "✉️ Email HR", action: "email" },
+          { id: "ch2", text: "💬 Message HR on Facebook", action: "message" },
+          { id: "ch3", text: "Back", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "benefits": {
+        text: "KMTI offers competetive compensation and benefits including:\n• Competetive salary\n• Training opportunities in Japan\n• Career growth and development\n• Compressed work schedule (Mon-Fri)\n• Professional development programs",
+        actionButtons: [
+          { id: "ben1", text: "Contact HR for Details", action: "back", navigateAction: "careers" },
+          { id: "ben2", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "application-requirement": {
+        text: "Requirements vary by position, but generally include:\n• Relevant educational background\n• Technical skills (CAD, engineering)\n• Willingness to learn\n• Attention to detail\n• Team collaboration skills\n\nCheck specific positions for detailed requirements!",
+        actionButtons: [
+          { id: "ar1", text: "🔎 View Open Positions", action: "back", navigateAction: "view-positions" },
+          { id: "ar2", text: "📞 Contact HR", action: "back", navigateAction: "contact-hr" },
+          { id: "ar3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "training": {
+        text: "KMTI offers excellent training opportunities:\n• On-the-job training\n• Technical skill development\n• Training programs in Japan\n• Continuous learning and growth\n• Mentorship from experienced engineers",
+        actionButtons: [
+          { id: "tr1", text: "🚀 Learn About Career Growth", action: "back", navigateAction: "career-opportunities" },
+          { id: "tr2", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "application-status": {
+        text: "To check your application status, please contact our HR team directly. They can provide updates on your application and next steps.",
+        actionButtons: [
+          { id: "as1", text: "✉️ Email HR", action: "email" },
+          { id: "as2", text: "💬 Message HR on Facebook", action: "message" },
+          { id: "as3", text: "📞 Call HR (046) 413-4509", action: "call" },
+          { id: "as4", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+
+      // ..  CLIENT QUESTIONS BRANCH ...
+      pricing: {
+        text: "For pricing and quotes, we provide customized estimates based on your project requirements. To get an accurate quote, please contact us with your project details.",
+        actionButtons: [
+          { id: "p1", text: "Email for Quote", action: "email" },
+          { id: "p2", text: "Message for Quote", action: "message" },
+          { id: "p3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      timeline: {
+        text: "Project timelines vary depending on complexity and scope. Typically:\n• 3D Modeling: 1-4 weeks\n• 2D Detailing: 1-3 weeks\n• Parts Insoection: 1-2 weeks\n• Machine Assembly: 2-6 weeks\n\nFor specific timelines, please contact us with your project details.",
+        actionButtons: [
+          { id: "tl1", text: "✉️ Email for Timeline", action: "email" },
+          { id: "tl3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      projects: {
+        text: "Want to see our work? We have completed projects including Transfer Tables, Finishing Line, Air Blow Systems, and more, Check out our projects.",
+        buttons: [
+          { id: "pr1", text: "Go to Projects", action: "view-projects" },
+          { id: "pr2", text: "Back to Main Menu", action: "main-menu" }
+        ]
+      },
+      "view-projects": {
+        text: "I'll take you to our projects page where you can see detailed information, 3D models, and specifications.",
+        buttons: [
+          { id: "vp1", text: "Go to Projects", action: "view-projects" },
+          { id: "vp2", text: "Back to Main Menu", action: "main-menu" }
+        ]
+      },
+      "go-projects": {
+        text: "Redirecting to projects...",
+      },
+      qualifications: {
+        text: "KMTI has years of experience in engineering services, working with industry leaders like Kusakabe Electric & Machinery Co., Ltd., Next Engineering Co., and Maeno Giken Inc. Our team uses advanced technology and follows international standards.",
+        actionButtons: [
+          { id: "q1", text: "Learn More About KMTI", action: "back", navigateAction: "about" },
+          { id: "q2", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      process: {
+        text: "Our process typically involves:\n1️⃣ Consultation & Requirements Gathering\n2️⃣ Design & 3D Modeling\n3️⃣ 2D Detailing & Quality Checking\n4️⃣ Client Review & Modifications\n5️⃣ Final Approval & Delivery\n\nWe keep clients involved at every stage!",
+        actionButtons: [
+          { id: "proc1", text: "✉️ Discuss Process", action: "email" },
+          { id: "proc2", text: "💬 Message for Details", action: "message" },
+          { id: "proc3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      requirements: {
+        text: "To get started, we typically need:\n• Project specifications\n• Design requirements\n• Material preferences\n• Timeline expectations\n• Budget considerations\n\nContact us to discuss your specific needs!",
+        actionButtons: [
+          { id: "req1", text: "✉️ Email Requirements", action: "email" },
+          { id: "req3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      payment: {
+        text: "Payment terms are discussed during project consultation and are customized based on project scope. We accept various payment methods and can provide flexible payment schedules.",
+        actionButtons: [
+          { id: "pay1", text: "✉️ Email for Payment Info", action: "email" },
+          { id: "pay3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      consultation: {
+        text: "We'd love to discuss your project! You can schedule a consultation through:\n• Facebook Messenger (fastest response)\n• Email\n• Phone Call\n• Office Visit",
+        actionButtons: [
+          { id: "con1", text: "💬 Schedule via Facebook", action: "message" },
+          { id: "con2", text: "✉️ Email for Consultation", action: "email" },
+          { id: "con3", text: "📞 Call us (046) 413-4509", action: "call" },
+          { id: "con4", text: "Back to Main Mene", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // ... MISC BRANCH ...
+      location: {
+        text: "Our main office is located at:\n\nVital Industrial Prop. Inc. Bldg. B. Unit 2-B. First Cavite Industrial Estate Langkaan 1. Dasmarinas City, Cavite 4126 Philippines\nNeed Directions?",
+        actionButtons: [
+          { id: "loc1", text: "Open in Google Maps", action: "maps" }
+        ]
+      },
+      support: {
+        text: "Need help with something else? You can reach our support team directly for:\n• Service or project inquiries\n• Technical assistance\n• Sales inquiries",
+        actionButtons: [
+          { id: "sup1", text: "Email us", action: "email" },
+          { id: "sup2", text: "Message us on Facebook", action: "message" },
+          { id: "sup3", text: "Back", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      about: {
+        text: "KMTI (Kusakabe & Maeno Technologies Inc.) is a leading engineering services company providing innovative solutions in 3D modeling, 2D detailing, parts inspection, and machine assembly. ",
+        buttons: [
+          { id: "ab1", text: "Learn More", action: "learn-more-about" },
+          { id: "ab2", text: "🔙 Back to Main Menu", action: "main-menu" }
+        ]
+      },
+      "learn-more-about": {
+        text: "KMTI is committed to delivering high-quality engineering solutions with precision and excellence. Our team of skilled professionals works closely with clients to ensure their projects meet the highest standards.",
+        buttons: [
+          { id: "lma1", text: "🔙 Back to Main Menu", action: "main-menu" }
+        ]
+      },
+      "talk-to-human": {
+        text: "I'd be happy to connect you with our team! How would you like to reach us? ",
+        actionButtons: [
+          { id: "th1", text: " Email us", action: "email", url: "mailto:info@kmti.com.ph" },
+          { id: "th2", text: "Message us on Facebook", action: "facebook", url: "https://www.facebook.com/kmti.com.ph/" },
+          { id: "th3", text: "Call us (046) 413-4509", action: "call" },
+          { id: "th4", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      }
     }
   },
 
