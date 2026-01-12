@@ -258,7 +258,7 @@
 }
 
 .chatbot-card-message-content-user {
-  max-width: 75%;
+  max-width: 100%;
   align-items: flex-end;
 }
 
@@ -269,6 +269,8 @@
   text-align: right;
   border-radius: 12px 0 12px 12px;
   /* all corners except top-right */
+  padding: 0.6rem 0.85rem;
+  line-height: 1.2;
 }
 
 /* Menu Buttons */

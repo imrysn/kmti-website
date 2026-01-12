@@ -328,7 +328,7 @@ const jp = {
       product: {
         title: "製品機械設備 > チューブ（サブマシン）保管",
         category: "",
-        descrition: ""
+        description: ""
       },
       transfer: {
         title: "トランスファーテーブル",
@@ -386,7 +386,7 @@ const jp = {
         isometric: "アイソメトリック",
         isometric_title: "アイソメトリックビュー",
         front: "正面",
-        fornt_title: "正面図",
+        front_title: "正面図",
         back: "背面",
         back_title: "背面図",
         left: "左側",
@@ -544,6 +544,299 @@ const jp = {
     },
     footer: {
       placeholder: "メッセージを入力..."
+    },
+    responses: {
+
+      // .. GENERAL FLOW ...
+      default: {
+        text: "その件について、どうお手伝いできるか分かりません。メインメニューに戻る、最初からやり直す、または担当者と話す、どれがよろしいでしょうか？",
+        actionButtons: [
+          { id: "def1", text: "🔙 メインメニューに戻る", action: "back", navigateAction: "main-menu" },
+          { id: "def2", text: "🔄 最初からやり直す", action: "start-over" },
+          { id: "def3", text: "👤 オペレーターと話す", action: "talk-to-human" }
+        ]
+      },
+      "initial-greeting": {
+        text: "こんにちは。KMTI AIアシスタントです 👋 本日はどのようなご用件でしょうか。",
+        buttons: [
+          { id: "ig1", text: "当社のサービス", action: "services" },
+          { id: "ig2", text: "採用情報・応募", action: "careers" },
+          { id: "ig3", text: "事業所所在地", action: "location" },
+          { id: "ig4", text: "お問い合わせ", action: "support" },
+          { id: "ig5", text: "KMTIについて", action: "about" }
+        ]
+      },
+      "facebook-teaser": {
+        text: "当社への参加に興味がありますか？Facebookで人事チームとチャットしましょう。",
+        actionButtons: [
+          { id: "ft1", text: "Facebookで私たちとチャットしましょう", action: "facebook" }
+        ]
+      },
+      "main-menu": {
+        text: "本日はどのようなご用件でしょうか？",
+        buttons: [
+          { id: "mm1", text: "当社のサービス", action: "services" },
+          { id: "mm2", text: "採用情報・応募", action: "careers" },
+          { id: "mm3", text: "事業所所在地", action: "location" },
+          { id: "mm4", text: "お問い合わせ", action: "support" },
+          { id: "mm5", text: "KMTIについて", action: "about" }
+        ],
+        actionButtons: [
+          { id: "mma1", text: "オペレーターと話す", action: "talk-to-human" },
+          { id: "mma2", text: "最初からやり直す", action: "start-over" }
+        ]
+      },
+      "start-over": {
+        text: "",
+        buttons: [
+          { id: "so1", text: "当社のサービス", action: "services" },
+          { id: "so2", text: "採用情報・応募", action: "careers" },
+          { id: "so3", text: "事業所所在地", action: "location" },
+          { id: "so4", text: "お問い合わせ", action: "support" },
+          { id: "so5", text: "KMTIについて", action: "about" }
+        ],
+        actionButtons: [
+          { id: "so6", text: "オペレーターと話す", action: "talk-to-human" }
+        ]
+      },
+
+      // ... SERVICES BRANCH ...
+      services: {
+        text: "どのサービスについて詳しく知りたいですか？",
+        buttons: [
+          { id: "s1", text: "3Dモデリング", action: "3d-modeling" },
+          { id: "s2", text: "2D詳細設計", action: "2d-detailing" },
+          { id: "s3", text: "部品検査", action: "parts-inspection" },
+          { id: "s4", text: "機械組立", action: "machine-assembly" },
+          { id: "s5", text: "メインメニューに戻る", action: "main-menu" }
+        ]
+      },
+      "3d-modeling": {
+        text: "当社の3Dモデリングサービスは、高精度なエンジニアリングと可視化のための詳細なモデルを作成し、正確な製造と組立を保証します。当社のプロジェクトについて詳しく知りたいですか？",
+        buttons: [
+          { id: "3d1", text: "詳細を見る", action: "learn-more-3d" },
+          { id: "3d2", text: "サービスに戻る", action: "services" }
+        ]
+      },
+      "2d-detailing": {
+        text: "当社の2D詳細設計は、3Dモデルを精密な製造図面および品質検査文書に変換します。",
+        buttons: [
+          { id: "2d1", text: "詳細を見る", action: "learn-more-2d" },
+          { id: "2d2", text: "サービス一覧に戻る", action: "services" }
+        ]
+      },
+      "parts-inspection": {
+        text: "お客様の設計に基づき、組立前の品質確保のため加工部品を検査します。各部品は高精度測定装置を用いた一連の試験を経て、精度と正確性を検証します。",
+        buttons: [
+          { id: "pi1", text: "詳細を見る", action: "learn-more-inspection" },
+          { id: "pi2", text: "サービス一覧に戻る", action: "services" }
+        ]
+      },
+      "machine-assembly": {
+        text: "業界のパイオニアである日下部電機機械株式会社、ネクストエンジニアリング、および前野技研株式会社との連携により、効率性と長期的な成功を追求した高性能製品をお客様に提供します。",
+        buttons: [
+          { id: "ma1", text: "詳細を見る", action: "learn-more-assembly" },
+          { id: "ma2", text: "サービス一覧に戻る", action: "services" }
+        ]
+      },
+
+      // ... CAREERS BRANCH ...
+      careers: {
+        text: "kMTIへの参加に興味がありますか？私たちは常に、スキルと情熱を持った才能ある人材を求めています。何をお知りになりたいですか？",
+        buttons: [
+          { id: "c1", text: "募集職種を見る", action: "view-positions" },
+          { id: "c2", text: "応募方法", action: "how-to-apply" },
+          { id: "c3", text: "採用プロセス", action: "hiring-process" },
+          { id: "c4", text: "キャリア機会", action: "career-opportunities" },
+          { id: "c5", text: "勤務スケジュール", action: "working-schedule" },
+          { id: "c6", text: "人事部へのお問い合わせ", action: "contact-hr" },
+          { id: "c7", text: "メインメニューに戻る", action: "main-menu" }
+        ]
+      },
+      "how-to-apply": {
+        text: "応募方法は2通りあります：\n 1️⃣当社オフィスに直接履歴書を提出：\n 🏛 チームクエストビル、FCIE、ダスマリナス・カビテ\n 2️⃣LinkedInページからオンライン応募\n 3️⃣より個人的な問い合わせや迅速な対応をご希望の場合は、Facebook Messengerで人事部まで直接メッセージをお送りください",
+        actionButtons: [
+          { id: "ha1", text: "LinkedIn経由で応募する", action: "apply", url: "https://www.linkedin.com/company/kusakabe-maeno-tech-inc/" },
+          { id: "ha2", text: "Facebookで人事部にメッセージを送る", action: "message" },
+          { id: "ha3", text: "戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "hiring-process": {
+        text: "採用プロセスは、最初の面接から最終評価まで通常1日程度かかります。",
+        actionButtons: [
+          { id: "hp1", text: "戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "career-opportunities": {
+        text: "私たちは継続的な改善を信じています。KMTIにおけるキャリア成長の大きな機会の一つは、技術スキルを磨くために日本で研修を受けるチャンスです。",
+        actionButtons: [
+          { id: "co1", text: "今すぐ応募する", action: "apply" }
+        ]
+      },
+      "view-positions": {
+        text: "現在募集中の職種：\n• エンジニアリングスタッフ ／ CADオペレーター ／ OJT（オン・ザ・ジョブ・トレーニング）\n• 経理 ／ 事務スタッフ\n📍 勤務地：カビテ州ダスマリナス",
+        actionButtons: [
+          { id: "vp1", text: "今すぐ応募する", action: "apply" }
+        ]
+      },
+      "working-schedule": {
+        text: "当社の勤務スケジュールは圧縮勤務制を採用しております：\n勤務日：月曜日から金曜日\n勤務時間：\n• 月曜日から木曜日：午前7時～午後6時\n• 金曜日：午前7時～午後4時 ",
+        actionButtons: [
+          { id: "ws1", text: "今すぐ応募する", action: "apply" }
+        ]
+      },
+      "contact-hr": {
+        text: "当社の人事チームへは下記よりご連絡いただけます：\n💌 info@kmti.com.ph\n☎️ (046)-413-4509\n💬 より迅速な対応をご希望の場合は、Facebook Messengerでメッセージをお送りください。",
+        actionButtons: [
+          { id: "ch1", text: "✉️ 人事部にメールを送る", action: "email" },
+          { id: "ch2", text: "💬 Facebookで人事部にメッセージを送る", action: "message" },
+          { id: "ch3", text: "戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "benefits": {
+        text: "KMTIは競争力のある報酬と福利厚生を提供しています。内容は以下の通りです：\n• 競争力のある給与\n• 日本での研修機会\n• キャリアの成長と発展\n• 圧縮勤務スケジュール（月～金）\n• 専門能力開発プログラム",
+        actionButtons: [
+          { id: "ben1", text: "詳細は人事部までお問い合わせください", action: "back", navigateAction: "careers" },
+          { id: "ben2", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "application-requirement": {
+        text: "要件は職種によって異なりますが、一般的に以下のものが含まれます：\n• 関連する学歴\n• 技術スキル（CAD、エンジニアリング）\n• 学習意欲\n• 細部への注意力\n• チームコラボレーションスキル\n\n詳細な要件については、各職種の詳細をご確認ください！",
+        actionButtons: [
+          { id: "ar1", text: "🔎 募集職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "ar2", text: "📞 人事部へお電話ください (046) 413-4509", action: "back", navigateAction: "contact-hr" },
+          { id: "ar3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "training": {
+        text: "KMTIは優れた研修機会を提供します：• 現場研修• 技術スキルの開発• 継続的な学習と成長• 経験豊富なエンジニアによるメンターシップ",
+        actionButtons: [
+          { id: "tr1", text: "🚀 キャリア成長について学ぶ ", action: "back", navigateAction: "career-opportunities" },
+          { id: "tr2", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+      "application-status": {
+        text: "応募状況を確認するには、当社の人事チームに直接お問い合わせください。担当者が応募状況や今後の手順についてご案内いたします。",
+        actionButtons: [
+          { id: "as1", text: "✉️ 人事部にメールを送る", action: "email" },
+          { id: "as2", text: "💬 Facebookで人事部にメッセージを送る", action: "message" },
+          { id: "as3", text: "📞 人事部へお電話ください (046) 413-4509", action: "call" },
+          { id: "as4", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      //.. CLIENT QUESTIONS BRANCH ...
+      pricing: {
+        text: "価格および見積もりについては、お客様のプロジェクト要件に基づいたカスタマイズされた見積もりをご提供いたします。正確な見積もりをご希望の場合は、プロジェクトの詳細をお知らせください。",
+        actionButtons: [
+          { id: "p1", text: "見積もり依頼メール", action: "email" },
+          { id: "p2", text: "見積もり依頼メッセージ", action: "message" },
+          { id: "p3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      timeline: {
+        text: "プロジェクトのスケジュールは、複雑さと範囲によって異なります。一般的な目安は以下の通りです：\n• 3Dモデリング：1～4週間\n• 2D詳細設計：1～3週間\n• 部品検査：1～2週間\n• 機械組立：2～6週間\n\n具体的なスケジュールについては、プロジェクトの詳細をお知らせの上、お問い合わせください。",
+        actionButtons: [
+          { id: "tl1", text: "✉️ タイムラインに関するメール", action: "email" },
+          { id: "tl3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      projects: {
+        text: "当社の実績をご覧になりませんか？これまでに完成させたプロジェクトには、移送テーブル、仕上げライン、エアブローシステムなどが含まれます。ぜひポートフォリオをご覧ください！",
+        buttons: [
+          { id: "pr1", text: "プロジェクトへ移動", action: "view-projects" },
+          { id: "pr2", text: "メインメニューに戻る", action: "main-menu" }
+        ]
+      },
+      "view-projects": {
+        text: "プロジェクトページへご案内します。詳細情報、3Dモデル、仕様書をご覧いただけます。",
+        buttons: [
+          { id: "vp1", text: "プロジェクトへ移動", action: "view-projects" },
+          { id: "vp2", text: "メインメニューに戻る", action: "main-menu" }
+        ]
+      },
+      "go-projects": {
+        text: "プロジェクトへリダイレクト中...",
+      },
+      qualifications: {
+        text: "KMTIはエンジニアリングサービスにおいて長年の実績を有しています。当社は日下部電機株式会社、ネクストエンジニアリング株式会社、前野技研株式会社など業界をリードする企業と協業してきました。当社のチームは先進技術を活用し、国際基準に準拠したサービスを提供します。",
+        actionButtons: [
+          { id: "q1", text: "KMTIについて詳しく知る", action: "back", navigateAction: "about" },
+          { id: "q2", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      process: {
+        text: "Our process typically involves:\n1️⃣ Consultation & Requirements Gathering\n2️⃣ Design & 3D Modeling\n3️⃣ 2D Detailing & Quality Checking\n4️⃣ Client Review & Modifications\n5️⃣ Final Approval & Delivery\n\nWe keep clients involved at every stage!",
+        actionButtons: [
+          { id: "proc1", text: "✉️  プロセスについて議論する", action: "email" },
+          { id: "proc3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      requirements: {
+        text: "ご依頼の際には、通常以下の情報が必要となります：\n• プロジェクト仕様\n• デザイン要件\n• 材料のご希望\n• スケジュールに関するご要望\n• 予算に関するご検討事項\n\n具体的なご要望についてご相談ください！",
+        actionButtons: [
+          { id: "req1", text: "✉️ メール要件", action: "email" },
+          { id: "req3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      payment: {
+        text: "支払い条件はプロジェクト相談時に協議し、プロジェクトの範囲に基づいてカスタマイズされます。様々な支払い方法に対応し、柔軟な支払いスケジュールを提供可能です。",
+        actionButtons: [
+          { id: "pay1", text: "💬 支払い情報に関するメール", action: "email" },
+          { id: "pay3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      consultation: {
+        text: "",
+        actionButtons: [
+          { id: "con1", text: "💬 Facebook経由でスケジュールする", action: "message" },
+          { id: "con2", text: "✉️ 相談用メール", action: "email" },
+          { id: "con3", text: "📞 お電話ください (046) 413-4509 ", action: "call" },
+          { id: "con4", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // ... MISC BRANCH ...
+      location: {
+        text: "本社所在地：\n\nVital Industrial Prop. Inc. Bldg. B. Unit 2-B. First Cavite Industrial Estate Langkaan 1. Dasmarinas City, Cavite 4126 Philippines\n道順をご案内しましょうか？",
+        actionButtons: [
+          { id: "loc1", text: "Googleマップで開く", action: "maps" },
+        ]
+      },
+      support: {
+        text: "他に何かお手伝いが必要ですか？以下の件についてはサポートチームに直接お問い合わせください：\n• サービスやプロジェクトに関するお問い合わせ\n• 技術的なサポート\n• 販売に関するお問い合わせ",
+        actionButtons: [
+          { id: "sup1", text: "メールでお問い合わせ", action: "email" },
+          { id: "sup2", text: "Facebookでメッセージを送る", action: "message" },
+          { id: "sup3", text: "戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      about: {
+        text: "KMTI（クサカベ・ミーノ・テック株式会社）は、3Dモデリング、2D詳細設計、部品検査、機械組立における革新的なソリューションを提供する主要なエンジニアリングサービス企業です。",
+        buttons: [
+          { id: "ab1", text: "詳細を見る", action: "learn-more-about" },
+          { id: "ab2", text: "🔙 メインメニューに戻る", action: "main-menu" }
+        ]
+      },
+
+      "learn-more-about": {
+        text: "KMTIは、精密かつ卓越した高品質なエンジニアリングソリューションの提供に尽力しています。熟練した専門家チームがお客様と緊密に連携し、プロジェクトが最高水準を満たすことを保証します。",
+        buttons: [
+          { id: "lma1", text: "🔙 メインメニューに戻る", action: "learn-more-about" }
+        ]
+      },
+      "talk-to-human": {
+        text: "喜んで弊社チームをご紹介いたします！ご連絡方法はどちらがよろしいでしょうか？",
+        actionButtons: [
+          { id: "th1", text: "メールでお問い合わせ", action: "email", url: "mailto:info@kmti.com.ph" },
+          { id: "th2", text: "Facebookでメッセージを送る", action: "facebook", url: "https://www.facebook.com/kmti.com.ph/" },
+          { id: "th3", text: "お電話ください (046) 413-4509", action: "call" },
+          { id: "th4", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+
     }
   },
 
