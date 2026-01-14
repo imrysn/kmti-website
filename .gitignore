@@ -53,3 +53,4 @@ build/
 # This matches the error from your terminal exactly
 .git_backup_large/
 kmti-website-backup/
+.git_backup_large/
