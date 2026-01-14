@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // Added for translation
+import { useTranslation } from 'react-i18next';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
@@ -10,9 +10,14 @@ import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTable
 
 // Images
 import dedemplerImage from '../../assets/image3D/dedempler.png';
+import bundlingImage from '../../assets/image3D/bundling.png';
+import bindingImage from '../../assets/image3D/binding.png';
 import looperImage from '../../assets/image3D/looper.png';
+import horizontalLooperImage from '../../assets/image3D/horizontal-looper.png';
 import formingImage from '../../assets/image3D/forming.png';
 import shearImage from '../../assets/image3D/shear.png';
+import uncoilerImage from '../../assets/image3D/uncoiler.png';
+import levelerImage from '../../assets/image3D/leveler.png';
 import finishingImage from '../../assets/image3D/finishing.png';
 import finishingLineImage from '../../assets/image3D/finishingLine.png';
 import millingImage from '../../assets/image3D/milling.png';
@@ -20,8 +25,11 @@ import furnaceImage from '../../assets/image3D/furnace.png';
 
 const Projects: React.FC<ProjectsPageProps> = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation(); // Initialize translation hook
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // Filter State
+  const [activeFilter, setActiveFilter] = useState('ALL');
 
   // Modal states 
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
@@ -32,6 +40,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   const [isFinishingLineModalOpen, setIsFinishingLineModalOpen] = useState(false);
   const [isCutOffModalOpen, setIsCutOffModalOpen] = useState(false);
   const [isFurnaceModalOpen, setIsFurnaceModalOpen] = useState(false);
+  const [selectedProjectKey, setSelectedProjectKey] = useState<string | undefined>(undefined);
   const hasCheckedUrlParams = useRef(false);
 
   // Handle query parameters to open modals 
@@ -59,10 +68,11 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   }, [searchParams, setSearchParams]);
 
   // Project data mapped to translation keys
-  const projects = [
+  const projects = useMemo(() => [
     {
       id: 1,
       internalTitle: 'DEDIMPLER & FACER',
+      key: 'dedimpler',
       title: t('home.projects.items.dedimpler.title'),
       description: t('home.projects.items.dedimpler.desc'),
       category: t('home.projects.items.dedimpler.cat'),
@@ -70,12 +80,43 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       link: '#',
     },
     {
+      id: 9,
+      internalTitle: 'BUNDLING MACHINE',
+      key: 'bundling',
+      title: t('home.projects.items.bundling.title'),
+      description: t('home.projects.items.bundling.desc'),
+      category: t('home.projects.items.bundling.cat'),
+      image: bundlingImage,
+      link: '#',
+    },
+    {
+      id: 10,
+      internalTitle: 'BINDING MACHINE',
+      key: 'binding',
+      title: t('home.projects.items.binding.title'),
+      description: t('home.projects.items.binding.desc'),
+      category: t('home.projects.items.binding.cat'),
+      image: bindingImage,
+      link: '#',
+    },
+    {
       id: 2,
       internalTitle: 'LOOPER MACHINE',
+      key: 'looper',
       title: t('home.projects.items.looper.title'),
       description: t('home.projects.items.looper.desc'),
       category: t('home.projects.items.looper.cat'),
       image: looperImage,
+      link: '#',
+    },
+    {
+      id: 11,
+      internalTitle: 'HORIZONTAL LOOPER MACHINE',
+      key: 'horizontal',
+      title: t('home.projects.items.horizontal.title'),
+      description: t('home.projects.items.horizontal.desc'),
+      category: t('home.projects.items.horizontal.cat'),
+      image: horizontalLooperImage,
       link: '#',
     },
     {
@@ -90,10 +131,31 @@ const Projects: React.FC<ProjectsPageProps> = () => {
     {
       id: 4,
       internalTitle: 'SHEAR WELDER MACHINE',
+      key: 'shear',
       title: t('home.projects.items.shear.title'),
       description: t('home.projects.items.shear.desc'),
       category: t('home.projects.items.shear.cat'),
       image: shearImage,
+      link: '#',
+    },
+    {
+      id: 12,
+      internalTitle: 'UNCOILER MACHINE',
+      key: 'uncoiler',
+      title: t('home.projects.items.uncoiler.title'),
+      description: t('home.projects.items.uncoiler.desc'),
+      category: t('home.projects.items.uncoiler.cat'),
+      image: uncoilerImage,
+      link: '#',
+    },
+    {
+      id: 13,
+      internalTitle: 'LEVELER MACHINE',
+      key: 'leveler',
+      title: t('home.projects.items.leveler.title'),
+      description: t('home.projects.items.leveler.desc'),
+      category: t('home.projects.items.leveler.cat'),
+      image: levelerImage,
       link: '#',
     },
     {
@@ -132,7 +194,19 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       image: furnaceImage,
       link: '#',
     },
-  ];
+  ], [t]);
+
+  // Randomized projects list (memoized to prevent reshuffling on every render)
+  const shuffledProjects = useMemo(() => {
+    return [...projects].sort(() => Math.random() - 0.5);
+  }, [projects]);
+
+  // Logic for filtering
+  const categories = ['ALL', ...Array.from(new Set(projects.map(p => p.category)))];
+
+  const filteredProjects = activeFilter === 'ALL'
+    ? shuffledProjects
+    : shuffledProjects.filter(p => p.category === activeFilter);
 
   return (
     <div className="projects-page">
@@ -147,8 +221,22 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       <div className="projects-grid-section" data-aos="fade-up">
         <div className="projects-grid-container container">
           <p className="projects-grid-description">{t('projects.grid.description')}</p>
+
+          {/* Filter Tabs */}
+          <div className="projects-filter-tabs">
+            {categories.map((cat, index) => (
+              <button
+                key={index}
+                className={`projects-filter-tab ${activeFilter === cat ? 'active' : ''}`}
+                onClick={() => setActiveFilter(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
           <div className="projects-card-grid">
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <ProjectsCard
                 key={project.id}
                 image={project.image}
@@ -158,14 +246,14 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                 linkText={t('common.view_more')}
                 linkHref={project.link}
                 onClick={
-                  project.internalTitle === 'DEDIMPLER & FACER'
-                    ? () => setIsProjectModalOpen(true)
-                    : project.internalTitle === 'LOOPER MACHINE'
-                      ? () => setIsLooperModalOpen(true)
+                  ['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(project.internalTitle)
+                    ? () => { setSelectedProjectKey((project as any).key); setIsProjectModalOpen(true); }
+                    : ['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE'].includes(project.internalTitle)
+                      ? () => { setSelectedProjectKey((project as any).key); setIsLooperModalOpen(true); }
                       : project.internalTitle === 'FORMING AND SIZING MACHINE'
                         ? () => setIsFormingModalOpen(true)
-                        : project.internalTitle === 'SHEAR WELDER MACHINE'
-                          ? () => setIsStripEntryModalOpen(true)
+                        : ['SHEAR WELDER MACHINE', 'UNCOILER MACHINE', 'LEVELER MACHINE'].includes(project.internalTitle)
+                          ? () => { setSelectedProjectKey((project as any).key); setIsStripEntryModalOpen(true); }
                           : project.internalTitle === 'FINISHING TABLE'
                             ? () => setIsTransferTableLineModalOpen(true)
                             : project.internalTitle === 'FINISHING LINE'
@@ -191,11 +279,10 @@ const Projects: React.FC<ProjectsPageProps> = () => {
         </div>
       </div>
 
-      {/* Modal logic preserved - ensure Modal components themselves handle internal translation if needed */}
-      <ProjectModal isOpen={isProjectModalOpen} onClose={() => { setIsProjectModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <LooperModal isOpen={isLooperModalOpen} onClose={() => { setIsLooperModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <ProjectModal isOpen={isProjectModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsProjectModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <LooperModal isOpen={isLooperModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsLooperModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
       <FormingModal isOpen={isFormingModalOpen} onClose={() => { setIsFormingModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <StripEntryModal isOpen={isStripEntryModalOpen} onClose={() => { setIsStripEntryModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <StripEntryModal isOpen={isStripEntryModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsStripEntryModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
       <TransferTableLineModal isOpen={isTransferTableLineModalOpen} onClose={() => { setIsTransferTableLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
       <FinishingLineModal isOpen={isFinishingLineModalOpen} onClose={() => { setIsFinishingLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
       <CutOffModal isOpen={isCutOffModalOpen} onClose={() => { setIsCutOffModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />

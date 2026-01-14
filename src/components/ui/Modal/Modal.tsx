@@ -243,20 +243,35 @@ export const ManagementTeamModal: React.FC<{ isOpen: boolean; onClose: () => voi
 };
 
 // --- PROJECT MODAL ---
-export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; initialProjectKey?: string }> = ({ isOpen, onClose, initialProjectKey }) => {
   const { t } = useTranslation();
-  const [idx, setIdx] = useState(0);
-  const [is3D, setIs3D] = useState(false);
 
-  if (!isOpen) return null;
-
-  const projects = [
+  const allProjects = [
     { image: dedemplerImage, key: 'dedimpler', modelKey: 'Dedimpler and Facer' },
     { image: bundlingImage, key: 'bundling', modelKey: 'Bundling Machine' },
     { image: bindingImage, key: 'binding', modelKey: 'Binding Machine' }
   ];
 
-  const curr = projects[idx];
+  const [idx, setIdx] = useState(0);
+  const [is3D, setIs3D] = useState(false);
+
+  // Filter projects if a key is provided
+  const displayProjects = initialProjectKey
+    ? allProjects.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
+    : allProjects;
+
+  useEffect(() => {
+    // Reset index when opening or key changes
+    if (isOpen) {
+      setIdx(0);
+    }
+  }, [isOpen, initialProjectKey]);
+
+  if (!isOpen) return null;
+
+  // Use the filtered list, fallback to first if filtering weirdly failed involved
+  const curr = displayProjects[idx] || displayProjects[0];
+  if (!curr) return null; // Should not happen given existing data
 
   return (
     <div className="service-modal-overlay" onClick={onClose}>
@@ -289,7 +304,7 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
         </div>
         <div className="project-modal-thumbnails-section">
           <div className="project-modal-thumbnails">
-            {projects.map((p, i) => (
+            {displayProjects.map((p, i) => (
               <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
                 <img src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
               </button>
@@ -308,19 +323,32 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
   );
 };
 // --- LOOPER MODAL ---
-export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initialProjectKey?: string }> = ({ isOpen, onClose, initialProjectKey }) => {
   const { t } = useTranslation();
-  const [idx, setIdx] = useState(0);
-  const [is3D, setIs3D] = useState(false);
 
-  if (!isOpen) return null;
-
-  const items = [
+  const allItems = [
     { image: looperImage, key: 'looper', modelKey: 'Looper Machine' },
     { image: horizontalLooperImage, key: 'horizontal', modelKey: 'Horizontal Looper Machine' }
   ];
 
-  const curr = items[idx];
+  const [idx, setIdx] = useState(0);
+  const [is3D, setIs3D] = useState(false);
+
+  // Filter items if a key is provided
+  const displayItems = initialProjectKey
+    ? allItems.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
+    : allItems;
+
+  useEffect(() => {
+    if (isOpen) {
+      setIdx(0);
+    }
+  }, [isOpen, initialProjectKey]);
+
+  if (!isOpen) return null;
+
+  const curr = displayItems[idx] || displayItems[0];
+  if (!curr) return null;
 
   return (
     <div className="service-modal-overlay" onClick={onClose}>
@@ -353,7 +381,7 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
         </div>
         <div className="project-modal-thumbnails-section">
           <div className="project-modal-thumbnails">
-            {items.map((p, i) => (
+            {displayItems.map((p, i) => (
               <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
                 <img src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
               </button>
@@ -418,19 +446,33 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
 };
 
 // --- STRIP ENTRY MODAL ---
-export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; initialProjectKey?: string }> = ({ isOpen, onClose, initialProjectKey }) => {
   const { t } = useTranslation();
-  const [idx, setIdx] = useState(0);
-  const [is3D, setIs3D] = useState(false);
 
-  if (!isOpen) return null;
-
-  const items = [
+  const allItems = [
     { image: shearImage, key: 'shear', modelKey: 'Shear Welder Machine' },
     { image: uncoilerImage, key: 'uncoiler', modelKey: 'Uncoiler Machine' },
     { image: levelerImage, key: 'leveler', modelKey: 'Leveler Machine' }
   ];
-  const curr = items[idx];
+
+  const [idx, setIdx] = useState(0);
+  const [is3D, setIs3D] = useState(false);
+
+  // Filter items if a key is provided
+  const displayItems = initialProjectKey
+    ? allItems.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
+    : allItems;
+
+  useEffect(() => {
+    if (isOpen) {
+      setIdx(0);
+    }
+  }, [isOpen, initialProjectKey]);
+
+  if (!isOpen) return null;
+
+  const curr = displayItems[idx] || displayItems[0];
+  if (!curr) return null;
 
   return (
     <div className="service-modal-overlay" onClick={onClose}>
@@ -463,7 +505,7 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void }>
         </div>
         <div className="project-modal-thumbnails-section">
           <div className="project-modal-thumbnails">
-            {items.map((p, i) => (
+            {displayItems.map((p, i) => (
               <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
                 <img src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
               </button>

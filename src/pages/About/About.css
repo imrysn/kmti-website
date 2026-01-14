@@ -692,9 +692,9 @@
 
 .related-company-name {
   font-family: var(--font-family-heading);
-  color: #FFFFFF;
+  color: white;
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 100;
   text-transform: uppercase;
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
@@ -746,6 +746,128 @@
   flex-wrap: wrap;
   margin-left: 20%;
   margin-right: 20%;
+}
+
+/* ============================================
+   HISTORY SECTION
+   ============================================ */
+
+.about-history-section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.about-history-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 2rem;
+}
+
+.about-history-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 4rem;
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-history-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Central Line */
+.about-history-timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: rgba(81, 162, 255, 0.3);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.about-history-item {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.about-history-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.about-history-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+/* Dots on the line */
+.about-history-item::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  background-color: #020618;
+  border: 2px solid #51A2FF;
+  top: 22px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.about-history-item.right::after {
+  left: -8px;
+}
+
+.about-history-content {
+  padding: 20px;
+  background-color: rgba(15, 23, 43, 0.4);
+  border: 1px solid rgba(81, 162, 255, 0.2);
+  border-radius: 12px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-history-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(81, 162, 255, 0.2);
+  border-color: rgba(81, 162, 255, 0.5);
+}
+
+.about-history-year {
+  font-family: var(--font-family-heading);
+  font-size: 1.5rem;
+  color: #51A2FF;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.about-history-item-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.about-history-description {
+  font-family: var(--font-family-body);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
 }
 
 /* ============================================
@@ -1729,5 +1851,28 @@
   /* Enhance vision/mission cards for very small screens */
   .about-vision-mission-grid {
     gap: 1rem;
+  }
+}
+
+/* History Timeline Responsive */
+@media screen and (max-width: 768px) {
+  .about-history-timeline::after {
+    left: 31px;
+  }
+
+  .about-history-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    text-align: left !important;
+  }
+
+  .about-history-item.left,
+  .about-history-item.right {
+    left: 0;
+  }
+
+  .about-history-item::after {
+    left: 23px !important;
   }
 }

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import './Careers.css';
 import { CareersPageProps } from './Careers.types';
 import careersBg from '../../assets/careersbg.jpg';
-import kmtiModel from '../../assets/kmti-model.png';
+import kmtiModel from '../../assets/Model.png';
 import mapsIcon from '../../assets/icons/maps-icon.png';
 import clockIcon from '../../assets/icons/clock-icon.png';
 import insuranceIcon from '../../assets/icons/insurance-icon.png';
@@ -84,46 +84,6 @@ const Careers: React.FC<CareersPageProps> = () => {
         </div>
       </section>
 
-      <section className="careers-positions-section" data-aos="fade-up">
-        <div className="careers-positions-container container">
-          <h2 className="careers-positions-title">{t('careers.positions.title')}</h2>
-          <p className="careers-positions-subtitle">
-            {t('careers.positions.subtitle')}
-          </p>
-          <div className="careers-positions-grid">
-            <ApplyCard
-              title={t('careers.positions.eng.title')}
-              location={t('careers.positions.eng.location')}
-              type={t('careers.positions.eng.type')}
-              locationIcon={mapsIcon}
-              typeIcon={clockIcon}
-              description={t('careers.positions.eng.desc')}
-              skills={['AutoCAD', 'SolidWorks', 'iCAD', '2D Detailing', '3D Drawing', 'Mathematics']}
-              requirements={t('careers.positions.eng.requirements', { returnObjects: true }) as string[]}
-              preferredCourses={t('careers.positions.eng.courses', { returnObjects: true }) as string[]}
-              onApply={() => {
-                window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/jobs/', '_blank');
-              }}
-              applyText={t('careers.positions.apply_btn')}
-            />
-            <ApplyCard
-              title={t('careers.positions.admin.title')}
-              location={t('careers.positions.admin.location')}
-              type={t('careers.positions.admin.type')}
-              locationIcon={mapsIcon}
-              typeIcon={clockIcon}
-              description={t('careers.positions.admin.desc')}
-              requirements={t('careers.positions.admin.requirements', { returnObjects: true }) as string[]}
-              preferredCourses={t('careers.positions.admin.courses', { returnObjects: true }) as string[]}
-              onApply={() => {
-                window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/jobs/', '_blank');
-              }}
-              applyText={t('careers.positions.apply_btn')}
-            />
-          </div>
-        </div>
-      </section>
-
       <section className="why-work-withus-section" data-aos="fade-up">
         <div className="why-work-withus-container container">
           <h2 className="why-work-withus-title">{t('careers.why_work.title')}</h2>
@@ -170,6 +130,52 @@ const Careers: React.FC<CareersPageProps> = () => {
           </div>
           <div className="meet-our-team-image-wrapper">
             <img src={teamPhoto} alt="KMTI Team" className="meet-our-team-image" />
+          </div>
+        </div>
+      </section>
+
+      <section className="careers-positions-section" data-aos="fade-up">
+        <div className="careers-positions-container container">
+          <h2 className="careers-positions-title">{t('careers.positions.title')}</h2>
+          <p className="careers-positions-subtitle">
+            {t('careers.positions.subtitle')}
+          </p>
+          <div className="careers-positions-grid">
+            <ApplyCard
+              title={t('careers.positions.eng.title')}
+              location={t('careers.positions.eng.location')}
+              type={t('careers.positions.eng.type')}
+              locationIcon={mapsIcon}
+              typeIcon={clockIcon}
+              description={t('careers.positions.eng.desc')}
+              skills={t('careers.positions.eng.skills', { returnObjects: true }) as string[]}
+              requirements={t('careers.positions.eng.requirements', { returnObjects: true }) as string[]}
+              preferredCourses={t('careers.positions.eng.courses', { returnObjects: true }) as string[]}
+              onApply={() => {
+                window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/jobs/', '_blank');
+              }}
+              applyText={t('careers.positions.apply_btn')}
+              fullTimeBadgeText={t('careers.card.fulltime_badge')}
+              requirementsTitle={t('careers.card.requirements_title')}
+              preferredCoursesTitle={t('careers.card.courses_title')}
+            />
+            <ApplyCard
+              title={t('careers.positions.admin.title')}
+              location={t('careers.positions.admin.location')}
+              type={t('careers.positions.admin.type')}
+              locationIcon={mapsIcon}
+              typeIcon={clockIcon}
+              description={t('careers.positions.admin.desc')}
+              requirements={t('careers.positions.admin.requirements', { returnObjects: true }) as string[]}
+              preferredCourses={t('careers.positions.admin.courses', { returnObjects: true }) as string[]}
+              onApply={() => {
+                window.open('https://www.linkedin.com/company/kusakabe-maeno-tech-inc/jobs/', '_blank');
+              }}
+              applyText={t('careers.positions.apply_btn')}
+              fullTimeBadgeText={t('careers.card.fulltime_badge')}
+              requirementsTitle={t('careers.card.requirements_title')}
+              preferredCoursesTitle={t('careers.card.courses_title')}
+            />
           </div>
         </div>
       </section>

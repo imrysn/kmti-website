@@ -85,21 +85,7 @@ const Home: React.FC<HomePageProps> = () => {
         </div>
       </section>
 
-      <section className="why-choose-us-section" data-aos="fade-up">
-        <div className="section-container container">
-          <h2 className="section-title">{t('home.why_choose.title')}</h2>
-          <div className="cards-grid">
-            {whyChooseUs.map((item) => (
-              <Card
-                key={item.id}
-                icon={item.icon}
-                title={item.title}
-                subtitle={item.description}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <section className="services-section" data-aos="fade-up">
         <div className="section-container container">
@@ -125,6 +111,22 @@ const Home: React.FC<HomePageProps> = () => {
           <h2 className="section-title">{t('home.projects.title')}</h2>
           <p className="section-subtitle">{t('home.projects.subtitle')}</p>
           <ProjectCarousel projects={projects} />
+        </div>
+      </section>
+
+      <section className="why-choose-us-section" data-aos="fade-up">
+        <div className="section-container container">
+          <h2 className="section-title">{t('home.why_choose.title')}</h2>
+          <div className="cards-grid">
+            {whyChooseUs.map((item) => (
+              <Card
+                key={item.id}
+                icon={item.icon}
+                title={item.title}
+                subtitle={item.description}
+              />
+            ))}
+          </div>
         </div>
       </section>
 

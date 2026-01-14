@@ -1,24 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // Added for translation 
+import { useTranslation } from 'react-i18next';
 import './Navbar.css';
 import headerLogo from '../../../assets/headerKMTIlogo.png';
 import menuIcon from '../../../assets/icons/menu-icon.png';
 
 const Navbar: React.FC = () => {
-  const { t, i18n } = useTranslation(); // Initialize translation hook 
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const activeLinkRef = useRef<HTMLAnchorElement>(null);
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Labels are now pulled from translation files 
+
   const navLinks = [
     { path: '/', label: t('nav.home') },
-
+    { path: '/about', label: t('nav.about') },
     { path: '/services', label: t('nav.services') },
     { path: '/projects', label: t('nav.projects') },
-    { path: '/about', label: t('nav.about') },
     { path: '/careers', label: t('nav.careers') },
     { path: '/contact', label: t('nav.contact') },
   ];
@@ -39,7 +38,7 @@ const Navbar: React.FC = () => {
   };
 
   const toggleLanguage = (lng: string) => {
-    i18n.changeLanguage(lng); // Function to switch language 
+    i18n.changeLanguage(lng);
   };
 
   useEffect(() => {
@@ -49,10 +48,29 @@ const Navbar: React.FC = () => {
   }, [i18n.language]);
 
   useEffect(() => {
+    // Store last main nav path when visiting a main nav page
+    const isMainNavPage = navLinks.some(link => link.path === location.pathname);
+    if (isMainNavPage) {
+      localStorage.setItem('lastMainNavPath', location.pathname);
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
-      if (activeLinkRef.current) {
-        const rect = activeLinkRef.current.getBoundingClientRect();
-        const ulRect = activeLinkRef.current.parentElement?.parentElement?.getBoundingClientRect();
+      // Determine which path to highlight
+      const isMainNavPage = navLinks.some(link => link.path === location.pathname);
+      const pathToHighlight = isMainNavPage
+        ? location.pathname
+        : localStorage.getItem('lastMainNavPath') || '/';
+
+      // Find the link element for the path to highlight
+      const linkElement = document.querySelector(
+        `.navbar-link[href="${pathToHighlight}"]`
+      ) as HTMLAnchorElement;
+
+      if (linkElement) {
+        const rect = linkElement.getBoundingClientRect();
+        const ulRect = linkElement.parentElement?.parentElement?.getBoundingClientRect();
 
         if (ulRect) {
           setSliderStyle({
@@ -61,10 +79,10 @@ const Navbar: React.FC = () => {
           });
         }
       }
-    }, 100); // Increased delay slightly to allow translation text to render first
+    }, 100);
 
     return () => clearTimeout(timer);
-  }, [location.pathname, i18n.language]); // Recalculate slider when language changes
+  }, [location.pathname, i18n.language]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -79,21 +97,28 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         <div className="navbar-desktop-group">
           <ul className="navbar-links">
-            {navLinks.map((link) => (
-              <li key={`desktop-${link.path}`}>
-                <Link
-                  to={link.path}
-                  className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
-                  ref={location.pathname === link.path ? activeLinkRef : null}
-                  onClick={(e) => {
-                    handleNavClick(link.path, e);
-                    closeMenu();
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isMainNavPage = navLinks.some(navLink => navLink.path === location.pathname);
+              const lastMainNavPath = localStorage.getItem('lastMainNavPath') || '/';
+              const pathToHighlight = isMainNavPage ? location.pathname : lastMainNavPath;
+              const isActive = link.path === pathToHighlight;
+
+              return (
+                <li key={`desktop-${link.path}`}>
+                  <Link
+                    to={link.path}
+                    className={`navbar-link ${isActive ? 'active' : ''}`}
+                    ref={isActive ? activeLinkRef : null}
+                    onClick={(e) => {
+                      handleNavClick(link.path, e);
+                      closeMenu();
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
             <div
               className="navbar-slider"
               style={{
@@ -103,6 +128,13 @@ const Navbar: React.FC = () => {
               }}
             />
           </ul>
+
+          {/* Sitemap Button */}
+          <Link to="/sitemap" className="sitemap-btn" title="Sitemap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z" fill="currentColor" />
+            </svg>
+          </Link>
 
           {/* Language Switcher */}
           <div className="language-switcher">
@@ -134,6 +166,12 @@ const Navbar: React.FC = () => {
           <button onClick={() => { toggleLanguage('jp'); closeMenu(); }}>日本語</button>
           <button onClick={() => { toggleLanguage('en'); closeMenu(); }}>English</button>
         </div>
+        <Link to="/sitemap" className="mobile-sitemap-link" onClick={closeMenu}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z" fill="currentColor" />
+          </svg>
+          <span>Sitemap</span>
+        </Link>
         <ul className="navbar-mobile-links">
           {navLinks.map((link) => (
             <li key={`mobile-${link.path}`}>

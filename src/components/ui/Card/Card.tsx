@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Card.css';
 import Button from '../Button/Button';
+import LazyVideo from '../LazyVideo/LazyVideo';
 
 const isImageIcon = (icon: string | React.ReactNode): icon is string => {
   return typeof icon === 'string' &&
@@ -220,33 +221,55 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
+import { motion } from 'framer-motion';
+
 interface ServicePageCardProps {
   image?: string;
+  video?: string;
   icon?: string;
   title: string;
   subtitle: string;
   className?: string;
   onClick?: () => void;
+  layoutId?: string;
 }
 
 export const ServicePageCard: React.FC<ServicePageCardProps> = ({
   image,
+  video,
   icon,
   title,
   subtitle,
   className = '',
   onClick,
+  layoutId,
 }) => {
   return (
-    <div className={`service-page-card ${className}`} onClick={onClick}>
+    <motion.div
+      className={`service-page-card ${className}`}
+      onClick={onClick}
+      layoutId={layoutId}
+    >
       {icon && (
         <div className="service-page-card-icon-container">
           <img src={icon} alt={title} className="service-page-card-icon-image" />
         </div>
       )}
-      {image && (
+      {(image || video) && (
         <div className="service-page-card-image-container">
-          <img src={image} alt={title} className="service-page-card-image" />
+          {video ? (
+            <LazyVideo
+              src={video}
+              poster={image}
+              className="service-page-card-video"
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              playsInline={true}
+            />
+          ) : (
+            <img src={image} alt={title} className="service-page-card-image" />
+          )}
           <div className="service-page-card-image-overlay"></div>
           <div className="service-page-card-text-overlay">
             <h3 className="service-page-card-title">{title}</h3>
@@ -254,7 +277,7 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
@@ -385,6 +408,9 @@ interface ApplyCardProps {
   preferredCourses?: string[];
   onApply?: () => void;
   applyText?: string;
+  fullTimeBadgeText?: string;
+  requirementsTitle?: string;
+  preferredCoursesTitle?: string;
   className?: string;
 }
 
@@ -400,11 +426,14 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
   preferredCourses = [],
   onApply,
   applyText = 'APPLY NOW',
+  fullTimeBadgeText = 'FULL TIME',
+  requirementsTitle = 'Key Requirements:',
+  preferredCoursesTitle = 'Preferred Courses:',
   className = '',
 }) => {
   return (
     <div className={`apply-card ${className}`}>
-      <div className="apply-card-fulltime-badge">FULL TIME</div>
+      <div className="apply-card-fulltime-badge">{fullTimeBadgeText}</div>
       <h3 className="apply-card-title">{title}</h3>
       <div className="apply-card-meta">
         <span className="apply-card-location">
@@ -426,7 +455,7 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
       )}
       {requirements.length > 0 && (
         <div className="apply-card-requirements">
-          <h4 className="apply-card-section-title">Key Requirements:</h4>
+          <h4 className="apply-card-section-title">{requirementsTitle}</h4>
           <ul className="apply-card-requirements-list">
             {requirements.map((req, index) => (
               <li key={index}>{req}</li>
@@ -436,7 +465,7 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
       )}
       {preferredCourses.length > 0 && (
         <div className="apply-card-courses">
-          <h4 className="apply-card-section-title">Preferred Courses:</h4>
+          <h4 className="apply-card-section-title">{preferredCoursesTitle}</h4>
           <div className="apply-card-courses-tags">
             {preferredCourses.map((course, index) => (
               <span key={index} className="apply-card-course-tag">{course}</span>

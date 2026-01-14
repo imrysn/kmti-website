@@ -15,7 +15,7 @@ const en = {
     view_projects: "VIEW PROJECTS",
     view_project: "VIEW PROJECT",
     learn_more: "LEARN MORE",
-    view_more: "VIEW MORE",
+    view_more: "VIEW DETAILS",
     chatbot: {
       teaser: "Hi there! I’m KMTI Assistant 👋 How can I help?"
     }
@@ -74,7 +74,12 @@ const en = {
         table: { title: "TRANSFER TABLE", desc: "Extension of transfer table in the finishing line.", cat: "FINISHING TABLE" },
         line: { title: "FINISHING LINE", desc: "After pipes are cut into standard lengths. It will be passed to the finishing line to be arrange and bundled ready for distribution.", cat: "FINISHING LINE" },
         milling: { title: "MILLING CUTOFF MACHINE", desc: "Milling Cutoff Machine uses two milling saws to cut length pipe and structural section tubes. The cut finishes eliminates the need for facing", cat: "CUT OFF" },
-        furnace: { title: "FURNACE", desc: "Furnace is used for melting large batches of glass, in which heat is supplied by a flame playng over the glass surface, and regenerative heating of combustion air.", cat: "FURNACE" }
+        furnace: { title: "FURNACE", desc: "Furnace is used for melting large batches of glass, in which heat is supplied by a flame playng over the glass surface, and regenerative heating of combustion air.", cat: "FURNACE" },
+        bundling: { title: "BUNDLING MACHINE", desc: "High speed tube and pipe bundling and strapping machines take the tube directly from the mill and pack the tube ready for transport and safe.", cat: "FINISHING EQUIPMENT" },
+        binding: { title: "BINDING MACHINE", desc: "Binding Machine used to bind finished products ready for delivery.", cat: "FINISHING EQUIPMENT" },
+        horizontal: { title: "HORIZONTAL LOOPER MACHINE", desc: "Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most efficient and chepest method of storing strip without causing any surface damage.", cat: "LOOPER" },
+        uncoiler: { title: "UNCOILER MACHINE", desc: "The uncoiler safely holds the coil of strip and enables the strip to be unstrapped and presented to the strap peeling and leveling equipment.", cat: "STRIP ENTRY" },
+        leveler: { title: "LEVELER MACHINE", desc: "Leveling machines are used to level metal strips in throughput, e.g. In a cut-to-length line or to level single metal sheets of parts.", cat: "STRIP ENTRY" }
       }
     },
     cta: {
@@ -104,10 +109,10 @@ const en = {
       modal_title: "Our Story",
       caption: "(From left in the photo, President Maeno, Director General of the Philippines Special Economic Zone Agency Delima, Director Masahiko Hasegawa)",
       paragraphs: [
-        "Kusakabe Electric Co., Ltd. was founded in Kobe in 1916 and has entered the pipe industry since 1959, and has been stepping up its business development with the history of the pipe industry since then. Currently we have a wide range of products related to pipe mills and related equipemnet, and as one of the few manufacturers in the world that can consistently design and manufacture pipe mills, we have earned higher trust and appraisal than pipe manufacturers around the worlds. We manufacture and assemble in our factory, constantly making high-quality pipe miller under through quality control, and actively conducting R & D, the overwhelming market share in Japan it also leads to delivery results in 26 countries abroad.",
-        "Maeno Giken was founded in the Philippines in 2001 and has technologies and facilitties that constantly contracts up to hot dip galvanizing (JIS accredited factory) accompanying it, can making, welding and machining, surface treatment such as painting, utilizing the abundant experience of the founder's long-time gear reducer, steelmaking machine, transportation machine, construction machine and their installation work, mold manufacturing etc., while cultivating young excellent talent in this country, I am running. Not only cost reduction of manufacturing but also design aid and prototype support are done at the same time, we realize a total solution satisfying customers.",
-        "Next Engheering Co., Ltd. was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at its own facilities. In recent years, it has expanded into IT and semiconductor fields. In April 2025, the company will merge with Nishinippon Sekkei Co., Ltd., enhancing its capabilities in ship, plant, and machinery design, and enablin integrated services from design to manufacturing.",
-        "KMTI combines the experiences of machining that matches the Japanese market that Kusakabe Electric possesses, with Maeno Giken's production experience of various high-quality equipments in Filin, as well as teh skills of both parties, ensuring peace of mind through outstanding drawing management capabilities We aim to become an engineering group that can provide. In the future, we will also take into consideration the OEM manufacturing of machinery, and we will make it possible to consistently handle from software to hardware with secure confidentiality agreement and execution. By converting two-dimentional drawings to three-dimensional drawings and making them three-dimensional. It is possible to discover defects at the time of production in advance, to reduce the manufacturing cost at the time as approching mistakes to zero, and to strongly support customers' manufacturing Although it is our primary strength, we will continue to expand the business domain with continued trusting relationships while responding to the needs of each customer."
+        "Founded in Kobe in 1916, Kusakabe Electric & Machinery Co., Ltd. entered the pipe industry in 1959 and has since become a cornerstone of the global pipe manufacturing sector. With a comprehensive portfolio of pipe mills and related equipment, Kusakabe stands as one of the few manufacturers worldwide capable of consistently designing and manufacturing complete pipe mill systems. Through rigorous quality control and continuous R&D, the company has earned the trust of pipe manufacturers across 26 countries, maintaining an overwhelming market share in Japan while delivering cutting-edge solutions globally.",
+        "Established in the Philippines in 2001, Maeno Giken Inc. brings extensive expertise in hot-dip galvanizing (JIS accredited), can making, welding, machining, and surface treatment. Drawing on the founder's decades of experience in gear reducers, steelmaking machinery, transportation equipment, and construction machinery, Maeno Giken has cultivated a team of highly skilled engineers. The company provides comprehensive solutions that go beyond manufacturing cost reduction, offering design assistance and prototype development to deliver total customer satisfaction.",
+        "Next Engineering Co., Ltd. was established in 2007 as a strategic partner of Mitsubishi Heavy Industries, specializing in energy-related projects including thermal power plants and fuel cell systems. With advanced metal processing and manufacturing facilities, the company has expanded into IT and semiconductor fields. In April 2025, Next Engineering merged with Nishinippon Sekkei Co., Ltd., significantly enhancing its capabilities in ship, plant, and machinery design, enabling fully integrated services from concept to completion.",
+        "KMTI represents the convergence of three industry leaders: Kusakabe Electric's precision engineering expertise, Maeno Giken's high-quality manufacturing capabilities, and Next Engineering's integrated design-to-production solutions. Our mission is to provide comprehensive engineering services with exceptional drawing management and confidentiality. By converting 2D drawings into advanced 3D models, we identify potential production issues early, minimize manufacturing errors, and significantly reduce costs. As we expand into OEM machinery manufacturing, we offer seamless integration from software to hardware, backed by secure confidentiality agreements. Our commitment to innovation and customer-centric solutions drives us to continuously expand our business domain while maintaining the trusted relationships that define our success."
       ]
     },
     vision: {
@@ -141,6 +146,16 @@ const en = {
       title: "OUR PEOPLE",
       subtitle: "Our People, Our Strength - behind every innovation is a team dedicated to quality and collaboration."
     },
+    history: {
+      title: "COMPANY HISTORY",
+      milestones: {
+        item1: { year: "OCTOBER 2014", title: "Establishment", description: "KMTI was established in Cavite, Philippines, setting the foundation for engineering excellence." },
+        item2: { year: "2014", title: "Strategic Partnership", description: "Formed a key partnership with KUSAKABE ELECTRIC & MACHINERY CO., LTD. (KEMCO) & MAENO GIKEN INC. (MGK)." },
+        item3: { year: "2014", title: "International Employee Exchange Program", description: "Initiated employee deployment program, sending skilled engineers to our partner companies in Japan for several months of hands-on training and collaboration." },
+        item4: { year: "2024", title: "New Alliance", description: "Partnered with NEXT ENGINEERING CO., LTD. to broaden our technological capabilities." },
+        item5: { year: "2025", title: "Team Growth & Development", description: "Expanded our engineering team and enhanced technical expertise through continuous training and development programs." }
+      }
+    },
     related: {
       title: "RELATED COMPANIES",
       kemco: "Founded in 1916 and began its involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high quality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipment supplier. ",
@@ -159,18 +174,8 @@ const en = {
       subtitle: "Comprehensive Engineering & Design Solutions from Concept to Assembly",
       cta: "EXPLORE OUR EXPERTISE"
     },
-    workflow: {
-      title: "ACTUAL PRODUCTION FLOW",
-      steps: {
-        inquiry: "INQUIRY WITH ORDER SHEET",
-        reference: "REFERENCE DATA",
-        modeling: "3D MODELING WITH MODIFICATION",
-        detailing: "2D MODELING",
-        design: "MANUFACTURING DESIGN",
-        fabrication: "FABRICATION / ASSEMBLY",
-        delivery: "DELIVERY OR PRODUCTS"
-      }
-    },
+    back_to_services: "← Back to Services",
+
     modal: {
       detailed_desc: {
         "3d": "By converting clients 3D model, we can easily check any possible errors or interference that may occur. during this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing.",
@@ -186,13 +191,13 @@ const en = {
     },
     items: {
       "3d": {
-        title: "3D MODELING",
+        title: "3D Modeling",
         short_desc: "We create detailed 3D models for high-precision engineering and visualization, ensuring accurate fabrication and assembly.",
         detailed_desc: "By converting clients 3D model, we can easily check any possible errors or interference that may occur. During this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing.",
         section_title: "3D MODELING"
       },
       "2d": {
-        title: "2D DETAILING",
+        title: "2D Detailing",
         short_desc: "Our 2D detailing services convert 3D models into precise drawings ready for manufacturing and quality checks.",
         detailed_desc: "Detailing is a critical part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We give a keen eye on every detail of the design. together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involve in the process and everything is according to their plan to avoid any further iterations due to miscommunication.",
         section_titles: {
@@ -214,6 +219,18 @@ const en = {
         title: "Machine Assembly",
         short_desc: "From component integration to full machine assembly, we ensure mechanical, electrical, and pneumatic systems meet industrial standards.",
         detailed_desc: "In collaboration with our business partners Kusakabe & Machinery Co., Ltd., and Maeno Giken Inc., two of the most known pioneers and leaders in the industry. WE give our clients the confidence to have high quality and top notch performance products ready for a productive business."
+      }
+    },
+    workflow: {
+      title: "ACTUAL PRODUCTION FLOW",
+      steps: {
+        inquiry: "INQUIRY WITH ORDER SHEET",
+        reference: "REFERENCE DATA",
+        modeling: "3D MODELING WITH MODIFICATION",
+        detailing: "2D MODELING",
+        design: "MANUFACTURING DESIGN",
+        fabrication: "FABRICATION / ASSEMBLY",
+        delivery: "DELIVERY OR PRODUCTS"
       }
     },
     footer_cta: {
@@ -430,6 +447,7 @@ const en = {
           "Strong leadership and teamwork skills",
           "Attention to detail and precision"
         ],
+        skills: ["AutoCAD", "SolidWorks", "iCAD", "2D Detailing", "3D Drawing", "Mathematics"],
         courses: ["Mechanical Engineering", "Civil Engineering", "Architecture", "On-the-job Training", "Industrial Engineering",]
       },
       admin: {
@@ -495,6 +513,32 @@ const en = {
       description: "We're always looking for exceptional engineering talent. Even if you don't see a perfect match, we'd love to hear from you and learn about your unique skills and interests.",
       Linkedin: "VISIT LINKEDIN",
       facebook: "VISIT FACEBOOK"
+    },
+    card: {
+      fulltime_badge: "FULL TIME",
+      requirements_title: "Key Requirements:",
+      courses_title: "Preferred Courses:"
+    }
+  },
+
+  legal: {
+    page_title: "Legal & Compliance",
+    privacy: {
+      title: "Privacy Policy",
+      intro: "Kusakabe & Maeno Tech. Inc. (KMTI) respects your privacy and is committed to protecting your personal data.",
+      collection: "We collect information you provide directly to us, such as when you fill out a contact form or apply for a job.",
+      usage: "We use this information to respond to your inquiries and process your applications."
+    },
+    terms: {
+      title: "Terms of Service",
+      intro: "By accessing this website, you agree to be bound by these Terms of Service.",
+      use_license: "Permission is granted to temporarily download one copy of the materials on KMTI's website for personal, non-commercial transitory viewing only.",
+      disclaimer: "The materials on KMTI's website are provided on an 'as is' basis."
+    },
+    compliance: {
+      title: "Compliance & Certifications",
+      intro: "KMTI adheres to all relevant laws and regulations in the Philippines.",
+      certifications: "We are committed to maintaining the highest standards of integrity and professional conduct."
     }
   },
 
@@ -521,6 +565,23 @@ const en = {
         f4: { title: "For Applicants:", text: "For job inquiries or application updates, please reach us through our Facebook page or connect with us on LinkedIn via our Career Page." }
       },
       btn: "TRY CHATBOT NOW"
+    },
+    form: {
+      title: "Send us a Message",
+      name: "Your Name",
+      email: "Your Email",
+      subject: "Subject",
+      message: "Message",
+      send: "SEND MESSAGE"
+    },
+    info: {
+      title: "Contact Information",
+      label_address: "Office Address",
+      address: "Team Quest Building FCIE, Langkaan Dasmarinas City, Cavite",
+      label_phone: "Phone Number",
+      phone: "(046) 413-4509",
+      label_email: "Email Address",
+      email: "info@kmti.com.ph"
     }
   },
 
@@ -854,9 +915,12 @@ const en = {
       about: "About Us",
       contact: "Contact Us",
       careers: "Careers",
+      legal: "Legal & Compliance",
       privacy: "Privacy Policy",
       terms: "Terms of Services"
     },
+
+
     service_items: {
       modeling: "3D Modeling",
       detailing: "2D Detailing",
@@ -872,6 +936,34 @@ const en = {
       total_visit: "Total Count Visit",
       today_visit: "Today Visit",
       yesterday_visit: "Yesterday Visit"
+    }
+  },
+
+  not_found: {
+    title: "Page Not Found",
+    message: "Oops! The page you are looking for seems to have vanished into the digital void (or maybe it never existed).",
+    back_home: "GO BACK HOME"
+  },
+
+  // ..... SITEMAP PAGE .....
+  sitemap: {
+    title: "SITEMAP",
+    subtitle: "Find all pages and navigate easily through our website",
+    legal_compliance: "LEGAL & COMPLIANCE",
+    sections: {
+      main_pages: "MAIN PAGES",
+      services: "SERVICES",
+      projects: "PROJECTS",
+      company: "COMPANY"
+    },
+    descriptions: {
+      home: "Discover our engineering solutions and expertise",
+      about: "Learn about our company, team, and history",
+      contact: "Get in touch with our team",
+      services: "Explore our comprehensive engineering services",
+      projects: "View our portfolio of completed projects",
+      careers: "Join our team and build your career with us",
+      legal: "Privacy policy, terms of service, and compliance information"
     }
   }
 };

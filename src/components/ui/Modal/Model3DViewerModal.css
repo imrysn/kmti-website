@@ -8,13 +8,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background: rgba(15, 23, 43, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
   animation: model3dFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(5px);
 }
 
 @keyframes model3dFadeIn {
@@ -25,15 +26,15 @@
 
   to {
     opacity: 1;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(20px);
   }
 }
 
 .model-3d-modal-content {
-  background: linear-gradient(135deg, #0a1628 0%, #162456 50%, #1a3a6e 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
+  background: rgba(15, 23, 43, 0.98);
+  border: 1px solid rgba(81, 162, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(81, 162, 255, 0.2);
+  border-radius: 24px;
   max-width: 1500px;
   max-height: 95vh;
   width: 90%;
@@ -266,25 +267,25 @@
 }
 
 /* ============================================
-   CAMERA VIEW BUTTONS
+   CAD-STYLE VIEW CUBE CONTROLS
+   Professional 3D CAD software inspired design
    ============================================ */
 
 .camera-view-buttons {
   position: absolute;
   top: 1rem;
-  left: 1rem;
+  right: 1rem;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
   z-index: 10;
-  max-width: calc(100% - 2rem);
-  animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes slideInLeft {
+@keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(30px);
   }
 
   to {
@@ -294,65 +295,70 @@
 }
 
 .camera-view-btn {
-  padding: 0.5rem 1rem;
-  background: rgba(0, 0, 0, 0.6);
+  width: 75px;
+  height: 45px;
+  background: rgba(30, 30, 35, 0.95);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(81, 162, 255, 0.3);
-  border-radius: 8px;
-  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(100, 100, 110, 0.4);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.85);
   font-family: var(--font-family-body);
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.7rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+/* Subtle inner glow effect */
 .camera-view-btn::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(81, 162, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-}
-
-.camera-view-btn:hover::before {
-  width: 300px;
-  height: 300px;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0.5;
 }
 
 .camera-view-btn:hover {
-  background: rgba(81, 162, 255, 0.2);
+  background: rgba(45, 45, 50, 0.95);
   border-color: rgba(81, 162, 255, 0.6);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(81, 162, 255, 0.3);
+  color: #51A2FF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(81, 162, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .camera-view-btn.active {
-  background: linear-gradient(135deg, rgba(81, 162, 255, 0.4), rgba(81, 162, 255, 0.6));
+  background: linear-gradient(135deg, rgba(81, 162, 255, 0.25), rgba(81, 162, 255, 0.35));
   border-color: rgba(81, 162, 255, 0.8);
-  color: white;
-  box-shadow: 0 0 20px rgba(81, 162, 255, 0.5);
-  transform: translateY(-1px);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(81, 162, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(0);
 }
 
-.camera-view-btn.active::before {
-  width: 300px;
-  height: 300px;
-  background: rgba(81, 162, 255, 0.2);
+.camera-view-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #51A2FF;
+  box-shadow: 0 0 8px rgba(81, 162, 255, 0.8);
 }
 
 .camera-view-btn:active {
   transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.1s ease;
 }
 

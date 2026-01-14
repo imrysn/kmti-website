@@ -19,8 +19,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(15, 23, 43, 0.4);
-  box-shadow: 0 4px 12px rgba(43, 127, 255, 0.1);
+  background: rgba(15, 23, 43, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 0 3rem;
   min-height: 60px;
@@ -379,6 +382,32 @@
   font-size: 0.8rem;
 }
 
+/* Sitemap Button */
+.sitemap-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 0.5rem;
+}
+
+.sitemap-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+.sitemap-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+
 /* Mobile Language Switcher */
 .mobile-lang-switcher {
   display: flex;
@@ -397,6 +426,35 @@
   border-radius: 8px;
   font-size: 0.9rem;
 }
+
+/* Mobile Sitemap Link */
+.mobile-sitemap-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 0 1.5rem;
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-sitemap-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.mobile-sitemap-link svg {
+  width: 18px;
+  height: 18px;
+}
+
 
 /* Adjustments for existing media queries */
 @media (max-width: 1242px) {

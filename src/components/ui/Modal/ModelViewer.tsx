@@ -241,10 +241,35 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
       >
         <RendererConfig />
 
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 5, 5]} intensity={0.5} castShadow />
-        <directionalLight position={[-5, 3, -5]} intensity={0.2} />
-        <hemisphereLight color="#ffffff" groundColor="#444444" intensity={0.3} />
+        {/* Enhanced Natural Lighting Setup */}
+        {/* Ambient light - soft overall illumination */}
+        <ambientLight intensity={0.6} />
+
+        {/* Key light - main directional light from top-right */}
+        <directionalLight
+          position={[10, 10, 5]}
+          intensity={1.2}
+          castShadow
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
+        />
+
+        {/* Fill light - softer light from opposite side to reduce harsh shadows */}
+        <directionalLight position={[-8, 5, -3]} intensity={0.4} />
+
+        {/* Back light - adds depth and rim lighting */}
+        <directionalLight position={[0, 3, -10]} intensity={0.3} />
+
+        {/* Hemisphere light - simulates natural sky/ground lighting */}
+        <hemisphereLight
+          color="#ffffff"
+          groundColor="#666666"
+          intensity={0.5}
+        />
+
+        {/* Subtle point light for highlights */}
+        <pointLight position={[0, 8, 0]} intensity={0.3} distance={20} decay={2} />
+
 
         <Suspense fallback={null}>
           <Model

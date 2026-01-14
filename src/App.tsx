@@ -13,6 +13,9 @@ const Projects = lazy(() => import('./pages/Projects'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Careers = lazy(() => import('./pages/Careers'));
+const LegalAndCompliance = lazy(() => import('./pages/LegalAndCompliance/LegalAndCompliance'));
+const Sitemap = lazy(() => import('./pages/Sitemap'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 function App() {
   useEffect(() => {
@@ -28,10 +31,10 @@ function App() {
 
   // Loading fallback component
   const LoadingFallback = () => (
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       minHeight: '50vh',
       color: 'white'
     }}>
@@ -47,12 +50,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/:id" element={<Services />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/legal-and-compliance" element={<LegalAndCompliance />} />
             <Route path="/home" element={<Navigate to="/" replace />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Layout>

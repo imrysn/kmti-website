@@ -101,7 +101,6 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   const modelConfig = MODEL_MAP[lookupKey];
 
   if (!modelConfig) {
-    console.error(`No 3D model configuration found for: ${lookupKey}`);
     return null;
   }
 

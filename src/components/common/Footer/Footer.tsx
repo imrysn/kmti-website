@@ -15,39 +15,7 @@ type VisitCounts = {
   yesterday: number;
 };
 
-const getSafeStorage = () => {
-  try {
-    const testKey = '__visit_tracker_test__';
-    window.localStorage.setItem(testKey, '1');
-    window.localStorage.removeItem(testKey);
-    return window.localStorage;
-  } catch (e) {
-    return {
-      _data: {} as Record<string, string>,
-      getItem(key: string) {
-        return this._data[key] ?? null;
-      },
-      setItem(key: string, value: string) {
-        this._data[key] = String(value);
-      },
-      removeItem(key: string) {
-        delete this._data[key];
-      },
-    };
-  }
-};
-
-const getTodayKey = () => {
-  const now = new Date();
-  const y = now.getFullYear();
-  const m = String(now.getMonth() + 1).padStart(2, '0');
-  const d = String(now.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
-};
-
 const pad3 = (value: number) => String(Number(value) || 0).padStart(3, '0');
-
-let hasCountedThisLoad = false;
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -59,44 +27,27 @@ const Footer: React.FC = () => {
   });
 
   useEffect(() => {
-    const storage = getSafeStorage();
-
-    const totalKey = 'visitTrackerTotal';
-    const todayKey = 'visitTrackerToday';
-    const yesterdayKey = 'visitTrackerYesterday';
-    const dateKey = 'visitTrackerDate';
-
-    const storedTotal = Number(storage.getItem(totalKey)) || 0;
-    const storedToday = Number(storage.getItem(todayKey)) || 0;
-    const storedYesterday = Number(storage.getItem(yesterdayKey)) || 0;
-    const storedDate = storage.getItem(dateKey);
-
-    const todayStr = getTodayKey();
-
-    let total = storedTotal;
-    let today = storedToday;
-    let yesterday = storedYesterday;
-
-    if (storedDate !== todayStr) {
-      yesterday = storedDate !== null ? storedToday : 0;
-      today = 0;
-      storage.setItem(yesterdayKey, String(yesterday));
-      storage.setItem(dateKey, todayStr);
+    if (import.meta.env.DEV) {
+      return;
     }
 
-    if (!hasCountedThisLoad) {
-      total += 1;
-      today += 1;
-      storage.setItem(totalKey, String(total));
-      storage.setItem(todayKey, String(today));
-      hasCountedThisLoad = true;
-    }
-
-    setVisitCounts({
-      total,
-      today,
-      yesterday,
-    });
+    fetch('/visit_counter.php')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setVisitCounts({
+          total: data.total,
+          today: data.today,
+          yesterday: data.yesterday
+        });
+      })
+      .catch(() => {
+        // Silently fail
+      });
   }, []);
 
   const handleFooterLinkClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -160,10 +111,10 @@ const Footer: React.FC = () => {
         <div className="footer__links">
           <div className="footer__col">
             <div className="footer__col-title">{t('footer.cols.services')}</div>
-            <Link to="/services?service=3d-modeling" className="footer__link" onClick={(e) => handleFooterLinkClick('/services?service=3d-modeling', e)}>{t('footer.service_items.modeling')}</Link>
-            <Link to="/services?service=2d-detailing" className="footer__link" onClick={(e) => handleFooterLinkClick('/services?service=2d-detailing', e)}>{t('footer.service_items.detailing')}</Link>
-            <Link to="/services?service=parts-inspection" className="footer__link" onClick={(e) => handleFooterLinkClick('/services?service=parts-inspection', e)}>{t('footer.service_items.inspection')}</Link>
-            <Link to="/services?service=machine-assembly" className="footer__link" onClick={(e) => handleFooterLinkClick('/services?service=machine-assembly', e)}>{t('footer.service_items.assembly')}</Link>
+            <Link to="/services/3d-modeling" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/3d-modeling', e)}>{t('footer.service_items.modeling')}</Link>
+            <Link to="/services/2d-detailing" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/2d-detailing', e)}>{t('footer.service_items.detailing')}</Link>
+            <Link to="/services/parts-inspection" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/parts-inspection', e)}>{t('footer.service_items.inspection')}</Link>
+            <Link to="/services/machine-assembly" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/machine-assembly', e)}>{t('footer.service_items.assembly')}</Link>
           </div>
         </div>
 
@@ -214,9 +165,8 @@ const Footer: React.FC = () => {
           <span className="visit-counter-digits">{pad3(visitCounts.yesterday)}</span>
         </div>
         <div className="footer__bottom-links">
-          <a className="footer__bottom-link" href="/privacy">{t('footer.links.privacy')}</a>
-          <a className="footer__bottom-link" href="/terms">{t('footer.links.terms')}</a>
-          <a className="footer__bottom-link" href="/careers">{t('footer.links.careers')}</a>
+          <Link className="footer__bottom-link" to="/legal-and-compliance">{t('footer.links.legal')}</Link>
+          <Link className="footer__bottom-link" to="/careers">{t('footer.links.careers')}</Link>
         </div>
 
 

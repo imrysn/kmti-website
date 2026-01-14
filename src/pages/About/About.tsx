@@ -116,6 +116,23 @@ const About: React.FC<AboutPageProps> = () => {
         </div>
       </section>
 
+      <section className="about-history-section" data-aos="fade-up">
+        <div className="about-history-container container">
+          <h2 className="about-history-title">{t('about.history.title')}</h2>
+          <div className="about-history-timeline">
+            {['item1', 'item2', 'item3', 'item4', 'item5'].map((key, index) => (
+              <div key={key} className={`about-history-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+                <div className="about-history-content">
+                  <div className="about-history-year">{t(`about.history.milestones.${key}.year`)}</div>
+                  <h3 className="about-history-item-title">{t(`about.history.milestones.${key}.title`)}</h3>
+                  <p className="about-history-description">{t(`about.history.milestones.${key}.description`)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="about-vision-mission-section" data-aos="fade-up">
         <div className="about-vision-mission-container container">
           <div className="about-vision-mission-grid">
