@@ -67,7 +67,8 @@ const Careers: React.FC<CareersPageProps> = () => {
 
   return (
     <div className="careers-page">
-      <section className="hero-section" style={{ backgroundImage: `url(${careersBg})` }}>
+      <section className="hero-section">
+        <div className="hero-bg-custom" style={{ backgroundImage: `url(${careersBg})` }}></div>
         <div className="hero-overlay"></div>
         <img src={kmtiModel} alt="KMTI Team" className="careers-hero-model" />
         <div className="hero-container container">

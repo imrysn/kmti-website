@@ -24,10 +24,7 @@
    ============================================ */
 
 .projects-hero {
-  background-image: var(--project-bg-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* Removed background properties from here */
   margin-top: -8rem;
   padding-top: var(--projects-hero-padding-top-desktop);
   padding-bottom: var(--projects-hero-padding-bottom-desktop);
@@ -39,22 +36,36 @@
   color: white;
   text-align: center;
   z-index: 1;
-  /* Subtle, continuous background zoom - same as home, careers, and contact pages */
-  animation: heroBackgroundZoom 10s linear infinite;
+  overflow: hidden;
+  /* Important for containing the zoom */
+}
+
+/* Reusing the same animation logic, but scoped if needed or global */
+.projects-hero .hero-bg-custom {
+  position: absolute;
+  top: -10rem;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 10rem);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  will-change: transform;
+  animation: heroBackgroundZoom 20s linear infinite;
 }
 
 @keyframes heroBackgroundZoom {
   0% {
-    background-size: 100%;
+    transform: scale(1);
   }
 
   50% {
-    background-size: 110%;
+    transform: scale(1.1);
   }
 
   100% {
-    /* Match the start value so the loop is seamless */
-    background-size: 100%;
+    transform: scale(1);
   }
 }
 

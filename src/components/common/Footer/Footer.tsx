@@ -96,25 +96,27 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="footer__links">
-          <div className="footer__col">
-            <div className="footer__col-title">{t('footer.cols.quick_links')}</div>
-            <Link to="/" className="footer__link" onClick={(e) => handleFooterLinkClick('/', e)}>{t('footer.links.home')}</Link>
-            <Link to="/services" className="footer__link" onClick={(e) => handleFooterLinkClick('/services', e)}>{t('footer.links.services')}</Link>
-            <Link to="/projects" className="footer__link" onClick={(e) => handleFooterLinkClick('/projects', e)}>{t('footer.links.projects')}</Link>
-            <Link to="/about" className="footer__link" onClick={(e) => handleFooterLinkClick('/about', e)}>{t('footer.links.about')}</Link>
-            <Link to="/contact" className="footer__link" onClick={(e) => handleFooterLinkClick('/contact', e)}>{t('footer.links.contact')}</Link>
-            <Link to="/careers" className="footer__link" onClick={(e) => handleFooterLinkClick('/careers', e)}>{t('footer.links.careers')}</Link>
+        <div className="footer__links-wrapper">
+          <div className="footer__links">
+            <div className="footer__col">
+              <div className="footer__col-title">{t('footer.cols.quick_links')}</div>
+              <Link to="/" className="footer__link" onClick={(e) => handleFooterLinkClick('/', e)}>{t('footer.links.home')}</Link>
+              <Link to="/services" className="footer__link" onClick={(e) => handleFooterLinkClick('/services', e)}>{t('footer.links.services')}</Link>
+              <Link to="/projects" className="footer__link" onClick={(e) => handleFooterLinkClick('/projects', e)}>{t('footer.links.projects')}</Link>
+              <Link to="/about" className="footer__link" onClick={(e) => handleFooterLinkClick('/about', e)}>{t('footer.links.about')}</Link>
+              <Link to="/contact" className="footer__link" onClick={(e) => handleFooterLinkClick('/contact', e)}>{t('footer.links.contact')}</Link>
+              <Link to="/careers" className="footer__link" onClick={(e) => handleFooterLinkClick('/careers', e)}>{t('footer.links.careers')}</Link>
+            </div>
           </div>
-        </div>
 
-        <div className="footer__links">
-          <div className="footer__col">
-            <div className="footer__col-title">{t('footer.cols.services')}</div>
-            <Link to="/services/3d-modeling" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/3d-modeling', e)}>{t('footer.service_items.modeling')}</Link>
-            <Link to="/services/2d-detailing" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/2d-detailing', e)}>{t('footer.service_items.detailing')}</Link>
-            <Link to="/services/parts-inspection" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/parts-inspection', e)}>{t('footer.service_items.inspection')}</Link>
-            <Link to="/services/machine-assembly" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/machine-assembly', e)}>{t('footer.service_items.assembly')}</Link>
+          <div className="footer__links">
+            <div className="footer__col">
+              <div className="footer__col-title">{t('footer.cols.services')}</div>
+              <Link to="/services/3d-modeling" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/3d-modeling', e)}>{t('footer.service_items.modeling')}</Link>
+              <Link to="/services/2d-detailing" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/2d-detailing', e)}>{t('footer.service_items.detailing')}</Link>
+              <Link to="/services/parts-inspection" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/parts-inspection', e)}>{t('footer.service_items.inspection')}</Link>
+              <Link to="/services/machine-assembly" className="footer__link" onClick={(e) => handleFooterLinkClick('/services/machine-assembly', e)}>{t('footer.service_items.assembly')}</Link>
+            </div>
           </div>
         </div>
 
@@ -168,7 +170,6 @@ const Footer: React.FC = () => {
           <Link className="footer__bottom-link" to="/legal-and-compliance">{t('footer.links.legal')}</Link>
           <Link className="footer__bottom-link" to="/careers">{t('footer.links.careers')}</Link>
         </div>
-
 
       </div>
     </footer>

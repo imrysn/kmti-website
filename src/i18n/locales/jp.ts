@@ -175,6 +175,7 @@ const jp = {
       cta: "当社の専門知識を探る"
     },
     back_to_services: "← サービス一覧に戻る",
+    zoom_instruction: "スクロールでズーム • ドラッグでパン",
 
     modal: {
       detailed_desc: {

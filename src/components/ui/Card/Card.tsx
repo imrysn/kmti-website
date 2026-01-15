@@ -356,6 +356,7 @@ interface ProjectsCardProps {
   linkHref?: string;
   className?: string;
   onClick?: () => void;
+  onImageClick?: () => void;
 }
 
 export const ProjectsCard: React.FC<ProjectsCardProps> = ({
@@ -367,11 +368,23 @@ export const ProjectsCard: React.FC<ProjectsCardProps> = ({
   linkHref = '#',
   className = '',
   onClick,
+  onImageClick,
 }) => {
   return (
     <div className={`projects-card ${className}`}>
       {category && <div className="projects-card-label">{category}</div>}
-      <div className="projects-card-image-container">
+      <div
+        className="projects-card-image-container"
+        onClick={(e) => {
+          e.preventDefault();
+          if (onImageClick) {
+            onImageClick();
+          } else if (onClick) {
+            onClick();
+          }
+        }}
+        style={{ cursor: (onImageClick || onClick) ? 'pointer' : 'default' }}
+      >
         <img
           src={image}
           alt={title}

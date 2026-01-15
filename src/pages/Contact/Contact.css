@@ -2,11 +2,60 @@
   width: 100%;
   min-height: 100vh;
   color: white;
+  overflow: visible;
 }
 
 .contact-page .hero-section {
   margin-top: -8rem;
   min-height: 100vh;
+  position: relative;
+  /* Ensure relative positioning */
+  overflow: hidden;
+  /* Clip the zoomed background */
+  z-index: 1;
+  /* Create stacking context */
+}
+
+.contact-page .hero-bg-custom {
+  position: absolute;
+  top: -10rem;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 10rem);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  will-change: transform;
+  animation: heroBackgroundZoom 20s linear infinite;
+}
+
+@keyframes heroBackgroundZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Extend background to top of viewport */
+.contact-page .hero-section::before {
+  content: '';
+  position: absolute;
+  top: -10rem;
+  left: 0;
+  right: 0;
+  height: 10rem;
+  background: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  z-index: -1;
 }
 
 .contact-page .hero-title {
@@ -261,26 +310,38 @@
 }
 
 @media (max-width: 768px) {
+  .contact-page .hero-section {
+    min-height: auto;
+    padding-top: 16rem;
+    padding-bottom: 3rem;
+    background-size: cover !important;
+    background-position: center !important;
+    animation: none !important;
+  }
+
   .contact-page .hero-title {
     font-size: 2rem;
-    margin-top: 15rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 
   .contact-hero-description {
     font-size: 0.9rem;
-    margin-bottom: 10rem;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
   }
 
   .contact-options-container {
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-top: 0;
   }
 
   .contact-options-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.25rem;
     margin-top: 2rem;
-    max-width: 750px;
+    max-width: 100%;
   }
 
   .or-divider-container {
@@ -290,6 +351,10 @@
 
   .or-divider-description {
     font-size: 0.9rem;
+  }
+
+  .chat-with-us-section {
+    padding: 3rem 0;
   }
 
   .chat-with-us-container {
@@ -303,7 +368,7 @@
   }
 
   .chat-with-us-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .chat-with-us-description {
@@ -324,28 +389,49 @@
 }
 
 @media (max-width: 480px) {
+  .contact-page .hero-section {
+    min-height: auto;
+    padding-top: 14rem;
+    padding-bottom: 2rem;
+    background-size: cover !important;
+    background-position: center !important;
+    animation: none !important;
+  }
+
   .contact-page .hero-title {
-    font-size: 1.8rem;
-    margin-top: 10rem;
+    font-size: 1.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
   }
 
   .contact-hero-description {
     font-size: 0.85rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
   }
 
   .contact-options-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
-    max-width: 450px;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .or-divider-container {
+    margin: 1.5rem auto;
   }
 
   .or-divider-description {
     font-size: 0.85rem;
   }
 
+  .chat-with-us-section {
+    padding: 2rem 0;
+  }
+
   .chat-with-us-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 
   .chat-with-us-description {

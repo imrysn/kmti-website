@@ -7,6 +7,7 @@ import Button from '../../components/ui/Button/Button';
 import projectBg from '../../assets/projectbg.jpg';
 import { ProjectsCard } from '../../components/ui/Card/Card';
 import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
+import Model3DViewerModal from '../../components/ui/Modal/Model3DViewerModal';
 
 // Images
 import dedemplerImage from '../../assets/image3D/dedempler.png';
@@ -42,6 +43,10 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   const [isFurnaceModalOpen, setIsFurnaceModalOpen] = useState(false);
   const [selectedProjectKey, setSelectedProjectKey] = useState<string | undefined>(undefined);
   const hasCheckedUrlParams = useRef(false);
+
+  // 3D Model Viewer Modal state
+  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
+  const [selected3DModel, setSelected3DModel] = useState<{ title: string; key: string } | null>(null);
 
   // Handle query parameters to open modals 
   useEffect(() => {
@@ -210,7 +215,8 @@ const Projects: React.FC<ProjectsPageProps> = () => {
 
   return (
     <div className="projects-page">
-      <section className="projects-hero" style={{ '--project-bg-image': `url(${projectBg})` } as React.CSSProperties}>
+      <section className="projects-hero">
+        <div className="hero-bg-custom" style={{ backgroundImage: `url(${projectBg})` }}></div>
         <div className="projects-hero-overlay"></div>
         <div className="projects-hero-container container">
           <h1 className="projects-title">{t('projects.hero.title')}</h1>
@@ -245,6 +251,13 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                 category={project.category}
                 linkText={t('common.view_more')}
                 linkHref={project.link}
+                onImageClick={() => {
+                  setSelected3DModel({
+                    title: project.title,
+                    key: project.internalTitle
+                  });
+                  setIs3DViewerOpen(true);
+                }}
                 onClick={
                   ['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(project.internalTitle)
                     ? () => { setSelectedProjectKey((project as any).key); setIsProjectModalOpen(true); }
@@ -287,6 +300,17 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       <FinishingLineModal isOpen={isFinishingLineModalOpen} onClose={() => { setIsFinishingLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
       <CutOffModal isOpen={isCutOffModalOpen} onClose={() => { setIsCutOffModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
       <FurnaceModal isOpen={isFurnaceModalOpen} onClose={() => { setIsFurnaceModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+
+      {/* 3D Model Viewer Modal */}
+      <Model3DViewerModal
+        isOpen={is3DViewerOpen}
+        onClose={() => {
+          setIs3DViewerOpen(false);
+          setSelected3DModel(null);
+        }}
+        modelTitle={selected3DModel?.title || ''}
+        modelKey={selected3DModel?.key || ''}
+      />
     </div>
   );
 };

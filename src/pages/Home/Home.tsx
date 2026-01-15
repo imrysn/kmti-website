@@ -7,8 +7,6 @@ import homeBg from '../../assets/homebg.jpeg';
 import Button from '../../components/ui/Button/Button';
 import Card, { ServiceCard } from '../../components/ui/Card/Card';
 import ProjectCarousel from '../../components/ui/ProjectCarousel/ProjectCarousel';
-
-// Icons
 import precisionIcon from '../../assets/icons/precision-icon.png';
 import innovationIcon from '../../assets/icons/innovation-icon.png';
 import experienceIcon from '../../assets/icons/experience-icon.png';
@@ -17,9 +15,7 @@ import icon2D from '../../assets/icons/cubes.png';
 import inspectionIcon from '../../assets/icons/parts-inspection-icon.png';
 import assemblyIcon from '../../assets/icons/machine-assembly-icon.png';
 
-// Project Images
-import dedemplerImage from '../../assets/image3D/dedempler.png';
-import looperImage from '../../assets/image3D/looper.png';
+import dedemplerImage from '../../assets/image3D/dedempler.png'; import looperImage from '../../assets/image3D/looper.png';
 import formingImage from '../../assets/image3D/forming.png';
 import shearImage from '../../assets/image3D/shear.png';
 import finishingImage from '../../assets/image3D/finishing.png';
@@ -65,7 +61,8 @@ const Home: React.FC<HomePageProps> = () => {
 
   return (
     <div className="home-page">
-      <section key={animationKey} className="hero-section" style={{ backgroundImage: `url(${homeBg})` }}>
+      <section key={animationKey} className="hero-section">
+        <div className="hero-bg-custom" style={{ backgroundImage: `url(${homeBg})` }}></div>
         <div className="hero-overlay"></div>
         <div className="hero-container container">
           <div className="hero-content">

@@ -12,7 +12,6 @@ const Navbar: React.FC = () => {
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
   const navLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
@@ -162,16 +161,28 @@ const Navbar: React.FC = () => {
       <div className={`navbar-mobile-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={closeMenu} />
 
       <div className={`navbar-mobile-panel ${isMenuOpen ? 'active' : ''}`}>
+        {/* Mobile Language Switcher */}
         <div className="mobile-lang-switcher">
-          <button onClick={() => { toggleLanguage('jp'); closeMenu(); }}>日本語</button>
-          <button onClick={() => { toggleLanguage('en'); closeMenu(); }}>English</button>
+          <button
+            className={`lang-btn ${i18n.language === 'jp' ? 'active' : ''}`}
+            onClick={() => {
+              toggleLanguage('jp');
+              closeMenu();
+            }}
+          >
+            JP
+          </button>
+          <button
+            className={`lang-btn ${i18n.language === 'en' ? 'active' : ''}`}
+            onClick={() => {
+              toggleLanguage('en');
+              closeMenu();
+            }}
+          >
+            EN
+          </button>
         </div>
-        <Link to="/sitemap" className="mobile-sitemap-link" onClick={closeMenu}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z" fill="currentColor" />
-          </svg>
-          <span>Sitemap</span>
-        </Link>
+
         <ul className="navbar-mobile-links">
           {navLinks.map((link) => (
             <li key={`mobile-${link.path}`}>
@@ -188,6 +199,12 @@ const Navbar: React.FC = () => {
             </li>
           ))}
         </ul>
+        <Link to="/sitemap" className="mobile-sitemap-link" onClick={closeMenu}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z" fill="currentColor" />
+          </svg>
+          <span>Sitemap</span>
+        </Link>
       </div>
     </nav>
   );

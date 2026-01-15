@@ -505,13 +505,13 @@
   text-transform: uppercase;
   font-weight: 200;
   position: absolute;
-  top: 13px;
+  top: 15px;
   z-index: 20;
   white-space: nowrap;
   text-align: center;
 
   /* Matching Projects Page label styling */
-  right: 10px !important;
+  right: 5px !important;
   left: auto !important;
   transform: none !important;
   width: auto !important;
@@ -619,13 +619,6 @@
   color: rgba(81, 162, 255, 0.5);
 }
 
-/* ============================================
-   PROJECTS CARD COMPONENT
-   ============================================
-   Projects card component - based on project-card-new
-   but with hover effects and not for carousel
-   ============================================ */
-
 .projects-card {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -657,13 +650,6 @@
   z-index: 100;
 }
 
-/* ============================================
-   PROJECTS CARD LABEL - CUSTOMIZABLE
-   ============================================
-   To customize, change the values below directly.
-   All values use !important to ensure they apply.
-   ============================================ */
-
 .projects-card-label {
   background-color: rgba(21, 93, 252, 0.9);
   border: 1px solid rgba(81, 162, 255, 0.3);
@@ -673,20 +659,18 @@
   text-transform: uppercase;
   font-weight: 200;
   position: absolute;
-  top: 13px;
+  top: 15px;
   z-index: 20;
   white-space: nowrap;
   text-align: center;
 
-  /* CUSTOMIZABLE VALUES - Desktop */
-  /* Using right positioning to keep label inside card */
   right: 10px !important;
   left: auto !important;
   transform: none !important;
   width: auto !important;
   max-width: calc(100% - 20px) !important;
   font-size: 0.75rem !important;
-  padding: 0.3rem 0.8rem !important;
+  padding: 0.3rem 0.8rem !important
 }
 
 /* ============================================
@@ -718,12 +702,37 @@
   height: 100%;
   max-height: 200px;
   object-fit: contain;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
   transform-origin: center center;
 }
 
-.projects-card-image:hover {
+.projects-card-image-container:hover .projects-card-image {
   transform: scale(2);
+  filter: brightness(1.1);
+}
+
+/* Add a subtle overlay hint on hover */
+.projects-card-image-container::after {
+  content: '🔍 Click to view in 3D';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(81, 162, 255, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.projects-card-image-container:hover::after {
+  opacity: 1;
 }
 
 /* ============================================
