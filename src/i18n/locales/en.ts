@@ -175,6 +175,7 @@ const en = {
       cta: "EXPLORE OUR EXPERTISE"
     },
     back_to_services: "← Back to Services",
+    zoom_instruction: "Scroll to zoom • Drag to pan",
 
     modal: {
       detailed_desc: {

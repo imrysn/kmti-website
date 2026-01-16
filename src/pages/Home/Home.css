@@ -1,38 +1,67 @@
 .home-page {
   width: 100%;
-  min-height: 100vh;
-  color: white;
-  overflow: hidden;
 }
 
 .hero-section {
   position: relative;
-  min-height: 88vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: 100%;
+  /* Removed background-color to prevent masking */
+  margin-top: -8rem;
+  padding-top: 4rem;
+  padding-bottom: 0rem;
+  overflow: hidden;
+  /* Ensure zoomed background doesn't overflow */
+  z-index: 1;
+  /* Create stacking context so child z-index: -1 stays within section */
+}
+
+/* Dedicated background element for smooth zooming */
+.hero-bg-custom {
+  position: absolute;
+  top: -10rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  /* Compensate for top position */
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
-  padding-top: 2rem;
-  padding-bottom: 6rem;
+  z-index: -1;
+  will-change: transform;
+  animation: heroBackgroundZoom 20s linear infinite;
+  /* Slowed down slightly for elegance */
 
-  animation: heroBackgroundZoom 10s linear infinite;
+}
+
+/* Extend background to top of viewport */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -10rem;
+  left: 0;
+  right: 0;
+  height: 10rem;
+  background: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  z-index: -1;
 }
 
 @keyframes heroBackgroundZoom {
   0% {
-    background-size: 100%;
+    transform: scale(1);
   }
 
   50% {
-    background-size: 110%;
+    transform: scale(1.1);
   }
 
   100% {
-    /* Match the start value so the loop is seamless */
-    background-size: 100%;
+    transform: scale(1);
   }
 }
 
@@ -230,7 +259,7 @@
 @media (max-width: 768px) {
   .hero-section {
     min-height: 100vh;
-    height: 98vh;
+    padding-top: 10rem;
   }
 
   .hero-container {
@@ -242,316 +271,263 @@
     height: 100%;
   }
 
-  .hero-title {
-    font-size: 2.5rem;
+  /* ... */
+  @media (max-width: 480px) {
+    .hero-section {
+      padding-top: 8rem;
+      padding-bottom: 9rem;
+      min-height: 100vh;
+    }
+
+    .hero-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .hero-content {
+      padding-top: 2rem;
+    }
+
+    .hero-title {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Ensure buttons display in a row side by side */
+    .hero-buttons {
+      display: flex;
+      flex-direction: row !important;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: nowrap;
+    }
+
+    .hero-buttons .btn {
+      min-width: 35% !important;
+      width: auto;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .home-page .section-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .home-page .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .home-page .section-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .why-choose-us-section {
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+    }
+
+    .services-section {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .home-page .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+
+    .home-page .cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .vision-reality-section {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .vision-reality-section .section-container {
+      transform: none;
+    }
+
+    /* Reduce project carousel gaps on mobile */
+    .home-page .project-carousel-container {
+      margin-top: 5rem;
+    }
+
+    .home-page .project-carousel {
+      height: 420px;
+    }
+
+    .home-page .project-carousel-nav {
+      margin-top: 1.5rem;
+    }
+
+    .about-section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+
+    .about-description {
+      padding-top: 1rem;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    .cta-section {
+      padding-top: 1.5rem;
+      padding-bottom: 3rem;
+      transform: none;
+    }
+
+    .cta-title {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons .btn {
+      min-width: 50% !important;
+      width: 50%;
+    }
+
+    /* Project card label - smaller on mobile */
+    .home-page .project-card-label {
+      font-size: 0.6rem !important;
+      padding: 0.30rem 0.8rem !important;
+      width: 45% !important;
+      left: 50% !important;
+    }
   }
 
-  .home-page .section-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  @media (max-width: 375px) {
+    .hero-section {
+      padding-top: 9rem;
+      padding-bottom: 4rem;
+      min-height: 100vh;
+      /* removed height: 100vh and bg overrides */
+    }
 
-  .home-page .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
+    .hero-container {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
 
-  .home-page .section-title {
-    font-size: 1.8rem;
-  }
+    .hero-content {
+      padding-top: 2rem;
+    }
 
-  .home-page .cards-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 4rem;
-  }
+    .hero-title {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+    }
 
-  .vision-reality-section .section-container {
-    transform: scale(0.9);
-    transform-origin: center;
-  }
+    /* Ensure buttons display in a row side by side */
+    .hero-buttons {
+      display: flex;
+      flex-direction: row !important;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: nowrap;
+    }
 
-  .about-section {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
+    .hero-buttons .btn {
+      min-width: 35% !important;
+      width: auto;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
 
-  .about-section .section-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+    .home-page .section-container {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.5rem;
+    }
 
-  .about-description {
-    text-align: justify;
-  }
+    .home-page .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
 
-  .cta-section {
-    transform: scale(0.9);
-    transform-origin: center;
-  }
+    .home-page .section-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
 
-  .cta-buttons .btn {
-    min-width: 30%;
-  }
-}
+    .why-choose-us-section {
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+    }
 
-@media (max-width: 480px) {
-  .hero-section {
-    padding-top: 0rem;
-    padding-bottom: 9rem;
-    min-height: 100vh;
-    height: 100vh;
-  }
+    .services-section {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
 
-  .hero-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
+    .home-page .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 4rem;
+    }
 
-  .hero-content {
-    padding-top: 2rem;
-  }
+    .home-page .cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
 
-  .hero-title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-  }
+    .vision-reality-section {
+      padding-top: 5rem;
+      padding-bottom: 1rem;
+    }
 
-  /* Ensure buttons display in a row side by side */
-  .hero-buttons {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: nowrap;
-  }
+    .vision-reality-section .section-container {
+      transform: none;
+    }
 
-  .hero-buttons .btn {
-    min-width: 35% !important;
-    width: auto;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-  }
+    .about-section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
 
-  .home-page .section-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.5rem;
-  }
+    .about-description {
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
 
-  .home-page .section-title {
-    font-size: 1.3rem;
-    margin-bottom: 0.25rem;
-  }
+    .cta-section {
+      padding-top: 1.5rem;
+      padding-bottom: 3rem;
+      transform: none;
+    }
 
-  .home-page .section-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
-  }
+    .cta-title {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
 
-  .why-choose-us-section {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+    .cta-buttons .btn {
+      min-width: 50% !important;
+      width: 50%;
+    }
   }
-
-  .services-section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .home-page .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: 4rem;
-  }
-
-  .home-page .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .vision-reality-section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .vision-reality-section .section-container {
-    transform: none;
-  }
-
-  /* Reduce project carousel gaps on mobile */
-  .home-page .project-carousel-container {
-    margin-top: 5rem;
-  }
-
-  .home-page .project-carousel {
-    height: 420px;
-  }
-
-  .home-page .project-carousel-nav {
-    margin-top: 1.5rem;
-  }
-
-  .about-section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
-
-  .about-description {
-    padding-top: 1rem;
-    font-size: 0.85rem;
-    line-height: 1.8;
-  }
-
-  .cta-section {
-    padding-top: 1.5rem;
-    padding-bottom: 3rem;
-    transform: none;
-  }
-
-  .cta-title {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-  }
-
-  .cta-buttons .btn {
-    min-width: 50% !important;
-    width: 50%;
-  }
-
-  /* Project card label - smaller on mobile */
-  .home-page .project-card-label {
-    font-size: 0.6rem !important;
-    padding: 0.30rem 0.8rem !important;
-    width: 45% !important;
-    left: 75% !important;
-  }
-}
-
-@media (max-width: 375px) {
-  .hero-section {
-    padding-top: 1rem;
-    padding-bottom: 4rem;
-    min-height: 100vh;
-    height: 100vh;
-  }
-
-  .hero-container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-
-  .hero-content {
-    padding-top: 2rem;
-  }
-
-  .hero-title {
-    font-size: 1.6rem;
-    margin-bottom: 2rem;
-  }
-
-  /* Ensure buttons display in a row side by side */
-  .hero-buttons {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: nowrap;
-  }
-
-  .hero-buttons .btn {
-    min-width: 35% !important;
-    width: auto;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .home-page .section-container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.5rem;
-  }
-
-  .home-page .section-title {
-    font-size: 1.3rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .home-page .section-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
-  }
-
-  .why-choose-us-section {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-  }
-
-  .services-section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .home-page .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: 4rem;
-  }
-
-  .home-page .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .vision-reality-section {
-    padding-top: 5rem;
-    padding-bottom: 1rem;
-  }
-
-  .vision-reality-section .section-container {
-    transform: none;
-  }
-
-  .about-section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-
-  .about-description {
-    font-size: 0.85rem;
-    line-height: 1.6;
-  }
-
-  .cta-section {
-    padding-top: 1.5rem;
-    padding-bottom: 3rem;
-    transform: none;
-  }
-
-  .cta-title {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-  }
-
-  .cta-buttons .btn {
-    min-width: 50% !important;
-    width: 50%;
-  }
-
 }

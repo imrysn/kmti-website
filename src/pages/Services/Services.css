@@ -33,22 +33,67 @@ body.services-page-active::-webkit-scrollbar {
    SERVICES HERO SECTION
    ============================================ */
 
+/* ============================================
+   SERVICES HERO SECTION
+   ============================================ */
+
 .services-hero {
-  background-image: var(--services-bg-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   margin-top: -8rem;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding-top: 4rem;
+  padding-bottom: 0rem;
   position: relative;
-  min-height: 94vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
   z-index: 1;
+  overflow: hidden;
+}
+
+/* Dedicated background element for smooth zooming */
+.services-hero-bg-custom {
+  position: absolute;
+  top: -10rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  will-change: transform;
+  animation: servicesHeroBackgroundZoom 20s linear infinite;
+}
+
+/* Extend background to top of viewport */
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: -10rem;
+  left: 0;
+  right: 0;
+  height: 10rem;
+  background: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  z-index: -1;
+}
+
+@keyframes servicesHeroBackgroundZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .services-hero-overlay {
@@ -57,7 +102,7 @@ body.services-page-active::-webkit-scrollbar {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);
+  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
   opacity: 0.8;
   z-index: 0;
   pointer-events: none;

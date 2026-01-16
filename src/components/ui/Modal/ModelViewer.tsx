@@ -112,7 +112,7 @@ const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isIn
 
   useFrame(() => {
     if (modelRef.current && !isInteracting && !isTransitioning.current) {
-      modelRef.current.rotation.y += 0.001;
+      modelRef.current.rotation.y += 0.003;
     }
 
     if (camera instanceof THREE.PerspectiveCamera && isTransitioning.current && !isInteracting) {
