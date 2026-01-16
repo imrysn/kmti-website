@@ -1,5 +1,39 @@
-# Logs
-logs
+# ============================================
+# Dependencies
+# ============================================
+node_modules/
+.pnp
+.pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnpm-debug.log*
+
+# ============================================
+# Build Outputs
+# ============================================
+dist/
+dist-ssr/
+build/
+out/
+.next/
+.nuxt/
+
+# ============================================
+# Environment Variables & Secrets
+# ============================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# ============================================
+# Runtime Data & Logs
+# ============================================
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,50 +41,95 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# PHP runtime data (visit counter)
+visits_data.json
+public/visits_data.json
 
-# Editor directories and files
+# ============================================
+# Testing & Coverage
+# ============================================
+coverage/
+*.lcov
+.nyc_output/
+test-results/
+playwright-report/
+
+# ============================================
+# Editor & IDE
+# ============================================
+# VSCode
 .vscode/*
 !.vscode/extensions.json
-.idea
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# JetBrains IDEs (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ============================================
+# OS-Specific Files
+# ============================================
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# Temporary Files
+# ============================================
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.local
+
+# ============================================
+# Project-Specific
+# ============================================
+# 3D Model files (large GLB files)
+/src/assets/3DMODELS/
+*.glb
+
+# Backup and Large Files
+.git_backup_large/
+kmti-website-backup/
+
+# Other project-specific ignores
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-node_modules/
-dist/
-build/
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-coverage/
-*.lcov
-.nyc_output/
-.next/
-.nuxt/
-dist/
-build/
-.DS_Store
-.env.local
-.env.*.local
-!docs/.vitepress/cachekmti-website-backup/
-
-# ... (rest of your file)
-
-# 3D Model files (large GLB files)
-# Adding a leading slash ensures it targets the root directory
-/src/assets/3DMODELS/
-*.glb
-
-# Backup and Large Files
-# This matches the error from your terminal exactly
-.git_backup_large/
-kmti-website-backup/
-.git_backup_large/
