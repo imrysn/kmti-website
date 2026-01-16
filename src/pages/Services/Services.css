@@ -29,14 +29,6 @@ body.services-page-active::-webkit-scrollbar {
   z-index: -1;
 }
 
-/* ============================================
-   SERVICES HERO SECTION
-   ============================================ */
-
-/* ============================================
-   SERVICES HERO SECTION
-   ============================================ */
-
 .services-hero {
   margin-top: -8rem;
   padding-top: 4rem;
@@ -64,8 +56,6 @@ body.services-page-active::-webkit-scrollbar {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
-  will-change: transform;
-  animation: servicesHeroBackgroundZoom 20s linear infinite;
 }
 
 /* Extend background to top of viewport */
