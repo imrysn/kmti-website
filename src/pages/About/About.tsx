@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './About.css';
 import { AboutPageProps } from './About.types';
-import aboutBg from '../../assets/aboutPage/aboutbg.jpg';
+import aboutBg from '../../assets/aboutPage/abouts.png';
 import aboutCompany1 from '../../assets/aboutPage/aboutcompany1.png';
 import aboutCompany2 from '../../assets/aboutPage/aboutcomapny2.png';
 import Button from '../../components/ui/Button';
@@ -39,8 +39,8 @@ import mgImage from '../../assets/management/MG.png';
 import matthewImage from '../../assets/management/MATTHEW.png'
 
 import ourPeople1 from '../../assets/aboutPage/ourpeople1.jpg'; import ourPeople2 from '../../assets/aboutPage/ourpeople2.jpg';
-import ourPeople3 from '../../assets/aboutPage/ourpeople33.png';
-import ourPeople4 from '../../assets/aboutPage/ourpeople4.jpg';
+import ourPeople3 from '../../assets/aboutPage/FINAL.png';
+import ourPeople4 from '../../assets/aboutPage/abouts.png';
 import ourPeople5 from '../../assets/aboutPage/ourpeople5.jpg';
 
 import kemcoLogo from '../../assets/aboutPage/kemcoLogo.png';

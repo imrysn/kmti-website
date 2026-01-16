@@ -263,6 +263,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
     else if (action.action === 'call') window.location.href = 'tel:+63464134509';
     else if (action.action === 'email') window.open(action.url || 'mailto:info@kmti.com.ph', '_blank');
     else if (action.action === 'start-over') handleButtonClick('start-over', '');
+    else if (action.action === 'talk-to-human') handleButtonClick('talk-to-human', action.text);
     else if (action.navigateAction) handleButtonClick(action.navigateAction, action.text);
     else if (action.action === 'apply') {
       if (action.url) window.open(action.url, '_blank');

@@ -713,7 +713,7 @@
 
 /* Add a subtle overlay hint on hover */
 .projects-card-image-container::after {
-  content: '🔍 Click to view in 3D';
+  content: 'Click to view in 3D';
   position: absolute;
   bottom: 10px;
   left: 50%;

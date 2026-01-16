@@ -37,7 +37,7 @@ const jp = {
         desc: "最新のツールと技術を駆使し、効率と品質を両立させながら、お客様のアイデアを実現する創造的なエンジニアリングソリューションを提供します。"
       },
       experience: {
-        title: "体験",
+        title: "経験",
         desc: "長年にわたる機械設計・製作の専門知識を活かし、確かな知見と真摯な取り組みに基づいた、信頼性の高いソリューションを提供します"
       }
     },
@@ -69,7 +69,7 @@ const jp = {
       items: {
         dedimpler: { title: "デディンプラー＆フェイサー", desc: "チューブやパイプは、フェーシングおよび内外面の面取り加工が必要であり、チューブミルと連動して行うことも、独立して実施することも可能です。", cat: "仕上げ設備" },
         looper: { title: "ルーパーマシン", desc: "水平ルーパーは、ストリップ材を水平回転テーブル上に収納します。設置スペースが確保できる場合、表面を傷つけることなくストリップ材を保管する最も効率的かつ経済的な方法です。", cat: "ルーパー" },
-        forming: { title: "成形・サイジングマシンルーパーマシン", desc: "金属を溶接・結合した後、所定の形状の鋼材を作り出すための成形加工が行われます。", cat: "形成" },
+        forming: { title: "成形・サイジングマシン", desc: "金属を溶接・結合した後、所定の形状の鋼材を作り出すための成形加工が行われます。", cat: "成形" },
         shear: { title: "せん断溶接機", desc: "シャーおよびエンドウェルダーは、各コイルのテールとノーズを切断します。その後、両端を整列させ、材料や板厚に応じてTIG、MIG、またはMAG溶接により接合します。シングルおよびツイントーチタイプの機種が利用可能です。", cat: "ストリップエントリー" },
         table: { title: "仕上げ台", desc: "仕上げラインにおけるトランスファーテーブルの延長。", cat: "移送テーブルライン" },
         line: { title: "フィニッシュライン", desc: "パイプを規定の長さに切断した後、仕上げラインへ送られ、整列・束ねられた状態で出荷準備が行われます。", cat: "フィニッシュライン" },
@@ -151,7 +151,7 @@ const jp = {
       title: "会社沿革",
       milestones: {
         item1: { year: "2014年10月", title: "設立", description: "フィリピンのカビテにKMTIを設立し、エンジニアリングの基礎を築きました。" },
-        item2: { year: "2014", title: "戦略的パートナーシップ", description: "株式会社クサカベ電機（KEMCO）と重要なパートナーシップを締結しました。" },
+        item2: { year: "2014", title: "戦略的パートナーシップ", description: "草壁電機株式会社（KEMCO）および前野技研株式会社（MGK）と重要なパートナーシップを締結しました。" },
         item3: { year: "2014", title: "国際従業員交流プログラム", description: "日本のパートナー企業に熟練エンジニアを数ヶ月間派遣し、実地研修と協力を行う従業員派遣プログラムを開始しました。" },
         item4: { year: "2024", title: "新たな提携", description: "技術力を広げるためにNEXT ENGINEERING株式会社と提携しました。" },
         item5: { year: "2025", title: "チーム成長と育成", description: "エンジニアリングチームを拡大し、継続的な研修と育成プログラムを通じて技術的専門知識を強化しました。" }
@@ -650,7 +650,7 @@ const jp = {
         ]
       },
       "start-over": {
-        text: "",
+        text: "最初からやり直します。本日はどのようなご用件でしょうか？",
         buttons: [
           { id: "so1", text: "当社のサービス", action: "services" },
           { id: "so2", text: "採用情報・応募", action: "careers" },
@@ -829,7 +829,7 @@ const jp = {
         ]
       },
       process: {
-        text: "Our process typically involves:\n1️⃣ Consultation & Requirements Gathering\n2️⃣ Design & 3D Modeling\n3️⃣ 2D Detailing & Quality Checking\n4️⃣ Client Review & Modifications\n5️⃣ Final Approval & Delivery\n\nWe keep clients involved at every stage!",
+        text: "当社のプロセスは通常以下のように進みます：\n1️⃣ ご相談・要件のヒアリング\n2️⃣ 設計・3Dモデリング\n3️⃣ 2D詳細設計・品質チェック\n4️⃣ お客様レビュー・修正\n5️⃣ 最終承認・納品\n\nすべての段階でお客様に関与いただきます！",
         actionButtons: [
           { id: "proc1", text: "✉️  プロセスについて議論する", action: "email" },
           { id: "proc3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
@@ -851,7 +851,7 @@ const jp = {
       },
 
       consultation: {
-        text: "",
+        text: "プロジェクトについてぜひご相談させてください！以下の方法でご相談いただけます：\n• Facebook Messenger（最速対応）\n• メール\n• お電話\n• オフィス訪問",
         actionButtons: [
           { id: "con1", text: "💬 Facebook経由でスケジュールする", action: "message" },
           { id: "con2", text: "✉️ 相談用メール", action: "email" },
@@ -890,11 +890,11 @@ const jp = {
         ]
       },
       "talk-to-human": {
-        text: "喜んで弊社チームをご紹介いたします！ご連絡方法はどちらがよろしいでしょうか？",
+        text: "喜んで弊社チームをご紹介いたします！担当者に最も早く連絡できる方法は、Facebookページです。",
         actionButtons: [
-          { id: "th1", text: "メールでお問い合わせ", action: "email", url: "mailto:info@kmti.com.ph" },
-          { id: "th2", text: "Facebookでメッセージを送る", action: "facebook", url: "https://www.facebook.com/kmti.com.ph/" },
-          { id: "th3", text: "お電話ください (046) 413-4509", action: "call" },
+          { id: "th1", text: "💬 Facebookでチャットする", action: "facebook", url: "https://www.facebook.com/kmti.com.ph/" },
+          { id: "th2", text: "✉️ メールでお問い合わせ", action: "email", url: "mailto:info@kmti.com.ph" },
+          { id: "th3", text: "📞 お電話ください (046) 413-4509", action: "call" },
           { id: "th4", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
         ]
       },

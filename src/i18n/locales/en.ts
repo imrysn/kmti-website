@@ -726,13 +726,13 @@ const en = {
         ]
       },
       "hiring-process": {
-        text: "The hiring process form the initial interview to final assessment usually takes about one day.",
+        text: "The hiring process from the initial interview to final assessment usually takes about one day.",
         actionButtons: [
           { id: "hp1", text: "Back", action: "back", navigateAction: "careers" }
         ]
       },
       "career-opportunities": {
-        text: "We beleive in continous improvement. One of the great opportunities for career growth at KMTI is the chance to undergo training in Japan to develop technical skills.",
+        text: "We believe in continuous improvement. One of the great opportunities for career growth at KMTI is the chance to undergo training in Japan to develop technical skills.",
         actionButtons: [
           { id: "co1", text: "Apply Now", action: "apply" }
         ]
@@ -891,11 +891,11 @@ const en = {
         ]
       },
       "talk-to-human": {
-        text: "I'd be happy to connect you with our team! How would you like to reach us? ",
+        text: "I'd be happy to connect you with our team! The fastest way to reach a real person is through our Facebook page.",
         actionButtons: [
-          { id: "th1", text: " Email us", action: "email", url: "mailto:info@kmti.com.ph" },
-          { id: "th2", text: "Message us on Facebook", action: "facebook", url: "https://www.facebook.com/kmti.com.ph/" },
-          { id: "th3", text: "Call us (046) 413-4509", action: "call" },
+          { id: "th1", text: "💬 Chat with us on Facebook", action: "facebook", url: "https://www.facebook.com/kmti.com.ph/" },
+          { id: "th2", text: "✉️ Email us", action: "email", url: "mailto:info@kmti.com.ph" },
+          { id: "th3", text: "📞 Call us (046) 413-4509", action: "call" },
           { id: "th4", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
         ]
       }
