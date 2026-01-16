@@ -194,4 +194,4 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   );
 };
 
-export default Model3DViewerModal; ``
+export default Model3DViewerModal;

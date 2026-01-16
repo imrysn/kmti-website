@@ -129,6 +129,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       timeoutRefs.current.forEach(clearTimeout);
       initializationRef.current = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInitializing, isOpen, i18n.language]);
 
   // --- Keyword Matching (Documentation Exhaustive List) ---

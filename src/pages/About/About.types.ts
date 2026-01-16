@@ -1,1 +1,1 @@
-export interface AboutPageProps {}
+export type AboutPageProps = Record<string, never>;

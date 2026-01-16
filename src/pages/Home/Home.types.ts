@@ -1,1 +1,1 @@
-export interface HomePageProps {}
+export type HomePageProps = Record<string, never>;

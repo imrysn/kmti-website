@@ -1,1 +1,1 @@
-export interface CareersPageProps {}
+export type CareersPageProps = Record<string, never>;

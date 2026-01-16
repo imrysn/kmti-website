@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Navbar.css';
@@ -12,14 +12,14 @@ const Navbar: React.FC = () => {
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
     { path: '/services', label: t('nav.services') },
     { path: '/projects', label: t('nav.projects') },
     { path: '/careers', label: t('nav.careers') },
     { path: '/contact', label: t('nav.contact') },
-  ];
+  ], [t]);
 
   const handleNavClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     const currentPathname = location.pathname;
@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
     if (isMainNavPage) {
       localStorage.setItem('lastMainNavPath', location.pathname);
     }
-  }, [location.pathname]);
+  }, [location.pathname, navLinks]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [location.pathname, i18n.language]);
+  }, [location.pathname, i18n.language, navLinks]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);

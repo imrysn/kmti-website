@@ -124,22 +124,22 @@ const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isIn
         camera.position.lerp(targetPosition.current, lerpFactor);
         camera.lookAt(0, 0, 0);
 
-        if (controls) {
-          (controls as any).target.set(0, 0, 0);
-          (controls as any).update();
+        if (controls && 'target' in controls && 'update' in controls) {
+          (controls as { target: THREE.Vector3; update: () => void }).target.set(0, 0, 0);
+          (controls as { target: THREE.Vector3; update: () => void }).update();
         }
       } else {
         camera.position.copy(targetPosition.current);
         camera.lookAt(0, 0, 0);
         isTransitioning.current = false;
 
-        if (controls) {
-          (controls as any).target.set(0, 0, 0);
-          (controls as any).update();
+        if (controls && 'target' in controls && 'update' in controls) {
+          (controls as { target: THREE.Vector3; update: () => void }).target.set(0, 0, 0);
+          (controls as { target: THREE.Vector3; update: () => void }).update();
         }
       }
-    } else if (controls && (controls as any).enableDamping) {
-      (controls as any).update();
+    } else if (controls && 'enableDamping' in controls && 'update' in controls) {
+      (controls as { update: () => void }).update();
     }
   });
 

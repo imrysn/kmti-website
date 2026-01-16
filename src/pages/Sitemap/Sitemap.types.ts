@@ -1,6 +1,4 @@
-export interface SitemapPageProps {
-  // Empty for now, can be extended later
-}
+export type SitemapPageProps = Record<string, never>;
 
 export interface SitemapSection {
   title: string;

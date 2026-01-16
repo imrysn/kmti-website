@@ -260,13 +260,13 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                 }}
                 onClick={
                   ['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(project.internalTitle)
-                    ? () => { setSelectedProjectKey((project as any).key); setIsProjectModalOpen(true); }
+                    ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsProjectModalOpen(true); }
                     : ['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE'].includes(project.internalTitle)
-                      ? () => { setSelectedProjectKey((project as any).key); setIsLooperModalOpen(true); }
+                      ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsLooperModalOpen(true); }
                       : project.internalTitle === 'FORMING AND SIZING MACHINE'
                         ? () => setIsFormingModalOpen(true)
                         : ['SHEAR WELDER MACHINE', 'UNCOILER MACHINE', 'LEVELER MACHINE'].includes(project.internalTitle)
-                          ? () => { setSelectedProjectKey((project as any).key); setIsStripEntryModalOpen(true); }
+                          ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsStripEntryModalOpen(true); }
                           : project.internalTitle === 'FINISHING TABLE'
                             ? () => setIsTransferTableLineModalOpen(true)
                             : project.internalTitle === 'FINISHING LINE'
