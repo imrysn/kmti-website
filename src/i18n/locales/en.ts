@@ -135,11 +135,12 @@ const en = {
         eng_sup: "ENGINEERING SUPERVISOR",
         eng_tl: "ENGINEERING TEAM LEADER",
         eng_atl: "ENGINEERING ASSISTANT TL",
-        it_staff: "ENGINEERING IT/STAFF",
-        staff_so: "ENGINEERING STAFF/SO",
+        it_staff: "ENGINEERING IT / STAFF",
+        staff_so: "ENGINEERING STAFF / SO",
         staff: "ENGINEERING STAFF",
+        admin_staff: "ADMIN STAFF / PCO",
         driver: "COMPANY DRIVER",
-        utility: "MAINTENANCE/UTILITY PERSONNEL"
+        utility: "MAINTENANCE / UTILITY PERSONNEL"
       }
     },
     people: {

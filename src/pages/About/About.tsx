@@ -32,9 +32,14 @@ import jonathanImage from '../../assets/management/jonathan.png';
 import noelImage from '../../assets/management/noel.png';
 import royImage from '../../assets/management/roy.png';
 import jojoImage from '../../assets/management/jojo.png';
+import zorenImage from '../../assets/management/ZOREN.png';
+import raineImage from '../../assets/management/RAINE.png';
+import sharmaineImage from '../../assets/management/SHARMAINE.png';
+import mgImage from '../../assets/management/MG.png';
+import matthewImage from '../../assets/management/MATTHEW.png'
 
 import ourPeople1 from '../../assets/aboutPage/ourpeople1.jpg'; import ourPeople2 from '../../assets/aboutPage/ourpeople2.jpg';
-import ourPeople3 from '../../assets/aboutPage/ourpeople3.jpg';
+import ourPeople3 from '../../assets/aboutPage/ourpeople33.png';
 import ourPeople4 from '../../assets/aboutPage/ourpeople4.jpg';
 import ourPeople5 from '../../assets/aboutPage/ourpeople5.jpg';
 
@@ -162,25 +167,32 @@ const About: React.FC<AboutPageProps> = () => {
           {isManagementTeamExpanded && (
             <div className="about-management-team-expanded-rows">
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} />
+                <ManagementTeamCard image={raineImage} role={t('about.management.roles.admin_staff')} />
                 <ManagementTeamCard image={erikImage} role={t('about.management.roles.eng_tl')} />
                 <ManagementTeamCard image={louieImage} role={t('about.management.roles.eng_atl')} />
+                <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} />
                 <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.it_staff')} />
-                <ManagementTeamCard image={kissImage} role={t('about.management.roles.staff_so')} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={lorieImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={jethroImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} />
+                <ManagementTeamCard image={kissImage} role={t('about.management.roles.staff_so')} />
                 <ManagementTeamCard image={joyceImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={lorieImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={jonathanImage} role={t('about.management.roles.staff')} />
+              </div>
+              <div className="about-management-team-grid">
+                <ManagementTeamCard image={noelImage} role={t('about.management.roles.driver')} />
+                <ManagementTeamCard image={nylImage} role={t('about.management.roles.staff')} />
                 <ManagementTeamCard image={jcImage} role={t('about.management.roles.staff')} />
                 <ManagementTeamCard image={jennyImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={jethroImage} role={t('about.management.roles.staff')} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={nylImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={jonathanImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={noelImage} role={t('about.management.roles.driver')} />
-                <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} />
                 <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} />
+                <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={sharmaineImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} />
               </div>
             </div>
           )}

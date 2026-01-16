@@ -138,6 +138,7 @@ const jp = {
         it_staff: "エンジニアリング／ITスタッフ",
         staff_so: "エンジニアリングスタッフ／SO",
         staff: "エンジニアリングスタッフ",
+        admin_staff: "総務スタッフ",
         driver: "会社運転手",
         utility: "保守・ユーティリティスタッフ"
       }

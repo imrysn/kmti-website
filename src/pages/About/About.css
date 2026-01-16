@@ -591,6 +591,44 @@
   background-color: white;
 }
 
+.our-people-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(81, 162, 255, 0.2);
+  border: 1px solid rgba(81, 162, 255, 0.5);
+  color: white;
+  font-size: 3rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+  line-height: 1;
+  user-select: none;
+}
+
+.our-people-carousel-arrow:hover {
+  background-color: rgba(81, 162, 255, 0.4);
+  border-color: rgba(81, 162, 255, 0.8);
+  box-shadow: 0 0 15px rgba(81, 162, 255, 0.5);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.our-people-carousel-arrow-left {
+  left: 1rem;
+}
+
+.our-people-carousel-arrow-right {
+  right: 1rem;
+}
+
+
 @media (max-width: 768px) {
   .about-company-grid {
     grid-template-columns: 1fr;
@@ -620,6 +658,20 @@
 
   .about-company-title {
     font-size: 2rem;
+  }
+
+  .our-people-carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+  }
+
+  .our-people-carousel-arrow-left {
+    left: 0.5rem;
+  }
+
+  .our-people-carousel-arrow-right {
+    right: 0.5rem;
   }
 }
 
