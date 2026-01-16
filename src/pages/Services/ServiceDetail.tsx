@@ -82,10 +82,7 @@ const ServiceDetail: React.FC = () => {
   return (
     <motion.div
       className="service-detail-page"
-      // ... (omitted animation props for brevity in tool call, but context matching will handle it)
-      // wait, I can't emit partial file here easily with replace_file_content if I'm not careful.
-      // Let's stick to replacing the useEffect and the Carousel render part separately if possible, or use a larger block.
-      // Actually, I can replace the useEffect block first, then the carousel block.
+
 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -172,6 +169,14 @@ const ServiceDetail: React.FC = () => {
                 </div>
               ) : (
                 <div className="service-detail-gallery">
+                  <div className="zoom-instruction-overlay">
+                    <svg className="zoom-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                      <path d="M16 16L21 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                      <path d="M11 8V14M8 11H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    <span className="zoom-instruction-text">{t('services.zoom_instruction', { defaultValue: 'Scroll to zoom • Drag to pan' })}</span>
+                  </div>
                   {images.map((img, i) => (
                     <div key={i} className="service-detail-zoom-wrapper">
                       <TransformWrapper

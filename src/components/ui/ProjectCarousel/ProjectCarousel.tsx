@@ -119,6 +119,23 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
     };
   }, [cardWidth]);
 
+  // Native touch event listeners with passive: false to allow preventDefault
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const handleNativeTouchMove = (e: TouchEvent) => {
+      if (!isSwiping.current) return;
+      e.preventDefault(); // This works with passive: false
+    };
+
+    carousel.addEventListener('touchmove', handleNativeTouchMove, { passive: false });
+
+    return () => {
+      carousel.removeEventListener('touchmove', handleNativeTouchMove);
+    };
+  }, []);
+
   useEffect(() => {
     if (currentIndex < 2 * projects.length) {
       setTransitionEnabled(false);
@@ -154,9 +171,9 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
     isSwiping.current = true;
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isSwiping.current) return;
-    e.preventDefault(); // Prevent scrolling while swiping
+  const handleTouchMove = () => {
+    // preventDefault is handled by native event listener
+    // This handler is kept for compatibility but doesn't need to do anything
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {

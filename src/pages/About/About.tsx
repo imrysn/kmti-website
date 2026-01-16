@@ -12,8 +12,6 @@ import Card from '../../components/ui/Card/Card';
 import { ManagementTeamCard, RelatedCompanyCard } from '../../components/ui/Card/Card';
 import visionIcon from '../../assets/icons/vision-icon.png';
 import missionIcon from '../../assets/icons/mission-icon.png';
-
-// Management Team Images
 import pauImage from '../../assets/management/pau.png';
 import michaelImage from '../../assets/management/michael.png';
 import siryuImage from '../../assets/management/siryu.png';
@@ -35,17 +33,13 @@ import noelImage from '../../assets/management/noel.png';
 import royImage from '../../assets/management/roy.png';
 import jojoImage from '../../assets/management/jojo.png';
 
-// Carousel Images
-import ourPeople1 from '../../assets/aboutPage/ourpeople1.jpg';
-import ourPeople2 from '../../assets/aboutPage/ourpeople2.jpg';
+import ourPeople1 from '../../assets/aboutPage/ourpeople1.jpg'; import ourPeople2 from '../../assets/aboutPage/ourpeople2.jpg';
 import ourPeople3 from '../../assets/aboutPage/ourpeople3.jpg';
 import ourPeople4 from '../../assets/aboutPage/ourpeople4.jpg';
 import ourPeople5 from '../../assets/aboutPage/ourpeople5.jpg';
 
-// Logo Images
 import kemcoLogo from '../../assets/aboutPage/kemcoLogo.png';
-import nextengLogo from '../../assets/aboutPage/nextengLogo.png';
-import mgkLogo from '../../assets/aboutPage/mgkLogo.png';
+import nextengLogo from '../../assets/aboutPage/nextengLogo.png'; import mgkLogo from '../../assets/aboutPage/mgkLogo.png';
 
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();

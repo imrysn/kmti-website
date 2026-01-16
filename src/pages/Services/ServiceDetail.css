@@ -12,7 +12,7 @@
 
 .service-detail-back-wrapper {
   margin-bottom: 2rem;
-  margin-top: 1rem;
+  margin-top: -5rem;
   display: flex;
   justify-content: flex-start;
 }
@@ -139,8 +139,17 @@
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 2rem;
-  border: 1px solid #51A2FF;
-  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(81, 162, 255, 0.3);
+  background: rgba(15, 23, 43, 0.4);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.service-detail-zoom-wrapper:hover {
+  border-color: rgba(81, 162, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(81, 162, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .service-detail-zoom-wrapper .service-detail-static-image {
@@ -167,12 +176,21 @@
 }
 
 .service-detail-carousel {
-  widows: 100%;
+  width: 100%;
   height: 400px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  border: 1px solid #51A2FF;
+  border: 1px solid rgba(81, 162, 255, 0.3);
+  background: rgba(15, 23, 43, 0.4);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.service-detail-carousel:hover {
+  border-color: rgba(81, 162, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(81, 162, 255, 0.2);
 }
 
 .service-detail-image {
@@ -293,15 +311,16 @@
 
 .step-number {
   background: rgba(255, 255, 255, 0.1);
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.7);
+  margin-left: -1rem;
   margin-bottom: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
@@ -319,7 +338,8 @@
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   border: 1px solid rgba(81, 162, 255, 0.2);
-  width: 100%;
+  margin-left: 1rem;
+  width: 80%;
 }
 
 .step-name {
@@ -330,7 +350,7 @@
 
 .step-connector {
   position: absolute;
-  left: 16px;
+  left: 0px;
   top: 32px;
   bottom: 0;
   width: 2px;
@@ -399,6 +419,89 @@
   }
 
   .service-detail-back-wrapper {
-    margin-top: 6rem;
+    margin-top: -6rem;
+  }
+}
+
+/* Zoom instruction overlay */
+.service-detail-gallery {
+  position: relative;
+}
+
+.zoom-instruction-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(15, 23, 43, 0.7);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(81, 162, 255, 0.4);
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+  animation: fadeInBounce 0.6s ease-out;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeInBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zoom-icon {
+  color: #51A2FF;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.zoom-instruction-text {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  font-family: var(--font-family-body);
+}
+
+/* Mobile responsive for zoom overlay */
+@media (max-width: 768px) {
+  .zoom-instruction-overlay {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .zoom-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .zoom-instruction-text {
+    font-size: 0.75rem;
   }
 }

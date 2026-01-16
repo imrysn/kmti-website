@@ -85,8 +85,10 @@ const Services: React.FC<ServicesPageProps> = () => {
   }
 
   return (
-    <div className="services-page" style={{ '--services-bg-image': `url(${servicesBg})` } as React.CSSProperties}>
+    <div className="services-page">
       <section className="services-hero">
+        <div className="services-hero-bg-custom" style={{ backgroundImage: `url(${servicesBg})` }}></div>
+        <div className="services-hero-overlay"></div>
         <div className="services-hero-container container">
           <div className="services-hero-content">
             <h1 className="services-title">{t('services.hero.title')}</h1>
@@ -96,7 +98,6 @@ const Services: React.FC<ServicesPageProps> = () => {
             </div>
           </div>
         </div>
-        <div className="services-hero-overlay"></div>
       </section>
 
       <section className="services-nav-section" ref={servicesNavRef}>
@@ -117,7 +118,6 @@ const Services: React.FC<ServicesPageProps> = () => {
 
       <section className="services-grid-section" ref={servicesGridRef}>
         <div className="services-grid-container container">
-          {/* Grid is always rendered */}
           <AnimatePresence initial={false}>
             <motion.div
               className="services-grid"
@@ -137,7 +137,6 @@ const Services: React.FC<ServicesPageProps> = () => {
                   }
                 };
 
-                // Determine span class based on ID
                 let spanClass = 'service-span-1';
                 if (s.id === 1 || s.id === 4) {
                   spanClass = 'service-span-2';

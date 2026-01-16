@@ -214,8 +214,18 @@
 @media (max-width: 768px) {
   .chatbot-teaser {
     bottom: 80px;
-    right: 20px;
+    right: 40px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatbot-teaser {
+    white-space: normal;
+    max-width: calc(90vw - 20px);
+    bottom: 75px;
+    font-size: 0.8rem;
+    text-align: right;
   }
 }
