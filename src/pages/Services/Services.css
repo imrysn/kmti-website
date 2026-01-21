@@ -30,7 +30,7 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 .services-hero {
-  margin-top: -8rem;
+  margin-top: -13rem;
   padding-top: 4rem;
   padding-bottom: 0rem;
   position: relative;
@@ -92,7 +92,8 @@ body.services-page-active::-webkit-scrollbar {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
+  /* background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);*/
+  background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   opacity: 0.8;
   z-index: 0;
   pointer-events: none;
@@ -230,8 +231,8 @@ body.services-page-active::-webkit-scrollbar {
    ============================================ */
 
 .services-grid-section {
-  padding-top: 5rem;
-  padding-bottom: 1rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
   position: relative;
   z-index: 1;
   -ms-overflow-style: none;
@@ -480,7 +481,7 @@ body.services-page-active::-webkit-scrollbar {
    ============================================ */
 
 .service-section {
-  padding: 5rem 0;
+  padding: 6rem 0;
   position: relative;
   z-index: 1;
   max-width: 100%;
@@ -798,6 +799,19 @@ body.services-page-active::-webkit-scrollbar {
   flex-direction: column;
   gap: 0rem;
   align-items: center;
+}
+
+/* Japanese specific overrides */
+.lang-jp .service-page-card-subtitle {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  display: block !important;
+  /* Override -webkit-box from Card.css */
+  font-size: 0.8rem !important;
+  /* Adjust font size to fit more text */
+  padding-right: 0;
+  margin-bottom: 0;
 }
 
 .service-section-flow-step {

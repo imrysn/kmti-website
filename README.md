@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![KMTI Website](./src/assets/screenshots/home-page.jpg)
+![KMTI Website](./src/assets/readme_screenshots/home-page.jpg)
 
 **A modern, multilingual corporate website built with React, TypeScript, and Vite**
 
@@ -49,7 +49,7 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 ## ✨ Features
 
 ### 🏠 Homepage
-![Homepage](./src/assets/screenshots/home-page.jpg)
+![Homepage](./src/assets/readme_screenshots/home-page.jpg)
 
 - **Hero Section**: Eye-catching hero with gradient overlay and CTAs
 - **Services Preview**: Interactive cards showcasing core services
@@ -58,7 +58,7 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 - **Smooth Scrolling**: Seamless navigation between sections
 
 ### 🛠️ Services Page
-![Services](./src/assets/screenshots/service-page.jpg)
+![Services](./src/assets/readme_screenshots/service-page.jpg)
 
 - **Service Grid**: Visual grid displaying all four main services
 - **Lazy-Loaded Videos**: Performance-optimized video backgrounds
@@ -67,7 +67,7 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 - **Scroll Progress Indicator**: Visual feedback for page position
 
 ### 📂 Projects Page
-![Projects](./src/assets/screenshots/projects-page.jpg)
+![Projects](./src/assets/readme_screenshots/projects-page.jpg)
 
 - **Project Gallery**: Grid layout showcasing company portfolio
 - **3D Model Viewer**: Interactive 3D models using Three.js
@@ -76,7 +76,7 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 - **Modal System**: Detailed project views with smooth animations
 
 ### 👥 About Us Page
-![About Us](./src/assets/screenshots/about-us-page.jpg)
+![About Us](./src/assets/readme_screenshots/about-us-page.jpg)
 
 - **Company Story**: Comprehensive company history and values
 - **Management Team**: Interactive team member profiles
@@ -84,7 +84,7 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 - **Related Companies**: Partner and collaboration showcase
 
 ### 💼 Careers Page
-![Careers](./src/assets/screenshots/careers-page.jpg)
+![Careers](./src/assets/readme_screenshots/careers-page.jpg)
 
 - **Job Listings**: Current open positions with detailed descriptions
 - **Application Process**: Step-by-step guide for applicants
@@ -92,7 +92,7 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 - **Direct Application**: LinkedIn integration for easy apply
 
 ### 📞 Contact Page
-![Contact](./src/assets/screenshots/contact-us-page.jpg)
+![Contact](./src/assets/readme_screenshots/contact-us-page.jpg)
 
 - **Contact Form**: Email integration for inquiries
 - **Google Maps**: Embedded map showing exact office location
@@ -156,7 +156,7 @@ kmti-website/
 │   │   ├── aboutPage/         # About page assets
 │   │   ├── icons/             # UI icons
 │   │   ├── management/        # Team photos
-│   │   ├── screenshots/       # README screenshots
+│   │   ├── readme_screenshots/       # README readme_screenshots
 │   │   └── *.mp4              # Service videos
 │   ├── components/
 │   │   ├── common/            # Shared components

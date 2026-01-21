@@ -38,9 +38,9 @@
 
 .service-detail-subtitle {
   font-family: var(--font-family-body);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #B8BFC8;
-  max-width: 800px;
+  max-width: 980px;
   margin: 0 auto;
   text-align: center;
 }
@@ -73,6 +73,8 @@
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 2rem;
   white-space: pre-line;
+  text-align: justify;
+  text-indent: 2rem;
 }
 
 /* WORKFLOW */
@@ -267,8 +269,10 @@
 
 .service-detail-subsection-text {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
   font-weight: 100;
+  text-align: justify;
+  text-indent: 2rem;
 }
 
 

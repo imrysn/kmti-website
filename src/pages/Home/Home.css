@@ -4,12 +4,12 @@
 
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 102vh;
   display: flex;
   align-items: center;
   justify-content: center;
   /* Removed background-color to prevent masking */
-  margin-top: -8rem;
+  margin-top: -10rem;
   padding-top: 4rem;
   padding-bottom: 0rem;
   overflow: hidden;
@@ -71,7 +71,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);
+  /* background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);*/
+  background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   opacity: 0.8;
   z-index: 1;
 }
@@ -98,9 +99,17 @@
   font-size: 4rem;
   font-weight: 500;
   color: white;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   line-height: 1.2;
   text-transform: uppercase;
+}
+
+.lang-jp .hero-title {
+  white-space: nowrap;
+}
+
+.lang-jp .hero-title br {
+  display: none;
 }
 
 .hero-buttons {
@@ -112,10 +121,10 @@
 
 
 .home-page .section-container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 0.5rem;
+  padding-top: 0rem;
   padding-bottom: 0rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -127,6 +136,7 @@
   font-weight: 500;
   text-align: center;
   margin-bottom: 0.5rem;
+  margin-top: 2rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;
@@ -138,7 +148,7 @@
   font-family: var(--font-family-body);
   font-size: 1rem;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   color: rgba(255, 255, 255, 0.8);
   max-width: 800px;
   margin-left: auto;
@@ -146,13 +156,15 @@
 }
 
 .why-choose-us-section {
-  padding-top: 6rem;
-  padding-bottom: 4rem;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
 }
+
+
 
 .services-section {
   padding-top: 6rem;
-  padding-bottom: 4rem;
+  padding-bottom: 6rem;
 }
 
 .home-page .services-grid {
@@ -166,13 +178,13 @@
 }
 
 .vision-reality-section {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 .about-section {
   padding-top: 6rem;
-  padding-bottom: 4rem;
+  padding-bottom: 6rem;
   text-align: center;
 }
 
@@ -182,10 +194,11 @@
   font-weight: 350;
   color: #fff;
   line-height: 1.8;
-  max-width: 2000px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+  margin-top: 1rem;
 }
 
 .about-link {
@@ -223,9 +236,10 @@
 
 .home-page .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   margin-top: 6rem;
+  justify-content: center;
 }
 
 /* ============================================
@@ -233,10 +247,6 @@
    ============================================ */
 
 @media (min-width: 769px) {
-  .home-page .cards-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   .home-page .services-grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -331,8 +341,8 @@
     }
 
     .why-choose-us-section {
-      padding-top: 3rem;
-      padding-bottom: 2rem;
+      padding-top: 1rem;
+      padding-bottom: 0rem;
     }
 
     .services-section {
@@ -343,7 +353,7 @@
     .home-page .services-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
-      margin-top: 4rem;
+      margin-top: 2rem;
     }
 
     .home-page .cards-grid {
@@ -354,7 +364,7 @@
 
     .vision-reality-section {
       padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-bottom: 0rem;
     }
 
     .vision-reality-section .section-container {
@@ -530,4 +540,18 @@
       width: 50%;
     }
   }
+}
+
+/* Japanese Content Overrides */
+.hero-content.lang-jp {
+  max-width: 100%;
+}
+
+.hero-title.lang-jp {
+  white-space: nowrap;
+  font-size: clamp(1.2rem, 4.5vw, 3.5rem);
+}
+
+.hero-title.lang-jp br {
+  display: none;
 }

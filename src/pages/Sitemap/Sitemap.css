@@ -5,13 +5,14 @@
 }
 
 .sitemap-page .hero-section {
-  margin-top: -8rem;
+  margin-top: -10rem;
   position: relative;
   min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #020618 0%, #162456 50%, #020618 100%);
+  /* background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);*/
+  background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   padding-top: 10rem;
   padding-bottom: 4rem;
 }

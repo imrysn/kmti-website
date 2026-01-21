@@ -7,19 +7,19 @@ import { motion } from 'framer-motion';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 // Import images (reusing existing ones)
-import modalImage1 from '../../assets/modalImage/3Dmodal1.png';
-import modalImage2 from '../../assets/modalImage/3Dmodal2.png';
-import modalImage2D from '../../assets/modalImage/2Dmodal.png';
-import inspectionImage1 from '../../assets/modalImage/inspection1modal.png';
-import inspectionImage2 from '../../assets/modalImage/inspection2modal.png';
-import inspectionImage3 from '../../assets/modalImage/inspection3modal.png';
-import inspectionImage4 from '../../assets/modalImage/inspection4modal.png';
-import inspectionImage5 from '../../assets/modalImage/inspection5modal.png';
-import assemblyImage1 from '../../assets/modalImage/assembly1modal.png';
-import assemblyImage2 from '../../assets/modalImage/assembly2modal.png';
-import assemblyImage3 from '../../assets/modalImage/assmebly3mpdal.png';
-import assemblyImage4 from '../../assets/modalImage/assembly4modal.png';
-import assemblyImage5 from '../../assets/modalImage/assembly5modal.png';
+import modalImage1 from '../../assets/service_detail_image/3Dmodal1.png';
+import modalImage2 from '../../assets/service_detail_image/3Dmodal2.png';
+import modalImage2D from '../../assets/service_detail_image/2Dmodal.png';
+import inspectionImage1 from '../../assets/service_detail_image/inspection1modal.png';
+import inspectionImage2 from '../../assets/service_detail_image/inspection2modal.png';
+import inspectionImage3 from '../../assets/service_detail_image/inspection3modal.png';
+import inspectionImage4 from '../../assets/service_detail_image/inspection4modal.png';
+import inspectionImage5 from '../../assets/service_detail_image/inspection5modal.png';
+import assemblyImage1 from '../../assets/service_detail_image/assembly1modal.png';
+import assemblyImage2 from '../../assets/service_detail_image/assembly2modal.png';
+import assemblyImage3 from '../../assets/service_detail_image/assmebly3mpdal.png';
+import assemblyImage4 from '../../assets/service_detail_image/assembly4modal.png';
+import assemblyImage5 from '../../assets/service_detail_image/assembly5modal.png';
 
 const ServiceDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

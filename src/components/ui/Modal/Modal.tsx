@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import './Modal.css';
-import modalImage1 from '../../../assets/modalImage/3Dmodal1.png';
-import modalImage2 from '../../../assets/modalImage/3Dmodal2.png';
-import modalImage2D from '../../../assets/modalImage/2Dmodal.png';
-import inspectionImage1 from '../../../assets/modalImage/inspection1modal.png';
-import inspectionImage2 from '../../../assets/modalImage/inspection2modal.png';
-import inspectionImage3 from '../../../assets/modalImage/inspection3modal.png';
-import inspectionImage4 from '../../../assets/modalImage/inspection4modal.png';
-import inspectionImage5 from '../../../assets/modalImage/inspection5modal.png';
-import assemblyImage1 from '../../../assets/modalImage/assembly1modal.png';
-import assemblyImage2 from '../../../assets/modalImage/assembly2modal.png';
-import assemblyImage3 from '../../../assets/modalImage/assmebly3mpdal.png';
-import assemblyImage4 from '../../../assets/modalImage/assembly4modal.png';
-import assemblyImage5 from '../../../assets/modalImage/assembly5modal.png';
-import ourStoryPhoto from '../../../assets/aboutPage/ourstoryImage.png';
+import modalImage1 from '../../../assets/service_detail_image/3Dmodal1.png';
+import modalImage2 from '../../../assets/service_detail_image/3Dmodal2.png';
+import modalImage2D from '../../../assets/service_detail_image/2Dmodal.png';
+import inspectionImage1 from '../../../assets/service_detail_image/inspection1modal.png';
+import inspectionImage2 from '../../../assets/service_detail_image/inspection2modal.png';
+import inspectionImage3 from '../../../assets/service_detail_image/inspection3modal.png';
+import inspectionImage4 from '../../../assets/service_detail_image/inspection4modal.png';
+import inspectionImage5 from '../../../assets/service_detail_image/inspection5modal.png';
+import assemblyImage1 from '../../../assets/service_detail_image/assembly1modal.png';
+import assemblyImage2 from '../../../assets/service_detail_image/assembly2modal.png';
+import assemblyImage3 from '../../../assets/service_detail_image/assmebly3mpdal.png';
+import assemblyImage4 from '../../../assets/service_detail_image/assembly4modal.png';
+import assemblyImage5 from '../../../assets/service_detail_image/assembly5modal.png';
+import ourStoryPhoto from '../../../assets/about_page/ourstoryImage.png';
 import pauImage from '../../../assets/management/pau.png';
 import michaelImage from '../../../assets/management/michael.png';
 import siryuImage from '../../../assets/management/siryu.png';
@@ -56,7 +56,6 @@ import productStorageImage from '../../../assets/image3D/product-storage-FS.png'
 import finishingImage from '../../../assets/image3D/finishing.png';
 import airBlowImage from '../../../assets/image3D/air-blow.png';
 import transferLifterImage from '../../../assets/image3D/transfer-table-lifter.png';
-import dedimplerFacerImage from '../../../assets/image3D/dedimpler&facer.png';
 import bundlingMachineImage from '../../../assets/image3D/bundling-machine.png';
 import millingImage from '../../../assets/image3D/milling.png';
 import furnaceImage from '../../../assets/image3D/furnace.png';
@@ -594,7 +593,7 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
     { image: finishingImage, key: 'finishing', modelKey: 'Finishing Line' },
     { image: airBlowImage, key: 'air_blow', modelKey: 'Air Blow' },
     { image: transferLifterImage, key: 'transfertable_lifter', modelKey: 'Transfer Table (Lifter)' },
-    { image: dedimplerFacerImage, key: 'dedimpler_facer', modelKey: 'Dedimpler and Facer' },
+
     { image: bundlingMachineImage, key: 'bunding_machine', modelKey: 'Bundling Machine' },
     { image: productStorageImage, key: 'product_storage', modelKey: 'Product Storage' },
   ];

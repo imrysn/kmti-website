@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next'; // Added for translation
 import './chatbot.css';
-import defaultProfileImage from '../../../assets/profile.png';
+import defaultProfileImage from '../../../assets/logo/profile.png';
 import facebookIcon from '../../../assets/icons/facebook.png';
 import menuIcon from '../../../assets/icons/menu-icon.png';
 import './ChatWithUsRightCard.css';

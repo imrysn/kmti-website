@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 23, 43, 0.95);
+  background: rgba(16, 25, 46, 0.637);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   display: flex;
@@ -53,7 +53,7 @@
 }
 
 .service-modal-content {
-  background: rgba(15, 23, 43, 0.98);
+  background: rgba(36, 57, 105, 0.98);
   border: 1px solid rgba(81, 162, 255, 0.3);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(81, 162, 255, 0.2);
   border-radius: 24px;
@@ -1149,7 +1149,7 @@
 .project-modal-right {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: -5rem;
 }
 
 .project-modal-details {

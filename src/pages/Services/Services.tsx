@@ -7,16 +7,16 @@ import { ServicesPageProps } from './Services.types';
 import { smoothScrollToElement } from '../../utils/smoothScroll';
 import { ServicePageCard } from '../../components/ui/Card/Card';
 import Button from '../../components/ui/Button';
-import servicesBg from '../../assets/servicesbg.png';
+import servicesBg from '../../assets/hero_background/servicesbg.png';
 import icon3D from '../../assets/icons/cube.png';
 import icon2D from '../../assets/icons/cubes.png';
 import inspectionIcon from '../../assets/icons/parts-inspection-icon.png';
 import assemblyIcon from '../../assets/icons/machine-assembly-icon.png';
 
-import video3D from '../../assets/202601131106.mp4';
-import videoInspection from '../../assets/5e6a5899-2d22-4e22-b57d-d2757ec652da.mp4';
-import videoAssembly from '../../assets/aseemblyy.mp4';
-import video2D from '../../assets/detailing.mp4';
+import video3D from '../../assets/service_detail_image/service_3d.mp4';
+import videoInspection from '../../assets/service_detail_image/service_parts_inspection.mp4';
+import videoAssembly from '../../assets/service_detail_image/service_machine.mp4';
+import video2D from '../../assets/service_detail_image/service_2d.mp4';
 import ServiceDetail from './ServiceDetail';
 
 

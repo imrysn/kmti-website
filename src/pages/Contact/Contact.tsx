@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './Contact.css';
 import { ContactPageProps } from './Contact.types';
-import contactBg from '../../assets/contactusbg.jpg';
+import contactBg from '../../assets/hero_background/contactusbg.jpg';
 import emailIcon from '../../assets/icons/email-icon.png';
 import linkedinIcon from '../../assets/icons/linkedin-icon.png';
 import facebookIcon from '../../assets/icons/facebook.png';
@@ -196,7 +196,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                 </div>
                 <div className="contact-info-details">
                   <h3>LinkedIn</h3>
-                  <p><a href="https://www.linkedin.com/company/kusakabe-maeno-tech-inc/" target="_blank" rel="noreferrer" className="contact-info-link">KMTI Page</a></p>
+                  <p><a href="https://www.linkedin.com/company/kusakabe-maeno-tech-inc/" target="_blank" rel="noreferrer" className="contact-info-link">KMTI LinkedIn</a></p>
                 </div>
               </div>
 

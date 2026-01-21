@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
-import projectBg from '../../assets/projectbg.jpg';
+import projectBg from '../../assets/hero_background/projectbg.jpg';
 import { ProjectsCard } from '../../components/ui/Card/Card';
 import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
 import Model3DViewerModal from '../../components/ui/Modal/Model3DViewerModal';

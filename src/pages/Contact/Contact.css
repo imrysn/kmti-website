@@ -6,8 +6,8 @@
 }
 
 .contact-page .hero-section {
-  margin-top: -8rem;
-  min-height: 100vh;
+  margin-top: -10rem;
+  min-height: 102vh;
   position: relative;
   /* Ensure relative positioning */
   overflow: hidden;

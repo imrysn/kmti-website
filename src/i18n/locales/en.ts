@@ -30,15 +30,15 @@ const en = {
       title: "WHY CHOOSE US",
       precision: {
         title: "PRECISION",
-        desc: "Our team delivers accurate and efficient results through design techniques and strict attention to detail in every project."
+        desc: "Our team ensures absolute accuracy through advanced 2D-to-3D conversion, identifying potential production issues early to deliver precision while significantly reducing manufacturing costs. We maintain strict attention to detail from the initial design phase to final delivery."
       },
       innovation: {
         title: "INNOVATION",
-        desc: "We develop creative engineering solutions using the latest tools and technology to bring your ideas to life with efficiency and quality."
+        desc: "We drive innovation through seamless software-to-hardware integration and specialized OEM machinery manufacturing. By using the latest engineering tools, we bring your most complex ideas to life with efficient, modern solutions."
       },
       experience: {
-        title: "EXPERIENCE",
-        desc: "With years of expertise in machine design and fabrication, we provide reliable solutions built on proven knowledge and dedication."
+        title: "HERITAGE",
+        desc: "Our foundation is built on the combined expertise of Kusakabe Electric, Maeno Giken, and Next Engineering. We provide reliable solutions backed by a century of global leadership in pipe manufacturing, machine design, and precision fabrication."
       }
     },
     services: {
@@ -47,7 +47,7 @@ const en = {
       items: {
         "3d": {
           title: "3D MODELING",
-          desc: "We transform client data into accurate 3D models to visualize designs and detect potential issues early. The process allows for easy review, modification, and validation before proceeding to detailed drawings."
+          desc: "We transform 2D drawings and client data into accurate 3D models to visualize designs and detect potential issues early. This proactive process minimizes manufacturing errors and significantly reduces costs before production begins."
         },
         "2d": {
           title: "2D DETAILING",
@@ -55,11 +55,11 @@ const en = {
         },
         inspection: {
           title: "PARTS INSPECTIONS",
-          desc: "We conduct through inspection and quality checks on fabricated parts to ensure accuracy and consistency with design specifications. Using advanced measuring tools, we guarantee top-notch quality before assembly."
+          desc: "We conduct thorough inspection and provide quality assessments on fabricated parts to ensure accuracy and consistency with design specifications. Using advanced measuring tools, we guarantee top-notch quality before assembly."
         },
         assembly: {
           title: "MACHINE ASSEMBLY",
-          desc: "In collaboration with our trusted partners, we provide reliable assembly services for completed parts and machiney. Our goal is to deliver high-performance, ready-to-use systems built with precision and efficiency."
+          desc: "We provide complete OEM machinery assembly, seamlessly integrating software and hardware with precision manufacturing. We deliver high-performance, ready-to-use systems while ensuring total confidentiality for your intellectual property throughout the production process."
         }
       }
     },
@@ -87,7 +87,7 @@ const en = {
     },
     about: {
       title: "ABOUT US",
-      desc: "Kusakabe & Maeno Tech., Inc. is a trusted engineering partner specializing in precision design, fabrication and assembly. With years of industry experience and strong partnerships with Kusakabe Electric & Machinery Co., Ltd. Next Engineering Co., Ltd. and Maeno Giken Inc., we deliver high-quality engineering solutions tailored to meet our client’s specific needs. Our team of skilled professionals combines innovation, technology, and expertise to transform ideas into efficient, reliable, and practical designs. We take pride in our commitment to accuracy, quality, and customer satisfaction - bringing your vision into creation, with precision.",
+      desc: "Kusakabe & Maeno Tech., Inc. is a trusted engineering partner specializing in precision design, fabrication and assembly. With years of industry experience and strong partnerships with Kusakabe Electric & Machinery Co., Ltd. Next Engineering Co., Ltd. and Maeno Giken Inc., we deliver high-quality engineering solutions tailored to meet our client’s specific needs. Our team of skilled professionals combines innovation, technology, and expertise to transform ideas into efficient, reliable, and practical designs. We take pride in our commitment to accuracy, quality, and customer satisfaction,  bringing your vision into creation, with precision.",
       link: "Learn more about us"
     }
   },
@@ -109,19 +109,19 @@ const en = {
       modal_title: "Our Story",
       caption: "(From left in the photo, President Maeno, Director General of the Philippines Special Economic Zone Agency Delima, Director Masahiko Hasegawa)",
       paragraphs: [
-        "Founded in Kobe in 1916, Kusakabe Electric & Machinery Co., Ltd. entered the pipe industry in 1959 and has since become a cornerstone of the global pipe manufacturing sector. With a comprehensive portfolio of pipe mills and related equipment, Kusakabe stands as one of the few manufacturers worldwide capable of consistently designing and manufacturing complete pipe mill systems. Through rigorous quality control and continuous R&D, the company has earned the trust of pipe manufacturers across 26 countries, maintaining an overwhelming market share in Japan while delivering cutting-edge solutions globally.",
-        "Established in the Philippines in 2001, Maeno Giken Inc. brings extensive expertise in hot-dip galvanizing (JIS accredited), can making, welding, machining, and surface treatment. Drawing on the founder's decades of experience in gear reducers, steelmaking machinery, transportation equipment, and construction machinery, Maeno Giken has cultivated a team of highly skilled engineers. The company provides comprehensive solutions that go beyond manufacturing cost reduction, offering design assistance and prototype development to deliver total customer satisfaction.",
-        "Next Engineering Co., Ltd. was established in 2007 as a strategic partner of Mitsubishi Heavy Industries, specializing in energy-related projects including thermal power plants and fuel cell systems. With advanced metal processing and manufacturing facilities, the company has expanded into IT and semiconductor fields. In April 2025, Next Engineering merged with Nishinippon Sekkei Co., Ltd., significantly enhancing its capabilities in ship, plant, and machinery design, enabling fully integrated services from concept to completion.",
-        "KMTI represents the convergence of three industry leaders: Kusakabe Electric's precision engineering expertise, Maeno Giken's high-quality manufacturing capabilities, and Next Engineering's integrated design-to-production solutions. Our mission is to provide comprehensive engineering services with exceptional drawing management and confidentiality. By converting 2D drawings into advanced 3D models, we identify potential production issues early, minimize manufacturing errors, and significantly reduce costs. As we expand into OEM machinery manufacturing, we offer seamless integration from software to hardware, backed by secure confidentiality agreements. Our commitment to innovation and customer-centric solutions drives us to continuously expand our business domain while maintaining the trusted relationships that define our success."
+        "Established in Kobe in 1916, Kusakabe Electric & Machinery Co., Ltd. transitioned into the pipe industry in 1959, evolving into a definitive leader in global pipe manufacturing. Today, Kusakabe remains one of the few manufacturers worldwide with the expertise to design and produce fully integrated pipe mill systems entirely in-house. By merging rigorous quality standards with relentless R&D, we have earned the trust of partners across 26 countries, dominating the Japanese market while delivering innovative engineering solutions to the world.",
+        "Founded in 2001, Maeno Giken Inc. is a leading provider of JIS-accredited hot-dip galvanizing and precision machining services in the Philippines. Drawing on decades of experience in the steelmaking and construction machinery sectors, our engineers deliver comprehensive solutions that include prototyping and design support. We pride ourselves on a total satisfaction approach, combining technical mastery with cost-effective manufacturing to serve a diverse range of industrial needs.",
+        "Founded in 2007 as a strategic partner to Mitsubishi Heavy Industries, Next Engineering Co., Ltd. has established itself as a leader in energy-related sectors, including thermal power and fuel cell systems. By leveraging advanced manufacturing facilities, we have successfully expanded into the high-precision IT and semiconductor industries. Following our landmark merger with Nishinippon Sekkei Co., Ltd. in April 2025, we have significantly broadened our expertise in ship, plant, and machinery design. Today, Next Engineering offers seamlessly integrated services, guiding projects from initial concept through to final completion with unparalleled technical depth.",
+        "Kusakabe & Maeno Tech., Inc. (KMTI) represents the powerful convergence of three industry leaders: the precision engineering of Kusakabe Electric, the high-quality manufacturing of Maeno Giken, and the integrated design-to-production solutions of Next Engineering. Our mission is to deliver comprehensive engineering services anchored by exceptional drawing management and absolute confidentiality. By converting traditional 2D drawings into advanced 3D models, a core capability of our technical team, we identify production bottlenecks early, eliminate manufacturing errors, and drive significant cost reductions for our partners. As we expand into OEM machinery manufacturing, we offer a seamless bridge between software and hardware, backed by rigorous security protocols. Our commitment to innovation ensures we remain a trusted, customer-centric partner in an evolving global market."
       ]
     },
     vision: {
       title: "Our Vision",
-      text: "Be the world’s leading machine design engineering company by achieving extraordinary results for our clients, building gratifying careers for our people, and earning a fair return on the value we distribute."
+      text: "Be the world's leading machine design engineering company by achieving extraordinary results for our clients, building gratifying careers for our people, and earning a fair return on the value we distribute."
     },
     mission: {
       title: "Our Mission",
-      text: "To utilize our knowledge and upgrade them by incorporating expertise from three of the most known indusrty leaders, Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd., and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machine designed and created, to cover the industries. "
+      text: "To utilize our knowledge and upgrade them by incorporating expertise from three of the most known industry leaders, Kusakabe & Machinery (KEMCO), Next Engineering Co., Ltd., and Maeno Giken (MGK), together with the Filipino wisdom and effort in all the machines designed and created, to cover other industries beyond pipe manufacturing."
     },
     management: {
       title: "OUR MANAGEMENT TEAM",
@@ -153,14 +153,14 @@ const en = {
         item1: { year: "OCTOBER 2014", title: "Establishment", description: "KMTI was established in Cavite, Philippines, setting the foundation for engineering excellence." },
         item2: { year: "2014", title: "Strategic Partnership", description: "Formed a key partnership with KUSAKABE ELECTRIC & MACHINERY CO., LTD. (KEMCO) & MAENO GIKEN INC. (MGK)." },
         item3: { year: "2014", title: "International Employee Exchange Program", description: "Initiated employee deployment program, sending skilled engineers to our partner companies in Japan for several months of hands-on training and collaboration." },
-        item4: { year: "2024", title: "New Alliance", description: "Partnered with NEXT ENGINEERING CO., LTD. to broaden our technological capabilities." },
+        item4: { year: "2023", title: "New Alliance", description: "KMTI's partnership with Next Engineering Co., Ltd. allows us to broaden our technological capabilities and service offerings." },
         item5: { year: "2025", title: "Team Growth & Development", description: "Expanded our engineering team and enhanced technical expertise through continuous training and development programs." }
       }
     },
     related: {
       title: "RELATED COMPANIES",
       kemco: "Founded in 1916 and began its involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high quality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipment supplier. ",
-      nexteng: "Next Engineering Co., Ltd. was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at its own facilities. In recent years. It has expanded into IT and semiconductor fields. In April 2025, the company will merge with Nishinippon Sekkei Co., Ltd. enhancing its capabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing.",
+      nexteng: "Next Engineering Co., Ltd. was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at its own facilities. In recent years. It has expanded into IT and semiconductor fields. In April 2025, the company merged with Nishinippon Sekkei Co., Ltd. enhancing its capabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing.",
       mgk: "MGK specializes in fabrication, utilizing expertise of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. And their client’s satisfaction, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competitive by means of transferring every technological knowledge in this kind of business."
     },
     cta: {
@@ -229,10 +229,10 @@ const en = {
         inquiry: "INQUIRY WITH ORDER SHEET",
         reference: "REFERENCE DATA",
         modeling: "3D MODELING WITH MODIFICATION",
-        detailing: "2D MODELING",
+        detailing: "2D DETAILING",
         design: "MANUFACTURING DESIGN",
         fabrication: "FABRICATION / ASSEMBLY",
-        delivery: "DELIVERY OR PRODUCTS"
+        delivery: "DELIVERY OF PRODUCTS"
       }
     },
     footer_cta: {
@@ -345,7 +345,7 @@ const en = {
         description: ""
       },
       product: {
-        title: "Product Storage",
+        title: "Storage Conveyor",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
@@ -360,27 +360,23 @@ const en = {
         description: "After pipes were cut into standard lengths it will be passed to the finishing line to be arranged and bundled ready for distribution."
       },
       air_blow: {
-        title: "Air Blow",
+        title: "Runout and Alignment",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
       transfertable_lifter: {
-        title: "Transfer Table (Lifter)",
+        title: "Alignment and Transfer table",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
-      dedimpler_facer: {
-        title: "Dedimpler & Facer",
-        category: "MECHANICAL > TUBE (SUB MACHINE)",
-        description: ""
-      },
+
       bunding_machine: {
         title: "Bundling Machine",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
       product_storage: {
-        title: "Product Storage",
+        title: "Storage Conveyor",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
@@ -434,7 +430,7 @@ const en = {
       cta_positions: "VIEW OPEN POSITIONS"
     },
     positions: {
-      title: "OPEN POSITION",
+      title: "OPEN POSITIONS",
       subtitle: "Find your next career opportunity and help us build something amazing.",
       apply_btn: " APPLY NOW",
       eng: {
@@ -475,7 +471,7 @@ const en = {
       subtitle: "We believe in taking care of our team so they do their best work.",
       benefits: {
         insurance: { title: "MEDICAL INSURANCE", desc: "100% Company paid medical insurance for regular employees" },
-        gov: { title: "GOVERMENT BENEFITS", desc: "Complete mandated statutory benefits including SSS, Pag-IBIG, and PhilHealth" },
+        gov: { title: "GOVERNMENT BENEFITS", desc: "Complete mandated statutory benefits including SSS, Pag-IBIG, and PhilHealth" },
         thirteenth: { title: "13TH MONTH PAY", desc: "Guaranteed 13th month pay as mandated by Philippine labor law" },
         allowance: { title: "MULTIPLE ALLOWANCE", desc: "Transportation, meal, uniform, and rice subsidy allowances for regular employees" },
         career: { title: "LONG-TERM CAREER", desc: "stable employment with opportunities for long-term professional growth" }
@@ -807,7 +803,7 @@ const en = {
         ]
       },
       projects: {
-        text: "Want to see our work? We have completed projects including Transfer Tables, Finishing Line, Air Blow Systems, and more, Check out our projects.",
+        text: "Want to see our work? We have completed projects including Transfer Tables, Finishing Line, Runout and Alignment, and more, Check out our projects.",
         buttons: [
           { id: "pr1", text: "Go to Projects", action: "view-projects" },
           { id: "pr2", text: "Back to Main Menu", action: "main-menu" }
@@ -937,7 +933,8 @@ const en = {
       since: "Since",
       total_visit: "Total Count Visit",
       today_visit: "Today Visit",
-      yesterday_visit: "Yesterday Visit"
+      yesterday_visit: "Yesterday Visit",
+      publication_date: "December 1, 2025"
     }
   },
 

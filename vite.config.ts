@@ -8,5 +8,6 @@ export default defineConfig({
   server: {
     host: true, // Listen on all network interfaces
     port: 5173, // Default Vite port
+    allowedHosts: ['brwqp-124-105-71-156.a.free.pinggy.link'],
   },
 })

@@ -23,21 +23,47 @@
 }
 
 .about-hero {
-  background-image: var(--about-bg-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-top: -8rem;
+  margin-top: -10rem;
   padding-top: var(--about-hero-padding-top-desktop);
   padding-bottom: var(--about-hero-padding-bottom-desktop);
   position: relative;
-  min-height: var(--about-hero-height-desktop);
+  min-height: 102vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
   z-index: 1;
+  overflow: hidden;
+}
+
+.about-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--about-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  will-change: transform;
+  animation: aboutHeroZoom 20s linear infinite;
+}
+
+@keyframes aboutHeroZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Extend background to top of viewport */
@@ -55,7 +81,8 @@
 }
 
 .about-hero-overlay {
-  background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);
+  /* background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);*/
+  background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   opacity: 0.8;
   position: absolute;
   top: 0;
@@ -100,11 +127,11 @@
 }
 
 .about-description {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: white;
   font-family: var(--font-family-body);
   line-height: 1.6;
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
@@ -194,6 +221,8 @@
   line-height: 1.8;
   margin: 0;
   margin-bottom: 1rem;
+  text-align: justify;
+  text-indent: 0rem;
 }
 
 .about-company-button {
@@ -201,7 +230,7 @@
 }
 
 .about-vision-mission-section {
-  padding: 4rem 0;
+  padding: 6rem 0;
 }
 
 .about-vision-mission-container {
@@ -524,42 +553,46 @@
 .our-people-carousel-container {
   position: relative;
   width: 100%;
-  min-height: 800px;
+  min-height: 600px;
   margin: 0 auto;
 }
 
 .our-people-carousel-slide {
   position: absolute;
-  top: 0;
+  top: 15rem;
   left: 0;
   right: 0;
-  bottom: 2rem;
+  bottom: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: opacity 0.6s ease-in-out;
+  padding: 0 1rem;
 }
 
 .our-people-image-container {
   width: 100%;
-  height: 100%;
-  max-height: 550px;
+  max-width: 900px;
+  height: 455px;
   overflow: hidden;
-  background-color: transparent;
-  border: none;
-  border-radius: 12px;
+  background-color: rgba(15, 23, 43, 0.3);
+  border: 1px solid rgba(81, 162, 255, 0.3);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
 }
 
 .our-people-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   background-color: transparent;
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
+  object-position: center 0%;
 }
 
 .our-people-carousel-indicators {
@@ -696,7 +729,8 @@
   font-size: 2.5rem;
   font-weight: 500;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+  margin-top: 6rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;
@@ -755,6 +789,12 @@
   width: auto;
   height: auto;
   object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.related-company-card:hover .related-company-logo {
+  filter: grayscale(0%);
 }
 
 .related-company-name {
@@ -846,7 +886,7 @@
 
 .about-history-timeline {
   position: relative;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -863,7 +903,7 @@
 }
 
 .about-history-item {
-  padding: 10px 40px;
+  padding: 10px 20px;
   position: relative;
   background-color: inherit;
   width: 50%;
@@ -905,6 +945,7 @@
   border-radius: 12px;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
 
 .about-history-content:hover {
@@ -935,6 +976,11 @@
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
+  text-align: justify;
+
+
+  hyphens: auto;
+  word-break: break-word;
 }
 
 /* ============================================
@@ -1495,7 +1541,7 @@
   }
 
   .about-description {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   .about-company-images {

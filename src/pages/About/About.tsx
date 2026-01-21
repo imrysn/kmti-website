@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './About.css';
 import { AboutPageProps } from './About.types';
-import aboutBg from '../../assets/aboutPage/abouts.png';
-import aboutCompany1 from '../../assets/aboutPage/aboutcompany1.png';
-import aboutCompany2 from '../../assets/aboutPage/aboutcomapny2.png';
+import aboutBg from '../../assets/hero_background/about.png';
+import aboutCompany1 from '../../assets/about_page/aboutcompany1.png';
+import aboutCompany2 from '../../assets/about_page/aboutcomapny2.png';
 import Button from '../../components/ui/Button';
 import { OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
@@ -38,13 +38,15 @@ import sharmaineImage from '../../assets/management/SHARMAINE.png';
 import mgImage from '../../assets/management/MG.png';
 import matthewImage from '../../assets/management/MATTHEW.png'
 
-import ourPeople1 from '../../assets/aboutPage/ourpeople1.jpg'; import ourPeople2 from '../../assets/aboutPage/ourpeople2.jpg';
-import ourPeople3 from '../../assets/aboutPage/FINAL.png';
-import ourPeople4 from '../../assets/aboutPage/abouts.png';
-import ourPeople5 from '../../assets/aboutPage/ourpeople5.jpg';
+import ourPeople1 from '../../assets/about_page/ourpeople1.jpg';
+import ourPeople2 from '../../assets/about_page/ourpeople2.jpg';
+import ourPeople5 from '../../assets/about_page/ourpeople5.jpg';
+import ourPeople3 from '../../assets/about_page/k.png';
+import ourPeople4 from '../../assets/about_page/ourpeople4.png';
 
-import kemcoLogo from '../../assets/aboutPage/kemcoLogo.png';
-import nextengLogo from '../../assets/aboutPage/nextengLogo.png'; import mgkLogo from '../../assets/aboutPage/mgkLogo.png';
+
+import kemcoLogo from '../../assets/about_page/kemcoLogo.png';
+import nextengLogo from '../../assets/about_page/nextengLogo.png'; import mgkLogo from '../../assets/about_page/mgkLogo.png';
 
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();
@@ -82,6 +84,7 @@ const About: React.FC<AboutPageProps> = () => {
   return (
     <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})` } as React.CSSProperties}>
       <section className="about-hero">
+        <div className="about-hero-bg"></div>
         <div className="about-hero-overlay"></div>
         <div className="about-hero-container container">
           <div className="about-hero-content">

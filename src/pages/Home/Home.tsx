@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Home.css';
 import { HomePageProps } from './Home.types';
-import homeBg from '../../assets/homebg.jpeg';
+import homeBg from '../../assets/hero_background/homebg.jpeg';
 import Button from '../../components/ui/Button/Button';
 import Card, { ServiceCard } from '../../components/ui/Card/Card';
 import ProjectCarousel from '../../components/ui/ProjectCarousel/ProjectCarousel';
@@ -25,7 +25,7 @@ import furnaceImage from '../../assets/image3D/furnace.png';
 
 const Home: React.FC<HomePageProps> = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
@@ -49,14 +49,14 @@ const Home: React.FC<HomePageProps> = () => {
   ];
 
   const projects = [
-    { id: 1, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage, link: '/projects?project=dedimpler-and-facer' },
-    { id: 2, title: t('home.projects.items.looper.title'), description: t('home.projects.items.looper.desc'), category: t('home.projects.items.looper.cat'), image: looperImage, link: '/projects?project=looper-machine' },
-    { id: 3, title: t('home.projects.items.forming.title'), description: t('home.projects.items.forming.desc'), category: t('home.projects.items.forming.cat'), image: formingImage, link: '/projects?project=forming-and-sizing' },
-    { id: 4, title: t('home.projects.items.shear.title'), description: t('home.projects.items.shear.desc'), category: t('home.projects.items.shear.cat'), image: shearImage, link: '/projects?project=shear-welder-machine' },
-    { id: 5, title: t('home.projects.items.table.title'), description: t('home.projects.items.table.desc'), category: t('home.projects.items.table.cat'), image: finishingImage, link: '/projects?project=finishing-table' },
+    { id: 1, title: t('home.projects.items.looper.title'), description: t('home.projects.items.looper.desc'), category: t('home.projects.items.looper.cat'), image: looperImage, link: '/projects?project=looper-machine' },
+    { id: 2, title: t('home.projects.items.forming.title'), description: t('home.projects.items.forming.desc'), category: t('home.projects.items.forming.cat'), image: formingImage, link: '/projects?project=forming-and-sizing' },
+    { id: 3, title: t('home.projects.items.shear.title'), description: t('home.projects.items.shear.desc'), category: t('home.projects.items.shear.cat'), image: shearImage, link: '/projects?project=shear-welder-machine' },
+    { id: 4, title: t('home.projects.items.table.title'), description: t('home.projects.items.table.desc'), category: t('home.projects.items.table.cat'), image: finishingImage, link: '/projects?project=finishing-table' },
+    { id: 5, title: t('home.projects.items.furnace.title'), description: t('home.projects.items.furnace.desc'), category: t('home.projects.items.furnace.cat'), image: furnaceImage, link: '/projects?project=furnace' },
     { id: 6, title: t('home.projects.items.line.title'), description: t('home.projects.items.line.desc'), category: t('home.projects.items.line.cat'), image: finishingLineImage, link: '/projects?project=finishing-line' },
     { id: 7, title: t('home.projects.items.milling.title'), description: t('home.projects.items.milling.desc'), category: t('home.projects.items.milling.cat'), image: millingImage, link: '/projects?project=milling-cutoff-machine' },
-    { id: 8, title: t('home.projects.items.furnace.title'), description: t('home.projects.items.furnace.desc'), category: t('home.projects.items.furnace.cat'), image: furnaceImage, link: '/projects?project=furnace' },
+    { id: 8, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage, link: '/projects?project=dedimpler-and-facer' },
   ];
 
   return (
@@ -65,8 +65,8 @@ const Home: React.FC<HomePageProps> = () => {
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${homeBg})` }}></div>
         <div className="hero-overlay"></div>
         <div className="hero-container container">
-          <div className="hero-content">
-            <h1 className="hero-title">
+          <div className={`hero-content ${i18n.language === 'jp' ? 'lang-jp' : ''}`}>
+            <h1 className={`hero-title ${i18n.language === 'jp' ? 'lang-jp' : ''}`}>
               {t('home.hero.title').split('\n').map((line, i) => (
                 <React.Fragment key={i}>
                   {line}
@@ -107,8 +107,8 @@ const Home: React.FC<HomePageProps> = () => {
         <div className="section-container container">
           <h2 className="section-title">{t('home.projects.title')}</h2>
           <p className="section-subtitle">{t('home.projects.subtitle')}</p>
-          <ProjectCarousel projects={projects} />
         </div>
+        <ProjectCarousel projects={projects} />
       </section>
 
       <section className="why-choose-us-section" data-aos="fade-up">

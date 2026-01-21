@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
-import footerLogo from '../../../assets/footerKMTIlogo.png';
+import footerLogo from '../../../assets/logo/footer_KMTI_logo.png';
 import mapsIcon from '../../../assets/icons/maps-icon.png';
 import contactIcon from '../../../assets/icons/contact.png';
 import emailIcon from '../../../assets/icons/email-icon.png';
-
-const publicationDate = 'December 1, 2025';
 
 type VisitCounts = {
   total: number;
@@ -157,7 +155,7 @@ const Footer: React.FC = () => {
       <div className="footer__bottom">
         <div>© {new Date().getFullYear()} {t('footer.bottom.rights')}</div>
         <div id="visit-tracker" style={{ textAlign: 'center' }}>
-          {t('footer.bottom.since')} {publicationDate} &nbsp;&nbsp;&nbsp;
+          {t('footer.bottom.since')} {t('footer.bottom.publication_date')} &nbsp;&nbsp;&nbsp;
           {t('footer.bottom.total_visit')}{' '}
           <span className="visit-counter-digits">{pad3(visitCounts.total)}</span>
           &nbsp;&nbsp;&nbsp;

@@ -3,21 +3,21 @@ import { useTranslation } from 'react-i18next'; // Added for translation
 import ModelViewer from './ModelViewer';
 import './Model3DViewerModal.css';
 
-import dedimplerFacerModel from '../../../assets/3DMODELS/Dedimpler&Facer.glb';
-import bundlingMachineModel from '../../../assets/3DMODELS/BundlingMachine.glb';
-import productStorageModel from '../../../assets/3DMODELS/ProductStorage.glb';
-import transferTableModel from '../../../assets/3DMODELS/TransferTable.glb';
-import formingSizingModel from '../../../assets/3DMODELS/Forming&Sizing.glb';
-import airBlowModel from '../../../assets/3DMODELS/AirBlow.glb';
-import bundleSeparatorModel from '../../../assets/3DMODELS/BundleSeparator.glb';
-import pipeDryingSectionModel from '../../../assets/3DMODELS/PipeDryingSection.glb';
-import bindingMachineModel from '../../../assets/3DMODELS/BindingMachine.glb';
-import looperModel from '../../../assets/3DMODELS/looper.glb';
-import horizontalLooperModel from '../../../assets/3DMODELS/horizontalLooper.glb';
-import shearWelderModel from '../../../assets/3DMODELS/shearwelder.glb';
-import uncoilerModel from '../../../assets/3DMODELS/uncoiler.glb';
-import levelerModel from '../../../assets/3DMODELS/leveler.glb';
-import furnaceModel from '../../../assets/3DMODELS/furnace.glb';
+import dedimplerFacerModel from '../../../assets/glb/Dedimpler&Facer.glb';
+import bundlingMachineModel from '../../../assets/glb/BundlingMachine.glb';
+import productStorageModel from '../../../assets/glb/ProductStorage.glb';
+import transferTableModel from '../../../assets/glb/TransferTable.glb';
+import formingSizingModel from '../../../assets/glb/Forming&Sizing.glb';
+import airBlowModel from '../../../assets/glb/AirBlow.glb';
+import bundleSeparatorModel from '../../../assets/glb/BundleSeparator.glb';
+import pipeDryingSectionModel from '../../../assets/glb/PipeDryingSection.glb';
+import bindingMachineModel from '../../../assets/glb/BindingMachine.glb';
+import looperModel from '../../../assets/glb/looper.glb';
+import horizontalLooperModel from '../../../assets/glb/horizontalLooper.glb';
+import shearWelderModel from '../../../assets/glb/shearwelder.glb';
+import uncoilerModel from '../../../assets/glb/uncoiler.glb';
+import levelerModel from '../../../assets/glb/leveler.glb';
+import furnaceModel from '../../../assets/glb/furnace.glb';
 
 interface ModelConfig {
   path: string | null;
