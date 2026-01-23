@@ -59,6 +59,12 @@ const Careers: React.FC<CareersPageProps> = () => {
     },
     {
       id: 5,
+      title: t('careers.why_work.benefits.training.title'),
+      description: t('careers.why_work.benefits.training.desc'),
+      icon: mapsIcon,
+    },
+    {
+      id: 6,
       title: t('careers.why_work.benefits.career.title'),
       description: t('careers.why_work.benefits.career.desc'),
       icon: careerIcon,

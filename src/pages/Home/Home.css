@@ -237,7 +237,7 @@
 .home-page .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
   margin-top: 6rem;
   justify-content: center;
 }

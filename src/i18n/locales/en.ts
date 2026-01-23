@@ -55,7 +55,7 @@ const en = {
         },
         inspection: {
           title: "PARTS INSPECTIONS",
-          desc: "We conduct thorough inspection and provide quality assessments on fabricated parts to ensure accuracy and consistency with design specifications. Using advanced measuring tools, we guarantee top-notch quality before assembly."
+          desc: "We conduct thorough inspections and provide quality assessments on fabricated parts to ensure accuracy and consistency with design specifications. Using advanced measuring tools, we guarantee top-notch quality before assembly."
         },
         assembly: {
           title: "MACHINE ASSEMBLY",
@@ -67,17 +67,18 @@ const en = {
       title: "BRINGING VISION TO REALITY",
       subtitle: "See how our precision, driven design turn ideas into successful engineering solutions.",
       items: {
-        dedimpler: { title: "DEDIMPLER AND FACER", desc: "Tube and pipes require facing and or internal and external chamfering can be processed in line with tube mill or off line.", cat: "FINISHING EQUIPMENT" },
-        looper: { title: "LOOPER MACHINE", desc: "Horizontal loopers store strips on a horizontal rotary table. Where the space is available this is the most effiecient and cheapest method of storing strips without causing any surface damage.", cat: "LOOPER" },
+        dedimpler: { title: "DEDIMPLER AND FACER", desc: "Tube and pipes requires facing and internal or external chamfering can be processed in line with tube mill or off line.", cat: "FINISHING EQUIPMENT" },
+        looper: { title: "LOOPER MACHINE", desc: "The Looper machine acts as an accumulator, allowing continuous pipe mill operation during coil changes.", cat: "LOOPER" },
+        vertical: { title: "VERTICAL LOOPER", desc: "Vertical loopers store strip material on a horizontal table. Where space permits, this method provides the most efficient and cost-effective storage without causing surface damage.", cat: "LOOPER" },
         forming: { title: "FORMING AND SIZING MACHINE", desc: "After metal has been welded and combined it will undergo forming to produce the needed shape of steel.", cat: "FORMING" },
         shear: { title: "SHEAR WELDER MACHINE", desc: "Shear and end welders crop the tail and nose of each coil. The two coil ends are then aligned and the joint welded using TIG, MIG or MAG depending on the materials and thickness being welded. Single and twin torch versions are available.", cat: "STRIP ENTRY" },
         table: { title: "TRANSFER TABLE", desc: "Extension of transfer table in the finishing line.", cat: "FINISHING TABLE" },
-        line: { title: "FINISHING LINE", desc: "After pipes are cut into standard lengths. It will be passed to the finishing line to be arrange and bundled ready for distribution.", cat: "FINISHING LINE" },
-        milling: { title: "MILLING CUTOFF MACHINE", desc: "Milling Cutoff Machine uses two milling saws to cut length pipe and structural section tubes. The cut finishes eliminates the need for facing", cat: "CUT OFF" },
-        furnace: { title: "FURNACE", desc: "Furnace is used for melting large batches of glass, in which heat is supplied by a flame playng over the glass surface, and regenerative heating of combustion air.", cat: "FURNACE" },
-        bundling: { title: "BUNDLING MACHINE", desc: "High speed tube and pipe bundling and strapping machines take the tube directly from the mill and pack the tube ready for transport and safe.", cat: "FINISHING EQUIPMENT" },
+        line: { title: "FINISHING LINE", desc: "After pipes are cut to standard lengths, they are passed to the finishing line to be check, arranged and bundled, ready for distribution", cat: "FINISHING LINE" },
+        milling: { title: "MILLING CUTOFF MACHINE", desc: "Milling Cut-off Machine uses two milling saws to cut pipes and structural sections to length (round, square, rectangular). ", cat: "CUT OFF" },
+        furnace: { title: "GLASS FURNACE", desc: "A glass furnace is a specialized industrial oven designed to heat raw materials (like sand, soda ash, and limestone) to extremely high temperatures until they melt into liquid glass. ", cat: "FURNACE" },
+        bundling: { title: "BUNDLING MACHINE", desc: "High speed tube pipe bundling and strapping machines take the tube directly from the mill and pack the tube ready for transport or delivery.", cat: "FINISHING EQUIPMENT" },
         binding: { title: "BINDING MACHINE", desc: "Binding Machine used to bind finished products ready for delivery.", cat: "FINISHING EQUIPMENT" },
-        horizontal: { title: "HORIZONTAL LOOPER MACHINE", desc: "Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most efficient and chepest method of storing strip without causing any surface damage.", cat: "LOOPER" },
+        horizontal: { title: "HORIZONTAL LOOPER MACHINE", desc: "Horizontal loopers store strip material on a horizontal rotary table. Where space is available, this is the most efficient and cost-effective method of storing strip without causing surface damage. There are two main types: the Spiral Accumulator and the Free Loop Accumulator.", cat: "LOOPER" },
         uncoiler: { title: "UNCOILER MACHINE", desc: "The uncoiler safely holds the coil of strip and enables the strip to be unstrapped and presented to the strap peeling and leveling equipment.", cat: "STRIP ENTRY" },
         leveler: { title: "LEVELER MACHINE", desc: "Leveling machines are used to level metal strips in throughput, e.g. In a cut-to-length line or to level single metal sheets of parts.", cat: "STRIP ENTRY" }
       }
@@ -153,6 +154,7 @@ const en = {
         item1: { year: "OCTOBER 2014", title: "Establishment", description: "KMTI was established in Cavite, Philippines, setting the foundation for engineering excellence." },
         item2: { year: "2014", title: "Strategic Partnership", description: "Formed a key partnership with KUSAKABE ELECTRIC & MACHINERY CO., LTD. (KEMCO) & MAENO GIKEN INC. (MGK)." },
         item3: { year: "2014", title: "International Employee Exchange Program", description: "Initiated employee deployment program, sending skilled engineers to our partner companies in Japan for several months of hands-on training and collaboration." },
+        item_2017: { year: "2017", title: "Painting Line Collaboration", description: "Designed and fabricated conveying equipment and stacking devices for a painting line in collaboration with KEMCO and MGK, including trial assembly and machine test runs." },
         item4: { year: "2023", title: "New Alliance", description: "KMTI's partnership with Next Engineering Co., Ltd. allows us to broaden our technological capabilities and service offerings." },
         item5: { year: "2025", title: "Team Growth & Development", description: "Expanded our engineering team and enhanced technical expertise through continuous training and development programs." }
       }
@@ -180,9 +182,9 @@ const en = {
 
     modal: {
       detailed_desc: {
-        "3d": "By converting clients 3D model, we can easily check any possible errors or interference that may occur. during this process, we often consult to our clients for any corrections in the design. After the 3D model is done, we'll then send it to our client for them to confirm. Once confirmed, we will proceed with the 2D Detailing. If there's still suggestions we'll modify the design until it is final for 2D detailing.",
-        "2d": "Detailing is a crucial part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We give a keen eye on every detail of the design, together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involved in the process and everything is according to their plan to avoid any further interactions due to miscommunications.",
-        "inspection": "We support inspection of parts fabricated from our design to ensure quaity of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepancies from the design and the actual parts.",
+        "3d": "By converting client 3D models, we can easily identify potential errors or interferences. Throughout this process, we collaborate closely with our clients to make any necessary design corrections. Once the 3D model is finalized and approved, we proceed to 2D detailing. We continue refining the design until it meets your full satisfaction before moving on to the final detailing stage.",
+        "2d": "Detailing is a critical part of the design process, as it contains nearly all the information required for construction—materials, dimensions, and essential technical instructions. We pay close attention to every aspect of the design, supported by an efficient workflow that ensures high quality while meeting time requirements. Consultation plays a key role at every stage of the project, ensuring clients remain involved throughout the process and that all outcomes align with their vision, minimizing the need for revisions caused by miscommunication.",
+        "inspection": "We support the inspection of parts fabricated from our designs to ensure quality before they are sent for assembly. These parts undergo a series of tests and inspections using high-tech devices to verify that every aspect is accurate and of the highest quality. Additionally, we deploy team members to inspection sites to perform quality checks, ensuring there are no discrepancies between the design and the physical parts.",
         "assembly": "In collaboration with our business partners Kusakabe Electric & Machinery Co., Ltd and Maeno Giken Inc., two of the most known pioneers and leaders in the industry. We give our clients the confidence to have high quality and top notch performance products ready for a productive business."
       },
       "2d_section": {
@@ -201,26 +203,26 @@ const en = {
       "2d": {
         title: "2D Detailing",
         short_desc: "Our 2D detailing services convert 3D models into precise drawings ready for manufacturing and quality checks.",
-        detailed_desc: "Detailing is a critical part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We give a keen eye on every detail of the design. together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involve in the process and everything is according to their plan to avoid any further iterations due to miscommunication.",
+        detailed_desc: "Detailing is a critical part of the design process since almost all the information on how the project is going to be built, the materials to use, dimensions, and a lot of important instructions are in this part. We keep a keen eye on every detail of the design. together with an efficient workflow to make our design quality wise and time wise. Consultation is the key in every stage of the project to make sure our clients are involve in the process and everything is according to their plan to avoid any further iterations due to miscommunication.",
         section_titles: {
           detail: "2D DETAIL",
           checking: "QUALITY CHECKING",
           qualifications: "DESIGN QUALIFICATIONS"
         },
         section_desc: {
-          checking: "After detailing, the design will run thorough series of checking and correction making sure that the design is precise and the chance of error is close to zero. When the design is already checked and final, we will send it to the client for confirmation.",
+          checking: "After detailing, the design will run through series of checking and correction making sure that the design is precise and the chance of error is close to zero. When the design is already checked and final, we will send it to the client for confirmation.",
           qualifications: "If there's still suggestions or if ever the clients change their mind in some aspect of the design, further modifications will be applied to the design to meet their desired outcome."
         }
       },
       inspection: {
         title: "Parts Inspection",
         short_desc: "We perform parts inspection using precise measuring tools and 3D scanners to guarantee dimensional accuracy.",
-        detailed_desc: "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepencies from the design an the actual parts."
+        detailed_desc: "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepencies from the design on the actual parts."
       },
       assembly: {
         title: "Machine Assembly",
         short_desc: "From component integration to full machine assembly, we ensure mechanical, electrical, and pneumatic systems meet industrial standards.",
-        detailed_desc: "In collaboration with our business partners Kusakabe & Machinery Co., Ltd., and Maeno Giken Inc., two of the most known pioneers and leaders in the industry. WE give our clients the confidence to have high quality and top notch performance products ready for a productive business."
+        detailed_desc: "In collaboration with our business partners, Kusakabe & Machinery Co., Ltd. and Maeno Giken Inc.—two of the industry’s most well-known pioneers and leaders—we provide precision machine assembly services. We ensure that all equipment is of high quality and delivers top-notch performance, carefully assembled, tested, and ready to support productive business operations."
       }
     },
     workflow: {
@@ -265,14 +267,14 @@ const en = {
       dedimpler: {
         title: "Dedimpler and Facer",
         category: "MECHANICAL > TUBE",
-        description: "Tube and pipes that require facing and or internal and external chamfering can be processed in line with the tube mill or off line.",
+        description: "Tube and pipes requires facing and internal or external chamfering can be processed in line with the tube mill or off line.",
         application: "Required to rectify the end of the tube after single cut shear and where facing and or chamfering is a customer requirement.",
         advantages: "Dedimpling inline with the mill reduces stock holding and optimises the use of floor space, labour and capital."
       },
       bundling: {
         title: "Bundling Machine",
         category: "MECHANICAL > TUBE",
-        description: "Hign speed tube and pipe bundling and strapping machines take the tube directly from the mill and pack the tube ready for transport and safe. No need to store tube in bulk prior to packing.",
+        description: "High speed tube and pipe bundling and strapping machines take the tube directly from the mill and pack the tube ready for transport and safe. No need to store tube in bulk prior to packing.",
         application: "",
         advantages: "Bundling is carried out in line with the mill, no need to stock tube in bulk waiting for packing. Minimise stock holding. Professional looking bundles. Quiet method of bundling"
       },
@@ -286,16 +288,23 @@ const en = {
       looper: {
         title: "Looper Machine",
         category: "MECHANICAL > TUBE",
-        description: "Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most effiecient and cheapest method of storing strip withouth causing any surface damage.",
+        description: "Horizontal loopers store strip material on a horizontal table. Where space permits, this method provides the most efficient and cost-effective storage without causing surface damage.",
         application: "Suitable fo all tube sizes and materials.",
-        advantages: "Improved productivity. Reduced Downtown. Reduced Scrap. Reduced Strip Damage."
+        advantages: "Improved productivity. Reduce downtime. Reduced Scrap. Reduced Strip Damage."
+      },
+      vertical: {
+        title: "Vertical Looper",
+        category: "MECHANICAL > TUBE",
+        description: "Vertical loopers store strip material on a horizontal table. Where space permits, this method provides the most efficient and cost-effective storage without causing surface damage.",
+        application: "Suitable for all tube sizes and materials",
+        advantages: "Improved productivity, Reduce downtime, Reduced Scrap, Reduced Strip Damage."
       },
       horizontal: {
         title: "Horizontal Looper Machine",
         category: "MECHANICAL > TUBE",
-        description: "Horizontal loopers store strip on a horizontal rotary table. Where the space is available this is the most efficient and chepest method of storing strip without causing any surface damage. There are two main types: the Spiral Accumulator and the Free Loop Accumulator.",
+        description: "Horizontal loopers store strip material on a horizontal rotary table. Where space is available, this is the most efficient and cost-effective method of storing strip without causing surface damage. There are two main types: the Spiral Accumulator and the Free Loop Accumulator.",
         application: "Suitable for all tube sizes and materials.",
-        advantages: "Improved productivity. Reduced Downtown. Reduced Scrap. Reduced Strip Damage."
+        advantages: "Improved productivity. Reduce downtime. Reduced Scrap. Reduced Strip Damage."
       },
       forming: {
         title: "Forming & Sizing Machine",
@@ -313,9 +322,9 @@ const en = {
       uncoiler: {
         title: "Uncoiler Machine",
         category: "MECHANICAL > TUBE",
-        description: "The uncoiler safely holds the coil of strip and enables the strip to be unstrapped and presented to the strap peeling and leveling equipment. For high productivity double sided uncoilers are used. However, where there is available storage and time single sided uncoilers can be used.",
-        application: "Vertical and horizontal uncoilers are available for most applications i.e ERW, TIG and LAse using steel. steel alloy, stainless steel, copper, copper alloy, and Aluminum. Uncoilers for other applications and materials available on request.",
-        advantages: "All the heavy material handling is safely carried out by machine. Less material damage, faster with consistent and reliable cycle times."
+        description: "The uncoiler safely holds the coil of strip, allowing it to be unstrapped and fed to the strap peeling and leveling equipment. For high productivity, double-sided uncoilers are used; however, where storage space and time permit, single-sided uncoilers are sufficient.",
+        application: "Vertical and horizontal uncoilers are for most applications, including ERW, TIG, and laser processes, using steel alloys, stainless steel, copper, copper alloys, and aluminum. Uncoilers for other applications and materials are available upon request.",
+        advantages: "All heavy material handling is safety performed by machines, minimizing material damage while ensuring faster, consistent, and reliable cycle times."
       },
       leveler: {
         title: "Leveler Machine",
@@ -357,7 +366,7 @@ const en = {
       finishing: {
         title: "Finishing Line",
         category: "RUN OUT, TRANSPORT TABLE, DEDIMPLER AND FACER, AND BUNDLING MACHINE",
-        description: "After pipes were cut into standard lengths it will be passed to the finishing line to be arranged and bundled ready for distribution."
+        description: "After pipes are cut to standard lengths, they are passed to the finishing line to be check, arranged and bundled, ready for distribution"
       },
       air_blow: {
         title: "Runout and Alignment",
@@ -387,9 +396,9 @@ const en = {
         application: "Ideal for achieving clean, square cuts on tubes without secondary finishing."
       },
       furnace: {
-        title: "Furnace",
+        title: "Glass Furnace",
         category: "FURNACE",
-        description: "Furnace is used for melting large batches of glass, in which heat is supplied by a flame playing over the glass surface, and regenerative heating of combustion air."
+        description: "A glass furnace is a specialized industrial oven designed to heat raw materials (like sand, soda ash, and limestone) to extremely high temperatures until they melt into liquid glass."
       }
     },
     viewer: {
@@ -440,8 +449,8 @@ const en = {
         desc: "Join our engineering team with expertise in AutoCAD, SolidWorks, and iCAD for 2D & 3D drawing. Seeking candidates with strong leadership, teamwork abilities, and mathematical knowledge who are willing to learn and work under minimum supervision.",
         requirements: [
           "Male / Female 18 years old and above",
-          "Knowledgable in AutoCAD, SolidWorks and iCAD (2D & 3D Drawing)",
-          "Knowledgeable in relevant mathematical concepts",
+          "knowledgeable in AutoCAD, SolidWorks and iCAD (2D & 3D Drawing)",
+          "knowledgeable in relevant mathematical concepts",
           "Strong leadership and teamwork skills",
           "Attention to detail and precision"
         ],
@@ -452,14 +461,14 @@ const en = {
         title: "ACCOUNTING / ADMIN STAFF",
         location: "Dasmarinas City, Cavite",
         type: "Full-Time",
-        desc: "Assist with day-to--day operations of the Admin functions and duties. Provide clerical and administrative support. Conduct end-to-end recruitment process. Responsible for Compensation and Benefits, and for DOLE Monthly/Annual Reports.",
+        desc: "Assist with day-to-day operations of the Admin functions and duties. Provide clerical and administrative support. Conduct end-to-end recruitment process. Responsible for Compensation and Benefits, and for DOLE Monthly/Annual Reports.",
         requirements: [
           "Computer Literate",
-          "Good to excellent communication skills (oral and written",
+          "Excellent communication skills (oral and written)",
           "Strong personality and positive work attitude",
-          "Results oriented and can work under pressure",
+          "Result-oriented and can work under pressure",
           "Strong time management skills and multitasking",
-          "Fresh graduates are encouraged to applu",
+          "Fresh graduates are encouraged to apply",
           "Knowledge of accounting principles",
           "Experience with DOLE reporting is a plus"
         ],
@@ -474,7 +483,8 @@ const en = {
         gov: { title: "GOVERNMENT BENEFITS", desc: "Complete mandated statutory benefits including SSS, Pag-IBIG, and PhilHealth" },
         thirteenth: { title: "13TH MONTH PAY", desc: "Guaranteed 13th month pay as mandated by Philippine labor law" },
         allowance: { title: "MULTIPLE ALLOWANCE", desc: "Transportation, meal, uniform, and rice subsidy allowances for regular employees" },
-        career: { title: "LONG-TERM CAREER", desc: "stable employment with opportunities for long-term professional growth" }
+        training: { title: "INTERNATIONAL TRAINING", desc: "Opportunities to be deployed in Japan for international training and collaboration" },
+        career: { title: "LONG-TERM CAREER", desc: "Stable employment with opportunities for long-term professional growth" }
       }
     },
     team: {
@@ -492,7 +502,7 @@ const en = {
       subtitle: "Ready to start your engineering careeer with KMTI? Here's how to get in touch with us.",
       visit: {
         title: "VISIT OUR OFFICE",
-        text: "Submit ypur resume in person at our KMTI office:",
+        text: "Submit your resume in person at our KMTI office:",
         address: {
           line1: "Team Quest Building FCIE",
           line2: "Langkaan Dasmarinas City, Cavite",

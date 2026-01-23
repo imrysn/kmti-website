@@ -57,9 +57,15 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       // Determine which path to highlight
-      const isMainNavPage = navLinks.some(link => link.path === location.pathname);
-      const pathToHighlight = isMainNavPage
-        ? location.pathname
+      // Determine which path to highlight
+      const activeLink = navLinks.find(link =>
+        link.path === '/'
+          ? location.pathname === '/'
+          : location.pathname.startsWith(link.path)
+      );
+
+      const pathToHighlight = activeLink
+        ? activeLink.path
         : localStorage.getItem('lastMainNavPath') || '/';
 
       // Find the link element for the path to highlight
@@ -97,9 +103,13 @@ const Navbar: React.FC = () => {
         <div className="navbar-desktop-group">
           <ul className="navbar-links">
             {navLinks.map((link) => {
-              const isMainNavPage = navLinks.some(navLink => navLink.path === location.pathname);
+              const activeLink = navLinks.find(navLink =>
+                navLink.path === '/'
+                  ? location.pathname === '/'
+                  : location.pathname.startsWith(navLink.path)
+              );
               const lastMainNavPath = localStorage.getItem('lastMainNavPath') || '/';
-              const pathToHighlight = isMainNavPage ? location.pathname : lastMainNavPath;
+              const pathToHighlight = activeLink ? activeLink.path : lastMainNavPath;
               const isActive = link.path === pathToHighlight;
 
               return (
@@ -188,7 +198,12 @@ const Navbar: React.FC = () => {
             <li key={`mobile-${link.path}`}>
               <Link
                 to={link.path}
-                className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
+                className={`navbar-link ${link.path === '/'
+                  ? location.pathname === '/'
+                  : location.pathname.startsWith(link.path)
+                    ? 'active'
+                    : ''
+                  }`}
                 onClick={(e) => {
                   handleNavClick(link.path, e);
                   closeMenu();

@@ -34,9 +34,10 @@ interface ModelProps {
   isInteracting?: boolean;
   cameraPosition?: [number, number, number];
   onInteractionStart?: () => void;
+  cameraView?: string;
 }
 
-const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isInteracting, cameraPosition, onInteractionStart }) => {
+const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isInteracting, cameraPosition, onInteractionStart, cameraView }) => {
   const { scene } = useGLTF(modelPath);
   const modelRef = useRef<THREE.Group>(null);
   const { camera, controls } = useThree();
@@ -111,7 +112,7 @@ const Model: React.FC<ModelProps> = ({ modelPath, modelScale = 3, onLoaded, isIn
   }, [isInteracting, camera, onInteractionStart]);
 
   useFrame(() => {
-    if (modelRef.current && !isInteracting && !isTransitioning.current) {
+    if (modelRef.current && !isInteracting && !isTransitioning.current && cameraView === 'isometric') {
       modelRef.current.rotation.y += 0.003;
     }
 
@@ -279,6 +280,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             isInteracting={isInteracting}
             cameraPosition={getCameraPosition()}
             onInteractionStart={handleTransitionCancel}
+            cameraView={cameraView}
           />
         </Suspense>
 

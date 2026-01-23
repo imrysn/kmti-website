@@ -1,12 +1,6 @@
 .about-page {
   width: 100%;
 
-
-  /* ============================================
-     CUSTOMIZABLE CSS VARIABLES - About Hero
-     Adjust these values to control hero height
-     at different screen sizes (use vh units)
-     ============================================ */
   --about-hero-height-desktop: 100vh;
   --about-hero-height-tablet: 104vh;
   --about-hero-height-mobile: 100vh;
@@ -131,7 +125,7 @@
   color: white;
   font-family: var(--font-family-body);
   line-height: 1.6;
-  max-width: 1000px;
+  max-width: 1105px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
@@ -157,12 +151,10 @@
 }
 
 .about-company-images {
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-  position: relative;
-  align-items: flex-start;
-  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
 }
 
 .about-company-image-wrapper {
@@ -174,15 +166,43 @@
   background: transparent;
   padding: 0;
   flex: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.about-company-image-wrapper:first-child {
-  margin-top: 1rem;
+/* Base state: subtle blue tech tint overlay */
+.about-company-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(81, 162, 255, 0.1);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
   z-index: 2;
 }
 
+.about-company-image-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px rgba(81, 162, 255, 0.8);
+  border-color: #ffffff;
+}
+
+/* On hover, remove tint to reveal full image color */
+.about-company-image-wrapper:hover::after {
+  opacity: 0;
+}
+
+/* Removed staggered margins for grid layout */
+.about-company-image-wrapper:first-child {
+  margin-top: 0;
+  z-index: 1;
+}
+
 .about-company-image-wrapper:last-child {
-  margin-top: 5rem;
+  margin-top: 0;
   z-index: 1;
 }
 
@@ -192,6 +212,11 @@
   display: block;
   border-radius: 10px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.about-company-image-wrapper:hover .about-company-image {
+  transform: scale(1.1);
 }
 
 .about-company-content {
@@ -244,7 +269,7 @@
 .about-vision-mission-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 3rem;
   margin-left: 15%;
   margin-right: 15%;
 }

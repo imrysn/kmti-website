@@ -6,6 +6,8 @@ import { AboutPageProps } from './About.types';
 import aboutBg from '../../assets/hero_background/about.png';
 import aboutCompany1 from '../../assets/about_page/aboutcompany1.png';
 import aboutCompany2 from '../../assets/about_page/aboutcomapny2.png';
+import aboutCompany3 from '../../assets/about_page/aboutcomapny3.png';
+import aboutCompany4 from '../../assets/about_page/aboutcomapny4.png';
 import Button from '../../components/ui/Button';
 import { OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
@@ -105,6 +107,12 @@ const About: React.FC<AboutPageProps> = () => {
               <div className="about-company-image-wrapper">
                 <img src={aboutCompany2} alt="Engineering work" className="about-company-image" />
               </div>
+              <div className="about-company-image-wrapper">
+                <img src={aboutCompany3} alt="Company facility" className="about-company-image" />
+              </div>
+              <div className="about-company-image-wrapper">
+                <img src={aboutCompany4} alt="Company facility" className="about-company-image" />
+              </div>
             </div>
             <div className="about-company-content">
               <h2 className="about-company-title">{t('about.company.title')}</h2>
@@ -122,7 +130,7 @@ const About: React.FC<AboutPageProps> = () => {
         <div className="about-history-container container">
           <h2 className="about-history-title">{t('about.history.title')}</h2>
           <div className="about-history-timeline">
-            {['item1', 'item2', 'item3', 'item4', 'item5'].map((key, index) => (
+            {['item1', 'item2', 'item3', 'item_2017', 'item4', 'item5'].map((key, index) => (
               <div key={key} className={`about-history-item ${index % 2 === 0 ? 'left' : 'right'}`}>
                 <div className="about-history-content">
                   <div className="about-history-year">{t(`about.history.milestones.${key}.year`)}</div>

@@ -14,6 +14,7 @@ import dedemplerImage from '../../assets/image3D/dedempler.png';
 import bundlingImage from '../../assets/image3D/bundling.png';
 import bindingImage from '../../assets/image3D/binding.png';
 import looperImage from '../../assets/image3D/looper.png';
+import verticalLooperImage from '../../assets/image3D/vertical-looper.png';
 import horizontalLooperImage from '../../assets/image3D/horizontal-looper.png';
 import formingImage from '../../assets/image3D/forming.png';
 import shearImage from '../../assets/image3D/shear.png';
@@ -112,6 +113,16 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       description: t('home.projects.items.looper.desc'),
       category: t('home.projects.items.looper.cat'),
       image: looperImage,
+      link: '#',
+    },
+    {
+      id: 14,
+      internalTitle: 'VERTICAL LOOPER',
+      key: 'vertical',
+      title: t('home.projects.items.vertical.title'),
+      description: t('home.projects.items.vertical.desc'),
+      category: t('home.projects.items.vertical.cat'),
+      image: verticalLooperImage,
       link: '#',
     },
     {
@@ -261,7 +272,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                 onClick={
                   ['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(project.internalTitle)
                     ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsProjectModalOpen(true); }
-                    : ['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE'].includes(project.internalTitle)
+                    : ['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE', 'VERTICAL LOOPER'].includes(project.internalTitle)
                       ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsLooperModalOpen(true); }
                       : project.internalTitle === 'FORMING AND SIZING MACHINE'
                         ? () => setIsFormingModalOpen(true)

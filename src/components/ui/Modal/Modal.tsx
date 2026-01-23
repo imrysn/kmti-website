@@ -42,6 +42,7 @@ import dedemplerImage from '../../../assets/image3D/dedempler.png';
 import bundlingImage from '../../../assets/image3D/bundling.png';
 import bindingImage from '../../../assets/image3D/binding.png';
 import looperImage from '../../../assets/image3D/looper.png';
+import verticalLooperImage from '../../../assets/image3D/vertical-looper.png';
 import horizontalLooperImage from '../../../assets/image3D/horizontal-looper.png';
 import formingImage from '../../../assets/image3D/forming.png';
 import shearImage from '../../../assets/image3D/shear.png';
@@ -327,6 +328,7 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
 
   const allItems = [
     { image: looperImage, key: 'looper', modelKey: 'Looper Machine' },
+    { image: verticalLooperImage, key: 'vertical', modelKey: 'Vertical Looper' },
     { image: horizontalLooperImage, key: 'horizontal', modelKey: 'Horizontal Looper Machine' }
   ];
 

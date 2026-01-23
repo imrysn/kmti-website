@@ -89,16 +89,24 @@ const Home: React.FC<HomePageProps> = () => {
           <h2 className="section-title">{t('home.services.title')}</h2>
           <p className="section-subtitle">{t('home.services.subtitle')}</p>
           <div className="services-grid">
-            {services.map((service) => (
-              <ServiceCard
-                key={service.id}
-                icon={service.icon}
-                title={service.title}
-                subtitle={service.description}
-                linkText={t('common.learn_more')}
-                linkHref="/services"
-              />
-            ))}
+            {services.map((service) => {
+              let linkHref = '/services';
+              if (service.id === 1) linkHref = '/services/3d-modeling';
+              if (service.id === 2) linkHref = '/services/2d-detailing';
+              if (service.id === 3) linkHref = '/services/parts-inspection';
+              if (service.id === 4) linkHref = '/services/machine-assembly';
+
+              return (
+                <ServiceCard
+                  key={service.id}
+                  icon={service.icon}
+                  title={service.title}
+                  subtitle={service.description}
+                  linkText={t('common.learn_more')}
+                  linkHref={linkHref}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
