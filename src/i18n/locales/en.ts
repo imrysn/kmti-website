@@ -359,7 +359,7 @@ const en = {
         description: ""
       },
       transfer: {
-        title: "Transfer Table",
+        title: "Transfer Table (Conveyor)",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
@@ -369,12 +369,12 @@ const en = {
         description: "After pipes are cut to standard lengths, they are passed to the finishing line to be check, arranged and bundled, ready for distribution"
       },
       air_blow: {
-        title: "Runout and Alignment",
+        title: "Air Blow",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
       transfertable_lifter: {
-        title: "Alignment and Transfer table",
+        title: "Transfer Table (Lifter)",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },

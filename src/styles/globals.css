@@ -2,18 +2,29 @@
    GLOBAL STYLES
    ============================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import './variables.css';
 @import './reset.css';
 
 html {
   font-size: 100%;
   /* 18px base */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* 18px base */
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-color) #020618;
 }
 
 html::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #020618;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 4px;
 }
 
 body {
@@ -25,12 +36,20 @@ body {
   line-height: 1.6;
   margin: 0;
   min-height: 100vh;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  min-height: 100vh;
 }
 
 body::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #020618;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }
 
 h1,
@@ -109,6 +128,18 @@ select {
   margin-right: auto;
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITY
+   ============================================ */
+
+.glass-panel {
+  background: rgba(31, 49, 95, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* ============================================

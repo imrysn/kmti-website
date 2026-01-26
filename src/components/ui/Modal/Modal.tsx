@@ -534,7 +534,7 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
   if (!isOpen) return null;
 
   const items = [
-    { image: transferTableImage, key: 'transfer_table', modelKey: 'Transfer Table (Lifter)' },
+    { image: finishingImage, key: 'transfer_table', modelKey: 'Transfer Table (Lifter)' },
     { image: bundleSeparatorImage, key: 'bundle', modelKey: 'Bundle Separator' },
     { image: pipeDryingImage, key: 'pipe_drying', modelKey: 'Pipe Drying Section' },
     { image: pipeBundlingImage, key: 'pipe_bundling', modelKey: 'Pipe Bundling' },
