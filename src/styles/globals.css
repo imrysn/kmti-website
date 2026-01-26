@@ -6,7 +6,7 @@
 @import './reset.css';
 
 html {
-  font-size: 105%;
+  font-size: 100%;
   /* 18px base */
   -ms-overflow-style: none;
   scrollbar-width: none;
