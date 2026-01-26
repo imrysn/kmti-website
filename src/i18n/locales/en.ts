@@ -107,7 +107,7 @@ const en = {
       cta: "EXPLORE OUR STORY"
     },
     story: {
-      modal_title: "Our Story",
+      modal_title: "OUR STORY",
       caption: "(From left in the photo, President Maeno, Director General of the Philippines Special Economic Zone Agency Delima, Director Masahiko Hasegawa)",
       paragraphs: [
         "Established in Kobe in 1916, Kusakabe Electric & Machinery Co., Ltd. transitioned into the pipe industry in 1959, evolving into a definitive leader in global pipe manufacturing. Today, Kusakabe remains one of the few manufacturers worldwide with the expertise to design and produce fully integrated pipe mill systems entirely in-house. By merging rigorous quality standards with relentless R&D, we have earned the trust of partners across 26 countries, dominating the Japanese market while delivering innovative engineering solutions to the world.",
@@ -617,6 +617,27 @@ const en = {
     responses: {
 
       // ... GENERAL FLOW ... 
+      "greeting-response": {
+        text: "Hello! It's great to see you. How can I help you regarding KMTI?",
+        buttons: [
+          { id: "gr1", text: "Our Services", action: "services" },
+          { id: "gr2", text: "Careers & Application", action: "careers" },
+          { id: "gr3", text: "About KMTI", action: "about" }
+        ]
+      },
+      "gratitude-response": {
+        text: "You're very welcome! Is there anything else I can help you with?",
+        buttons: [
+          { id: "gtd1", text: "Back to Main Menu", action: "main-menu" },
+          { id: "gtd2", text: "Talk to a Human", action: "talk-to-human" }
+        ]
+      },
+      "farewell-response": {
+        text: "Goodbye! Have a wonderful day. Feel free to come back if you have more questions.",
+        buttons: [
+          { id: "fw1", text: "Start Over", action: "start-over" }
+        ]
+      },
       default: {
         text: "I'm not sure how to help you with that. Would you like to return to the main menu, start over, or talk to a human?",
         actionButtons: [

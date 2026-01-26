@@ -142,8 +142,19 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       '2d detailing': '2d-detailing', '2d': '2d-detailing', 'detailing': '2d-detailing', '2d詳細設計': '2d-detailing',
       'parts inspection': 'parts-inspection', 'inspection': 'parts-inspection', 'parts': 'parts-inspection', '部品検査': 'parts-inspection',
       'machine assembly': 'machine-assembly', 'assembly': 'machine-assembly', 'machine': 'machine-assembly', '機械組立': 'machine-assembly',
+      'tube mill': 'services', 'pipe mill': 'services',
 
-      // Careers
+      // Greetings & Etiquette
+      'hi': 'greeting-response', 'hello': 'greeting-response', 'hey': 'greeting-response', 'greetings': 'greeting-response',
+      'good morning': 'greeting-response', 'good afternoon': 'greeting-response', 'good evening': 'greeting-response',
+      'kamusta': 'greeting-response', 'musta': 'greeting-response', 'konnichiwa': 'greeting-response', 'ohayo': 'greeting-response', 'konbanwa': 'greeting-response',
+
+      'thank you': 'gratitude-response', 'thanks': 'gratitude-response', 'thx': 'gratitude-response', 'salamat': 'gratitude-response', 'arigato': 'gratitude-response', 'arigatou': 'gratitude-response',
+
+      'bye': 'farewell-response', 'goodbye': 'farewell-response', 'see you': 'farewell-response', 'paalam': 'farewell-response', 'sayonara': 'farewell-response',
+
+      // Careers - Additional
+      'intern': 'training', 'internship': 'training', 'ojt': 'training', 'on the job training': 'training', 'trainee': 'training',
       'careers': 'careers', 'career': 'careers', 'application': 'careers', 'apply': 'careers', 'job': 'careers', 'jobs': 'careers', '採用': 'careers', '求人': 'careers',
       'how to apply': 'how-to-apply', 'apply now': 'how-to-apply', '応募方法': 'how-to-apply',
       'hiring process': 'hiring-process', 'process': 'hiring-process', '選考プロセス': 'hiring-process',
@@ -157,7 +168,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       // Client Questions
       'price': 'pricing', 'pricing': 'pricing', 'cost': 'pricing', 'quote': 'pricing', 'quotation': 'pricing', 'quotations': 'pricing', 'estimate': 'pricing', 'proposal': 'pricing', 'budget': 'pricing', 'rates': 'pricing', 'fees': 'pricing', '見積': 'pricing', '価格': 'pricing', '費用': 'pricing',
       'timeline': 'timeline', 'duration': 'timeline', 'deadline': 'timeline', '納期': 'timeline', '期間': 'timeline', 'スケジュール': 'timeline',
-      'projects': 'projects', 'portfolio': 'projects', 'works': 'projects', 'case studies': 'projects', '実績': 'projects', '作品': 'projects',
+      'projects': 'projects', 'portfolio': 'projects', 'works': 'projects', 'case studies': 'projects', '実績': 'projects', '作品': 'projects', 'dedimpler': 'projects',
       'workflow': 'process', 'how it works': 'process', 'steps': 'process', 'procedure': 'process', '流れ': 'process', '手順': 'process',
       'consultation': 'consultation', 'meeting': 'consultation', 'discuss': 'consultation', 'discussion': 'consultation', 'consult': 'consultation', 'inquiry': 'consultation', 'inquiries': 'consultation', '相談': 'consultation', '打ち合わせ': 'consultation', '問い合わせ': 'consultation',
       'payment': 'payment', 'billing': 'payment', 'invoicing': 'payment', 'invoice': 'payment', '支払': 'payment', '請求': 'payment',
@@ -213,10 +224,10 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
     }
 
     const navMap: Record<string, string> = {
-      'learn-more-3d': '/services?service=3d-modeling',
-      'learn-more-2d': '/services?service=2d-detailing',
-      'learn-more-inspection': '/services?service=parts-inspection',
-      'learn-more-assembly': '/services?service=machine-assembly',
+      'learn-more-3d': '/services/3d-modeling',
+      'learn-more-2d': '/services/2d-detailing',
+      'learn-more-inspection': '/services/parts-inspection',
+      'learn-more-assembly': '/services/machine-assembly',
       'learn-more-about': '/about', 'go-projects': '/projects', 'view-projects': '/projects'
     };
 

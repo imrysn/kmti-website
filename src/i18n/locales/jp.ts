@@ -617,6 +617,27 @@ const jp = {
     responses: {
 
       // .. GENERAL FLOW ...
+      "greeting-response": {
+        text: "こんにちは！お会いできて嬉しいです。KMTIに関して何かお手伝いできることはありますか？",
+        buttons: [
+          { id: "gr1", text: "当社のサービス", action: "services" },
+          { id: "gr2", text: "採用情報・応募", action: "careers" },
+          { id: "gr3", text: "KMTIについて", action: "about" }
+        ]
+      },
+      "gratitude-response": {
+        text: "どういたしまして！他に何かお手伝いできることはありますか？",
+        buttons: [
+          { id: "gtd1", text: "メインメニューに戻る", action: "main-menu" },
+          { id: "gtd2", text: "オペレーターと話す", action: "talk-to-human" }
+        ]
+      },
+      "farewell-response": {
+        text: "さようなら！素晴らしい一日をお過ごしください。ご質問があれば、いつでも戻ってきてください。",
+        buttons: [
+          { id: "fw1", text: "最初からやり直す", action: "start-over" }
+        ]
+      },
       default: {
         text: "その件について、どうお手伝いできるか分かりません。メインメニューに戻る、最初からやり直す、または担当者と話す、どれがよろしいでしょうか？",
         actionButtons: [
