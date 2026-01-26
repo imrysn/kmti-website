@@ -97,10 +97,9 @@
 .model-3d-modal-title {
   font-family: var(--font-family-heading);
   font-size: 2rem;
-  font-weight: 100;
+  font-weight: 500;
   color: white;
   margin: 0;
-  text-transform: uppercase;
   letter-spacing: 0.1em;
   text-shadow: 0 0 20px rgba(81, 162, 255, 0.5);
 }
@@ -249,12 +248,10 @@
 .model-3d-placeholder-title {
   font-family: var(--font-family-heading);
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   margin: 0 0 1rem 0;
-  text-transform: uppercase;
   letter-spacing: 0.1em;
-  text-shadow: 0 0 15px rgba(81, 162, 255, 0.4);
 }
 
 .model-3d-placeholder-text {

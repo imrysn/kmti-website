@@ -15,7 +15,6 @@
   overflow: hidden;
   /* Ensure zoomed background doesn't overflow */
   z-index: 1;
-  /* Create stacking context so child z-index: -1 stays within section */
 }
 
 /* Dedicated background element for smooth zooming */

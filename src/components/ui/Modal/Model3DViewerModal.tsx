@@ -59,6 +59,8 @@ const MODEL_MAP: { [key: string]: ModelConfig } = {
   'Finishing Line': { path: null, scale: 5 },
   'FINISHING LINE': { path: null, scale: 5 },
   'Air Blow': { path: airBlowModel, scale: 5 },
+  'Vertical Looper': { path: null, scale: 5 },
+  'VERTICAL LOOPER': { path: null, scale: 5 },
 };
 
 export type CameraView = 'isometric' | 'front' | 'back' | 'left' | 'right' | 'top';
