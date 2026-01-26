@@ -51,7 +51,7 @@ const en = {
         },
         "2d": {
           title: "2D DETAILING",
-          desc: "Our 2D detailing process ensures every dimension, material and component is clearly defined for production. We create precise technical drawings that serve as the foundation for efficient manufacturing."
+          desc: "Our 2D detailing process ensures that every dimension, material and component is clearly defined for production. We produce precise technical drawings that form the foundation for efficient manufacturing."
         },
         inspection: {
           title: "PARTS INSPECTIONS",

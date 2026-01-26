@@ -155,20 +155,20 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'application status': 'application-status', 'status': 'application-status', '進捗': 'application-status',
 
       // Client Questions
-      'price': 'pricing', 'pricing': 'pricing', 'cost': 'pricing', 'quote': 'pricing', '見積': 'pricing',
-      'timeline': 'timeline', 'duration': 'timeline', '納期': 'timeline',
-      'projects': 'projects', 'portfolio': 'projects', '実績': 'projects',
-      'workflow': 'process', 'how it works': 'process', '流れ': 'process',
-      'consultation': 'consultation', 'meeting': 'consultation', '相談': 'consultation',
-      'payment': 'payment', 'billing': 'payment', '支払': 'payment',
+      'price': 'pricing', 'pricing': 'pricing', 'cost': 'pricing', 'quote': 'pricing', 'quotation': 'pricing', 'quotations': 'pricing', 'estimate': 'pricing', 'proposal': 'pricing', 'budget': 'pricing', 'rates': 'pricing', 'fees': 'pricing', '見積': 'pricing', '価格': 'pricing', '費用': 'pricing',
+      'timeline': 'timeline', 'duration': 'timeline', 'deadline': 'timeline', '納期': 'timeline', '期間': 'timeline', 'スケジュール': 'timeline',
+      'projects': 'projects', 'portfolio': 'projects', 'works': 'projects', 'case studies': 'projects', '実績': 'projects', '作品': 'projects',
+      'workflow': 'process', 'how it works': 'process', 'steps': 'process', 'procedure': 'process', '流れ': 'process', '手順': 'process',
+      'consultation': 'consultation', 'meeting': 'consultation', 'discuss': 'consultation', 'discussion': 'consultation', 'consult': 'consultation', 'inquiry': 'consultation', 'inquiries': 'consultation', '相談': 'consultation', '打ち合わせ': 'consultation', '問い合わせ': 'consultation',
+      'payment': 'payment', 'billing': 'payment', 'invoicing': 'payment', 'invoice': 'payment', '支払': 'payment', '請求': 'payment',
 
       // General
-      'location': 'location', 'office': 'location', '住所': 'location', '場所': 'location',
-      'support': 'support', 'contact': 'support', 'help': 'support', 'サポート': 'support',
-      'about': 'about', 'company': 'about', '会社概要': 'about',
-      'main menu': 'main-menu', 'menu': 'main-menu', 'ホーム': 'main-menu', 'メニュー': 'main-menu',
-      'start over': 'start-over', 'reset': 'start-over', '最初から': 'start-over',
-      'talk to human': 'talk-to-human', 'human': 'talk-to-human', '担当者': 'talk-to-human'
+      'location': 'location', 'office': 'location', 'address': 'location', 'map': 'location', 'where': 'location', '住所': 'location', '場所': 'location', '地図': 'location',
+      'support': 'support', 'help': 'support', 'assist': 'support', 'assistance': 'support', 'issue': 'support', 'problem': 'support', 'question': 'support', 'questions': 'support', 'サポート': 'support', 'ヘルプ': 'support',
+      'about': 'about', 'company': 'about', 'kmti': 'about', 'who are you': 'about', '会社概要': 'about',
+      'main menu': 'main-menu', 'menu': 'main-menu', 'options': 'main-menu', 'ホーム': 'main-menu', 'メニュー': 'main-menu',
+      'start over': 'start-over', 'reset': 'start-over', 'restart': 'start-over', '最初から': 'start-over', 'リセット': 'start-over',
+      'talk to human': 'talk-to-human', 'human': 'talk-to-human', 'person': 'talk-to-human', 'agent': 'talk-to-human', 'representative': 'talk-to-human', 'operator': 'talk-to-human', '担当者': 'talk-to-human', '人': 'talk-to-human', 'オペレーター': 'talk-to-human'
     };
 
     if (keywordMap[normalized]) return keywordMap[normalized];

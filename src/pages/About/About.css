@@ -103,12 +103,12 @@
 }
 
 .about-title {
-  font-size: 4rem;
+  font-size: 4.8rem;
   font-weight: 500;
   color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   font-family: var(--font-family-heading);
-  line-height: 1.2;
+  line-height: 1;
 }
 
 .about-subtitle {
@@ -228,10 +228,10 @@
 
 .about-company-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 500;
   text-align: left;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 10%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;
@@ -288,10 +288,10 @@
 
 .about-management-team-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
-  font-weight: 500;
+  font-size: 3rem;
+  font-weight: 600;
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;
@@ -305,8 +305,8 @@
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
   line-height: 1.6;
-  max-width: 800px;
-  margin: -4.5rem auto 5rem auto;
+  max-width: 1000px;
+  margin: -5.5rem auto 5rem auto;
 }
 
 .about-management-team-grid {
@@ -552,8 +552,8 @@
 
 .our-people-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
-  font-weight: 500;
+  font-size: 3rem;
+  font-weight: 600;
   text-align: center;
   margin-bottom: 0rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
@@ -570,7 +570,7 @@
   text-align: center;
   margin-bottom: -4rem;
   line-height: 1.6;
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -751,8 +751,8 @@
 
 .related-companies-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
-  font-weight: 500;
+  font-size: 3rem;
+  font-weight: 600;
   text-align: center;
   margin-bottom: 3rem;
   margin-top: 6rem;
@@ -898,10 +898,10 @@
 
 .about-history-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
-  font-weight: 500;
+  font-size: 3rem;
+  font-weight: 600;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;

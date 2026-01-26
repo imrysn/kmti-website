@@ -99,7 +99,7 @@
   font-size: 4rem;
   font-weight: 500;
   color: white;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   line-height: 1.2;
   text-transform: uppercase;
 }
@@ -132,10 +132,10 @@
 
 .home-page .section-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
-  font-weight: 500;
+  font-size: 3rem;
+  font-weight: 600;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
   margin-top: 2rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
@@ -147,24 +147,25 @@
 .home-page .section-subtitle {
   font-family: var(--font-family-body);
   font-size: 1rem;
+  font-weight: 500;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 0rem;
   color: rgba(255, 255, 255, 0.8);
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .why-choose-us-section {
-  margin-top: 6rem;
-  margin-bottom: 6rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 
 
 .services-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .home-page .services-grid {
@@ -174,25 +175,25 @@
   column-gap: 20px;
   justify-items: stretch;
   align-items: stretch;
-  margin-top: 6rem;
+  margin-top: 8rem;
 }
 
 .vision-reality-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .about-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   text-align: center;
 }
 
 .about-description {
   font-family: var(--font-family-body);
   font-size: 1rem;
-  font-weight: 350;
-  color: #fff;
+  font-weight: 500;
+  color: #FFFFFF;
   line-height: 1.8;
   max-width: 1000px;
   margin-left: auto;
