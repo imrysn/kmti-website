@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import './Home.css';
 import { HomePageProps } from './Home.types';
 import homeBg from '../../assets/hero_background/homebg.jpeg';
@@ -38,7 +38,12 @@ const Home: React.FC<HomePageProps> = () => {
   const whyChooseUs = [
     { id: 1, title: t('home.why_choose.precision.title'), description: t('home.why_choose.precision.desc'), icon: precisionIcon },
     { id: 2, title: t('home.why_choose.innovation.title'), description: t('home.why_choose.innovation.desc'), icon: innovationIcon },
-    { id: 3, title: t('home.why_choose.experience.title'), description: t('home.why_choose.experience.desc'), icon: experienceIcon },
+    {
+      id: 3,
+      title: t('home.why_choose.experience.title'),
+      description: <Trans i18nKey="home.why_choose.experience.desc" components={{ br: <br /> }} />,
+      icon: experienceIcon
+    },
   ];
 
   const services = [

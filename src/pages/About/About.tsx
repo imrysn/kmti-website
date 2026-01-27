@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import './About.css';
 import { AboutPageProps } from './About.types';
 import aboutBg from '../../assets/hero_background/about.png';
@@ -92,7 +92,9 @@ const About: React.FC<AboutPageProps> = () => {
           <div className="about-hero-content">
             <h1 className="about-title">{t('about.hero.title')}</h1>
             <p className="about-subtitle">{t('about.hero.subtitle')}</p>
-            <p className="about-description">{t('about.hero.description')}</p>
+            <p className="about-description">
+              <Trans i18nKey="about.hero.description" components={{ br: <br /> }} />
+            </p>
           </div>
         </div>
       </section>
@@ -116,7 +118,15 @@ const About: React.FC<AboutPageProps> = () => {
             </div>
             <div className="about-company-content">
               <h2 className="about-company-title">{t('about.company.title')}</h2>
-              <p className="about-company-description">{t('about.company.para1')}</p>
+              <p className="about-company-description">
+                <Trans
+                  i18nKey="about.company.para1"
+                  components={{
+                    br: <br />,
+                    nowrap: <span style={{ whiteSpace: 'nowrap' }} />
+                  }}
+                />
+              </p>
               <p className="about-company-description">{t('about.company.para2')}</p>
               <div className="about-company-button">
                 <Button variant="style2" onClick={handleOpenOurStory}>{t('about.company.cta')}</Button>
@@ -135,7 +145,12 @@ const About: React.FC<AboutPageProps> = () => {
                 <div className="about-history-content">
                   <div className="about-history-year">{t(`about.history.milestones.${key}.year`)}</div>
                   <h3 className="about-history-item-title">{t(`about.history.milestones.${key}.title`)}</h3>
-                  <p className="about-history-description">{t(`about.history.milestones.${key}.description`)}</p>
+                  <p className="about-history-description">
+                    <Trans
+                      i18nKey={`about.history.milestones.${key}.description`}
+                      components={{ br: <br /> }}
+                    />
+                  </p>
                 </div>
               </div>
             ))}

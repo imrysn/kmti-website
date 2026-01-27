@@ -14,7 +14,7 @@ const isImageIcon = (icon: string | React.ReactNode): icon is string => {
 interface CardProps {
   icon?: string | React.ReactNode;
   title: string;
-  subtitle: string;
+  subtitle: string | React.ReactNode;
   linkText?: string;
   linkHref?: string;
   className?: string;
