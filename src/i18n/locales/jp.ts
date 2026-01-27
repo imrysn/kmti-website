@@ -961,12 +961,13 @@ const jp = {
       address: "〒4126 フィリピン、カビテ州、ダスマリニャス市、ランカアン1、ファースト・カビテ工業団地、Vital Industrial Prop. Inc. Bldg. B, Unit 2-B"
     },
     bottom: {
+      version: "ウェブサイトバージョン 2.0",
       rights: "日下部前野テック株式会社 All rights reserved.",
       since: "開設",
       total_visit: "本日の訪問者数",
       today_visit: "本日",
       yesterday_visit: "昨日",
-      publication_date: "2025年12月1日"
+      publication_date: "2026年1月27日"
     }
   },
 

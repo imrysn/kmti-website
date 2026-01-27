@@ -5,9 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.glb', '**/*.gltf'],
-  server: {
-    host: true, // Listen on all network interfaces
-    port: 5173, // Default Vite port
-    allowedHosts: ['brwqp-124-105-71-156.a.free.pinggy.link'],
-  },
 })
+

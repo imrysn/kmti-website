@@ -153,7 +153,9 @@ const Footer: React.FC = () => {
 
 
       <div className="footer__bottom">
-        <div>© {new Date().getFullYear()} {t('footer.bottom.rights')}</div>
+        <div>
+          {t('footer.bottom.version')} | © {new Date().getFullYear()} {t('footer.bottom.rights')}
+        </div>
         <div id="visit-tracker" style={{ textAlign: 'center' }}>
           {t('footer.bottom.since')} {t('footer.bottom.publication_date')} &nbsp;&nbsp;&nbsp;
           {t('footer.bottom.total_visit')}{' '}

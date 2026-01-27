@@ -960,12 +960,13 @@ const en = {
       address: "Vital Industrial Prop. Inc. Bldg. B. Unit 2-B. First Cavite Industrial Estate Langkaan 1, Dasmariñas City, Cavite 4126 Philiippines"
     },
     bottom: {
+      version: "Website Version 2.0",
       rights: "Kusakabe & Maeno Tech, Inc. All rights reserved.",
       since: "Since",
       total_visit: "Total Count Visit",
       today_visit: "Today Visit",
       yesterday_visit: "Yesterday Visit",
-      publication_date: "December 1, 2025"
+      publication_date: "January 27, 2026"
     }
   },
 
