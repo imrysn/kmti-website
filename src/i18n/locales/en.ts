@@ -161,6 +161,11 @@ const en = {
     },
     related: {
       title: "RELATED COMPANIES",
+      company_names: {
+        kemco: "KUSAKABE ELECTRIC & MACHINERY CO., LTD.",
+        nexteng: "Next Engineering Co., Ltd.",
+        mgk: "MAENO GIKEN INC."
+      },
       kemco: "Founded in 1916 and began its involvement with the tube and pipe industry in 1959. A full range of Tube and Pipe mills and associated equipment is available for all sectors of the tube and pipe industry. The many years of tube and pipe experience and know-how coupled with an innovative design team and the high quality workmanship of the manufacturing and installation teams has made Kusakabe a leading and inventive tube and pipe mill and associated equipment supplier. ",
       nexteng: "Next Engineering Co., Ltd. was established in 2007 as a partner of Mitsubishi Heavy Industries. It handles energy-related projects such as thermal power plants and fuel cell systems, along with metal processing and manufacturing at its own facilities. In recent years. It has expanded into IT and semiconductor fields. In April 2025, the company merged with Nishinippon Sekkei Co., Ltd. enhancing its capabilities in ship, plant, and machinery design, and enabling integrated services from design to manufacturing.",
       mgk: "MGK specializes in fabrication, utilizing expertise of Filipino skill. They produce their products by using welding technology and machinery. Their fabricated structures are galvanized, giving it the advantage for a longer life. And their client’s satisfaction, and serve as their assurance. As part of their company mission, they are honing every Filipino generation to be globally competitive by means of transferring every technological knowledge in this kind of business."

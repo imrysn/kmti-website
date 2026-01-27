@@ -272,19 +272,19 @@ const About: React.FC<AboutPageProps> = () => {
           <div className="related-companies-grid">
             <RelatedCompanyCard
               logo={kemcoLogo}
-              companyName="KUSAKABE ELECTRIC & MACHINERY CO., LTD"
+              companyName={t('about.related.company_names.kemco')}
               description={t('about.related.kemco')}
               href="https://www.kusakabe.com/jpn/index.htm"
             />
             <RelatedCompanyCard
               logo={nextengLogo}
-              companyName="NEXT ENGINEERING CO., LTD."
+              companyName={t('about.related.company_names.nexteng')}
               description={t('about.related.nexteng')}
               href="https://www.nexteng.co.jp/"
             />
             <RelatedCompanyCard
               logo={mgkLogo}
-              companyName="MAENO GIKEN INC."
+              companyName={t('about.related.company_names.mgk')}
               description={t('about.related.mgk')}
               href="http://www.maenogiken.com/"
             />
