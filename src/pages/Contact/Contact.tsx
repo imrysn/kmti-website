@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import './Contact.css';
 import { ContactPageProps } from './Contact.types';
 import contactBg from '../../assets/hero_background/contactusbg.jpg';
@@ -256,7 +256,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                   <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
                     <strong className="chat-with-us-feature-title">{t('contact.chat.features.f1.title')}</strong>
-                    <span className="chat-with-us-feature-text">{t('contact.chat.features.f1.text')}</span>
+                    <span className="chat-with-us-feature-text"><Trans i18nKey="contact.chat.features.f1.text" components={{ br: <br /> }} /></span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">

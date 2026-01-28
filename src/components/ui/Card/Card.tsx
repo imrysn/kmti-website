@@ -55,7 +55,7 @@ const Card: React.FC<CardProps> = ({
 interface ServiceCardProps {
   icon?: string | React.ReactNode;
   title: string;
-  subtitle: string;
+  subtitle: string | React.ReactNode;
   linkText?: string;
   linkHref?: string;
   className?: string;

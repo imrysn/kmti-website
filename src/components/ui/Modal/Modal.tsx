@@ -55,6 +55,7 @@ import pipeBundlingImage from '../../../assets/image3D/pipe-bundling.png';
 import productImage from '../../../assets/image3D/product-storage.png';
 import productStorageImage from '../../../assets/image3D/product-storage-FS.png';
 import finishingImage from '../../../assets/image3D/finishing.png';
+import finishingLineImage from '../../../assets/image3D/finishingLine.png';
 import airBlowImage from '../../../assets/image3D/air-blow.png';
 import transferLifterImage from '../../../assets/image3D/transfer-table-lifter.png';
 import bundlingMachineImage from '../../../assets/image3D/bundling-machine.png';
@@ -592,7 +593,7 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
   if (!isOpen) return null;
 
   const items = [
-    { image: finishingImage, key: 'finishing', modelKey: 'Finishing Line' },
+    { image: finishingLineImage, key: 'finishing', modelKey: 'Finishing Line' },
     { image: airBlowImage, key: 'air_blow', modelKey: 'Air Blow' },
     { image: transferLifterImage, key: 'transfertable_lifter', modelKey: 'Transfer Table (Lifter)' },
 

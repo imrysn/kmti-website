@@ -48,9 +48,9 @@ const Home: React.FC<HomePageProps> = () => {
 
   const services = [
     { id: 1, title: t('home.services.items.3d.title'), description: t('home.services.items.3d.desc'), icon: icon3D },
-    { id: 2, title: t('home.services.items.2d.title'), description: t('home.services.items.2d.desc'), icon: icon2D },
-    { id: 3, title: t('home.services.items.inspection.title'), description: t('home.services.items.inspection.desc'), icon: inspectionIcon },
-    { id: 4, title: t('home.services.items.assembly.title'), description: t('home.services.items.assembly.desc'), icon: assemblyIcon },
+    { id: 2, title: t('home.services.items.2d.title'), description: <Trans i18nKey="home.services.items.2d.desc" components={{ br: <br /> }} />, icon: icon2D },
+    { id: 3, title: t('home.services.items.inspection.title'), description: <Trans i18nKey="home.services.items.inspection.desc" components={{ br: <br /> }} />, icon: inspectionIcon },
+    { id: 4, title: t('home.services.items.assembly.title'), description: <Trans i18nKey="home.services.items.assembly.desc" components={{ br: <br /> }} />, icon: assemblyIcon },
   ];
 
   const projects = [
@@ -143,7 +143,7 @@ const Home: React.FC<HomePageProps> = () => {
       <section className="about-section" data-aos="fade-up">
         <div className="section-container container">
           <h2 className="section-title">{t('home.about.title')}</h2>
-          <p className="about-description">{t('home.about.desc')}</p>
+          <p className="about-description"><Trans i18nKey="home.about.desc" components={{ br: <br /> }} /></p>
           <Link to="/about" className="about-link">{t('home.about.link')} →</Link>
         </div>
       </section>

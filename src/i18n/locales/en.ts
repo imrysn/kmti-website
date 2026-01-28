@@ -294,7 +294,7 @@ const en = {
         title: "Looper Machine",
         category: "MECHANICAL > TUBE",
         description: "Horizontal loopers store strip material on a horizontal table. Where space permits, this method provides the most efficient and cost-effective storage without causing surface damage.",
-        application: "Suitable fo all tube sizes and materials.",
+        application: "Suitable for all tube sizes and materials.",
         advantages: "Improved productivity. Reduce downtime. Reduced Scrap. Reduced Strip Damage."
       },
       vertical: {
@@ -374,12 +374,12 @@ const en = {
         description: "After pipes are cut to standard lengths, they are passed to the finishing line to be check, arranged and bundled, ready for distribution"
       },
       air_blow: {
-        title: "Air Blow",
+        title: "Runout and Alignment",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
       transfertable_lifter: {
-        title: "Transfer Table (Lifter)",
+        title: "Air Blow and Transfer Table",
         category: "MECHANICAL > TUBE (SUB MACHINE)",
         description: ""
       },
@@ -477,7 +477,7 @@ const en = {
           "Knowledge of accounting principles",
           "Experience with DOLE reporting is a plus"
         ],
-        courses: ["Human Resource Development Management", "BS in Business Administration", "Accounting", "Management"]
+        courses: ["Human Resource Management", "BS in Business Administration", "Accounting", "Business Management"]
       }
     },
     why_work: {
@@ -971,7 +971,7 @@ const en = {
       total_visit: "Total Count Visit",
       today_visit: "Today Visit",
       yesterday_visit: "Yesterday Visit",
-      publication_date: "January 27, 2026"
+      publication_date: "January 2026"
     }
   },
 
