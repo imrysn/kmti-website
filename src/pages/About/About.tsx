@@ -3,52 +3,56 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './About.css';
 import { AboutPageProps } from './About.types';
-import aboutBg from '../../assets/hero_background/about.png';
-import aboutCompany1 from '../../assets/about_page/aboutcompany1.png';
-import aboutCompany2 from '../../assets/about_page/aboutcomapny2.png';
-import aboutCompany3 from '../../assets/about_page/aboutcomapny3.png';
-import aboutCompany4 from '../../assets/about_page/aboutcomapny4.png';
+import { getAssetUrl } from '../../utils/assets';
+
+const aboutBg = getAssetUrl('hero_background/about.png');
+const aboutCompany1 = getAssetUrl('about_page/aboutcompany1.png');
+const aboutCompany2 = getAssetUrl('about_page/aboutcomapny2.png');
+const aboutCompany3 = getAssetUrl('about_page/aboutcomapny3.png');
+const aboutCompany4 = getAssetUrl('about_page/aboutcomapny4.png');
 import Button from '../../components/ui/Button';
 import { OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
 import { ManagementTeamCard, RelatedCompanyCard } from '../../components/ui/Card/Card';
-import visionIcon from '../../assets/icons/vision-icon.png';
-import missionIcon from '../../assets/icons/mission-icon.png';
-import pauImage from '../../assets/management/pau.png';
-import michaelImage from '../../assets/management/michael.png';
-import siryuImage from '../../assets/management/siryu.png';
-import mennjoImage from '../../assets/management/mennjo.png';
-import teodyImage from '../../assets/management/teody.png';
-import shelaImage from '../../assets/management/shela.png';
-import erikImage from '../../assets/management/erik.png';
-import louieImage from '../../assets/management/louie.png';
-import kerbyImage from '../../assets/management/kerby.png';
-import kissImage from '../../assets/management/kiss.png';
-import lorieImage from '../../assets/management/lorie.png';
-import jethroImage from '../../assets/management/jethro.png';
-import joyceImage from '../../assets/management/joyce.png';
-import jcImage from '../../assets/management/jc.png';
-import jennyImage from '../../assets/management/jenny.png';
-import nylImage from '../../assets/management/nyl.png';
-import jonathanImage from '../../assets/management/jonathan.png';
-import noelImage from '../../assets/management/noel.png';
-import royImage from '../../assets/management/roy.png';
-import jojoImage from '../../assets/management/jojo.png';
-import zorenImage from '../../assets/management/ZOREN.png';
-import raineImage from '../../assets/management/RAINE.png';
-import sharmaineImage from '../../assets/management/SHARMAINE.png';
-import mgImage from '../../assets/management/MG.png';
-import matthewImage from '../../assets/management/MATTHEW.png'
 
-import ourPeople1 from '../../assets/about_page/ourpeople1.jpg';
-import ourPeople2 from '../../assets/about_page/ourpeople2.jpg';
-import ourPeople5 from '../../assets/about_page/ourpeople5.jpg';
-import ourPeople3 from '../../assets/about_page/k.png';
-import ourPeople4 from '../../assets/about_page/ourpeople4.png';
+const visionIcon = getAssetUrl('icons/vision-icon.png');
+const missionIcon = getAssetUrl('icons/mission-icon.png');
+const pauImage = getAssetUrl('management/pau.png');
+const michaelImage = getAssetUrl('management/michael.png');
+const siryuImage = getAssetUrl('management/siryu.png');
+const mennjoImage = getAssetUrl('management/mennjo.png');
+const teodyImage = getAssetUrl('management/teody.png');
+const shelaImage = getAssetUrl('management/shela.png');
+const erikImage = getAssetUrl('management/erik.png');
+const louieImage = getAssetUrl('management/louie.png');
+const kerbyImage = getAssetUrl('management/kerby.png');
+const kissImage = getAssetUrl('management/kiss.png');
+const lorieImage = getAssetUrl('management/lorie.png');
+const jethroImage = getAssetUrl('management/jethro.png');
+const joyceImage = getAssetUrl('management/joyce.png');
+const jcImage = getAssetUrl('management/jc.png');
+const jennyImage = getAssetUrl('management/jenny.png');
+const nylImage = getAssetUrl('management/nyl.png');
+const jonathanImage = getAssetUrl('management/jonathan.png');
+const noelImage = getAssetUrl('management/noel.png');
+const royImage = getAssetUrl('management/roy.png');
+const jojoImage = getAssetUrl('management/jojo.png');
+const zorenImage = getAssetUrl('management/ZOREN.png');
+const raineImage = getAssetUrl('management/RAINE.png');
+const sharmaineImage = getAssetUrl('management/SHARMAINE.png');
+const mgImage = getAssetUrl('management/MG.png');
+const matthewImage = getAssetUrl('management/MATTHEW.png');
+
+const ourPeople1 = getAssetUrl('about_page/ourpeople1.jpg');
+const ourPeople2 = getAssetUrl('about_page/ourpeople2.jpg');
+const ourPeople5 = getAssetUrl('about_page/ourpeople5.jpg');
+const ourPeople3 = getAssetUrl('about_page/k.png');
+const ourPeople4 = getAssetUrl('about_page/ourpeople4.png');
 
 
-import kemcoLogo from '../../assets/about_page/kemcoLogo.png';
-import nextengLogo from '../../assets/about_page/nextengLogo.png'; import mgkLogo from '../../assets/about_page/mgkLogo.png';
+const kemcoLogo = getAssetUrl('about_page/kemcoLogo.png');
+const nextengLogo = getAssetUrl('about_page/nextengLogo.png');
+const mgkLogo = getAssetUrl('about_page/mgkLogo.png');
 
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();
@@ -92,7 +96,7 @@ const About: React.FC<AboutPageProps> = () => {
           <div className="about-hero-content">
             <h1 className="about-title">{t('about.hero.title')}</h1>
             <p className="about-subtitle">{t('about.hero.subtitle')}</p>
-            <p className="about-description">
+            <p className="about-page-description">
               <Trans i18nKey="about.hero.description" components={{ br: <br /> }} />
             </p>
           </div>

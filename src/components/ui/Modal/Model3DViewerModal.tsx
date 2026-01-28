@@ -3,21 +3,23 @@ import { useTranslation } from 'react-i18next'; // Added for translation
 import ModelViewer from './ModelViewer';
 import './Model3DViewerModal.css';
 
-import dedimplerFacerModel from '../../../assets/glb/Dedimpler&Facer.glb';
-import bundlingMachineModel from '../../../assets/glb/BundlingMachine.glb';
-import productStorageModel from '../../../assets/glb/ProductStorage.glb';
-import transferTableModel from '../../../assets/glb/TransferTable.glb';
-import formingSizingModel from '../../../assets/glb/Forming&Sizing.glb';
-import airBlowModel from '../../../assets/glb/AirBlow.glb';
-import bundleSeparatorModel from '../../../assets/glb/BundleSeparator.glb';
-import pipeDryingSectionModel from '../../../assets/glb/PipeDryingSection.glb';
-import bindingMachineModel from '../../../assets/glb/BindingMachine.glb';
-import looperModel from '../../../assets/glb/looper.glb';
-import horizontalLooperModel from '../../../assets/glb/horizontalLooper.glb';
-import shearWelderModel from '../../../assets/glb/shearwelder.glb';
-import uncoilerModel from '../../../assets/glb/uncoiler.glb';
-import levelerModel from '../../../assets/glb/leveler.glb';
-import furnaceModel from '../../../assets/glb/furnace.glb';
+import { getAssetUrl } from '../../../utils/assets';
+
+const dedimplerFacerModel = getAssetUrl('glb/Dedimpler&Facer.glb');
+const bundlingMachineModel = getAssetUrl('glb/BundlingMachine.glb');
+const productStorageModel = getAssetUrl('glb/ProductStorage.glb');
+const transferTableModel = getAssetUrl('glb/TransferTable.glb');
+const formingSizingModel = getAssetUrl('glb/Forming&Sizing.glb');
+const airBlowModel = getAssetUrl('glb/AirBlow.glb');
+const bundleSeparatorModel = getAssetUrl('glb/BundleSeparator.glb');
+const pipeDryingSectionModel = getAssetUrl('glb/PipeDryingSection.glb');
+const bindingMachineModel = getAssetUrl('glb/BindingMachine.glb');
+const looperModel = getAssetUrl('glb/looper.glb');
+const horizontalLooperModel = getAssetUrl('glb/horizontalLooper.glb');
+const shearWelderModel = getAssetUrl('glb/shearwelder.glb');
+const uncoilerModel = getAssetUrl('glb/uncoiler.glb');
+const levelerModel = getAssetUrl('glb/leveler.glb');
+const furnaceModel = getAssetUrl('glb/furnace.glb');
 
 interface ModelConfig {
   path: string | null;

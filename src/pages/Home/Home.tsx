@@ -3,25 +3,29 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Home.css';
 import { HomePageProps } from './Home.types';
-import homeBg from '../../assets/hero_background/homebg.jpeg';
+import { getAssetUrl } from '../../utils/assets';
 import Button from '../../components/ui/Button/Button';
 import Card, { ServiceCard } from '../../components/ui/Card/Card';
 import ProjectCarousel from '../../components/ui/ProjectCarousel/ProjectCarousel';
-import precisionIcon from '../../assets/icons/precision-icon.png';
-import innovationIcon from '../../assets/icons/innovation-icon.png';
-import experienceIcon from '../../assets/icons/experience-icon.png';
-import icon3D from '../../assets/icons/cube.png';
-import icon2D from '../../assets/icons/cubes.png';
-import inspectionIcon from '../../assets/icons/parts-inspection-icon.png';
-import assemblyIcon from '../../assets/icons/machine-assembly-icon.png';
 
-import dedemplerImage from '../../assets/image3D/dedempler.png'; import looperImage from '../../assets/image3D/looper.png';
-import formingImage from '../../assets/image3D/forming.png';
-import shearImage from '../../assets/image3D/shear.png';
-import finishingImage from '../../assets/image3D/finishing.png';
-import finishingLineImage from '../../assets/image3D/finishingLine.png';
-import millingImage from '../../assets/image3D/milling.png';
-import furnaceImage from '../../assets/image3D/furnace.png';
+const homeBg = getAssetUrl('hero_background/homebg.jpeg');
+
+const precisionIcon = getAssetUrl('icons/precision-icon.png');
+const innovationIcon = getAssetUrl('icons/innovation-icon.png');
+const experienceIcon = getAssetUrl('icons/experience-icon.png');
+const icon3D = getAssetUrl('icons/cube.png');
+const icon2D = getAssetUrl('icons/cubes.png');
+const inspectionIcon = getAssetUrl('icons/parts-inspection-icon.png');
+const assemblyIcon = getAssetUrl('icons/machine-assembly-icon.png');
+
+const dedemplerImage = getAssetUrl('image3D/dedempler.png');
+const looperImage = getAssetUrl('image3D/looper.png');
+const formingImage = getAssetUrl('image3D/forming.png');
+const shearImage = getAssetUrl('image3D/shear.png');
+const finishingImage = getAssetUrl('image3D/finishing.png');
+const finishingLineImage = getAssetUrl('image3D/finishingLine.png');
+const millingImage = getAssetUrl('image3D/milling.png');
+const furnaceImage = getAssetUrl('image3D/furnace.png');
 
 const Home: React.FC<HomePageProps> = () => {
   const navigate = useNavigate();

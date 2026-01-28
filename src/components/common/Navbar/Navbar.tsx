@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Navbar.css';
-import headerLogo from '../../../assets/logo/download1.png';
-import menuIcon from '../../../assets/icons/menu-icon.png';
+import { getAssetUrl } from '../../../utils/assets';
+const headerLogo = getAssetUrl('logo/download1.png');
+const menuIcon = getAssetUrl('icons/menu-icon.png');
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();

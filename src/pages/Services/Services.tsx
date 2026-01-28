@@ -7,17 +7,19 @@ import { ServicesPageProps } from './Services.types';
 import { smoothScrollToElement } from '../../utils/smoothScroll';
 import { ServicePageCard } from '../../components/ui/Card/Card';
 import Button from '../../components/ui/Button';
-import servicesBg from '../../assets/hero_background/servicesbg.png';
-import icon3D from '../../assets/icons/cube.png';
-import icon2D from '../../assets/icons/cubes.png';
-import inspectionIcon from '../../assets/icons/parts-inspection-icon.png';
-import assemblyIcon from '../../assets/icons/machine-assembly-icon.png';
-
-import video3D from '../../assets/service_detail_image/service_3d.mp4';
-import videoInspection from '../../assets/service_detail_image/service_parts_inspection.mp4';
-import videoAssembly from '../../assets/service_detail_image/service_machine.mp4';
-import video2D from '../../assets/service_detail_image/service_2d.mp4';
+import { getAssetUrl } from '../../utils/assets';
 import ServiceDetail from './ServiceDetail';
+
+const servicesBg = getAssetUrl('hero_background/servicesbg.png');
+const icon3D = getAssetUrl('icons/cube.png');
+const icon2D = getAssetUrl('icons/cubes.png');
+const inspectionIcon = getAssetUrl('icons/parts-inspection-icon.png');
+const assemblyIcon = getAssetUrl('icons/machine-assembly-icon.png');
+
+const video3D = getAssetUrl('service_detail_image/service_3d.mp4');
+const videoInspection = getAssetUrl('service_detail_image/service_parts_inspection.mp4');
+const videoAssembly = getAssetUrl('service_detail_image/service_machine.mp4');
+const video2D = getAssetUrl('service_detail_image/service_2d.mp4');
 
 
 

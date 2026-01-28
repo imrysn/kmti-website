@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "generate:sitemap": "node scripts/generate-sitemap.js",
-    "prebuild": "npm run generate:sitemap"
+    "prebuild": "npm run generate:sitemap",
+    "upload:assets": "node scripts/upload-to-r2.js"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -30,6 +31,8 @@
     "three": "^0.181.2"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.975.0",
+    "@aws-sdk/lib-storage": "^3.975.0",
     "@eslint/js": "^9.36.0",
     "@types/aos": "^3.0.7",
     "@types/node": "^24.6.0",
@@ -39,12 +42,15 @@
     "@typescript-eslint/eslint-plugin": "^8.46.3",
     "@typescript-eslint/parser": "^8.46.3",
     "@vitejs/plugin-react": "^5.0.4",
+    "dotenv": "^17.2.3",
     "eslint": "^9.39.1",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
+    "glob": "^13.0.0",
     "globals": "^16.4.0",
+    "mime-types": "^3.0.2",
     "prettier": "^3.6.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",

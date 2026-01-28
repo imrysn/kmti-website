@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next'; // Added for translation
 import './chatbot.css';
-import defaultProfileImage from '../../../assets/logo/profile.png';
-import facebookIcon from '../../../assets/icons/facebook.png';
-import menuIcon from '../../../assets/icons/menu-icon.png';
+import { getAssetUrl } from '../../../utils/assets';
+const defaultProfileImage = getAssetUrl('logo/profile.png');
+const facebookIcon = getAssetUrl('icons/facebook.png');
+const menuIcon = getAssetUrl('icons/menu-icon.png');
 import './ChatWithUsRightCard.css';
 
 interface ChatWithUsRightCardProps {

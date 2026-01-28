@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import botIcon from '../../../assets/icons/bot-icon.png';
+import { getAssetUrl } from '../../../utils/assets';
+const botIcon = getAssetUrl('icons/bot-icon.png');
 import { ChatbotCard } from '../../ui/Card/chatbot';
 import './ChatbotButton.css';
 

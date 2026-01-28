@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
-import footerLogo from '../../../assets/logo/footer_KMTI_logo.png';
-import mapsIcon from '../../../assets/icons/maps-icon.png';
-import contactIcon from '../../../assets/icons/contact.png';
-import emailIcon from '../../../assets/icons/email-icon.png';
+import { getAssetUrl } from '../../../utils/assets';
+const footerLogo = getAssetUrl('logo/footer_KMTI_logo.png');
+const mapsIcon = getAssetUrl('icons/maps-icon.png');
+const contactIcon = getAssetUrl('icons/contact.png');
+const emailIcon = getAssetUrl('icons/email-icon.png');
 
 type VisitCounts = {
   total: number;

@@ -4,26 +4,30 @@ import { useTranslation } from 'react-i18next';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
-import projectBg from '../../assets/hero_background/projectbg.jpg';
+
 import { ProjectsCard } from '../../components/ui/Card/Card';
 import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
 import Model3DViewerModal from '../../components/ui/Modal/Model3DViewerModal';
 
+import { getAssetUrl } from '../../utils/assets';
+
 // Images
-import dedemplerImage from '../../assets/image3D/dedempler.png';
-import bundlingImage from '../../assets/image3D/bundling.png';
-import bindingImage from '../../assets/image3D/binding.png';
-import looperImage from '../../assets/image3D/looper.png';
-import verticalLooperImage from '../../assets/image3D/vertical-looper.png';
-import horizontalLooperImage from '../../assets/image3D/horizontal-looper.png';
-import formingImage from '../../assets/image3D/forming.png';
-import shearImage from '../../assets/image3D/shear.png';
-import uncoilerImage from '../../assets/image3D/uncoiler.png';
-import levelerImage from '../../assets/image3D/leveler.png';
-import finishingImage from '../../assets/image3D/finishing.png';
-import finishingLineImage from '../../assets/image3D/finishingLine.png';
-import millingImage from '../../assets/image3D/milling.png';
-import furnaceImage from '../../assets/image3D/furnace.png';
+const projectBg = getAssetUrl('hero_background/projectbg.jpg');
+
+const dedemplerImage = getAssetUrl('image3D/dedempler.png');
+const bundlingImage = getAssetUrl('image3D/bundling.png');
+const bindingImage = getAssetUrl('image3D/binding.png');
+const looperImage = getAssetUrl('image3D/looper.png');
+const verticalLooperImage = getAssetUrl('image3D/vertical-looper.png');
+const horizontalLooperImage = getAssetUrl('image3D/horizontal-looper.png');
+const formingImage = getAssetUrl('image3D/forming.png');
+const shearImage = getAssetUrl('image3D/shear.png');
+const uncoilerImage = getAssetUrl('image3D/uncoiler.png');
+const levelerImage = getAssetUrl('image3D/leveler.png');
+const finishingImage = getAssetUrl('image3D/finishing.png');
+const finishingLineImage = getAssetUrl('image3D/finishingLine.png');
+const millingImage = getAssetUrl('image3D/milling.png');
+const furnaceImage = getAssetUrl('image3D/furnace.png');
 
 const Projects: React.FC<ProjectsPageProps> = () => {
   const navigate = useNavigate();

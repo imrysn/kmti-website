@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './chatbot.css';
-import defaultProfileImage from '../../../assets/logo/profile.png';
-
-import menuIcon from '../../../assets/icons/menu-icon.png';
+import { getAssetUrl } from '../../../utils/assets';
+const defaultProfileImage = getAssetUrl('logo/profile.png');
+const menuIcon = getAssetUrl('icons/menu-icon.png');
 
 interface ChatbotCardProps {
   profileImage?: string;
