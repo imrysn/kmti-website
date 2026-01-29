@@ -125,15 +125,21 @@
 }
 
 .home-page .section-title {
-  /* Font properties inherited from h2 global */
+  font-family: var(--font-family-heading);
+  font-size: 3rem;
+  /* Explicitly set size instead of inheriting */
+  font-weight: 600;
   text-align: center;
-  margin-bottom: 0rem;
+  margin-bottom: 0.8rem;
   margin-top: 2rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
+  -webkit-background-clip: text;
+  /* Ensure webkit compatibility */
   color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
+  line-height: 1.2;
 }
 
 .home-page .section-subtitle {
@@ -185,11 +191,11 @@
 .about-description {
   font-family: var(--font-family-body);
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 300;
   /* Regular weight */
-  color: #FFFFFF;
-  line-height: 1.6;
-  max-width: 1050px;
+  color: #bec6cf;
+  line-height: 1.7;
+  max-width: 1070px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 4rem;

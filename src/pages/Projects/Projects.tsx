@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
@@ -241,19 +241,27 @@ const Projects: React.FC<ProjectsPageProps> = () => {
 
       <div className="projects-grid-section" data-aos="fade-up">
         <div className="projects-grid-container container">
-          <p className="projects-grid-description">{t('projects.grid.description')}</p>
+          <p className="projects-grid-description">
+            <Trans
+              i18nKey="projects.grid.description"
+              components={{ br: <br /> }}
+            />
+          </p>
 
           {/* Filter Tabs */}
-          <div className="projects-filter-tabs">
-            {categories.map((cat, index) => (
-              <button
-                key={index}
-                className={`projects-filter-tab ${activeFilter === cat ? 'active' : ''}`}
-                onClick={() => setActiveFilter(cat)}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Filter Dropdown */}
+          <div className="projects-filter-wrapper">
+            <select
+              className="projects-filter-dropdown"
+              value={activeFilter}
+              onChange={(e) => setActiveFilter(e.target.value)}
+            >
+              {categories.map((cat, index) => (
+                <option key={index} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="projects-card-grid">

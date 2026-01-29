@@ -487,7 +487,7 @@ const jp = {
         insurance: { title: "医療保険", desc: "正社員向けの医療保険は100%会社負担" },
         gov: { title: "法定福利厚生", desc: "SSS、Pag-IBIG、PhilHealthを含む法定福利厚生を完備" },
         thirteenth: { title: "13か月分給与", desc: "フィリピン労働法に基づく13か月分給与を保証" },
-        allowance: { title: "各種手当", desc: "正社員向けの交通費、食事手当、制服手当、米の補助金を支給" },
+        allowance: { title: "各種手当", desc: "正社員向けの交通費、食事手当、制服手当、<br />米の補助金を支給" },
         training: { title: "国際研修", desc: "国際的な研修や作業実習を行う為、日本に派遣される。それら技能・技術習得をKMTIにフィードバック" },
         career: { title: "長期的なキャリア形成", desc: "安定した雇用と長期的な専門的成長の機会" }
       }
@@ -509,9 +509,9 @@ const jp = {
         title: "オフィスのご案内",
         text: "履歴書を直接KMTIオフィスにご提出ください：",
         address: {
-          line1: "Team Quest Building, FCIE,",
-          line2: "Langkaan, ダスマリニャス市, カビテ州",
-          line3: "(PLDT近く)"
+          line1: "Kusakabe Maeno Tech., Inc. Vital Industrial Prop. Inc.",
+          line2: "Bldg. Unit 2-B. First Cavite Industrial Estate Langkaan 1,  ",
+          line3: "Cavite, Dasmarinas City. (Near PLDT)"
         },
         person: "担当者"
       },

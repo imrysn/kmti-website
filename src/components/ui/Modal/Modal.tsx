@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from 'react';
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { useTranslation, Trans } from 'react-i18next';
 import './Modal.css';
 import { getAssetUrl } from '../../../utils/assets';
 const modalImage1 = getAssetUrl('service_detail_image/3Dmodal1.png');
@@ -63,6 +64,15 @@ const bundlingMachineImage = getAssetUrl('image3D/bundling-machine.png');
 const millingImage = getAssetUrl('image3D/milling.png');
 const furnaceImage = getAssetUrl('image3D/furnace.png');
 
+const useLockBodyScroll = (isOpen: boolean) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = 'unset'; };
+    }
+  }, [isOpen]);
+};
+
 // --- SERVICE MODAL ---
 interface ServiceModalProps {
   isOpen: boolean;
@@ -94,12 +104,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
 
   const currentCarouselImages = service?.title === 'Parts Inspection' ? inspectionImages : service?.title === 'Machine Assembly' ? assemblyImages : [];
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      return () => { document.body.style.overflow = 'unset'; };
-    }
-  }, [isOpen]);
+  useLockBodyScroll(isOpen);
 
   useEffect(() => {
     if (!isOpen || !service || !currentCarouselImages.length) return;
@@ -118,7 +123,12 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
         <div className={`service-modal-body ${serviceKey === 'inspection' || serviceKey === 'assembly' ? 'service-modal-body-single' : ''}`}>
           <div className="service-modal-left">
             <h2 className="service-modal-title">{t(`services.items.${serviceKey}.title`)}</h2>
-            <p className="service-modal-description">{t(`services.modal.detailed_desc.${serviceKey}`)}</p>
+            <p className="service-modal-description">
+              <Trans
+                i18nKey={`services.modal.detailed_desc.${serviceKey}`}
+                components={{ br: <br /> }}
+              />
+            </p>
 
             {serviceKey === '2d' ? (
               <div className="service-modal-sections">
@@ -173,6 +183,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
 // --- OUR STORY MODAL ---
 export const OurStoryModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
+  useLockBodyScroll(isOpen);
   if (!isOpen) return null;
   return (
     <div className="service-modal-overlay" onClick={onClose}>
@@ -198,6 +209,7 @@ export const OurStoryModal: React.FC<{ isOpen: boolean; onClose: () => void }> =
 // --- MANAGEMENT TEAM MODAL ---
 export const ManagementTeamModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
+  useLockBodyScroll(isOpen);
   if (!isOpen) return null;
 
   const team = [
@@ -257,6 +269,8 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; init
   const [idx, setIdx] = useState(0);
   const [is3D, setIs3D] = useState(false);
 
+  useLockBodyScroll(isOpen);
+
   // Filter projects if a key is provided
   const displayProjects = initialProjectKey
     ? allProjects.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
@@ -281,7 +295,11 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; init
         <button className="service-modal-close" onClick={onClose}>×</button>
         <div className="project-modal-body">
           <div className="project-modal-left">
-            <img src={curr.image} className="project-modal-main-image" alt="project" />
+            <TransformWrapper>
+              <TransformComponent>
+                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+              </TransformComponent>
+            </TransformWrapper>
           </div>
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
@@ -337,6 +355,8 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
   const [idx, setIdx] = useState(0);
   const [is3D, setIs3D] = useState(false);
 
+  useLockBodyScroll(isOpen);
+
   // Filter items if a key is provided
   const displayItems = initialProjectKey
     ? allItems.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
@@ -359,7 +379,11 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
         <button className="service-modal-close" onClick={onClose}>×</button>
         <div className="project-modal-body">
           <div className="project-modal-left">
-            <img src={curr.image} className="project-modal-main-image" alt="project" />
+            <TransformWrapper>
+              <TransformComponent>
+                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+              </TransformComponent>
+            </TransformWrapper>
           </div>
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
@@ -409,6 +433,8 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
   const [is3D, setIs3D] = useState(false);
   const curr = { image: formingImage, key: 'forming', modelKey: 'Forming and Sizing Machine' };
 
+  useLockBodyScroll(isOpen);
+
   if (!isOpen) return null;
 
   return (
@@ -417,7 +443,11 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
         <button className="service-modal-close" onClick={onClose}>×</button>
         <div className="project-modal-body">
           <div className="project-modal-left">
-            <img src={curr.image} className="project-modal-main-image" alt="project" />
+            <TransformWrapper>
+              <TransformComponent>
+                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+              </TransformComponent>
+            </TransformWrapper>
           </div>
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
@@ -461,6 +491,8 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
   const [idx, setIdx] = useState(0);
   const [is3D, setIs3D] = useState(false);
 
+  useLockBodyScroll(isOpen);
+
   // Filter items if a key is provided
   const displayItems = initialProjectKey
     ? allItems.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
@@ -483,7 +515,11 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
         <button className="service-modal-close" onClick={onClose}>×</button>
         <div className="project-modal-body">
           <div className="project-modal-left">
-            <img src={curr.image} className="project-modal-main-image" alt="project" />
+            <TransformWrapper>
+              <TransformComponent>
+                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+              </TransformComponent>
+            </TransformWrapper>
           </div>
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
@@ -533,6 +569,14 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
   const [idx, setIdx] = useState(0);
   const [is3D, setIs3D] = useState(false);
 
+  useLockBodyScroll(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIdx(0);
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const items = [
@@ -551,7 +595,11 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
         <button className="service-modal-close" onClick={onClose}>×</button>
         <div className="project-modal-body">
           <div className="project-modal-left">
-            <img src={curr.image} className="project-modal-main-image" alt="project" />
+            <TransformWrapper>
+              <TransformComponent>
+                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+              </TransformComponent>
+            </TransformWrapper>
           </div>
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
@@ -591,6 +639,14 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
   const [idx, setIdx] = useState(0);
   const [is3D, setIs3D] = useState(false);
 
+  useLockBodyScroll(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIdx(0);
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const items = [
@@ -609,7 +665,11 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
         <button className="service-modal-close" onClick={onClose}>×</button>
         <div className="project-modal-body">
           <div className="project-modal-left">
-            <img src={curr.image} className="project-modal-main-image" alt="project" />
+            <TransformWrapper>
+              <TransformComponent>
+                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+              </TransformComponent>
+            </TransformWrapper>
           </div>
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
@@ -649,6 +709,8 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
   const [is3D, setIs3D] = useState(false);
   const curr = { image: millingImage, key: 'cutoff', modelKey: 'Milling Cutoff Machine' };
 
+  useLockBodyScroll(isOpen);
+
   if (!isOpen) return null;
 
   return (
@@ -657,7 +719,11 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
         <button className="service-modal-close" onClick={onClose}>×</button>
         <div className="project-modal-body">
           <div className="project-modal-left">
-            <img src={curr.image} className="project-modal-main-image" alt="project" />
+            <TransformWrapper>
+              <TransformComponent>
+                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+              </TransformComponent>
+            </TransformWrapper>
           </div>
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
@@ -699,6 +765,8 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
   const [is3D, setIs3D] = useState(false);
   const curr = { image: furnaceImage, key: 'furnace', modelKey: 'Furnace' };
 
+  useLockBodyScroll(isOpen);
+
   if (!isOpen) return null;
 
   return (
@@ -707,7 +775,11 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
         <button className="service-modal-close" onClick={onClose}>×</button>
         <div className="project-modal-body">
           <div className="project-modal-left">
-            <img src={curr.image} className="project-modal-main-image" alt="project" />
+            <TransformWrapper>
+              <TransformComponent>
+                <img src={curr.image} className="project-modal-main-image" alt="project" style={{ cursor: 'grab' }} />
+              </TransformComponent>
+            </TransformWrapper>
           </div>
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>

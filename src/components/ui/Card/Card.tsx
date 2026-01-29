@@ -437,7 +437,7 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
 interface WhyWorkWithUsCardProps {
   icon: string;
   title: string;
-  subtitle: string;
+  subtitle: string | React.ReactNode;
   className?: string;
 }
 
