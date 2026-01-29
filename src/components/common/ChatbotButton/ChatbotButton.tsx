@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getAssetUrl } from '../../../utils/assets';
-const botIcon = getAssetUrl('icons/bot-icon.png');
 import { ChatbotCard } from '../../ui/Card/chatbot';
 import './ChatbotButton.css';
+
+const botIcon = getAssetUrl('icons/bot-icon.png');
 
 const ChatbotButton: React.FC = () => {
   const { t } = useTranslation();
@@ -40,12 +41,11 @@ const ChatbotButton: React.FC = () => {
   // Reset chatbot when language changes
   useEffect(() => {
     setResetTrigger((prev) => prev + 1);
-  }, [t]); // t changes when language changes, or we could use i18n.language if we destructured it
+  }, [t]);
 
   const handleToggle = () => {
     if (!isChatOpen) {
       // Open chatbot without resetting - preserve previous state
-      // Only "TRY CHATBOT NOW" button triggers reset via reset-chatbot event
       setIsChatOpen(true);
       setShowTeaser(false); // Hide teaser when chat opens
     }
@@ -54,7 +54,6 @@ const ChatbotButton: React.FC = () => {
   const handleClose = useCallback(() => {
     setIsChatOpen(false);
     // Don't reset - maintain conversation state
-    // Note: We don't reshow the teaser after closing to avoid annoyance
   }, []);
 
   const handleFacebookClick = () => {

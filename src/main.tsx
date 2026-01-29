@@ -4,8 +4,12 @@ import App from './App.tsx';
 import './styles/globals.css';
 import './i18n/config';
 
+import ErrorBoundary from './components/common/ErrorBoundary';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </StrictMode>,
 );
