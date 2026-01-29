@@ -37,6 +37,11 @@ const ChatbotButton: React.FC = () => {
     };
   }, [isChatOpen]);
 
+  // Reset chatbot when language changes
+  useEffect(() => {
+    setResetTrigger((prev) => prev + 1);
+  }, [t]); // t changes when language changes, or we could use i18n.language if we destructured it
+
   const handleToggle = () => {
     if (!isChatOpen) {
       // Open chatbot without resetting - preserve previous state

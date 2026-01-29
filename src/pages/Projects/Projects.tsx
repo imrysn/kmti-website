@@ -35,7 +35,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Filter State
-  const [activeFilter, setActiveFilter] = useState('ALL');
+  const [activeCategoryKey, setActiveCategoryKey] = useState('ALL');
 
   // Modal states 
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
@@ -86,6 +86,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.dedimpler.title'),
       description: t('home.projects.items.dedimpler.desc'),
       category: t('home.projects.items.dedimpler.cat'),
+      categoryKey: 'finishing_equipment',
       image: dedemplerImage,
       link: '#',
     },
@@ -96,6 +97,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.bundling.title'),
       description: t('home.projects.items.bundling.desc'),
       category: t('home.projects.items.bundling.cat'),
+      categoryKey: 'finishing_equipment',
       image: bundlingImage,
       link: '#',
     },
@@ -106,6 +108,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.binding.title'),
       description: t('home.projects.items.binding.desc'),
       category: t('home.projects.items.binding.cat'),
+      categoryKey: 'finishing_equipment',
       image: bindingImage,
       link: '#',
     },
@@ -116,6 +119,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.looper.title'),
       description: t('home.projects.items.looper.desc'),
       category: t('home.projects.items.looper.cat'),
+      categoryKey: 'looper',
       image: looperImage,
       link: '#',
     },
@@ -126,6 +130,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.vertical.title'),
       description: t('home.projects.items.vertical.desc'),
       category: t('home.projects.items.vertical.cat'),
+      categoryKey: 'looper',
       image: verticalLooperImage,
       link: '#',
     },
@@ -136,6 +141,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.horizontal.title'),
       description: t('home.projects.items.horizontal.desc'),
       category: t('home.projects.items.horizontal.cat'),
+      categoryKey: 'looper',
       image: horizontalLooperImage,
       link: '#',
     },
@@ -145,6 +151,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.forming.title'),
       description: t('home.projects.items.forming.desc'),
       category: t('home.projects.items.forming.cat'),
+      categoryKey: 'forming',
       image: formingImage,
       link: '#',
     },
@@ -155,6 +162,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.shear.title'),
       description: t('home.projects.items.shear.desc'),
       category: t('home.projects.items.shear.cat'),
+      categoryKey: 'strip_entry',
       image: shearImage,
       link: '#',
     },
@@ -165,6 +173,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.uncoiler.title'),
       description: t('home.projects.items.uncoiler.desc'),
       category: t('home.projects.items.uncoiler.cat'),
+      categoryKey: 'strip_entry',
       image: uncoilerImage,
       link: '#',
     },
@@ -175,6 +184,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.leveler.title'),
       description: t('home.projects.items.leveler.desc'),
       category: t('home.projects.items.leveler.cat'),
+      categoryKey: 'strip_entry',
       image: levelerImage,
       link: '#',
     },
@@ -184,6 +194,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.table.title'),
       description: t('home.projects.items.table.desc'),
       category: t('home.projects.items.table.cat'),
+      categoryKey: 'transfer_table_line',
       image: finishingImage,
       link: '#',
     },
@@ -193,6 +204,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.line.title'),
       description: t('home.projects.items.line.desc'),
       category: t('home.projects.items.line.cat'),
+      categoryKey: 'finishing_line',
       image: finishingLineImage,
       link: '#',
     },
@@ -202,6 +214,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.milling.title'),
       description: t('home.projects.items.milling.desc'),
       category: t('home.projects.items.milling.cat'),
+      categoryKey: 'cut_off',
       image: millingImage,
       link: '#',
     },
@@ -211,6 +224,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.furnace.title'),
       description: t('home.projects.items.furnace.desc'),
       category: t('home.projects.items.furnace.cat'),
+      categoryKey: 'furnace',
       image: furnaceImage,
       link: '#',
     },
@@ -222,11 +236,23 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   }, [projects]);
 
   // Logic for filtering
-  const categories = ['ALL', ...Array.from(new Set(projects.map(p => p.category)))];
+  // Create mapping of categoryKey -> unique category label
+  const categories = useMemo(() => {
+    const uniqueKeys = new Set<string>();
+    const options = [{ key: 'ALL', label: 'ALL' }];
 
-  const filteredProjects = activeFilter === 'ALL'
+    projects.forEach(p => {
+      if (!uniqueKeys.has(p.categoryKey)) {
+        uniqueKeys.add(p.categoryKey);
+        options.push({ key: p.categoryKey, label: p.category });
+      }
+    });
+    return options;
+  }, [projects]);
+
+  const filteredProjects = activeCategoryKey === 'ALL'
     ? shuffledProjects
-    : shuffledProjects.filter(p => p.category === activeFilter);
+    : shuffledProjects.filter(p => p.categoryKey === activeCategoryKey);
 
   return (
     <div className="projects-page">
@@ -253,12 +279,12 @@ const Projects: React.FC<ProjectsPageProps> = () => {
           <div className="projects-filter-wrapper">
             <select
               className="projects-filter-dropdown"
-              value={activeFilter}
-              onChange={(e) => setActiveFilter(e.target.value)}
+              value={activeCategoryKey}
+              onChange={(e) => setActiveCategoryKey(e.target.value)}
             >
               {categories.map((cat, index) => (
-                <option key={index} value={cat}>
-                  {cat}
+                <option key={index} value={cat.key}>
+                  {cat.label}
                 </option>
               ))}
             </select>
