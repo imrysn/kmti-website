@@ -62,7 +62,7 @@
   margin-top: 21rem;
   margin-bottom: 0.5rem;
   text-transform: none;
-  font-size: 2.7rem;
+  /* Inherits h1 global */
 }
 
 .contact-page .hero-content {
@@ -216,9 +216,8 @@
 }
 
 .chat-with-us-title {
+  /* Inherits h2 global */
   font-family: var(--font-family-heading);
-  font-size: 2rem;
-  font-weight: 600;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 20%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;
@@ -482,11 +481,10 @@
 }
 
 .section-title {
+  /* Inherits h2 global */
   font-family: var(--font-family-heading);
-  font-size: 3rem;
   margin-bottom: 2rem;
   color: white;
-  font-weight: 500;
 }
 
 .contact-form {

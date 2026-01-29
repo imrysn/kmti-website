@@ -91,12 +91,9 @@
 }
 
 .hero-title {
-  font-family: var(--font-family-heading);
-  font-size: 4rem;
-  font-weight: 500;
+  /* Font properties inherited from h1 global */
   color: white;
   margin-bottom: 3rem;
-  line-height: 1.2;
   text-transform: uppercase;
 }
 
@@ -113,6 +110,7 @@
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 
@@ -127,9 +125,7 @@
 }
 
 .home-page .section-title {
-  font-family: var(--font-family-heading);
-  font-size: 3rem;
-  font-weight: 600;
+  /* Font properties inherited from h2 global */
   text-align: center;
   margin-bottom: 0rem;
   margin-top: 2rem;
@@ -143,7 +139,8 @@
 .home-page .section-subtitle {
   font-family: var(--font-family-body);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
+  /* Regular weight */
   text-align: center;
   margin-bottom: 0rem;
   color: rgba(255, 255, 255, 0.8);
@@ -188,7 +185,8 @@
 .about-description {
   font-family: var(--font-family-body);
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
+  /* Regular weight */
   color: #FFFFFF;
   line-height: 1.6;
   max-width: 1050px;
@@ -255,7 +253,8 @@
   }
 
   .home-page .services-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
   .home-page .section-title {
@@ -307,17 +306,19 @@
     /* Ensure buttons display in a row side by side */
     .hero-buttons {
       display: flex;
-      flex-direction: row !important;
+      flex-direction: column !important;
+      align-items: center;
       justify-content: center;
-      gap: 0.75rem;
+      gap: 1rem;
       flex-wrap: nowrap;
+      width: 100%;
     }
 
     .hero-buttons .btn {
-      min-width: 35% !important;
-      width: auto;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
+      width: 100% !important;
+      max-width: 280px;
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
     }
 
     .home-page .section-container {
@@ -348,8 +349,8 @@
     }
 
     .home-page .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
       margin-top: 2rem;
     }
 
@@ -420,10 +421,12 @@
 
   @media (max-width: 375px) {
     .hero-section {
-      padding-top: 9rem;
-      padding-bottom: 4rem;
+      padding-top: 8rem;
+      padding-bottom: 2rem;
       min-height: 100vh;
-      /* removed height: 100vh and bg overrides */
+      height: auto;
+      display: flex;
+      align-items: center;
     }
 
     .hero-container {
@@ -440,8 +443,11 @@
     }
 
     .hero-title {
-      font-size: 1.6rem;
-      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 650;
+      /* Slightly bold but not heavy */
+      line-height: 1.2;
     }
 
     /* Ensure buttons display in a row side by side */
@@ -451,13 +457,24 @@
       justify-content: center;
       gap: 0.75rem;
       flex-wrap: nowrap;
+      width: 100%;
+      padding: 0 0.2rem;
     }
 
     .hero-buttons .btn {
-      min-width: 35% !important;
-      width: auto;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
+      flex: 1;
+      width: auto !important;
+      max-width: 100%;
+      min-width: 0;
+      padding: 0.8rem 0.5rem;
+      font-size: 0.8rem;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border-radius: 8px;
+      /* Ensure consistency */
     }
 
     .home-page .section-container {
@@ -468,29 +485,33 @@
     }
 
     .home-page .section-title {
-      font-size: 1.3rem;
-      margin-bottom: 0.25rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.2rem;
+      font-weight: 700;
     }
 
     .home-page .section-subtitle {
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+      /* Regular weight */
+      line-height: 1.5;
     }
 
     .why-choose-us-section {
-      padding-top: 3rem;
-      padding-bottom: 2rem;
+      padding-top: 0rem;
+      padding-bottom: 0rem;
     }
 
     .services-section {
       padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-bottom: 1rem;
     }
 
     .home-page .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-top: 4rem;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
     }
 
     .home-page .cards-grid {
@@ -500,23 +521,35 @@
     }
 
     .vision-reality-section {
-      padding-top: 5rem;
-      padding-bottom: 1rem;
+      padding-top: 2rem;
+      padding-bottom: 0rem;
     }
 
     .vision-reality-section .section-container {
       transform: none;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .home-page .project-carousel-container {
+      margin-top: 2.5rem;
+      /* Reduced gap */
     }
 
     .about-section {
-      padding-top: 3rem;
-      padding-bottom: 3rem;
-      margin-left: 1rem;
-      margin-right: 1rem;
+      padding-top: 0rem;
+      padding-bottom: 2rem;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
     }
 
     .about-description {
-      line-height: 1.6;
+      line-height: 1.5;
+      font-size: 0.9rem;
+      font-weight: 400;
+      /* Regular text */
+      margin-bottom: 2rem;
+      margin-top: 1rem;
     }
 
     .cta-section {
@@ -527,11 +560,11 @@
 
     .cta-title {
       font-size: 1.3rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .cta-buttons .btn {
-      min-width: 50% !important;
+      min-width: 55% !important;
       width: 50%;
     }
   }
