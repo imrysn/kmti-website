@@ -12,6 +12,8 @@ html {
   /* 18px base */
   scrollbar-width: thin;
   scrollbar-color: var(--secondary-color) #020618;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 html::-webkit-scrollbar {
@@ -59,6 +61,71 @@ h4,
 h5,
 h6 {
   font-family: var(--font-family-heading);
+  font-weight: 600;
+  /* Standardized semi-bold */
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  /* Regular weight */
+  margin-bottom: 1rem;
+}
+
+/* Desktop Scaling */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Utility Classes for semantic headers vs visual style */
+.text-gradient {
+  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 /* ============================================
@@ -146,16 +213,28 @@ select {
    RESPONSIVE DESIGN
    ============================================ */
 
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
-    padding-left: var(--spacing-sm);
-    padding-right: var(--spacing-sm);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding-left: var(--spacing-xs);
-    padding-right: var(--spacing-xs);
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

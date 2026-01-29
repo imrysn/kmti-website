@@ -11,8 +11,8 @@
   transition: transform 0.2s ease, box-shadow 0.3s ease;
   height: 100%;
   box-sizing: border-box;
-  min-width: 320px;
-  width: 105%;
+  min-width: 420px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -64,9 +64,10 @@
 .why-choose-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 600;
+  /* Standardized */
   margin-bottom: 0.5rem;
   margin-top: 0;
   margin-left: 5px;
@@ -80,8 +81,8 @@
 
 .why-choose-card-subtitle {
   font-family: var(--font-family-body);
-  color: #ffffffdc;
-  font-size: 0.92rem;
+  color: #B8BFC8;
+  font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 0rem;
   margin-top: 0;
@@ -138,9 +139,10 @@
 .why-work-withus-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-weight: 200;
+  font-weight: 600;
+  /* Standardized */
   margin-bottom: 1rem;
   margin-top: 0;
   text-align: justify;
@@ -202,9 +204,10 @@
 .how-to-apply-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 600;
+  /* Standardized */
   margin: 0;
   margin-bottom: 1rem;
   text-align: left;
@@ -307,9 +310,10 @@
 .contact-option-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-weight: 50;
+  font-weight: 600;
+  /* Standardized */
   margin-bottom: 0rem;
   margin-top: 0;
   text-align: left;
@@ -362,6 +366,7 @@
   overflow: visible;
   height: 100%;
   width: 100%;
+  max-width: 100%;
   min-height: 150px;
   margin-bottom: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -381,8 +386,8 @@
   width: 180px;
   height: 180px;
   /*background: linear-gradient(to bottom, rgba(22, 36, 94, 0.733), rgb(28, 41, 94) 100%);*/
-  background: linear-gradient(to bottom, rgba(23, 41, 117, 0), rgb(28, 41, 95) 100%);
-  border-bottom: 2.8px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom, rgba(25, 44, 128, 0), rgb(26, 42, 102) 100%);
+  border-bottom: 2px solid #51A2FF;
   border-radius: 50%;
   z-index: 2;
   pointer-events: none;
@@ -425,9 +430,10 @@
 .service-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 600;
+  /* Standardized */
   margin-bottom: 1rem;
   margin-top: 4.2rem;
   text-align: center;
@@ -444,7 +450,7 @@
   font-size: 0.92rem;
   line-height: 1.6;
   margin-bottom: 1rem;
-  margin-top: 0;
+  margin-top: 0.5rem;
   width: 110%;
   text-align: center;
 }
@@ -455,10 +461,10 @@
 
 .service-card-link {
   font-family: var(--font-family-body);
-  color: #51A2FF;
+  color: #87bfff;
   font-size: 0.8rem;
   text-transform: uppercase;
-  font-weight: 100;
+  font-weight: 300;
   text-decoration: none;
   transition: color 0.3s ease;
   margin-top: auto;
@@ -467,7 +473,7 @@
 
 /* Service card link hover state */
 .service-card-link:hover {
-  color: rgba(81, 162, 255, 0.5);
+  color: rgba(90, 145, 207, 0.5);
 }
 
 /* ============================================
@@ -510,7 +516,8 @@
   font-family: var(--font-family-body);
   color: #FFFFFF;
   text-transform: uppercase;
-  font-weight: 200;
+  font-weight: 400;
+  /* Standardized label weight */
   position: absolute;
   top: 15px;
   z-index: 20;
@@ -518,13 +525,14 @@
   text-align: center;
 
   /* Matching Projects Page label styling */
-  right: 5px !important;
+  right: 10px !important;
   left: auto !important;
   transform: none !important;
   width: auto !important;
   max-width: calc(100% - 20px) !important;
   font-size: 0.75rem !important;
   padding: 0.3rem 0.8rem !important;
+  max-width: 90%;
 }
 
 /* ============================================
@@ -564,9 +572,10 @@
 .project-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-weight: 50;
+  font-weight: 600;
+  /* Standardized */
   margin-bottom: 0.75rem;
   margin-top: 0.5rem;
   text-align: center;
@@ -586,14 +595,14 @@
 .project-card-subtitle {
   font-family: var(--font-family-body);
   color: #99A1AF;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   line-height: 1.5;
   margin-bottom: 1rem;
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
   text-align: center;
-  width: 100%;
+  width: 101%;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
@@ -664,7 +673,8 @@
   font-family: var(--font-family-body);
   color: #FFFFFF;
   text-transform: uppercase;
-  font-weight: 200;
+  font-weight: 400;
+  /* Standardized label weight */
   position: absolute;
   top: 15px;
   z-index: 20;
@@ -749,9 +759,10 @@
 .projects-card-title {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
+  /* Standardized */
   margin-bottom: 0.75rem;
   margin-top: 0.5rem;
   text-align: center;
@@ -1298,14 +1309,14 @@
 }
 
 .management-team-card-large .management-team-card-role {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   margin-bottom: 0.8rem;
 }
 
 .management-team-card-role {
   font-family: var(--font-family-heading);
   color: #FFFFFF;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   text-transform: uppercase;
   font-weight: 350;
   margin: 0.5rem;
@@ -1353,8 +1364,8 @@
   padding: 0.5rem 2rem;
   border-radius: 16px;
   font-family: var(--font-family-body);
-  font-size: 0.75rem;
-  font-weight: 100;
+  font-size: 0.8rem;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -1365,7 +1376,7 @@
   font-size: 1.3rem;
   font-weight: 350;
   text-transform: uppercase;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   margin-bottom: 0.75rem;
   line-height: 1.4;
 }

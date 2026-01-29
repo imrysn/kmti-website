@@ -107,8 +107,7 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 .services-title {
-  font-size: 4.8rem;
-  font-weight: 500;
+  /* Inherit h1 global */
   margin-bottom: 0.3rem;
   font-family: var(--font-family-heading);
   line-height: 1.2;
@@ -118,6 +117,7 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 .services-subtitle {
+  /* Inherit subtitle style */
   font-size: 1.25rem;
   color: white;
   margin-bottom: 2.5rem;
@@ -145,6 +145,7 @@ body.services-page-active::-webkit-scrollbar {
 .services-nav-container {
   width: 100%;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .services-nav-label {

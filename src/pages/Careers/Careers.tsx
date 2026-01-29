@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import './Careers.css';
 import { CareersPageProps } from './Careers.types';
 import { getAssetUrl } from '../../utils/assets';
@@ -56,7 +56,12 @@ const Careers: React.FC<CareersPageProps> = () => {
     {
       id: 4,
       title: t('careers.why_work.benefits.allowance.title'),
-      description: t('careers.why_work.benefits.allowance.desc'),
+      description: (
+        <Trans
+          i18nKey="careers.why_work.benefits.allowance.desc"
+          components={{ br: <br /> }}
+        />
+      ),
       icon: allowanceIcon,
     },
     {

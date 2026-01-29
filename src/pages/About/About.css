@@ -103,21 +103,20 @@
 }
 
 .about-title {
-  font-size: 4.8rem;
-  font-weight: 500;
+  /* Inherits h1 global (4rem desktop, 2.5rem mobile) */
   color: white;
   margin-bottom: 0.3rem;
-  font-family: var(--font-family-heading);
-  line-height: 1;
 }
 
 .about-subtitle {
+  /* Subtitle style */
   font-size: 1.25rem;
   color: white;
   margin-bottom: 0.3rem;
   font-family: var(--font-family-body);
   line-height: 1.6;
   font-style: italic;
+  font-weight: 400;
 }
 
 .about-page-description {
@@ -427,7 +426,7 @@
 
 .about-management-team-container .management-team-modal-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(240px, 240px));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.75rem;
   align-items: start;
   position: relative;
@@ -436,6 +435,13 @@
   justify-content: center;
   max-width: 100%;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .about-management-team-container .management-team-modal-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
 }
 
 .about-management-team-container .management-team-modal-grid .management-team-card-placeholder {
@@ -998,9 +1004,9 @@
 
 .about-history-description {
   font-family: var(--font-family-body);
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
+  font-size: 0.92rem;
+  color: #B8BFC8;
+  line-height: 1.7;
   text-align: justify;
 
 
@@ -1581,8 +1587,9 @@
   }
 
   .about-vision-mission-grid {
+    grid-template-columns: 1fr;
     width: 100%;
-    gap: .2rem;
+    gap: 1.5rem;
     margin-left: 0;
     margin-right: 0;
   }
@@ -1786,7 +1793,21 @@
 
   .related-company-description {
     font-size: 0.8rem;
-    text-indent: 1.5rem;
+    text-indent: 0;
+    /* Remove indent */
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .related-company-card {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .related-company-logo-container {
+    height: 80px;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -1807,15 +1828,23 @@
 
   .about-title {
     font-size: 1.75rem;
+    font-weight: 600;
+    /* Slightly bold */
+    margin-bottom: 0.5rem;
   }
 
   .about-subtitle {
     font-size: 0.85rem;
     margin-bottom: 0.25rem;
+    font-weight: 400;
+    /* Regular weight */
+    font-style: normal;
   }
 
   .about-description {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
   }
 
   .about-company-container,
@@ -1837,8 +1866,21 @@
   }
 
   .about-company-description {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     line-height: 1.6;
+    font-weight: 400;
+    /* Regular weight */
+  }
+
+  .about-company-button {
+    margin-top: 1rem;
+  }
+
+  .about-company-button .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+    /* Full width button */
   }
 
   .about-management-team-title,
@@ -1858,6 +1900,9 @@
   .about-management-team-grid {
     gap: 0.15rem;
     padding: 0 0.05rem;
+    flex-wrap: wrap;
+    /* Allow wrapping */
+    justify-content: center;
   }
 
   /* Hide placeholder since large card becomes normal */
@@ -1908,6 +1953,8 @@
   .about-management-team-expanded-rows .about-management-team-grid {
     gap: 0.15rem;
     padding: 0 0.05rem;
+    flex-wrap: wrap;
+    /* Allow wrapping */
   }
 
   .about-management-team-expanded-rows .management-team-card {
@@ -2030,5 +2077,50 @@
 
   .about-history-item::after {
     left: 23px !important;
+  }
+
+  .about-history-section {
+    padding: 2rem 0;
+  }
+
+  .about-history-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .about-history-item {
+    padding-left: 50px;
+    padding-right: 15px;
+    margin-bottom: 2rem;
+  }
+
+  .about-history-timeline::after {
+    left: 21px;
+  }
+
+  .about-history-item::after {
+    left: 13px !important;
+    width: 16px;
+    height: 16px;
+  }
+
+  .about-history-year {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+
+  .about-history-item-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-history-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-weight: 400;
+    /* Regular weight */
   }
 }

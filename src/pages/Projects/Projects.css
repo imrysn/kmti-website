@@ -131,7 +131,7 @@
    ============================================ */
 
 .projects-grid-section {
-  padding-top: 4rem;
+  padding-top: 3rem;
   padding-bottom: 4rem;
 }
 
@@ -148,48 +148,78 @@
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.85);
   text-align: center;
+  font-weight: 400;
   margin-bottom: 4rem;
-  line-height: 1.6;
-  max-width: 650px;
+  line-height: 1.8;
+  max-width: 985px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem;
 }
 
-/* Filter Tabs */
-.projects-filter-tabs {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 3rem;
+/* Filter Dropdown */
+.projects-filter-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto 5rem;
+  background: rgba(255, 255, 255, 0.089);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-.projects-filter-tab {
+.projects-filter-wrapper:hover {
+  border-color: rgba(81, 162, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 15px rgba(81, 162, 255, 0.1);
+}
+
+.projects-filter-dropdown {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.5rem;
+  /* Right padding for arrow */
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.6);
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  cursor: pointer;
+  border: none;
+  color: white;
   font-family: var(--font-family-body);
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 200;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  outline: none;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.projects-filter-tab:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  border-color: rgba(255, 255, 255, 0.5);
+/* Custom Arrow */
+.projects-filter-wrapper::after {
+  content: '▼';
+  font-size: 0.7rem;
+  color: #51A2FF;
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.3s ease;
 }
 
-.projects-filter-tab.active {
-  background: #51A2FF;
+.projects-filter-wrapper:hover::after {
+  transform: translateY(-50%) scale(1.1);
+  color: #87bfff;
+}
+
+/* Dropdown Options */
+.projects-filter-dropdown option {
+  background-color: #020618;
+  /* Matches site background */
   color: white;
-  border-color: #51A2FF;
-  box-shadow: 0 0 15px rgba(81, 162, 255, 0.4);
+  padding: 12px;
+  font-size: 1rem;
 }
 
 /* ============================================

@@ -227,7 +227,7 @@ const en = {
       assembly: {
         title: "Machine Assembly",
         short_desc: "From component integration to full machine assembly, we ensure mechanical, electrical, and pneumatic systems meet industrial standards.",
-        detailed_desc: "In collaboration with our business partners, Kusakabe & Machinery Co., Ltd. and Maeno Giken Inc.—two of the industry’s most well-known pioneers and leaders—we provide precision machine assembly services. We ensure that all equipment is of high quality and delivers top-notch performance, carefully assembled, tested, and ready to support productive business operations."
+        detailed_desc: "In collaboration with our business partners, Kusakabe & Machinery Co., Ltd. and Maeno Giken Inc. two of the industry’s most well-known pioneers and leaders, we provide precision machine assembly services. We ensure that all equipment is of high quality and delivers top-notch performance, carefully assembled, tested, and ready to support productive business operations."
       }
     },
     workflow: {
@@ -254,7 +254,7 @@ const en = {
       subtitle: "Explore our latest 3D models — designed with precision, innovation, and functionality."
     },
     grid: {
-      description: "Click on any project card below to view detailed information, 3D models, and specifications in an interactive modal."
+      description: "Explore our extensive portfolio of precision engineering projects.<br />Click on any card below to launch an interactive modal where you can view detailed technical specifications, rotate and inspect 3D models, and discover how our advanced machinery solutions drive industrial efficiency."
     },
     cta: {
       title: "Interested in our engineering solutions?"
@@ -509,9 +509,9 @@ const en = {
         title: "VISIT OUR OFFICE",
         text: "Submit your resume in person at our KMTI office:",
         address: {
-          line1: "Team Quest Building FCIE",
-          line2: "Langkaan Dasmarinas City, Cavite",
-          line3: "(Near PLDT)"
+          line1: "Kusakabe Maeno Tech., Inc. Vital Industrial Prop. Inc.",
+          line2: "Bldg. Unit 2-B. First Cavite Industrial Estate Langkaan 1,  ",
+          line3: "Cavite, Dasmarinas City. (Near PLDT)"
         },
         person: "Contact Person"
       },

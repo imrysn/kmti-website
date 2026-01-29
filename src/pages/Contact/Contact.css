@@ -62,7 +62,7 @@
   margin-top: 21rem;
   margin-bottom: 0.5rem;
   text-transform: none;
-  font-size: 2.7rem;
+  /* Inherits h1 global */
 }
 
 .contact-page .hero-content {
@@ -216,9 +216,8 @@
 }
 
 .chat-with-us-title {
+  /* Inherits h2 global */
   font-family: var(--font-family-heading);
-  font-size: 2rem;
-  font-weight: 600;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 20%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   color: transparent;
@@ -226,6 +225,7 @@
   letter-spacing: 1px;
   margin: 0;
   line-height: 1.2;
+  font-size: 2.1rem;
 }
 
 .chat-with-us-description {
@@ -460,15 +460,15 @@
    GET IN TOUCH SECTION (NEW)
    ============================================ */
 .get-in-touch-section {
-  padding: 5rem 0;
+  padding: 6rem 0;
   background-color: var(--color-background);
 }
 
 .get-in-touch-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1.8fr 1.2fr;
   /* Form takes more space */
-  gap: 4rem;
+  gap: 5rem;
   align-items: start;
   max-width: 1200px;
   margin: 0 auto;
@@ -482,11 +482,11 @@
 }
 
 .section-title {
+  /* Inherits h2 global */
   font-family: var(--font-family-heading);
-  font-size: 3rem;
   margin-bottom: 2rem;
   color: white;
-  font-weight: 500;
+  font-size: 2.1rem;
 }
 
 .contact-form {
@@ -611,5 +611,22 @@ textarea.form-field {
 
   .map-section {
     height: 400px;
+  }
+}
+
+/* ============================================
+   LANGUAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Japanese Language Overrides for Hero Title */
+.lang-jp .contact-page .hero-title {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 1024px) {
+  .lang-jp .contact-page .hero-title {
+    font-size: 2.8rem;
+    /* Reduced from global 4rem to prevent overflow */
   }
 }
