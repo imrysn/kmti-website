@@ -104,7 +104,7 @@ p {
 /* Desktop Scaling */
 @media (min-width: 1024px) {
   h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
   }
 
   h2 {

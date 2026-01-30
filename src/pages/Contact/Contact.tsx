@@ -251,7 +251,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                 </h2>
               </div>
               <div className="chat-with-us-header-line"></div>
-              <p className="chat-with-us-description">{t('contact.chat.description')}</p>
+              <p className="chat-with-us-description"><Trans i18nKey="contact.chat.description" components={{ br: <br /> }} /></p>
 
               <ul className="chat-with-us-features">
                 <li className="chat-with-us-feature">
@@ -279,7 +279,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                   <img src={innovationIcon} alt="Feature" className="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
                     <strong className="chat-with-us-feature-title">{t('contact.chat.features.f4.title')}</strong>
-                    <span className="chat-with-us-feature-text">{t('contact.chat.features.f4.text')}</span>
+                    <span className="chat-with-us-feature-text"><Trans i18nKey="contact.chat.features.f4.text" components={{ br: <br /> }} /></span>
                   </div>
                 </li>
               </ul>

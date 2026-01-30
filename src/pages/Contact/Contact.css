@@ -59,7 +59,7 @@
 }
 
 .contact-page .hero-title {
-  margin-top: 21rem;
+  margin-top: 19rem;
   margin-bottom: 0.5rem;
   text-transform: none;
   /* Inherits h1 global */
@@ -74,10 +74,10 @@
 
 .contact-hero-description {
   font-family: var(--font-family-body);
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
-  margin-bottom: 15rem;
+  margin-bottom: 14rem;
   text-align: center;
   max-width: 1500px;
   margin-left: auto;
@@ -162,17 +162,17 @@
 }
 
 .chat-with-us-container {
-  max-width: 1500px;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 10rem;
+  padding-right: 3rem;
 }
 
 .chat-with-us-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: 0rem;
   align-items: start;
 }
 
@@ -291,6 +291,7 @@
   display: flex;
   justify-content: center;
   align-items: start;
+  padding-left: 0rem;
 }
 
 /* ============================================

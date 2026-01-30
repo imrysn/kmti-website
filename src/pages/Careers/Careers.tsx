@@ -235,7 +235,7 @@ const Careers: React.FC<CareersPageProps> = () => {
           <div className="ready-to-join-section">
             <h2 className="ready-to-join-title">{t('careers.ready.title')}</h2>
             <p className="ready-to-join-description">
-              {t('careers.ready.description')}
+              <Trans i18nKey="careers.ready.description" components={{ br: <br /> }} />
             </p>
             <div className="ready-to-join-buttons">
               <Button
