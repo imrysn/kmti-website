@@ -3,6 +3,9 @@ import { useTranslation, Trans } from 'react-i18next';
 import './Contact.css';
 import { ContactPageProps } from './Contact.types';
 import { getAssetUrl } from '../../utils/assets';
+import { ContactOptionCard } from '../../components/ui/Card/Card';
+import { ChatWithUsRightCard } from '../../components/ui/Card/ChatWithUsRightCard';
+import Button from '../../components/ui/Button/Button';
 
 const contactBg = getAssetUrl('hero_background/contactusbg.jpg');
 const emailIcon = getAssetUrl('icons/email-icon.png');
@@ -13,19 +16,25 @@ const mapsIcon = getAssetUrl('icons/maps-icon.png');
 const chatIcon = getAssetUrl('icons/chat-icon.png');
 const circleIcon = getAssetUrl('icons/circle-icon.png');
 const innovationIcon = getAssetUrl('icons/innovation-icon.png');
-import { ContactOptionCard } from '../../components/ui/Card/Card';
-import { ChatWithUsRightCard } from '../../components/ui/Card/ChatWithUsRightCard';
-import Button from '../../components/ui/Button/Button';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+const initialFormData: ContactFormData = {
+  name: '',
+  email: '',
+  subject: '',
+  message: ''
+};
 
 const Contact: React.FC<ContactPageProps> = () => {
   const { t } = useTranslation();
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState<ContactFormData>(initialFormData);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -35,7 +44,8 @@ const Contact: React.FC<ContactPageProps> = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Mailto fallback for frontend-only
-    const mailtoLink = `mailto:info@kmti.com.ph?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+    const { name, email, subject, message } = formData;
+    const mailtoLink = `mailto:info@kmti.com.ph?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
     window.location.href = mailtoLink;
   };
 
@@ -53,17 +63,17 @@ const Contact: React.FC<ContactPageProps> = () => {
 
   const handleTryChatbot = () => {
     window.dispatchEvent(new CustomEvent('reset-chatbot'));
-    const chatbotButton = document.querySelector('.chatbot-button') as HTMLButtonElement;
+    const chatbotButton = document.querySelector('.chatbot-button') as HTMLButtonElement | null;
 
-    if (chatbotButton && chatbotButton.disabled) {
-      setTimeout(() => {
-        const chatbotPanel = document.querySelector('.chatbot-panel');
-        if (chatbotPanel) {
-          chatbotPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      }, 100);
-    } else if (chatbotButton && !chatbotButton.disabled) {
-      chatbotButton.click();
+    if (chatbotButton) {
+      if (chatbotButton.disabled) {
+        setTimeout(() => {
+          const chatbotPanel = document.querySelector('.chatbot-panel');
+          chatbotPanel?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      } else {
+        chatbotButton.click();
+      }
     }
   };
 

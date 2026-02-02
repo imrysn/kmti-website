@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
+import { useProjectModals } from '../../hooks/useProjectModals';
 
 import { ProjectsCard } from '../../components/ui/Card/Card';
 import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
@@ -29,56 +30,45 @@ const finishingLineImage = getAssetUrl('image3D/finishingLine.png');
 const millingImage = getAssetUrl('image3D/milling.png');
 const furnaceImage = getAssetUrl('image3D/furnace.png');
 
+interface ProjectItem {
+  id: number;
+  internalTitle: string;
+  key?: string;
+  title: string;
+  description: string;
+  category: string;
+  categoryKey: string;
+  image: string;
+  link: string;
+}
+
 const Projects: React.FC<ProjectsPageProps> = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   // Filter State
   const [activeCategoryKey, setActiveCategoryKey] = useState('ALL');
 
-  // Modal states 
-  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
-  const [isLooperModalOpen, setIsLooperModalOpen] = useState(false);
-  const [isFormingModalOpen, setIsFormingModalOpen] = useState(false);
-  const [isStripEntryModalOpen, setIsStripEntryModalOpen] = useState(false);
-  const [isTransferTableLineModalOpen, setIsTransferTableLineModalOpen] = useState(false);
-  const [isFinishingLineModalOpen, setIsFinishingLineModalOpen] = useState(false);
-  const [isCutOffModalOpen, setIsCutOffModalOpen] = useState(false);
-  const [isFurnaceModalOpen, setIsFurnaceModalOpen] = useState(false);
-  const [selectedProjectKey, setSelectedProjectKey] = useState<string | undefined>(undefined);
-  const hasCheckedUrlParams = useRef(false);
+  // Custom hook for modal management
+  const {
+    isProjectModalOpen, setIsProjectModalOpen,
+    isLooperModalOpen, setIsLooperModalOpen,
+    isFormingModalOpen, setIsFormingModalOpen,
+    isStripEntryModalOpen, setIsStripEntryModalOpen,
+    isTransferTableLineModalOpen, setIsTransferTableLineModalOpen,
+    isFinishingLineModalOpen, setIsFinishingLineModalOpen,
+    isCutOffModalOpen, setIsCutOffModalOpen,
+    isFurnaceModalOpen, setIsFurnaceModalOpen,
+    selectedProjectKey, setSelectedProjectKey,
+    is3DViewerOpen, setIs3DViewerOpen,
+    selected3DModel, setSelected3DModel,
+    closeModals,
+    close3DViewer
+  } = useProjectModals();
 
-  // 3D Model Viewer Modal state
-  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
-  const [selected3DModel, setSelected3DModel] = useState<{ title: string; key: string } | null>(null);
-
-  // Handle query parameters to open modals 
-  useEffect(() => {
-    const projectParam = searchParams.get('project');
-    if (projectParam && !hasCheckedUrlParams.current) {
-      const projectMap: { [key: string]: () => void } = {
-        'dedimpler-and-facer': () => setIsProjectModalOpen(true),
-        'looper-machine': () => setIsLooperModalOpen(true),
-        'forming-and-sizing': () => setIsFormingModalOpen(true),
-        'shear-welder-machine': () => setIsStripEntryModalOpen(true),
-        'finishing-table': () => setIsTransferTableLineModalOpen(true),
-        'finishing-line': () => setIsFinishingLineModalOpen(true),
-        'milling-cutoff-machine': () => setIsCutOffModalOpen(true),
-        'furnace': () => setIsFurnaceModalOpen(true),
-      };
-
-      const openModal = projectMap[projectParam];
-      if (openModal) {
-        openModal();
-        hasCheckedUrlParams.current = true;
-        setSearchParams({}, { replace: true });
-      }
-    }
-  }, [searchParams, setSearchParams]);
 
   // Project data mapped to translation keys
-  const projects = useMemo(() => [
+  const projects = useMemo<ProjectItem[]>(() => [
     {
       id: 1,
       internalTitle: 'DEDIMPLER & FACER',
@@ -254,6 +244,35 @@ const Projects: React.FC<ProjectsPageProps> = () => {
     ? shuffledProjects
     : shuffledProjects.filter(p => p.categoryKey === activeCategoryKey);
 
+
+  // Handler helper
+  const handleProjectClick = (project: ProjectItem) => {
+    const { internalTitle, key } = project;
+    // Set selected key if available
+    if (key) {
+      setSelectedProjectKey(key);
+    }
+
+    // Modal Opening Logic
+    if (['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(internalTitle)) {
+      setIsProjectModalOpen(true);
+    } else if (['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE', 'VERTICAL LOOPER'].includes(internalTitle)) {
+      setIsLooperModalOpen(true);
+    } else if (internalTitle === 'FORMING AND SIZING MACHINE') {
+      setIsFormingModalOpen(true);
+    } else if (['SHEAR WELDER MACHINE', 'UNCOILER MACHINE', 'LEVELER MACHINE'].includes(internalTitle)) {
+      setIsStripEntryModalOpen(true);
+    } else if (internalTitle === 'FINISHING TABLE') {
+      setIsTransferTableLineModalOpen(true);
+    } else if (internalTitle === 'FINISHING LINE') {
+      setIsFinishingLineModalOpen(true);
+    } else if (internalTitle === 'MILLING CUTOFF MACHINE') {
+      setIsCutOffModalOpen(true);
+    } else if (internalTitle === 'FURNACE') {
+      setIsFurnaceModalOpen(true);
+    }
+  };
+
   return (
     <div className="projects-page">
       <section className="projects-hero">
@@ -274,7 +293,6 @@ const Projects: React.FC<ProjectsPageProps> = () => {
             />
           </p>
 
-          {/* Filter Tabs */}
           {/* Filter Dropdown */}
           <div className="projects-filter-wrapper">
             <select
@@ -307,25 +325,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                   });
                   setIs3DViewerOpen(true);
                 }}
-                onClick={
-                  ['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(project.internalTitle)
-                    ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsProjectModalOpen(true); }
-                    : ['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE', 'VERTICAL LOOPER'].includes(project.internalTitle)
-                      ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsLooperModalOpen(true); }
-                      : project.internalTitle === 'FORMING AND SIZING MACHINE'
-                        ? () => setIsFormingModalOpen(true)
-                        : ['SHEAR WELDER MACHINE', 'UNCOILER MACHINE', 'LEVELER MACHINE'].includes(project.internalTitle)
-                          ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsStripEntryModalOpen(true); }
-                          : project.internalTitle === 'FINISHING TABLE'
-                            ? () => setIsTransferTableLineModalOpen(true)
-                            : project.internalTitle === 'FINISHING LINE'
-                              ? () => setIsFinishingLineModalOpen(true)
-                              : project.internalTitle === 'MILLING CUTOFF MACHINE'
-                                ? () => setIsCutOffModalOpen(true)
-                                : project.internalTitle === 'FURNACE'
-                                  ? () => setIsFurnaceModalOpen(true)
-                                  : undefined
-                }
+                onClick={() => handleProjectClick(project)}
               />
             ))}
           </div>
@@ -341,22 +341,19 @@ const Projects: React.FC<ProjectsPageProps> = () => {
         </div>
       </div>
 
-      <ProjectModal isOpen={isProjectModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsProjectModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <LooperModal isOpen={isLooperModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsLooperModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <FormingModal isOpen={isFormingModalOpen} onClose={() => { setIsFormingModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <StripEntryModal isOpen={isStripEntryModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsStripEntryModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <TransferTableLineModal isOpen={isTransferTableLineModalOpen} onClose={() => { setIsTransferTableLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <FinishingLineModal isOpen={isFinishingLineModalOpen} onClose={() => { setIsFinishingLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <CutOffModal isOpen={isCutOffModalOpen} onClose={() => { setIsCutOffModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <FurnaceModal isOpen={isFurnaceModalOpen} onClose={() => { setIsFurnaceModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <ProjectModal isOpen={isProjectModalOpen} initialProjectKey={selectedProjectKey} onClose={closeModals} />
+      <LooperModal isOpen={isLooperModalOpen} initialProjectKey={selectedProjectKey} onClose={closeModals} />
+      <FormingModal isOpen={isFormingModalOpen} onClose={closeModals} />
+      <StripEntryModal isOpen={isStripEntryModalOpen} initialProjectKey={selectedProjectKey} onClose={closeModals} />
+      <TransferTableLineModal isOpen={isTransferTableLineModalOpen} onClose={closeModals} />
+      <FinishingLineModal isOpen={isFinishingLineModalOpen} onClose={closeModals} />
+      <CutOffModal isOpen={isCutOffModalOpen} onClose={closeModals} />
+      <FurnaceModal isOpen={isFurnaceModalOpen} onClose={closeModals} />
 
       {/* 3D Model Viewer Modal */}
       <Model3DViewerModal
         isOpen={is3DViewerOpen}
-        onClose={() => {
-          setIs3DViewerOpen(false);
-          setSelected3DModel(null);
-        }}
+        onClose={close3DViewer}
         modelTitle={selected3DModel?.title || ''}
         modelKey={selected3DModel?.key || ''}
       />
