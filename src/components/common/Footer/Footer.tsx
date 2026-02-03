@@ -126,15 +126,19 @@ const Footer: React.FC = () => {
           {t('footer.bottom.version')} | © {new Date().getFullYear()} {t('footer.bottom.rights')}
         </div>
         <div id="visit-tracker" style={{ textAlign: 'center' }}>
-          {t('footer.bottom.since')} {t('footer.bottom.publication_date')} &nbsp;&nbsp;&nbsp;
-          {t('footer.bottom.total_visit')}{' '}
-          <span className="visit-counter-digits">{pad3(visitCounts.total)}</span>
-          &nbsp;&nbsp;&nbsp;
-          {t('footer.bottom.today_visit')}{' '}
-          <span className="visit-counter-digits">{pad3(visitCounts.today)}</span>
-          &nbsp;&nbsp;&nbsp;
-          {t('footer.bottom.yesterday_visit')}{' '}
-          <span className="visit-counter-digits">{pad3(visitCounts.yesterday)}</span>
+          <div className="tracker-date">
+            {t('footer.bottom.since')} {t('footer.bottom.publication_date')}
+          </div>
+          <div className="tracker-stats">
+            {t('footer.bottom.total_visit')}{' '}
+            <span className="visit-counter-digits">{pad3(visitCounts.total)}</span>
+            &nbsp;&nbsp;&nbsp;
+            {t('footer.bottom.today_visit')}{' '}
+            <span className="visit-counter-digits">{pad3(visitCounts.today)}</span>
+            &nbsp;&nbsp;&nbsp;
+            {t('footer.bottom.yesterday_visit')}{' '}
+            <span className="visit-counter-digits">{pad3(visitCounts.yesterday)}</span>
+          </div>
         </div>
         <div className="footer__bottom-links">
           <Link className="footer__bottom-link" to="/legal-and-compliance">{t('footer.links.legal')}</Link>

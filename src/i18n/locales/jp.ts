@@ -24,7 +24,7 @@ const jp = {
   // --- HOME PAGE ---
   home: {
     hero: {
-      title: "あなたのビジョンを、精密に形にします。"
+      title: "あなたのビジョンを、\n精密に形にします。"
     },
     why_choose: {
       title: "なぜ当社を選ぶのか",
