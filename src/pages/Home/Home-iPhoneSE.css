@@ -378,13 +378,11 @@
     height: 44px !important;
   }
 
-  /* Hide requested sections */
   .footer__links-wrapper,
   .footer__contact {
     display: none !important;
   }
 
-  /* Footer Bottom: Copyright, Tracker, Links */
   .footer__bottom {
     flex-direction: column !important;
     gap: 1.25rem !important;
