@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Projects.css';
 import { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
+import { useProjectModals } from '../../hooks/useProjectModals';
 
 import { ProjectsCard } from '../../components/ui/Card/Card';
 import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
@@ -29,56 +30,45 @@ const finishingLineImage = getAssetUrl('image3D/finishingLine.png');
 const millingImage = getAssetUrl('image3D/milling.png');
 const furnaceImage = getAssetUrl('image3D/furnace.png');
 
+interface ProjectItem {
+  id: number;
+  internalTitle: string;
+  key?: string;
+  title: string;
+  description: string;
+  category: string;
+  categoryKey: string;
+  image: string;
+  link: string;
+}
+
 const Projects: React.FC<ProjectsPageProps> = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   // Filter State
-  const [activeFilter, setActiveFilter] = useState('ALL');
+  const [activeCategoryKey, setActiveCategoryKey] = useState('ALL');
 
-  // Modal states 
-  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
-  const [isLooperModalOpen, setIsLooperModalOpen] = useState(false);
-  const [isFormingModalOpen, setIsFormingModalOpen] = useState(false);
-  const [isStripEntryModalOpen, setIsStripEntryModalOpen] = useState(false);
-  const [isTransferTableLineModalOpen, setIsTransferTableLineModalOpen] = useState(false);
-  const [isFinishingLineModalOpen, setIsFinishingLineModalOpen] = useState(false);
-  const [isCutOffModalOpen, setIsCutOffModalOpen] = useState(false);
-  const [isFurnaceModalOpen, setIsFurnaceModalOpen] = useState(false);
-  const [selectedProjectKey, setSelectedProjectKey] = useState<string | undefined>(undefined);
-  const hasCheckedUrlParams = useRef(false);
+  // Custom hook for modal management
+  const {
+    isProjectModalOpen, setIsProjectModalOpen,
+    isLooperModalOpen, setIsLooperModalOpen,
+    isFormingModalOpen, setIsFormingModalOpen,
+    isStripEntryModalOpen, setIsStripEntryModalOpen,
+    isTransferTableLineModalOpen, setIsTransferTableLineModalOpen,
+    isFinishingLineModalOpen, setIsFinishingLineModalOpen,
+    isCutOffModalOpen, setIsCutOffModalOpen,
+    isFurnaceModalOpen, setIsFurnaceModalOpen,
+    selectedProjectKey, setSelectedProjectKey,
+    is3DViewerOpen, setIs3DViewerOpen,
+    selected3DModel, setSelected3DModel,
+    closeModals,
+    close3DViewer
+  } = useProjectModals();
 
-  // 3D Model Viewer Modal state
-  const [is3DViewerOpen, setIs3DViewerOpen] = useState(false);
-  const [selected3DModel, setSelected3DModel] = useState<{ title: string; key: string } | null>(null);
-
-  // Handle query parameters to open modals 
-  useEffect(() => {
-    const projectParam = searchParams.get('project');
-    if (projectParam && !hasCheckedUrlParams.current) {
-      const projectMap: { [key: string]: () => void } = {
-        'dedimpler-and-facer': () => setIsProjectModalOpen(true),
-        'looper-machine': () => setIsLooperModalOpen(true),
-        'forming-and-sizing': () => setIsFormingModalOpen(true),
-        'shear-welder-machine': () => setIsStripEntryModalOpen(true),
-        'finishing-table': () => setIsTransferTableLineModalOpen(true),
-        'finishing-line': () => setIsFinishingLineModalOpen(true),
-        'milling-cutoff-machine': () => setIsCutOffModalOpen(true),
-        'furnace': () => setIsFurnaceModalOpen(true),
-      };
-
-      const openModal = projectMap[projectParam];
-      if (openModal) {
-        openModal();
-        hasCheckedUrlParams.current = true;
-        setSearchParams({}, { replace: true });
-      }
-    }
-  }, [searchParams, setSearchParams]);
 
   // Project data mapped to translation keys
-  const projects = useMemo(() => [
+  const projects = useMemo<ProjectItem[]>(() => [
     {
       id: 1,
       internalTitle: 'DEDIMPLER & FACER',
@@ -86,6 +76,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.dedimpler.title'),
       description: t('home.projects.items.dedimpler.desc'),
       category: t('home.projects.items.dedimpler.cat'),
+      categoryKey: 'finishing_equipment',
       image: dedemplerImage,
       link: '#',
     },
@@ -96,6 +87,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.bundling.title'),
       description: t('home.projects.items.bundling.desc'),
       category: t('home.projects.items.bundling.cat'),
+      categoryKey: 'finishing_equipment',
       image: bundlingImage,
       link: '#',
     },
@@ -106,6 +98,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.binding.title'),
       description: t('home.projects.items.binding.desc'),
       category: t('home.projects.items.binding.cat'),
+      categoryKey: 'finishing_equipment',
       image: bindingImage,
       link: '#',
     },
@@ -116,6 +109,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.looper.title'),
       description: t('home.projects.items.looper.desc'),
       category: t('home.projects.items.looper.cat'),
+      categoryKey: 'looper',
       image: looperImage,
       link: '#',
     },
@@ -126,6 +120,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.vertical.title'),
       description: t('home.projects.items.vertical.desc'),
       category: t('home.projects.items.vertical.cat'),
+      categoryKey: 'looper',
       image: verticalLooperImage,
       link: '#',
     },
@@ -136,6 +131,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.horizontal.title'),
       description: t('home.projects.items.horizontal.desc'),
       category: t('home.projects.items.horizontal.cat'),
+      categoryKey: 'looper',
       image: horizontalLooperImage,
       link: '#',
     },
@@ -145,6 +141,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.forming.title'),
       description: t('home.projects.items.forming.desc'),
       category: t('home.projects.items.forming.cat'),
+      categoryKey: 'forming',
       image: formingImage,
       link: '#',
     },
@@ -155,6 +152,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.shear.title'),
       description: t('home.projects.items.shear.desc'),
       category: t('home.projects.items.shear.cat'),
+      categoryKey: 'strip_entry',
       image: shearImage,
       link: '#',
     },
@@ -165,6 +163,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.uncoiler.title'),
       description: t('home.projects.items.uncoiler.desc'),
       category: t('home.projects.items.uncoiler.cat'),
+      categoryKey: 'strip_entry',
       image: uncoilerImage,
       link: '#',
     },
@@ -175,6 +174,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.leveler.title'),
       description: t('home.projects.items.leveler.desc'),
       category: t('home.projects.items.leveler.cat'),
+      categoryKey: 'strip_entry',
       image: levelerImage,
       link: '#',
     },
@@ -184,6 +184,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.table.title'),
       description: t('home.projects.items.table.desc'),
       category: t('home.projects.items.table.cat'),
+      categoryKey: 'transfer_table_line',
       image: finishingImage,
       link: '#',
     },
@@ -193,6 +194,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.line.title'),
       description: t('home.projects.items.line.desc'),
       category: t('home.projects.items.line.cat'),
+      categoryKey: 'finishing_line',
       image: finishingLineImage,
       link: '#',
     },
@@ -202,6 +204,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.milling.title'),
       description: t('home.projects.items.milling.desc'),
       category: t('home.projects.items.milling.cat'),
+      categoryKey: 'cut_off',
       image: millingImage,
       link: '#',
     },
@@ -211,6 +214,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       title: t('home.projects.items.furnace.title'),
       description: t('home.projects.items.furnace.desc'),
       category: t('home.projects.items.furnace.cat'),
+      categoryKey: 'furnace',
       image: furnaceImage,
       link: '#',
     },
@@ -222,11 +226,52 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   }, [projects]);
 
   // Logic for filtering
-  const categories = ['ALL', ...Array.from(new Set(projects.map(p => p.category)))];
+  // Create mapping of categoryKey -> unique category label
+  const categories = useMemo(() => {
+    const uniqueKeys = new Set<string>();
+    const options = [{ key: 'ALL', label: 'ALL' }];
 
-  const filteredProjects = activeFilter === 'ALL'
+    projects.forEach(p => {
+      if (!uniqueKeys.has(p.categoryKey)) {
+        uniqueKeys.add(p.categoryKey);
+        options.push({ key: p.categoryKey, label: p.category });
+      }
+    });
+    return options;
+  }, [projects]);
+
+  const filteredProjects = activeCategoryKey === 'ALL'
     ? shuffledProjects
-    : shuffledProjects.filter(p => p.category === activeFilter);
+    : shuffledProjects.filter(p => p.categoryKey === activeCategoryKey);
+
+
+  // Handler helper
+  const handleProjectClick = (project: ProjectItem) => {
+    const { internalTitle, key } = project;
+    // Set selected key if available
+    if (key) {
+      setSelectedProjectKey(key);
+    }
+
+    // Modal Opening Logic
+    if (['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(internalTitle)) {
+      setIsProjectModalOpen(true);
+    } else if (['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE', 'VERTICAL LOOPER'].includes(internalTitle)) {
+      setIsLooperModalOpen(true);
+    } else if (internalTitle === 'FORMING AND SIZING MACHINE') {
+      setIsFormingModalOpen(true);
+    } else if (['SHEAR WELDER MACHINE', 'UNCOILER MACHINE', 'LEVELER MACHINE'].includes(internalTitle)) {
+      setIsStripEntryModalOpen(true);
+    } else if (internalTitle === 'FINISHING TABLE') {
+      setIsTransferTableLineModalOpen(true);
+    } else if (internalTitle === 'FINISHING LINE') {
+      setIsFinishingLineModalOpen(true);
+    } else if (internalTitle === 'MILLING CUTOFF MACHINE') {
+      setIsCutOffModalOpen(true);
+    } else if (internalTitle === 'FURNACE') {
+      setIsFurnaceModalOpen(true);
+    }
+  };
 
   return (
     <div className="projects-page">
@@ -248,17 +293,16 @@ const Projects: React.FC<ProjectsPageProps> = () => {
             />
           </p>
 
-          {/* Filter Tabs */}
           {/* Filter Dropdown */}
           <div className="projects-filter-wrapper">
             <select
               className="projects-filter-dropdown"
-              value={activeFilter}
-              onChange={(e) => setActiveFilter(e.target.value)}
+              value={activeCategoryKey}
+              onChange={(e) => setActiveCategoryKey(e.target.value)}
             >
               {categories.map((cat, index) => (
-                <option key={index} value={cat}>
-                  {cat}
+                <option key={index} value={cat.key}>
+                  {cat.label}
                 </option>
               ))}
             </select>
@@ -281,25 +325,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                   });
                   setIs3DViewerOpen(true);
                 }}
-                onClick={
-                  ['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(project.internalTitle)
-                    ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsProjectModalOpen(true); }
-                    : ['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE', 'VERTICAL LOOPER'].includes(project.internalTitle)
-                      ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsLooperModalOpen(true); }
-                      : project.internalTitle === 'FORMING AND SIZING MACHINE'
-                        ? () => setIsFormingModalOpen(true)
-                        : ['SHEAR WELDER MACHINE', 'UNCOILER MACHINE', 'LEVELER MACHINE'].includes(project.internalTitle)
-                          ? () => { setSelectedProjectKey('key' in project ? project.key : undefined); setIsStripEntryModalOpen(true); }
-                          : project.internalTitle === 'FINISHING TABLE'
-                            ? () => setIsTransferTableLineModalOpen(true)
-                            : project.internalTitle === 'FINISHING LINE'
-                              ? () => setIsFinishingLineModalOpen(true)
-                              : project.internalTitle === 'MILLING CUTOFF MACHINE'
-                                ? () => setIsCutOffModalOpen(true)
-                                : project.internalTitle === 'FURNACE'
-                                  ? () => setIsFurnaceModalOpen(true)
-                                  : undefined
-                }
+                onClick={() => handleProjectClick(project)}
               />
             ))}
           </div>
@@ -315,22 +341,19 @@ const Projects: React.FC<ProjectsPageProps> = () => {
         </div>
       </div>
 
-      <ProjectModal isOpen={isProjectModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsProjectModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <LooperModal isOpen={isLooperModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsLooperModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <FormingModal isOpen={isFormingModalOpen} onClose={() => { setIsFormingModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <StripEntryModal isOpen={isStripEntryModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsStripEntryModalOpen(false); setSelectedProjectKey(undefined); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <TransferTableLineModal isOpen={isTransferTableLineModalOpen} onClose={() => { setIsTransferTableLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <FinishingLineModal isOpen={isFinishingLineModalOpen} onClose={() => { setIsFinishingLineModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <CutOffModal isOpen={isCutOffModalOpen} onClose={() => { setIsCutOffModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
-      <FurnaceModal isOpen={isFurnaceModalOpen} onClose={() => { setIsFurnaceModalOpen(false); hasCheckedUrlParams.current = false; setSearchParams({}, { replace: true }); }} />
+      <ProjectModal isOpen={isProjectModalOpen} initialProjectKey={selectedProjectKey} onClose={closeModals} />
+      <LooperModal isOpen={isLooperModalOpen} initialProjectKey={selectedProjectKey} onClose={closeModals} />
+      <FormingModal isOpen={isFormingModalOpen} onClose={closeModals} />
+      <StripEntryModal isOpen={isStripEntryModalOpen} initialProjectKey={selectedProjectKey} onClose={closeModals} />
+      <TransferTableLineModal isOpen={isTransferTableLineModalOpen} onClose={closeModals} />
+      <FinishingLineModal isOpen={isFinishingLineModalOpen} onClose={closeModals} />
+      <CutOffModal isOpen={isCutOffModalOpen} onClose={closeModals} />
+      <FurnaceModal isOpen={isFurnaceModalOpen} onClose={closeModals} />
 
       {/* 3D Model Viewer Modal */}
       <Model3DViewerModal
         isOpen={is3DViewerOpen}
-        onClose={() => {
-          setIs3DViewerOpen(false);
-          setSelected3DModel(null);
-        }}
+        onClose={close3DViewer}
         modelTitle={selected3DModel?.title || ''}
         modelKey={selected3DModel?.key || ''}
       />

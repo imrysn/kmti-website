@@ -9,12 +9,16 @@ i18n
   .use(initReactI18next)
   .use(LanguageDetector) // Comment this out to stop browser detection
   .init({
+    detection: {
+      order: ['localStorage', 'cookie'],
+      caches: ['localStorage', 'cookie'],
+    },
     resources: {
       en: { translation: en },
       jp: { translation: jp },
     },
     // lng: 'jp', // Force Japanese
-    fallbackLng: 'en',
+    fallbackLng: 'jp',
     interpolation: {
       escapeValue: false,
     },

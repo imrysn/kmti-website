@@ -1,15 +1,10 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './Card.css';
 import Button from '../Button/Button';
 import LazyVideo from '../LazyVideo/LazyVideo';
-
-const isImageIcon = (icon: string | React.ReactNode): icon is string => {
-  return typeof icon === 'string' &&
-    (icon.includes('.png') || icon.includes('.jpg') || icon.includes('.jpeg') ||
-      icon.includes('.svg') || icon.includes('.gif') || icon.includes('.webp') ||
-      icon.startsWith('/') || icon.startsWith('http') || icon.startsWith('data:'));
-};
+import { isImageIcon } from '../../../utils/uiUtils';
 
 interface CardProps {
   icon?: string | React.ReactNode;
@@ -71,10 +66,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   className = '',
   onClick,
 }) => {
-
-
-
-
   return (
     <div className={`service-card ${className}`} onClick={onClick}>
       {icon && (
@@ -108,7 +99,6 @@ interface ProjectCardProps {
   onClick?: () => void;
   isActive?: boolean;
 }
-
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   image,
@@ -155,8 +145,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     </div>
   );
 };
-
-import { motion } from 'framer-motion';
 
 interface ServicePageCardProps {
   image?: string;

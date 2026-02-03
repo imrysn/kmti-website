@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Home.css';
+import './Home-iPhoneSE.css';
 import { HomePageProps } from './Home.types';
 import { getAssetUrl } from '../../utils/assets';
 import Button from '../../components/ui/Button/Button';
@@ -154,7 +155,7 @@ const Home: React.FC<HomePageProps> = () => {
 
       <section className="cta-section" data-aos="fade-up">
         <div className="section-container container">
-          <h2 className="cta-title">{t('home.cta.title')}</h2>
+          <h2 className={`cta-title ${i18n.language === 'jp' ? 'lang-jp' : ''}`}>{t('home.cta.title')}</h2>
           <div className="cta-buttons">
             <Button variant="style2" onClick={navigateToContact}>{t('common.contact_us')}</Button>
           </div>

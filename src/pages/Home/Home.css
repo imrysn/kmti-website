@@ -93,6 +93,7 @@
 .hero-title {
   /* Font properties inherited from h1 global */
   color: white;
+  margin-top: 1.8rem;
   margin-bottom: 3rem;
   text-transform: uppercase;
 }
@@ -198,7 +199,7 @@
   max-width: 1070px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   margin-top: 2rem;
 }
 
@@ -215,7 +216,7 @@
 }
 
 .cta-section {
-  padding-top: 6rem;
+  padding-top: 4rem;
   padding-bottom: 6rem;
   text-align: center;
 }

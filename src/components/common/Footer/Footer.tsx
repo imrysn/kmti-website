@@ -1,53 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
 import { getAssetUrl } from '../../../utils/assets';
+import { useVisitCounter } from '../../../hooks/useVisitCounter';
+
 const footerLogo = getAssetUrl('logo/footer_KMTI_logo.png');
 const mapsIcon = getAssetUrl('icons/maps-icon.png');
 const contactIcon = getAssetUrl('icons/contact.png');
 const emailIcon = getAssetUrl('icons/email-icon.png');
-
-type VisitCounts = {
-  total: number;
-  today: number;
-  yesterday: number;
-};
 
 const pad3 = (value: number) => String(Number(value) || 0).padStart(3, '0');
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  const [visitCounts, setVisitCounts] = useState<VisitCounts>({
-    total: 0,
-    today: 0,
-    yesterday: 0,
-  });
-
-  useEffect(() => {
-    if (import.meta.env.DEV) {
-      return;
-    }
-
-    fetch('/visit_counter.php')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setVisitCounts({
-          total: data.total,
-          today: data.today,
-          yesterday: data.yesterday
-        });
-      })
-      .catch(() => {
-        // Silently fail
-      });
-  }, []);
+  const visitCounts = useVisitCounter();
 
   const handleFooterLinkClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     // If it's a link with query parameters (like /services?service=...), we should let it navigate
@@ -158,15 +126,19 @@ const Footer: React.FC = () => {
           {t('footer.bottom.version')} | © {new Date().getFullYear()} {t('footer.bottom.rights')}
         </div>
         <div id="visit-tracker" style={{ textAlign: 'center' }}>
-          {t('footer.bottom.since')} {t('footer.bottom.publication_date')} &nbsp;&nbsp;&nbsp;
-          {t('footer.bottom.total_visit')}{' '}
-          <span className="visit-counter-digits">{pad3(visitCounts.total)}</span>
-          &nbsp;&nbsp;&nbsp;
-          {t('footer.bottom.today_visit')}{' '}
-          <span className="visit-counter-digits">{pad3(visitCounts.today)}</span>
-          &nbsp;&nbsp;&nbsp;
-          {t('footer.bottom.yesterday_visit')}{' '}
-          <span className="visit-counter-digits">{pad3(visitCounts.yesterday)}</span>
+          <div className="tracker-date">
+            {t('footer.bottom.since')} {t('footer.bottom.publication_date')}
+          </div>
+          <div className="tracker-stats">
+            {t('footer.bottom.total_visit')}{' '}
+            <span className="visit-counter-digits">{pad3(visitCounts.total)}</span>
+            &nbsp;&nbsp;&nbsp;
+            {t('footer.bottom.today_visit')}{' '}
+            <span className="visit-counter-digits">{pad3(visitCounts.today)}</span>
+            &nbsp;&nbsp;&nbsp;
+            {t('footer.bottom.yesterday_visit')}{' '}
+            <span className="visit-counter-digits">{pad3(visitCounts.yesterday)}</span>
+          </div>
         </div>
         <div className="footer__bottom-links">
           <Link className="footer__bottom-link" to="/legal-and-compliance">{t('footer.links.legal')}</Link>

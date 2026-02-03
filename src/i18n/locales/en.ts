@@ -74,8 +74,8 @@ const en = {
         shear: { title: "SHEAR WELDER MACHINE", desc: "Shear and end welders crop the tail and nose of each coil. The two coil ends are then aligned and the joint welded using TIG, MIG or MAG depending on the materials and thickness being welded. Single and twin torch versions are available.", cat: "STRIP ENTRY" },
         table: { title: "TRANSFER TABLE", desc: "Extension of transfer table in the finishing line.", cat: "FINISHING TABLE" },
         line: { title: "FINISHING LINE", desc: "After pipes are cut to standard lengths, they are passed to the finishing line to be check, arranged and bundled, ready for distribution", cat: "FINISHING LINE" },
-        milling: { title: "MILLING CUTOFF MACHINE", desc: "Milling Cut-off Machine uses two milling saws to cut pipes and structural sections to length (round, square, rectangular). ", cat: "CUT OFF" },
-        furnace: { title: "GLASS FURNACE", desc: "A glass furnace is a specialized industrial oven designed to heat raw materials (like sand, soda ash, and limestone) to extremely high temperatures until they melt into liquid glass. ", cat: "FURNACE" },
+        milling: { title: "MILLING CUTOFF MACHINE", desc: "Milling Cut-off Machine uses two milling saws to cut pipes and structural sections to length (round, square, and rectangular). ", cat: "CUT OFF" },
+        furnace: { title: "GLASS FURNACE", desc: "A glass furnace is a specialized industrial oven designed to heat raw materials like (sand, soda ash, and limestone) to extremely high temperatures until they melt into liquid glass. ", cat: "FURNACE" },
         bundling: { title: "BUNDLING MACHINE", desc: "High speed tube pipe bundling and strapping machines take the tube directly from the mill and pack the tube ready for transport or delivery.", cat: "FINISHING EQUIPMENT" },
         binding: { title: "BINDING MACHINE", desc: "Binding Machine used to bind finished products ready for delivery.", cat: "FINISHING EQUIPMENT" },
         horizontal: { title: "HORIZONTAL LOOPER MACHINE", desc: "Horizontal loopers store strip material on a horizontal rotary table. Where space is available, this is the most efficient and cost-effective method of storing strip without causing surface damage. There are two main types: the Spiral Accumulator and the Free Loop Accumulator.", cat: "LOOPER" },
@@ -397,13 +397,13 @@ const en = {
       cutoff: {
         title: "Milling Cutoff Machine",
         category: "CUT OFF",
-        description: "Milling Cutoff Machine uses two milling saws to cut to length pipe and structural section tubes. The cut finishes eliminates the need for facing.",
+        description: "Milling Cut-off Machine uses two milling saws to cut pipes and structural sections to length (round, square, and rectangular).",
         application: "Ideal for achieving clean, square cuts on tubes without secondary finishing."
       },
       furnace: {
         title: "Glass Furnace",
         category: "FURNACE",
-        description: "A glass furnace is a specialized industrial oven designed to heat raw materials (like sand, soda ash, and limestone) to extremely high temperatures until they melt into liquid glass."
+        description: "A glass furnace is a specialized industrial oven designed to heat raw materials like (sand, soda ash, and limestone) to extremely high temperatures until they melt into liquid glass."
       }
     },
     viewer: {
@@ -449,7 +449,7 @@ const en = {
       apply_btn: " APPLY NOW",
       eng: {
         title: "ENGINEERING STAFF / CAD OPERATOR",
-        location: "Dasmarinas City, Cavite",
+        location: "Dasmariñas City, Cavite",
         type: "Full-Time",
         desc: "Join our engineering team with expertise in AutoCAD, SolidWorks, and iCAD for 2D & 3D drawing. Seeking candidates with strong leadership, teamwork abilities, and mathematical knowledge who are willing to learn and work under minimum supervision.",
         requirements: [
@@ -464,7 +464,7 @@ const en = {
       },
       admin: {
         title: "ACCOUNTING / ADMIN STAFF",
-        location: "Dasmarinas City, Cavite",
+        location: "Dasmariñas City, Cavite",
         type: "Full-Time",
         desc: "Assist with day-to-day operations of the Admin functions and duties. Provide clerical and administrative support. Conduct end-to-end recruitment process. Responsible for Compensation and Benefits, and for DOLE Monthly/Annual Reports.",
         requirements: [
@@ -510,8 +510,8 @@ const en = {
         text: "Submit your resume in person at our KMTI office:",
         address: {
           line1: "Kusakabe Maeno Tech., Inc. Vital Industrial Prop. Inc.",
-          line2: "Bldg. Unit 2-B. First Cavite Industrial Estate Langkaan 1,  ",
-          line3: "Cavite, Dasmarinas City. (Near PLDT)"
+          line2: "Bldg B. Unit 2-B. First Cavite Industrial Estate Langkaan 1,  ",
+          line3: "Dasmariñas City, Cavite (Near PLDT)"
         },
         person: "Contact Person"
       },
@@ -590,7 +590,7 @@ const en = {
     info: {
       title: "Contact Information",
       label_address: "Office Address",
-      address: "Team Quest Building FCIE, Langkaan Dasmarinas City, Cavite",
+      address: "Team Quest Building FCIE, Langkaan Dasmariñas City, Cavite",
       label_phone: "Phone Number",
       phone: "(046) 413-4509",
       label_email: "Email Address",
@@ -750,7 +750,7 @@ const en = {
         ]
       },
       "how-to-apply": {
-        text: "You can apply in two ways:\n 1️⃣Submit your resume directly at our office:\n 🏛 Team Quest Building, FCIE, Dasmarinas Cavite\n 2️⃣Apply online through our LinkedIn page\n 3️⃣For more personal or quick inquiries, message our HR directly on Facebook Messenger",
+        text: "You can apply in two ways:\n 1️⃣Submit your resume directly at our office:\n 🏛 Team Quest Building, FCIE, Dasmariñas Cavite\n 2️⃣Apply online through our LinkedIn page\n 3️⃣For more personal or quick inquiries, message our HR directly on Facebook Messenger",
         actionButtons: [
           { id: "ha1", text: "Apply via LinkedIn", action: "apply", url: "https://www.linkedin.com/company/kusakabe-maeno-tech-inc/" },
           { id: "ha2", text: "Message HR on Facebook", action: "message" },
@@ -770,7 +770,7 @@ const en = {
         ]
       },
       "view-positions": {
-        text: "Current openings include:\n• Engineering Staff / CAD Operator / OJT\n• Accounting / Admin Staff\n📍 Located in Dasmarinas, Cavite",
+        text: "Current openings include:\n• Engineering Staff / CAD Operator / OJT\n• Accounting / Admin Staff\n📍 Located in Dasmariñas, Cavite",
         actionButtons: [
           { id: "vp1", text: "Apply Now", action: "apply" }
         ]
@@ -896,7 +896,7 @@ const en = {
 
       // ... MISC BRANCH ...
       location: {
-        text: "Our main office is located at:\n\nVital Industrial Prop. Inc. Bldg. B. Unit 2-B. First Cavite Industrial Estate Langkaan 1. Dasmarinas City, Cavite 4126 Philippines\nNeed Directions?",
+        text: "Our main office is located at:\n\nVital Industrial Prop. Inc. Bldg. B. Unit 2-B. First Cavite Industrial Estate Langkaan 1. Dasmariñas City, Cavite 4126 Philippines\nNeed Directions?",
         actionButtons: [
           { id: "loc1", text: "Open in Google Maps", action: "maps" }
         ]
