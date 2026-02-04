@@ -1,7 +1,4 @@
-/* 
-  iPhone SE Specific Fixes
-  Target Device: iPhone SE (375x667)　*/
-
+/* iPhone SE (375x667) Specific Fixes */
 @media screen and (max-width: 376px) and (max-height: 850px) {
 
   .home-page {
@@ -31,6 +28,7 @@
     line-height: 1.5 !important;
   }
 
+  /* Navigation */
   .navbar .navbar-container {
     margin-top: 0.5rem !important;
     padding: 0 1rem !important;
@@ -59,9 +57,7 @@
     height: 20px !important;
   }
 
-  /* ============================================
-     HERO SECTION
-     ============================================ */
+  /* Hero Section */
   .hero-section {
     position: absolute !important;
     top: 0 !important;
@@ -130,9 +126,7 @@
     font-size: 0.85rem !important;
   }
 
-  /* ============================================
-     SERVICES SECTION
-     ============================================ */
+  /* Services Section */
   .services-section {
     position: relative !important;
     z-index: 10 !important;
@@ -176,16 +170,13 @@
     height: 50px !important;
   }
 
-  /* ============================================
-     PROJECTS SECTION (Vision to Reality)
-     ============================================ */
+  /* Projects Section */
   .vision-reality-section {
     position: relative !important;
     z-index: 10 !important;
     padding-top: 2rem !important;
     padding-bottom: 0rem !important;
   }
-
 
   .vision-reality-section .section-title {
     max-width: 280px !important;
@@ -233,14 +224,11 @@
 
   .project-card-link {
     font-size: 0.75rem !important;
-    /* Adjust link text size */
     margin-top: 0.5rem !important;
     padding-bottom: 0.5rem !important;
   }
 
-  /* ============================================
-     WHY CHOOSE US SECTION
-     ============================================ */
+  /* Why Choose Us */
   .why-choose-us-section {
     position: relative !important;
     z-index: 10 !important;
@@ -284,9 +272,7 @@
     border-radius: 8px !important;
   }
 
-  /* ============================================
-     ABOUT SECTION
-     ============================================ */
+  /* About Section */
   .about-section {
     padding-top: 1rem !important;
     padding-bottom: 2rem !important;
@@ -299,9 +285,7 @@
     padding: 0 0.5rem;
   }
 
-  /* ============================================
-     CTA SECTION
-     ============================================ */
+  /* CTA Section */
   .cta-section {
     padding-top: 2rem !important;
     padding-bottom: 4rem !important;
@@ -330,9 +314,7 @@
     max-width: 300px !important;
   }
 
-  /* ============================================
-     FOOTER SECTION
-     ============================================ */
+  /* Footer */
   .footer {
     padding: 2rem 1rem !important;
     text-align: center !important;
@@ -345,7 +327,6 @@
     margin-bottom: 1.5rem !important;
   }
 
-  /* Brand Section: Logo, Desc, Socials */
   .footer__brand {
     align-items: center !important;
     text-align: center !important;
@@ -356,7 +337,6 @@
 
   .footer__logo img {
     height: 48px !important;
-    /* Optimal size for mobile */
     width: auto !important;
   }
 
@@ -414,10 +394,7 @@
     font-size: 0.7rem !important;
   }
 
-  /* ============================================
-     ABOUT PAGE FIXES
-     ============================================ */
-
+  /* About Page */
   .about-page {
     overflow-x: hidden !important;
     width: 100% !important;
@@ -493,7 +470,6 @@
     padding: 0 0.5rem;
   }
 
-  /* Company Section */
   .about-company-section {
     margin-top: 37rem;
     padding: 2rem 0 !important;
@@ -510,21 +486,16 @@
     gap: 2.5rem !important;
   }
 
-  /* Carousel Styles */
   .about-company-images {
     display: block !important;
-    /* Reset grid */
     position: relative !important;
     width: 90% !important;
     height: 170px !important;
-    /* Fixed height for mobile */
     margin-top: -1rem !important;
     margin-bottom: 0.5rem !important;
-    overflow: visible !important;
     gap: 0 !important;
   }
 
-  /* Slides */
   .about-company-image-wrapper {
     position: absolute !important;
     top: 0 !important;
@@ -563,7 +534,6 @@
     line-height: 1.6 !important;
     padding: 0 0.5rem;
     overflow: visible !important;
-    /* Fix internal scroll */
     height: auto !important;
     max-height: none !important;
   }
@@ -577,7 +547,6 @@
     margin-bottom: 1.5rem !important;
   }
 
-  /* History Timeline */
   .about-history-section {
     padding: 3rem 0 !important;
   }
@@ -641,10 +610,8 @@
     font-size: 0.74rem !important;
     line-height: 1.5 !important;
     text-align: left !important;
-    /* Ensure left alignment override */
   }
 
-  /* Vision Mission */
   .about-vision-mission-section {
     padding: 1rem 0 !important;
   }
@@ -656,7 +623,6 @@
     margin: 0 !important;
   }
 
-  /* Vision Mission Card Customization */
   .about-vision-mission-grid .why-choose-card {
     width: 100% !important;
     height: auto !important;
@@ -686,7 +652,6 @@
     width: 100% !important;
   }
 
-  /* Our People Carousel Override */
   .our-people-section {
     padding: 2rem 0 !important;
   }
@@ -708,7 +673,6 @@
     line-height: 1.6 !important;
   }
 
-  /* Force Horizontal Scroll Carousel */
   .our-people-carousel-container {
     display: flex !important;
     overflow-x: auto !important;
@@ -765,7 +729,6 @@
     display: none !important;
   }
 
-  /* Management Team */
   .about-management-team-section {
     padding: 3rem 0 !important;
   }
@@ -803,12 +766,10 @@
     margin-top: 0rem !important;
   }
 
-  /* Hidden placeholder fix */
   .management-team-card-placeholder {
     display: none !important;
   }
 
-  /* Related Companies */
   .related-companies-section {
     padding: 3rem 0 !important;
   }
@@ -825,7 +786,6 @@
     gap: 1.5rem !important;
   }
 
-  /* CTA Buttons */
   .about-cta-section {
     padding-top: 1rem !important;
     padding-bottom: 3rem !important;
@@ -843,5 +803,548 @@
     width: 65% !important;
     margin: 0 !important;
     font-size: 0.9rem !important;
+  }
+
+  /* Services Page */
+  .services-hero {
+    height: 106vh !important;
+    min-height: 105vh !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .services-hero-container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 100% !important;
+    padding-top: 9rem !important;
+  }
+
+  .services-title {
+    font-size: 2.5rem !important;
+    margin-bottom: 0.2rem !important;
+    text-align: center !important;
+    line-height: 0 important;
+  }
+
+  .services-subtitle {
+    font-size: 0.8rem !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+    padding: 0 1rem !important;
+  }
+
+  .services-hero-button {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .services-nav-section {
+    padding: 0rem 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .services-nav-tabs-content {
+    gap: 1rem !important;
+    padding: 0 1rem !important;
+  }
+
+  .services-nav-tab-text {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 1rem !important;
+    white-space: nowrap !important;
+  }
+
+  .services-grid-section {
+    padding: 2rem 0 !important;
+  }
+
+  .services-grid-container {
+    padding: 0 1rem !important;
+  }
+
+  .services-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  .service-card-wrapper {
+    width: 100% !important;
+    grid-column: auto !important;
+  }
+
+  .service-card-wrapper.service-span-2 {
+    grid-column: auto !important;
+  }
+
+  .service-page-card-item {
+    height: auto !important;
+    min-height: 200px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .services-cta-section {
+    padding: 3rem 0 !important;
+    margin-top: -3rem;
+  }
+
+  .services-cta-title {
+    font-size: 0.9rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Projects Page */
+  .projects-hero {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: -6rem !important;
+  }
+
+  .projects-hero-container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 100% !important;
+    padding-top: 0rem !important;
+  }
+
+  .projects-title {
+    font-size: 2.1rem !important;
+    margin-bottom: 0.5rem !important;
+    text-align: center !important;
+    line-height: 1.1 !important;
+  }
+
+  .projects-subtitle {
+    font-size: 0.8rem !important;
+    margin-bottom: 2rem !important;
+    text-align: center !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .projects-grid-section {
+    padding: 2rem 0 !important;
+    margin-top: 0rem !important;
+  }
+
+  .projects-grid-container {
+    padding: 0 2.5rem !important;
+  }
+
+  .projects-grid-description {
+    font-size: 0.82rem !important;
+    padding: 0 0.4rem !important;
+    margin-bottom: 2rem !important;
+    text-align: center !important;
+  }
+
+  .projects-filter-wrapper {
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .projects-filter-dropdown {
+    width: 90% !important;
+    font-size: 1rem !important;
+    padding: 0.8rem !important;
+  }
+
+  .projects-card-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .projects-cta-section {
+    padding: 3rem 0 !important;
+    margin-top: -2rem !important;
+  }
+
+  .projects-cta-title {
+    font-size: 0.95rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Careers Page */
+  .careers-page {
+    width: 100% !important;
+    margin-top: -6rem !important;
+    overflow-x: hidden !important;
+  }
+
+  .careers-page .hero-section {
+    position: relative !important;
+    height: 113vh !important;
+    min-height: 113vh !important;
+    padding-top: 0 !important;
+    margin-top: -5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .careers-page .hero-bg-custom {
+    top: 0 !important;
+    height: 100% !important;
+  }
+
+  .careers-hero-model {
+    display: block !important;
+    max-height: 100vh !important;
+    right: -0rem !important;
+    opacity: 1 !important;
+    bottom: 0 !important;
+  }
+
+  .careers-page .hero-content {
+    margin: 0 !important;
+    padding: 0 0rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    padding-top: 0rem !important;
+  }
+
+  .careers-page .hero-title {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .careers-hero-description {
+    font-size: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .careers-page .hero-buttons {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center !important;
+    font-size: 1rem !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .careers-page .hero-buttons .btn {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .why-work-withus-section {
+    padding: 3rem 0 !important;
+  }
+
+  .why-work-withus-container {
+    padding: 0 1.5rem !important;
+  }
+
+  .why-work-withus-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .why-work-withus-subtitle {
+    font-size: 0.9rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .why-work-withus-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .meet-our-team-section {
+    padding: 2rem 0 !important;
+  }
+
+  .meet-our-team-container {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding: 0 1.5rem !important;
+  }
+
+  .meet-our-team-content {
+    order: 1 !important;
+  }
+
+  .meet-our-team-image-wrapper {
+    order: 2 !important;
+    height: 250px !important;
+  }
+
+  .meet-our-team-title {
+    font-size: 1.8rem !important;
+  }
+
+  .meet-our-team-description {
+    font-size: 0.9rem !important;
+  }
+
+  .meet-our-team-list li {
+    font-size: 0.9rem !important;
+  }
+
+  .careers-positions-section {
+    padding: 0rem 0 !important;
+  }
+
+  .careers-positions-container {
+    padding: 0 1.5rem !important;
+  }
+
+  .careers-positions-title {
+    font-size: 1.8rem !important;
+  }
+
+  .careers-positions-subtitle {
+    font-size: 0.9rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .careers-positions-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin: 0 !important;
+  }
+
+  .how-to-apply-section {
+    padding: 3rem 0 !important;
+  }
+
+  .how-to-apply-container {
+    padding: 0 1.5rem !important;
+  }
+
+  .how-to-apply-title {
+    font-size: 1.8rem !important;
+  }
+
+  .how-to-apply-subtitle {
+    font-size: 0.9rem !important;
+    margin-bottom: 3rem !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .how-to-apply-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin: 0 !important;
+    margin-bottom: 3rem !important;
+    width: 100% !important;
+  }
+
+  .ready-to-join-section {
+    padding-top: 1rem !important;
+  }
+
+  .ready-to-join-title {
+    font-size: 1.8rem !important;
+  }
+
+  .ready-to-join-description {
+    font-size: 0.9rem !important;
+    margin-bottom: 3rem !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .ready-to-join-buttons {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center !important;
+  }
+
+  .ready-to-join-buttons .btn {
+    width: 100% !important;
+    max-width: 280px !important;
+  }
+
+  /* Contact Page */
+  .contact-page {
+    width: 100% !important;
+    overflow-x: hidden !important;
+    margin-top: -6rem !important;
+  }
+
+  .contact-page .hero-section {
+    position: relative !important;
+    height: 112vh !important;
+    min-height: 112vh !important;
+    padding-top: 5rem !important;
+    margin-top: -5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .contact-page .hero-bg-custom {
+    top: 0 !important;
+    height: 100% !important;
+  }
+
+  .contact-page .hero-content {
+    margin: 0 !important;
+    padding: 0 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    padding-top: 6rem !important;
+  }
+
+  .contact-page .hero-title {
+    font-size: 2rem !important;
+    line-height: 1 !important;
+    margin-bottom: 1rem !important;
+    margin-top: 0 !important;
+  }
+
+  .contact-page .hero-title br {
+    display: block !important;
+  }
+
+  .contact-hero-description {
+    font-size: 0.63rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0 0rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .contact-options-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 2fr) !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    height: -5rem;
+    margin-top: 0rem !important;
+    padding: 0 0.5rem !important;
+    position: relative !important;
+    align-items: stretch !important;
+  }
+
+  .contact-options-grid>div {
+    padding: 1rem 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    min-height: 100px !important;
+  }
+
+  .contact-options-grid img {
+    width: 25px !important;
+    height: 25px !important;
+    margin-bottom: 0rem !important;
+  }
+
+  .contact-options-grid h3 {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.5rem !important;
+    white-space: nowrap !important;
+  }
+
+  .contact-options-grid p,
+  .contact-options-grid a {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .contact-options-grid button,
+  .contact-options-grid .btn {
+    padding: 0.5rem 0.2rem !important;
+    font-size: 0.58rem !important;
+    width: 100% !important;
+    white-space: normal !important;
+    line-height: 1.1 !important;
+    min-height: 35px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .lang-jp .contact-page .hero-title {
+    font-size: 1rem !important;
+    word-break: keep-all !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+  }
+
+  .lang-jp .contact-options-grid button,
+  .lang-jp .contact-options-grid .btn {
+    font-size: 0.6rem !important;
+    word-break: keep-all !important;
+  }
+
+
+  .get-in-touch-section {
+    padding: 2.3rem 0 !important;
+  }
+
+  .get-in-touch-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3rem !important;
+    padding: 0 1.5rem !important;
+  }
+
+  .contact-form-container {
+    padding: 1rem !important;
+  }
+
+  .contact-info-container {
+    padding: 0 0.5rem !important;
+  }
+
+  .map-section {
+    height: 150px !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .chat-with-us-section {
+    padding: 3rem 0 !important;
+  }
+
+  .chat-with-us-container {
+    padding: 0 1.5rem !important;
+  }
+
+  .chat-with-us-content {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .chat-with-us-title {
+    font-size: 1.8rem !important;
+  }
+
+  .chat-with-us-description {
+    font-size: 0.9rem !important;
+  }
+
+  .chat-with-us-features {
+    gap: 1rem !important;
+  }
+
+  .chat-with-us-feature-title {
+    font-size: 0.9rem !important;
+  }
+
+  .chat-with-us-feature-text {
+    font-size: 0.85rem !important;
   }
 }

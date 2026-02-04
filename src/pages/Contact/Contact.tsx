@@ -84,7 +84,9 @@ const Contact: React.FC<ContactPageProps> = () => {
         <div className="hero-overlay"></div>
         <div className="hero-container container">
           <div className="hero-content">
-            <h1 className="hero-title">{t('contact.hero.title')}</h1>
+            <h1 className="hero-title">
+              <Trans i18nKey="contact.hero.title" components={{ br: <br /> }} />
+            </h1>
             <p className="contact-hero-description">{t('contact.hero.description')}</p>
           </div>
           <div className="contact-options-container" data-aos="fade-up">

@@ -151,30 +151,26 @@
 
 .about-company-images {
   margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
 
 .about-company-image-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #51A2FF;
   box-shadow: 0 0 15px rgba(81, 162, 255, 0.6);
   background: transparent;
   padding: 0;
-  transition: opacity 1s ease-in-out, z-index 0s linear 1s;
-  /* smooth fade */
-  opacity: 0;
-  z-index: 0;
+  opacity: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-company-image-wrapper.active {
+  /* No special active state for grid */
   opacity: 1;
-  z-index: 2;
-  transition: opacity 1s ease-in-out;
 }
 
 /* Base state: subtle blue tech tint overlay */
@@ -189,7 +185,7 @@
   opacity: 1;
   transition: opacity 0.5s ease;
   pointer-events: none;
-  z-index: 3;
+  z-index: 1;
 }
 
 .about-company-image-wrapper:hover {
