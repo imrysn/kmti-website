@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Home.css';
 import './Home-iPhoneSE.css';
+import './iPhone12_13_14.css';
+import './IphonePlus_Promax.css';
 import { HomePageProps } from './Home.types';
 import { getAssetUrl } from '../../utils/assets';
 import Button from '../../components/ui/Button/Button';
