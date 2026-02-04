@@ -520,7 +520,6 @@
     /* Fixed height for mobile */
     margin-top: -1rem !important;
     margin-bottom: 0.5rem !important;
-    overflow: visible !important;
     gap: 0 !important;
   }
 
@@ -843,5 +842,200 @@
     width: 65% !important;
     margin: 0 !important;
     font-size: 0.9rem !important;
+  }
+
+  /* ============================================
+     SERVICES PAGE FIXES
+     ============================================ */
+
+  /* Services Hero */
+  .services-hero {
+    height: 106vh !important;
+    min-height: 105vh !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .services-hero-container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 100% !important;
+    padding-top: 9rem !important;
+    /* Offset for navbar */
+  }
+
+  .services-title {
+    font-size: 2.5rem !important;
+    margin-bottom: 0.2rem !important;
+    text-align: center !important;
+    line-height: 0 important;
+  }
+
+  .services-subtitle {
+    font-size: 0.8rem !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+    padding: 0 1rem !important;
+  }
+
+  .services-hero-button {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  /* Services Navigation */
+  .services-nav-section {
+    padding: 0rem 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .services-nav-tabs-content {
+    gap: 1rem !important;
+    padding: 0 1rem !important;
+  }
+
+  .services-nav-tab-text {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 1rem !important;
+    white-space: nowrap !important;
+  }
+
+  /* Services Grid */
+  .services-grid-section {
+    padding: 2rem 0 !important;
+  }
+
+  .services-grid-container {
+    padding: 0 1rem !important;
+  }
+
+  .services-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Card Overrides */
+  .service-card-wrapper {
+    width: 100% !important;
+    grid-column: auto !important;
+    /* Reset grid spans */
+  }
+
+  .service-card-wrapper.service-span-2 {
+    grid-column: auto !important;
+  }
+
+  .service-page-card-item {
+    height: auto !important;
+    min-height: 200px !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* CTA Section */
+  .services-cta-section {
+    padding: 3rem 0 !important;
+    margin-top: -3rem;
+  }
+
+  .services-cta-title {
+    font-size: 0.9rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* ============================================
+     PROJECTS PAGE FIXES
+     ============================================ */
+
+  /* Projects Hero */
+  .projects-hero {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: -6rem !important;
+    /* Pull up behind navbar/fix gap */
+  }
+
+  .projects-hero-container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 100% !important;
+    padding-top: 0rem !important;
+    /* Offset for content */
+  }
+
+  .projects-title {
+    font-size: 2.1rem !important;
+    margin-bottom: 0.5rem !important;
+    text-align: center !important;
+    line-height: 1.1 !important;
+  }
+
+  .projects-subtitle {
+    font-size: 0.8rem !important;
+    margin-bottom: 2rem !important;
+    text-align: center !important;
+    padding: 0 0.5rem !important;
+  }
+
+  /* Projects Grid */
+  .projects-grid-section {
+    padding: 2rem 0 !important;
+    margin-top: 0rem !important;
+  }
+
+  .projects-grid-container {
+    padding: 0 2.5rem !important;
+  }
+
+  .projects-grid-description {
+    font-size: 0.82rem !important;
+    padding: 0 0.4rem !important;
+    margin-bottom: 2rem !important;
+    text-align: center !important;
+  }
+
+  /* Filter */
+  .projects-filter-wrapper {
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .projects-filter-dropdown {
+    width: 90% !important;
+    font-size: 1rem !important;
+    padding: 0.8rem !important;
+  }
+
+  /* Card Grid */
+  .projects-card-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    grid-template-columns: 1fr !important;
+    /* Force single column if grid used */
+  }
+
+  /* Projects CTA */
+  .projects-cta-section {
+    padding: 3rem 0 !important;
+    margin-top: -2rem !important;
+  }
+
+  .projects-cta-title {
+    font-size: 0.95rem !important;
+    margin-bottom: 1.5rem !important;
   }
 }
