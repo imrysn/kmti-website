@@ -65,6 +65,10 @@
   /* Inherits h1 global */
 }
 
+.contact-page .hero-title br {
+  display: none;
+}
+
 .contact-page .hero-content {
   max-width: 1500px;
   margin-left: auto;
