@@ -150,22 +150,31 @@
 }
 
 .about-company-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  width: 100%;
+  margin-top: 1rem;
 }
 
 .about-company-image-wrapper {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #51A2FF;
   box-shadow: 0 0 15px rgba(81, 162, 255, 0.6);
   background: transparent;
   padding: 0;
-  flex: 1;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: opacity 1s ease-in-out, z-index 0s linear 1s;
+  /* smooth fade */
+  opacity: 0;
+  z-index: 0;
+}
+
+.about-company-image-wrapper.active {
+  opacity: 1;
+  z-index: 2;
+  transition: opacity 1s ease-in-out;
 }
 
 /* Base state: subtle blue tech tint overlay */
@@ -180,7 +189,7 @@
   opacity: 1;
   transition: opacity 0.5s ease;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .about-company-image-wrapper:hover {
@@ -194,20 +203,9 @@
   opacity: 0;
 }
 
-/* Removed staggered margins for grid layout */
-.about-company-image-wrapper:first-child {
-  margin-top: 0;
-  z-index: 1;
-}
-
-.about-company-image-wrapper:last-child {
-  margin-top: 0;
-  z-index: 1;
-}
-
 .about-company-image {
   width: 100%;
-  height: 11rem;
+  height: 100%;
   display: block;
   border-radius: 10px;
   object-fit: cover;
