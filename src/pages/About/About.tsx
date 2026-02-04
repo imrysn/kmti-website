@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './About.css';
+import '../Home/Home-iPhoneSE.css';
 import { AboutPageProps } from './About.types';
 import { getAssetUrl } from '../../utils/assets';
 
@@ -60,8 +61,10 @@ const About: React.FC<AboutPageProps> = () => {
   const [isOurStoryModalOpen, setIsOurStoryModalOpen] = useState(false);
   const [isManagementTeamExpanded, setIsManagementTeamExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentCompanyImageIndex, setCurrentCompanyImageIndex] = useState(0);
 
   const ourPeopleImages = [ourPeople1, ourPeople2, ourPeople3, ourPeople4, ourPeople5];
+  const aboutCompanyImages = [aboutCompany1, aboutCompany2, aboutCompany3, aboutCompany4];
 
   const navigateToContact = () => navigate('/contact');
   const navigateToProjects = () => navigate('/projects');
@@ -72,6 +75,13 @@ const About: React.FC<AboutPageProps> = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, [ourPeopleImages.length]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCompanyImageIndex((prev) => (prev + 1) % aboutCompanyImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [aboutCompanyImages.length]);
 
   const handleOpenOurStory = () => setIsOurStoryModalOpen(true);
   const handleCloseOurStory = () => setIsOurStoryModalOpen(false);
@@ -107,18 +117,14 @@ const About: React.FC<AboutPageProps> = () => {
         <div className="about-company-container container">
           <div className="about-company-grid">
             <div className="about-company-images">
-              <div className="about-company-image-wrapper">
-                <img src={aboutCompany1} alt="Company office" className="about-company-image" />
-              </div>
-              <div className="about-company-image-wrapper">
-                <img src={aboutCompany2} alt="Engineering work" className="about-company-image" />
-              </div>
-              <div className="about-company-image-wrapper">
-                <img src={aboutCompany3} alt="Company facility" className="about-company-image" />
-              </div>
-              <div className="about-company-image-wrapper">
-                <img src={aboutCompany4} alt="Company facility" className="about-company-image" />
-              </div>
+              {aboutCompanyImages.map((image, index) => (
+                <div
+                  key={index}
+                  className={`about-company-image-wrapper ${index === currentCompanyImageIndex ? 'active' : ''}`}
+                >
+                  <img src={image} alt={`Company image ${index + 1}`} className="about-company-image" />
+                </div>
+              ))}
             </div>
             <div className="about-company-content">
               <h2 className="about-company-title">{t('about.company.title')}</h2>
