@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './About.css';
 import '../Home/Home-iPhoneSE.css';
+import '../Home/iPhone12_13_14.css';
+import '../Home/AndroidStandard.css';
+import '../Home/IphonePlus_Promax.css';
 import { AboutPageProps } from './About.types';
 import { getAssetUrl } from '../../utils/assets';
 

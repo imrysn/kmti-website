@@ -1,5 +1,5 @@
 /* iPhone SE (375x667) Specific Fixes */
-@media screen and (max-width: 376px) and (max-height: 850px) {
+@media screen and (max-width: 414px) and (max-height: 896px) {
 
   .home-page {
     overflow-x: hidden;
@@ -16,7 +16,7 @@
   }
 
   .section-title {
-    font-size: 1.8rem !important;
+    font-size: 2rem !important;
     margin-top: 0rem !important;
     line-height: 1.2 !important;
   }
@@ -471,8 +471,8 @@
   }
 
   .about-company-section {
-    margin-top: 37rem !important;
-    padding: 0 0 !important;
+    margin-top: 54rem;
+    padding: 2rem 0 !important;
   }
 
   .about-company-container {
@@ -541,7 +541,7 @@
   .about-company-button {
     display: flex;
     justify-content: center;
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     font-size: 0.8rem !important;
     margin-bottom: 1.5rem !important;
@@ -807,8 +807,8 @@
 
   /* Services Page */
   .services-hero {
-    height: 106vh !important;
-    min-height: 106vh !important;
+    height: 104vh !important;
+    min-height: 105vh !important;
     padding: 0 !important;
     position: relative !important;
     overflow: hidden !important;
@@ -1179,7 +1179,7 @@
   .contact-page {
     width: 100% !important;
     overflow-x: hidden !important;
-    margin-top: -6rem !important;
+    margin-top: -7rem !important;
   }
 
   .contact-page .hero-section {
