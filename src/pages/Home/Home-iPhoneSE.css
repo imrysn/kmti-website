@@ -471,8 +471,8 @@
   }
 
   .about-company-section {
-    margin-top: 37rem;
-    padding: 2rem 0 !important;
+    margin-top: 37rem !important;
+    padding: 0 0 !important;
   }
 
   .about-company-container {
@@ -808,7 +808,7 @@
   /* Services Page */
   .services-hero {
     height: 106vh !important;
-    min-height: 105vh !important;
+    min-height: 106vh !important;
     padding: 0 !important;
     position: relative !important;
     overflow: hidden !important;

@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Navbar.css';
 import { getAssetUrl } from '../../../utils/assets';
+
 const headerLogo = getAssetUrl('logo/download1.png');
 const menuIcon = getAssetUrl('icons/menu-icon.png');
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const activeLinkRef = useRef<HTMLAnchorElement>(null);
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,6 +21,14 @@ const Navbar: React.FC = () => {
     { path: '/careers', label: t('nav.careers') },
     { path: '/contact', label: t('nav.contact') },
   ], [t]);
+
+  // key function to determine if a link is active based on current path
+  const isActivePath = (linkPath: string, currentPath: string) => {
+    if (linkPath === '/') {
+      return currentPath === '/' || currentPath === '/home';
+    }
+    return currentPath.startsWith(linkPath);
+  };
 
   const handleNavClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     const currentPathname = location.pathname;
@@ -47,45 +55,45 @@ const Navbar: React.FC = () => {
     document.body.classList.add(`lang-${i18n.language}`);
   }, [i18n.language]);
 
+  // Slider Logic
   useEffect(() => {
-    // Store last main nav path when visiting a main nav page
-    const isMainNavPage = navLinks.some(link => link.path === location.pathname);
-    if (isMainNavPage) {
-      localStorage.setItem('lastMainNavPath', location.pathname);
-    }
-  }, [location.pathname, navLinks]);
-
-  useEffect(() => {
+    // Use a small timeout to ensure DOM is ready (matching original behavior safely)
     const timer = setTimeout(() => {
-      // Determine which path to highlight
-      // Determine which path to highlight
-      const activeLink = navLinks.find(link =>
-        link.path === '/'
-          ? location.pathname === '/'
-          : location.pathname.startsWith(link.path)
-      );
+      // Find the active link in the navLinks array
+      const activeLink = navLinks.find(link => isActivePath(link.path, location.pathname));
 
-      const pathToHighlight = activeLink
-        ? activeLink.path
-        : localStorage.getItem('lastMainNavPath') || '/';
+      // If we found an active link, try to find its corresponding DOM element
+      if (activeLink) {
+        // We select strictly within the desktop navbar links to avoid confusion with mobile or potential duplicates
+        // Using the href attribute is a reliable way to map data to DOM
+        // Note: react-router Link uses absolute paths in href usually, but let's be safe.
+        // It's safer to find the element that has the 'active' class actually, 
+        // effectively trusting the render logic below.
 
-      // Find the link element for the path to highlight
-      const linkElement = document.querySelector(
-        `.navbar-link[href="${pathToHighlight}"]`
-      ) as HTMLAnchorElement;
+        // Alternatively, finding by href attribute:
+        // inner Links have href="/path" or href="/kmti-website/path" depending on base.
+        // Let's rely on the fact that we add the 'active' class to the correct link in the render method.
+        const activeDomLink = document.querySelector('.navbar-desktop-group .navbar-link.active');
 
-      if (linkElement) {
-        const rect = linkElement.getBoundingClientRect();
-        const ulRect = linkElement.parentElement?.parentElement?.getBoundingClientRect();
+        if (activeDomLink) {
+          const rect = activeDomLink.getBoundingClientRect();
+          const ulElement = activeDomLink.closest('.navbar-links');
 
-        if (ulRect) {
-          setSliderStyle({
-            width: rect.width,
-            left: rect.left - ulRect.left,
-          });
+          if (ulElement) {
+            const ulRect = ulElement.getBoundingClientRect();
+            setSliderStyle({
+              width: rect.width,
+              left: rect.left - ulRect.left,
+            });
+            return;
+          }
         }
       }
-    }, 100);
+
+      // If no active link found (e.g. 404 or unknown route), reset slider
+      setSliderStyle({ width: 0, left: 0 }); // Hide slider or keep at 0
+
+    }, 50);
 
     return () => clearTimeout(timer);
   }, [location.pathname, i18n.language, navLinks]);
@@ -104,21 +112,13 @@ const Navbar: React.FC = () => {
         <div className="navbar-desktop-group">
           <ul className="navbar-links">
             {navLinks.map((link) => {
-              const activeLink = navLinks.find(navLink =>
-                navLink.path === '/'
-                  ? location.pathname === '/'
-                  : location.pathname.startsWith(navLink.path)
-              );
-              const lastMainNavPath = localStorage.getItem('lastMainNavPath') || '/';
-              const pathToHighlight = activeLink ? activeLink.path : lastMainNavPath;
-              const isActive = link.path === pathToHighlight;
+              const isActive = isActivePath(link.path, location.pathname);
 
               return (
                 <li key={`desktop-${link.path}`}>
                   <Link
                     to={link.path}
                     className={`navbar-link ${isActive ? 'active' : ''}`}
-                    ref={isActive ? activeLinkRef : null}
                     onClick={(e) => {
                       handleNavClick(link.path, e);
                       closeMenu();
@@ -195,25 +195,24 @@ const Navbar: React.FC = () => {
         </div>
 
         <ul className="navbar-mobile-links">
-          {navLinks.map((link) => (
-            <li key={`mobile-${link.path}`}>
-              <Link
-                to={link.path}
-                className={`navbar-link ${link.path === '/'
-                  ? location.pathname === '/'
-                  : location.pathname.startsWith(link.path)
-                    ? 'active'
-                    : ''
-                  }`}
-                onClick={(e) => {
-                  handleNavClick(link.path, e);
-                  closeMenu();
-                }}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = isActivePath(link.path, location.pathname);
+
+            return (
+              <li key={`mobile-${link.path}`}>
+                <Link
+                  to={link.path}
+                  className={`navbar-link ${isActive ? 'active' : ''}`}
+                  onClick={(e) => {
+                    handleNavClick(link.path, e);
+                    closeMenu();
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <Link to="/sitemap" className="mobile-sitemap-link" onClick={closeMenu}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
