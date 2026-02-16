@@ -1,5 +1,4 @@
-/* iPhone SE (375x667) Specific Fixes */
-@media screen and (max-width: 374px) {
+@media screen and (width: 360px) and (height: 800px) {
 
   .home-page {
     overflow-x: hidden;
