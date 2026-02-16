@@ -67,7 +67,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* background: linear-gradient(180deg, #020618 0%, #162456 50%, #020618 100%);*/
+
   background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   opacity: 0.8;
   z-index: 1;

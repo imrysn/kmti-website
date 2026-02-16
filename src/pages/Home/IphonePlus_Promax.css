@@ -1,4 +1,4 @@
-/* iPhone SE (375x667) Specific Fixes */
+/* iPhone Plus / Pro Max Specific Fixes */
 @media screen and (max-width: 414px) and (max-height: 896px) {
 
   .home-page {
@@ -102,13 +102,7 @@
     word-break: normal;
   }
 
-  .hero-title.lang-jp br {
-    display: inline !important;
-  }
 
-  .hero-title.lang-jp {
-    white-space: normal !important;
-  }
 
   .hero-buttons {
     flex-direction: row !important;
@@ -1023,6 +1017,12 @@
     font-size: 2rem !important;
     line-height: 1.2 !important;
     margin-bottom: 0.5rem !important;
+  }
+
+  .lang-jp .careers-page .hero-title {
+    font-size: 1.4rem !important;
+    line-height: 1.4 !important;
+    word-break: keep-all !important;
   }
 
   .careers-hero-description {

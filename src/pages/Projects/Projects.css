@@ -24,7 +24,7 @@
    ============================================ */
 
 .projects-hero {
-  /* Removed background properties from here */
+
   margin-top: -10rem;
   padding-top: var(--projects-hero-padding-top-desktop);
   padding-bottom: var(--projects-hero-padding-bottom-desktop);
@@ -70,7 +70,7 @@
 }
 
 .projects-hero-overlay {
-  /* background: linear-gradient(120deg, #020618 0%, #162456 50%, #020618 100%);*/
+
   background: linear-gradient(190deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   background-size: 200% 200%;
   opacity: 0.8;
