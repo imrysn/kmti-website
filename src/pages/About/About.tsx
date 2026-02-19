@@ -6,7 +6,7 @@ import '../Home/Home-iPhoneSE.css';
 import '../Home/iPhone12_13_14.css';
 import '../Home/AndroidStandard.css';
 import '../Home/IphonePlus_Promax.css';
-import { AboutPageProps } from './About.types';
+import type { AboutPageProps } from './About.types';
 import { getAssetUrl } from '../../utils/assets';
 
 const aboutBg = getAssetUrl('hero_background/about.png');

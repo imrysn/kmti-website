@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Sitemap.css';
-import { SitemapPageProps, SitemapSection } from './Sitemap.types';
+import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
 
 const Sitemap: React.FC<SitemapPageProps> = () => {
   const { t } = useTranslation();

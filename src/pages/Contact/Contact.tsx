@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import './Contact.css';
-import { ContactPageProps } from './Contact.types';
+import type { ContactPageProps } from './Contact.types';
 import { getAssetUrl } from '../../utils/assets';
 import { ContactOptionCard } from '../../components/ui/Card/Card';
 import { ChatWithUsRightCard } from '../../components/ui/Card/ChatWithUsRightCard';

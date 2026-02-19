@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Careers.css';
-import { CareersPageProps } from './Careers.types';
+import type { CareersPageProps } from './Careers.types';
 import { getAssetUrl } from '../../utils/assets';
 
 const careersBg = getAssetUrl('hero_background/careersbg.jpg');

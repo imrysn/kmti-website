@@ -547,133 +547,153 @@
 
 @media (max-width: 480px) {
   .model-3d-modal-content {
-    padding: 1.25rem;
-    border-radius: 16px;
-    max-height: 90vh;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+    background: #0f172b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .model-3d-modal-overlay {
+    padding: 0;
+    align-items: stretch;
   }
 
   .model-3d-modal-close {
-    top: 1rem;
+    top: 2rem;
     right: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
+    z-index: 1002;
+    /* background: rgba(15, 23, 43, 0.6); */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+    color: white;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
+  }
+
+  .model-3d-modal-header {
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    right: 3.50rem;
+    /* Space for close button */
+    text-align: left;
+    z-index: 1001;
+    pointer-events: none;
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    /* Align top if wrapping */
   }
 
   .model-3d-modal-title {
-    font-size: 1.25rem;
-    margin-top: 0.5rem;
+    font-size: 1.38rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    /* background: rgba(15, 23, 43, 0.6); */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 100%;
+    white-space: normal;
+    /* Allow wrapping */
+    line-height: 1.4;
+    text-transform: uppercase;
   }
 
   .model-3d-modal-subtitle {
-    font-size: 0.75rem;
+    display: none;
   }
 
   .model-3d-viewer-wrapper {
-    min-height: 250px;
-    max-height: 350px;
-    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    background: radial-gradient(circle at center, #283850 0%, #0f172b 100%);
+    z-index: 1;
   }
 
   .camera-view-buttons {
-    top: 0.5rem;
-    left: 0.5rem;
-    gap: 0.3rem;
-    max-width: calc(100% - 3rem);
+    position: absolute;
+    top: auto;
+    bottom: 2rem;
+    left: 1rem;
+    /* Anchor to left */
+    right: auto;
+    width: auto;
+    max-width: 150px;
+    display: flex;
+    flex-direction: column;
+    /* Vertical stack */
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0;
+    overflow-x: visible;
+    pointer-events: auto;
+    z-index: 1002;
+  }
+
+  .camera-view-buttons::-webkit-scrollbar {
+    display: none;
   }
 
   .camera-view-btn {
-    padding: 0.35rem 0.6rem;
+    padding: 0.4rem 0.8rem;
     font-size: 0.6rem;
     border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(15, 23, 43, 0.068);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(10px);
+    white-space: nowrap;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+    width: 100%;
+    /* Full width of container */
+    text-align: center;
+  }
+
+  .camera-view-btn.active {
+    background: rgba(81, 162, 255, 0.9);
+    border-color: rgba(81, 162, 255, 1);
+    color: white;
+    box-shadow: 0 0 10px rgba(81, 162, 255, 0.4);
   }
 
   .model-3d-controls-overlay {
-    bottom: 0.5rem;
-    left: 0.5rem;
-    right: 0.5rem;
-  }
-
-  .model-3d-controls-info {
-    gap: 0.4rem 0.8rem;
-    padding: 0.4rem 0.6rem;
-    border-radius: 20px;
-  }
-
-  .model-3d-control-hint {
-    font-size: 0.6rem;
-    gap: 0.3rem;
-  }
-
-  .model-3d-control-icon {
-    font-size: 0.7rem;
+    display: none;
   }
 
   .model-3d-placeholder-content {
-    padding: 1.5rem;
-  }
-
-  .model-3d-placeholder-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .model-3d-placeholder-title {
-    font-size: 1.1rem;
-  }
-
-  .model-3d-placeholder-text {
-    font-size: 0.85rem;
-  }
-}
-
-/* ============================================
-   RESPONSIVE: Very Small Mobile (375px and below)
-   ============================================ */
-
-@media (max-width: 375px) {
-  .model-3d-modal-content {
-    padding: 1rem;
-  }
-
-  .model-3d-modal-title {
-    font-size: 1.1rem;
-  }
-
-  .model-3d-viewer-wrapper {
-    min-height: 220px;
-    max-height: 300px;
-  }
-
-  .camera-view-buttons {
-    gap: 0.25rem;
-    max-width: calc(100% - 2.5rem);
-  }
-
-  .camera-view-btn {
-    padding: 0.3rem 0.5rem;
-    font-size: 0.55rem;
-  }
-
-  .model-3d-controls-info {
-    flex-direction: column;
-    gap: 0.25rem;
-    padding: 0.5rem;
-  }
-
-  .model-3d-placeholder-content {
-    padding: 1rem;
-  }
-
-  .model-3d-placeholder-icon {
-    font-size: 3rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .model-3d-placeholder-title {
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-  }
-
-  .model-3d-placeholder-text {
     font-size: 0.75rem;
   }
 }

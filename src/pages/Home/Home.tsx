@@ -6,7 +6,7 @@ import './Home-iPhoneSE.css';
 import './iPhone12_13_14.css';
 import './IphonePlus_Promax.css';
 import './AndroidStandard.css';
-import { HomePageProps } from './Home.types';
+import type { HomePageProps } from './Home.types';
 import { getAssetUrl } from '../../utils/assets';
 import Button from '../../components/ui/Button/Button';
 import Card, { ServiceCard } from '../../components/ui/Card/Card';

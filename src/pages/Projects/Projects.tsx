@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Projects.css';
-import { ProjectsPageProps } from './Projects.types';
+import type { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
 import { useProjectModals } from '../../hooks/useProjectModals';
 
