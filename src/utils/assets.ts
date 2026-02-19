@@ -12,9 +12,11 @@ export const getAssetUrl = (path: string): string => {
     return path;
   }
 
-  // Ensure no double slashes
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  // Handle encoding for special characters (like '&') in filenames
+  const encodedPath = path.split('/').map(segment => encodeURIComponent(segment)).join('/');
+
+  // Ensure no double slashes (handle potential leading slash in path or trailing in baseUrl)
   const cleanBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
 
-  return `${cleanBase}/${cleanPath}`;
+  return `${cleanBase}/${encodedPath}`;
 };
