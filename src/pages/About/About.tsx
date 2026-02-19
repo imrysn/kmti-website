@@ -14,6 +14,8 @@ const aboutCompany1 = getAssetUrl('about_page/aboutcompany1.png');
 const aboutCompany2 = getAssetUrl('about_page/aboutcomapny2.png');
 const aboutCompany3 = getAssetUrl('about_page/aboutcomapny3.png');
 const aboutCompany4 = getAssetUrl('about_page/aboutcomapny4.png');
+const meeting1 = getAssetUrl('about_page/meeting1.jpg');
+const meeting2 = getAssetUrl('about_page/meeting2.jpg');
 import Button from '../../components/ui/Button';
 import { OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
@@ -67,7 +69,7 @@ const About: React.FC<AboutPageProps> = () => {
   const [currentCompanyImageIndex, setCurrentCompanyImageIndex] = useState(0);
 
   const ourPeopleImages = [ourPeople1, ourPeople2, ourPeople3, ourPeople4, ourPeople5];
-  const aboutCompanyImages = [aboutCompany1, aboutCompany2, aboutCompany3, aboutCompany4];
+  const aboutCompanyImages = [aboutCompany1, aboutCompany2, aboutCompany3, aboutCompany4, meeting1, meeting2];
 
   const navigateToContact = () => navigate('/contact');
   const navigateToProjects = () => navigate('/projects');
