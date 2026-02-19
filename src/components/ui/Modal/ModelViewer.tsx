@@ -161,6 +161,45 @@ interface ModelViewerProps {
   cameraView?: string;
 }
 
+// Error Boundary Component
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(_: Error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("3D Viewer Error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="model-viewer-placeholder">
+          <div className="model-viewer-placeholder-content">
+            <div className="model-viewer-placeholder-icon">⚠️</div>
+            <h3 className="model-viewer-placeholder-title">3D Error</h3>
+            <p className="model-viewer-placeholder-text">Your phone can't render the 3D model.</p>
+            <button
+              className="camera-view-btn"
+              onClick={() => this.setState({ hasError: false })}
+              style={{ marginTop: '1rem', width: 'auto', display: 'inline-block' }}
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
 const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
@@ -225,92 +264,94 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
         </div>
       )}
 
-      <Canvas
-        ref={activeCanvasRef}
-        camera={{ position: [5, 3, 5], fov: 50 }}
-        gl={{
-          preserveDrawingBuffer: true,
-          antialias: true,
-          alpha: true,
-          outputColorSpace: THREE.SRGBColorSpace,
-          toneMapping: THREE.NoToneMapping,
-          powerPreference: 'high-performance',
-        }}
-        style={{ background: 'transparent' }}
-        frameloop="always"
-        dpr={[1, 2]}
-      >
-        <RendererConfig />
+      <ErrorBoundary>
+        <Canvas
+          ref={activeCanvasRef}
+          camera={{ position: [5, 3, 5], fov: 50 }}
+          gl={{
+            antialias: true,
+            alpha: true,
+            outputColorSpace: THREE.SRGBColorSpace,
+            toneMapping: THREE.NoToneMapping,
+            powerPreference: 'default', // Changed from high-performance to prevent context loss
+          }}
+          style={{ background: 'transparent' }}
+          frameloop="always"
+          dpr={[1, 1.5]} // Reduced max DPR for mobile stability
+        >
+          <RendererConfig />
 
-        {/* Enhanced Natural Lighting Setup */}
-        {/* Ambient light - soft overall illumination */}
-        <ambientLight intensity={0.6} />
+          {/* Enhanced Natural Lighting Setup */}
+          {/* Ambient light - soft overall illumination */}
+          <ambientLight intensity={0.6} />
 
-        {/* Key light - main directional light from top-right */}
-        <directionalLight
-          position={[10, 10, 5]}
-          intensity={1.2}
-          castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-        />
-
-        {/* Fill light - softer light from opposite side to reduce harsh shadows */}
-        <directionalLight position={[-8, 5, -3]} intensity={0.4} />
-
-        {/* Back light - adds depth and rim lighting */}
-        <directionalLight position={[0, 3, -10]} intensity={0.3} />
-
-        {/* Hemisphere light - simulates natural sky/ground lighting */}
-        <hemisphereLight
-          color="#ffffff"
-          groundColor="#666666"
-          intensity={0.5}
-        />
-
-        {/* Subtle point light for highlights */}
-        <pointLight position={[0, 8, 0]} intensity={0.3} distance={20} decay={2} />
-
-
-        <Suspense fallback={null}>
-          <Model
-            modelPath={modelPath}
-            modelScale={modelScale}
-            onLoaded={() => setIsLoaded(true)}
-            isInteracting={isInteracting}
-            cameraPosition={getCameraPosition()}
-            onInteractionStart={handleTransitionCancel}
-            cameraView={cameraView}
+          {/* Key light - main directional light from top-right */}
+          <directionalLight
+            position={[10, 10, 5]}
+            intensity={1.2}
+            castShadow
+            shadow-mapSize-width={1024} // Reduced from 2048
+            shadow-mapSize-height={1024} // Reduced from 2048
+            shadow-bias={-0.0001}
           />
-        </Suspense>
 
-        <OrbitControls
-          enableZoom={true}
-          enablePan={true}
-          enableRotate={true}
-          minDistance={0.1}
-          maxDistance={50}
-          target={[0, 0, 0]}
-          autoRotate={false}
-          makeDefault
-          onStart={handleInteractionStart}
-          onEnd={handleInteractionEnd}
-          enableDamping={true}
-          dampingFactor={0.15}
-          rotateSpeed={1.0}
-          zoomSpeed={1.2}
-          panSpeed={1.0}
-          mouseButtons={{
-            LEFT: THREE.MOUSE.ROTATE,
-            MIDDLE: THREE.MOUSE.DOLLY,
-            RIGHT: THREE.MOUSE.PAN
-          }}
-          touches={{
-            ONE: THREE.TOUCH.ROTATE,
-            TWO: THREE.TOUCH.DOLLY_PAN
-          }}
-        />
-      </Canvas>
+          {/* Fill light - softer light from opposite side to reduce harsh shadows */}
+          <directionalLight position={[-8, 5, -3]} intensity={0.4} />
+
+          {/* Back light - adds depth and rim lighting */}
+          <directionalLight position={[0, 3, -10]} intensity={0.3} />
+
+          {/* Hemisphere light - simulates natural sky/ground lighting */}
+          <hemisphereLight
+            color="#ffffff"
+            groundColor="#666666"
+            intensity={0.5}
+          />
+
+          {/* Subtle point light for highlights */}
+          <pointLight position={[0, 8, 0]} intensity={0.3} distance={20} decay={2} />
+
+
+          <Suspense fallback={null}>
+            <Model
+              modelPath={modelPath}
+              modelScale={modelScale}
+              onLoaded={() => setIsLoaded(true)}
+              isInteracting={isInteracting}
+              cameraPosition={getCameraPosition()}
+              onInteractionStart={handleTransitionCancel}
+              cameraView={cameraView}
+            />
+          </Suspense>
+
+          <OrbitControls
+            enableZoom={true}
+            enablePan={true}
+            enableRotate={true}
+            minDistance={0.1}
+            maxDistance={50}
+            target={[0, 0, 0]}
+            autoRotate={false}
+            makeDefault
+            onStart={handleInteractionStart}
+            onEnd={handleInteractionEnd}
+            enableDamping={true}
+            dampingFactor={0.15}
+            rotateSpeed={1.0}
+            zoomSpeed={1.2}
+            panSpeed={1.0}
+            mouseButtons={{
+              LEFT: THREE.MOUSE.ROTATE,
+              MIDDLE: THREE.MOUSE.DOLLY,
+              RIGHT: THREE.MOUSE.PAN
+            }}
+            touches={{
+              ONE: THREE.TOUCH.ROTATE,
+              TWO: THREE.TOUCH.DOLLY_PAN
+            }}
+          />
+        </Canvas>
+      </ErrorBoundary>
     </div>
   );
 };
