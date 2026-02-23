@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './LazyVideo.css';
+import LazyImage from '../LazyImage/LazyImage';
 
 interface LazyVideoProps {
   src: string;
@@ -70,7 +71,7 @@ const LazyVideo: React.FC<LazyVideoProps> = ({
       </video>
       {!isLoaded && (
         <div className="lazy-video-placeholder">
-          {poster && <img src={poster} alt="Video placeholder" />}
+          {poster && <LazyImage src={poster} alt="Video placeholder" />}
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Careers.css';
@@ -83,7 +84,7 @@ const Careers: React.FC<CareersPageProps> = () => {
       <section className="hero-section">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${careersBg})` }}></div>
         <div className="hero-overlay"></div>
-        <img src={kmtiModel} alt="KMTI Team" className="careers-hero-model" />
+        <LazyImage src={kmtiModel} alt="KMTI Team" wrapperClassName="careers-hero-model" loading="eager" />
         <div className="hero-container container">
           <div className="hero-content">
             <h1 className="hero-title">{t('careers.hero.title')}</h1>
@@ -126,15 +127,15 @@ const Careers: React.FC<CareersPageProps> = () => {
             </p>
             <ul className="meet-our-team-list">
               <li>
-                <img src={checkIcon} alt="Check" className="meet-our-team-check-icon" />
+                <LazyImage src={checkIcon} alt="Check" wrapperClassName="meet-our-team-check-icon" />
                 <span>{t('careers.team.list.item1')}</span>
               </li>
               <li>
-                <img src={checkIcon} alt="Check" className="meet-our-team-check-icon" />
+                <LazyImage src={checkIcon} alt="Check" wrapperClassName="meet-our-team-check-icon" />
                 <span>{t('careers.team.list.item2')}</span>
               </li>
               <li>
-                <img src={checkIcon} alt="Check" className="meet-our-team-check-icon" />
+                <LazyImage src={checkIcon} alt="Check" wrapperClassName="meet-our-team-check-icon" />
                 <span>{t('careers.team.list.item3')}</span>
               </li>
             </ul>
@@ -143,7 +144,7 @@ const Careers: React.FC<CareersPageProps> = () => {
             </div>
           </div>
           <div className="meet-our-team-image-wrapper">
-            <img src={teamPhoto} alt="KMTI Team" className="meet-our-team-image" />
+            <LazyImage src={teamPhoto} alt="KMTI Team" className="meet-our-team-image" />
           </div>
         </div>
       </section>
@@ -217,14 +218,14 @@ const Careers: React.FC<CareersPageProps> = () => {
               title={t('careers.apply.contact.title')}
             >
               <div className="contact-item">
-                <img src={contactIcon} alt="Phone" className="contact-item-icon" />
+                <LazyImage src={contactIcon} alt="Phone" wrapperClassName="contact-item-icon" />
                 <div className="contact-item-content">
                   <div className="contact-item-label">{t('careers.apply.contact.phone_label')}</div>
                   <div className="contact-item-value">(046) 413-4509</div>
                 </div>
               </div>
               <div className="contact-item">
-                <img src={emailIcon} alt="Email" className="contact-item-icon" />
+                <LazyImage src={emailIcon} alt="Email" wrapperClassName="contact-item-icon" />
                 <div className="contact-item-content">
                   <div className="contact-item-label">{t('careers.apply.contact.email_label')}</div>
                   <div className="contact-item-value">info@kmti.com.ph</div>

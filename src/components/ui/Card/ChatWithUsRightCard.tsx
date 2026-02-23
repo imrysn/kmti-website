@@ -113,7 +113,7 @@ const ChatWithUsRightCard: React.FC<ChatWithUsRightCardProps> = ({
         {/* Facebook Message */}
         <div className="chatbot-card-message-bubble">
           <div className="chatbot-card-message-icon-left">
-            <img
+            <LazyImage
               src={profileImage || defaultProfileImage}
               alt="Bot"
               className="chatbot-card-message-bot-icon"

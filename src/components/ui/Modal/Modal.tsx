@@ -298,7 +298,12 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; init
           <div className="project-modal-left">
             <TransformWrapper>
               <TransformComponent>
-                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="project"
+                  loading="eager"
+                />
               </TransformComponent>
             </TransformWrapper>
           </div>
@@ -327,7 +332,7 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; init
           <div className="project-modal-thumbnails">
             {displayProjects.map((p, i) => (
               <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
-                <img src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
+                <LazyImage src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
               </button>
             ))}
           </div>
@@ -382,7 +387,12 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
           <div className="project-modal-left">
             <TransformWrapper>
               <TransformComponent>
-                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="project"
+                  loading="eager"
+                />
               </TransformComponent>
             </TransformWrapper>
           </div>
@@ -411,7 +421,7 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
           <div className="project-modal-thumbnails">
             {displayItems.map((p, i) => (
               <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
-                <img src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
+                <LazyImage src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
               </button>
             ))}
           </div>
@@ -446,7 +456,12 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
           <div className="project-modal-left">
             <TransformWrapper>
               <TransformComponent>
-                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="project"
+                  loading="eager"
+                />
               </TransformComponent>
             </TransformWrapper>
           </div>
@@ -463,7 +478,7 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
           <div className="project-modal-thumbnails">
             {/* Single item, just show one thumbnail or maybe none correctly, but keeping consistency */}
             <button className="project-modal-thumbnail active">
-              <img src={curr.image} className="project-modal-thumbnail-image" alt="thumb" />
+              <LazyImage src={curr.image} className="project-modal-thumbnail-image" alt="thumb" />
             </button>
           </div>
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
@@ -518,7 +533,12 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
           <div className="project-modal-left">
             <TransformWrapper>
               <TransformComponent>
-                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="project"
+                  loading="eager"
+                />
               </TransformComponent>
             </TransformWrapper>
           </div>
@@ -547,7 +567,7 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
           <div className="project-modal-thumbnails">
             {displayItems.map((p, i) => (
               <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
-                <img src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
+                <LazyImage src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
               </button>
             ))}
           </div>
@@ -598,7 +618,12 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
           <div className="project-modal-left">
             <TransformWrapper>
               <TransformComponent>
-                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="project"
+                  loading="eager"
+                />
               </TransformComponent>
             </TransformWrapper>
           </div>
@@ -617,7 +642,7 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
           <div className="project-modal-thumbnails">
             {items.map((p, i) => (
               <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
-                <img src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
+                <LazyImage src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
               </button>
             ))}
           </div>
@@ -668,7 +693,12 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
           <div className="project-modal-left">
             <TransformWrapper>
               <TransformComponent>
-                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="project"
+                  loading="eager"
+                />
               </TransformComponent>
             </TransformWrapper>
           </div>
@@ -687,7 +717,7 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
           <div className="project-modal-thumbnails">
             {items.map((p, i) => (
               <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
-                <img src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
+                <LazyImage src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
               </button>
             ))}
           </div>
@@ -722,7 +752,12 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
           <div className="project-modal-left">
             <TransformWrapper>
               <TransformComponent>
-                <img src={curr.image} className="project-modal-main-image project-modal-zoomable-image" alt="project" />
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="project"
+                  loading="eager"
+                />
               </TransformComponent>
             </TransformWrapper>
           </div>
@@ -744,7 +779,7 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
         <div className="project-modal-thumbnails-section">
           <div className="project-modal-thumbnails">
             <button className="project-modal-thumbnail active">
-              <img src={curr.image} className="project-modal-thumbnail-image" alt="thumb" />
+              <LazyImage src={curr.image} className="project-modal-thumbnail-image" alt="thumb" />
             </button>
           </div>
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
@@ -778,7 +813,13 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
           <div className="project-modal-left">
             <TransformWrapper>
               <TransformComponent>
-                <img src={curr.image} className="project-modal-main-image" alt="project" style={{ cursor: 'grab' }} />
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image"
+                  alt="project"
+                  style={{ cursor: 'grab' }}
+                  loading="eager"
+                />
               </TransformComponent>
             </TransformWrapper>
           </div>
@@ -794,7 +835,7 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
         <div className="project-modal-thumbnails-section">
           <div className="project-modal-thumbnails">
             <button className="project-modal-thumbnail active">
-              <img src={curr.image} className="project-modal-thumbnail-image" alt="thumb" />
+              <LazyImage src={curr.image} className="project-modal-thumbnail-image" alt="thumb" />
             </button>
           </div>
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>

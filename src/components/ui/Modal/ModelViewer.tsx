@@ -200,7 +200,7 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
   }
 }
 
-const LOAD_TIMEOUT_MS = 60000; // 60 seconds — show retry if model hasn't loaded
+const LOAD_TIMEOUT_MS = 15000; // 15 seconds — show retry if model hasn't loaded
 
 const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
   const [isLoaded, setIsLoaded] = useState(false);

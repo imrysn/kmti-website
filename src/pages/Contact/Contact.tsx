@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import { useTranslation, Trans } from 'react-i18next';
 import './Contact.css';
 import type { ContactPageProps } from './Contact.types';
@@ -176,7 +177,7 @@ const Contact: React.FC<ContactPageProps> = () => {
 
               <div className="contact-info-item">
                 <div className="contact-info-icon-wrapper">
-                  <img src={mapsIcon} alt="Address" className="contact-info-icon" />
+                  <LazyImage src={mapsIcon} alt="Address" wrapperClassName="contact-info-icon" />
                 </div>
                 <div className="contact-info-details">
                   <h3>{t('contact.info.label_address')}</h3>
@@ -186,7 +187,7 @@ const Contact: React.FC<ContactPageProps> = () => {
 
               <div className="contact-info-item">
                 <div className="contact-info-icon-wrapper">
-                  <img src={contactIcon} alt="Phone" className="contact-info-icon" />
+                  <LazyImage src={contactIcon} alt="Phone" wrapperClassName="contact-info-icon" />
                 </div>
                 <div className="contact-info-details">
                   <h3>{t('contact.info.label_phone')}</h3>
@@ -196,7 +197,7 @@ const Contact: React.FC<ContactPageProps> = () => {
 
               <div className="contact-info-item">
                 <div className="contact-info-icon-wrapper">
-                  <img src={emailIcon} alt="Email" className="contact-info-icon" />
+                  <LazyImage src={emailIcon} alt="Email" wrapperClassName="contact-info-icon" />
                 </div>
                 <div className="contact-info-details">
                   <h3>{t('contact.info.label_email')}</h3>
@@ -206,7 +207,7 @@ const Contact: React.FC<ContactPageProps> = () => {
 
               <div className="contact-info-item">
                 <div className="contact-info-icon-wrapper">
-                  <img src={linkedinIcon} alt="LinkedIn" className="contact-info-icon" />
+                  <LazyImage src={linkedinIcon} alt="LinkedIn" wrapperClassName="contact-info-icon" />
                 </div>
                 <div className="contact-info-details">
                   <h3>LinkedIn</h3>
@@ -216,7 +217,7 @@ const Contact: React.FC<ContactPageProps> = () => {
 
               <div className="contact-info-item">
                 <div className="contact-info-icon-wrapper">
-                  <img src={facebookIcon} alt="Facebook" className="contact-info-icon" />
+                  <LazyImage src={facebookIcon} alt="Facebook" wrapperClassName="contact-info-icon" />
                 </div>
                 <div className="contact-info-details">
                   <h3>Facebook</h3>
@@ -256,7 +257,7 @@ const Contact: React.FC<ContactPageProps> = () => {
             <div className="chat-with-us-left">
               <div className="chat-with-us-header">
                 <div className="chat-with-us-icon-container">
-                  <img src={chatIcon} alt="Chat" className="chat-with-us-icon" />
+                  <LazyImage src={chatIcon} alt="Chat" className="chat-with-us-icon" />
                 </div>
                 <h2 className="chat-with-us-title">
                   {t('contact.chat.title_main')} <span className="chat-with-us-title-highlight">{t('contact.chat.title_highlight')}</span>
@@ -267,28 +268,28 @@ const Contact: React.FC<ContactPageProps> = () => {
 
               <ul className="chat-with-us-features">
                 <li className="chat-with-us-feature">
-                  <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
+                  <LazyImage src={circleIcon} alt="Feature" wrapperClassName="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
                     <strong className="chat-with-us-feature-title">{t('contact.chat.features.f1.title')}</strong>
                     <span className="chat-with-us-feature-text"><Trans i18nKey="contact.chat.features.f1.text" components={{ br: <br /> }} /></span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">
-                  <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
+                  <LazyImage src={circleIcon} alt="Feature" wrapperClassName="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
                     <strong className="chat-with-us-feature-title">{t('contact.chat.features.f2.title')}</strong>
                     <span className="chat-with-us-feature-text">{t('contact.chat.features.f2.text')}</span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">
-                  <img src={circleIcon} alt="Feature" className="chat-with-us-feature-icon" />
+                  <LazyImage src={circleIcon} alt="Feature" wrapperClassName="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
                     <strong className="chat-with-us-feature-title">{t('contact.chat.features.f3.title')}</strong>
                     <span className="chat-with-us-feature-text">{t('contact.chat.features.f3.text')}</span>
                   </div>
                 </li>
                 <li className="chat-with-us-feature">
-                  <img src={innovationIcon} alt="Feature" className="chat-with-us-feature-icon" />
+                  <LazyImage src={innovationIcon} alt="Feature" wrapperClassName="chat-with-us-feature-icon" />
                   <div className="chat-with-us-feature-content">
                     <strong className="chat-with-us-feature-title">{t('contact.chat.features.f4.title')}</strong>
                     <span className="chat-with-us-feature-text"><Trans i18nKey="contact.chat.features.f4.text" components={{ br: <br /> }} /></span>

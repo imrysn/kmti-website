@@ -8,6 +8,7 @@ import '../Home/AndroidStandard.css';
 import '../Home/IphonePlus_Promax.css';
 import type { AboutPageProps } from './About.types';
 import { getAssetUrl } from '../../utils/assets';
+import LazyImage from '../../components/ui/LazyImage/LazyImage';
 
 const aboutBg = getAssetUrl('hero_background/about.png');
 const aboutCompany1 = getAssetUrl('about_page/aboutcompany1.png');
@@ -127,7 +128,7 @@ const About: React.FC<AboutPageProps> = () => {
                   key={index}
                   className={`about-company-image-wrapper ${index === currentCompanyImageIndex ? 'active' : ''}`}
                 >
-                  <img src={image} alt={`Company image ${index + 1}`} className="about-company-image" />
+                  <LazyImage src={image} alt={`Company image ${index + 1}`} className="about-company-image" />
                 </div>
               ))}
             </div>
@@ -263,7 +264,7 @@ const About: React.FC<AboutPageProps> = () => {
                 style={{ opacity: index === currentImageIndex ? 1 : 0, zIndex: index === currentImageIndex ? 1 : 0 }}
               >
                 <div className="our-people-image-container">
-                  <img src={image} alt={`Our People ${index + 1}`} className="our-people-image" />
+                  <LazyImage src={image} alt={`Our People ${index + 1}`} className="our-people-image" />
                 </div>
               </div>
             ))}

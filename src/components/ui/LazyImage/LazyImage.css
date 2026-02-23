@@ -19,11 +19,18 @@
 .service-page-card-icon-wrapper .lazy-image-wrapper,
 .chatbot-card-message-bot-icon.lazy-image-wrapper,
 .chatbot-card-menu-icon-wrapper .lazy-image-wrapper,
-.footer__contact-icon .lazy-image-wrapper {
-    width: auto;
-    height: auto;
-    flex-shrink: 0;
-    display: inline-flex;
+.footer__contact-icon .lazy-image-wrapper,
+.meet-our-team-check-icon.lazy-image-wrapper,
+.contact-item-icon.lazy-image-wrapper,
+.apply-card-icon.lazy-image-wrapper,
+.contact-info-icon.lazy-image-wrapper,
+.chat-with-us-icon.lazy-image-wrapper,
+.chat-with-us-feature-icon.lazy-image-wrapper,
+.how-to-apply-card-icon.lazy-image-wrapper {
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    overflow: visible;
+    /* Allow icons like shadow or glow to peek out */
 }
 
 /* ============================================
@@ -67,11 +74,18 @@
 .how-to-apply-card-icon.lazy-image-img,
 .chatbot-card-message-bot-icon.lazy-image-img,
 .chatbot-card-menu-icon.lazy-image-img,
-.related-company-logo.lazy-image-img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
+.related-company-logo.lazy-image-img,
+.meet-our-team-check-icon.lazy-image-img,
+.contact-item-icon.lazy-image-img,
+.apply-card-icon.lazy-image-img,
+.contact-info-icon.lazy-image-img,
+.chat-with-us-icon.lazy-image-img,
+.chat-with-us-feature-icon.lazy-image-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
 }
 
 

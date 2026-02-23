@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './ServiceDetail.css';
@@ -150,11 +151,11 @@ const ServiceDetail: React.FC = () => {
                   onMouseLeave={() => setIsPaused(false)}
                 >
                   {images.map((img, i) => (
-                    <img
+                    <LazyImage
                       key={i}
                       src={img}
                       alt={`${serviceKey} ${i}`}
-                      className={`service-detail-image ${i === currentImageIndex ? 'active' : ''}`}
+                      wrapperClassName={`service-detail-image ${i === currentImageIndex ? 'active' : ''}`}
                     />
                   ))}
 
@@ -187,10 +188,11 @@ const ServiceDetail: React.FC = () => {
                         maxScale={4}
                       >
                         <TransformComponent wrapperClass="zoom-wrapper" contentClass="zoom-content">
-                          <img
+                          <LazyImage
                             src={img}
                             alt={`${serviceKey} ${i}`}
                             className="service-detail-static-image"
+                            loading="eager"
                           />
                         </TransformComponent>
                       </TransformWrapper>

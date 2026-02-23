@@ -374,11 +374,11 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
       <h3 className="apply-card-title">{title}</h3>
       <div className="apply-card-meta">
         <span className="apply-card-location">
-          {locationIcon && <img src={locationIcon} alt="Location" className="apply-card-icon" />}
+          {locationIcon && <LazyImage src={locationIcon} alt="Location" wrapperClassName="apply-card-icon" />}
           {location}
         </span>
         <span className="apply-card-type">
-          {typeIcon && <img src={typeIcon} alt="Type" className="apply-card-icon" />}
+          {typeIcon && <LazyImage src={typeIcon} alt="Type" wrapperClassName="apply-card-icon" />}
           {type}
         </span>
       </div>
@@ -464,7 +464,7 @@ export const HowToApplyCard: React.FC<HowToApplyCardProps> = ({
     <div className={`how-to-apply-card ${className}`}>
       {icon && (
         <div className="how-to-apply-card-header">
-          <LazyImage src={icon!} alt={title} className="how-to-apply-card-icon" />
+          <LazyImage src={icon!} alt={title} wrapperClassName="how-to-apply-card-icon" />
           <h3 className="how-to-apply-card-title">{title}</h3>
         </div>
       )}
