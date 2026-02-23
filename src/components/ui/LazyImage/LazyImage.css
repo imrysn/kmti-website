@@ -26,7 +26,8 @@
 .contact-info-icon.lazy-image-wrapper,
 .chat-with-us-icon.lazy-image-wrapper,
 .chat-with-us-feature-icon.lazy-image-wrapper,
-.how-to-apply-card-icon.lazy-image-wrapper {
+.how-to-apply-card-icon.lazy-image-wrapper,
+.projects-card-image-container .lazy-image-wrapper {
     flex-shrink: 0 !important;
     display: inline-flex !important;
     overflow: visible;

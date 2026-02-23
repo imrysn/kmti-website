@@ -227,9 +227,14 @@
 }
 
 .model-3d-placeholder-icon {
-  font-size: 5rem;
-  margin-bottom: 1.5rem;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  color: #51a2ff;
   opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: placeholderFloat 3s ease-in-out infinite;
 }
 
@@ -422,12 +427,18 @@
 }
 
 .model-3d-control-icon {
-  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #51a2ff;
   transition: transform 0.3s ease;
 }
 
 .model-3d-control-hint:hover .model-3d-control-icon {
-  transform: scale(1.2);
+  transform: scale(1.15) translateY(-1px);
+  color: #ffffff;
 }
 
 /* ============================================

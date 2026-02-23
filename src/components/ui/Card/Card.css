@@ -724,7 +724,7 @@
 }
 
 .projects-card-image-container:hover .projects-card-image {
-  transform: scale(2);
+  transform: scale(2) translateY(-10%);
   filter: brightness(1.1);
 }
 

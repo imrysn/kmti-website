@@ -200,18 +200,26 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
   }
 }
 
-const LOAD_TIMEOUT_MS = 15000; // 15 seconds — show retry if model hasn't loaded
+const LOAD_TIMEOUT_MS = 60000; // 60 seconds — show retry if model hasn't loaded
 
 const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
   const [remountKey, setRemountKey] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const internalCanvasRef = useRef<HTMLCanvasElement>(null);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const activeCanvasRef = canvasRef || internalCanvasRef;
+
+  // Mobile detection
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Start the load timeout whenever modelPath changes or remountKey changes
   useEffect(() => {
@@ -234,7 +242,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   }, [isLoaded]);
 
   const getCameraPosition = (): [number, number, number] => {
-    const distance = 8;
+    const distance = isMobile ? 10 : 8;
     switch (cameraView) {
       case 'front': return [0, 0, distance];
       case 'back': return [0, 0, -distance];
@@ -242,7 +250,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
       case 'right': return [distance, 0, 0];
       case 'top': return [0, distance, 0];
       case 'isometric':
-      default: return [5, 3, 5];
+      default: return [isMobile ? 7 : 5, isMobile ? 4 : 3, isMobile ? 7 : 5];
     }
   };
 
@@ -309,7 +317,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
       {!timedOut && <ErrorBoundary>
         <Canvas
           ref={activeCanvasRef}
-          camera={{ position: [5, 3, 5], fov: 50 }}
+          camera={{ position: isMobile ? [7, 4, 7] : [5, 3, 5], fov: 50 }}
           gl={{
             antialias: true,
             alpha: true,
@@ -357,7 +365,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           <Suspense fallback={null}>
             <Model
               modelPath={modelPath}
-              modelScale={modelScale}
+              modelScale={(modelScale || 3) * (isMobile ? 0.65 : 1)}
               onLoaded={() => setIsLoaded(true)}
               isInteracting={isInteracting}
               cameraPosition={getCameraPosition()}
