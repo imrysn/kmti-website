@@ -11,6 +11,15 @@ import { getAssetUrl } from '../../utils/assets';
 import Button from '../../components/ui/Button/Button';
 import Card, { ServiceCard } from '../../components/ui/Card/Card';
 import ProjectCarousel from '../../components/ui/ProjectCarousel/ProjectCarousel';
+import {
+  PrecisionIcon,
+  InnovationIcon,
+  ExperienceIcon,
+  CubeIcon,
+  CubesIcon,
+  InspectionIcon,
+  AssemblyIcon
+} from '../../components/ui/Icons/ProjectIcons';
 
 const homeBg = getAssetUrl('hero_background/homebg.jpeg');
 
@@ -44,21 +53,22 @@ const Home: React.FC<HomePageProps> = () => {
   const navigateToContact = () => navigate('/contact');
 
   const whyChooseUs = [
-    { id: 1, title: t('home.why_choose.precision.title'), description: t('home.why_choose.precision.desc'), icon: precisionIcon },
-    { id: 2, title: t('home.why_choose.innovation.title'), description: t('home.why_choose.innovation.desc'), icon: innovationIcon },
+    { id: 1, title: t('home.why_choose.precision.title'), description: t('home.why_choose.precision.desc'), icon: precisionIcon, fallback: <PrecisionIcon /> },
+    { id: 2, title: t('home.why_choose.innovation.title'), description: t('home.why_choose.innovation.desc'), icon: innovationIcon, fallback: <InnovationIcon /> },
     {
       id: 3,
       title: t('home.why_choose.experience.title'),
       description: <Trans i18nKey="home.why_choose.experience.desc" components={{ br: <br /> }} />,
-      icon: experienceIcon
+      icon: experienceIcon,
+      fallback: <ExperienceIcon />
     },
   ];
 
   const services = [
-    { id: 1, title: t('home.services.items.3d.title'), description: t('home.services.items.3d.desc'), icon: icon3D },
-    { id: 2, title: t('home.services.items.2d.title'), description: <Trans i18nKey="home.services.items.2d.desc" components={{ br: <br /> }} />, icon: icon2D },
-    { id: 3, title: t('home.services.items.inspection.title'), description: <Trans i18nKey="home.services.items.inspection.desc" components={{ br: <br /> }} />, icon: inspectionIcon },
-    { id: 4, title: t('home.services.items.assembly.title'), description: <Trans i18nKey="home.services.items.assembly.desc" components={{ br: <br /> }} />, icon: assemblyIcon },
+    { id: 1, title: t('home.services.items.3d.title'), description: t('home.services.items.3d.desc'), icon: icon3D, fallback: <CubeIcon /> },
+    { id: 2, title: t('home.services.items.2d.title'), description: <Trans i18nKey="home.services.items.2d.desc" components={{ br: <br /> }} />, icon: icon2D, fallback: <CubesIcon /> },
+    { id: 3, title: t('home.services.items.inspection.title'), description: <Trans i18nKey="home.services.items.inspection.desc" components={{ br: <br /> }} />, icon: inspectionIcon, fallback: <InspectionIcon /> },
+    { id: 4, title: t('home.services.items.assembly.title'), description: <Trans i18nKey="home.services.items.assembly.desc" components={{ br: <br /> }} />, icon: assemblyIcon, fallback: <AssemblyIcon /> },
   ];
 
   const projects = [
@@ -113,6 +123,7 @@ const Home: React.FC<HomePageProps> = () => {
                 <ServiceCard
                   key={service.id}
                   icon={service.icon}
+                  fallbackNode={service.fallback}
                   title={service.title}
                   subtitle={service.description}
                   linkText={t('common.learn_more')}
@@ -140,6 +151,7 @@ const Home: React.FC<HomePageProps> = () => {
               <Card
                 key={item.id}
                 icon={item.icon}
+                fallbackNode={item.fallback}
                 title={item.title}
                 subtitle={item.description}
               />

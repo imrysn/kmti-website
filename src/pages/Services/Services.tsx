@@ -9,6 +9,12 @@ import { ServicePageCard } from '../../components/ui/Card/Card';
 import Button from '../../components/ui/Button';
 import { getAssetUrl } from '../../utils/assets';
 import ServiceDetail from './ServiceDetail';
+import {
+  CubeIcon,
+  CubesIcon,
+  InspectionIcon,
+  AssemblyIcon
+} from '../../components/ui/Icons/ProjectIcons';
 
 const servicesBg = getAssetUrl('hero_background/servicesbg.png');
 const icon3D = getAssetUrl('icons/cube.png');
@@ -144,12 +150,23 @@ const Services: React.FC<ServicesPageProps> = () => {
                   spanClass = 'service-span-2';
                 }
 
+                const getFallback = (id: number) => {
+                  switch (id) {
+                    case 1: return <CubeIcon />;
+                    case 2: return <CubesIcon />;
+                    case 3: return <InspectionIcon />;
+                    case 4: return <AssemblyIcon />;
+                    default: return undefined;
+                  }
+                };
+
                 return (
                   <div key={s.id} className={`service-card-wrapper ${spanClass}`}>
                     <ServicePageCard
                       image={s.image}
                       video={s.video}
                       icon={s.icon}
+                      fallbackNode={getFallback(s.id)}
                       title={t(`services.items.${s.id === 1 ? '3d' : s.id === 2 ? '2d' : s.id === 3 ? 'inspection' : 'assembly'}.title`)}
                       subtitle={s.description}
                       onClick={() => navigate(`/services/${getSlug(s.id)}`)}

@@ -8,17 +8,19 @@ import { getAssetUrl } from '../../utils/assets';
 
 const careersBg = getAssetUrl('hero_background/careersbg.jpg');
 const kmtiModel = getAssetUrl('hero_background/career_model.png');
-const mapsIcon = getAssetUrl('icons/maps-icon.png');
-const clockIcon = getAssetUrl('icons/clock-icon.png');
-const insuranceIcon = getAssetUrl('icons/insurance-icon.png');
-const benefitsIcon = getAssetUrl('icons/benefits-icon.png');
-const thirteenthMonthIcon = getAssetUrl('icons/13thmonth-icon.png');
-const allowanceIcon = getAssetUrl('icons/allowance-icon.png');
-const careerIcon = getAssetUrl('icons/career-icon.png');
-const checkIcon = getAssetUrl('icons/check-icon.png');
-const teamPhoto = getAssetUrl('about_page/ourpeople4.png');
-const contactIcon = getAssetUrl('icons/contact.png');
-const emailIcon = getAssetUrl('icons/email-icon.png');
+import {
+  LocationIcon,
+  ClockIcon,
+  InsuranceIcon,
+  BenefitIcon,
+  ThirteenthMonthIcon,
+  AllowanceIcon,
+  CareerIcon,
+  CheckIcon,
+  PhoneIcon,
+  EmailIcon,
+  UserIcon
+} from '../../components/ui/Icons/ProjectIcons';
 import Button from '../../components/ui/Button/Button';
 import { ApplyCard, WhyWorkWithUsCard, HowToApplyCard } from '../../components/ui/Card/Card';
 
@@ -40,19 +42,22 @@ const Careers: React.FC<CareersPageProps> = () => {
       id: 1,
       title: t('careers.why_work.benefits.insurance.title'),
       description: t('careers.why_work.benefits.insurance.desc'),
-      icon: insuranceIcon,
+      icon: getAssetUrl('icons/insurance-icon.png'),
+      fallback: <InsuranceIcon />,
     },
     {
       id: 2,
       title: t('careers.why_work.benefits.gov.title'),
       description: t('careers.why_work.benefits.gov.desc'),
-      icon: benefitsIcon,
+      icon: getAssetUrl('icons/benefits-icon.png'),
+      fallback: <BenefitIcon />,
     },
     {
       id: 3,
       title: t('careers.why_work.benefits.thirteenth.title'),
       description: t('careers.why_work.benefits.thirteenth.desc'),
-      icon: thirteenthMonthIcon,
+      icon: getAssetUrl('icons/13thmonth-icon.png'),
+      fallback: <ThirteenthMonthIcon />,
     },
     {
       id: 4,
@@ -63,19 +68,22 @@ const Careers: React.FC<CareersPageProps> = () => {
           components={{ br: <br /> }}
         />
       ),
-      icon: allowanceIcon,
+      icon: getAssetUrl('icons/allowance-icon.png'),
+      fallback: <AllowanceIcon />,
     },
     {
       id: 5,
       title: t('careers.why_work.benefits.training.title'),
       description: t('careers.why_work.benefits.training.desc'),
-      icon: mapsIcon,
+      icon: getAssetUrl('icons/maps-icon.png'),
+      fallback: <LocationIcon />,
     },
     {
       id: 6,
       title: t('careers.why_work.benefits.career.title'),
       description: t('careers.why_work.benefits.career.desc'),
-      icon: careerIcon,
+      icon: getAssetUrl('icons/career-icon.png'),
+      fallback: <CareerIcon />,
     },
   ];
 
@@ -110,6 +118,7 @@ const Careers: React.FC<CareersPageProps> = () => {
               <WhyWorkWithUsCard
                 key={item.id}
                 icon={item.icon}
+                fallbackNode={item.fallback}
                 title={item.title}
                 subtitle={item.description}
               />
@@ -127,15 +136,15 @@ const Careers: React.FC<CareersPageProps> = () => {
             </p>
             <ul className="meet-our-team-list">
               <li>
-                <LazyImage src={checkIcon} alt="Check" wrapperClassName="meet-our-team-check-icon" />
+                <div className="meet-our-team-check-icon"><CheckIcon /></div>
                 <span>{t('careers.team.list.item1')}</span>
               </li>
               <li>
-                <LazyImage src={checkIcon} alt="Check" wrapperClassName="meet-our-team-check-icon" />
+                <div className="meet-our-team-check-icon"><CheckIcon /></div>
                 <span>{t('careers.team.list.item2')}</span>
               </li>
               <li>
-                <LazyImage src={checkIcon} alt="Check" wrapperClassName="meet-our-team-check-icon" />
+                <div className="meet-our-team-check-icon"><CheckIcon /></div>
                 <span>{t('careers.team.list.item3')}</span>
               </li>
             </ul>
@@ -144,7 +153,12 @@ const Careers: React.FC<CareersPageProps> = () => {
             </div>
           </div>
           <div className="meet-our-team-image-wrapper">
-            <LazyImage src={teamPhoto} alt="KMTI Team" className="meet-our-team-image" />
+            <LazyImage
+              src={getAssetUrl('about_page/ourpeople4.png')}
+              alt="KMTI Team"
+              className="meet-our-team-image"
+              fallbackNode={<div className="team-photo-fallback"><UserIcon /></div>}
+            />
           </div>
         </div>
       </section>
@@ -160,8 +174,10 @@ const Careers: React.FC<CareersPageProps> = () => {
               title={t('careers.positions.eng.title')}
               location={t('careers.positions.eng.location')}
               type={t('careers.positions.eng.type')}
-              locationIcon={mapsIcon}
-              typeIcon={clockIcon}
+              locationIcon={getAssetUrl('icons/maps-icon.png')}
+              locationFallbackNode={<LocationIcon />}
+              typeIcon={getAssetUrl('icons/clock-icon.png')}
+              typeFallbackNode={<ClockIcon />}
               description={t('careers.positions.eng.desc')}
               skills={t('careers.positions.eng.skills', { returnObjects: true }) as string[]}
               requirements={t('careers.positions.eng.requirements', { returnObjects: true }) as string[]}
@@ -178,8 +194,10 @@ const Careers: React.FC<CareersPageProps> = () => {
               title={t('careers.positions.admin.title')}
               location={t('careers.positions.admin.location')}
               type={t('careers.positions.admin.type')}
-              locationIcon={mapsIcon}
-              typeIcon={clockIcon}
+              locationIcon={getAssetUrl('icons/maps-icon.png')}
+              locationFallbackNode={<LocationIcon />}
+              typeIcon={getAssetUrl('icons/clock-icon.png')}
+              typeFallbackNode={<ClockIcon />}
               description={t('careers.positions.admin.desc')}
               requirements={t('careers.positions.admin.requirements', { returnObjects: true }) as string[]}
               preferredCourses={t('careers.positions.admin.courses', { returnObjects: true }) as string[]}
@@ -203,7 +221,8 @@ const Careers: React.FC<CareersPageProps> = () => {
           </p>
           <div className="how-to-apply-grid">
             <HowToApplyCard
-              icon={mapsIcon}
+              icon={getAssetUrl('icons/maps-icon.png')}
+              fallbackNode={<LocationIcon />}
               title={t('careers.apply.visit.title')}
             >
               <p>{t('careers.apply.visit.text')}</p>
@@ -218,14 +237,14 @@ const Careers: React.FC<CareersPageProps> = () => {
               title={t('careers.apply.contact.title')}
             >
               <div className="contact-item">
-                <LazyImage src={contactIcon} alt="Phone" wrapperClassName="contact-item-icon" />
+                <LazyImage src={getAssetUrl('icons/contact.png')} alt="Phone" wrapperClassName="contact-item-icon" fallbackNode={<PhoneIcon />} />
                 <div className="contact-item-content">
                   <div className="contact-item-label">{t('careers.apply.contact.phone_label')}</div>
                   <div className="contact-item-value">(046) 413-4509</div>
                 </div>
               </div>
               <div className="contact-item">
-                <LazyImage src={emailIcon} alt="Email" wrapperClassName="contact-item-icon" />
+                <LazyImage src={getAssetUrl('icons/email-icon.png')} alt="Email" wrapperClassName="contact-item-icon" fallbackNode={<EmailIcon />} />
                 <div className="contact-item-content">
                   <div className="contact-item-label">{t('careers.apply.contact.email_label')}</div>
                   <div className="contact-item-value">info@kmti.com.ph</div>

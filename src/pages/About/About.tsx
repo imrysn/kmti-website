@@ -21,6 +21,7 @@ import Button from '../../components/ui/Button';
 import { OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
 import { ManagementTeamCard, RelatedCompanyCard } from '../../components/ui/Card/Card';
+import { VisionIcon, MissionIcon, UserIcon } from '../../components/ui/Icons/ProjectIcons';
 
 const visionIcon = getAssetUrl('icons/vision-icon.png');
 const missionIcon = getAssetUrl('icons/mission-icon.png');
@@ -179,11 +180,13 @@ const About: React.FC<AboutPageProps> = () => {
           <div className="about-vision-mission-grid">
             <Card
               icon={visionIcon}
+              fallbackNode={<VisionIcon />}
               title={t('about.vision.title')}
               subtitle={t('about.vision.text')}
             />
             <Card
               icon={missionIcon}
+              fallbackNode={<MissionIcon />}
               title={t('about.mission.title')}
               subtitle={t('about.mission.text')}
             />
@@ -198,43 +201,43 @@ const About: React.FC<AboutPageProps> = () => {
             <p className="about-management-team-description">{t('about.management.description')}</p>
           )}
           <div className="about-management-team-grid">
-            <ManagementTeamCard image={pauImage} role={t('about.management.roles.accounting')} />
-            <ManagementTeamCard image={michaelImage} role={t('about.management.roles.eng_mgr')} />
+            <ManagementTeamCard image={pauImage} role={t('about.management.roles.accounting')} fallbackNode={<UserIcon />} />
+            <ManagementTeamCard image={michaelImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} />
             <div className="management-team-card-placeholder"></div>
-            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} isLarge={true} />
-            <ManagementTeamCard image={mennjoImage} role={t('about.management.roles.eng_mgr')} />
-            <ManagementTeamCard image={teodyImage} role={t('about.management.roles.eng_sup')} />
+            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} isLarge={true} fallbackNode={<UserIcon />} />
+            <ManagementTeamCard image={mennjoImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} />
+            <ManagementTeamCard image={teodyImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} />
           </div>
 
           {isManagementTeamExpanded && (
             <div className="about-management-team-expanded-rows">
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={raineImage} role={t('about.management.roles.admin_staff')} />
-                <ManagementTeamCard image={erikImage} role={t('about.management.roles.eng_tl')} />
-                <ManagementTeamCard image={louieImage} role={t('about.management.roles.eng_atl')} />
-                <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} />
-                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.it_staff')} />
+                <ManagementTeamCard image={raineImage} role={t('about.management.roles.admin_staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={erikImage} role={t('about.management.roles.eng_tl')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={louieImage} role={t('about.management.roles.eng_atl')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.it_staff')} fallbackNode={<UserIcon />} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} />
-                <ManagementTeamCard image={kissImage} role={t('about.management.roles.staff_so')} />
-                <ManagementTeamCard image={joyceImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={lorieImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={jonathanImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={kissImage} role={t('about.management.roles.staff_so')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={joyceImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={lorieImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={jonathanImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={noelImage} role={t('about.management.roles.driver')} />
-                <ManagementTeamCard image={nylImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={jcImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={jennyImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={jethroImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={noelImage} role={t('about.management.roles.driver')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={nylImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={jcImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={jennyImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={jethroImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} />
-                <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={sharmaineImage} role={t('about.management.roles.staff')} />
-                <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} />
+                <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={sharmaineImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
               </div>
             </div>
           )}

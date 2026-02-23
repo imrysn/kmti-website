@@ -15,6 +15,7 @@ interface CardProps {
   linkHref?: string;
   className?: string;
   onClick?: () => void;
+  fallbackNode?: React.ReactNode;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -25,13 +26,14 @@ const Card: React.FC<CardProps> = ({
   linkHref,
   className = '',
   onClick,
+  fallbackNode,
 }) => {
   return (
     <div className={`why-choose-card ${className}`} onClick={onClick}>
       {icon && (
         <div className="why-choose-card-icon-container">
           {isImageIcon(icon) ? (
-            <LazyImage src={icon as string} alt={title} className="why-choose-card-icon-image" />
+            <LazyImage src={icon as string} alt={title} className="why-choose-card-icon-image" fallbackNode={fallbackNode} />
           ) : (
             <div className="why-choose-card-icon">{icon}</div>
           )}
@@ -56,6 +58,7 @@ interface ServiceCardProps {
   linkHref?: string;
   className?: string;
   onClick?: () => void;
+  fallbackNode?: React.ReactNode;
 }
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -66,13 +69,14 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   linkHref,
   className = '',
   onClick,
+  fallbackNode,
 }) => {
   return (
     <div className={`service-card ${className}`} onClick={onClick}>
       {icon && (
         <div className="service-card-icon-container">
           {isImageIcon(icon) ? (
-            <LazyImage src={icon as string} alt={title} className="service-card-icon-image" />
+            <LazyImage src={icon as string} alt={title} className="service-card-icon-image" fallbackNode={fallbackNode} />
           ) : (
             <div className="service-card-icon">{icon}</div>
           )}
@@ -156,6 +160,7 @@ interface ServicePageCardProps {
   className?: string;
   onClick?: () => void;
   layoutId?: string;
+  fallbackNode?: React.ReactNode;
 }
 
 export const ServicePageCard: React.FC<ServicePageCardProps> = ({
@@ -167,6 +172,7 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
   className = '',
   onClick,
   layoutId,
+  fallbackNode,
 }) => {
   return (
     <motion.div
@@ -176,7 +182,7 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
     >
       {icon && (
         <div className="service-page-card-icon-container">
-          <LazyImage src={icon!} alt={title} className="service-page-card-icon-image" />
+          <LazyImage src={icon!} alt={title} className="service-page-card-icon-image" fallbackNode={fallbackNode} />
         </div>
       )}
       {(image || video) && (
@@ -210,6 +216,7 @@ interface ManagementTeamCardProps {
   role: string;
   className?: string;
   isLarge?: boolean;
+  fallbackNode?: React.ReactNode;
 }
 
 export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
@@ -217,11 +224,12 @@ export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
   role,
   className = '',
   isLarge = false,
+  fallbackNode,
 }) => {
   return (
     <div className={`management-team-card ${isLarge ? 'management-team-card-large' : ''} ${className}`}>
       <h3 className="management-team-card-role">{role}</h3>
-      <LazyImage src={image} alt={role} wrapperClassName="management-team-card-image" />
+      <LazyImage src={image} alt={role} wrapperClassName="management-team-card-image" fallbackNode={fallbackNode} />
     </div>
   );
 };
@@ -349,6 +357,8 @@ interface ApplyCardProps {
   requirementsTitle?: string;
   preferredCoursesTitle?: string;
   className?: string;
+  locationFallbackNode?: React.ReactNode;
+  typeFallbackNode?: React.ReactNode;
 }
 
 export const ApplyCard: React.FC<ApplyCardProps> = ({
@@ -367,6 +377,8 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
   requirementsTitle = 'Key Requirements:',
   preferredCoursesTitle = 'Preferred Courses:',
   className = '',
+  locationFallbackNode,
+  typeFallbackNode,
 }) => {
   return (
     <div className={`apply-card ${className}`}>
@@ -374,11 +386,11 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({
       <h3 className="apply-card-title">{title}</h3>
       <div className="apply-card-meta">
         <span className="apply-card-location">
-          {locationIcon && <LazyImage src={locationIcon} alt="Location" wrapperClassName="apply-card-icon" />}
+          {locationIcon && <LazyImage src={locationIcon} alt="Location" wrapperClassName="apply-card-icon" fallbackNode={locationFallbackNode} />}
           {location}
         </span>
         <span className="apply-card-type">
-          {typeIcon && <LazyImage src={typeIcon} alt="Type" wrapperClassName="apply-card-icon" />}
+          {typeIcon && <LazyImage src={typeIcon} alt="Type" wrapperClassName="apply-card-icon" fallbackNode={typeFallbackNode} />}
           {type}
         </span>
       </div>
@@ -428,6 +440,7 @@ interface WhyWorkWithUsCardProps {
   title: string;
   subtitle: string | React.ReactNode;
   className?: string;
+  fallbackNode?: React.ReactNode;
 }
 
 export const WhyWorkWithUsCard: React.FC<WhyWorkWithUsCardProps> = ({
@@ -435,11 +448,12 @@ export const WhyWorkWithUsCard: React.FC<WhyWorkWithUsCardProps> = ({
   title,
   subtitle,
   className = '',
+  fallbackNode,
 }) => {
   return (
     <div className={`why-work-withus-card ${className}`}>
       <div className="why-work-withus-card-icon-container">
-        <LazyImage src={icon} alt={title} className="why-work-withus-card-icon-image" />
+        <LazyImage src={icon} alt={title} className="why-work-withus-card-icon-image" fallbackNode={fallbackNode} />
       </div>
       <h3 className="why-work-withus-card-title">{title}</h3>
       <p className="why-work-withus-card-subtitle">{subtitle}</p>
@@ -452,6 +466,7 @@ interface HowToApplyCardProps {
   title: string;
   children: React.ReactNode;
   className?: string;
+  fallbackNode?: React.ReactNode;
 }
 
 export const HowToApplyCard: React.FC<HowToApplyCardProps> = ({
@@ -459,12 +474,13 @@ export const HowToApplyCard: React.FC<HowToApplyCardProps> = ({
   title,
   children,
   className = '',
+  fallbackNode,
 }) => {
   return (
     <div className={`how-to-apply-card ${className}`}>
       {icon && (
         <div className="how-to-apply-card-header">
-          <LazyImage src={icon!} alt={title} wrapperClassName="how-to-apply-card-icon" />
+          <LazyImage src={icon!} alt={title} wrapperClassName="how-to-apply-card-icon" fallbackNode={fallbackNode} />
           <h3 className="how-to-apply-card-title">{title}</h3>
         </div>
       )}
