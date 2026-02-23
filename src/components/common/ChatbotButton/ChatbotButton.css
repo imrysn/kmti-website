@@ -41,6 +41,17 @@
   height: 32px;
   object-fit: contain;
   filter: brightness(0) invert(1);
+  display: block;
+}
+
+/* LazyImage wrapper inside the chatbot button */
+.chatbot-button>.lazy-image-wrapper {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* Chatbot Panel */
@@ -111,6 +122,11 @@
   }
 
   .chatbot-button-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .chatbot-button>.lazy-image-wrapper {
     width: 28px;
     height: 28px;
   }

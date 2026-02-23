@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './chatbot.css';
 import { getAssetUrl } from '../../../utils/assets';
+import LazyImage from '../LazyImage/LazyImage';
 const defaultProfileImage = getAssetUrl('logo/profile.png');
 const menuIcon = getAssetUrl('icons/menu-icon.png');
 
@@ -288,7 +289,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       <div className="chatbot-card-top">
         <div className="chatbot-card-header-content">
           <div className="chatbot-card-header-avatar">
-            <img src={profileImage || defaultProfileImage} alt="Bot" className="chatbot-card-header-avatar-img" />
+            <LazyImage src={profileImage || defaultProfileImage} alt="Bot" className="chatbot-card-header-avatar-img" loading="eager" />
           </div>
           <div className="chatbot-card-header-text">
             <div className="chatbot-card-header-title">{t('chatbot_card.header.name')}</div>
@@ -310,7 +311,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           <div key={msg.id} className={`chatbot-card-message-bubble ${msg.type === 'user' ? 'chatbot-card-message-user' : ''}`}>
             {msg.type !== 'user' && (
               <div className="chatbot-card-message-icon-left">
-                <img src={profileImage || defaultProfileImage} alt="Bot" className="chatbot-card-message-bot-icon" />
+                <LazyImage src={profileImage || defaultProfileImage} alt="Bot" className="chatbot-card-message-bot-icon" />
               </div>
             )}
             <div className={`chatbot-card-message-content ${msg.type === 'user' ? 'chatbot-card-message-content-user' : ''}`}>
@@ -364,7 +365,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
           onKeyPress={(e) => e.key === 'Enter' && handleInputSubmit()}
         />
         <div className="chatbot-card-menu-icon-wrapper chatbot-card-menu-icon-clickable" onClick={() => handleButtonClick('main-menu', 'Menu')}>
-          <img src={menuIcon} alt="Menu" className="chatbot-card-menu-icon" />
+          <LazyImage src={menuIcon} alt="Menu" className="chatbot-card-menu-icon" />
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next'; // Added for translation
-import ModelViewer from './ModelViewer';
+// React.lazy — Three.js (~994 kB) only loads when user opens a 3D viewer
+const ModelViewer = lazy(() => import('./ModelViewer'));
 import './Model3DViewerModal.css';
 
 import { getAssetUrl } from '../../../utils/assets';
@@ -147,11 +148,18 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
         <div className="model-3d-viewer-wrapper">
           {hasModel ? (
             <>
-              <ModelViewer
-                modelPath={modelConfig.path!}
-                modelScale={modelConfig.scale}
-                cameraView={cameraView}
-              />
+              <Suspense fallback={
+                <div className="model-viewer-loading-overlay">
+                  <div className="model-viewer-spinner"></div>
+                  <p>Loading 3D Viewer...</p>
+                </div>
+              }>
+                <ModelViewer
+                  modelPath={modelConfig.path!}
+                  modelScale={modelConfig.scale}
+                  cameraView={cameraView}
+                />
+              </Suspense>
 
               <div className="camera-view-buttons">
                 {(['isometric', 'front', 'back', 'left', 'right', 'top'] as CameraView[]).map((view) => (

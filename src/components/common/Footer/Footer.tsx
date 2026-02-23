@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
 import { getAssetUrl } from '../../../utils/assets';
 import { useVisitCounter } from '../../../hooks/useVisitCounter';
+import LazyImage from '../../ui/LazyImage/LazyImage';
 
 const footerLogo = getAssetUrl('logo/footer_KMTI_logo.png');
 const mapsIcon = getAssetUrl('icons/maps-icon.png');
@@ -52,7 +53,7 @@ const Footer: React.FC = () => {
       <div className="footer__inner">
         <div className="footer__brand">
           <Link to="/" className="footer__logo" onClick={handleLogoClick}>
-            <img src={footerLogo} alt="KMTI footer logo" />
+            <LazyImage src={footerLogo} alt="KMTI footer logo" />
           </Link>
           <p className="footer__desc">
             {t('footer.description')}
@@ -91,7 +92,7 @@ const Footer: React.FC = () => {
         <div className="footer__contact">
           <div className="footer__col-title">{t('footer.cols.contact')}</div>
           <div className="footer__contact-item">
-            <img src={mapsIcon} alt="Location" className="footer__contact-icon" />
+            <LazyImage src={mapsIcon} alt="Location" wrapperClassName="footer__contact-icon" />
             <a
               href="https://maps.app.goo.gl/CyS8xB8sLNPaSYoc8"
               target="_blank"
@@ -102,11 +103,11 @@ const Footer: React.FC = () => {
             </a>
           </div>
           <div className="footer__contact-item">
-            <img src={contactIcon} alt="Contact" className="footer__contact-icon" />
+            <LazyImage src={contactIcon} alt="Contact" wrapperClassName="footer__contact-icon" />
             <span>(046) 413-4509</span>
           </div>
           <div className="footer__contact-item">
-            <img src={emailIcon} alt="Email" className="footer__contact-icon" />
+            <LazyImage src={emailIcon} alt="Email" wrapperClassName="footer__contact-icon" />
             <a
               href="https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=Hello%20KMTI%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you!"
               target="_blank"

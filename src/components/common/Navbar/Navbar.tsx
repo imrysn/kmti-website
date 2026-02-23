@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Navbar.css';
 import { getAssetUrl } from '../../../utils/assets';
+import LazyImage from '../../ui/LazyImage/LazyImage';
 
 const headerLogo = getAssetUrl('logo/download1.png');
 const menuIcon = getAssetUrl('icons/menu-icon.png');
@@ -105,7 +106,7 @@ const Navbar: React.FC = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={handleLogoClick}>
-          <img src={headerLogo} alt="KMTI Logo" />
+          <LazyImage src={headerLogo} alt="KMTI Logo" loading="eager" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -165,7 +166,7 @@ const Navbar: React.FC = () => {
         </div>
 
         <button className="navbar-burger" onClick={toggleMenu}>
-          <img src={menuIcon} alt="Menu" />
+          <LazyImage src={menuIcon} alt="Menu" loading="eager" />
         </button>
       </div>
 

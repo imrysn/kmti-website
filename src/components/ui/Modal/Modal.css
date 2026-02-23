@@ -639,14 +639,10 @@
 }
 
 .management-team-modal-grid .management-team-card-image {
-  width: calc(100% + 2rem);
-  height: 320px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
-  margin-top: 0.8rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
-  margin-bottom: -1rem;
   display: block;
   border-radius: 0 0 16px 16px;
 }
@@ -686,14 +682,10 @@
 
 
 .management-team-modal-grid .management-team-card-large .management-team-card-image {
-  width: calc(100% + 2rem);
-  height: 450px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
-  margin-top: -0.4rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
-  margin-bottom: -0.9rem;
 }
 
 .management-team-modal-grid .management-team-card-large .management-team-card-role {

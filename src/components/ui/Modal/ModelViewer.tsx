@@ -200,13 +200,38 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
   }
 }
 
+const LOAD_TIMEOUT_MS = 60000; // 60 seconds — show retry if model hasn't loaded
+
 const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
+  const [remountKey, setRemountKey] = useState(0);
   const internalCanvasRef = useRef<HTMLCanvasElement>(null);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const activeCanvasRef = canvasRef || internalCanvasRef;
+
+  // Start the load timeout whenever modelPath changes or remountKey changes
+  useEffect(() => {
+    setTimedOut(false);
+    if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
+    loadTimeoutRef.current = setTimeout(() => {
+      setTimedOut(true);
+    }, LOAD_TIMEOUT_MS);
+    return () => {
+      if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
+    };
+  }, [modelPath, remountKey]);
+
+  // Clear the timeout once the model loads
+  useEffect(() => {
+    if (isLoaded && loadTimeoutRef.current) {
+      clearTimeout(loadTimeoutRef.current);
+      loadTimeoutRef.current = null;
+    }
+  }, [isLoaded]);
 
   const getCameraPosition = (): [number, number, number] => {
     const distance = 8;
@@ -250,6 +275,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   useEffect(() => {
     setIsLoaded(false);
     setIsInteracting(false);
+    setTimedOut(false);
     if (interactionTimeoutRef.current) {
       clearTimeout(interactionTimeoutRef.current);
     }
@@ -257,14 +283,30 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
 
   return (
     <div className="model-viewer-container">
-      {!isLoaded && (
+      {!isLoaded && !timedOut && (
         <div className="model-viewer-loading-overlay">
           <div className="model-viewer-spinner"></div>
           <p>Loading 3D Model...</p>
         </div>
       )}
 
-      <ErrorBoundary>
+      {timedOut && !isLoaded && (
+        <div className="model-viewer-loading-overlay">
+          <div className="model-viewer-spinner"></div>
+          <p style={{ marginTop: '0.5rem', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
+            Taking too long?<br />Check your internet connection.
+          </p>
+          <button
+            className="camera-view-btn"
+            onClick={() => { setTimedOut(false); setIsLoaded(false); setRemountKey(k => k + 1); }}
+            style={{ marginTop: '0.75rem', width: 'auto', display: 'inline-block' }}
+          >
+            Reload Model
+          </button>
+        </div>
+      )}
+
+      {!timedOut && <ErrorBoundary>
         <Canvas
           ref={activeCanvasRef}
           camera={{ position: [5, 3, 5], fov: 50 }}
@@ -273,11 +315,11 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             alpha: true,
             outputColorSpace: THREE.SRGBColorSpace,
             toneMapping: THREE.NoToneMapping,
-            powerPreference: 'default', // Changed from high-performance to prevent context loss
+            powerPreference: 'low-power', // Aggressive optimization
           }}
           style={{ background: 'transparent' }}
           frameloop="always"
-          dpr={[1, 1.5]} // Reduced max DPR for mobile stability
+          dpr={1} // Strict 1x scale for maximum stability
         >
           <RendererConfig />
 
@@ -290,8 +332,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             position={[10, 10, 5]}
             intensity={1.2}
             castShadow
-            shadow-mapSize-width={1024} // Reduced from 2048
-            shadow-mapSize-height={1024} // Reduced from 2048
+            shadow-mapSize-width={512} // Minimum acceptable shadow quality
+            shadow-mapSize-height={512}
             shadow-bias={-0.0001}
           />
 
@@ -351,7 +393,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             }}
           />
         </Canvas>
-      </ErrorBoundary>
+      </ErrorBoundary>}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import './Card.css';
 import Button from '../Button/Button';
 import LazyVideo from '../LazyVideo/LazyVideo';
 import { isImageIcon } from '../../../utils/uiUtils';
+import LazyImage from '../LazyImage/LazyImage';
 
 interface CardProps {
   icon?: string | React.ReactNode;
@@ -30,7 +31,7 @@ const Card: React.FC<CardProps> = ({
       {icon && (
         <div className="why-choose-card-icon-container">
           {isImageIcon(icon) ? (
-            <img src={icon} alt={title} className="why-choose-card-icon-image" />
+            <LazyImage src={icon as string} alt={title} className="why-choose-card-icon-image" />
           ) : (
             <div className="why-choose-card-icon">{icon}</div>
           )}
@@ -71,7 +72,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       {icon && (
         <div className="service-card-icon-container">
           {isImageIcon(icon) ? (
-            <img src={icon} alt={title} className="service-card-icon-image" />
+            <LazyImage src={icon as string} alt={title} className="service-card-icon-image" />
           ) : (
             <div className="service-card-icon">{icon}</div>
           )}
@@ -131,7 +132,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     <div className={`project-card-new ${className}`} onClick={onClick}>
       {category && <div className="project-card-label">{category}</div>}
       <div className="project-card-image-container">
-        <img
+        <LazyImage
           src={image}
           alt={title}
           className={`project-card-image ${isActive ? 'active' : ''}`}
@@ -175,7 +176,7 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
     >
       {icon && (
         <div className="service-page-card-icon-container">
-          <img src={icon} alt={title} className="service-page-card-icon-image" />
+          <LazyImage src={icon!} alt={title} className="service-page-card-icon-image" />
         </div>
       )}
       {(image || video) && (
@@ -191,7 +192,7 @@ export const ServicePageCard: React.FC<ServicePageCardProps> = ({
               playsInline={true}
             />
           ) : (
-            <img src={image} alt={title} className="service-page-card-image" />
+            <LazyImage src={image!} alt={title} className="service-page-card-image" />
           )}
           <div className="service-page-card-image-overlay"></div>
           <div className="service-page-card-text-overlay">
@@ -220,7 +221,7 @@ export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
   return (
     <div className={`management-team-card ${isLarge ? 'management-team-card-large' : ''} ${className}`}>
       <h3 className="management-team-card-role">{role}</h3>
-      <img src={image} alt={role} className="management-team-card-image" />
+      <LazyImage src={image} alt={role} wrapperClassName="management-team-card-image" />
     </div>
   );
 };
@@ -243,7 +244,7 @@ export const RelatedCompanyCard: React.FC<RelatedCompanyCardProps> = ({
   const cardContent = (
     <>
       <div className="related-company-logo-container">
-        <img src={logo} alt={companyName} className="related-company-logo" />
+        <LazyImage src={logo} alt={companyName} className="related-company-logo" />
       </div>
       <h3 className="related-company-name">{companyName}</h3>
       <p className="related-company-description">{description}</p>
@@ -308,7 +309,7 @@ export const ProjectsCard: React.FC<ProjectsCardProps> = ({
         }}
         style={{ cursor: (onImageClick || onClick) ? 'pointer' : 'default' }}
       >
-        <img
+        <LazyImage
           src={image}
           alt={title}
           className="projects-card-image"
@@ -438,7 +439,7 @@ export const WhyWorkWithUsCard: React.FC<WhyWorkWithUsCardProps> = ({
   return (
     <div className={`why-work-withus-card ${className}`}>
       <div className="why-work-withus-card-icon-container">
-        <img src={icon} alt={title} className="why-work-withus-card-icon-image" />
+        <LazyImage src={icon} alt={title} className="why-work-withus-card-icon-image" />
       </div>
       <h3 className="why-work-withus-card-title">{title}</h3>
       <p className="why-work-withus-card-subtitle">{subtitle}</p>
@@ -463,7 +464,7 @@ export const HowToApplyCard: React.FC<HowToApplyCardProps> = ({
     <div className={`how-to-apply-card ${className}`}>
       {icon && (
         <div className="how-to-apply-card-header">
-          <img src={icon} alt={title} className="how-to-apply-card-icon" />
+          <LazyImage src={icon!} alt={title} className="how-to-apply-card-icon" />
           <h3 className="how-to-apply-card-title">{title}</h3>
         </div>
       )}
@@ -495,7 +496,7 @@ export const ContactOptionCard: React.FC<ContactOptionCardProps> = ({
   return (
     <div className={`contact-option-card ${className}`}>
       <div className="contact-option-card-icon-container">
-        <img src={icon} alt={title} className="contact-option-card-icon" />
+        <LazyImage src={icon} alt={title} className="contact-option-card-icon" />
       </div>
       <h3 className="contact-option-card-title">{title}</h3>
       <p className="contact-option-card-description">{description}</p>

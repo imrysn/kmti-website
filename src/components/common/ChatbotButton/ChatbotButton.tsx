@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { getAssetUrl } from '../../../utils/assets';
 import { ChatbotCard } from '../../ui/Card/chatbot';
 import './ChatbotButton.css';
+import LazyImage from '../../ui/LazyImage/LazyImage';
 
 const botIcon = getAssetUrl('icons/bot-icon.png');
 
@@ -84,7 +85,7 @@ const ChatbotButton: React.FC = () => {
         disabled={isChatOpen}
         style={{ pointerEvents: isChatOpen ? 'none' : 'auto' }}
       >
-        <img src={botIcon} alt="Chatbot" className="chatbot-button-icon" />
+        <LazyImage src={botIcon} alt="Chatbot" className="chatbot-button-icon" loading="eager" />
       </button>
 
       <div className={`chatbot-panel ${isChatOpen ? 'chatbot-panel-open' : 'chatbot-panel-closed'}`}>

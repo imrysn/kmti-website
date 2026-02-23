@@ -13,9 +13,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preconnect to Cloudflare R2 asset CDN for faster first image load -->
+  <link rel="preconnect" href="https://pub-41f5a96a10a946a5ae6457884d5653fd.r2.dev" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-  <title>Kusakabe & Maeno Tech., Inc.</title>
+  <!-- dns-prefetch for external links (Maps, Facebook, Gmail) -->
+  <link rel="dns-prefetch" href="https://maps.app.goo.gl" />
+  <link rel="dns-prefetch" href="https://www.facebook.com" />
+  <link rel="dns-prefetch" href="https://mail.google.com" />
+
+  <!-- Preload hero background: largest above-the-fold asset, fetched in parallel with JS -->
+  <link rel="preload" as="image"
+    href="https://pub-41f5a96a10a946a5ae6457884d5653fd.r2.dev/hero_background/homebg.jpeg" />
+
+  <!-- Font: only the 3 weights actually used (saves ~60% vs wght@100..900) -->
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Kusakabe &amp; Maeno Tech., Inc.</title>
 </head>
 
 <body>

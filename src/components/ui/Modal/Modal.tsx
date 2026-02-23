@@ -3,6 +3,7 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { useTranslation, Trans } from 'react-i18next';
 import './Modal.css';
 import { getAssetUrl } from '../../../utils/assets';
+import LazyImage from '../LazyImage/LazyImage';
 const modalImage1 = getAssetUrl('service_detail_image/3Dmodal1.png');
 const modalImage2 = getAssetUrl('service_detail_image/3Dmodal2.png');
 const modalImage2D = getAssetUrl('service_detail_image/2Dmodal.png');
@@ -138,7 +139,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                       <div className="service-modal-step-number">{num}</div>
                       <span className="service-modal-step-text">{t(`services.modal.2d_section.s${num}.title`)}</span>
                     </div>
-                    {num === 2 && <div className="service-modal-images"><img src={modalImage2D} className="service-modal-image" alt="2D" /></div>}
+                    {num === 2 && <div className="service-modal-images"><LazyImage src={modalImage2D} wrapperClassName="service-modal-image" alt="2D" /></div>}
                     <p className="service-modal-section-description">{t(`services.modal.2d_section.s${num}.desc`)}</p>
                   </div>
                 ))}
@@ -148,15 +149,15 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                 <div className="service-modal-carousel-container">
                   {currentCarouselImages.map((img, i) => (
                     <div key={i} className={`service-modal-carousel-slide ${i === currentImageIndex ? 'active' : ''}`}>
-                      <img src={img} className="service-modal-image" alt="service" />
+                      <LazyImage src={img} wrapperClassName="service-modal-image" alt="service" />
                     </div>
                   ))}
                 </div>
               </div>
             ) : (
               <div className="service-modal-images">
-                <img src={modalImage1} className="service-modal-image" alt="3D 1" />
-                <img src={modalImage2} className="service-modal-image" alt="3D 2" />
+                <LazyImage src={modalImage1} wrapperClassName="service-modal-image" alt="3D 1" />
+                <LazyImage src={modalImage2} wrapperClassName="service-modal-image" alt="3D 2" />
               </div>
             )}
           </div>
@@ -192,7 +193,7 @@ export const OurStoryModal: React.FC<{ isOpen: boolean; onClose: () => void }> =
         <div className="our-story-modal-body">
           <h2 className="our-story-modal-title">{t('about.story.modal_title')}</h2>
           <div className="our-story-photo-section">
-            <img src={ourStoryPhoto} className="our-story-photo" alt="Leadership" />
+            <LazyImage src={ourStoryPhoto} wrapperClassName="our-story-photo" alt="Leadership" />
             <p className="our-story-caption">{t('about.story.caption')}</p>
           </div>
           <div className="our-story-content">
