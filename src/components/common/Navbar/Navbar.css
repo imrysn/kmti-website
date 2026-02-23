@@ -123,10 +123,13 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.navbar-burger img {
+.navbar-burger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
-  filter: brightness(0) invert(1);
+  color: #51a2ff;
 }
 
 /* ============================================

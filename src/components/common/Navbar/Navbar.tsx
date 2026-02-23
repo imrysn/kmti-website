@@ -5,8 +5,16 @@ import './Navbar.css';
 import { getAssetUrl } from '../../../utils/assets';
 import LazyImage from '../../ui/LazyImage/LazyImage';
 
-const headerLogo = getAssetUrl('logo/download1.png');
-const menuIcon = getAssetUrl('icons/menu-icon.png');
+import localNavbarLogo from '../../../assets/logo_navbar_KMTI_logo.png';
+
+const headerLogoR2 = getAssetUrl('logo/download1.png');
+const menuIconR2 = getAssetUrl('icons/menu-icon.png');
+
+const MenuIconSVG: React.FC = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -106,7 +114,12 @@ const Navbar: React.FC = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={handleLogoClick}>
-          <LazyImage src={headerLogo} alt="KMTI Logo" loading="eager" />
+          <LazyImage
+            src={headerLogoR2}
+            fallbackSrc={localNavbarLogo}
+            alt="KMTI Logo"
+            loading="eager"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -166,7 +179,12 @@ const Navbar: React.FC = () => {
         </div>
 
         <button className="navbar-burger" onClick={toggleMenu}>
-          <LazyImage src={menuIcon} alt="Menu" loading="eager" />
+          <LazyImage
+            src={menuIconR2}
+            fallbackNode={<div className="navbar-burger-icon"><MenuIconSVG /></div>}
+            alt="Menu"
+            loading="eager"
+          />
         </button>
       </div>
 

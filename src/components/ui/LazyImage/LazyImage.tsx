@@ -28,6 +28,10 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     loading?: 'lazy' | 'eager';
     /** CSS class applied to the outer wrapper div. */
     wrapperClassName?: string;
+    /** Optional local fallback image URL if the main src fails. */
+    fallbackSrc?: string;
+    /** Optional React node to render instead of the default error UI. */
+    fallbackNode?: React.ReactNode;
 }
 
 const LazyImage: React.FC<LazyImageProps> = ({
@@ -37,6 +41,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
     className = '',
     wrapperClassName = '',
     style,
+    fallbackSrc,
+    fallbackNode,
     ...rest
 }) => {
     /**
@@ -50,6 +56,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     const retriesRef = useRef(0);
+    const triedFallbackRef = useRef(false);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const cancelQueueRef = useRef<(() => void) | null>(null);
     const observerRef = useRef<IntersectionObserver | null>(null);
@@ -102,6 +109,15 @@ const LazyImage: React.FC<LazyImageProps> = ({
 
     const handleError = useCallback(() => {
         if (retriesRef.current >= MAX_RETRIES) {
+            // If we have a fallback URL and haven't tried it yet, try now
+            if (fallbackSrc && !triedFallbackRef.current) {
+                triedFallbackRef.current = true;
+                retriesRef.current = 0; // reset for the fallback
+                setLoadSrc(fallbackSrc);
+                setStatus('loading');
+                return;
+            }
+
             if (slotTakenRef.current) { releaseSlot(); slotTakenRef.current = false; }
             setStatus('broken');
             return;
@@ -110,12 +126,16 @@ const LazyImage: React.FC<LazyImageProps> = ({
         const delay = BASE_DELAY_MS * Math.pow(2, retriesRef.current); // 1s, 2s, 4s
         timerRef.current = setTimeout(() => {
             retriesRef.current += 1;
-            // Cache-bust to force re-fetch
-            const base = src.split('?')[0];
-            setLoadSrc(`${base}?_r=${retriesRef.current}`);
+            // Cache-bust to force re-fetch if not already trying fallback
+            if (!triedFallbackRef.current) {
+                const base = src.split('?')[0];
+                setLoadSrc(`${base}?_r=${retriesRef.current}`);
+            } else {
+                setLoadSrc(`${fallbackSrc}?_r=${retriesRef.current}`);
+            }
             setStatus('loading');
         }, delay);
-    }, [src]);
+    }, [src, fallbackSrc]);
 
     // For eager images the slot is never enqueued, so no release needed on their
     // handleLoad — BUT we still want consistent state, so keep it simple.
@@ -143,12 +163,14 @@ const LazyImage: React.FC<LazyImageProps> = ({
 
             {/* Broken state — all retries exhausted */}
             {isBroken && (
-                <div className="lazy-image-broken" aria-label={`Could not load: ${alt}`}>
-                    <div className="lazy-image-broken-icon">
-                        <WifiOffIcon />
+                fallbackNode ? <>{fallbackNode}</> : (
+                    <div className="lazy-image-broken" aria-label={`Could not load: ${alt}`}>
+                        <div className="lazy-image-broken-icon">
+                            <WifiOffIcon />
+                        </div>
+                        <span className="lazy-image-broken-text">Image unavailable, please check your internet connection.</span>
                     </div>
-                    <span className="lazy-image-broken-text">Image unavailable, please check your internet connection.</span>
-                </div>
+                )
             )}
 
             {/* The actual image — hidden until loaded, not rendered at all when waiting */}
