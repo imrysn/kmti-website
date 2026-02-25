@@ -612,7 +612,7 @@ const en = {
     menu: {
       services: "Our Service",
       careers: "Careers & Application",
-      office: "Office Location",
+      location: "Office Location",
       support: "Contact Support",
       about: "About KMTI"
     },

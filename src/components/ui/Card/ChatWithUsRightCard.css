@@ -42,8 +42,23 @@
 }
 
 .chat-with-us-right-card .chatbot-card-action-button {
-  padding: 0.5rem 0.7rem;
-  font-size: 0.8rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  justify-content: center;
+  gap: 0.6rem;
+  height: auto;
+  min-height: 44px;
+}
+
+.chat-with-us-right-card .chatbot-card-action-button .lazy-image-wrapper {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+  display: inline-flex !important;
+}
+
+.chat-with-us-right-card .chatbot-card-action-button-text {
+  white-space: nowrap;
 }
 
 /* Reduce message text size slightly */
