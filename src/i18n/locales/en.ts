@@ -502,6 +502,20 @@ const en = {
       },
       cta: "LEARN MORE ABOUT US"
     },
+    ojt: {
+      title: "Meet our Previous On-the-Job Training (OJT) program",
+      description: "We take pride in our commitment to developing future engineers and IT. Our OJT programs provide hands-on experience and mentorship, helping students bridge the gap between academic learning and professional engineering and IT practice.",
+      see_more: "See more",
+      see_less: "See less",
+      engineering: {
+        title: "OUR ENGINEERING OJT",
+        description: "Our engineering OJTs focus on mastering 2D detailed design and 3D modeling using industry-standard tools like iCAD, preparing them for real-world engineering challenges."
+      },
+      it: {
+        title: "OUR IT OJT",
+        description: "Our IT OJTs are dedicated to digital innovation, developing custom applications and software solutions that streamline our company operations and enhance technical efficiency."
+      }
+    },
     apply: {
       title: "HOW TO APPLY",
       subtitle: "Ready to start your engineering careeer with KMTI? Here's how to get in touch with us.",
@@ -612,7 +626,7 @@ const en = {
     menu: {
       services: "Our Service",
       careers: "Careers & Application",
-      office: "Office Location",
+      location: "Office Location",
       support: "Contact Support",
       about: "About KMTI"
     },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
@@ -27,6 +27,15 @@ import { ApplyCard, WhyWorkWithUsCard, HowToApplyCard } from '../../components/u
 const Careers: React.FC<CareersPageProps> = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const [activeOjtType, setActiveOjtType] = useState<'engineering' | 'it' | null>(null);
+
+  const engineeringImages = ['ojt_10.jpg', 'ojt_4.JPG', 'ojt_6.JPG', 'ojt_12.JPG', 'ojt_13.jpg', 'ojt_9.JPG'];
+  const itImages = ['ojt_7.jpg', 'ojt_8.jpg', 'ojt_2.jpg'];
+
+  const toggleOjt = (type: 'engineering' | 'it') => {
+    setActiveOjtType(activeOjtType === type ? null : type);
+  };
 
   const navigateToAbout = () => {
     navigate('/about');
@@ -160,6 +169,54 @@ const Careers: React.FC<CareersPageProps> = () => {
               fallbackNode={<div className="team-photo-fallback"><UserIcon /></div>}
             />
           </div>
+        </div>
+      </section>
+
+      <section className="meet-our-ojt-section" data-aos="fade-up">
+        <div className="meet-our-ojt-container container">
+          <h2 className="meet-our-ojt-title">{t('careers.ojt.title')}</h2>
+          <p className="meet-our-ojt-description">
+            {t('careers.ojt.description')}
+          </p>
+
+          <div className="ojt-cards-grid">
+            <div
+              className={`ojt-card ${activeOjtType === 'engineering' ? 'active' : ''}`}
+              onClick={() => toggleOjt('engineering')}
+            >
+              <div className="ojt-card-image-box">
+                <LazyImage src={getAssetUrl('ojt/ojt_5.jpg')} alt="Engineering OJT" className="ojt-card-main-image" />
+              </div>
+              <h3 className="ojt-card-title">{t('careers.ojt.engineering.title')}</h3>
+              <p className="ojt-card-description">{t('careers.ojt.engineering.description')}</p>
+            </div>
+            <div
+              className={`ojt-card ${activeOjtType === 'it' ? 'active' : ''}`}
+              onClick={() => toggleOjt('it')}
+            >
+              <div className="ojt-card-image-box">
+                <LazyImage src={getAssetUrl('ojt/ojt_11.jpg')} alt="IT OJT" className="ojt-card-main-image" />
+              </div>
+              <h3 className="ojt-card-title">{t('careers.ojt.it.title')}</h3>
+              <p className="ojt-card-description">{t('careers.ojt.it.description')}</p>
+            </div>
+          </div>
+
+          {activeOjtType && (
+            <div className="ojt-grid-expanded" key={activeOjtType}>
+              <div className="ojt-grid">
+                {(activeOjtType === 'engineering' ? engineeringImages : itImages).map((img, idx) => (
+                  <div className="ojt-image-wrapper" key={idx}>
+                    <LazyImage
+                      src={getAssetUrl(`ojt/${img}`)}
+                      alt="OJT Program"
+                      className="ojt-image"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
