@@ -65,7 +65,7 @@
 .careers-hero-model {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: -10rem;
   max-width: 50%;
   max-height: 95%;
   height: 45rem;
@@ -323,6 +323,221 @@
   height: auto;
   object-fit: cover;
   display: block;
+}
+
+.meet-our-ojt-section {
+  padding: 5rem 0;
+}
+
+.meet-our-ojt-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+}
+
+.meet-our-ojt-title {
+  font-family: var(--font-family-heading);
+  color: #FFFFFF;
+  font-size: 2.8rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.meet-our-ojt-description {
+  font-family: var(--font-family-body);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto 4rem;
+}
+
+.ojt-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  justify-content: center;
+}
+
+.ojt-card {
+  background-color: rgba(15, 23, 43, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: grayscale(100%);
+  opacity: 0.8;
+  height: 100%;
+}
+
+.ojt-card-image-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.ojt-card-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ojt-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(81, 162, 255, 0.5);
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.ojt-card.active {
+  filter: grayscale(0%);
+  opacity: 1;
+  background-color: rgba(15, 23, 43, 0.5);
+  border-color: #51A2FF;
+  box-shadow: 0 0 30px rgba(81, 162, 255, 0.3);
+}
+
+.ojt-card-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+}
+
+.ojt-card-description {
+  font-family: var(--font-family-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-weight: 300;
+}
+
+.ojt-grid-expanded {
+  margin-top: 2rem;
+  animation: slideDownFade 0.6s ease-out;
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ojt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.ojt-image-wrapper {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ojt-image-wrapper:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(81, 162, 255, 0.3);
+}
+
+.ojt-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .ojt-cards-grid {
+    gap: 1.5rem;
+  }
+
+  .ojt-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ojt-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 2rem auto;
+  }
+
+  .ojt-card {
+    padding: 2rem;
+  }
+
+  .ojt-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .ojt-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .ojt-carousel-container {
+    padding: 0;
+  }
+
+  .ojt-carousel-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ojt-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .meet-our-ojt-title {
+    font-size: 2.2rem;
+  }
+
+  .meet-our-ojt-description {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .ojt-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 1024px) {
