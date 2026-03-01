@@ -12,14 +12,32 @@
 const MAX_CONCURRENT = 3; // 3G sweet spot: enough parallelism, not overwhelming
 
 let active = 0;
+let paused = false;
 const queue: Array<() => void> = [];
 
 function pump() {
+    if (paused) return;
     while (active < MAX_CONCURRENT && queue.length > 0) {
         const next = queue.shift()!;
         active++;
         next();
     }
+}
+
+/**
+ * Pause the image queue (e.g. when a heavy resource like a GLB is loading).
+ * In-progress images continue; queued ones wait until resumed.
+ */
+export function pauseImageQueue() {
+    paused = true;
+}
+
+/**
+ * Resume the image queue after a pause.
+ */
+export function resumeImageQueue() {
+    paused = false;
+    pump();
 }
 
 /**

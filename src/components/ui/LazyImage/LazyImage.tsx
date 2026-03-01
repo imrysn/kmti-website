@@ -15,11 +15,7 @@ const PREFETCH_MARGIN = '200px';
 const MAX_RETRIES = 3;
 const BASE_DELAY_MS = 1000; // 1s → 2s → 4s
 
-const WifiOffIcon: React.FC = () => (
-    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 1L23 23M16.72 11.06C17.55 11.89 18.23 12.87 18.73 13.94M5.27 11.06C4.84 10.63 4.45 10.16 4.1 9.66M10.94 5.28C11.29 5.23 11.64 5.21 12 5.21C15 5.21 17.77 6.33 19.9 8.2M2 8C3.12 6.94 4.4 6.07 5.79 5.42M8.47 16.48C9.52 15.54 10.87 15 12.35 15C13.83 15 15.18 15.54 16.23 16.48M10.23 18.66C10.85 18.25 11.58 18 12.36 18C13.14 18 13.87 18.25 14.49 18.66M11.66 21.03C11.87 20.95 12.11 20.9 12.36 20.9C12.61 20.9 12.85 20.95 13.06 21.03" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-);
+
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     src: string;
@@ -165,8 +161,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
             {isBroken && (
                 fallbackNode ? <>{fallbackNode}</> : (
                     <div className="lazy-image-broken" aria-label={`Could not load: ${alt}`}>
-                        <div className="lazy-image-broken-icon">
-                            <WifiOffIcon />
+                        <div className="lazy-image-broken-icon" style={{ fontSize: '3rem', lineHeight: 1 }}>
+                            📡
                         </div>
                         <span className="lazy-image-broken-text">Image unavailable, please check your internet connection.</span>
                     </div>

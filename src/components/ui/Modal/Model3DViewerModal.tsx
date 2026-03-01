@@ -1,9 +1,9 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
-import { useTranslation } from 'react-i18next'; // Added for translation
+import { useTranslation } from 'react-i18next';
 // React.lazy — Three.js (~994 kB) only loads when user opens a 3D viewer
 const ModelViewer = lazy(() => import('./ModelViewer'));
 import './Model3DViewerModal.css';
-
+import { pauseImageQueue, resumeImageQueue } from '../../../utils/imageQueue';
 import { getAssetUrl } from '../../../utils/assets';
 
 const dedimplerFacerModel = getAssetUrl('glb/Dedimpler&Facer.glb');
@@ -126,9 +126,12 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
 
   useEffect(() => {
     if (isOpen) {
+      // Pause image queue so the GLB fetch gets full bandwidth on mobile
+      pauseImageQueue();
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
+        resumeImageQueue();
         document.body.style.overflow = originalOverflow || '';
       };
     }
