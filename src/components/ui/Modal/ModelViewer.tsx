@@ -161,49 +161,33 @@ interface ModelViewerProps {
   cameraView?: string;
 }
 
-// Error Boundary Component
-type ErrorType = 'network' | 'gpu' | null;
-
-const MAX_AUTO_RETRIES = 3;
-
+// Error Boundary Component — silently retries on any error, never shows an error screen.
+// The parent's "Loading 3D Model..." overlay stays visible the whole time.
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode; onRetry?: () => void },
-  { hasError: boolean; errorType: ErrorType; retryCount: number }
+  { hasError: boolean; retryCount: number }
 > {
   private retryTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(props: { children: React.ReactNode; onRetry?: () => void }) {
     super(props);
-    this.state = { hasError: false, errorType: null, retryCount: 0 };
+    this.state = { hasError: false, retryCount: 0 };
   }
 
-  static getDerivedStateFromError(error: Error) {
-    const msg = error?.message?.toLowerCase() ?? '';
-    const name = (error?.name ?? '').toLowerCase();
-    const isNetwork =
-      name === 'aborterror' ||
-      msg.includes('aborted') ||
-      msg.includes('failed to fetch') ||
-      msg.includes('networkerror') ||
-      msg.includes('load failed') ||
-      msg.includes('network request failed') ||
-      msg.includes('the internet connection appears to be offline');
-    return { hasError: true, errorType: isNetwork ? 'network' : 'gpu' };
+  static getDerivedStateFromError() {
+    return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('3D Viewer Error:', error, errorInfo);
-    // Auto-retry silently up to MAX_AUTO_RETRIES times
-    if (this.state.retryCount < MAX_AUTO_RETRIES) {
-      this.retryTimer = setTimeout(() => {
-        this.setState(prev => ({
-          hasError: false,
-          errorType: null,
-          retryCount: prev.retryCount + 1,
-        }));
-        this.props.onRetry?.();
-      }, 1500);
-    }
+    console.error('3D Viewer Error (retrying…):', error, errorInfo);
+    // Always retry silently — never surface an error UI to the user.
+    this.retryTimer = setTimeout(() => {
+      this.setState(prev => ({
+        hasError: false,
+        retryCount: prev.retryCount + 1,
+      }));
+      this.props.onRetry?.();
+    }, 2000);
   }
 
   componentWillUnmount() {
@@ -211,37 +195,8 @@ class ErrorBoundary extends React.Component<
   }
 
   render() {
-    if (this.state.hasError && this.state.retryCount >= MAX_AUTO_RETRIES) {
-      const isNetwork = this.state.errorType === 'network';
-      const handleRetry = () => {
-        this.setState({ hasError: false, errorType: null, retryCount: 0 });
-        this.props.onRetry?.();
-      };
-      return (
-        <div className="model-viewer-loading-overlay">
-          <div style={{ fontSize: '2.5rem', lineHeight: 1 }}>{isNetwork ? '📡' : '⚠️'}</div>
-          <h3 style={{ margin: '0.5rem 0 0', color: '#fff', fontFamily: 'var(--font-family-heading)', fontSize: '1.1rem', fontWeight: 600 }}>
-            {isNetwork ? 'Connection Error' : '3D Render Error'}
-          </h3>
-          <p style={{ margin: '0.25rem 0 0', color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', textAlign: 'center' }}>
-            {isNetwork
-              ? 'Failed to load 3D model.\nCheck your connection.'
-              : "Your device can't render the 3D model."}
-          </p>
-          <button
-            className="camera-view-btn"
-            onClick={handleRetry}
-            style={{ marginTop: '1rem', width: 'auto', display: 'inline-block' }}
-          >
-            Retry
-          </button>
-        </div>
-      );
-    }
-
-    // While auto-retrying, keep showing the loading spinner (children hidden)
+    // While errored/retrying, render nothing — parent loading overlay stays visible.
     if (this.state.hasError) return null;
-
     return this.props.children;
   }
 }
@@ -279,11 +234,11 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
     loadTimeoutRef.current = setTimeout(() => {
       setTimedOut(true);
-    }, LOAD_TIMEOUT_MS);
+    }, isMobile ? LOAD_TIMEOUT_MOBILE_MS : LOAD_TIMEOUT_DESKTOP_MS);
     return () => {
       if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
     };
-  }, [modelPath, remountKey]);
+  }, [modelPath, remountKey, isMobile]);
 
   // Clear the timeout once the model loads
   useEffect(() => {
@@ -366,7 +321,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
         </div>
       )}
 
-      {!timedOut && <ErrorBoundary onRetry={() => { setTimedOut(false); setIsLoaded(false); setRemountKey(k => k + 1); }}>
+      <ErrorBoundary onRetry={() => { setTimedOut(false); setIsLoaded(false); setRemountKey(k => k + 1); }}>
         <Canvas
           ref={activeCanvasRef}
           camera={{ position: isMobile ? [7, 4, 7] : [5, 3, 5], fov: 50 }}
@@ -379,7 +334,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           }}
           style={{ background: 'transparent' }}
           frameloop="always"
-          dpr={[1, 2]} // Allow up to 2x for high-DPI phones (blank canvas fix)
+          dpr={[1, 1.5]} // Capped at 1.5x — prevents WebGL context loss on mid-range mobile GPUs
           onCreated={({ gl }) => {
             // Auto-remount when mobile browser kills WebGL context (e.g. on network change)
             gl.domElement.addEventListener('webglcontextlost', (e) => {
@@ -463,7 +418,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             }}
           />
         </Canvas>
-      </ErrorBoundary>}
+      </ErrorBoundary>
     </div>
   );
 };
