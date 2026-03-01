@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
+import ScrollToTopButton from './components/common/ScrollToTopButton';
 import Home from './pages/Home';
 import { initTextSelectionPrevention } from './utils/preventTextSelection';
 
@@ -45,6 +46,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <ScrollToTopButton />
       <Layout>
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
