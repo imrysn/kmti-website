@@ -185,9 +185,12 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
       pauseImageQueue();
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
+      // Hide chatbot widget — it has z-index 9996/9997 which sits above the modal on mobile
+      document.body.classList.add('modal-3d-open');
       return () => {
         resumeImageQueue();
         document.body.style.overflow = originalOverflow || '';
+        document.body.classList.remove('modal-3d-open');
       };
     }
   }, [isOpen]);

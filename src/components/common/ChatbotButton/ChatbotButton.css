@@ -245,3 +245,15 @@
     text-align: right;
   }
 }
+
+/* ─── Hide chatbot when 3D viewer modal is open ──────────────────────────────
+   The modal adds .modal-3d-open to <body>. Chatbot sits at z-index 9996/9997
+   which overrides the modal's z-index:2000, obstructing the view on mobile. */
+body.modal-3d-open .chatbot-button,
+body.modal-3d-open .chatbot-teaser,
+body.modal-3d-open .chatbot-panel {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
