@@ -29,49 +29,7 @@ const LoadingProgress: React.FC<{ pct: number }> = ({ pct }) => (
 );
 
 
-// ─── Issue 1: 3-Tier Device Detection ────────────────────────────────────────
-// Replaces the single isMobile boolean so high-end phones get full visuals
-// while low/mid phones get a quality budget appropriate to their GPU.
-//
-// Tier reference:
-//   low  → iPhone 7, Redmi 9, Galaxy A13    (≤4 CPU cores, Adreno 5xx / PowerVR)
-//   mid  → iPhone 12, Redmi Note 12, A54    (≤6 CPU cores, Adreno 6xx)
-//   high → iPhone 15, Galaxy S24, Pixel 8   (>6 CPU cores, Adreno 7xx / Apple GPU)
-//          + all tablets and desktops (always high)
 
-type DeviceTier = 'low' | 'mid' | 'high';
-
-const getDeviceTier = (): DeviceTier => {
-  if (typeof window === 'undefined') return 'high';
-  const isPhone = window.innerWidth <= 480;
-  if (!isPhone) return 'high';
-  const cores = navigator.hardwareConcurrency ?? 4;
-  if (cores <= 4) return 'low';
-  if (cores <= 6) return 'mid';
-  return 'high';
-};
-
-interface TierSettings {
-  antialias: boolean;
-  dpr: number | [number, number];
-  castShadow: boolean;
-  timeoutMs: number;
-  lightCount: 'min' | 'mid' | 'full';
-  // On low-tier GPUs, downgrade PBR materials to Phong to avoid shader compile failure
-  simpleMaterials: boolean;
-  // mediump avoids highp float precision failure on PowerVR (iPhone 7) and Adreno 5xx
-  precision: 'lowp' | 'mediump' | 'highp';
-}
-
-const TIER_SETTINGS: Record<DeviceTier, TierSettings> = {
-  // low: antialias off, native DPR (1×), no shadows, 2 lights, 90s timeout,
-  //      Phong material (not PBR), mediump precision — essential for iPhone 7 / Adreno 5xx
-  low: { antialias: false, dpr: 1, castShadow: false, timeoutMs: 75000, lightCount: 'min', simpleMaterials: true, precision: 'mediump' },
-  // mid: antialias off, native DPR (1×), no shadows, 3 lights, standard PBR ok
-  mid: { antialias: false, dpr: 1, castShadow: false, timeoutMs: 75000, lightCount: 'mid', simpleMaterials: false, precision: 'highp' },
-  // high: full visuals — antialias, 1.5× DPR, shadows, all 5 lights, PBR
-  high: { antialias: true, dpr: [1, 1.5], castShadow: true, timeoutMs: 75000, lightCount: 'full', simpleMaterials: false, precision: 'highp' },
-};
 
 // ─── Model Component ──────────────────────────────────────────────────────────
 
@@ -82,12 +40,10 @@ interface ModelProps {
   isInteracting?: boolean;
   cameraPosition?: [number, number, number];
   cameraView?: string;
-  /** Downgrade MeshStandardMaterial → MeshPhongMaterial on low-tier GPUs */
-  simpleMaterials?: boolean;
 }
 
 const Model: React.FC<ModelProps> = ({
-  modelPath, modelScale = 3, onLoaded, isInteracting, cameraPosition, cameraView, simpleMaterials
+  modelPath, modelScale = 3, onLoaded, isInteracting, cameraPosition, cameraView
 }) => {
   const { scene } = useGLTF(modelPath);
   const modelRef = useRef<THREE.Group>(null);
@@ -126,42 +82,6 @@ const Model: React.FC<ModelProps> = ({
       // on low-end phones during geometry copy + buffer traverse
       setTimeout(() => {
         const clone = scene.clone();
-
-        clone.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            // Issue 4: child.material can be Material | Material[] in multi-material meshes
-            const mats = Array.isArray(child.material) ? child.material : [child.material];
-
-            mats.forEach((mat, i) => {
-              if (simpleMaterials && mat instanceof THREE.MeshStandardMaterial) {
-                // Low-tier: downgrade PBR → Phong (~5× simpler shader)
-                const phong = new THREE.MeshPhongMaterial({
-                  name: 'DowngradedPhong',
-                  color: mat.color,
-                  map: mat.map,
-                  normalMap: mat.normalMap,
-                  emissive: mat.emissive,
-                  emissiveMap: mat.emissiveMap,
-                  emissiveIntensity: mat.emissiveIntensity,
-                  shininess: 40,
-                  transparent: mat.transparent,
-                  opacity: mat.opacity,
-                  side: mat.side,
-                });
-                // DO NOT dispose the original PBR material here, 
-                // because it belongs to the useGLTF cache.
-                if (Array.isArray(child.material)) {
-                  (child.material as THREE.Material[])[i] = phong;
-                } else {
-                  child.material = phong;
-                }
-              } else if (mat instanceof THREE.MeshStandardMaterial) {
-                if (mat.map) mat.map.colorSpace = THREE.SRGBColorSpace;
-                if (mat.emissiveMap) mat.emissiveMap.colorSpace = THREE.SRGBColorSpace;
-              }
-            });
-          }
-        });
 
         const box = new THREE.Box3().setFromObject(clone);
         const size = box.getSize(new THREE.Vector3());
@@ -334,11 +254,8 @@ class ErrorBoundary extends React.Component<
 // ─── ModelViewer ──────────────────────────────────────────────────────────────
 
 const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
-  // Issue 3: Frozen at mount — safe since ModelViewer remounts each time modal opens.
   // useState prevents re-reading window.innerWidth on every render.
-  const [tier] = useState(getDeviceTier);
   const [isPhone] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 480);
-  const settings = TIER_SETTINGS[tier];
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
@@ -428,9 +345,9 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     if (isLoaded) return;
     setTimedOut(false);
     if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
-    loadTimeoutRef.current = setTimeout(() => setTimedOut(true), settings.timeoutMs);
+    loadTimeoutRef.current = setTimeout(() => setTimedOut(true), 75000);
     return () => { if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current); };
-  }, [modelPath, remountKey, isLoaded, settings.timeoutMs]);
+  }, [modelPath, remountKey, isLoaded]);
 
   useEffect(() => {
     if (isLoaded && loadTimeoutRef.current) {
@@ -552,11 +469,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             ref={activeCanvasRef}
             camera={{ position: isPhone ? [7, 4, 7] : [5, 3, 5], fov: 50 }}
             gl={{
-              antialias: settings.antialias,
+              antialias: true,
               alpha: true,
-              // mediump on low-tier: highp float precision causes silent shader compile failure
-              // on PowerVR GT7600 (iPhone 7) and Adreno 5xx GPUs
-              precision: settings.precision,
               outputColorSpace: THREE.SRGBColorSpace,
               toneMapping: THREE.NoToneMapping,
               powerPreference: 'default',
@@ -566,7 +480,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             // Model.useFrame calls invalidate() during rotation + transitions.
             // OrbitControls (makeDefault) calls invalidate() natively on user input.
             frameloop="demand"
-            dpr={settings.dpr}
+            dpr={[1, 1.5]}
             onCreated={({ gl }) => {
               // Shader warnings suppressed at renderer level (not via global console.warn)
               gl.debug.checkShaderErrors = false;
@@ -580,33 +494,20 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           >
             {/* Issue 6: RendererConfig removed — Canvas gl prop already sets outputColorSpace + toneMapping */}
 
-            {/* ── Lighting — tiered by device capability ──────────────────── */}
-            {/* ALL tiers: soft ambient */}
+            {/* ── Lighting ────────────────────────────────────────────────── */}
             <ambientLight intensity={0.6} />
-
-            {/* ALL tiers: key directional (shadow only on mid/high as per settings) */}
             <directionalLight
               position={[10, 10, 5]}
               intensity={1.2}
-              castShadow={settings.castShadow}
+              castShadow={true}
               shadow-mapSize-width={512}
               shadow-mapSize-height={512}
               shadow-bias={-0.0001}
             />
-
-            {/* MID + HIGH: fill light to soften harsh shadows */}
-            {settings.lightCount !== 'min' && (
-              <directionalLight position={[-8, 5, -3]} intensity={0.4} />
-            )}
-
-            {/* HIGH only: back light + hemisphere sky + point highlight */}
-            {settings.lightCount === 'full' && (
-              <>
-                <directionalLight position={[0, 3, -10]} intensity={0.3} />
-                <hemisphereLight color="#ffffff" groundColor="#666666" intensity={0.5} />
-                <pointLight position={[0, 8, 0]} intensity={0.3} distance={20} decay={2} />
-              </>
-            )}
+            <directionalLight position={[-8, 5, -3]} intensity={0.4} />
+            <directionalLight position={[0, 3, -10]} intensity={0.3} />
+            <hemisphereLight color="#ffffff" groundColor="#666666" intensity={0.5} />
+            <pointLight position={[0, 8, 0]} intensity={0.3} distance={20} decay={2} />
 
             <Suspense key={modelPath} fallback={null}>
               <Model
@@ -616,7 +517,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
                 isInteracting={isInteracting}
                 cameraPosition={getCameraPosition()}
                 cameraView={cameraView}
-                simpleMaterials={settings.simpleMaterials}
               />
             </Suspense>
 
