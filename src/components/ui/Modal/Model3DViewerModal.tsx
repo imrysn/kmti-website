@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
+import React, { useEffect, useState, useRef, useCallback, lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 // React.lazy — Three.js (~994 kB) only loads when user opens a 3D viewer
 const ModelViewer = lazy(() => import('./ModelViewer'));
@@ -55,15 +55,11 @@ const ModalBoxIcon: React.FC = () => (
   </svg>
 );
 
-// Chevron toggle icon for the mobile camera panel
-const ChevronIcon: React.FC<{ open: boolean }> = ({ open }) => (
+// Chevron toggle — only renders when camera panel is hidden, so it's always pointing right
+const ChevronIcon: React.FC = () => (
   <svg
     width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-    style={{
-      transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-      transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)',
-      display: 'block',
-    }}
+    style={{ display: 'block' }}
   >
     <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
@@ -127,12 +123,13 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   const [isCameraPanelVisible, setIsCameraPanelVisible] = useState(true);
   const cameraHideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const startCameraHideTimer = () => {
+  // Issue 6: useCallback so this can be safely listed as a dep in useEffect below
+  const startCameraHideTimer = useCallback(() => {
     if (cameraHideTimerRef.current) clearTimeout(cameraHideTimerRef.current);
     cameraHideTimerRef.current = setTimeout(() => {
       setIsCameraPanelVisible(false);
     }, 10000);
-  };
+  }, []);
 
   const handleCameraToggle = () => {
     setIsCameraPanelVisible(prev => {
@@ -169,8 +166,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
     } else {
       if (cameraHideTimerRef.current) clearTimeout(cameraHideTimerRef.current);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, modelKey]);
+  }, [isOpen, modelKey, startCameraHideTimer]);
 
   const handleClose = (e?: React.MouseEvent) => {
     if (e) {
@@ -275,7 +271,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
                   onClick={handleCameraToggle}
                   aria-label="Show camera views"
                 >
-                  <ChevronIcon open={false} />
+                  <ChevronIcon />
                 </button>
               )}
 

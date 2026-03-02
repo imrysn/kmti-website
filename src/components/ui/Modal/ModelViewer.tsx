@@ -18,7 +18,7 @@ type DeviceTier = 'low' | 'mid' | 'high';
 const getDeviceTier = (): DeviceTier => {
   if (typeof window === 'undefined') return 'high';
   const isPhone = window.innerWidth <= 480;
-  if (!isPhone) return 'high'; // tablet / desktop — unconditionally full quality
+  if (!isPhone) return 'high';
   const cores = navigator.hardwareConcurrency ?? 4;
   if (cores <= 4) return 'low';
   if (cores <= 6) return 'mid';
@@ -31,15 +31,20 @@ interface TierSettings {
   castShadow: boolean;
   timeoutMs: number;
   lightCount: 'min' | 'mid' | 'full';
+  // On low-tier GPUs, downgrade PBR materials to Phong to avoid shader compile failure
+  simpleMaterials: boolean;
+  // mediump avoids highp float precision failure on PowerVR (iPhone 7) and Adreno 5xx
+  precision: 'lowp' | 'mediump' | 'highp';
 }
 
 const TIER_SETTINGS: Record<DeviceTier, TierSettings> = {
-  // low: antialias off, native DPR (1×), no shadows, 2 lights, long timeout
-  low: { antialias: false, dpr: 1, castShadow: false, timeoutMs: 40000, lightCount: 'min' },
-  // mid: antialias off, native DPR (1×), no shadows, 3 lights
-  mid: { antialias: false, dpr: 1, castShadow: false, timeoutMs: 25000, lightCount: 'mid' },
-  // high: full visuals — antialias, 1.5× DPR, shadows, all 5 lights
-  high: { antialias: true, dpr: [1, 1.5], castShadow: true, timeoutMs: 15000, lightCount: 'full' },
+  // low: antialias off, native DPR (1×), no shadows, 2 lights, long timeout,
+  //      Phong material (not PBR), mediump precision — essential for iPhone 7 / Adreno 5xx
+  low: { antialias: false, dpr: 1, castShadow: false, timeoutMs: 40000, lightCount: 'min', simpleMaterials: true, precision: 'mediump' },
+  // mid: antialias off, native DPR (1×), no shadows, 3 lights, standard PBR ok
+  mid: { antialias: false, dpr: 1, castShadow: false, timeoutMs: 25000, lightCount: 'mid', simpleMaterials: false, precision: 'highp' },
+  // high: full visuals — antialias, 1.5× DPR, shadows, all 5 lights, PBR
+  high: { antialias: true, dpr: [1, 1.5], castShadow: true, timeoutMs: 15000, lightCount: 'full', simpleMaterials: false, precision: 'highp' },
 };
 
 // ─── Model Component ──────────────────────────────────────────────────────────
@@ -51,10 +56,12 @@ interface ModelProps {
   isInteracting?: boolean;
   cameraPosition?: [number, number, number];
   cameraView?: string;
+  /** Downgrade MeshStandardMaterial → MeshPhongMaterial on low-tier GPUs */
+  simpleMaterials?: boolean;
 }
 
 const Model: React.FC<ModelProps> = ({
-  modelPath, modelScale = 3, onLoaded, isInteracting, cameraPosition, cameraView
+  modelPath, modelScale = 3, onLoaded, isInteracting, cameraPosition, cameraView, simpleMaterials
 }) => {
   const { scene } = useGLTF(modelPath);
   const modelRef = useRef<THREE.Group>(null);
@@ -67,7 +74,20 @@ const Model: React.FC<ModelProps> = ({
   const isTransitioning = useRef(false);
 
   useEffect(() => {
-    setClonedScene(null);
+    setClonedScene(prev => {
+      // Issue 5: dispose old scene's materials + geometries to prevent GPU memory leak
+      // on repeated remounts (Canvas key change, context loss, model switch)
+      if (prev) {
+        prev.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            const mats = Array.isArray(child.material) ? child.material : [child.material];
+            mats.forEach(m => m.dispose());
+            child.geometry?.dispose();
+          }
+        });
+      }
+      return null;
+    });
     cameraInitializedRef.current = false;
   }, [modelPath]);
 
@@ -80,9 +100,35 @@ const Model: React.FC<ModelProps> = ({
 
         clone.traverse((child) => {
           if (child instanceof THREE.Mesh) {
-            const material = child.material as THREE.MeshStandardMaterial;
-            if (material.map) material.map.colorSpace = THREE.SRGBColorSpace;
-            if (material.emissiveMap) material.emissiveMap.colorSpace = THREE.SRGBColorSpace;
+            // Issue 4: child.material can be Material | Material[] in multi-material meshes
+            const mats = Array.isArray(child.material) ? child.material : [child.material];
+
+            mats.forEach((mat, i) => {
+              if (simpleMaterials && mat instanceof THREE.MeshStandardMaterial) {
+                // Low-tier: downgrade PBR → Phong (~5× simpler shader)
+                const phong = new THREE.MeshPhongMaterial({
+                  color: mat.color,
+                  map: mat.map,
+                  normalMap: mat.normalMap,
+                  emissive: mat.emissive,
+                  emissiveMap: mat.emissiveMap,
+                  emissiveIntensity: mat.emissiveIntensity,
+                  shininess: 40,
+                  transparent: mat.transparent,
+                  opacity: mat.opacity,
+                  side: mat.side,
+                });
+                mat.dispose();
+                if (Array.isArray(child.material)) {
+                  (child.material as THREE.Material[])[i] = phong;
+                } else {
+                  child.material = phong;
+                }
+              } else if (mat instanceof THREE.MeshStandardMaterial) {
+                if (mat.map) mat.map.colorSpace = THREE.SRGBColorSpace;
+                if (mat.emissiveMap) mat.emissiveMap.colorSpace = THREE.SRGBColorSpace;
+              }
+            });
           }
         });
 
@@ -254,10 +300,11 @@ class ErrorBoundary extends React.Component<
 // ─── ModelViewer ──────────────────────────────────────────────────────────────
 
 const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
-  // Issue 1: Tier computed once at mount — safe since modal remounts each open (early-return null)
-  const tier = getDeviceTier();
+  // Issue 3: Frozen at mount — safe since ModelViewer remounts each time modal opens.
+  // useState prevents re-reading window.innerWidth on every render.
+  const [tier] = useState(getDeviceTier);
+  const [isPhone] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 480);
   const settings = TIER_SETTINGS[tier];
-  const isPhone = typeof window !== 'undefined' && window.innerWidth <= 480;
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
@@ -324,6 +371,17 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
   }, [modelPath]);
 
+  // Issue 2: handleContextLost has empty deps — it's always the same function reference.
+  // Keeping the ref but removing the now-redundant update effect.
+  const handleContextLost = useCallback(() => {
+    setIsLoaded(false);
+    setTimedOut(false);
+    setRemountKey(k => k + 1);
+  }, []);
+  const handleContextLostRef = useRef(handleContextLost);
+  // (no update effect needed — handleContextLost is stable, ref is initialised correctly)
+
+  // User-triggered reload after genuine download timeout — clears cache for a fresh network fetch.
   const handleReload = useCallback(() => {
     useGLTF.clear(modelPath);
     setTimedOut(false);
@@ -357,12 +415,20 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
       )}
 
       <ErrorBoundary isMobile={isPhone} onRetry={handleReload}>
+        {/* key={remountKey}: CRITICAL — forces React to unmount+remount the Canvas
+            on context loss or user reload. Without this, remountKey changes only
+            update state; the old Canvas/Model stays alive with clonedScene set,
+            so onLoaded() is never re-called and the overlay stays stuck forever. */}
         <Canvas
+          key={remountKey}
           ref={activeCanvasRef}
           camera={{ position: isPhone ? [7, 4, 7] : [5, 3, 5], fov: 50 }}
           gl={{
             antialias: settings.antialias,
             alpha: true,
+            // mediump on low-tier: highp float precision causes silent shader compile failure
+            // on PowerVR GT7600 (iPhone 7) and Adreno 5xx GPUs
+            precision: settings.precision,
             outputColorSpace: THREE.SRGBColorSpace,
             toneMapping: THREE.NoToneMapping,
             powerPreference: 'default',
@@ -376,13 +442,11 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           onCreated={({ gl }) => {
             // Shader warnings suppressed at renderer level (not via global console.warn)
             gl.debug.checkShaderErrors = false;
-            // Auto-remount on WebGL context loss (common on iOS after backgrounding)
+            // On WebGL context loss (iOS backgrounding, memory pressure):
+            // recover by remounting the Canvas — keep the already-downloaded GLB cache.
             gl.domElement.addEventListener('webglcontextlost', (e) => {
               e.preventDefault();
-              setTimeout(() => {
-                setIsLoaded(false);
-                setRemountKey(k => k + 1);
-              }, 300);
+              setTimeout(() => handleContextLostRef.current(), 300);
             });
           }}
         >
@@ -420,10 +484,13 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             <Model
               modelPath={modelPath}
               modelScale={(modelScale || 3) * (isPhone ? 0.65 : 1)}
-              onLoaded={() => setIsLoaded(true)}
+              // Issue 1: useCallback stabilises the ref so Model's useEffect
+              // doesn't fire on every parent render cycle
+              onLoaded={useCallback(() => setIsLoaded(true), [])}
               isInteracting={isInteracting}
               cameraPosition={getCameraPosition()}
               cameraView={cameraView}
+              simpleMaterials={settings.simpleMaterials}
             />
           </Suspense>
 
