@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react';
+import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 // React.lazy — Three.js (~994 kB) only loads when user opens a 3D viewer
 const ModelViewer = lazy(() => import('./ModelViewer'));
@@ -55,48 +55,50 @@ const ModalBoxIcon: React.FC = () => (
   </svg>
 );
 
+// Chevron toggle icon for the mobile camera panel
+const ChevronIcon: React.FC<{ open: boolean }> = ({ open }) => (
+  <svg
+    width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+    style={{
+      transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+      transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)',
+      display: 'block',
+    }}
+  >
+    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 interface ModelConfig {
   path: string | null;
   scale?: number;
 }
 
-// Keep the internal MODEL_MAP as is since these keys map to technical data
+// Issue 1 Fix: Single canonical lowercase key per model — no more duplicates.
+// Lookup is normalized to lowercase+trim at call site.
 const MODEL_MAP: { [key: string]: ModelConfig } = {
-  'Dedimpler and Facer': { path: dedimplerFacerModel, scale: 5 },
-  'Dedimpler & Facer': { path: dedimplerFacerModel, scale: 5 },
-  'DEDIMPLER & FACER': { path: dedimplerFacerModel, scale: 5 },
-  'Bundling Machine': { path: bundlingMachineModel, scale: 5 },
-  'BUNDLING MACHINE': { path: bundlingMachineModel, scale: 5 },
-  'Product Storage': { path: productStorageModel, scale: 5 },
-  'Pipe Bundling': { path: null, scale: 5 },
-  'Transfer Table (Lifter)': { path: transferTableModel, scale: 5 },
-  'Transfer Table': { path: null, scale: 5 },
-  'FINISHING TABLE': { path: null, scale: 5 },
-  'Looper Machine': { path: looperModel, scale: 5 },
-  'LOOPER MACHINE': { path: looperModel, scale: 5 },
-  'Horizontal Looper Machine': { path: horizontalLooperModel, scale: 5 },
-  'HORIZONTAL LOOPER MACHINE': { path: horizontalLooperModel, scale: 5 },
-  'Shear Welder Machine': { path: shearWelderModel, scale: 5 },
-  'SHEAR WELDER MACHINE': { path: shearWelderModel, scale: 5 },
-  'Uncoiler Machine': { path: uncoilerModel, scale: 5 },
-  'UNCOILER MACHINE': { path: uncoilerModel, scale: 5 },
-  'Leveler Machine': { path: levelerModel, scale: 5 },
-  'LEVELER MACHINE': { path: levelerModel, scale: 5 },
-  'Furnace': { path: furnaceModel, scale: 5 },
-  'FURNACE': { path: furnaceModel, scale: 5 },
-  'Binding Machine': { path: bindingMachineModel, scale: 5 },
-  'BINDING MACHINE': { path: bindingMachineModel, scale: 5 },
-  'Forming and Sizing Machine': { path: formingSizingModel, scale: 5 },
-  'FORMING AND SIZING MACHINE': { path: formingSizingModel, scale: 5 },
-  'Milling Cutoff Machine': { path: null, scale: 5 },
-  'MILLING CUTOFF MACHINE': { path: null, scale: 5 },
-  'Bundle Separator': { path: bundleSeparatorModel, scale: 5 },
-  'Pipe Drying Section': { path: pipeDryingSectionModel, scale: 5 },
-  'Finishing Line': { path: null, scale: 5 },
-  'FINISHING LINE': { path: null, scale: 5 },
-  'Air Blow': { path: airBlowModel, scale: 5 },
-  'Vertical Looper': { path: null, scale: 5 },
-  'VERTICAL LOOPER': { path: null, scale: 5 },
+  'dedimpler and facer': { path: dedimplerFacerModel, scale: 5 },
+  'dedimpler & facer': { path: dedimplerFacerModel, scale: 5 },
+  'bundling machine': { path: bundlingMachineModel, scale: 5 },
+  'product storage': { path: productStorageModel, scale: 5 },
+  'pipe bundling': { path: null, scale: 5 },
+  'transfer table (lifter)': { path: transferTableModel, scale: 5 },
+  'transfer table': { path: null, scale: 5 },
+  'finishing table': { path: null, scale: 5 },
+  'looper machine': { path: looperModel, scale: 5 },
+  'horizontal looper machine': { path: horizontalLooperModel, scale: 5 },
+  'shear welder machine': { path: shearWelderModel, scale: 5 },
+  'uncoiler machine': { path: uncoilerModel, scale: 5 },
+  'leveler machine': { path: levelerModel, scale: 5 },
+  'furnace': { path: furnaceModel, scale: 5 },
+  'binding machine': { path: bindingMachineModel, scale: 5 },
+  'forming and sizing machine': { path: formingSizingModel, scale: 5 },
+  'milling cutoff machine': { path: null, scale: 5 },
+  'bundle separator': { path: bundleSeparatorModel, scale: 5 },
+  'pipe drying section': { path: pipeDryingSectionModel, scale: 5 },
+  'finishing line': { path: null, scale: 5 },
+  'air blow': { path: airBlowModel, scale: 5 },
+  'vertical looper': { path: null, scale: 5 },
 };
 
 export type CameraView = 'isometric' | 'front' | 'back' | 'left' | 'right' | 'top';
@@ -114,8 +116,61 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   modelTitle,
   modelKey
 }) => {
-  const { t } = useTranslation(); // Initialize translation hook
+  const { t } = useTranslation();
   const [cameraView, setCameraView] = useState<CameraView>('isometric');
+
+  // Computed at render time — always accurate since component remounts each open (early return null above).
+  // No useState needed; a frozen value from a desktop-width mount would break auto-hide.
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 480;
+
+  // Auto-hide camera panel on mobile: starts hidden, shows on open/interaction, hides after 10s
+  const [isCameraPanelVisible, setIsCameraPanelVisible] = useState(true);
+  const cameraHideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const startCameraHideTimer = () => {
+    if (cameraHideTimerRef.current) clearTimeout(cameraHideTimerRef.current);
+    cameraHideTimerRef.current = setTimeout(() => {
+      setIsCameraPanelVisible(false);
+    }, 10000);
+  };
+
+  const handleCameraToggle = () => {
+    setIsCameraPanelVisible(prev => {
+      if (!prev) {
+        // Opening: start auto-hide timer
+        startCameraHideTimer();
+      } else {
+        // Manually closing: cancel any pending timer
+        if (cameraHideTimerRef.current) clearTimeout(cameraHideTimerRef.current);
+      }
+      return !prev;
+    });
+  };
+
+  const handleCameraViewSelect = (view: CameraView) => {
+    setCameraView(view);
+    // Reset auto-hide timer every time user picks a view
+    startCameraHideTimer();
+  };
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (cameraHideTimerRef.current) clearTimeout(cameraHideTimerRef.current);
+    };
+  }, []);
+
+  // Issue 4 Fix: Reset camera to isometric and re-show panel whenever a different model is opened
+  useEffect(() => {
+    if (isOpen) {
+      setCameraView('isometric');
+      setIsCameraPanelVisible(true);
+      startCameraHideTimer();
+    } else {
+      if (cameraHideTimerRef.current) clearTimeout(cameraHideTimerRef.current);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, modelKey]);
 
   const handleClose = (e?: React.MouseEvent) => {
     if (e) {
@@ -150,15 +205,12 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Use modelKey if available, otherwise fallback to modelTitle (backward compatibility/English default)
-  const lookupKey = modelKey || modelTitle;
+  // Issue 1 Fix: Normalize lookup key to lowercase+trim — covers all casing variants with one map entry
+  const lookupKey = (modelKey || modelTitle).toLowerCase().trim();
   const modelConfig = MODEL_MAP[lookupKey];
 
-  if (!modelConfig) {
-    return null;
-  }
-
-  const hasModel = modelConfig.path !== null;
+  // Issue 2 Fix: Unknown model shows "unavailable" placeholder instead of a blank modal
+  const hasModel = modelConfig ? modelConfig.path !== null : false;
 
   return (
     <div className="model-3d-modal-overlay" onClick={handleClose}>
@@ -173,7 +225,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
         </button>
 
         <div className="model-3d-modal-header">
-          {/* We use modelTitle directly here as it is often a proper product name, 
+          {/* We use modelTitle directly here as it is often a proper product name,
               but we translate the subtitle and placeholder text */}
           <h2 className="model-3d-modal-title">{modelTitle}</h2>
           <p className="model-3d-modal-subtitle">
@@ -182,7 +234,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
         </div>
 
         <div className="model-3d-viewer-wrapper">
-          {hasModel ? (
+          {hasModel && modelConfig ? (
             <>
               <Suspense fallback={
                 <div className="model-viewer-loading-overlay">
@@ -197,12 +249,15 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
                 />
               </Suspense>
 
-              <div className="camera-view-buttons">
+              <div
+                className={`camera-view-buttons${isMobile ? (isCameraPanelVisible ? ' cam-panel-visible' : ' cam-panel-hidden') : ''
+                  }`}
+              >
                 {(['isometric', 'front', 'back', 'left', 'right', 'top'] as CameraView[]).map((view) => (
                   <button
                     key={view}
                     className={`camera-view-btn ${cameraView === view ? 'active' : ''}`}
-                    onClick={() => setCameraView(view)}
+                    onClick={() => handleCameraViewSelect(view)}
                     title={t(`projects.viewer.camera.${view}_title`)}
                   >
                     {t(`projects.viewer.camera.${view}`)}
@@ -210,6 +265,18 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
                 ))}
               </div>
 
+              {/* Mobile-only chevron — only shown when panel is hidden */}
+              {isMobile && !isCameraPanelVisible && (
+                <button
+                  className="camera-panel-toggle"
+                  onClick={handleCameraToggle}
+                  aria-label="Show camera views"
+                >
+                  <ChevronIcon open={false} />
+                </button>
+              )}
+
+              {/* Viewer control hints — hidden on mobile via CSS (.model-3d-controls-overlay display:none at ≤480px) */}
               <div className="model-3d-controls-overlay">
                 <div className="model-3d-controls-info">
                   <div className="model-3d-control-hint">
@@ -228,6 +295,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
               </div>
             </>
           ) : (
+            // Issue 2 Fix: Renders for both null-path models AND unrecognized model keys
             <div className="model-3d-placeholder">
               <div className="model-3d-placeholder-content">
                 <div className="model-3d-placeholder-icon">

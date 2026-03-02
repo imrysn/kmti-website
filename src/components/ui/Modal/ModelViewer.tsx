@@ -3,17 +3,8 @@ import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
-const originalWarn = console.warn;
-console.warn = (...args: unknown[]) => {
-  const message = args[0];
-  if (typeof message === 'string' &&
-    (message.includes('THREE.WebGLProgram: Program Info Log') ||
-      message.includes('X4122') ||
-      message.includes('X4008'))) {
-    return;
-  }
-  originalWarn.apply(console, args);
-};
+// Issue 5 Fix: Shader warnings suppressed via renderer debug flag (see onCreated below),
+// not via a global console.warn monkey-patch which would affect the entire app.
 
 const RendererConfig: React.FC = () => {
   const { gl } = useThree();
@@ -209,7 +200,12 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   const [isInteracting, setIsInteracting] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
   const [remountKey, setRemountKey] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+  // Issue 6 Fix: SSR-safe lazy initializer — avoids ReferenceError if window is undefined
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth <= 900 : false
+  );
+  // Issue 7 Fix: Keep a ref in sync so timeout callbacks always read the current value
+  const isMobileRef = useRef(isMobile);
   const internalCanvasRef = useRef<HTMLCanvasElement>(null);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -221,24 +217,30 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     useGLTF.preload(modelPath);
   }, [modelPath]);
 
-  // Mobile detection
+  // Mobile detection — keep ref in sync so timeout callbacks read the latest value
+  useEffect(() => {
+    isMobileRef.current = isMobile;
+  }, [isMobile]);
+
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 900);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Start the load timeout whenever modelPath changes or remountKey changes
+  // Issue 9 Fix: Gate timeout reset on !isLoaded — avoids restarting the timer after model loaded.
+  // Issue 7 Fix: Read from isMobileRef inside callback to avoid stale closure.
   useEffect(() => {
+    if (isLoaded) return; // model already resolved — don't reset the timer
     setTimedOut(false);
     if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
     loadTimeoutRef.current = setTimeout(() => {
       setTimedOut(true);
-    }, isMobile ? LOAD_TIMEOUT_MOBILE_MS : LOAD_TIMEOUT_DESKTOP_MS);
+    }, isMobileRef.current ? LOAD_TIMEOUT_MOBILE_MS : LOAD_TIMEOUT_DESKTOP_MS);
     return () => {
       if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
     };
-  }, [modelPath, remountKey, isMobile]);
+  }, [modelPath, remountKey, isLoaded]);
 
   // Clear the timeout once the model loads
   useEffect(() => {
@@ -313,7 +315,13 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           </p>
           <button
             className="camera-view-btn"
-            onClick={() => { setTimedOut(false); setIsLoaded(false); setRemountKey(k => k + 1); }}
+            onClick={() => {
+              // Issue 8 Fix: Clear Drei's GLTF cache so the next mount triggers a real network fetch
+              useGLTF.clear(modelPath);
+              setTimedOut(false);
+              setIsLoaded(false);
+              setRemountKey(k => k + 1);
+            }}
             style={{ marginTop: '0.75rem', width: 'auto', display: 'inline-block' }}
           >
             Reload Model
@@ -336,6 +344,9 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           frameloop="always"
           dpr={[1, 1.5]} // Capped at 1.5x — prevents WebGL context loss on mid-range mobile GPUs
           onCreated={({ gl }) => {
+            // Issue 5 Fix: Suppress noisy Three.js shader compile warnings at the renderer level
+            // instead of monkey-patching the global console.warn for the entire app.
+            gl.debug.checkShaderErrors = false;
             // Auto-remount when mobile browser kills WebGL context (e.g. on network change)
             gl.domElement.addEventListener('webglcontextlost', (e) => {
               e.preventDefault();
