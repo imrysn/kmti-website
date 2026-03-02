@@ -361,10 +361,13 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   // Crawls non-linearly to 99% over 60 seconds to simulate natural loading speeds:
   // bursts quickly, stalls on fake "heavy assets", bursts again, and rests at 99%.
   useEffect(() => {
+    let active = true;
+
     // Start at 1% so it doesn't look dead on quick cache reloads
-    setDownloadProgress(1);
+    if (active) setDownloadProgress(1);
+
     if (isLoaded) {
-      setDownloadProgress(100);
+      if (active) setDownloadProgress(100);
       return;
     }
 
@@ -378,7 +381,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
       { t: 1.00, p: 99 },   // 42-60s: Crawls to 99% (Slows down to wait)
     ];
 
-    let active = true;
     const durationMs = 60000;
     const startTime = Date.now();
 

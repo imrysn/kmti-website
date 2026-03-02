@@ -126,9 +126,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   // Issue 6: useCallback so this can be safely listed as a dep in useEffect below
   const startCameraHideTimer = useCallback(() => {
     if (cameraHideTimerRef.current) clearTimeout(cameraHideTimerRef.current);
-    cameraHideTimerRef.current = setTimeout(() => {
-      setIsCameraPanelVisible(false);
-    }, 10000);
+    cameraHideTimerRef.current = setTimeout(() => setIsCameraPanelVisible(false), 10000);
   }, []);
 
   const handleCameraToggle = () => {
@@ -235,7 +233,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
         <div className="model-3d-viewer-wrapper">
           {hasModel && modelConfig ? (
             <>
-              <Suspense fallback={
+              <Suspense key={modelConfig.path} fallback={
                 <div className="model-viewer-loading-overlay">
                   <div className="model-viewer-spinner"></div>
                   <p>Loading 3D Viewer...</p>
