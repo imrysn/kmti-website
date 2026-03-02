@@ -531,9 +531,14 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           <p>Loading 3D Model...</p>
           <LoadingProgress pct={downloadProgress} />
           {timedOut && (
-            <p style={{ marginTop: '0.5rem', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
-              Taking too long?<br />Check your internet connection.
-            </p>
+            <>
+              <p style={{ marginTop: '0.5rem', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
+                Taking too long?<br />Check your internet connection.
+              </p>
+              <div className="mv-snail-container" aria-hidden="true">
+                <span className="mv-snail">🐌</span>
+              </div>
+            </>
           )}
         </>
       </div>
