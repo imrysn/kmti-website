@@ -156,29 +156,175 @@
   background: rgba(10, 22, 40, 0.95);
   color: white;
   font-family: var(--font-family-body);
-  gap: 1rem;
+  gap: 1.4rem;
   z-index: 10;
   border-radius: 16px;
 }
 
+.model-viewer-loading-overlay .mv-load-progress {
+  margin-top: -1.7rem;
+  /* tighten gap slightly between text and bar while keeping spinner↔text large */
+}
+
+/* ─── Loading Spinner Variants (cycle every 3s via LoadingSpinner component) ─ */
+
+/* Entrance fade between variants */
+@keyframes spinnerFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Keep original class for the Suspense fallback (Three.js bundle load) */
 .model-viewer-spinner {
   width: 50px;
   height: 50px;
-  border: 3px solid rgba(81, 162, 255, 0.2);
+  border: 3px solid rgba(81, 162, 255, 0.15);
   border-top-color: #51A2FF;
   border-right-color: #51A2FF;
   border-radius: 50%;
-  animation: spin 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: spin 0.9s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 
-@keyframes spin {
+/* Variant 1: Dots */
+.mv-spinner-dots {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  animation: spinnerFadeIn 0.35s ease;
+}
+
+.mv-spinner-dots div {
+  width: 12px;
+  height: 12px;
+  background: #51A2FF;
+  border-radius: 50%;
+  animation: dotPulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.mv-spinner-dots div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.mv-spinner-dots div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.65);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Variant 3: 3D Cube — 6 faces, tumbles on both X and Y axes */
+.mv-spinner-cube {
+  width: 38px;
+  height: 38px;
+  perspective: 120px;
+  animation: spinnerFadeIn 0.35s ease;
+}
+
+.mv-spinner-cube-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-15deg) rotateY(0deg);
+  animation: cubeRotate 2.4s linear infinite;
+}
+
+.cube-face {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgba(81, 162, 255, 0.9);
+  background: rgba(33, 87, 238, 0.07);
+}
+
+.face-front {
+  transform: translateZ(19px);
+}
+
+.face-back {
+  transform: translateZ(-19px) rotateY(180deg);
+}
+
+.face-right {
+  transform: rotateY(90deg) translateZ(19px);
+}
+
+.face-left {
+  transform: rotateY(-90deg) translateZ(19px);
+}
+
+.face-top {
+  transform: rotateX(90deg) translateZ(19px);
+}
+
+.face-bottom {
+  transform: rotateX(-90deg) translateZ(19px);
+}
+
+@keyframes cubeRotate {
   0% {
-    transform: rotate(0deg);
+    transform: rotateX(-15deg) rotateY(0deg);
   }
 
   100% {
+    transform: rotateX(-15deg) rotateY(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
     transform: rotate(360deg);
   }
+}
+
+
+/* ─── Fetch progress bar (below "Loading 3D Model...") ──────────────────── */
+.mv-load-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 160px;
+}
+
+.mv-load-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(81, 162, 255, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.mv-load-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2157EE, #51A2FF);
+  border-radius: 2px;
+  transition: width 0.35s ease;
+}
+
+.mv-load-pct {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-family-body);
+  letter-spacing: 0.04em;
 }
 
 /* ============================================
