@@ -189,13 +189,13 @@ const MAX_ERROR_RETRIES = 5;
 
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode; onRetry?: () => void; isMobile?: boolean },
-  { hasError: boolean; retryCount: number; gaveUp: boolean }
+  { hasError: boolean; retryCount: number; gaveUp: boolean; lastError: string }
 > {
   private retryTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(props: { children: React.ReactNode; onRetry?: () => void; isMobile?: boolean }) {
     super(props);
-    this.state = { hasError: false, retryCount: 0, gaveUp: false };
+    this.state = { hasError: false, retryCount: 0, gaveUp: false, lastError: '' };
   }
 
   static getDerivedStateFromError() {
@@ -205,6 +205,9 @@ class ErrorBoundary extends React.Component<
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     const { retryCount } = this.state;
     console.error(`3D Viewer Error (attempt ${retryCount + 1}/${MAX_ERROR_RETRIES}):`, error, errorInfo);
+
+    // Store the error string for on-screen debugging on physical devices
+    this.setState({ lastError: error.message || String(error) });
 
     if (retryCount >= MAX_ERROR_RETRIES) {
       this.setState({ gaveUp: true });
@@ -236,13 +239,18 @@ class ErrorBoundary extends React.Component<
           <button
             className="camera-view-btn"
             onClick={() => {
-              this.setState({ hasError: false, retryCount: 0, gaveUp: false });
+              this.setState({ hasError: false, retryCount: 0, gaveUp: false, lastError: '' });
               this.props.onRetry?.();
             }}
             style={{ marginTop: '1rem', width: 'auto', display: 'inline-block' }}
           >
             Try Again
           </button>
+          {this.state.lastError && (
+            <p style={{ marginTop: '1rem', color: '#ffaaaa', fontSize: '0.75rem', maxWidth: '300px', wordWrap: 'break-word', textAlign: 'center' }}>
+              Debug: {this.state.lastError}
+            </p>
+          )}
         </div>
       );
     }
