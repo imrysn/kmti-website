@@ -280,7 +280,7 @@
   gap: 0.4rem;
   margin-left: 30px;
   margin-top: 0.4rem;
-  max-width: 80%;
+  max-width: 90%;
 }
 
 .chatbot-card-menu-button {
@@ -327,6 +327,9 @@
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.85rem;
   font-weight: 400;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
 }
 
 /* Action Buttons Container */
@@ -376,6 +379,9 @@
   color: #FFFFFF;
   font-size: 0.85rem;
   font-weight: 400;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
 }
 
 /* Facebook Button */

@@ -189,11 +189,12 @@
   font-size: 0.95rem;
   font-weight: 500;
   z-index: 9996;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: min(320px, calc(100vw - 110px));
+  word-break: break-word;
   animation: popIn 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: auto;
   /* Enable pointer events for close button */
-  position: fixed;
   transform-origin: bottom right;
 }
 
@@ -238,11 +239,10 @@
 
 @media (max-width: 480px) {
   .chatbot-teaser {
-    white-space: normal;
-    max-width: calc(90vw - 20px);
+    max-width: calc(85vw - 20px);
     bottom: 75px;
-    font-size: 0.8rem;
-    text-align: right;
+    font-size: 0.85rem;
+    right: 15px;
   }
 }
 

@@ -28,11 +28,18 @@
   gap: 0.3rem;
   margin-top: 0.3rem;
   margin-left: 30px;
+  max-width: 100%;
 }
 
 .chat-with-us-right-card .chatbot-card-menu-button {
   padding: 0.5rem 0.7rem;
   font-size: 0.8rem;
+}
+
+.chat-with-us-right-card .chatbot-card-menu-button-text {
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
 }
 
 /* Reduce action buttons spacing */
@@ -58,7 +65,9 @@
 }
 
 .chat-with-us-right-card .chatbot-card-action-button-text {
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
 }
 
 /* Reduce message text size slightly */
