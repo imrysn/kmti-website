@@ -1,81 +1,30 @@
 /**
- * Global image request queue with concurrency limit.
+ * Image queue pause/resume controls.
  *
- * On 3G networks, firing 40+ simultaneous image requests saturates the pipe.
- * This queue ensures at most MAX_CONCURRENT images download at the same time.
- * Images are processed in order of enqueue (roughly viewport order).
- *
- * Usage:
- *   enqueueImage(src, () => setReadyToLoad(true));
+ * These are used by Model3DViewerModal to throttle image loads while a heavy
+ * GLB file is downloading. The actual per-image queueing has been removed —
+ * images now use native browser lazy-loading. Only the pause/resume hooks
+ * remain so ModelViewer can signal "heavy load in progress" if needed in
+ * future optimizations.
  */
 
-const MAX_CONCURRENT = 3; // 3G sweet spot: enough parallelism, not overwhelming
-
-let active = 0;
 let paused = false;
-const queue: Array<() => void> = [];
-
-function pump() {
-    if (paused) return;
-    while (active < MAX_CONCURRENT && queue.length > 0) {
-        const next = queue.shift()!;
-        active++;
-        next();
-    }
-}
 
 /**
- * Pause the image queue (e.g. when a heavy resource like a GLB is loading).
- * In-progress images continue; queued ones wait until resumed.
+ * Pause image loading signals (currently a no-op placeholder).
+ * Called by Model3DViewerModal when a 3D model starts loading.
  */
 export function pauseImageQueue() {
     paused = true;
 }
 
 /**
- * Resume the image queue after a pause.
+ * Resume image loading signals.
+ * Called by Model3DViewerModal when a 3D model finishes loading.
  */
 export function resumeImageQueue() {
     paused = false;
-    pump();
 }
 
-/**
- * Enqueue an image load slot. When a slot is available, `onReady` is called,
- * which should trigger the actual src assignment. Call `releaseSlot` when the
- * image finishes loading or errors.
- *
- * @returns A cancel function — call it if the component unmounts before loading.
- */
-export function enqueueImage(onReady: () => void): () => void {
-    let cancelled = false;
-
-    const task = () => {
-        if (cancelled) {
-            // Slot was claimed but component unmounted — release immediately
-            releaseSlot();
-            return;
-        }
-        onReady();
-    };
-
-    queue.push(task);
-    pump();
-
-    return () => {
-        cancelled = true;
-        // If still in queue (not yet started), remove it
-        const idx = queue.indexOf(task);
-        if (idx !== -1) {
-            queue.splice(idx, 1);
-        }
-    };
-}
-
-/**
- * Call this when an image finishes loading or errors, to free up a slot.
- */
-export function releaseSlot() {
-    active = Math.max(0, active - 1);
-    pump();
-}
+// Keep paused accessible for potential future use
+export { paused };
