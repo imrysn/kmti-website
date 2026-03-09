@@ -262,29 +262,38 @@ class ErrorBoundary extends React.Component<
 // ─── ModelViewer ──────────────────────────────────────────────────────────────
 
 const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
-  // useState prevents re-reading window.innerWidth on every render.
-  const [isPhone] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 480);
+  // Detect mobile-class devices (phones and small tablets up to 768px CSS width).
+  // This drives GPU optimizations: low-power mode, no antialias, DPR=1, no shadows.
+  const [isPhone] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
   const [remountKey, setRemountKey] = useState<number | null>(0);
+  const contextLossCountRef = useRef(0);
+  const [gaveUpOnContext, setGaveUpOnContext] = useState(false);
 
   // Fake progress bar that crawls to 99% over 60 seconds
   const [downloadProgress, setDownloadProgress] = useState(0);
   const internalCanvasRef = useRef<HTMLCanvasElement>(null);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const MAX_CONTEXT_LOSSES = 3;
 
   const activeCanvasRef = canvasRef || internalCanvasRef;
 
   useEffect(() => {
+    // Draco decoder hosted locally in public/draco/ — more reliable than CDN on mobile networks.
+    // Files copied from: node_modules/three/examples/jsm/libs/draco/gltf/
+    useGLTF.setDecoderPath('/draco/');
     useGLTF.preload(modelPath);
   }, [modelPath]);
 
   // ─── Dynamic 60s Progress Bar ───────────────────────────────────────────────
   // Crawls non-linearly to 99% over 60 seconds to simulate natural loading speeds:
   // bursts quickly, stalls on fake "heavy assets", bursts again, and rests at 99%.
+  // NOTE: remountKey intentionally excluded from deps — canvas remounts (context loss)
+  // should NOT reset the progress bar, only a model path change or load completion should.
   useEffect(() => {
     let active = true;
 
@@ -345,7 +354,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
       active = false;
       clearInterval(interval);
     };
-  }, [modelPath, isLoaded, remountKey]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modelPath, isLoaded]); // remountKey intentionally omitted — canvas remounts must not reset progress
 
   // 90s load timeout — triggers "Taking too long" overlay
 
@@ -402,24 +412,36 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     setIsInteracting(false);
     setTimedOut(false);
     setDownloadProgress(1);
+    contextLossCountRef.current = 0;
+    setGaveUpOnContext(false);
     if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
   }, [modelPath]);
 
-  // Context loss: completely unmount Canvas, then remount after tiny delay
+  // Context loss: completely unmount Canvas, then remount after a recovery delay.
+  // Capped at MAX_CONTEXT_LOSSES to avoid an infinite loop on mobile devices
+  // with limited GPU memory where every mount attempt loses the context.
   const handleContextLost = useCallback(() => {
     setRemountKey(currentKey => {
       // If we already set it to null (manual reload/unmount), do not recover!
       // React Three Fiber calls forceContextLoss() on unmount which triggers this.
       if (currentKey === null) return currentKey;
 
+      contextLossCountRef.current += 1;
+      if (contextLossCountRef.current >= MAX_CONTEXT_LOSSES) {
+        // Too many context losses — give up and show error message
+        setGaveUpOnContext(true);
+        return null;
+      }
+
       setIsLoaded(false);
       setTimedOut(false);
+      // Longer delay (800ms) to give the mobile GPU time to recover memory
       setTimeout(() => {
         setRemountKey(k => (k === null ? 1 : k + 1));
-      }, 150);
+      }, 800);
       return null;
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const handleContextLostRef = useRef(handleContextLost);
 
   // User reload: wipe Canvas, evict caches, restart process after delay
@@ -427,6 +449,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     setIsLoaded(false);
     setTimedOut(false);
     setDownloadProgress(1);
+    contextLossCountRef.current = 0;
+    setGaveUpOnContext(false);
 
     // 1. Completely destroy the Canvas from the DOM
     setRemountKey(null);
@@ -442,33 +466,54 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
 
   return (
     <div className="model-viewer-container">
+      {/* Give-up overlay: shown when WebGL context is lost too many times */}
+      {gaveUpOnContext && (
+        <div className="model-viewer-loading-overlay">
+          <div style={{ fontSize: '2rem', lineHeight: 1 }}>⚠️</div>
+          <p style={{ margin: '0.5rem 0 0', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
+            {isPhone
+              ? 'Your device may not support 3D rendering.'
+              : 'Failed to initialize 3D renderer.'}
+          </p>
+          <button
+            className="camera-view-btn"
+            onClick={handleReload}
+            style={{ marginTop: '1rem', width: 'auto', display: 'inline-block' }}
+          >
+            Try Again
+          </button>
+        </div>
+      )}
+
       {/* Show overlay when not loaded, but use a fade-out class if we just loaded it */}
-      <div
-        className={`model-viewer-loading-overlay ${isLoaded ? 'fade-out' : ''}`}
-        style={{
-          opacity: isLoaded ? 0 : 1,
-          pointerEvents: isLoaded ? 'none' : 'auto',
-          transition: 'opacity 0.4s ease-in-out',
-          visibility: (isLoaded && !timedOut) ? 'hidden' : 'visible', // hide fully after fade but keep layout
-          transitionDelay: isLoaded ? '0s' : '0.2s', // slight delay on show to prevent fast-cache flicker
-        }}
-      >
-        <>
-          <LoadingSpinner />
-          <p>Loading 3D Model...</p>
-          <LoadingProgress pct={downloadProgress} />
-          {timedOut && (
-            <>
-              <p style={{ marginTop: '0.5rem', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
-                Taking too long?<br />Check your internet connection.
-              </p>
-              <div className="mv-snail-container" aria-hidden="true">
-                <span className="mv-snail">🐌</span>
-              </div>
-            </>
-          )}
-        </>
-      </div>
+      {!gaveUpOnContext && (
+        <div
+          className={`model-viewer-loading-overlay ${isLoaded ? 'fade-out' : ''}`}
+          style={{
+            opacity: isLoaded ? 0 : 1,
+            pointerEvents: isLoaded ? 'none' : 'auto',
+            transition: 'opacity 0.4s ease-in-out',
+            visibility: (isLoaded && !timedOut) ? 'hidden' : 'visible', // hide fully after fade but keep layout
+            transitionDelay: isLoaded ? '0s' : '0.2s', // slight delay on show to prevent fast-cache flicker
+          }}
+        >
+          <>
+            <LoadingSpinner />
+            <p>Loading 3D Model...</p>
+            <LoadingProgress pct={downloadProgress} />
+            {timedOut && (
+              <>
+                <p style={{ marginTop: '0.5rem', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
+                  Taking too long?<br />Check your internet connection.
+                </p>
+                <div className="mv-snail-container" aria-hidden="true">
+                  <span className="mv-snail">🐌</span>
+                </div>
+              </>
+            )}
+          </>
+        </div>
+      )}
 
       <ErrorBoundary isMobile={isPhone} onRetry={handleReload}>
         {remountKey !== null && (
@@ -477,45 +522,45 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             ref={activeCanvasRef}
             camera={{ position: isPhone ? [7, 4, 7] : [5, 3, 5], fov: 50 }}
             gl={{
-              antialias: true,
+              // Mobile: disable antialias (cuts VRAM ~50%), use low-power GPU (integrated
+              // GPU on iOS/Android is far more stable than discrete, avoids context loss).
+              // Desktop: keep full quality settings.
+              antialias: !isPhone,
               alpha: true,
               outputColorSpace: THREE.SRGBColorSpace,
               toneMapping: THREE.NoToneMapping,
-              powerPreference: 'default',
+              powerPreference: isPhone ? 'low-power' : 'default',
+              precision: isPhone ? 'mediump' : 'highp',
             }}
             style={{ background: 'transparent' }}
-            // Issue 2: demand rendering — GPU idles when nothing is animating.
-            // Model.useFrame calls invalidate() during rotation + transitions.
-            // OrbitControls (makeDefault) calls invalidate() natively on user input.
             frameloop="demand"
-            dpr={[1, 1.5]}
+            // Mobile: render at exactly 1× DPR — no supersampling, saves VRAM + fill rate
+            // Desktop: allow up to 1.5× for sharper rendering on HiDPI screens
+            dpr={isPhone ? 1 : [1, 1.5]}
             onCreated={({ gl }) => {
-              // Shader warnings suppressed at renderer level (not via global console.warn)
               gl.debug.checkShaderErrors = false;
-              // On WebGL context loss (iOS backgrounding, memory pressure):
-              // recover by remounting the Canvas — keep the already-downloaded GLB cache.
               gl.domElement.addEventListener('webglcontextlost', (e) => {
                 e.preventDefault();
                 setTimeout(() => handleContextLostRef.current(), 300);
               });
             }}
           >
-            {/* Issue 6: RendererConfig removed — Canvas gl prop already sets outputColorSpace + toneMapping */}
-
-            {/* ── Lighting ────────────────────────────────────────────────── */}
-            <ambientLight intensity={0.6} />
+            {/* ── Lighting ─────────────────────────────────────────────────────────── */}
+            {/* Mobile: 2-light setup — boosted ambient + 1 directional, NO shadow maps  */}
+            {/* Desktop: full 5-light setup with shadow map                              */}
+            <ambientLight intensity={isPhone ? 1.4 : 0.6} />
             <directionalLight
               position={[10, 10, 5]}
-              intensity={1.2}
-              castShadow={true}
+              intensity={isPhone ? 1.6 : 1.2}
+              castShadow={!isPhone}
               shadow-mapSize-width={512}
               shadow-mapSize-height={512}
               shadow-bias={-0.0001}
             />
-            <directionalLight position={[-8, 5, -3]} intensity={0.4} />
-            <directionalLight position={[0, 3, -10]} intensity={0.3} />
-            <hemisphereLight color="#ffffff" groundColor="#666666" intensity={0.5} />
-            <pointLight position={[0, 8, 0]} intensity={0.3} distance={20} decay={2} />
+            {!isPhone && <directionalLight position={[-8, 5, -3]} intensity={0.4} />}
+            {!isPhone && <directionalLight position={[0, 3, -10]} intensity={0.3} />}
+            {!isPhone && <hemisphereLight color="#ffffff" groundColor="#666666" intensity={0.5} />}
+            {!isPhone && <pointLight position={[0, 8, 0]} intensity={0.3} distance={20} decay={2} />}
 
             <Suspense key={modelPath} fallback={null}>
               <Model

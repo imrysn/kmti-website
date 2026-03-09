@@ -6,21 +6,23 @@ import './Model3DViewerModal.css';
 import { pauseImageQueue, resumeImageQueue } from '../../../utils/imageQueue';
 import { getAssetUrl } from '../../../utils/assets';
 
-const dedimplerFacerModel = getAssetUrl('glb/Dedimpler&Facer.glb');
-const bundlingMachineModel = getAssetUrl('glb/BundlingMachine.glb');
-const productStorageModel = getAssetUrl('glb/ProductStorage.glb');
-const transferTableModel = getAssetUrl('glb/TransferTable.glb');
-const formingSizingModel = getAssetUrl('glb/Forming&Sizing.glb');
-const airBlowModel = getAssetUrl('glb/AirBlow.glb');
-const bundleSeparatorModel = getAssetUrl('glb/BundleSeparator.glb');
-const pipeDryingSectionModel = getAssetUrl('glb/PipeDryingSection.glb');
-const bindingMachineModel = getAssetUrl('glb/BindingMachine.glb');
-const looperModel = getAssetUrl('glb/looper.glb');
-const horizontalLooperModel = getAssetUrl('glb/horizontalLooper.glb');
-const shearWelderModel = getAssetUrl('glb/shearwelder.glb');
-const uncoilerModel = getAssetUrl('glb/uncoiler.glb');
-const levelerModel = getAssetUrl('glb/leveler.glb');
-const furnaceModel = getAssetUrl('glb/furnace.glb');
+// TEST: Using compressed_glb/ folder — Draco-compressed models (~97% smaller than originals)
+// TODO: Once confirmed working, replace originals in glb/ with these and revert paths back to glb/
+const dedimplerFacerModel = getAssetUrl('compressed_glb/Dedimpler&Facer.glb');
+const bundlingMachineModel = getAssetUrl('compressed_glb/BundlingMachine.glb');
+const productStorageModel = getAssetUrl('compressed_glb/ProductStorage.glb');
+const transferTableModel = getAssetUrl('compressed_glb/TransferTable.glb');
+const formingSizingModel = getAssetUrl('compressed_glb/Forming&Sizing.glb');
+const airBlowModel = getAssetUrl('compressed_glb/AirBlow.glb');
+const bundleSeparatorModel = getAssetUrl('compressed_glb/BundleSeparator.glb');
+const pipeDryingSectionModel = getAssetUrl('compressed_glb/PipeDryingSection.glb');
+const bindingMachineModel = getAssetUrl('compressed_glb/BindingMachine.glb');
+const looperModel = getAssetUrl('compressed_glb/looper.glb');
+const horizontalLooperModel = getAssetUrl('compressed_glb/horizontalLooper.glb');
+const shearWelderModel = getAssetUrl('compressed_glb/shearwelder.glb');
+const uncoilerModel = getAssetUrl('compressed_glb/uncoiler.glb');
+const levelerModel = getAssetUrl('compressed_glb/leveler.glb');
+const furnaceModel = getAssetUrl('compressed_glb/furnace.glb');
 
 // --- SVG ICONS ---
 const RotateIcon: React.FC = () => (
