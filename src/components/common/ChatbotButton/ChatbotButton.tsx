@@ -22,6 +22,16 @@ const ChatbotButton: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Auto close teaser after 3 seconds
+  useEffect(() => {
+    if (!showTeaser) return;
+
+    const autoClose = setTimeout(() => {
+      setShowTeaser(false);
+    }, 3000); // Auto close after 10 seconds
+    return () => clearTimeout(autoClose);
+  }, [showTeaser]);
+
   // Listen for reset event from other components
   useEffect(() => {
     const handleResetChatbot = () => {

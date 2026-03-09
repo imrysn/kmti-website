@@ -65,6 +65,32 @@ const bundlingMachineImage = getAssetUrl('image3D/bundling-machine.png');
 const millingImage = getAssetUrl('image3D/milling.png');
 const furnaceImage = getAssetUrl('image3D/furnace.png');
 
+// near the top of the file, after imports
+interface ImageViewerModalProps {
+  isOpen: boolean;
+  src: string | null;
+  alt?: string;
+  onClose: () => void;
+}
+
+export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src, alt = '', onClose }) => {
+  useLockBodyScroll(isOpen);
+  if (!isOpen || !src) return null;
+
+  return (
+    <div className="service-modal-overlay" onClick={onClose}>
+      <div className="service-modal-content image-viewer-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="service-modal-close" onClick={onClose}>×</button>
+        <TransformWrapper>
+          <TransformComponent>
+            <LazyImage src={src} alt={alt} className="image-viewer-image" loading="eager" />
+          </TransformComponent>
+        </TransformWrapper>
+      </div>
+    </div>
+  );
+};
+
 const useLockBodyScroll = (isOpen: boolean) => {
   useEffect(() => {
     if (isOpen) {

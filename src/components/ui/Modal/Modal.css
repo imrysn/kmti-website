@@ -1,3 +1,21 @@
+/* About Page - Our Management Team */
+.image-viewer-modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+.image-viewer-image {
+  width: 100%;
+  height: auto;
+}
+
+/* optionally enhance the card hover on mobile */
+.management-team-card {
+  transition: transform .2s;
+}
+.management-team-card:hover {
+  transform: scale(1.02);
+}
+
 .service-modal-overlay {
   position: fixed;
   top: 0;

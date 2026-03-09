@@ -18,7 +18,7 @@ const aboutCompany4 = getAssetUrl('about_page/aboutcomapny4.png');
 const meeting1 = getAssetUrl('about_page/meeting1.jpg');
 const meeting2 = getAssetUrl('about_page/meeting2.jpg');
 import Button from '../../components/ui/Button';
-import { OurStoryModal } from '../../components/ui/Modal/Modal';
+import { ImageViewerModal, OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
 import { ManagementTeamCard, RelatedCompanyCard } from '../../components/ui/Card/Card';
 import { VisionIcon, MissionIcon, UserIcon } from '../../components/ui/Icons/ProjectIcons';
@@ -69,13 +69,22 @@ const About: React.FC<AboutPageProps> = () => {
   const [isManagementTeamExpanded, setIsManagementTeamExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentCompanyImageIndex, setCurrentCompanyImageIndex] = useState(0);
-
+  
   const ourPeopleImages = [ourPeople1, ourPeople2, ourPeople3, ourPeople4, ourPeople5];
   const aboutCompanyImages = [aboutCompany1, aboutCompany2, aboutCompany3, aboutCompany4, meeting1, meeting2];
 
+
+  const [selectedTeamImage, setSelectedTeamImage] = useState<string | null>(null);
+  const openTeamPhoto = (src: string) => {
+    setSelectedTeamImage(src);
+  };
+  const closeTeamPhoto = () => setSelectedTeamImage(null);
+
+  
   const navigateToContact = () => navigate('/contact');
   const navigateToProjects = () => navigate('/projects');
 
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % ourPeopleImages.length);
@@ -201,43 +210,43 @@ const About: React.FC<AboutPageProps> = () => {
             <p className="about-management-team-description">{t('about.management.description')}</p>
           )}
           <div className="about-management-team-grid">
-            <ManagementTeamCard image={pauImage} role={t('about.management.roles.accounting')} fallbackNode={<UserIcon />} />
-            <ManagementTeamCard image={michaelImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} />
+            <ManagementTeamCard image={pauImage} role={t('about.management.roles.accounting')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(pauImage)} />
+            <ManagementTeamCard image={michaelImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(michaelImage)} />
             <div className="management-team-card-placeholder"></div>
-            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} isLarge={true} fallbackNode={<UserIcon />} />
-            <ManagementTeamCard image={mennjoImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} />
-            <ManagementTeamCard image={teodyImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} />
+            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} isLarge={true} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(siryuImage)} />
+            <ManagementTeamCard image={mennjoImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(mennjoImage)} />
+            <ManagementTeamCard image={teodyImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(teodyImage)} />
           </div>
 
           {isManagementTeamExpanded && (
             <div className="about-management-team-expanded-rows">
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={raineImage} role={t('about.management.roles.admin_staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={erikImage} role={t('about.management.roles.eng_tl')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={louieImage} role={t('about.management.roles.eng_atl')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.it_staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={raineImage} role={t('about.management.roles.admin_staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(raineImage)} />
+                <ManagementTeamCard image={erikImage} role={t('about.management.roles.eng_tl')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(erikImage)} />
+                <ManagementTeamCard image={louieImage} role={t('about.management.roles.eng_atl')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(louieImage)} />
+                <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(shelaImage)} />
+                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.it_staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(kerbyImage)} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={kissImage} role={t('about.management.roles.staff_so')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={joyceImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={lorieImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={jonathanImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(royImage)} />
+                <ManagementTeamCard image={kissImage} role={t('about.management.roles.staff_so')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(kissImage)} />
+                <ManagementTeamCard image={joyceImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(joyceImage)} />
+                <ManagementTeamCard image={lorieImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(lorieImage)} />
+                <ManagementTeamCard image={jonathanImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(jonathanImage)} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={noelImage} role={t('about.management.roles.driver')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={nylImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={jcImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={jennyImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={jethroImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={noelImage} role={t('about.management.roles.driver')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(noelImage)} />
+                <ManagementTeamCard image={nylImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(nylImage)} />
+                <ManagementTeamCard image={jcImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(jcImage)} />
+                <ManagementTeamCard image={jennyImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(jennyImage)} />
+                <ManagementTeamCard image={jethroImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(jethroImage)} />
               </div>
               <div className="about-management-team-grid">
-                <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={sharmaineImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
-                <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} />
+                <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(jojoImage)} />
+                <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(mgImage)} />
+                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(zorenImage)} />
+                <ManagementTeamCard image={sharmaineImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(sharmaineImage)} />
+                <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} onClick={() => openTeamPhoto(matthewImage)} />
               </div>
             </div>
           )}
@@ -322,6 +331,13 @@ const About: React.FC<AboutPageProps> = () => {
       </section>
 
       <OurStoryModal isOpen={isOurStoryModalOpen} onClose={handleCloseOurStory} />
+      
+      <ImageViewerModal
+      isOpen={!!selectedTeamImage}
+      src={selectedTeamImage}
+      alt="Management Team"
+      onClose={closeTeamPhoto}
+      />
     </div>
   );
 };
