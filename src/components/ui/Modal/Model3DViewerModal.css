@@ -415,6 +415,55 @@
 }
 
 /* ============================================
+   INTERACTION HINT TOAST
+   ============================================ */
+
+.mv-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-family: var(--font-family-body);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 20;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: mvHintFadeInOut 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.mv-hint-divider {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes mvHintFadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+/* ============================================
    CAD-STYLE VIEW CUBE CONTROLS
    Professional 3D CAD software inspired design
    ============================================ */

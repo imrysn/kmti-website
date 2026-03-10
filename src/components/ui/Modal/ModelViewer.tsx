@@ -268,6 +268,25 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
+
+  // ─── Interaction Hint Toast ───────────────────────────────────────────────────
+  // Show a brief hint after model loads. Mouse hints on desktop, touch on mobile.
+  // Dismissed on first pointer interaction or after 2.5s.
+  const [showHint, setShowHint] = useState(false);
+  const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (isLoaded) {
+      setShowHint(true);
+      hintTimerRef.current = setTimeout(() => setShowHint(false), 2500);
+    }
+    return () => { if (hintTimerRef.current) clearTimeout(hintTimerRef.current); };
+  }, [isLoaded]);
+
+  const dismissHint = useCallback(() => {
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    setShowHint(false);
+  }, []);
   const [timedOut, setTimedOut] = useState(false);
   const [remountKey, setRemountKey] = useState<number | null>(0);
   const contextLossCountRef = useRef(0);
@@ -465,7 +484,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   }, [modelPath]);
 
   return (
-    <div className="model-viewer-container">
+    <div className="model-viewer-container" onPointerDown={dismissHint}>
       {/* Give-up overlay: shown when WebGL context is lost too many times */}
       {gaveUpOnContext && (
         <div className="model-viewer-loading-overlay">
@@ -512,6 +531,27 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
               </>
             )}
           </>
+        </div>
+      )}
+
+      {/* Interaction hint toast — shown once when model loads, responsive to device type */}
+      {showHint && (
+        <div className="mv-hint" aria-hidden="true">
+          {isPhone ? (
+            <>
+              <span>👆 Drag to rotate</span>
+              <span className="mv-hint-divider">·</span>
+              <span>🤏 Pinch to zoom</span>
+            </>
+          ) : (
+            <>
+              <span>🖱 Drag to rotate</span>
+              <span className="mv-hint-divider">·</span>
+              <span>Scroll to zoom</span>
+              <span className="mv-hint-divider">·</span>
+              <span>Right-click to pan</span>
+            </>
+          )}
         </div>
       )}
 
