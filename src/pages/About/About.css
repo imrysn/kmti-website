@@ -1182,7 +1182,9 @@
   }
 
   .about-vision-mission-grid {
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin: 0 10%;
   }
 
   .related-companies-grid {
@@ -1365,8 +1367,11 @@
   }
 
   .about-vision-mission-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 2rem;
+    margin-left: 0;
+    margin-right: 0
   }
 
   .about-management-team-title {
@@ -1542,9 +1547,9 @@
 
   /* Vision-mission grid remains 2 columns 1 row centered on mobile */
   .about-vision-mission-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     width: 100%;
-    gap: .5rem;
+    gap: 2rem;
     margin-left: 0;
     margin-right: 0;
   }

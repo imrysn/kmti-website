@@ -65,7 +65,7 @@ const bundlingMachineImage = getAssetUrl('image3D/bundling-machine.png');
 const millingImage = getAssetUrl('image3D/milling.png');
 const furnaceImage = getAssetUrl('image3D/furnace.png');
 
-// near the top of the file, after imports
+// Modal for Management Team image viewer
 interface ImageViewerModalProps {
   isOpen: boolean;
   src: string | null;

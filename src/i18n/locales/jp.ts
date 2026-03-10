@@ -599,7 +599,8 @@ const jp = {
       email: "メールアドレス",
       subject: "件名",
       message: "メッセージ",
-      send: "メッセージを送信"
+      send: "メッセージを送信",
+      sending: "送信..."
     },
     info: {
       title: "連絡先情報",

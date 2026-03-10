@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Projects.css';
@@ -11,6 +11,9 @@ import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTable
 import Model3DViewerModal from '../../components/ui/Modal/Model3DViewerModal';
 
 import { getAssetUrl } from '../../utils/assets';
+
+import Pagination from '../../components/ui/Pagination/Pagination'; // Pagination Component
+
 
 // Images
 const projectBg = getAssetUrl('hero_background/projectbg.jpg');
@@ -46,6 +49,9 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
   // Filter State
   const [activeCategoryKey, setActiveCategoryKey] = useState('ALL');
 
@@ -66,6 +72,9 @@ const Projects: React.FC<ProjectsPageProps> = () => {
     close3DViewer
   } = useProjectModals();
 
+   useEffect(() => {
+    setCurrentPage(1); // Reset to page 1 when category changes
+  }, [activeCategoryKey]);
 
   // Project data mapped to translation keys
   const projects = useMemo<ProjectItem[]>(() => [
@@ -244,6 +253,12 @@ const Projects: React.FC<ProjectsPageProps> = () => {
     ? shuffledProjects
     : shuffledProjects.filter(p => p.categoryKey === activeCategoryKey);
 
+  
+  // Pagination Logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProjects = filteredProjects.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
 
   // Handler helper
   const handleProjectClick = (project: ProjectItem) => {
@@ -309,7 +324,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
           </div>
 
           <div className="projects-card-grid">
-            {filteredProjects.map((project) => (
+            {currentProjects.map((project) => (
               <ProjectsCard
                 key={project.id}
                 image={project.image}
@@ -329,6 +344,13 @@ const Projects: React.FC<ProjectsPageProps> = () => {
               />
             ))}
           </div>
+      
+          <Pagination // Pagination Controls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+
         </div>
       </div>
 

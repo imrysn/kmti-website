@@ -36,6 +36,7 @@ const Contact: React.FC<ContactPageProps> = () => {
   const { t } = useTranslation();
 
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
+  const [isSending, setIsSending] = useState(false); // Used for Submit Button Loading Indicator
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -43,12 +44,20 @@ const Contact: React.FC<ContactPageProps> = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Mailto fallback for frontend-only
+  e.preventDefault();
+  setIsSending(true); // Start loading
+
+  // 2 seconds delay to show loading indicator
+  setTimeout(() => {
     const { name, email, subject, message } = formData;
     const mailtoLink = `mailto:info@kmti.com.ph?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+
     window.location.href = mailtoLink;
-  };
+
+    // The page will navigate away, but we can reset state in case the user cancels or returns.
+    setIsSending(false);
+  }, 2000);
+};
 
   const handleGeneralInquiries = () => {
     window.location.href = 'mailto:info@kmti.com.ph';
@@ -167,7 +176,12 @@ const Contact: React.FC<ContactPageProps> = () => {
                     required
                   />
                 </div>
-                <Button variant="style1" type="submit">{t('contact.form.send')}</Button>
+                
+                {/*Submit Button */}
+                <Button variant="style1" type="submit" disabled={isSending}>{isSending ? (<>{t('contact.form.sending')}
+                  <span className="button-loading-spinner"/></>) : (t('contact.form.send'))}
+                </Button>
+
               </form>
             </div>
 

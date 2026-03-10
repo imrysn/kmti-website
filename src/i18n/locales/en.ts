@@ -599,7 +599,8 @@ const en = {
       email: "Your Email",
       subject: "Subject",
       message: "Message",
-      send: "SEND MESSAGE"
+      send: "SEND MESSAGE",
+      sending: "SENDING..."
     },
     info: {
       title: "Contact Information",
