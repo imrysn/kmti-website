@@ -120,9 +120,20 @@ $RECYCLE.BIN/
 # ============================================
 # Project-Specific
 # ============================================
-# 3D Model files (large GLB files)
+# 3D Model files (large GLB files) — served from public/compressed_glb/
+# Transfer these manually (ZIP/USB/file share). Do NOT commit — 156 MB of binaries.
 /src/assets/3DMODELS/
-*.glb
+public/compressed_glb/
+
+# Large image asset folders — transfer manually alongside GLBs
+public/icons/
+public/logo/
+public/image3D/
+public/management/
+public/ojt/
+public/service_detail_image/
+public/about_page/
+public/hero_background/
 
 # Backup and Large Files
 .git_backup_large/
