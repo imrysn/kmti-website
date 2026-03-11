@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { getAssetUrl } from '../../../utils/assets';
 import { ChatbotCard } from '../../ui/Card/chatbot';
 import './ChatbotButton.css';
@@ -12,12 +13,19 @@ const ChatbotButton: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [resetTrigger, setResetTrigger] = useState(0);
   const [showTeaser, setShowTeaser] = useState(false);
+  const [isTeaserDismissed, setIsTeaserDismissed] = useState(false);
+  const location = useLocation();
+
+  // Reset the dismissed state when the user navigates to a new page
+  useEffect(() => {
+    setIsTeaserDismissed(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const timers: NodeJS.Timeout[] = [];
 
-    // Hide and Stop the Loop if the chat is opened
-    if (isChatOpen) {
+    // Hide and Stop the Loop if the chat is opened or the teaser is dismissed
+    if (isChatOpen || isTeaserDismissed) {
       setShowTeaser(false);
       return;
     }
@@ -41,7 +49,7 @@ const ChatbotButton: React.FC = () => {
 
     // Timer Cleanup Function
     return () => timers.forEach(clearTimeout);
-  }, [isChatOpen]);
+  }, [isChatOpen, isTeaserDismissed]);
 
   // Listen for reset event from other components
   useEffect(() => {
@@ -97,6 +105,7 @@ const ChatbotButton: React.FC = () => {
             onClick={(e) => {
               e.stopPropagation();
               setShowTeaser(false);
+              setIsTeaserDismissed(true);
             }}
           >
             ×
