@@ -133,7 +133,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInitializing, isOpen, i18n.language]);
 
-  // --- Keyword Matching (Documentation Exhaustive List) ---
+  // --- Keyword Matching (Word-Based Scoring) ---
   const matchInputToAction = (input: string): string | null => {
     const normalized = input.toLowerCase().trim();
     const keywordMap: { [key: string]: string } = {
@@ -154,40 +154,286 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
 
       'bye': 'farewell-response', 'goodbye': 'farewell-response', 'see you': 'farewell-response', 'paalam': 'farewell-response', 'sayonara': 'farewell-response',
 
-      // Careers - Additional
-      'intern': 'training', 'internship': 'training', 'ojt': 'training', 'on the job training': 'training', 'trainee': 'training',
+      // ======== CAREERS / APPLICANT QUESTIONS ========
+      // General Career Questions
       'careers': 'careers', 'career': 'careers', 'application': 'careers', 'apply': 'careers', 'job': 'careers', 'jobs': 'careers', '採用': 'careers', '求人': 'careers',
-      'how to apply': 'how-to-apply', 'apply now': 'how-to-apply', '応募方法': 'how-to-apply',
-      'hiring process': 'hiring-process', 'process': 'hiring-process', '選考プロセス': 'hiring-process',
-      'working schedule': 'working-schedule', 'schedule': 'working-schedule', 'hours': 'working-schedule', '勤務スケジュール': 'working-schedule',
-      'contact hr': 'contact-hr', 'hr': 'contact-hr', '人事': 'contact-hr',
-      'benefits': 'benefits', 'compensation': 'benefits', 'salary': 'benefits', 'pay': 'benefits', '福利厚生': 'benefits',
-      'requirements': 'application-requirement', 'qualifications needed': 'application-requirement', '応募要件': 'application-requirement',
+      'hire': 'careers', 'hiring': 'careers', 'recruit': 'careers', 'recruitment': 'careers', '採用情報': 'careers',
+      'vacancy': 'careers', 'vacancies': 'careers', 'opening': 'careers', 'openings': 'careers', '空きポジション': 'careers',
+      
+      // Application Process
+      'how to apply': 'how-to-apply', 'apply now': 'how-to-apply', 'apply online': 'how-to-apply', 'application process': 'how-to-apply', '応募方法': 'how-to-apply',
+      'where to submit': 'how-to-apply', 'submit resume': 'how-to-apply', 'submit application': 'how-to-apply', 'application submission': 'how-to-apply',
+      'submit my cv': 'how-to-apply', 'send resume': 'how-to-apply',
+      'how to apply for': 'how-to-apply', 'how can i apply for': 'how-to-apply', 'how do i apply for': 'how-to-apply', 'how to apply for position': 'how-to-apply', 'apply for position': 'how-to-apply',
+      
+      // Hiring & Interview
+      'hiring process': 'hiring-process', 'interview': 'hiring-process', 'interview process': 'hiring-process',
+      'interview stage': 'hiring-process', 'interview timeline': 'hiring-process', 'selection process': 'hiring-process',
+      'next step': 'hiring-process', 'what happens next': 'hiring-process', 'interview question': 'hiring-process',
+      
+
+      // Positions & Roles
+      'available position': 'q3-available-positions','available job position': 'q3-available-positions', 'what positions': 'q3-available-positions', 'open position': 'q3-available-positions', 'current opening': 'q3-available-positions', '募集職種': 'q3-available-positions', '現在の求人': 'q3-available-positions',
+      'position': 'q3-available-positions', 'positions': 'q3-available-positions', 'role': 'q3-available-positions', 'job role': 'q3-available-positions', 'job description': 'q3-available-positions',
+      'engineer position': 'q3-available-positions', 'cad position': 'q3-available-positions', 'admin position': 'q3-available-positions',
+      'engineering job': 'q3-available-positions', 'design job': 'q3-available-positions',
+      'what are the available positions': 'q3-available-positions', 'available job positions': 'q3-available-positions', 'current job positions': 'q3-available-positions', 'what job openings': 'q3-available-positions', 'what positions are hiring': 'q3-available-positions', 'what jobs are available': 'q3-available-positions', 'what openings do you have': 'q3-available-positions',
+      'interested in specific field': 'q3-available-positions', 'interested in field': 'q3-available-positions', 'openings in field': 'q3-available-positions', 'positions in field': 'q3-available-positions', 'any available slots': 'q3-available-positions', 'available slots': 'q3-available-positions', 'any opening in': 'q3-available-positions',
+      
+      // Requirements & Qualifications
+      'req': 'q2-requirements', 'what is the requirement': 'q2-requirements', 'requirement': 'q2-requirements', 'requirements': 'q2-requirements',   'what requirements': 'q2-requirements', 'what do i need': 'q2-requirements', 'requirements needed': 'q2-requirements', '応募に必要な書類': 'q2-requirements', '必要な書類': 'q2-requirements',
+      'qualifications': 'q2-requirements', 'education required': 'q2-requirements', 'documents needed': 'q2-requirements', 'document required': 'q2-requirements',
+      'certificate needed': 'q2-requirements', 'diploma required': 'q2-requirements', 'resume required': 'q2-requirements',
+      'what are the requirements': 'q2-requirements', 'what are the requirements for': 'q2-requirements', 'requirements for position': 'q2-requirements', 'what do i need for': 'q2-requirements', 'what is required for': 'q2-requirements',
+      // Position-Specific Requirements
+             
+      // Skill Requirements by Position
+
+      // Engineering Staff Skills
+      'engineer': 'q13-engineering-staff-requirements', 'engineering skills': 'q13-engineering-staff-requirements', 'engineering skill': 'q13-engineering-staff-requirements', 'engineering': 'q13-engineering-staff-requirements', 'engineering staff requirement': 'q13-engineering-staff-requirements', 'engineering staff requirements': 'q13-engineering-staff-requirements', 'engineering staff needed': 'q13-engineering-staff-requirements', 'what is needed for engineering staff': 'q13-engineering-staff-requirements', 'engineering staff position requirement': 'q13-engineering-staff-requirements', 'what do i need for engineering staff': 'q13-engineering-staff-requirements', 'engineering staff qualifications': 'q13-engineering-staff-requirements',
+      'engineering skill requirement': 'q13-engineering-staff-requirements', 'engineering skills requirement': 'q13-engineering-staff-requirements', 'engineering skill needed': 'q13-engineering-staff-requirements', 'what engineering skills needed': 'q13-engineering-staff-requirements', 'engineering required skill': 'q13-engineering-staff-requirements', 'engineering skill requirements': 'q13-engineering-staff-requirements',
+      'engineering staff skills': 'q13-engineering-staff-requirements', 'engineering staff skill requirement': 'q13-engineering-staff-requirements', 'engineering staff skills required': 'q13-engineering-staff-requirements', 'engineer skills': 'q13-engineering-staff-requirements',
+    
+      // CAD Operator Skills
+      'cad': 'q9-cad-operator-skills', 'cad operator skills': 'q9-cad-operator-skills', 'cad operators': 'q9-cad-operator-skills', 'cad operator ': 'q9-cad-operator-skills', 'cad operator requirement': 'q9-cad-operator-skills', 'cad operator requirements': 'q9-cad-operator-skills', 'what is needed for cad operator': 'q9-cad-operator-skills', 'cad operator position requirement': 'q9-cad-operator-skills', 'what do i need for cad operator': 'q9-cad-operator-skills', 'cad operator qualifications': 'q9-cad-operator-skills',
+      'cad operator skill': 'q9-cad-operator-skills', 'cad skill': 'q9-cad-operator-skills', 'cad skills required': 'q9-cad-operator-skills',
+      'cad skill requirement': 'q9-cad-operator-skills', 'cad skills requirement': 'q9-cad-operator-skills', 'cad skill needed': 'q9-cad-operator-skills', 'what cad skills needed': 'q9-cad-operator-skills', 'cad required skill': 'q9-cad-operator-skills', 'cad skill requirements': 'q9-cad-operator-skills',
+      'ｃａｄ': 'q9-cad-operator-skills', 'cadオペレーター': 'q9-cad-operator-skills', 'cadスキル': 'q9-cad-operator-skills', 'cadソフトウェア': 'q9-cad-operator-skills', 'オートキャド': 'q9-cad-operator-skills', 'ソリッドワークス': 'q9-cad-operator-skills', 'アイキャド': 'q9-cad-operator-skills',
+ 
+      // OJT Skills
+      'ojt skill': 'q14-ojt-requirements', 'ojt': 'q14-ojt-requirements', 'ojt requirement': 'q14-ojt-requirements', 'ojt requirements': 'q14-ojt-requirements', 'ojt needed': 'q14-ojt-requirements', 'what is needed for ojt': 'q14-ojt-requirements', 'ojt trainee requirement': 'q14-ojt-requirements', 'ojt qualifications': 'q14-ojt-requirements', 'what do i need for ojt': 'q14-ojt-requirements',
+      'ojt skills': 'q14-ojt-requirements', 'ojt skill requirement': 'q14-ojt-requirements', 'ojt trainee skills': 'q14-ojt-requirements', 'trainee skills required': 'q14-ojt-requirements',
+      'ojt skill requirements': 'q14-ojt-requirements', 'ojt skills requirement': 'q14-ojt-requirements', 'ojt skill needed': 'q14-ojt-requirements', 'what ojt skills needed': 'q14-ojt-requirements', 'ojt required skill': 'q14-ojt-requirements', 'ojt skilled': 'q14-ojt-requirements',
+ 
+      // Accounting Skills
+      'account': 'q15-accounting-requirements', 'accounting': 'q15-accounting-requirements', 'accounting needed skill': 'q15-accounting-requirements','accounting skill': 'q15-accounting-requirements', 'accounting requirements': 'q15-accounting-requirements', 'accounting requirement': 'q15-accounting-requirements', 'accounting req': 'q15-accounting-requirements', 'accounting staff requirement': 'q15-accounting-requirements', 'accounting staff requirements': 'q15-accounting-requirements', 'what is needed for accounting': 'q15-accounting-requirements', 'what do i need for accounting': 'q15-accounting-requirements', 'accounting qualifications': 'q15-accounting-requirements',
+      'accounting skills': 'q15-accounting-requirements', 'accounting skill requirement': 'q15-accounting-requirements', 'accounting staff skills': 'q15-accounting-requirements', 'accountant skills': 'q15-accounting-requirements',
+      'accounting skill requirements': 'q15-accounting-requirements', 'accounting skills requirement': 'q15-accounting-requirements', 'accounting skill needed': 'q15-accounting-requirements', 'what accounting skills needed': 'q15-accounting-requirements', 'accounting required skill': 'q15-accounting-requirements', 'accountings': 'q15-accounting-requirements',
+ 
+     // Admin Skills
+      'admin requirement': 'q16-admin-staff-requirements', 'admin skill': 'q16-admin-staff-requirements', 'admin': 'q16-admin-staff-requirements', 'admin requirements': 'q16-admin-staff-requirements', 'admins requirement': 'q16-admin-staff-requirements', 'admins': 'q16-admin-staff-requirements', 'admin staff requirement': 'q16-admin-staff-requirements', 'admin staff requirements': 'q16-admin-staff-requirements', 'what is needed for admin': 'q16-admin-staff-requirements', 'what do i need for admin': 'q16-admin-staff-requirements', 'admin qualifications': 'q16-admin-staff-requirements',
+      'admin skills': 'q16-admin-staff-requirements', 'admin skill requirement': 'q16-admin-staff-requirements', 'admin staff skills': 'q16-admin-staff-requirements', 'administrative skills': 'q16-admin-staff-requirements',
+      'admin skill requirements': 'q16-admin-staff-requirements', 'admin skills requirement': 'q16-admin-staff-requirements', 'admin skill needed': 'q16-admin-staff-requirements', 'what admin skills needed': 'q16-admin-staff-requirements', 'admin required skill': 'q16-admin-staff-requirements', 'admin req': 'q16-admin-staff-requirements',
+ 
+      
+      'non work experiences': 'q6-non-work-experience', 'non work experience': 'q6-non-work-experience', 'no experience': 'q6-non-work-experience', 'fresh graduate': 'q6-non-work-experience', 'accept fresh grad': 'q6-non-work-experience', 'hire graduate': 'q6-non-work-experience', '未経験': 'q6-non-work-experience', '経験なし': 'q6-non-work-experience',
+      'entry level': 'q6-non-work-experience', 'beginner friendly': 'q6-non-work-experience', 'no prior experience': 'q6-non-work-experience',
+      'fresh grad': 'q10-fresh-grad-acceptance', 'new graduate': 'q10-fresh-grad-acceptance', 'graduate applicant': 'q10-fresh-grad-acceptance', 'fresh graduate hiring': 'q10-fresh-grad-acceptance', 'accept new grad': 'q10-fresh-grad-acceptance', '新卒': 'q10-fresh-grad-acceptance', 'フレッシュグラデュエート': 'q10-fresh-grad-acceptance', '新卒者': 'q10-fresh-grad-acceptance', '大学卒業': 'q10-fresh-grad-acceptance', '新卒採用': 'q10-fresh-grad-acceptance',
+      
+      // Work Schedule & Hours
+      'work schedule': 'working-schedule', 'working schedule': 'working-schedule', 'hours': 'working-schedule', '勤務スケジュール': 'working-schedule',
+      'work hours': 'working-schedule', 'opening hours': 'q5-operating-hours',
+      'what time': 'q5-operating-hours', 'when is open': 'q5-operating-hours', '営業時間': 'q5-operating-hours', 'いつ開いて': 'q5-operating-hours',
+      'work timing': 'working-schedule', 'starting time': 'working-schedule', 'ending time': 'working-schedule', 'shift': 'working-schedule',
+      'flexible schedule': 'working-schedule', 'part time': 'working-schedule', 'full time': 'working-schedule', 'remote work': 'working-schedule',
+      'hybrid': 'q12-work-setup', 'work from home': 'q12-work-setup', 'wfh': 'q12-work-setup', 'remote': 'q12-work-setup', 'wfh setup': 'q12-work-setup', 'hybrid setup': 'q12-work-setup', 'work setup': 'q12-work-setup', 'office setup': 'q12-work-setup', 'on-site': 'q12-work-setup', 'do you offer hybrid': 'q12-work-setup', 'hybrid or wfh': 'q12-work-setup', 'work from home available': 'q12-work-setup',
+      
+      // Compensation & Benefits
+      'benefits': 'benefits', 'compensation': 'benefits', 'pay': 'benefits', '福利厚生': 'benefits',
+      'salary range': 'benefits', 'wage': 'benefits', 'paycheck': 'benefits',
+      'allowance': 'benefits', 'bonus': 'benefits', 'incentive': 'benefits', 'perks': 'benefits',
+      'insurance': 'benefits', 'health insurance': 'benefits', 'medical': 'benefits', 'retirement plan': 'benefits',
+      'transportation allowance': 'benefits', 'meal allowance': 'benefits', 'housing allowance': 'benefits',
+      '給料': 'benefits', '賃金': 'benefits', 'ボーナス': 'benefits', '手当': 'benefits',
+      
+      // Training & Development
       'training': 'training', 'development': 'training', '研修': 'training',
+      'new employee training': 'q11-new-employee-training', 'training for new': 'q11-new-employee-training', 'new hire training': 'q11-new-employee-training', 'orientation': 'q11-new-employee-training', 'onboarding': 'q11-new-employee-training', '新入社員研修': 'q11-new-employee-training', 'トレーニング': 'q11-new-employee-training', '新入社員': 'q11-new-employee-training', '研修プログラム': 'q11-new-employee-training', 'オリエンテーション': 'q11-new-employee-training',
+      'skills training': 'q11-new-employee-training', 'professional development': 'q11-new-employee-training', 'learning opportunity': 'q11-new-employee-training',
+      'intern': 'training', 'internship': 'training', 'ojts': 'q8-ojt-student', 'on the job training': 'q8-ojt-student', 'trainee': 'training',
+      'ojt program': 'q8-ojt-student', 'student training': 'q8-ojt-student', 'accept ojt': 'q8-ojt-student', '学生訓練': 'q8-ojt-student', 'インターンシップ': 'q8-ojt-student', 'オンザジョブトレーニング': 'q8-ojt-student', 'ojt要件': 'q8-ojt-student', 'ojt学生': 'q8-ojt-student',
+      'japan training': 'q11-new-employee-training', 'overseas training': 'q11-new-employee-training',
+      
+      // Company Culture & Environment
+      'company culture': 'about', 'team': 'about', 'team environment': 'about', 'work environment': 'about',
+      'company atmosphere': 'about', 'company values': 'about', 'company mission': 'about',
+      'company team': 'about', 'team members': 'about', 'colleague': 'about', 'workplace': 'about',
+      'friendly': 'about', 'supportive': 'about', 'collaborative': 'about',
+      
+      // Career Growth
+      'career opportunities': 'career-opportunities', 'career growth': 'career-opportunities', 'advancement': 'career-opportunities',
+      'promotion': 'career-opportunities', 'career path': 'career-opportunities', 'career development': 'career-opportunities',
+      'long term': 'career-opportunities', 'future opportunity': 'career-opportunities', 'growth potential': 'career-opportunities',
+      'キャリア成長': 'career-opportunities', 'キャリアパス': 'career-opportunities',
+      
+      // Application Status
       'application status': 'application-status', 'status': 'application-status', '進捗': 'application-status',
+      'check my application': 'application-status', 'application result': 'application-status', 'application update': 'application-status',
+      'when will i hear': 'application-status', 'decision time': 'application-status', 'result update': 'application-status',
+      
+      // HR Contact
+      'contact hr': 'contact-hr', 'hr': 'contact-hr', '人事': 'contact-hr',
+      'human resources': 'contact-hr', 'hr email': 'contact-hr', 'hr phone': 'contact-hr', 'hr team': 'contact-hr',
 
-      // Client Questions
+      // ======== CLIENT / SERVICE QUESTIONS ========
+      // Service Inquiries
+      'service offering': 'services', 'what do you offer': 'services',
+      'engineering service': 'services', 'design service': 'services', 'manufacturing service': 'services',
+      'サービス内容': 'services',
+      
+      // 3D Modeling Specifics
+      'three dimensional': '3d-modeling', '3d model': '3d-modeling', 'cad modeling': '3d-modeling',
+      'design model': '3d-modeling', 'visualization': '3d-modeling', '3d design': '3d-modeling',
+      
+      // 2D Detailing Specifics
+      'technical drawing': '2d-detailing', 'engineering drawing': '2d-detailing', 'blueprint': '2d-detailing',
+      'drawing service': '2d-detailing', 'cad drawing': '2d-detailing',
+      
+      // Parts Inspection Specifics
+      'quality inspection': 'parts-inspection', 'quality check': 'parts-inspection', 'quality assurance': 'parts-inspection',
+      'testing': 'parts-inspection', 'parts testing': 'parts-inspection', 'verification': 'parts-inspection',
+      
+      // Machine Assembly Specifics
+      'equipment assembly': 'machine-assembly', 'system assembly': 'machine-assembly', 'manufacturing': 'machine-assembly',
+      
+      // Pricing & Quotes
       'price': 'pricing', 'pricing': 'pricing', 'cost': 'pricing', 'quote': 'pricing', 'quotation': 'pricing', 'quotations': 'pricing', 'estimate': 'pricing', 'proposal': 'pricing', 'budget': 'pricing', 'rates': 'pricing', 'fees': 'pricing', '見積': 'pricing', '価格': 'pricing', '費用': 'pricing',
-      'timeline': 'timeline', 'duration': 'timeline', 'deadline': 'timeline', '納期': 'timeline', '期間': 'timeline', 'スケジュール': 'timeline',
-      'projects': 'projects', 'portfolio': 'projects', 'works': 'projects', 'case studies': 'projects', '実績': 'projects', '作品': 'projects', 'dedimpler': 'projects',
+      'cost estimation': 'pricing', 'price range': 'pricing', 'financial': 'pricing',
+      'affordable': 'pricing', 'discount': 'pricing', 'package deal': 'pricing',
+      
+      // Timeline & Deadlines
+      'timeline': 'timeline', 'duration': 'timeline', 'deadline': 'timeline', '納期': 'timeline', '期間': 'timeline',
+      'delivery time': 'timeline', 'turnaround time': 'timeline', 'completion date': 'timeline',
+      'fast': 'timeline', 'quick': 'timeline', 'urgent': 'timeline', 'expedite': 'timeline',
+      'time frame': 'timeline', 'project duration': 'timeline',
+      
+      // Projects & Portfolio
+      'projects': 'projects', 'project': 'projects', 'portfolio': 'projects', 'works': 'projects', 'case studies': 'projects', '実績': 'projects', '作品': 'projects', 'dedimpler': 'projects',
+      'past projects': 'projects', 'completed work': 'projects', 'sample work': 'projects', 'reference': 'projects',
+      'project example': 'projects', 'previous work': 'projects', 'showcase': 'projects',
+      
+      // Process & Workflow
       'workflow': 'process', 'how it works': 'process', 'steps': 'process', 'procedure': 'process', '流れ': 'process', '手順': 'process',
+      'design process': 'process', 'production process': 'process', 'manufacturing process': 'process',
+      'step by step': 'process', 'work process': 'process', 'method': 'process',
+      
+      // Quality & Standards
+      'quality': 'qualifications', 'quality control': 'qualifications',
+      'standard': 'qualifications', 'certification': 'qualifications', 'certified': 'qualifications',
+      'accuracy': 'qualifications', 'precision': 'qualifications', 'high quality': 'qualifications',
+      '品質': 'qualifications', '認証': 'qualifications',
+      
+      // Consultation & Communication
       'consultation': 'consultation', 'meeting': 'consultation', 'discuss': 'consultation', 'discussion': 'consultation', 'consult': 'consultation', 'inquiry': 'consultation', 'inquiries': 'consultation', '相談': 'consultation', '打ち合わせ': 'consultation', '問い合わせ': 'consultation',
-      'payment': 'payment', 'billing': 'payment', 'invoicing': 'payment', 'invoice': 'payment', '支払': 'payment', '請求': 'payment',
-
-      // General
-      'location': 'location', 'office': 'location', 'address': 'location', 'map': 'location', 'where': 'location', '住所': 'location', '場所': 'location', '地図': 'location',
+      'talk to you': 'consultation', 'speak with': 'consultation', 'speak to team': 'consultation', 'contact team': 'consultation',
+      'initial consultation': 'consultation', 'free consultation': 'consultation', 'schedule meeting': 'consultation',
+      'requirements discussion': 'requirements', 'project discussion': 'consultation',
+      
+      // Revisions & Support
+      'revision': 'consultation', 'revisions': 'consultation', 'changes': 'consultation', 'modification': 'consultation',
       'support': 'support', 'help': 'support', 'assist': 'support', 'assistance': 'support', 'issue': 'support', 'problem': 'support', 'question': 'support', 'questions': 'support', 'サポート': 'support', 'ヘルプ': 'support',
+      'customer support': 'support', 'after sales': 'support', 'technical support': 'support',
+      
+      // Experience & Expertise
+      'experience': 'qualifications', 'expertise': 'qualifications', 'experience level': 'qualifications',
+      'how long in business': 'qualifications', 'years of experience': 'qualifications', 'track record': 'qualifications',
+      
+      // Confidentiality & Security
+      'confidential': 'qualifications', 'confidentiality': 'qualifications', 'secure': 'qualifications', 'security': 'qualifications',
+      'nda': 'qualifications', 'intellectual property': 'qualifications', 'privacy': 'qualifications', 'data protection': 'qualifications',
+      '機密': 'qualifications', '秘密保持': 'qualifications',
+      
+      // Payment & Terms
+      'billing': 'payment', 'invoicing': 'payment', 'invoice': 'payment', '支払': 'payment', '請求': 'payment',
+      'payment terms': 'payment', 'payment method': 'payment', 'installment': 'payment', 'deposit': 'payment',
+      'payment schedule': 'payment', 'payment plan': 'payment', 'cash flow': 'payment',
+
+      // Equipment & Technology
+      'equipment': 'qualifications', 'technology': 'qualifications', 'tools': 'qualifications', 'software': 'qualifications',
+      'latest technology': 'qualifications', 'advanced equipment': 'qualifications', 'state of art': 'qualifications',
+      'icad': 'qualifications', 'autocad': 'qualifications', 'solidworks': 'qualifications',
+
+      // ======== COMPANY INFORMATION ========
+      // Q17 - Vision & Mission
+      'company vision': 'q17-company-vision-mission',
+      'what is your vision': 'q17-company-vision-mission', 'what is your mission': 'q17-company-vision-mission', 'tell me your vision': 'q17-company-vision-mission', 'tell me your mission': 'q17-company-vision-mission',
+      'vision mission': 'q17-company-vision-mission', 'our vision': 'q17-company-vision-mission', 'our mission': 'q17-company-vision-mission', '企業理念': 'q17-company-vision-mission', 'ミッション': 'q17-company-vision-mission', 'ビジョン': 'q17-company-vision-mission',
+      'company goals': 'q17-company-vision-mission', 'long term goals': 'q17-company-vision-mission', 'company purpose': 'q17-company-vision-mission', 'our purpose': 'q17-company-vision-mission',
+      
+      // Q18 - Company Story
+      'company story': 'q18-company-story', 'kmti story': 'q18-company-story', 'how was kmti established': 'q18-company-story',
+      'when was kmti founded': 'q18-company-story', 'kmti history': 'q18-company-story', 'company founded': 'q18-company-story', 'about kmti founding': 'q18-company-story',
+      'company background': 'q18-company-story', 'company formation': 'q18-company-story', 'kusakabe maeno story': 'q18-company-story', '会社の歴史': 'q18-company-story',
+      'establishment year': 'q18-company-story', 'founding year': 'q18-company-story', 'when established': 'q18-company-story',
+      
+      // Q19 - Company Partners
+      'partners': 'q19-company-partners', 'partner companies': 'q19-company-partners', 'company partners': 'q19-company-partners', 'who are your partners': 'q19-company-partners',
+      'kusakabe': 'q19-company-partners', 'maeno giken': 'q19-company-partners', 'next engineering': 'q19-company-partners', 'affiliated company': 'q19-company-partners',
+      'partner with': 'q19-company-partners', 'partnership': 'q19-company-partners', 'collaborators': 'q19-company-partners', 'related companies': 'q19-company-partners',
+      'japan partner': 'q19-company-partners', 'industry partners': 'q19-company-partners', 'manufacturing partners': 'q19-company-partners',
+      'kemco': 'q19-company-partners', 'mgk': 'q19-company-partners', 'who do you work with': 'q19-company-partners',
+      
+      // Q20 - Company History & Milestones
+      'company history': 'q20-company-history', 'milestones': 'q20-company-history',
+      'company milestones': 'q20-company-history', 'what happened': 'q20-company-history', 'company events': 'q20-company-history',
+      '2014': 'q20-company-history', '2017': 'q20-company-history', '2023': 'q20-company-history', '2025': 'q20-company-history',
+      'company achievements': 'q20-company-history', 'company development': 'q20-company-history', 'company expansion': 'q20-company-history',
+      'since 2014': 'q20-company-history', 'established 2014': 'q20-company-history', 'past events': 'q20-company-history', 'company journey': 'q20-company-history',
+      
+      // Q21 - Detailed Benefits
+      'detailed benefits': 'q21-detailed-benefits', 'all benefits': 'q21-detailed-benefits', 'comprehensive benefits': 'q21-detailed-benefits', 'full benefits': 'q21-detailed-benefits',
+      'sss': 'q21-detailed-benefits', 'pag ibig': 'q21-detailed-benefits', 'philhealth': 'q21-detailed-benefits',
+      'rice subsidy': 'q21-detailed-benefits', 'rice allowance': 'q21-detailed-benefits',
+      'what benefits do you offer': 'q21-detailed-benefits', 'employee benefits': 'q21-detailed-benefits',
+      'government benefits': 'q21-detailed-benefits', 'mandated benefits': 'q21-detailed-benefits', '福利厚生詳細': 'q21-detailed-benefits',
+      'monthly allowance': 'q21-detailed-benefits', 'yearly bonus': 'q21-detailed-benefits', 'vacation days': 'q21-detailed-benefits', 'leave benefits': 'q21-detailed-benefits',
+      
+      // Q22 - Services Workflow
+      'service workflow': 'q22-services-workflow', 'how do you work': 'q22-services-workflow',
+      'stages': 'q22-services-workflow',
+      'order process': 'q22-services-workflow', 'project process': 'q22-services-workflow', 'delivery process': 'q22-services-workflow', 'complete process': 'q22-services-workflow',
+      'process flow': 'q22-services-workflow',
+      
+      // Q23 - Application Timeline
+      'application timeline': 'q23-application-timeline', 'hiring timeline': 'q23-application-timeline', 'how long': 'q23-application-timeline',
+      'how long does it take': 'q23-application-timeline', 'how many days': 'q23-application-timeline', 'start date': 'q23-application-timeline', 'when can i start': 'q23-application-timeline',
+      'how fast': 'q23-application-timeline', 'quick hiring': 'q23-application-timeline', 'fast hiring': 'q23-application-timeline', 'rapid hiring': 'q23-application-timeline',
+      'how long interview': 'q23-application-timeline', 'interview duration': 'q23-application-timeline', 'one day interview': 'q23-application-timeline', 'fast track hiring': 'q23-application-timeline',
+      
+      // General - Company & About
+      'location': 'location', 'office': 'location', 'address': 'address', 'map': 'location', 'where': 'location', '住所': 'location', '場所': 'location', '地図': 'location',
+      'direction': 'location', 'how to get': 'location', 'navigate': 'location', 'gps': 'location',
       'about': 'about', 'company': 'about', 'kmti': 'about', 'who are you': 'about', '会社概要': 'about',
+      'who we are': 'about', 'about us': 'about', 'our company': 'about', 'company info': 'about', 'company information': 'about',
+      'about kmti': 'q17-company-vision-mission', 'kmti info': 'q17-company-vision-mission', 'kmti information': 'q17-company-vision-mission', 'tell me about kmti': 'q17-company-vision-mission',
+      
       'main menu': 'main-menu', 'menu': 'main-menu', 'options': 'main-menu', 'ホーム': 'main-menu', 'メニュー': 'main-menu',
       'start over': 'start-over', 'reset': 'start-over', 'restart': 'start-over', '最初から': 'start-over', 'リセット': 'start-over',
-      'talk to human': 'talk-to-human', 'human': 'talk-to-human', 'person': 'talk-to-human', 'agent': 'talk-to-human', 'representative': 'talk-to-human', 'operator': 'talk-to-human', '担当者': 'talk-to-human', '人': 'talk-to-human', 'オペレーター': 'talk-to-human'
+      'talk to human': 'talk-to-human', 'human': 'talk-to-human', 'person': 'talk-to-human', 'agent': 'talk-to-human', 'representative': 'talk-to-human', 'operator': 'talk-to-human', '担当者': 'talk-to-human', '人': 'talk-to-human', 'オペレーター': 'talk-to-human',
+      'speak to someone': 'talk-to-human', 'real person': 'talk-to-human', 'live chat': 'talk-to-human'
     };
 
+    // Exact match first
     if (keywordMap[normalized]) return keywordMap[normalized];
+
+    // Word-based scoring: count how many words from the user input match keyword words
+    const inputWords = normalized.split(/\s+/).filter(w => w.length > 0);
+    let bestMatch: { action: string | null; score: number } = { action: null, score: 0 };
+
     for (const [keyword, action] of Object.entries(keywordMap)) {
-      if (normalized.includes(keyword)) return action;
+      const keywordWords = keyword.split(/\s+/).filter(w => w.length > 0);
+      let matchedWords = 0;
+
+      // Count how many words from the keyword appear in the input
+      for (const kwWord of keywordWords) {
+        if (inputWords.includes(kwWord)) {
+          matchedWords++;
+        }
+      }
+
+      // Calculate score: prioritize complete matches, then by number of matched words, then keyword length
+      if (matchedWords > 0) {
+        const isCompleteMatch = matchedWords === keywordWords.length;
+        // Complete matches get a 1000 bonus, ensuring they're prioritized
+        const score = isCompleteMatch ? (1000 + matchedWords + keyword.length) : (matchedWords + keyword.length / 1000);
+
+        if (score > bestMatch.score) {
+          bestMatch = { action, score };
+        }
+      }
     }
-    return null;
+
+    return bestMatch.action;
   };
 
   const generateBotResponse = (action: string): Message => {

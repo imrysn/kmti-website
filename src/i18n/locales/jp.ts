@@ -762,6 +762,8 @@ const jp = {
           { id: "c7", text: "メインメニューに戻る", action: "main-menu" }
         ]
       },
+
+      // how to apply
       "how-to-apply": {
         text: "応募方法は2通りあります：\n 1️⃣当社オフィスに直接履歴書を提出：\n 🏛 チームクエストビル、FCIE、ダスマリナス・カビテ\n 2️⃣LinkedInページからオンライン応募\n 3️⃣より個人的な問い合わせや迅速な対応をご希望の場合は、Facebook Messengerで人事部まで直接メッセージをお送りください",
         actionButtons: [
@@ -770,30 +772,40 @@ const jp = {
           { id: "ha3", text: "戻る", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // hiring process
       "hiring-process": {
         text: "採用プロセスは、最初の面接から最終評価まで通常1日程度かかります。",
         actionButtons: [
           { id: "hp1", text: "戻る", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // career opportunities
       "career-opportunities": {
         text: "私たちは継続的な改善を信じています。KMTIにおけるキャリア成長の大きな機会の一つは、技術スキルを磨くために日本で研修を受けるチャンスです。",
         actionButtons: [
           { id: "co1", text: "今すぐ応募する", action: "apply" }
         ]
       },
+
+      // view positions
       "view-positions": {
         text: "現在募集中の職種：\n• エンジニアリングスタッフ ／ CADオペレーター ／ OJT（オン・ザ・ジョブ・トレーニング）\n• 経理 ／ 事務スタッフ\n📍 勤務地：カビテ州ダスマリナス",
         actionButtons: [
           { id: "vp1", text: "今すぐ応募する", action: "apply" }
         ]
       },
+
+      // working schedule
       "working-schedule": {
         text: "当社の勤務スケジュールは圧縮勤務制を採用しております：\n勤務日：月曜日から金曜日\n勤務時間：\n• 月曜日から木曜日：午前7時～午後6時\n• 金曜日：午前7時～午後4時 ",
         actionButtons: [
           { id: "ws1", text: "今すぐ応募する", action: "apply" }
         ]
       },
+
+      // contact HR
       "contact-hr": {
         text: "当社の人事チームへは下記よりご連絡いただけます：\n💌 info@kmti.com.ph\n☎️ (046)-413-4509\n💬 より迅速な対応をご希望の場合は、Facebook Messengerでメッセージをお送りください。",
         actionButtons: [
@@ -802,6 +814,8 @@ const jp = {
           { id: "ch3", text: "戻る", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // benefits
       "benefits": {
         text: "KMTIは競争力のある報酬と福利厚生を提供しています。内容は以下の通りです：\n• 競争力のある給与\n• 日本での研修機会\n• キャリアの成長と発展\n• 圧縮勤務スケジュール（月～金）\n• 専門能力開発プログラム",
         actionButtons: [
@@ -809,6 +823,8 @@ const jp = {
           { id: "ben2", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // application requirements
       "application-requirement": {
         text: "要件は職種によって異なりますが、一般的に以下のものが含まれます：\n• 関連する学歴\n• 技術スキル（CAD、エンジニアリング）\n• 学習意欲\n• 細部への注意力\n• チームコラボレーションスキル\n\n詳細な要件については、各職種の詳細をご確認ください！",
         actionButtons: [
@@ -817,6 +833,8 @@ const jp = {
           { id: "ar3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // training opportunities
       "training": {
         text: "KMTIは優れた研修機会を提供します：• 現場研修• 技術スキルの開発• 継続的な学習と成長• 経験豊富なエンジニアによるメンターシップ",
         actionButtons: [
@@ -824,6 +842,8 @@ const jp = {
           { id: "tr2", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // application status
       "application-status": {
         text: "応募状況を確認するには、当社の人事チームに直接お問い合わせください。担当者が応募状況や今後の手順についてご案内いたします。",
         actionButtons: [
@@ -831,6 +851,97 @@ const jp = {
           { id: "as2", text: "💬 Facebookで人事部にメッセージを送る", action: "message" },
           { id: "as3", text: "📞 人事部へお電話ください (046) 413-4509", action: "call" },
           { id: "as4", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // OJT for Students
+      "q8-ojt-student": {
+        text: "素晴らしい質問です！✨ はい、KMTIは学生向けのOJT（オン・ザ・ジョブ・トレーニング）を積極的に受け入れています！\n\n🎓 当社のOJTプログラムには以下が含まれます：\n• エンジニアリングOJT - 3Dモデリングおよび2D詳細設計\n• IT OJT - カスタムアプリケーションおよびソフトウェアソリューション\n\n📚 学べること：\n• 業界標準ツール（iCAD等）\n• 実践的なエンジニアリング実務\n• 実際のプロジェクトでの実践的な経験\n• 経験豊かなプロフェッショナルからのメンタリング\n\nOJTの具体的な要件と応募プロセスについては、当社の人事チームに直接お問い合わせください！",
+        actionButtons: [
+          { id: "q8-1", text: "📞 OJT詳細について人事部に連絡", action: "back", navigateAction: "contact-hr" },
+          { id: "q8-2", text: "📍 当社事業所を訪問", action: "maps" },
+          { id: "q8-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // CAD Operator Skills
+      "q9-cad-operator-skills": {
+        text: "当社のCADオペレーターのポジションに大きな関心をお持ちですね！以下が必要な主要スキルです：\n\n🔧 CADオペレーター向けの必須スキル：\n• CADソフトウェア（iCAD、AutoCAD、Solidworks）の習得\n• 3Dモデリングと可視化\n• 技術図面と青写真の解釈\n• 細部への注意と正確性\n• 問題解決能力\n• エンジニアリング基準の知識\n\n💼 当社の採用職種とスキル要件：\n• CADオペレーター：CADソフトウェア、3Dモデリング、技術図面\n• エンジニアリングスタッフ：CAD設計、2D-3D変換、問題解決\n• エンジニアリングOJT：学習意欲、基本的なCAD知識\n• 事務スタッフ：MS Office、組織力、コミュニケーション\n\nあなたのスキルを活かして、当社のチームに参加しませんか？",
+        actionButtons: [
+          { id: "q9-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q9-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q9-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Fresh Graduate Acceptance
+      "q10-fresh-grad-acceptance": {
+        text: "もちろんです！🎉 はい、KMTIは新卒者を歓迎しています！\n\n✅ KMTIが新卒者に最適な理由：\n• 実務的な研修とメンタリングを提供\n• キャリア開発の機会\n• スキル向上のための日本での研修プログラム\n• サポーティブなチーム環境\n• 実務的なプロジェクト経験\n• 明確なキャリア成長パス\n\n📋 当社が求めるもの：\n• 関連する教育背景（エンジニアリング、IT等）\n• 強力な技術的基礎\n• 学習意欲と成長への意思\n• チームコラボレーションスキル\n• 細部への注意と正確性\n\nKMTIでエンジニアリングキャリアをスタートさせましょう！",
+        actionButtons: [
+          { id: "q10-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q10-2", text: "🔎 募集職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q10-3", text: "💬 人事部に連絡", action: "back", navigateAction: "contact-hr" },
+          { id: "q10-4", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // New Employee Training
+      "q11-new-employee-training": {
+        text: "素晴らしいニュースです！🚀 はい、KMTIは新入社員向けの包括的な研修を提供しています！\n\n📚 新入社員研修には以下が含まれます：\n• 企業オリエンテーションと文化への浸透\n• 実務的な研修とメンタリング\n• ご担当業務に特化した技術スキルの開発\n• 安全と法規制の研修\n• 職業開発プログラム\n• 業界標準ツール研修（CAD、ソフトウエア等）\n• 実務的なプロジェクト経験\n\n🌏 高度な機会：\n• 選定社員向けの日本での研修プログラム\n• 継続的な学習とスキルの向上\n• キャリア開発の道筋\n• パートナー企業との国際的なコラボレーション\n\n当社はチームの成長と開発に投資しています！",
+        actionButtons: [
+          { id: "q11-1", text: "🚀 キャリア成長について学ぶ", action: "back", navigateAction: "career-opportunities" },
+          { id: "q11-2", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q11-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Work Setup (Hybrid/WFH)
+      "q12-work-setup": {
+        text: "ご質問ありがとうございます。📋 KMTIは現場勤務の圧縮勤務制を採用しています。\n\n🏢 当社の勤務形態：\n• 勤務地：ダスマリナス事業所での現場勤務\n• 勤務スケジュール：月～金曜日（圧縮勤務）\n• 月～木曜日：午前7時～午後6時\n• 金曜日：午前7時～午後4時\n\n❌ 現在のところ：テレワーク（WFH）やハイブリッド勤務は提供していません。\n\n✅ 当社の勤務スケジュールの利点：\n• 圧縮勤務（月～金のみ）\n• 土日は完全にお休み\n• 一貫したスケジュールでワークライフバランスが充実\n• 直接的なチームコラボレーションとメンタリング\n• 経験豊富なエンジニアからの実践的な指導\n\nご質問があれば、人事チームにご相談ください。",
+        actionButtons: [
+          { id: "q12-1", text: "📞 人事部に相談する", action: "back", navigateAction: "contact-hr" },
+          { id: "q12-2", text: "📝 応募方法を見る", action: "back", navigateAction: "how-to-apply" },
+          { id: "q12-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Engineering Staff Requirements
+      "q13-engineering-staff-requirements": {
+        text: "エンジニアリングスタッフのポジションにご興味ですか？以下がご応募条件です：\n\n🔧 エンジニアリングスタッフ - 必須要件：\n\n📋 必要な資格：\n• 工学系、コンピュータサイエンス、または関連分野の学士号\n• CADソフトウェア（iCAD、AutoCAD、Solidworks等）の習得\n• 2D-3D変換プロセスの深い理解\n• 技術図面と青写真の経験\n• 問題解決能力と分析スキル\n\n💼 必須スキル：\n• CAD設計とモデリング\n• 2D-3D変換の専門知識\n• 技術図面解釈\n• 細部への注意と精密性\n• エンジニアリング基準の知識\n• チームコラボレーション能力\n\n✅ あると有利：\n• 機械・製造設計経験\n• 品質保証プロセスの知識\n• 過去のOJTまたはインターンシップ経験\n• 日本語知識（加点対象）\n\n💡 提供するもの：\n• 競争力のある給与\n• スキル開発のための日本研修\n• キャリア成長機会\n• 経験豊かなエンジニアによるメンタリング",
+        actionButtons: [
+          { id: "q13-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q13-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q13-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // OJT Requirements
+      "q14-ojt-requirements": {
+        text: "OJT（オン・ザ・ジョブ・トレーニング）プログラムにご興味ですか？以下がご応募条件です：\n\n🎓 OJT訓練生 - 必須要件：\n\n📋 必要な資格：\n• 現在工学系プログラムに在学中、または最近卒業\n• 高卒以上、または現在高等教育課程に在学中\n• 学習意欲が高い\n• 強い職業倫理と責任感\n\n💼 必須スキル：\n• 基本的なCAD知識（習得意思があれば可）\n• 問題解決能力\n• 細部への注意\n• チームコラボレーション能力\n• 構造的で専門的な環境での作業\n• 良好なコミュニケーションスキル\n\n✅ 重視する点：\n• エンジニアリング・技術への情熱\n• 実務的経験を得たいという強い意思\n• 自発性と自主性\n• 信頼性と時間厳守\n• 敬意あるで協力的な態度\n• 指示に従う能力\n\n📚 提供する研修：\n• 業界標準CADツール研修\n• 3Dモデリング・2D詳細設計技法\n• 実プロジェクト経験\n• 経験豊かな専門家によるメンタリング\n• 実務的スキル開発\n\n💡 期間：通常3～6ヶ月（個人の進捗による）",
+        actionButtons: [
+          { id: "q14-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q14-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q14-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Accounting Requirements
+      "q15-accounting-requirements": {
+        text: "経理スタッフのポジションにご興味ですか？以下がご応募条件です：\n\n📊 経理スタッフ - 必須要件：\n\n📋 必要な資格：\n• 会計学、財務、または関連分野の学士号\n• 会計原則と慣行の深い知識\n• 会計ソフトウェアとツールの経験\n• MS Excel および会計プログラムの習得\n• 財務諸表と簿記の理解\n\n💼 必須スキル：\n• 細部への注意と正確性\n• 強固な分析能力\n• 問題解決スキル\n• MS Office習得（Excel、Word、Outlook）\n• データ入力と記録保管の専門知識\n• コミュニケーションと対人スキル\n\n✅ あると有利：\n• 会計ソフトウェア経験（QuickBooks、GNUCash等）\n• 給与管理知識\n• 税務遵守経験\n• 会計・財務経験者\n• フィリピン税務制度の知識\n\n💡 主な責務：\n• 財務記録の維持管理\n• 請求書と支払いの処理\n• 勘定照合\n• 財務報告書作成\n• 監査プロセスサポート\n\n📈 提供するもの：\n• 競争力のある給与\n• 職業開発の機会\n• 財務分野でのキャリア成長\n• サポーティブなチーム環境",
+        actionButtons: [
+          { id: "q15-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q15-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q15-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Admin Staff Requirements
+      "q16-admin-staff-requirements": {
+        text: "事務スタッフのポジションにご興味ですか？以下がご応募条件です：\n\n📋 事務スタッフ - 必須要件：\n\n📋 必要な資格：\n• 高卒以上\n• MS Office（Word、Excel、PowerPoint、Outlook）の習得\n• 強力な組織力と時間管理スキル\n• 事務サポート職の経験があれば優遇\n\n💼 必須スキル：\n• 優れたコミュニケーション能力（口頭・文章）\n• データ入力と記録管理\n• カスタマーサービス志向\n• 細部への注意と正確性\n• マルチタスク管理と優先順位付け\n• プロフェッショナリズムと信頼性\n\n✅ あると有利：\n• ファイリング・ドキュメント経験\n• カスタマーサービス背景\n• 電話対応・受付経験\n• 簿記の基本知識\n• 日本語知識（加点対象）\n• ドキュメント管理システム経験\n\n💡 主な責務：\n• 事務サポート・ドキュメント管理\n• データ入力・ファイリング\n• スケジュール・会議調整\n• 日常的な書類処理\n• HR・運営タスクのサポート\n• 事務所収納・組織化\n\n✅ 重視する点：\n• ポジティブな態度とチームワーク\n• 自発性と自主性\n• 問題解決能力\n• 柔軟性と対応力\n• プロフェッショナルな外観と態度\n\n📈 提供するもの：\n• 競争力のある給与\n• 圧縮勤務スケジュール（月～金）\n• 職業開発サポート\n• サポーティブで友好的な職場環境",
+        actionButtons: [
+          { id: "q16-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q16-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q16-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
         ]
       },
 
@@ -945,7 +1056,75 @@ const jp = {
         ]
       },
 
+      // Company Vision & Mission
+      "q17-company-vision-mission": {
+        text: "🎯 KMTIのビジョンとミッション:\n\n👁️ ビジョン:\n「お客様に対して何度も何度も『選んでくださった参考人になる』という確かな信念を持ち、世界中の会社から信頼されるエンジニアリング会社になること。\"\n\n🎯 ミッション:\n「草部電器・前野技研・ネクストエンジニアリングの３つの業界大手企業の知識とノウハウを活かし、フィリピンの優秀な人材や技術と融合させることで、パイプ製造業界以外にも事業の幅を広げていくことです。\"\n\n💡 私たちの約束：精密さと品質にこだわった優れたエンジニアリングソリューションをお届けします！",
+        actionButtons: [
+          { id: "q17-1", text: "📖 当社の物語を見る", action: "back", navigateAction: "q18-company-story" },
+          { id: "q17-2", text: "🤝 パートナー企業", action: "back", navigateAction: "q19-company-partners" },
+          { id: "q17-3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
 
+      // Company Story
+      "q18-company-story": {
+        text: "📖 KMTI会社の物語:\n\nKMTI（日下部前野テック）は３つの業界を代表する企業がコラボレーションした会社です。\n\n🏢 日下部電機株式会社（1916年設立）\n• 1916年に神戸で設立\n• 1959年にパイプ製造業に進出\n• 26ヶ国以上でサービスを展開するグローバルリーダー\n• パイプミルシステム完全設計・製造の世界的専門技術者\n• 厳格な品質基準と継続的なR&D改善で知られている\n\n🔧 前野技研株式会社（2001年設立）\n• フィリピアンの優秀な製造技術を代表する企業\n• JIS認定溶融めっき・精密機械加工サービス提供\n• 鉄鋼・建設機械産業における数十年の経験\n• プロトタイピングと設計支援を専門とする\n• 顧客満足度重視とコスト効率化で定評がある\n\n⚡ ネクストエンジニアリング株式会社（2007年設立）\n• 三菱重工業の戦略的パートナー\n• 発電・燃料電池システムなどのエネルギー事業リーダー\n• IT・半導体産業への事業拡大\n• 2025年4月：日本製鐵設計株式会社と合併\n• 設計から完成まで統合サービスを提供\n\n🌟 本日のKMTI\n2014年10月、フィリピン・カビテに設立。精密エンジニアリング、高品質製造、統合設計・製造ソリューションを提供します。",
+        actionButtons: [
+          { id: "q18-1", text: "🎯 ビジョンとミッション", action: "back", navigateAction: "q17-company-vision-mission" },
+          { id: "q18-2", text: "📅 会社の歴史", action: "back", navigateAction: "q20-company-history" },
+          { id: "q18-3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Company Partners
+      "q19-company-partners": {
+        text: "🤝 パートナー企業:\n\nKMTIの力はグローバル業界リーダーとのパートナーシップから生まれています：\n\n🏭 日下部電機株式会社（KEMCO）\n• 設立年：1916年神戸\n• 専門分野：チューブ・パイプ製造\n• 製品：あらゆるパイプ産業向けの製造装置\n• 市場対象：パイプ業界全般\n• 特徴：革新的な設計と高品質な技術で知られている\n• グローバル展開：業界トップクラスのパイプミル・設備供給企業\n\n⚙️ 前野技研株式会社（MGK）\n• 専門分野：フィリピンの職人技による溶接・機械製造\n• サービス：溶接技術と機械製造\n• 品質：溶融めっき処理で長寿命化を実現\n• ミッション：フィリピンの人材を世界競争力のある技術者に育成\n• 専門技術：機械製造技術の知識伝承\n\n🔗 ネクストエンジニアリング株式会社\n• 三菱重工との戦略的パートナー（2007年設立）\n• 専門分野：発電・燃料電池などのエネルギープロジェクト\n• 自社施設：金属加工・製造拠点\n• 事業拡大：IT・半導体産業\n• 2025年統合：日本製鐵設計との経営統合、船舶・プラント・機械設計強化\n• サービス範囲：設計から製造完成までの統合型サービス\n\n💪 三社が一緒に提供：\n• 精密エンジニアリングソリューション\n• 高品質製造サービス\n• 統合設計・製造サービス\n• グローバル知識×ローカル技術",
+        actionButtons: [
+          { id: "q19-1", text: "📖 会社の物語", action: "back", navigateAction: "q18-company-story" },
+          { id: "q19-2", text: "🎯 ビジョンとミッション", action: "back", navigateAction: "q17-company-vision-mission" },
+          { id: "q19-3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Company History & Milestones
+      "q20-company-history": {
+        text: "📅 KMTI会社の歴史とマイルストーン：\n\n🗓️ 2014年10月 設立\n• KMTIをカビテに設立\n• エンジニアリング卓越性の基礎を確立\n\n🤝 2014年 戦略的パートナーシップ\n• パートナーシップを締結：\n  - 日下部電機株式会社（KEMCO）\n  - 前野技研株式会社（MGK）\n• 数十年の専門知識を統合\n\n✈️ 2014年 国際交流プログラム\n• 従業員派遣プログラムを発足\n• 日本のパートナー企業へ技術者を派遣\n• 数ヶ月間の実地訓練と国際交流\n\n🔨 2017年 塗装ライン協業\n• 搬送装置を設計・製造\n• スタッキング装置を設計・製造\n• KEMCOと前野技研と協力\n• 試験組立と機械テストを実施\n\n🌐 2023年 新しい提携\n• ネクストエンジニアリング株式会社と提携\n• 技術能力を拡大\n• サービス提供範囲を広げる\n• 統合設計・製造ソリューションを強化\n\n👥 2025年 チーム成長と人材開発\n• エンジニアリングチームを拡大\n• 技術専門知識を強化\n• 継続的な訓練と開発プログラム\n• 将来のイノベーションに向けた準備\n\n💡 継続的な進化は品質と革新への約束を表しています！",
+        actionButtons: [
+          { id: "q20-1", text: "🤝 パートナー企業", action: "back", navigateAction: "q19-company-partners" },
+          { id: "q20-2", text: "📖 会社の物語", action: "back", navigateAction: "q18-company-story" },
+          { id: "q20-3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Detailed Benefits
+      "q21-detailed-benefits": {
+        text: "💰 KMTIの充実した福利厚生:\n\n最高の仕事をしてもらうためにチームを大切にしています！\n\n🏥 医療・健康保障:\n• 医療保険: 正社員は100%会社負担\n• SSS（社会保障制度）：完全カバレッジ\n• Pag-IBIG: 住宅開発基金\n• PhilHealth: 国家保険制度\n• すべての法定福利厚生を完備\n\n💵 給与と手当:\n• ポジション別の競争力のある給与\n• 13ヶ月給（フィリピン労働法）\n• 毎年ボーナス保障\n• 成績に応じたインセンティブ\n\n🍽️ 各種手当:\n• 通勤手当：通勤サポート\n• 食事手当：勤務中の食事補助\n• 制服手当：勤務着支給\n• 米代補助：正社員の食糧支援\n\n🌏 訓練と開発:\n• 国際訓練：日本への派遣機会\n• 職業訓練：継続的なスキル開発\n• 専門人材開発プログラム：スキルアップ\n• メンタリング：経験者からの指導\n• 技術訓練：業界標準ツールの習得\n\n📈 キャリア成長:\n• 安定した長期雇用\n• キャリアアップの機会\n• 専門性向上パス\n• リーダーシップ育成プログラム\n• 国内外のパートナー企業での機会\n\n👥 職場環境:\n• 協力的なチーム文化\n• 多様で包括的な職場\n• サポーティブな管理体制\n• ワークライフバランス\n• 圧縮勤務スケジュール（月〜金）\n\n✨ 特別な機会:\n• 日本パートナーとの国際交流\n• グローバルな製造技術へのアクセス\n• 世界レベルのメンターからの育成\n• 最先端のエンジニアリング案件への参加\n\n💡 従業員の成長と将来に投資しています！",
+        actionButtons: [
+          { id: "q21-1", text: "📝 応募方法", action: "back", navigateAction: "how-to-apply" },
+          { id: "q21-2", text: "🔎 募集ポジション", action: "back", navigateAction: "view-positions" },
+          { id: "q21-3", text: "キャリアに戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Services Workflow
+      "q22-services-workflow": {
+        text: "🔄 私たちの完全なサービスフロー:\n\n品質と顧客満足を確保するために、構造化されたプロセスに従っています:\n\n📋 ステップ1: 発注書での確認\n• クライアントがプロジェクト要件を提出\n• 発注書に仕様をまとめる\n• 納期とスコープについての初期検討\n\n📑 ステップ2: 参考資料\n• 既存の設計情報を収集\n• 技術要件を確認\n• クライアント仕様をレビュー\n• 製造制約を理解\n\n🎨 ステップ3: 3Dモデリング・修正\n• 2D図面から正確な3Dモデルへ変換\n• 潜在的なエラーと干渉を特定\n• 設計修正についてクライアントと協力\n• 最終承認まで反復\n• 本製造前に最終設計を可視化\n\n📐 ステップ4: 2D詳細設計\n• 3Dモデルから正確な2D図面へ変換\n• すべての材質・寸法・仕様を定義\n• 製造用の技術指示を含める\n• 品質チェックと検証\n• クライアントフィードバックに基づき修正\n\n⚙️ ステップ5: 製造設計\n• 実際の生産に向けた設計準備\n• 製造可能性の確保\n• コスト効率を最適化\n• 最終品質保証チェック\n\n🔧 ステップ6: 製造・組立\n• 部品の専門的な製造\n• 社内またはパートナー施設での生産\n• プロセス全体での品質検査\n• 最終製品の組立\n• テストと検証\n\n📦 ステップ7: 製品納品\n• 最終品質確認\n• 梱包と安全な配送\n• ドキュメント・引き渡し\n• 納品後サポート\n\n💡 プロセス全体を通じて：\n✅ 継続的なクライアント相談\n✅ 高品質なワークマンシップ\n✅ 細部への注意\n✅ エラーと修正を最小化\n✅ 製造コスト削減\n✅ 専門的なドキュメント作成",
+        actionButtons: [
+          { id: "q22-1", text: "💬 プロジェクトについて相談", action: "back", navigateAction: "consultation" },
+          { id: "q22-2", text: "🔎 サービスを見る", action: "back", navigateAction: "services" },
+          { id: "q22-3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Application Timeline
+      "q23-application-timeline": {
+        text: "⏱️ KMTI採用スケジュール:\n\n📅 標準的な採用プロセス:\n\n🔵 ステップ1: 面接・評価（1日目）\n• 1日で全採用プロセスを実施\n• HR・採用マネージャーとの面接\n• 技術評価（該当する場合）\n• スキル評価\n• 最終面接ラウンド\n\n✅ 迅速なプロセス:\n• ほとんどの候補者が1〜2日以内に結果を受け取る\n• 典型的な企業より高速\n• 効率的なスクリーニングと意思決定\n• 迅速なコミュニケーション約束\n\n📋 面接後の次のステップ:\n• 結果通知（1〜2日以内）\n• 採用通知（選考者の場合）\n• 書類提出（出生証明、健康診断など）\n• 身元確認\n\n💼 スタートまでの期間:\n• 最終オファー：1〜3日\n• 書類準備：3〜5日\n• 健康診断：2〜3日\n• 最終オンボーディング：1〜2週間\n• 開始日：通常、選考から2〜3週間以内\n\n⚡ プロセスが速い理由:\n✅ 合理化された意思決定\n✅ 経験を積んだHRチーム\n✅ 明確な評価基準\n✅ 効率的なコミュニケーション\n✅ 不要な遅延がない\n\n💡 ヒント: 選考されたら迅速に始める準備をしてください！私たちは素早く動きます！\n\nタイミングの詳細は、HRチームにお問い合わせください！",
+        actionButtons: [
+          { id: "q23-1", text: "📞 HRに連絡\n  タイムライン", action: "back", navigateAction: "contact-hr" },
+          { id: "q23-2", text: "📝 応募方法", action: "back", navigateAction: "how-to-apply" },
+          { id: "q23-3", text: "キャリアに戻る", action: "back", navigateAction: "careers" }
+        ]
+      }
     }
   },
 

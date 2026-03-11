@@ -763,6 +763,8 @@ const en = {
           { id: "c7", text: "Back to Main Menu", action: "main-menu" }
         ]
       },
+
+      // How to Apply
       "how-to-apply": {
         text: "You can apply in two ways:\n 1️⃣Submit your resume directly at our office:\n 🏛 Team Quest Building, FCIE, Dasmariñas Cavite\n 2️⃣Apply online through our LinkedIn page\n 3️⃣For more personal or quick inquiries, message our HR directly on Facebook Messenger",
         actionButtons: [
@@ -771,30 +773,40 @@ const en = {
           { id: "ha3", text: "Back", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // Hiring Process
       "hiring-process": {
         text: "The hiring process from the initial interview to final assessment usually takes about one day.",
         actionButtons: [
           { id: "hp1", text: "Back", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // Career Growth Opportunities
       "career-opportunities": {
         text: "We believe in continuous improvement. One of the great opportunities for career growth at KMTI is the chance to undergo training in Japan to develop technical skills.",
         actionButtons: [
           { id: "co1", text: "Apply Now", action: "apply" }
         ]
       },
+
+      // View Open Positions
       "view-positions": {
         text: "Current openings include:\n• Engineering Staff / CAD Operator / OJT\n• Accounting / Admin Staff\n📍 Located in Dasmariñas, Cavite",
         actionButtons: [
           { id: "vp1", text: "Apply Now", action: "apply" }
         ]
       },
+
+      // Working Schedule
       "working-schedule": {
         text: "Our company operates on a compressed work schedule:\nWork Days: Monday to Friday\nWork Hours:\n• Monday to Thursday: 7:00 AM - 6:00 PM\n• Friday: 7:00 AM -4:00 PM ",
         actionButtons: [
           { id: "ws1", text: "Apply Now", action: "apply" }
         ]
       },
+
+      // Contact HR
       "contact-hr": {
         text: "You can reach our HR team through:\n💌 info@kmti.com.ph\n☎️ (046)-413-4509\n💬 Or message us on Facebook Messenger for faster response.",
         actionButtons: [
@@ -803,6 +815,8 @@ const en = {
           { id: "ch3", text: "Back", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // Benefits
       "benefits": {
         text: "KMTI offers competetive compensation and benefits including:\n• Competetive salary\n• Training opportunities in Japan\n• Career growth and development\n• Compressed work schedule (Mon-Fri)\n• Professional development programs",
         actionButtons: [
@@ -810,6 +824,9 @@ const en = {
           { id: "ben2", text: "Back to Careers", action: "back", navigateAction: "careers" }
         ]
       },
+
+
+      // Application Requirements
       "application-requirement": {
         text: "Requirements vary by position, but generally include:\n• Relevant educational background\n• Technical skills (CAD, engineering)\n• Willingness to learn\n• Attention to detail\n• Team collaboration skills\n\nCheck specific positions for detailed requirements!",
         actionButtons: [
@@ -818,6 +835,8 @@ const en = {
           { id: "ar3", text: "Back to Careers", action: "back", navigateAction: "careers" }
         ]
       },
+
+      // Career Growth Opportunities
       "training": {
         text: "KMTI offers excellent training opportunities:\n• On-the-job training\n• Technical skill development\n• Training programs in Japan\n• Continuous learning and growth\n• Mentorship from experienced engineers",
         actionButtons: [
@@ -825,6 +844,8 @@ const en = {
           { id: "tr2", text: "Back to Careers", action: "back", navigateAction: "careers" }
         ]
       },
+
+      //Application Status
       "application-status": {
         text: "To check your application status, please contact our HR team directly. They can provide updates on your application and next steps.",
         actionButtons: [
@@ -835,6 +856,137 @@ const en = {
         ]
       },
 
+      // Requirements Needed
+      "q2-requirements": {
+        text: "To apply at KMTI, here's what we typically need:\n📄 Requirements:\n• Updated Resume/CV\n• Valid ID (for in-person application)\n• Medical Certificate (Basic 5 with drugtest)\n• Educational Certificate/Diploma\n• Technical certifications (if applicable)\n• Portfolio or samples of previous work\n\n💡 For specific positions, additional documents may be required. Contact our HR team for position-specific requirements!",
+        actionButtons: [
+          { id: "q2-1", text: "📞 Contact HR for Details", action: "back", navigateAction: "contact-hr" },
+          { id: "q2-2", text: "🔎 View Open Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q2-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Available Positions
+      "q3-available-positions": {
+        text: "We currently have exciting opportunities:\n\n🔧 ENGINEERING POSITIONS:\n• CAD Operator / Engineering Staff\n• Engineering Trainee / OJT\n\n💼 ADMIN & SUPPORT:\n• Accounting / Admin Staff\n\n📍 Location: Dasmariñas City, Cavite\n\nInterested in any of these? Let's get you started!",
+        actionButtons: [
+          { id: "q3-1", text: "📝 How to Apply", action: "back", navigateAction: "how-to-apply" },
+          { id: "q3-2", text: "💬 Contact HR", action: "back", navigateAction: "contact-hr" },
+          { id: "q3-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+      
+
+      // Operating Hours
+      "q5-operating-hours": {
+        text: "Our office hours are:\n\n🕐 OFFICE HOURS:\n• Monday to Thursday: 7:00 AM - 6:00 PM\n• Friday: 7:00 AM - 4:00 PM\n\n📍 Location:\nVital Industrial Prop. Inc.\nBldg. B, Unit 2-B\nFirst Cavite Industrial Estate Langkaan 1\nDasmariñas City, Cavite 4126\nPhilippines\n\nWe're here to help during these hours!",
+        actionButtons: [
+          { id: "q5-1", text: "📍 Open in Google Maps", action: "maps" },
+          { id: "q5-2", text: "📞 Call us (046) 413-4509", action: "call" },
+          { id: "q5-3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Non-Work Experience Applicants
+      "q6-non-work-experience": {
+        text: "Great question! ✨ Yes, KMTI welcomes applications from individuals without prior work experience!\n\n✅ We accept:\n• Fresh graduates\n• Career changers\n• OJT students\n• Individuals with relevant education/certifications\n\nWe value:\n• Willingness to learn\n• Technical aptitude\n• Attention to detail\n• Team collaboration skills\n• Strong work ethic\n\nDon't let lack of experience hold you back - apply now!",
+        actionButtons: [
+          { id: "q6-1", text: "📝 How to Apply", action: "back", navigateAction: "how-to-apply" },
+          { id: "q6-2", text: "🔎 View Open Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q6-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // OJT for Students
+      "q8-ojt-student": {
+        text: "Excellent question! ✨ Yes, KMTI is actively accepting OJT (On-the-Job Training) for students!\n\n🎓 Our OJT Programs Include:\n• Engineering OJT - 3D Modeling and 2D detailing\n• IT OJT - Custom applications and software solutions\n\n📚 What You'll Learn:\n• Industry-standard tools (iCAD, etc.)\n• Real-world engineering practices\n• Hands-on experience with actual projects\n• Mentorship from experienced professionals\n\nFor specific OJT requirements and application process, please contact our HR team directly!",
+        actionButtons: [
+          { id: "q8-1", text: "📞 Contact HR for OJT Details", action: "back", navigateAction: "contact-hr" },
+          { id: "q8-2", text: "📍 Visit Our Office", action: "maps" },
+          { id: "q8-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // CAD Operator Skills
+      "q9-cad-operator-skills": {
+        text: "Great interest in our CAD Operator position! Here are the key skills needed:\n\n🔧 ESSENTIAL SKILLS FOR CAD OPERATOR:\n• Proficiency in CAD software (iCAD, AutoCAD, Solidworks)\n• 3D modeling and visualization\n• Technical drawing and blueprint interpretation\n• Attention to detail and precision\n• Problem-solving abilities\n• Knowledge of engineering standards\n\n💼 REQUIRED SKILLS:\n• CAD design and modeling\n• 2D to 3D conversion expertise\n• Technical drawing interpretation\n• Attention to detail and precision\n• Knowledge of engineering standards and best practices\n• Team collaboration abilities\n\n✅ NICE TO HAVE:\n• Experience in machinery or manufacturing design\n• Familiarity with quality assurance processes\n• Previous OJT or internship experience\n• Knowledge of Japanese language (bonus)\n\n💡 We offer:\n• Competitive salary\n• Training in Japan for skill development\n• Career growth opportunities\n• Mentorship from experienced engineers",
+        actionButtons: [
+          { id: "q9-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q9-2", text: "🔎 View All Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q9-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Fresh Graduate Acceptance
+      "q10-fresh-grad-acceptance": {
+        text: "Absolutely! 🎉 Yes, KMTI welcomes fresh graduates!\n\n✅ Why KMTI is Perfect for Fresh Grads:\n• We provide on-the-job training and mentorship\n• Career development opportunities\n• Training programs in Japan for skill enhancement\n• Supportive team environment\n• Real-world project experience\n• Clear career growth path\n\n📋 What We Look For:\n• Relevant educational background (Engineering, IT, etc.)\n• Strong technical foundation\n• Willingness to learn and grow\n• Team collaboration skills\n• Attention to detail and precision\n\nStart your engineering career with us!",
+        actionButtons: [
+          { id: "q10-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q10-2", text: "🔎 View Open Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q10-3", text: "💬 Contact HR", action: "back", navigateAction: "contact-hr" },
+          { id: "q10-4", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // New Employee Training
+      "q11-new-employee-training": {
+        text: "Excellent news! 🚀 Yes, KMTI provides comprehensive training for new employees!\n\n📚 NEW EMPLOYEE TRAINING INCLUDES:\n• Company orientation and culture immersion\n• On-the-job training and mentorship\n• Technical skill development specific to your role\n• Safety and compliance training\n• Professional development programs\n• Industry-standard tool training (CAD, software, etc.)\n• Hands-on project experience\n\n🌏 ADVANCED OPPORTUNITIES:\n• Training programs in Japan for selected employees\n• Continuous learning and skill advancement\n• Career development pathways\n• International collaboration with partner companies\n\nWe invest in our team's growth and development!",
+        actionButtons: [
+          { id: "q11-1", text: "🚀 Learn About Career Growth", action: "back", navigateAction: "career-opportunities" },
+          { id: "q11-2", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q11-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Work Setup (Hybrid/WFH)
+      "q12-work-setup": {
+        text: "Great question! 📋 KMTI operates on an ON-SITE compressed work schedule.\n\n🏢 OUR WORK SETUP:\n• Work Location: On-site at our Dasmariñas office\n• Work Schedule: Monday to Friday (compressed hours)\n• Monday to Thursday: 7:00 AM - 6:00 PM\n• Friday: 7:00 AM - 4:00 PM\n\n❌ Currently: We do NOT offer Work-From-Home (WFH) or Hybrid arrangements at this time.\n\n✅ Benefits of Our Schedule:\n• Compressed work week (Mon-Fri only)\n• Weekends completely free\n• Consistent schedule for better work-life balance\n• Direct team collaboration and mentorship\n• Hands-on training with experienced engineers\n\nIf you have specific scheduling needs, please contact our HR team to discuss!",
+        actionButtons: [
+          { id: "q12-1", text: "📞 Contact HR to Discuss", action: "back", navigateAction: "contact-hr" },
+          { id: "q12-2", text: "📝 How to Apply", action: "back", navigateAction: "how-to-apply" },
+          { id: "q12-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Engineering Staff Requirements
+      "q13-engineering-staff-requirements": {
+        text: "Interested in our Engineering Staff position? Here's what we're looking for:\n\n🔧 ENGINEERING STAFF - KEY REQUIREMENTS:\n\n📋 ESSENTIAL QUALIFICATIONS:\n• Bachelor's degree in Engineering, Computer Science, or related field\n• Proficiency in CAD software (iCAD, AutoCAD, Solidworks preferred)\n• Strong understanding of 2D-3D conversion processes\n• Experience with technical drawings and blueprints\n• Problem-solving and analytical skills\n\n💼 REQUIRED SKILLS:\n• CAD design and modeling\n• 2D to 3D conversion expertise\n• Technical drawing interpretation\n• Attention to detail and precision\n• Knowledge of engineering standards and best practices\n• Team collaboration abilities\n\n✅ NICE TO HAVE:\n• Experience in machinery or manufacturing design\n• Familiarity with quality assurance processes\n• Previous OJT or internship experience\n• Knowledge of Japanese language (bonus)\n\n💡 We offer:\n• Competitive salary\n• Training in Japan for skill development\n• Career growth opportunities\n• Mentorship from experienced engineers",
+        actionButtons: [
+          { id: "q13-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q13-2", text: "🔎 View All Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q13-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // OJT Requirements
+      "q14-ojt-requirements": {
+        text: "Interested in our OJT (On-the-Job Training) program? Here's what we need:\n\n🎓 OJT TRAINEE - KEY REQUIREMENTS:\n\n📋 ESSENTIAL QUALIFICATIONS:\n• Currently enrolled in or recently graduated from Technical/Engineering program\n• High school diploma or currently pursuing tertiary education\n• Willingness to learn and adapt\n• Strong work ethic and commitment\n\n💼 REQUIRED SKILLS:\n• Basic CAD knowledge (or willingness to learn)\n• Problem-solving abilities\n• Attention to detail\n• Team collaboration skills\n• Can work in a structured, professional environment\n• Good communication skills\n\n✅ WHAT WE LOOK FOR:\n• Passion for engineering and technology\n• Eagerness to gain hands-on experience\n• Initiative and self-motivation\n• Reliability and punctuality\n• Respectful and cooperative attitude\n• Ability to follow instructions\n\n📚 TRAINING PROVIDED:\n• Industry-standard CAD tools training\n• 3D modeling and 2D detailing techniques\n• Real-world project experience\n• Mentorship from experienced professionals\n• On-the-job skill development\n\n💡 Duration: Typically 3-6 months (subject to individual progress)",
+        actionButtons: [
+          { id: "q14-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q14-2", text: "🔎 View All Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q14-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Accounting Requirements
+      "q15-accounting-requirements": {
+        text: "Interested in our Accounting position? Here's what we need:\n\n📊 ACCOUNTING STAFF - KEY REQUIREMENTS:\n\n📋 ESSENTIAL QUALIFICATIONS:\n• Bachelor's degree in Accounting, Finance, or related field\n• Strong knowledge of accounting principles and practices\n• Experience with accounting software and tools\n• Proficiency in MS Excel and accounting programs\n• Understanding of financial statements and bookkeeping\n\n💼 REQUIRED SKILLS:\n• Attention to detail and accuracy\n• Strong analytical abilities\n• Problem-solving skills\n• MS Office proficiency (Excel, Word, Outlook)\n• Data entry and record-keeping expertise\n• Communication and interpersonal skills\n\n✅ NICE TO HAVE:\n• Experience with accounting software (QuickBooks, GNUCash, etc.)\n• Knowledge of payroll management\n• Tax compliance experience\n• Previous accounting or finance experience\n• Knowledge of Filipino tax regulations\n\n💡 RESPONSIBILITIES:\n• Maintaining financial records\n• Processing invoices and payments\n• Reconciling accounts\n• Preparing financial reports\n• Supporting audit processes\n\n📈 We offer:\n• Competitive salary\n• Professional development opportunities\n• Career growth in finance field\n• Supportive team environment",
+        actionButtons: [
+          { id: "q15-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q15-2", text: "🔎 View All Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q15-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Admin Staff Requirements
+      "q16-admin-staff-requirements": {
+        text: "Interested in our Admin Staff position? Here's what we're looking for:\n\n📋 ADMIN STAFF - KEY REQUIREMENTS:\n\n📋 ESSENTIAL QUALIFICATIONS:\n• High school diploma or college degree\n• Proficiency in MS Office (Word, Excel, PowerPoint, Outlook)\n• Strong organizational and time management skills\n• Experience in administrative support roles (preferred)\n\n💼 REQUIRED SKILLS:\n• Excellent communication skills (verbal & written)\n• Data entry and record management\n• Customer service orientation\n• Attention to detail and accuracy\n• Ability to multitask and prioritize\n• Professionalism and reliability\n\n✅ NICE TO HAVE:\n• Filing and documentation experience\n• Customer service background\n• Phone etiquette and reception experience\n• Basic bookkeeping knowledge\n• Knowledge of Japanese language (bonus)\n• Experience with document management systems\n\n💡 RESPONSIBILITIES:\n• Administrative support and documentation\n• Data entry and filing\n• Coordinating schedules and meetings\n• Processing routine paperwork\n• Supporting HR and operational tasks\n• General office maintenance and organization\n\n✅ WE VALUE:\n• Positive attitude and teamwork\n• Initiative and self-motivation\n• Problem-solving ability\n• Flexibility and adaptability\n• Professional appearance and demeanor\n\n📈 We offer:\n• Competitive salary\n• Compressed work schedule (Mon-Fri)\n• Professional development support\n• Supportive and friendly work environment",
+        actionButtons: [
+          { id: "q16-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q16-2", text: "🔎 View All Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q16-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
 
       // ..  CLIENT QUESTIONS BRANCH ...
       pricing: {
@@ -943,6 +1095,76 @@ const en = {
           { id: "th2", text: "✉️ Email us", action: "email", url: "mailto:info@kmti.com.ph" },
           { id: "th3", text: "📞 Call us (046) 413-4509", action: "call" },
           { id: "th4", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Company Vision & Mission
+      "q17-company-vision-mission": {
+        text: "🎯 KMTI VISION & MISSION:\n\n👁️ OUR VISION:\n\"Be the world's leading machine design engineering company by achieving extraordinary results for our clients, building gratifying careers for our people, and earning a fair return on the value we distribute.\"\n\n🎯 OUR MISSION:\n\"Utilize our knowledge and upgrade them by incorporating expertise from three of the most known industry leaders:\n• Kusakabe Electric & Machinery (KEMCO)\n• Next Engineering Co., Ltd.\n• Maeno Giken (MGK)\n\nTogether with Filipino wisdom and effort in all machines designed and created, to cover industries beyond pipe manufacturing.\"\n\n💡 Our commitment: Bringing exceptional engineering solutions with precision and purpose!",
+        actionButtons: [
+          { id: "q17-1", text: "📍 Learn About Our Story", action: "back", navigateAction: "q18-company-story" },
+          { id: "q17-2", text: "🤝 Our Partners", action: "back", navigateAction: "q19-company-partners" },
+          { id: "q17-3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Company Story
+      "q18-company-story": {
+        text: "📖 KMTI COMPANY STORY:\n\nKMTI (Kusakabe & Maeno Tech., Inc.) represents a powerful convergence of three industry leaders:\n\n🏢 KUSAKABE ELECTRIC & MACHINERY CO., LTD. (Est. 1916)\n• Founded in Kobe, Japan in 1916\n• Entered pipe industry in 1959\n• Global leader in pipe manufacturing with 26+ countries served\n• Expertise in designing and producing fully integrated pipe mill systems\n• Known for rigorous quality standards and relentless R&D\n\n🔧 MAENO GIKEN INC. (Est. 2001)\n• Leading provider in the Philippines\n• JIS-accredited hot-dip galvanizing and precision machining services\n• Decades of experience in steelmaking and construction machinery sectors\n• Specializes in prototyping and design support\n• Known for total satisfaction approach and cost-effective manufacturing\n\n⚡ NEXT ENGINEERING CO., LTD. (Est. 2007)\n• Strategic partner of Mitsubishi Heavy Industries\n• Leader in energy-related sectors (thermal power, fuel cell systems)\n• Expanded into IT and semiconductor industries\n• April 2025: Merged with Nishinippon Sekkei Co., Ltd.\n• Offers integrated services from design to completion\n\n🌟 TODAY: KMTI OPERATIONS\nEstablished in Cavite, Philippines in October 2014, KMTI combines precision engineering, high-quality manufacturing, and integrated design-to-production solutions backed by absolute confidentiality and security protocols.",
+        actionButtons: [
+          { id: "q18-1", text: "🎯 Our Vision & Mission", action: "back", navigateAction: "q17-company-vision-mission" },
+          { id: "q18-2", text: "📅 Company History", action: "back", navigateAction: "q20-company-history" },
+          { id: "q18-3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Company Partners
+      "q19-company-partners": {
+        text: "🤝 OUR PARTNER COMPANIES:\n\nKMTI's strength comes from partnerships with global industry leaders:\n\n🏭 KUSAKABE ELECTRIC & MACHINERY CO., LTD. (KEMCO)\n• Founded: 1916 in Kobe, Japan\n• Specialization: Tube and pipe manufacturing\n• Expertise: Full-range tube and pipe mills and associated equipment\n• Market: Serves all sectors of the tube and pipe industry\n• Innovation: Known for inventive design and high-quality craftsmanship\n• Global Reach: Leading and inventive tube and pipe mill supplier\n\n⚙️ MAENO GIKEN INC. (MGK)\n• Specialization: Fabrication with Filipino craftsmanship\n• Services: Welding technology and machinery manufacturing\n• Quality: Hot-dip galvanizing for products with longer lifespan\n• Mission: Honing every Filipino generation to be globally competitive\n• Expertise: Transferring technological knowledge in fabrication business\n\n🔗 NEXT ENGINEERING CO., LTD.\n• established as strategic Mitsubishi Heavy Industries partner (2007)\n• Expertise: Energy-related projects (thermal power, fuel cells)\n• Manufacturing: Metal processing and manufacturing facilities\n• Expansion: IT and semiconductor industries\n• 2025 Merger: Combined with Nishinippon Sekkei Co., Ltd.\n• Services: Design to manufacturing with unparalleled technical depth\n\n💪 TOGETHER WE DELIVER:\n• Precision engineering solutions\n• High-quality manufacturing\n• Integrated design-to-production services\n• Global expertise with local knowledge",
+        actionButtons: [
+          { id: "q19-1", text: "📖 Company Story", action: "back", navigateAction: "q18-company-story" },
+          { id: "q19-2", text: "🎯 Vision & Mission", action: "back", navigateAction: "q17-company-vision-mission" },
+          { id: "q19-3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Company History & Milestones
+      "q20-company-history": {
+        text: "📅 KMTI COMPANY HISTORY & MILESTONES:\n\n🗓️ OCTOBER 2014: ESTABLISHMENT\n• KMTI founded in Cavite, Philippines\n• Setting foundation for engineering excellence\n\n🤝 2014: STRATEGIC PARTNERSHIP\n• Formed partnerships with:\n  - KUSAKABE ELECTRIC & MACHINERY CO., LTD. (KEMCO)\n  - MAENO GIKEN INC. (MGK)\n• Combined decades of expertise\n\n✈️ 2014: INTERNATIONAL EXCHANGE PROGRAM\n• Launched employee deployment program\n• Sent skilled engineers to partner companies in Japan\n• Hands-on training and collaboration for several months\n\n🔨 2017: PAINTING LINE COLLABORATION\n• Designed and fabricated conveying equipment\n• Designed and fabricated stacking devices\n• Collaborated with KEMCO and Maeno Giken\n• Conducted trial assembly and machine test runs\n\n🌐 2023: NEW ALLIANCE\n• Partnership with Next Engineering Co., Ltd.\n• Broadened technological capabilities\n• Expanded service offerings\n• Enhanced integrated design-to-production solutions\n\n👥 2025: TEAM GROWTH & DEVELOPMENT\n• Expanded engineering team\n• Enhanced technical expertise\n• Continuous training and development programs\n• Preparation for future innovations\n\n💡 Our continuous evolution reflects our commitment to excellence and innovation!",
+        actionButtons: [
+          { id: "q20-1", text: "🤝 Our Partners", action: "back", navigateAction: "q19-company-partners" },
+          { id: "q20-2", text: "📖 Company Story", action: "back", navigateAction: "q18-company-story" },
+          { id: "q20-3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Detailed Benefits
+      "q21-detailed-benefits": {
+        text: "💰 COMPREHENSIVE BENEFITS AT KMTI:\n\nWe're committed to taking care of our team so they can do their best work!\n\n🏥 MEDICAL & HEALTH BENEFITS:\n• Medical Insurance: 100% Company-paid for regular employees\n• SSS (Social Security System): Complete coverage\n• Pag-IBIG: Housing development fund\n• PhilHealth: National health insurance\n• All mandated statutory benefits included\n\n💵 COMPENSATION & PAY:\n• Competitive salary based on position\n• 13th Month Pay (mandated by Philippine labor law)\n• Guaranteed annual bonus\n• Performance-based incentives\n\n🍽️ ALLOWANCES & SUBSIDIES:\n• Transportation Allowance: Daily commute support\n• Meal Allowance: Food subsidy during work hours\n• Uniform Allowance: Professional attire provided\n• Rice Subsidy: Groceries support for regular employees\n\n🌏 TRAINING & DEVELOPMENT:\n• International Training: Opportunities to be deployed in Japan\n• On-the-Job Training: Continuous skill development\n• Professional Development Programs: Skill advancement\n• Mentorship: Guidance from experienced engineers\n• Technical Training: Industry-standard tools and techniques\n\n📈 CAREER GROWTH:\n• Stable, Long-Term Employment\n• Career advancement opportunities\n• Professional growth pathways\n• Leadership development programs\n• Opportunities within partner companies (Japan, Philippines)\n\n👥 WORKPLACE ENVIRONMENT:\n• Collaborative team culture\n• Inclusive work environment\n• Supportive management\n• Work-life balance\n• Compressed work schedule (Mon-Fri)\n\n✨ SPECIAL OPPORTUNITIES:\n• International exposure through Japan partnerships\n• Access to global manufacturing expertise\n• Skill development with world-class mentors\n• Contribution to cutting-edge engineering projects\n\n💡 We invest in our people's growth and future!",
+        actionButtons: [
+          { id: "q21-1", text: "📝 How to Apply", action: "back", navigateAction: "how-to-apply" },
+          { id: "q21-2", text: "🔎 View Open Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q21-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // Services Process & Workflow
+      "q22-services-workflow": {
+        text: "🔄 OUR COMPLETE SERVICE WORKFLOW:\n\nWe follow a structured process to ensure quality and client satisfaction:\n\n📋 STEP 1: INQUIRY WITH ORDER SHEET\n• Client submits project requirements\n• Fill out order sheet with specifications\n• Initial discussion of timeline and scope\n\n📑 STEP 2: REFERENCE DATA\n• Gather existing design information\n• Collect technical requirements\n• Review client's specifications\n• Understand manufacturing constraints\n\n🎨 STEP 3: 3D MODELING WITH MODIFICATION\n• Convert 2D drawings to accurate 3D models\n• Identify potential errors and interferences\n• Collaborate with client for design corrections\n• Iterate until final approval\n• Visualize final design before production\n\n📐 STEP 4: 2D DETAILING\n• Convert finalized 3D model to precise 2D drawings\n• Define all materials, dimensions, and specifications\n• Include technical instructions for manufacturing\n• Quality checking and verification\n• Modify based on client feedback\n\n⚙️ STEP 5: MANUFACTURING DESIGN\n• Prepare designs for actual production\n• Ensure manufacturability\n• Optimize for cost-efficiency\n• Final quality assurance checks\n\n🔧 STEP 6: FABRICATION / ASSEMBLY\n• Expert manufacturing of components\n• In-house or partner facility production\n• Quality inspection throughout process\n• Assembly of final products\n• Testing and verification\n\n📦 STEP 7: DELIVERY OF PRODUCTS\n• Final quality checks\n• Packaging and safe delivery\n• Documentation and handover\n• Post-delivery support\n\n💡 THROUGHOUT THE PROCESS:\n✅ Continuous Client Consultation\n✅ High-Quality Workmanship\n✅ Attention to Detail\n✅ Minimize Errors and Revisions\n✅ Reduce Manufacturing Costs\n✅ Professional Documentation",
+        actionButtons: [
+          { id: "q22-1", text: "💬 Discuss Your Project", action: "back", navigateAction: "consultation" },
+          { id: "q22-2", text: "🔎 View Our Services", action: "back", navigateAction: "services" },
+          { id: "q22-3", text: "Back to Main Menu", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+
+      // Application Timeline
+      "q23-application-timeline": {
+        text: "⏱️ KMTI APPLICATION TIMELINE:\n\n📅 TYPICAL HIRING PROCESS:\n\n🔵 DAY 1: INTERVIEW & ASSESSMENT\n• Full hiring process conducted in one day\n• Interview with HR and hiring manager\n• Technical assessment (if applicable)\n• Skills evaluation\n• Final interview rounds\n\n✅ QUICK TURNAROUND:\n• Most candidates receive feedback within 1-2 days\n• Faster process than typical companies\n• Efficient screening and decision-making\n• Commitment to timely communication\n\n📋 NEXT STEPS AFTER INTERVIEW:\n• Results notification (within 1-2 days)\n• Job offer (if selected)\n• Document submission (birth cert, medical exam, etc.)\n• Background verification\n\n💼 FROM SELECTION TO START DATE:\n• Final offer stage: 1-3 days\n• Document preparation: 3-5 days\n• Medical examination: 2-3 days\n• Final onboarding: 1-2 weeks\n• Start date: Usually within 2-3 weeks of selection\n\n⚡ WHY OUR PROCESS IS FAST:\n✅ Streamlined decision-making\n✅ Experienced HR team\n✅ Clear evaluation criteria\n✅ Efficient communication\n✅ No unnecessary delays\n\n💡 TIP: Be ready to start quickly if selected! We move fast!\n\nFor more details on timing, contact our HR team!",
+        actionButtons: [
+          { id: "q23-1", text: "📞 Contact HR for Timeline", action: "back", navigateAction: "contact-hr" },
+          { id: "q23-2", text: "📝 How to Apply", action: "back", navigateAction: "how-to-apply" },
+          { id: "q23-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
         ]
       }
     }
