@@ -126,16 +126,17 @@ const Contact: React.FC<ContactPageProps> = () => {
           </div>
         </div>
       </section>
-      <section className="get-in-touch-section">
+      <section className="get-in-touch-section" data-aos="fade-up">
         <div className="container">
           <div className="get-in-touch-grid">
             {/* Left: Form */}
-            <div className="contact-form-container">
+            <div className="contact-form-container" data-aos="fade-right">
               <h2 className="section-title">{t('contact.form.title')}</h2>
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                   <input
                     type="text"
+                    id="name"
                     name="name"
                     placeholder={t('contact.form.name')}
                     value={formData.name}
@@ -143,10 +144,12 @@ const Contact: React.FC<ContactPageProps> = () => {
                     className="form-field"
                     required
                   />
+                  <label htmlFor="name" className="form-label">{t('contact.form.name')}</label>
                 </div>
                 <div className="form-group">
                   <input
                     type="email"
+                    id="email"
                     name="email"
                     placeholder={t('contact.form.email')}
                     value={formData.email}
@@ -154,10 +157,12 @@ const Contact: React.FC<ContactPageProps> = () => {
                     className="form-field"
                     required
                   />
+                  <label htmlFor="email" className="form-label">{t('contact.form.email')}</label>
                 </div>
                 <div className="form-group">
                   <input
                     type="text"
+                    id="subject"
                     name="subject"
                     placeholder={t('contact.form.subject')}
                     value={formData.subject}
@@ -165,9 +170,11 @@ const Contact: React.FC<ContactPageProps> = () => {
                     className="form-field"
                     required
                   />
+                  <label htmlFor="subject" className="form-label">{t('contact.form.subject')}</label>
                 </div>
                 <div className="form-group">
                   <textarea
+                    id="message"
                     name="message"
                     placeholder={t('contact.form.message')}
                     value={formData.message}
@@ -175,6 +182,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                     className="form-field"
                     required
                   />
+                  <label htmlFor="message" className="form-label">{t('contact.form.message')}</label>
                 </div>
                 
                 {/*Submit Button */}
@@ -186,7 +194,7 @@ const Contact: React.FC<ContactPageProps> = () => {
             </div>
 
             {/* Right: Contact Information */}
-            <div className="contact-info-container">
+            <div className="contact-info-container" data-aos="fade-left">
               <h2 className="section-title">{t('contact.info.title')}</h2>
 
               <div className="contact-info-item">
