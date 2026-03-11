@@ -268,7 +268,25 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
-  const [timedOut, setTimedOut] = useState(false);
+
+  // ─── Interaction Hint Toast ───────────────────────────────────────────────────
+  // Show a brief hint after model loads. Mouse hints on desktop, touch on mobile.
+  // Dismissed on first pointer interaction or after 2.5s.
+  const [showHint, setShowHint] = useState(false);
+  const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (isLoaded) {
+      setShowHint(true);
+      hintTimerRef.current = setTimeout(() => setShowHint(false), 2500);
+    }
+    return () => { if (hintTimerRef.current) clearTimeout(hintTimerRef.current); };
+  }, [isLoaded]);
+
+  const dismissHint = useCallback(() => {
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    setShowHint(false);
+  }, []);
   const [remountKey, setRemountKey] = useState<number | null>(0);
   const contextLossCountRef = useRef(0);
   const [gaveUpOnContext, setGaveUpOnContext] = useState(false);
@@ -277,7 +295,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   const [downloadProgress, setDownloadProgress] = useState(0);
   const internalCanvasRef = useRef<HTMLCanvasElement>(null);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const MAX_CONTEXT_LOSSES = 3;
 
   const activeCanvasRef = canvasRef || internalCanvasRef;
@@ -357,23 +374,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelPath, isLoaded]); // remountKey intentionally omitted — canvas remounts must not reset progress
 
-  // 90s load timeout — triggers "Taking too long" overlay
-
-  useEffect(() => {
-    if (isLoaded) return;
-    setTimedOut(false);
-    if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
-    loadTimeoutRef.current = setTimeout(() => setTimedOut(true), 75000);
-    return () => { if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current); };
-  }, [modelPath, remountKey, isLoaded]);
-
-  useEffect(() => {
-    if (isLoaded && loadTimeoutRef.current) {
-      clearTimeout(loadTimeoutRef.current);
-      loadTimeoutRef.current = null;
-    }
-  }, [isLoaded]);
-
   // Hoisted from JSX to prevent 'Rendered fewer hooks' error when remountKey goes null
   const handleModelLoaded = useCallback(() => {
     // Debounce the load flag slightly so instant-cache hits don't cause a 1-frame UI flash
@@ -410,7 +410,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   useEffect(() => {
     setIsLoaded(false);
     setIsInteracting(false);
-    setTimedOut(false);
     setDownloadProgress(1);
     contextLossCountRef.current = 0;
     setGaveUpOnContext(false);
@@ -434,7 +433,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
       }
 
       setIsLoaded(false);
-      setTimedOut(false);
       // Longer delay (800ms) to give the mobile GPU time to recover memory
       setTimeout(() => {
         setRemountKey(k => (k === null ? 1 : k + 1));
@@ -447,7 +445,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   // User reload: wipe Canvas, evict caches, restart process after delay
   const handleReload = useCallback(() => {
     setIsLoaded(false);
-    setTimedOut(false);
     setDownloadProgress(1);
     contextLossCountRef.current = 0;
     setGaveUpOnContext(false);
@@ -465,7 +462,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   }, [modelPath]);
 
   return (
-    <div className="model-viewer-container">
+    <div className="model-viewer-container" onPointerDown={dismissHint}>
       {/* Give-up overlay: shown when WebGL context is lost too many times */}
       {gaveUpOnContext && (
         <div className="model-viewer-loading-overlay">
@@ -493,7 +490,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             opacity: isLoaded ? 0 : 1,
             pointerEvents: isLoaded ? 'none' : 'auto',
             transition: 'opacity 0.4s ease-in-out',
-            visibility: (isLoaded && !timedOut) ? 'hidden' : 'visible', // hide fully after fade but keep layout
+            visibility: isLoaded ? 'hidden' : 'visible', // hide fully after fade but keep layout
             transitionDelay: isLoaded ? '0s' : '0.2s', // slight delay on show to prevent fast-cache flicker
           }}
         >
@@ -501,17 +498,28 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
             <LoadingSpinner />
             <p>Loading 3D Model...</p>
             <LoadingProgress pct={downloadProgress} />
-            {timedOut && (
-              <>
-                <p style={{ marginTop: '0.5rem', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
-                  Taking too long?<br />Check your internet connection.
-                </p>
-                <div className="mv-snail-container" aria-hidden="true">
-                  <span className="mv-snail">🐌</span>
-                </div>
-              </>
-            )}
           </>
+        </div>
+      )}
+
+      {/* Interaction hint toast — shown once when model loads, responsive to device type */}
+      {showHint && (
+        <div className="mv-hint" aria-hidden="true">
+          {isPhone ? (
+            <>
+              <span>👆 Drag to rotate</span>
+              <span className="mv-hint-divider">·</span>
+              <span>🤏 Pinch to zoom</span>
+            </>
+          ) : (
+            <>
+              <span>🖱 Drag to rotate</span>
+              <span className="mv-hint-divider">·</span>
+              <span>Scroll to zoom</span>
+              <span className="mv-hint-divider">·</span>
+              <span>Right-click to pan</span>
+            </>
+          )}
         </div>
       )}
 
