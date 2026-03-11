@@ -252,8 +252,8 @@
   .chatbot-teaser {
     bottom: 80px;
     right: 40px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 20px;
   }
 }
 
