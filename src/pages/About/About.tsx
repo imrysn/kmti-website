@@ -72,7 +72,7 @@ const About: React.FC<AboutPageProps> = () => {
   
   const ourPeopleImages = [ourPeople1, ourPeople2, ourPeople3, ourPeople4, ourPeople5];
   const aboutCompanyImages = [aboutCompany1, aboutCompany2, aboutCompany3, aboutCompany4, meeting1, meeting2];
-
+  
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [selectedTeamMember, setSelectedTeamMember] = useState<{ image: string; role: string } | null>(null);
   const openTeamMemberModal = (image: string, role: string) => {setSelectedTeamMember({ image, role });};
@@ -171,8 +171,14 @@ const About: React.FC<AboutPageProps> = () => {
         <div className="about-history-container container">
           <h2 className="about-history-title">{t('about.history.title')}</h2>
           <div className="about-history-timeline">
+            <div className="about-history-timeline-progress"></div>
             {['item1', 'item2', 'item3', 'item_2017', 'item4', 'item5'].map((key, index) => (
-              <div key={key} className={`about-history-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+              <div
+                key={key}
+                className={`about-history-item ${index % 2 === 0 ? 'left' : 'right'}`}
+                data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+                data-aos-duration="800"
+              >
                 <div className="about-history-content">
                   <div className="about-history-year">{t(`about.history.milestones.${key}.year`)}</div>
                   <h3 className="about-history-item-title">{t(`about.history.milestones.${key}.title`)}</h3>
