@@ -12,12 +12,25 @@
   margin: 0 auto;
 }
 
+.image-viewer-caption {
+  text-align: center;
+  color: white;
+  margin-top: 1rem;
+  font-family: var(--font-family-heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 @media (max-width: 768px) {
   .image-viewer-modal-content {
     max-width: 80%;
   }
   .image-viewer-image {
     width: 100%;
+  }
+  .image-viewer-caption {
+    font-size: 1rem;
   }
 }
 

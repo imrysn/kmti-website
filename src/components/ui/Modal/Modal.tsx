@@ -70,10 +70,11 @@ interface ImageViewerModalProps {
   isOpen: boolean;
   src: string | null;
   alt?: string;
+  caption?: string;
   onClose: () => void;
 }
 
-export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src, alt = '', onClose }) => {
+export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src, alt = '', caption, onClose }) => {
   useLockBodyScroll(isOpen);
   if (!isOpen || !src) return null;
 
@@ -86,6 +87,7 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src,
             <LazyImage src={src} alt={alt} className="image-viewer-image" loading="eager" />
           </TransformComponent>
         </TransformWrapper>
+        {caption && <div className="image-viewer-caption">{caption}</div>}
       </div>
     </div>
   );

@@ -13,33 +13,43 @@ const ChatbotButton: React.FC = () => {
   const [resetTrigger, setResetTrigger] = useState(0);
   const [showTeaser, setShowTeaser] = useState(false);
 
-  // Trigger teaser after 10 seconds
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowTeaser(true);
-    }, 10000); // 10 seconds
+    const timers: NodeJS.Timeout[] = [];
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Auto close teaser after 3 seconds
-  useEffect(() => {
-    if (!showTeaser) return;
-
-    const autoClose = setTimeout(() => {
+    // Hide and Stop the Loop if the chat is opened
+    if (isChatOpen) {
       setShowTeaser(false);
-    }, 3000); // Auto close after 10 seconds
-    return () => clearTimeout(autoClose);
-  }, [showTeaser]);
+      return;
+    }
+
+    const teaserCycle = () => {
+      setShowTeaser(true);
+      const hideTimer = setTimeout(() => {
+        setShowTeaser(false);
+
+        // 15s hidden duration before showing the teaser again
+        const loopTimer = setTimeout(teaserCycle, 15000); // 15s hidden duration
+        timers.push(loopTimer);
+
+      }, 5000); // 5s visible duration
+      timers.push(hideTimer);
+    };
+
+    // Initial 3s delay before the first cycle starts.
+    const initialDelayTimer = setTimeout(teaserCycle, 3000);
+    timers.push(initialDelayTimer);
+
+    // Timer Cleanup Function
+    return () => timers.forEach(clearTimeout);
+  }, [isChatOpen]);
 
   // Listen for reset event from other components
   useEffect(() => {
     const handleResetChatbot = () => {
       setResetTrigger((prev) => prev + 1);
-      // Ensure chatbot is open when reset
       if (!isChatOpen) {
         setIsChatOpen(true);
-        setShowTeaser(false); // Hide teaser when chat opens
+        setShowTeaser(false);
       }
     };
 
@@ -58,7 +68,7 @@ const ChatbotButton: React.FC = () => {
     if (!isChatOpen) {
       // Open chatbot without resetting - preserve previous state
       setIsChatOpen(true);
-      setShowTeaser(false); // Hide teaser when chat opens
+      setShowTeaser(false)
     }
   };
 
@@ -75,7 +85,13 @@ const ChatbotButton: React.FC = () => {
     <>
       {!isChatOpen && showTeaser && (
         <div className="chatbot-teaser">
-          {t('common.chatbot.teaser')}
+          {(() => {
+            const teaserText = t('common.chatbot.teaser');
+            const parts = teaserText.split('👋');
+            return (
+              <>{parts[0]}<span className="waving-hand">👋</span>{parts[1]}</>
+            );
+          })()}
           <span
             className="chatbot-teaser-close"
             onClick={(e) => {
