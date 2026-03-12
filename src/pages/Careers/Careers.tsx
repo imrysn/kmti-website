@@ -27,7 +27,8 @@ import { ApplyCard, WhyWorkWithUsCard, HowToApplyCard } from '../../components/u
 
 const Careers: React.FC<CareersPageProps> = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
 
   const [activeOjtType, setActiveOjtType] = useState<'engineering' | 'it' | null>(null);
 
@@ -100,13 +101,13 @@ const Careers: React.FC<CareersPageProps> = () => {
   return (
     <div className="careers-page">
       <SEO 
-        title={t('nav.careers')} 
-        description={t('careers.hero.description1')} 
+        title={tEn('nav.careers')} 
+        description={tEn('careers.hero.description1')} 
       />
       <section className="hero-section">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${careersBg})` }}></div>
         <div className="hero-overlay"></div>
-        <LazyImage src={kmtiModel} alt="KMTI Team" wrapperClassName="careers-hero-model" loading="eager" />
+        <LazyImage src={kmtiModel} alt={`${t('common.brand_abbr')} Team`} wrapperClassName="careers-hero-model" loading="eager" />
         <div className="hero-container container">
           <div className="hero-content">
             <h1 className="hero-title">{t('careers.hero.title')}</h1>
@@ -169,7 +170,7 @@ const Careers: React.FC<CareersPageProps> = () => {
           <div className="meet-our-team-image-wrapper">
             <LazyImage
               src={getAssetUrl('about_page/ourpeople4.webp')}
-              alt="KMTI Team"
+              alt={`${t('common.brand_abbr')} Team`}
               className="meet-our-team-image"
               fallbackNode={<div className="team-photo-fallback"><UserIcon /></div>}
             />

@@ -27,7 +27,7 @@ const ChatWithUsRightCard: React.FC<ChatWithUsRightCardProps> = ({
           <div className="chatbot-card-header-avatar">
             <LazyImage
               src={profileImage || defaultProfileImage}
-              alt="KMTI Bot"
+              alt={`${t('common.brand_full')} Bot`}
               className="chatbot-card-header-avatar-img"
               loading="eager"
             />

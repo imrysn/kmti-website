@@ -45,7 +45,8 @@ interface ProjectItem {
 
 const Projects: React.FC<ProjectsPageProps> = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
 
   // Filter State
   const [activeCategoryKey, setActiveCategoryKey] = useState('ALL');
@@ -277,8 +278,8 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   return (
     <div className="projects-page">
       <SEO 
-        title={t('nav.projects')} 
-        description={t('projects.hero.subtitle')} 
+        title={tEn('nav.projects')} 
+        description={tEn('home.projects.subtitle')} 
       />
       <section className="projects-hero">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${projectBg})` }}></div>

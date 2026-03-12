@@ -65,7 +65,7 @@ const mgkLogo = getAssetUrl('about_page/mgkLogo.webp');
 
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isOurStoryModalOpen, setIsOurStoryModalOpen] = useState(false);
   const [isManagementTeamExpanded, setIsManagementTeamExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -105,11 +105,13 @@ const About: React.FC<AboutPageProps> = () => {
     }
   };
 
+  const tEn = i18n.getFixedT('en');
+
   return (
     <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})` } as React.CSSProperties}>
       <SEO 
-        title={t('nav.about')} 
-        description={t('about.hero.subtitle')} 
+        title={tEn('nav.about')} 
+        description={tEn('about.hero.subtitle')} 
       />
       <section className="about-hero">
         <div className="about-hero-bg"></div>

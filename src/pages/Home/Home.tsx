@@ -83,11 +83,12 @@ const Home: React.FC<HomePageProps> = () => {
     { id: 8, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage, link: '/projects?project=dedimpler-and-facer' },
   ];
 
+  const tEn = i18n.getFixedT('en');
+
   return (
     <div className="home-page">
       <SEO 
-        title={t('nav.home')} 
-        description={t('home.services.subtitle')} 
+        description={tEn('about.hero.subtitle')} 
       />
       <section key={animationKey} className="hero-section">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${homeBg})` }}></div>

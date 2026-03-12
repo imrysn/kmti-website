@@ -34,7 +34,8 @@ const initialFormData: ContactFormData = {
 };
 
 const Contact: React.FC<ContactPageProps> = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
 
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
 
@@ -82,8 +83,8 @@ const Contact: React.FC<ContactPageProps> = () => {
   return (
     <div className="contact-page">
       <SEO 
-        title={t('nav.contact')} 
-        description={t('contact.hero.description')} 
+        title={tEn('nav.contact')} 
+        description={tEn('contact.hero.description')} 
       />
       <section className="hero-section">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${contactBg})` }}></div>
@@ -216,7 +217,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                 </div>
                 <div className="contact-info-details">
                   <h3>LinkedIn</h3>
-                  <p><a href="https://www.linkedin.com/company/kusakabe-maeno-tech-inc/" target="_blank" rel="noreferrer" className="contact-info-link">KMTI LinkedIn</a></p>
+                  <p><a href="https://www.linkedin.com/company/kusakabe-maeno-tech-inc/" target="_blank" rel="noreferrer" className="contact-info-link">{t('common.brand_abbr')} LinkedIn</a></p>
                 </div>
               </div>
 
@@ -226,7 +227,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                 </div>
                 <div className="contact-info-details">
                   <h3>Facebook</h3>
-                  <p><a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="contact-info-link">KMTI Facebook</a></p>
+                  <p><a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="contact-info-link">{t('common.brand_abbr')} Facebook</a></p>
                 </div>
               </div>
 
@@ -242,7 +243,7 @@ const Contact: React.FC<ContactPageProps> = () => {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="KMTI Office Location"
+          title={`${t('common.brand_abbr')} Office Location`}
         ></iframe>
       </div>
       </section>

@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
       <div className="footer__inner">
         <div className="footer__brand">
           <Link to="/" className="footer__logo" onClick={handleLogoClick}>
-            <LazyImage src={footerLogo} alt="KMTI footer logo" />
+            <LazyImage src={footerLogo} alt={`${t('common.brand_full')} footer logo`} />
           </Link>
           <p className="footer__desc">
             {t('footer.description')}
@@ -109,7 +109,7 @@ const Footer: React.FC = () => {
           <div className="footer__contact-item">
             <LazyImage src={emailIcon} alt="Email" wrapperClassName="footer__contact-icon" />
             <a
-              href="https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=Hello%20KMTI%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you!"
+              href={`https://mail.google.com/mail/?view=cm&to=info@kmti.com.ph&su=Inquiry&body=${encodeURIComponent(`Hello ${t('common.brand_full')} Team,\n\nI would like to inquire about your services.\n\nThank you!`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="footer__contact-link"

@@ -6,7 +6,8 @@ import './Sitemap.css';
 import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
 
 const Sitemap: React.FC<SitemapPageProps> = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
 
   const sitemapSections: SitemapSection[] = [
     {
@@ -89,8 +90,8 @@ const Sitemap: React.FC<SitemapPageProps> = () => {
   return (
     <div className="sitemap-page">
       <SEO 
-        title={t('sitemap.title')} 
-        description={t('sitemap.subtitle')} 
+        title={tEn('sitemap.title')} 
+        description={tEn('sitemap.subtitle')} 
       />
       <section className="hero-section">
         <div className="sitemap-hero-container">

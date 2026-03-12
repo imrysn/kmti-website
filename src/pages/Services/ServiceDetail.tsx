@@ -27,7 +27,8 @@ const assemblyImage5 = getAssetUrl('service_detail_image/assembly5modal.webp');
 
 const ServiceDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -92,8 +93,8 @@ const ServiceDetail: React.FC = () => {
       transition={{ duration: 0.3 }}
     >
       <SEO 
-        title={t(`services.items.${serviceKey}.title`)} 
-        description={t(`services.items.${serviceKey}.short_desc`)} 
+        title={tEn(`services.items.${serviceKey}.title`)} 
+        description={tEn(`services.items.${serviceKey}.short_desc`)} 
       />
       <div className="container">
         <div className="service-detail-back-wrapper">

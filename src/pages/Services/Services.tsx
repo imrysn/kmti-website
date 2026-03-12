@@ -42,7 +42,8 @@ interface Service {
 
 
 const Services: React.FC<ServicesPageProps> = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
   const navigate = useNavigate();
   const { id } = useParams();
   const servicesNavRef = useRef<HTMLDivElement>(null);
@@ -96,8 +97,8 @@ const Services: React.FC<ServicesPageProps> = () => {
   return (
     <div className="services-page">
       <SEO 
-        title={t('nav.services')} 
-        description={t('services.hero.subtitle')} 
+        title={tEn('nav.services')} 
+        description={tEn('home.services.subtitle')} 
       />
       <section className="services-hero">
         <div className="services-hero-bg-custom" style={{ backgroundImage: `url(${servicesBg})` }}></div>

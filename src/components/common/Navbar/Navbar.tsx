@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
           <LazyImage
             src={headerLogoR2}
             fallbackSrc={localNavbarLogo}
-            alt="KMTI Logo"
+            alt={`${t('common.brand_full')} Logo`}
             loading="eager"
           />
         </Link>
