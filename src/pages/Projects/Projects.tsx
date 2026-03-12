@@ -9,6 +9,7 @@ import { useProjectModals } from '../../hooks/useProjectModals';
 import { ProjectsCard } from '../../components/ui/Card/Card';
 import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
 import Model3DViewerModal from '../../components/ui/Modal/Model3DViewerModal';
+import SEO from '../../components/common/SEO';
 
 import { getAssetUrl } from '../../utils/assets';
 
@@ -275,6 +276,10 @@ const Projects: React.FC<ProjectsPageProps> = () => {
 
   return (
     <div className="projects-page">
+      <SEO 
+        title={t('nav.projects')} 
+        description={t('projects.hero.subtitle')} 
+      />
       <section className="projects-hero">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${projectBg})` }}></div>
         <div className="projects-hero-overlay"></div>

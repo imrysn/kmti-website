@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
+import SEO from '../../components/common/SEO';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Careers.css';
@@ -98,6 +99,10 @@ const Careers: React.FC<CareersPageProps> = () => {
 
   return (
     <div className="careers-page">
+      <SEO 
+        title={t('nav.careers')} 
+        description={t('careers.hero.description1')} 
+      />
       <section className="hero-section">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${careersBg})` }}></div>
         <div className="hero-overlay"></div>

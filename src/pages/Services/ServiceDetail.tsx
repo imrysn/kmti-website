@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import { getAssetUrl } from '../../utils/assets';
+import SEO from '../../components/common/SEO';
 
 // Import images (using R2)
 const modalImage1 = getAssetUrl('service_detail_image/3Dmodal1.webp');
@@ -85,13 +86,15 @@ const ServiceDetail: React.FC = () => {
   return (
     <motion.div
       className="service-detail-page"
-
-
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
+      <SEO 
+        title={t(`services.items.${serviceKey}.title`)} 
+        description={t(`services.items.${serviceKey}.short_desc`)} 
+      />
       <div className="container">
         <div className="service-detail-back-wrapper">
           <Button variant="style2" onClick={() => navigate('/services')}>

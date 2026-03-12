@@ -9,6 +9,7 @@ import { ServicePageCard } from '../../components/ui/Card/Card';
 import Button from '../../components/ui/Button';
 import { getAssetUrl } from '../../utils/assets';
 import ServiceDetail from './ServiceDetail';
+import SEO from '../../components/common/SEO';
 import {
   CubeIcon,
   CubesIcon,
@@ -94,6 +95,10 @@ const Services: React.FC<ServicesPageProps> = () => {
 
   return (
     <div className="services-page">
+      <SEO 
+        title={t('nav.services')} 
+        description={t('services.hero.subtitle')} 
+      />
       <section className="services-hero">
         <div className="services-hero-bg-custom" style={{ backgroundImage: `url(${servicesBg})` }}></div>
         <div className="services-hero-overlay"></div>

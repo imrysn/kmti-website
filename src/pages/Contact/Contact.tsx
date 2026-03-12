@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
+import SEO from '../../components/common/SEO';
 import { useTranslation, Trans } from 'react-i18next';
 import './Contact.css';
 import type { ContactPageProps } from './Contact.types';
@@ -80,6 +81,10 @@ const Contact: React.FC<ContactPageProps> = () => {
 
   return (
     <div className="contact-page">
+      <SEO 
+        title={t('nav.contact')} 
+        description={t('contact.hero.description')} 
+      />
       <section className="hero-section">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${contactBg})` }}></div>
         <div className="hero-overlay"></div>

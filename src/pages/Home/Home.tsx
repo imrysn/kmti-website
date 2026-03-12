@@ -8,6 +8,7 @@ import './IphonePlus_Promax.css';
 import './AndroidStandard.css';
 import type { HomePageProps } from './Home.types';
 import { getAssetUrl } from '../../utils/assets';
+import SEO from '../../components/common/SEO';
 import Button from '../../components/ui/Button/Button';
 import Card, { ServiceCard } from '../../components/ui/Card/Card';
 import ProjectCarousel from '../../components/ui/ProjectCarousel/ProjectCarousel';
@@ -84,6 +85,10 @@ const Home: React.FC<HomePageProps> = () => {
 
   return (
     <div className="home-page">
+      <SEO 
+        title={t('nav.home')} 
+        description={t('home.services.subtitle')} 
+      />
       <section key={animationKey} className="hero-section">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${homeBg})` }}></div>
         <div className="hero-overlay"></div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import SEO from '../../components/common/SEO';
 import './Sitemap.css';
 import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
 
@@ -87,6 +88,10 @@ const Sitemap: React.FC<SitemapPageProps> = () => {
 
   return (
     <div className="sitemap-page">
+      <SEO 
+        title={t('sitemap.title')} 
+        description={t('sitemap.subtitle')} 
+      />
       <section className="hero-section">
         <div className="sitemap-hero-container">
           <h1 className="sitemap-title">{t('sitemap.title')}</h1>

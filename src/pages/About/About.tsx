@@ -9,6 +9,7 @@ import '../Home/IphonePlus_Promax.css';
 import type { AboutPageProps } from './About.types';
 import { getAssetUrl } from '../../utils/assets';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
+import SEO from '../../components/common/SEO';
 
 const aboutBg = getAssetUrl('hero_background/about.webp');
 const aboutCompany1 = getAssetUrl('about_page/aboutcompany1.webp');
@@ -106,6 +107,10 @@ const About: React.FC<AboutPageProps> = () => {
 
   return (
     <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})` } as React.CSSProperties}>
+      <SEO 
+        title={t('nav.about')} 
+        description={t('about.hero.subtitle')} 
+      />
       <section className="about-hero">
         <div className="about-hero-bg"></div>
         <div className="about-hero-overlay"></div>

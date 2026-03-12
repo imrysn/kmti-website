@@ -1,5 +1,5 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+import SEO from '../../components/common/SEO';
 import './LegalAndCompliance.css';
 
 const LegalAndCompliance: React.FC = () => {
@@ -7,6 +7,10 @@ const LegalAndCompliance: React.FC = () => {
 
   return (
     <div className="legal-page">
+      <SEO 
+        title={t('legal.page_title')} 
+        description={t('legal.privacy.intro')} 
+      />
       <div className="legal-container">
         <h1 className="legal-title">{t('legal.page_title')}</h1>
 

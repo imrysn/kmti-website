@@ -21,6 +21,8 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navListRef = React.useRef<HTMLUListElement>(null);
+  const linkRefs = React.useRef<(HTMLLIElement | null)[]>([]);
 
   const navLinks = useMemo(() => [
     { path: '/', label: t('nav.home') },
@@ -66,45 +68,35 @@ const Navbar: React.FC = () => {
 
   // Slider Logic
   useEffect(() => {
-    // Use a small timeout to ensure DOM is ready (matching original behavior safely)
-    const timer = setTimeout(() => {
-      // Find the active link in the navLinks array
-      const activeLink = navLinks.find(link => isActivePath(link.path, location.pathname));
-
-      // If we found an active link, try to find its corresponding DOM element
-      if (activeLink) {
-        // We select strictly within the desktop navbar links to avoid confusion with mobile or potential duplicates
-        // Using the href attribute is a reliable way to map data to DOM
-        // Note: react-router Link uses absolute paths in href usually, but let's be safe.
-        // It's safer to find the element that has the 'active' class actually, 
-        // effectively trusting the render logic below.
-
-        // Alternatively, finding by href attribute:
-        // inner Links have href="/path" or href="/kmti-website/path" depending on base.
-        // Let's rely on the fact that we add the 'active' class to the correct link in the render method.
-        const activeDomLink = document.querySelector('.navbar-desktop-group .navbar-link.active');
-
-        if (activeDomLink) {
-          const rect = activeDomLink.getBoundingClientRect();
-          const ulElement = activeDomLink.closest('.navbar-links');
-
-          if (ulElement) {
-            const ulRect = ulElement.getBoundingClientRect();
-            setSliderStyle({
-              width: rect.width,
-              left: rect.left - ulRect.left,
-            });
-            return;
-          }
+    // We use a microtask delay using requestAnimationFrame to ensure the DOM 
+    // is fully painted with the new active class before taking measurements.
+    
+    const rAF = requestAnimationFrame(() => {
+      if (!navListRef.current) return;
+      
+      const activeIndex = navLinks.findIndex(link => isActivePath(link.path, location.pathname));
+      
+      if (activeIndex !== -1 && linkRefs.current[activeIndex]) {
+        const activeItem = linkRefs.current[activeIndex];
+        const ulElement = navListRef.current;
+        
+        if (activeItem && ulElement) {
+          const itemRect = activeItem.getBoundingClientRect();
+          const ulRect = ulElement.getBoundingClientRect();
+          
+          setSliderStyle({
+            width: itemRect.width,
+            left: itemRect.left - ulRect.left,
+          });
+          return;
         }
       }
+      
+      // If no active link found (e.g. 404), reset slider
+      setSliderStyle({ width: 0, left: 0 });
+    });
 
-      // If no active link found (e.g. 404 or unknown route), reset slider
-      setSliderStyle({ width: 0, left: 0 }); // Hide slider or keep at 0
-
-    }, 50);
-
-    return () => clearTimeout(timer);
+    return () => cancelAnimationFrame(rAF);
   }, [location.pathname, i18n.language, navLinks]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -124,12 +116,15 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Navigation */}
         <div className="navbar-desktop-group">
-          <ul className="navbar-links">
-            {navLinks.map((link) => {
+          <ul className="navbar-links" ref={navListRef}>
+            {navLinks.map((link, index) => {
               const isActive = isActivePath(link.path, location.pathname);
 
               return (
-                <li key={`desktop-${link.path}`}>
+                <li 
+                  key={`desktop-${link.path}`}
+                  ref={(el) => { linkRefs.current[index] = el; }}
+                >
                   <Link
                     to={link.path}
                     className={`navbar-link ${isActive ? 'active' : ''}`}
