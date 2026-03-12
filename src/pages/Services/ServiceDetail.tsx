@@ -82,6 +82,23 @@ const ServiceDetail: React.FC = () => {
 
   if (!serviceKey) return null;
 
+  // Animation variants for staggering children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
+
   return (
     <motion.div
       className="service-detail-page"
@@ -105,45 +122,69 @@ const ServiceDetail: React.FC = () => {
         </div>
 
         <section className="service-detail-content-section">
-          <motion.div className="service-detail-grid">
-            <div className="service-detail-text">
+          <div className="service-detail-grid">
+            <motion.div
+              className="service-detail-text"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               <h2 className="service-detail-section-title">
                 {t(`services.items.${serviceKey}.section_title`, { defaultValue: t(`services.items.${serviceKey}.title`) })}
               </h2>
               <p className="service-detail-description">{t(`services.items.${serviceKey}.detailed_desc`)}</p>
 
               {(serviceKey === '3d' || serviceKey === '2d') && (
-                <div className="service-detail-workflow">
+                <motion.div
+                  className="service-detail-workflow"
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                >
                   <h3 className="service-detail-workflow-title">{t('services.workflow.title')}</h3>
                   <div className="workflow-steps">
                     {['inquiry', 'reference', 'modeling', 'detailing', 'design', 'fabrication', 'delivery'].map((step, index) => (
-                      <div key={step} className={`workflow-step ${index < 7 ? 'active' : ''}`}>
+                      <motion.div key={step} className={`workflow-step ${index < 7 ? 'active' : ''}`} variants={itemVariants}>
                         <div className="step-number">{index + 1}</div>
                         <div className="step-content">
                           <span className="step-name">{t(`services.workflow.steps.${step}`)}</span>
                         </div>
                         {index < 6 && <div className="step-connector">↓</div>}
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               )}
 
               {serviceKey === '2d' && (
-                <div className="service-detail-subsections">
-                  <div className="service-detail-subsection">
+                <motion.div
+                  className="service-detail-subsections"
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  <motion.div className="service-detail-subsection" variants={itemVariants}>
                     <h3 className="service-detail-subsection-title">{t('services.items.2d.section_titles.checking')}</h3>
                     <p className="service-detail-subsection-text">{t('services.items.2d.section_desc.checking')}</p>
-                  </div>
-                  <div className="service-detail-subsection">
+                  </motion.div>
+                  <motion.div className="service-detail-subsection" variants={itemVariants}>
                     <h3 className="service-detail-subsection-title">{t('services.items.2d.section_titles.qualifications')}</h3>
                     <p className="service-detail-subsection-text">{t('services.items.2d.section_desc.qualifications')}</p>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               )}
-            </div>
+            </motion.div>
 
-            <div className="service-detail-media">
+            <motion.div
+              className="service-detail-media"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            >
               {isCarousel ? (
                 <div
                   className="service-detail-carousel"
@@ -200,8 +241,8 @@ const ServiceDetail: React.FC = () => {
                   ))}
                 </div>
               )}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </section>
       </div>
     </motion.div>

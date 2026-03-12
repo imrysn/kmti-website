@@ -37,6 +37,7 @@ const Contact: React.FC<ContactPageProps> = () => {
 
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [isSending, setIsSending] = useState(false); // Used for Submit Button Loading Indicator
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false); // Success Popup State
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -44,20 +45,21 @@ const Contact: React.FC<ContactPageProps> = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSending(true); // Start loading
+    e.preventDefault();
+    setIsSending(true); // Start loading
 
-  // 2 seconds delay to show loading indicator
-  setTimeout(() => {
-    const { name, email, subject, message } = formData;
-    const mailtoLink = `mailto:info@kmti.com.ph?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+    // Simulate a network request before showing success
+    setTimeout(() => {
+      setIsSending(false);
+      setFormData(initialFormData); // Reset form
+      setShowSuccessPopup(true); // Show success popup
 
-    window.location.href = mailtoLink;
-
-    // The page will navigate away, but we can reset state in case the user cancels or returns.
-    setIsSending(false);
-  }, 2000);
-};
+      // 5s display to match the animation
+      setTimeout(() => {
+        setShowSuccessPopup(false);
+      }, 5000);
+    }, 1500);
+  };
 
   const handleGeneralInquiries = () => {
     window.location.href = 'mailto:info@kmti.com.ph';
@@ -89,6 +91,24 @@ const Contact: React.FC<ContactPageProps> = () => {
 
   return (
     <div className="contact-page">
+      {showSuccessPopup && (
+        <div className="success-popup" onClick={() => setShowSuccessPopup(false)}>
+          <div className="success-popup-content" onClick={(e) => e.stopPropagation()}>
+            <div className="success-icon-container">
+              <svg className="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle className="success-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                <path className="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+              </svg>
+            </div>
+            <h4 className="success-popup-title">{t('contact.form.success_title')}</h4>
+            <p className="success-popup-message">{t('contact.form.success_message')}</p>
+            <Button variant="style2" onClick={() => setShowSuccessPopup(false)}>
+              {t('contact.form.success_close_btn')}
+            </Button>
+          </div>
+        </div>
+      )}
+
       <section className="hero-section">
         <div className="hero-bg-custom" style={{ backgroundImage: `url(${contactBg})` }}></div>
         <div className="hero-overlay"></div>
@@ -138,7 +158,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder={t('contact.form.name')}
+                    placeholder=" "
                     value={formData.name}
                     onChange={handleInputChange}
                     className="form-field"
@@ -151,7 +171,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                     type="email"
                     id="email"
                     name="email"
-                    placeholder={t('contact.form.email')}
+                    placeholder=" "
                     value={formData.email}
                     onChange={handleInputChange}
                     className="form-field"
@@ -164,7 +184,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                     type="text"
                     id="subject"
                     name="subject"
-                    placeholder={t('contact.form.subject')}
+                    placeholder=" "
                     value={formData.subject}
                     onChange={handleInputChange}
                     className="form-field"
@@ -176,7 +196,7 @@ const Contact: React.FC<ContactPageProps> = () => {
                   <textarea
                     id="message"
                     name="message"
-                    placeholder={t('contact.form.message')}
+                    placeholder=" "
                     value={formData.message}
                     onChange={handleInputChange}
                     className="form-field"

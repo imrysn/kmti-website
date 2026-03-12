@@ -600,7 +600,10 @@ const jp = {
       subject: "件名",
       message: "メッセージ",
       send: "メッセージを送信",
-      sending: "送信..."
+      sending: "送信...",
+      success_title: "メッセージの送信に成功しました！",
+      success_message: "ご連絡いただきありがとうございます。お送りいただいたメッセージを確認後、ご提供いただいたメールアドレス宛に折り返しご連絡いたします。",
+      success_close_btn: "閉じる",
     },
     info: {
       title: "連絡先情報",

@@ -600,7 +600,10 @@ const en = {
       subject: "Subject",
       message: "Message",
       send: "SEND MESSAGE",
-      sending: "SENDING..."
+      sending: "SENDING...",
+      success_title: "Message Sent Successfully!",
+      success_message: "Thank you for reaching out. We'll review your message and get back to you shortly via the email you provided.",
+      success_close_btn: "CLOSE"
     },
     info: {
       title: "Contact Information",

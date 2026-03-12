@@ -2082,12 +2082,11 @@
     gap: 1rem;
   }
 }
-
-/* History Timeline Responsive */
+/* History Timeline (Dots and Line) Responsive */
 @media screen and (max-width: 768px) {
   .about-history-timeline::after,
   .about-history-timeline-progress {
-    left: 31px;
+    left: 21px;
   }
 
   .about-history-item {
@@ -2103,7 +2102,7 @@
   }
 
   .about-history-item::after {
-    left: 23px !important;
+    left: 14px !important;
   }
 
   .about-history-section {

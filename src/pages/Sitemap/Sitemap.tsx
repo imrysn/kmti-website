@@ -4,6 +4,56 @@ import { useTranslation } from 'react-i18next';
 import './Sitemap.css';
 import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
 
+const BackgroundShapes: React.FC = () => (
+  <> {/* Bottom Shapes */}
+    <ul className="shapes-container" aria-hidden="true">
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+    </ul>
+    {/* Top Shapes */}
+    <ul className="shapes-container-top" aria-hidden="true">
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+    </ul>
+  </>
+);
+
 const Sitemap: React.FC<SitemapPageProps> = () => {
   const { t } = useTranslation();
 
@@ -87,6 +137,7 @@ const Sitemap: React.FC<SitemapPageProps> = () => {
 
   return (
     <div className="sitemap-page">
+      <BackgroundShapes />
       <section className="hero-section">
         <div className="sitemap-hero-container">
           <h1 className="sitemap-title">{t('sitemap.title')}</h1>
