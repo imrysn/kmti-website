@@ -10,19 +10,19 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { getAssetUrl } from '../../utils/assets';
 
 // Import images (using R2)
-const modalImage1 = getAssetUrl('service_detail_image/3Dmodal1.png');
-const modalImage2 = getAssetUrl('service_detail_image/3Dmodal2.png');
-const modalImage2D = getAssetUrl('service_detail_image/2Dmodal.png');
-const inspectionImage1 = getAssetUrl('service_detail_image/inspection1modal.png');
-const inspectionImage2 = getAssetUrl('service_detail_image/inspection2modal.png');
-const inspectionImage3 = getAssetUrl('service_detail_image/inspection3modal.png');
-const inspectionImage4 = getAssetUrl('service_detail_image/inspection4modal.png');
-const inspectionImage5 = getAssetUrl('service_detail_image/inspection5modal.png');
-const assemblyImage1 = getAssetUrl('service_detail_image/assembly1modal.png');
-const assemblyImage2 = getAssetUrl('service_detail_image/assembly2modal.png');
-const assemblyImage3 = getAssetUrl('service_detail_image/assmebly3mpdal.png'); // Note: retained original typo in filename from source
-const assemblyImage4 = getAssetUrl('service_detail_image/assembly4modal.png');
-const assemblyImage5 = getAssetUrl('service_detail_image/assembly5modal.png');
+const modalImage1 = getAssetUrl('service_detail_image/3Dmodal1.webp');
+const modalImage2 = getAssetUrl('service_detail_image/3Dmodal2.webp');
+const modalImage2D = getAssetUrl('service_detail_image/2Dmodal.webp');
+const inspectionImage1 = getAssetUrl('service_detail_image/inspection1modal.webp');
+const inspectionImage2 = getAssetUrl('service_detail_image/inspection2modal.webp');
+const inspectionImage3 = getAssetUrl('service_detail_image/inspection3modal.webp');
+const inspectionImage4 = getAssetUrl('service_detail_image/inspection4modal.webp');
+const inspectionImage5 = getAssetUrl('service_detail_image/inspection5modal.webp');
+const assemblyImage1 = getAssetUrl('service_detail_image/assembly1modal.webp');
+const assemblyImage2 = getAssetUrl('service_detail_image/assembly2modal.webp');
+const assemblyImage3 = getAssetUrl('service_detail_image/assmebly3mpdal.webp'); // Note: retained original typo in filename from source
+const assemblyImage4 = getAssetUrl('service_detail_image/assembly4modal.webp');
+const assemblyImage5 = getAssetUrl('service_detail_image/assembly5modal.webp');
 
 const ServiceDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

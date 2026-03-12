@@ -16,11 +16,11 @@ import {
   AssemblyIcon
 } from '../../components/ui/Icons/ProjectIcons';
 
-const servicesBg = getAssetUrl('hero_background/servicesbg.png');
-const icon3D = getAssetUrl('icons/cube.png');
-const icon2D = getAssetUrl('icons/cubes.png');
-const inspectionIcon = getAssetUrl('icons/parts-inspection-icon.png');
-const assemblyIcon = getAssetUrl('icons/machine-assembly-icon.png');
+const servicesBg = getAssetUrl('hero_background/servicesbg.webp');
+const icon3D = getAssetUrl('icons/cube.webp');
+const icon2D = getAssetUrl('icons/cubes.webp');
+const inspectionIcon = getAssetUrl('icons/parts-inspection-icon.webp');
+const assemblyIcon = getAssetUrl('icons/machine-assembly-icon.webp');
 
 const video3D = getAssetUrl('service_detail_image/service_3d.mp4');
 const videoInspection = getAssetUrl('service_detail_image/service_parts_inspection.mp4');

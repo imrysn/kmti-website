@@ -13,22 +13,22 @@ import Model3DViewerModal from '../../components/ui/Modal/Model3DViewerModal';
 import { getAssetUrl } from '../../utils/assets';
 
 // Images
-const projectBg = getAssetUrl('hero_background/projectbg.jpg');
+const projectBg = getAssetUrl('hero_background/projectbg.webp');
 
-const dedemplerImage = getAssetUrl('image3D/dedempler.png');
-const bundlingImage = getAssetUrl('image3D/bundling.png');
-const bindingImage = getAssetUrl('image3D/binding.png');
-const looperImage = getAssetUrl('image3D/looper.png');
-const verticalLooperImage = getAssetUrl('image3D/vertical-looper.png');
-const horizontalLooperImage = getAssetUrl('image3D/horizontal-looper.png');
-const formingImage = getAssetUrl('image3D/forming.png');
-const shearImage = getAssetUrl('image3D/shear.png');
-const uncoilerImage = getAssetUrl('image3D/uncoiler.png');
-const levelerImage = getAssetUrl('image3D/leveler.png');
-const finishingImage = getAssetUrl('image3D/finishing.png');
-const finishingLineImage = getAssetUrl('image3D/finishingLine.png');
-const millingImage = getAssetUrl('image3D/milling.png');
-const furnaceImage = getAssetUrl('image3D/furnace.png');
+const dedemplerImage = getAssetUrl('image3D/dedempler.webp');
+const bundlingImage = getAssetUrl('image3D/bundling.webp');
+const bindingImage = getAssetUrl('image3D/binding.webp');
+const looperImage = getAssetUrl('image3D/looper.webp');
+const verticalLooperImage = getAssetUrl('image3D/vertical-looper.webp');
+const horizontalLooperImage = getAssetUrl('image3D/horizontal-looper.webp');
+const formingImage = getAssetUrl('image3D/forming.webp');
+const shearImage = getAssetUrl('image3D/shear.webp');
+const uncoilerImage = getAssetUrl('image3D/uncoiler.webp');
+const levelerImage = getAssetUrl('image3D/leveler.webp');
+const finishingImage = getAssetUrl('image3D/finishing.webp');
+const finishingLineImage = getAssetUrl('image3D/finishingLine.webp');
+const millingImage = getAssetUrl('image3D/milling.webp');
+const furnaceImage = getAssetUrl('image3D/furnace.webp');
 
 interface ProjectItem {
   id: number;

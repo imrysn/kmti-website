@@ -6,10 +6,10 @@ import { getAssetUrl } from '../../../utils/assets';
 import { useVisitCounter } from '../../../hooks/useVisitCounter';
 import LazyImage from '../../ui/LazyImage/LazyImage';
 
-const footerLogo = getAssetUrl('logo/footer_KMTI_logo.png');
-const mapsIcon = getAssetUrl('icons/maps-icon.png');
-const contactIcon = getAssetUrl('icons/contact.png');
-const emailIcon = getAssetUrl('icons/email-icon.png');
+const footerLogo = getAssetUrl('logo/footer_KMTI_logo.webp');
+const mapsIcon = getAssetUrl('icons/maps-icon.webp');
+const contactIcon = getAssetUrl('icons/contact.webp');
+const emailIcon = getAssetUrl('icons/email-icon.webp');
 
 const pad3 = (value: number) => String(Number(value) || 0).padStart(3, '0');
 

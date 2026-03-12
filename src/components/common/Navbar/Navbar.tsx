@@ -5,10 +5,10 @@ import './Navbar.css';
 import { getAssetUrl } from '../../../utils/assets';
 import LazyImage from '../../ui/LazyImage/LazyImage';
 
-import localNavbarLogo from '../../../assets/logo_navbar_KMTI_logo.png';
+import localNavbarLogo from '../../../assets/logo_navbar_KMTI_logo.webp';
 
-const headerLogoR2 = getAssetUrl('logo/download1.png');
-const menuIconR2 = getAssetUrl('icons/menu-icon.png');
+const headerLogoR2 = getAssetUrl('logo/download1.webp');
+const menuIconR2 = getAssetUrl('icons/menu-icon.webp');
 
 const MenuIconSVG: React.FC = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

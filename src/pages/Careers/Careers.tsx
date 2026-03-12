@@ -6,8 +6,8 @@ import './Careers.css';
 import type { CareersPageProps } from './Careers.types';
 import { getAssetUrl } from '../../utils/assets';
 
-const careersBg = getAssetUrl('hero_background/careersbg.jpg');
-const kmtiModel = getAssetUrl('hero_background/career_model.png');
+const careersBg = getAssetUrl('hero_background/careersbg.webp');
+const kmtiModel = getAssetUrl('hero_background/career_model.webp');
 import {
   LocationIcon,
   ClockIcon,
@@ -30,8 +30,8 @@ const Careers: React.FC<CareersPageProps> = () => {
 
   const [activeOjtType, setActiveOjtType] = useState<'engineering' | 'it' | null>(null);
 
-  const engineeringImages = ['ojt_10.jpg', 'ojt_4.JPG', 'ojt_6.JPG', 'ojt_12.JPG', 'ojt_13.jpg', 'ojt_9.JPG'];
-  const itImages = ['ojt_7.jpg', 'ojt_8.jpg', 'ojt_2.jpg'];
+  const engineeringImages = ['ojt_10.webp', 'ojt_4.webp', 'ojt_6.webp', 'ojt_12.webp', 'ojt_13.webp', 'ojt_9.webp'];
+  const itImages = ['ojt_7.webp', 'ojt_8.webp', 'ojt_2.webp'];
 
   const toggleOjt = (type: 'engineering' | 'it') => {
     setActiveOjtType(activeOjtType === type ? null : type);
@@ -51,21 +51,21 @@ const Careers: React.FC<CareersPageProps> = () => {
       id: 1,
       title: t('careers.why_work.benefits.insurance.title'),
       description: t('careers.why_work.benefits.insurance.desc'),
-      icon: getAssetUrl('icons/insurance-icon.png'),
+      icon: getAssetUrl('icons/insurance-icon.webp'),
       fallback: <InsuranceIcon />,
     },
     {
       id: 2,
       title: t('careers.why_work.benefits.gov.title'),
       description: t('careers.why_work.benefits.gov.desc'),
-      icon: getAssetUrl('icons/benefits-icon.png'),
+      icon: getAssetUrl('icons/benefits-icon.webp'),
       fallback: <BenefitIcon />,
     },
     {
       id: 3,
       title: t('careers.why_work.benefits.thirteenth.title'),
       description: t('careers.why_work.benefits.thirteenth.desc'),
-      icon: getAssetUrl('icons/13thmonth-icon.png'),
+      icon: getAssetUrl('icons/13thmonth-icon.webp'),
       fallback: <ThirteenthMonthIcon />,
     },
     {
@@ -77,21 +77,21 @@ const Careers: React.FC<CareersPageProps> = () => {
           components={{ br: <br /> }}
         />
       ),
-      icon: getAssetUrl('icons/allowance-icon.png'),
+      icon: getAssetUrl('icons/allowance-icon.webp'),
       fallback: <AllowanceIcon />,
     },
     {
       id: 5,
       title: t('careers.why_work.benefits.training.title'),
       description: t('careers.why_work.benefits.training.desc'),
-      icon: getAssetUrl('icons/maps-icon.png'),
+      icon: getAssetUrl('icons/maps-icon.webp'),
       fallback: <LocationIcon />,
     },
     {
       id: 6,
       title: t('careers.why_work.benefits.career.title'),
       description: t('careers.why_work.benefits.career.desc'),
-      icon: getAssetUrl('icons/career-icon.png'),
+      icon: getAssetUrl('icons/career-icon.webp'),
       fallback: <CareerIcon />,
     },
   ];
@@ -163,7 +163,7 @@ const Careers: React.FC<CareersPageProps> = () => {
           </div>
           <div className="meet-our-team-image-wrapper">
             <LazyImage
-              src={getAssetUrl('about_page/ourpeople4.png')}
+              src={getAssetUrl('about_page/ourpeople4.webp')}
               alt="KMTI Team"
               className="meet-our-team-image"
               fallbackNode={<div className="team-photo-fallback"><UserIcon /></div>}
@@ -185,7 +185,7 @@ const Careers: React.FC<CareersPageProps> = () => {
               onClick={() => toggleOjt('engineering')}
             >
               <div className="ojt-card-image-box">
-                <LazyImage src={getAssetUrl('ojt/ojt_5.jpg')} alt="Engineering OJT" className="ojt-card-main-image" />
+                <LazyImage src={getAssetUrl('ojt/ojt_5.webp')} alt="Engineering OJT" className="ojt-card-main-image" />
               </div>
               <h3 className="ojt-card-title">{t('careers.ojt.engineering.title')}</h3>
               <p className="ojt-card-description">{t('careers.ojt.engineering.description')}</p>
@@ -195,7 +195,7 @@ const Careers: React.FC<CareersPageProps> = () => {
               onClick={() => toggleOjt('it')}
             >
               <div className="ojt-card-image-box">
-                <LazyImage src={getAssetUrl('ojt/ojt_11.jpg')} alt="IT OJT" className="ojt-card-main-image" />
+                <LazyImage src={getAssetUrl('ojt/ojt_11.webp')} alt="IT OJT" className="ojt-card-main-image" />
               </div>
               <h3 className="ojt-card-title">{t('careers.ojt.it.title')}</h3>
               <p className="ojt-card-description">{t('careers.ojt.it.description')}</p>
@@ -231,9 +231,9 @@ const Careers: React.FC<CareersPageProps> = () => {
               title={t('careers.positions.eng.title')}
               location={t('careers.positions.eng.location')}
               type={t('careers.positions.eng.type')}
-              locationIcon={getAssetUrl('icons/maps-icon.png')}
+              locationIcon={getAssetUrl('icons/maps-icon.webp')}
               locationFallbackNode={<LocationIcon />}
-              typeIcon={getAssetUrl('icons/clock-icon.png')}
+              typeIcon={getAssetUrl('icons/clock-icon.webp')}
               typeFallbackNode={<ClockIcon />}
               description={t('careers.positions.eng.desc')}
               skills={t('careers.positions.eng.skills', { returnObjects: true }) as string[]}
@@ -251,9 +251,9 @@ const Careers: React.FC<CareersPageProps> = () => {
               title={t('careers.positions.admin.title')}
               location={t('careers.positions.admin.location')}
               type={t('careers.positions.admin.type')}
-              locationIcon={getAssetUrl('icons/maps-icon.png')}
+              locationIcon={getAssetUrl('icons/maps-icon.webp')}
               locationFallbackNode={<LocationIcon />}
-              typeIcon={getAssetUrl('icons/clock-icon.png')}
+              typeIcon={getAssetUrl('icons/clock-icon.webp')}
               typeFallbackNode={<ClockIcon />}
               description={t('careers.positions.admin.desc')}
               requirements={t('careers.positions.admin.requirements', { returnObjects: true }) as string[]}
@@ -278,7 +278,7 @@ const Careers: React.FC<CareersPageProps> = () => {
           </p>
           <div className="how-to-apply-grid">
             <HowToApplyCard
-              icon={getAssetUrl('icons/maps-icon.png')}
+              icon={getAssetUrl('icons/maps-icon.webp')}
               fallbackNode={<LocationIcon />}
               title={t('careers.apply.visit.title')}
             >
@@ -294,14 +294,14 @@ const Careers: React.FC<CareersPageProps> = () => {
               title={t('careers.apply.contact.title')}
             >
               <div className="contact-item">
-                <LazyImage src={getAssetUrl('icons/contact.png')} alt="Phone" wrapperClassName="contact-item-icon" fallbackNode={<PhoneIcon />} />
+                <LazyImage src={getAssetUrl('icons/contact.webp')} alt="Phone" wrapperClassName="contact-item-icon" fallbackNode={<PhoneIcon />} />
                 <div className="contact-item-content">
                   <div className="contact-item-label">{t('careers.apply.contact.phone_label')}</div>
                   <div className="contact-item-value">(046) 413-4509</div>
                 </div>
               </div>
               <div className="contact-item">
-                <LazyImage src={getAssetUrl('icons/email-icon.png')} alt="Email" wrapperClassName="contact-item-icon" fallbackNode={<EmailIcon />} />
+                <LazyImage src={getAssetUrl('icons/email-icon.webp')} alt="Email" wrapperClassName="contact-item-icon" fallbackNode={<EmailIcon />} />
                 <div className="contact-item-content">
                   <div className="contact-item-label">{t('careers.apply.contact.email_label')}</div>
                   <div className="contact-item-value">info@kmti.com.ph</div>

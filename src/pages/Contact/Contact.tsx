@@ -8,15 +8,15 @@ import { ContactOptionCard } from '../../components/ui/Card/Card';
 import { ChatWithUsRightCard } from '../../components/ui/Card/ChatWithUsRightCard';
 import Button from '../../components/ui/Button/Button';
 
-const contactBg = getAssetUrl('hero_background/contactusbg.jpg');
-const emailIcon = getAssetUrl('icons/email-icon.png');
-const linkedinIcon = getAssetUrl('icons/linkedin-icon.png');
-const facebookIcon = getAssetUrl('icons/facebook.png');
-const contactIcon = getAssetUrl('icons/contact.png');
-const mapsIcon = getAssetUrl('icons/maps-icon.png');
-const chatIcon = getAssetUrl('icons/chat-icon.png');
-const circleIcon = getAssetUrl('icons/circle-icon.png');
-const innovationIcon = getAssetUrl('icons/innovation-icon.png');
+const contactBg = getAssetUrl('hero_background/contactusbg.webp');
+const emailIcon = getAssetUrl('icons/email-icon.webp');
+const linkedinIcon = getAssetUrl('icons/linkedin-icon.webp');
+const facebookIcon = getAssetUrl('icons/facebook.webp');
+const contactIcon = getAssetUrl('icons/contact.webp');
+const mapsIcon = getAssetUrl('icons/maps-icon.webp');
+const chatIcon = getAssetUrl('icons/chat-icon.webp');
+const circleIcon = getAssetUrl('icons/circle-icon.webp');
+const innovationIcon = getAssetUrl('icons/innovation-icon.webp');
 
 interface ContactFormData {
   name: string;

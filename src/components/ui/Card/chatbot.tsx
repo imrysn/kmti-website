@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import './chatbot.css';
 import { getAssetUrl } from '../../../utils/assets';
 import LazyImage from '../LazyImage/LazyImage';
-const defaultProfileImage = getAssetUrl('logo/profile.png');
-const menuIcon = getAssetUrl('icons/menu-icon.png');
+const defaultProfileImage = getAssetUrl('logo/profile.webp');
+const menuIcon = getAssetUrl('icons/menu-icon.webp');
 
 interface ChatbotCardProps {
   profileImage?: string;

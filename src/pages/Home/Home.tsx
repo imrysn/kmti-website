@@ -21,24 +21,24 @@ import {
   AssemblyIcon
 } from '../../components/ui/Icons/ProjectIcons';
 
-const homeBg = getAssetUrl('hero_background/homebg.jpeg');
+const homeBg = getAssetUrl('hero_background/homebg.webp');
 
-const precisionIcon = getAssetUrl('icons/precision-icon.png');
-const innovationIcon = getAssetUrl('icons/innovation-icon.png');
-const experienceIcon = getAssetUrl('icons/experience-icon.png');
-const icon3D = getAssetUrl('icons/cube.png');
-const icon2D = getAssetUrl('icons/cubes.png');
-const inspectionIcon = getAssetUrl('icons/parts-inspection-icon.png');
-const assemblyIcon = getAssetUrl('icons/machine-assembly-icon.png');
+const precisionIcon = getAssetUrl('icons/precision-icon.webp');
+const innovationIcon = getAssetUrl('icons/innovation-icon.webp');
+const experienceIcon = getAssetUrl('icons/experience-icon.webp');
+const icon3D = getAssetUrl('icons/cube.webp');
+const icon2D = getAssetUrl('icons/cubes.webp');
+const inspectionIcon = getAssetUrl('icons/parts-inspection-icon.webp');
+const assemblyIcon = getAssetUrl('icons/machine-assembly-icon.webp');
 
-const dedemplerImage = getAssetUrl('image3D/dedempler.png');
-const looperImage = getAssetUrl('image3D/looper.png');
-const formingImage = getAssetUrl('image3D/forming.png');
-const shearImage = getAssetUrl('image3D/shear.png');
-const finishingImage = getAssetUrl('image3D/finishing.png');
-const finishingLineImage = getAssetUrl('image3D/finishingLine.png');
-const millingImage = getAssetUrl('image3D/milling.png');
-const furnaceImage = getAssetUrl('image3D/furnace.png');
+const dedemplerImage = getAssetUrl('image3D/dedempler.webp');
+const looperImage = getAssetUrl('image3D/looper.webp');
+const formingImage = getAssetUrl('image3D/forming.webp');
+const shearImage = getAssetUrl('image3D/shear.webp');
+const finishingImage = getAssetUrl('image3D/finishing.webp');
+const finishingLineImage = getAssetUrl('image3D/finishingLine.webp');
+const millingImage = getAssetUrl('image3D/milling.webp');
+const furnaceImage = getAssetUrl('image3D/furnace.webp');
 
 const Home: React.FC<HomePageProps> = () => {
   const navigate = useNavigate();
