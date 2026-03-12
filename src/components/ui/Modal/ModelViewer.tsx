@@ -1,6 +1,6 @@
 import React, { Suspense, useRef, useEffect, useState, useCallback } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { OrbitControls, useGLTF, useProgress } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion, useAnimationControls } from 'framer-motion';
 import ErrorBoundary from '../../common/ErrorBoundary';
@@ -21,47 +21,19 @@ const LoadingSpinner: React.FC = () => (
 
 // ─── Real-time fetch progress bar ───────────────────────────────────────────────
 // Uses framer-motion to smoothly animate to 99% and wait for the model to load
-const LoadingProgress: React.FC<{ isLoaded: boolean; remountKey: number | null }> = ({ isLoaded, remountKey }) => {
-  const [displayPct, setDisplayPct] = useState(1);
+const LoadingProgress: React.FC<{ isLoaded: boolean }> = ({ isLoaded }) => {
+  const { progress } = useProgress();
   const controls = useAnimationControls();
 
   useEffect(() => {
-    // Reset progress when canvas remounts or starts loading
-    setDisplayPct(1);
-
     if (isLoaded) {
       controls.start({ width: "100%", transition: { duration: 0.3 } });
-      setDisplayPct(100);
-      return;
+    } else {
+      // Smoothly animate towards the actual reported progress
+      const targetWidth = Math.max(1, progress) + "%";
+      controls.start({ width: targetWidth, transition: { duration: 0.2, ease: "easeOut" } });
     }
-
-    // Start the slow load animation to 99%
-    controls.start({
-      width: ["1%", "99%"],
-      transition: {
-        duration: 60,
-        ease: "circOut"
-      }
-    });
-
-    // We still need a lightweight interval just to update the text display
-    // but the actual visual bar is handled by CSS/GPU via framer-motion
-    const startTime = Date.now();
-    let active = true;
-
-    const interval = setInterval(() => {
-      if (!active) return;
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min(99, Math.floor(1 + (98 * (1 - Math.pow(1 - elapsed / 60000, 3))))); // approximate ease-out
-      setDisplayPct(pct);
-    }, 200);
-
-    return () => {
-      active = false;
-      clearInterval(interval);
-      controls.stop();
-    };
-  }, [isLoaded, remountKey, controls]);
+  }, [progress, isLoaded, controls]);
 
   return (
     <div className="mv-load-progress">
@@ -72,7 +44,7 @@ const LoadingProgress: React.FC<{ isLoaded: boolean; remountKey: number | null }
           animate={controls}
         />
       </div>
-      <span className="mv-load-pct">{displayPct}%</span>
+      <span className="mv-load-pct">{isLoaded ? 100 : Math.round(progress)}%</span>
     </div>
   );
 };
@@ -106,7 +78,7 @@ const Model: React.FC<ModelProps> = ({
   const { scene } = useGLTF(modelPath);
   const modelRef = useRef<THREE.Group>(null);
   // Issue 2: invalidate() triggers a frame in demand mode
-  const { camera, controls, invalidate } = useThree();
+  const { camera, controls, invalidate, setFrameloop } = useThree();
   const [clonedScene, setClonedScene] = useState<THREE.Group | null>(null);
   const cameraInitializedRef = useRef(false);
   const targetPosition = useRef(new THREE.Vector3());
@@ -195,15 +167,21 @@ const Model: React.FC<ModelProps> = ({
     }
   }, [resetTrigger, cameraPosition, camera, invalidate]);
 
+  // Dynamically configure frameloop to save battery when not rotating
+  useEffect(() => {
+    const shouldAutoRotate = !isInteracting && cameraView === 'isometric';
+    setFrameloop(shouldAutoRotate ? 'always' : 'demand');
+  }, [isInteracting, cameraView, setFrameloop]);
+
   const lastIsDefault = useRef(true);
 
   useFrame(() => {
-    // Auto-rotate in isometric view — call invalidate() to keep requesting frames
+    // Auto-rotate in isometric view. 
+    // frameloop is 'always' here, so no need to spam invalidate()
     const shouldRotate =
       modelRef.current && !isInteracting && !isTransitioning.current && cameraView === 'isometric';
     if (shouldRotate) {
       modelRef.current!.rotation.y += 0.003;
-      invalidate();
     }
 
     // Camera lerp transition
@@ -445,7 +423,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
           <>
             <LoadingSpinner />
             <p>Loading 3D Model...</p>
-            <LoadingProgress isLoaded={isLoaded} remountKey={remountKey} />
+            <LoadingProgress isLoaded={isLoaded} />
           </>
         </div>
       )}

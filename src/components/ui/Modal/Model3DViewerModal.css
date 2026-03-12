@@ -241,9 +241,9 @@
 
 /* Variant 3: 3D Cube — 6 faces, tumbles on both X and Y axes */
 .mv-spinner-cube {
-  width: 38px;
-  height: 38px;
-  perspective: 120px;
+  width: 50px;
+  height: 50px;
+  perspective: 150px;
   animation: spinnerFadeIn 0.35s ease;
 }
 
@@ -258,9 +258,9 @@
 
 .cube-face {
   position: absolute;
-  width: 38px;
-  height: 38px;
-  border: 1.5px solid rgba(81, 162, 255, 0.9);
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(81, 162, 255, 0.9);
   background: rgba(33, 87, 238, 0.07);
   animation: faceMorph 3.5s cubic-bezier(0.5, 0, 0.5, 1) infinite alternate;
 }
@@ -299,7 +299,7 @@
 
   0%,
   15% {
-    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(19px) rotateZ(0deg);
+    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(25px) rotateZ(0deg);
     border-radius: 0;
     background: rgba(33, 87, 238, 0.07);
   }
@@ -307,7 +307,7 @@
   45%,
   55% {
     /* Explode out to a sphere-like expanded shape */
-    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(26px) rotateZ(45deg);
+    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(34px) rotateZ(45deg);
     border-radius: 50%;
     background: rgba(81, 162, 255, 0.25);
     border-color: rgba(255, 255, 255, 0.8);
@@ -316,7 +316,7 @@
   85%,
   100% {
     /* Collapse into a tiny compressed star/diamond */
-    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(6px) rotateZ(90deg);
+    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(8px) rotateZ(90deg);
     border-radius: 20%;
     background: rgba(81, 162, 255, 0.8);
     border-color: rgba(255, 255, 255, 1);
