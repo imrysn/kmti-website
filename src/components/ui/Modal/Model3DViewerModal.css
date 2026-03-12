@@ -262,30 +262,36 @@
   height: 38px;
   border: 1.5px solid rgba(81, 162, 255, 0.9);
   background: rgba(33, 87, 238, 0.07);
+  animation: faceMorph 3.5s cubic-bezier(0.5, 0, 0.5, 1) infinite alternate;
 }
 
-.face-front {
-  transform: translateZ(19px);
-}
+.face-front  { --rotX: 0deg; --rotY: 0deg; }
+.face-back   { --rotX: 0deg; --rotY: 180deg; }
+.face-right  { --rotX: 0deg; --rotY: 90deg; }
+.face-left   { --rotX: 0deg; --rotY: -90deg; }
+.face-top    { --rotX: 90deg; --rotY: 0deg; }
+.face-bottom { --rotX: -90deg; --rotY: 0deg; }
 
-.face-back {
-  transform: translateZ(-19px) rotateY(180deg);
-}
-
-.face-right {
-  transform: rotateY(90deg) translateZ(19px);
-}
-
-.face-left {
-  transform: rotateY(-90deg) translateZ(19px);
-}
-
-.face-top {
-  transform: rotateX(90deg) translateZ(19px);
-}
-
-.face-bottom {
-  transform: rotateX(-90deg) translateZ(19px);
+@keyframes faceMorph {
+  0%, 15% {
+    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(19px) rotateZ(0deg);
+    border-radius: 0;
+    background: rgba(33, 87, 238, 0.07);
+  }
+  45%, 55% {
+    /* Explode out to a sphere-like expanded shape */
+    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(26px) rotateZ(45deg);
+    border-radius: 50%;
+    background: rgba(81, 162, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+  85%, 100% {
+    /* Collapse into a tiny compressed star/diamond */
+    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) translateZ(6px) rotateZ(90deg);
+    border-radius: 20%;
+    background: rgba(81, 162, 255, 0.8);
+    border-color: rgba(255, 255, 255, 1);
+  }
 }
 
 @keyframes cubeRotate {

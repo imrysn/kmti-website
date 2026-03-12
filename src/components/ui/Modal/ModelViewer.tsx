@@ -325,11 +325,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     // [Time Elapsed %] -> [Progress %]
     const keyframes = [
       { t: 0.00, p: 1 },
-      { t: 0.05, p: 2 },    // 0-3s:   Crawls to 2% (Slow start)
-      { t: 0.15, p: 15 },   // 3-9s:   Bursts to 15% (Speeds up)
-      { t: 0.50, p: 35 },   // 9-30s:  Crawls slowly to 35% (Slows again)
-      { t: 0.70, p: 85 },   // 30-42s: Bursts to 85% (Speeds up)
-      { t: 1.00, p: 99 },   // 42-60s: Crawls to 99% (Slows down to wait)
+      { t: 0.05, p: 99 },   // 0-3s: Bursts to 99%
+      { t: 1.00, p: 99 },   // 3-60s: Waits at 99%
     ];
 
     const durationMs = 60000;
