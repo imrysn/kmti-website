@@ -433,8 +433,15 @@ const jp = {
       controls: {
         rotate: "ドラッグで回転",
         zoom: "スクロールで拡大縮小",
-        pan: "右クリックでパン"
-      }
+        pan: "右クリックでパン",
+        pinch_zoom: "ピンチでズーム"
+      },
+      loading: "3Dモデルを読み込み中...",
+      back_to_projects: "プロジェクトに戻る",
+      try_again: "もう一度お試しください",
+      not_supported: "お使いのデバイスは3Dレンダリングをサポートしていない可能性があります。",
+      init_failed: "3Dレンダラーの初期化に失敗しました。",
+      loading_viewer: "3Dビューアーを起動中..."
     }
   },
 
@@ -602,7 +609,9 @@ const jp = {
       email: "メールアドレス",
       subject: "件名",
       message: "メッセージ",
-      send: "メッセージを送信"
+      send: "メッセージを送信",
+      invalid_email: "有効なメールアドレスを入力してください。",
+      message_too_short: "10文字以上のメッセージを入力してください。"
     },
     info: {
       title: "連絡先情報",

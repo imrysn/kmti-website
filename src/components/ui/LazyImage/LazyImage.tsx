@@ -1,5 +1,9 @@
 import React, { useState, useCallback, useRef } from 'react';
 import './LazyImage.css';
+import { useIntersectionObserver } from '../../../utils/imageQueue';
+
+// Transparent 1x1 pixel base64 for placeholder
+const TRANSPARENT_PIXEL = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     src: string;
@@ -42,6 +46,16 @@ const LazyImage: React.FC<LazyImageProps> = ({
         setIsBroken(true);
     }, [fallbackSrc]);
 
+    const imgRef = useRef<HTMLImageElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    
+    // Determine if we should eager load or wait for intersection
+    const isEager = loading === 'eager';
+    // Use the wrapper as the target if it exists, otherwise the img itself
+    const targetRef = wrapperClassName ? wrapperRef : imgRef;
+    
+    const isInView = useIntersectionObserver(targetRef, isEager);
+
     // When broken and a fallbackNode is provided, render it (wrapped if needed)
     if (isBroken && fallbackNode) {
         if (wrapperClassName) {
@@ -53,11 +67,13 @@ const LazyImage: React.FC<LazyImageProps> = ({
     const img = (
         <img
             {...rest}
-            src={src}
+            ref={imgRef}
+            src={isInView ? src : TRANSPARENT_PIXEL}
             alt={alt}
-            loading={loading}
+            // we remove the native `loading` because we are manually handling it via Observer
+            // unless it's eager, in which case we don't care anyway.
             decoding="async"
-            fetchPriority={loading === 'eager' ? 'high' : 'low'}
+            fetchPriority={isEager ? 'high' : 'low'}
             className={`lazy-image-img ${isLoaded ? 'lazy-image-visible' : 'lazy-image-hidden'} ${className}`}
             onLoad={handleLoad}
             onError={handleError}
@@ -67,7 +83,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
 
     if (wrapperClassName) {
         return (
-            <div className={`lazy-image-wrapper ${wrapperClassName}`} style={style}>
+            <div ref={wrapperRef} className={`lazy-image-wrapper ${wrapperClassName}`} style={style}>
                 {img}
             </div>
         );

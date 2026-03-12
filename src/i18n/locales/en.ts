@@ -433,8 +433,15 @@ const en = {
       controls: {
         rotate: "Drag to rotate",
         zoom: "Scroll to zoom",
-        pan: "Right-click to pan"
-      }
+        pan: "Right-click to pan",
+        pinch_zoom: "Pinch to zoom"
+      },
+      loading: "Loading 3D Model...",
+      back_to_projects: "Back to Projects",
+      try_again: "Try Again",
+      not_supported: "Your device may not support 3D rendering.",
+      init_failed: "Failed to initialize 3D renderer.",
+      loading_viewer: "Loading 3D Viewer..."
     }
   },
 
@@ -602,7 +609,9 @@ const en = {
       email: "Your Email",
       subject: "Subject",
       message: "Message",
-      send: "SEND MESSAGE"
+      send: "SEND MESSAGE",
+      invalid_email: "Please enter a valid email address.",
+      message_too_short: "Please provide a more detailed message (at least 10 characters)."
     },
     info: {
       title: "Contact Information",

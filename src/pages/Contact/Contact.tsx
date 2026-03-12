@@ -24,13 +24,15 @@ interface ContactFormData {
   email: string;
   subject: string;
   message: string;
+  company: string; // Honeypot field
 }
 
 const initialFormData: ContactFormData = {
   name: '',
   email: '',
   subject: '',
-  message: ''
+  message: '',
+  company: ''
 };
 
 const Contact: React.FC<ContactPageProps> = () => {
@@ -38,6 +40,7 @@ const Contact: React.FC<ContactPageProps> = () => {
   const tEn = i18n.getFixedT('en');
 
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -46,6 +49,28 @@ const Contact: React.FC<ContactPageProps> = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError(null);
+    
+    // 1. Honeypot Check (Anti-Spam)
+    // If the hidden 'company' field is filled out, it's a bot. Silently drop the submission.
+    if (formData.company !== '') {
+      console.warn("Spam detected. Submission dropped.");
+      return; 
+    }
+
+    // 2. Advanced Regex Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setFormError(t('contact.form.invalid_email') || "Please enter a valid email address.");
+      return;
+    }
+
+    if (formData.message.trim().length < 10) {
+      setFormError(t('contact.form.message_too_short') || "Please provide a more detailed message (min 10 characters).");
+      return;
+    }
+
+    // If validation passes: 
     // Mailto fallback for frontend-only
     const { name, email, subject, message } = formData;
     const mailtoLink = `mailto:info@kmti.com.ph?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
@@ -129,7 +154,22 @@ const Contact: React.FC<ContactPageProps> = () => {
             {/* Left: Form */}
             <div className="contact-form-container">
               <h2 className="section-title">{t('contact.form.title')}</h2>
+              {formError && <div className="contact-form-error" style={{ color: '#ff4d4f', marginBottom: '1rem', padding: '0.5rem', background: 'rgba(255, 77, 79, 0.1)', borderRadius: '4px', border: '1px solid rgba(255, 77, 79, 0.3)' }}>{formError}</div>}
               <form className="contact-form" onSubmit={handleSubmit}>
+                {/* Honeypot Field - Hidden from Real Users via inline styles to avoid external CSS overrides making it visible */}
+                <div style={{ opacity: 0, position: 'absolute', top: 0, left: 0, height: 0, width: 0, zIndex: -1, overflow: 'hidden' }} aria-hidden="true">
+                  <label htmlFor="company">Company Name (Leave this blank)</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div className="form-group">
                   <input
                     type="text"

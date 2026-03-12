@@ -1,4 +1,5 @@
 import React, { Suspense, useRef, useEffect, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF, useProgress } from '@react-three/drei';
 import * as THREE from 'three';
@@ -257,6 +258,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
   onCameraStateChange,
   resetTrigger
 }) => {
+  const { t } = useTranslation();
   // Detect mobile-class devices (phones and small tablets up to 768px CSS width).
   // This drives GPU optimizations: low-power mode, no antialias, DPR=1, no shadows.
   const [isPhone] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
@@ -395,15 +397,15 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
           <div style={{ fontSize: '2rem', lineHeight: 1 }}>⚠️</div>
           <p style={{ margin: '0.5rem 0 0', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
             {isPhone
-              ? 'Your device may not support 3D rendering.'
-              : 'Failed to initialize 3D renderer.'}
+              ? t('projects.viewer.not_supported')
+              : t('projects.viewer.init_failed')}
           </p>
           <button
             className="camera-view-btn"
             onClick={handleReload}
             style={{ marginTop: '1rem', width: 'auto', display: 'inline-block' }}
           >
-            Try Again
+            {t('projects.viewer.try_again')}
           </button>
         </div>
       )}
@@ -422,7 +424,7 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
         >
           <>
             <LoadingSpinner />
-            <p>Loading 3D Model...</p>
+            <p>{t('projects.viewer.loading')}</p>
             <LoadingProgress isLoaded={isLoaded} />
           </>
         </div>
@@ -433,17 +435,17 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
         <div className="mv-hint" aria-hidden="true">
           {isPhone ? (
             <>
-              <span>👆 Drag to rotate</span>
+              <span>👆 {t('projects.viewer.controls.rotate')}</span>
               <span className="mv-hint-divider">·</span>
-              <span>🤏 Pinch to zoom</span>
+              <span>🤏 {t('projects.viewer.controls.pinch_zoom')}</span>
             </>
           ) : (
             <>
-              <span>🖱 Drag to rotate</span>
+              <span>🖱 {t('projects.viewer.controls.rotate')}</span>
               <span className="mv-hint-divider">·</span>
-              <span>Scroll to zoom</span>
+              <span>{t('projects.viewer.controls.zoom')}</span>
               <span className="mv-hint-divider">·</span>
-              <span>Right-click to pan</span>
+              <span>{t('projects.viewer.controls.pan')}</span>
             </>
           )}
         </div>

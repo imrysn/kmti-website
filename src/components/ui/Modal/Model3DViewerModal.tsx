@@ -218,7 +218,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
             <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="model-3d-modal-close-text">Back to Projects</span>
+          <span className="model-3d-modal-close-text">{t('projects.viewer.back_to_projects')}</span>
         </button>
 
         <div className="model-3d-modal-header">
@@ -236,7 +236,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
               <Suspense key={modelConfig.path} fallback={
                 <div className="model-viewer-loading-overlay">
                   <div className="model-viewer-spinner"></div>
-                  <p>Loading 3D Viewer...</p>
+                  <p>{t('projects.viewer.loading_viewer')}</p>
                 </div>
               }>
                 <ModelViewer

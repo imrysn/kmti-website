@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './About.css';
 import '../Home/Home-iPhoneSE.css';
 import '../Home/iPhone12_13_14.css';
@@ -66,6 +67,7 @@ const mgkLogo = getAssetUrl('about_page/mgkLogo.webp');
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const timelineRef = useRef<HTMLDivElement>(null);
   const [isOurStoryModalOpen, setIsOurStoryModalOpen] = useState(false);
   const [isManagementTeamExpanded, setIsManagementTeamExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -106,6 +108,14 @@ const About: React.FC<AboutPageProps> = () => {
   };
 
   const tEn = i18n.getFixedT('en');
+
+  // Scroll animation for timeline
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"],
+  });
+
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})` } as React.CSSProperties}>
@@ -163,7 +173,12 @@ const About: React.FC<AboutPageProps> = () => {
       <section className="about-history-section" data-aos="fade-up">
         <div className="about-history-container container">
           <h2 className="about-history-title">{t('about.history.title')}</h2>
-          <div className="about-history-timeline">
+          <div className="about-history-timeline" ref={timelineRef}>
+            {/* The animated center line */}
+            <motion.div 
+              className="about-history-timeline-line" 
+              style={{ scaleY, transformOrigin: "top" }} 
+            />
             {['item1', 'item2', 'item3', 'item_2017', 'item4', 'item5'].map((key, index) => (
               <div key={key} className={`about-history-item ${index % 2 === 0 ? 'left' : 'right'}`}>
                 <div className="about-history-content">
