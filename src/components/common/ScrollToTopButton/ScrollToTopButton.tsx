@@ -15,11 +15,43 @@ const ScrollToTopButton: React.FC = () => {
 
   // Set the top coordinate to 0
   // make scrolling smooth
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+  const scrollToTop = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    
+    let animationFrame: number;
+    let startTime: number | null = null;
+    const startPosition = window.scrollY;
+    const duration = 500; // Animation duration in ms
+    
+    const animateScroll = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth deceleration
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      const newPosition = startPosition * (1 - easeOutCubic);
+      
+      window.scrollTo(0, newPosition);
+      
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animateScroll);
+      }
+    };
+    
+    animationFrame = requestAnimationFrame(animateScroll);
+    
+    // Clean up on user scroll
+    const cancelAnimation = () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+      window.removeEventListener('wheel', cancelAnimation);
+      window.removeEventListener('touchstart', cancelAnimation);
+    };
+    
+    window.addEventListener('wheel', cancelAnimation, { once: true });
+    window.addEventListener('touchstart', cancelAnimation, { once: true });
   };
 
   useEffect(() => {

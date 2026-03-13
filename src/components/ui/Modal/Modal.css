@@ -1,3 +1,47 @@
+/* About Page - Our Management Team*/
+.image-viewer-modal-content {
+  max-width: 50%;
+  max-height: 70vh;
+  margin: 0 auto;
+}
+
+.image-viewer-image {
+  width: 50%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.image-viewer-caption {
+  text-align: center;
+  color: white;
+  margin-top: 1rem;
+  font-family: var(--font-family-heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .image-viewer-modal-content {
+    max-width: 80%;
+  }
+  .image-viewer-image {
+    width: 100%;
+  }
+  .image-viewer-caption {
+    font-size: 1rem;
+  }
+}
+
+/* optionally enhance the card hover on mobile */
+.management-team-card {
+  transition: transform .2s;
+}
+.management-team-card:hover {
+  transform: scale(1.02);
+}
+
 .service-modal-overlay {
   position: fixed;
   top: 0;

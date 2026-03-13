@@ -615,11 +615,11 @@
 
 .project-card-link {
   font-family: var(--font-family-body);
-  color: #51A2FF;
-  font-size: 0.9rem;
+  color: #87bfff;
+  font-size: 0.8rem;
   text-transform: uppercase;
   text-decoration: none;
-  font-weight: 100;
+  font-weight: 300;
   transition: color 0.3s ease;
   margin-top: auto;
   margin-bottom: 0;
@@ -631,7 +631,7 @@
 
 /* Project card link hover state */
 .project-card-link:hover {
-  color: rgba(81, 162, 255, 0.5);
+  color: rgba(90, 145, 207, 0.5);
 }
 
 .projects-card {
@@ -802,12 +802,12 @@
    ============================================ */
 
 .projects-card-link {
-  font-family: var(--font-family-body);
-  color: #51A2FF;
+  font-family: var(--font-family-heading);
+  color: #87bfff;
   font-size: 0.9rem;
   text-transform: uppercase;
   text-decoration: none;
-  font-weight: 100;
+  font-weight: 300;
   transition: color 0.3s ease;
   margin-top: auto;
   margin-bottom: 0;
@@ -816,11 +816,12 @@
   text-align: center;
   width: 100%;
   cursor: pointer;
+
 }
 
 /* Projects card link hover state */
 .projects-card-link:hover {
-  color: #6BB0FF;
+  color: rgba(90, 145, 207, 0.5);
 }
 
 /* ============================================
@@ -973,6 +974,7 @@
 
   .projects-card-link {
     font-size: 0.85rem;
+    color: #87bfff;
   }
 
   /* CUSTOMIZABLE: Projects Card Label - Tablet (768px) - Consistent position */

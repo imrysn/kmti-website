@@ -40,6 +40,7 @@ const Contact: React.FC<ContactPageProps> = () => {
   const tEn = i18n.getFixedT('en');
 
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
+  const [isSending, setIsSending] = useState(false); // Used for Submit Button Loading Indicator
   const [formError, setFormError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -50,31 +51,27 @@ const Contact: React.FC<ContactPageProps> = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
+
+    // Honeypot check
+    if (formData.company) {
+      console.warn('Bot detected via honeypot field');
+      return;
+    }
+
+    setIsSending(true); // Start loading
+    const recipient = 'info@kmti.com.ph'; // Company Email
+    const subject = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
     
-    // 1. Honeypot Check (Anti-Spam)
-    // If the hidden 'company' field is filled out, it's a bot. Silently drop the submission.
-    if (formData.company !== '') {
-      console.warn("Spam detected. Submission dropped.");
-      return; 
-    }
-
-    // 2. Advanced Regex Validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setFormError(t('contact.form.invalid_email') || "Please enter a valid email address.");
-      return;
-    }
-
-    if (formData.message.trim().length < 10) {
-      setFormError(t('contact.form.message_too_short') || "Please provide a more detailed message (min 10 characters).");
-      return;
-    }
-
-    // If validation passes: 
-    // Mailto fallback for frontend-only
-    const { name, email, subject, message } = formData;
-    const mailtoLink = `mailto:info@kmti.com.ph?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
     window.location.href = mailtoLink;
+    
+    setTimeout(() => {
+      setIsSending(false);
+      setFormData(initialFormData); // Reset form
+    }, 1000);
   };
 
   const handleGeneralInquiries = () => {
@@ -148,11 +145,11 @@ const Contact: React.FC<ContactPageProps> = () => {
           </div>
         </div>
       </section>
-      <section className="get-in-touch-section">
+      <section className="get-in-touch-section" data-aos="fade-up">
         <div className="container">
           <div className="get-in-touch-grid">
             {/* Left: Form */}
-            <div className="contact-form-container">
+            <div className="contact-form-container" data-aos="fade-right">
               <h2 className="section-title">{t('contact.form.title')}</h2>
               {formError && <div className="contact-form-error" style={{ color: '#ff4d4f', marginBottom: '1rem', padding: '0.5rem', background: 'rgba(255, 77, 79, 0.1)', borderRadius: '4px', border: '1px solid rgba(255, 77, 79, 0.3)' }}>{formError}</div>}
               <form className="contact-form" onSubmit={handleSubmit}>
@@ -173,52 +170,65 @@ const Contact: React.FC<ContactPageProps> = () => {
                 <div className="form-group">
                   <input
                     type="text"
+                    id="name"
                     name="name"
-                    placeholder={t('contact.form.name')}
+                    placeholder=" "
                     value={formData.name}
                     onChange={handleInputChange}
                     className="form-field"
                     required
                   />
+                  <label htmlFor="name" className="form-label">{t('contact.form.name')}</label>
                 </div>
                 <div className="form-group">
                   <input
                     type="email"
+                    id="email"
                     name="email"
-                    placeholder={t('contact.form.email')}
+                    placeholder=" "
                     value={formData.email}
                     onChange={handleInputChange}
                     className="form-field"
                     required
                   />
+                  <label htmlFor="email" className="form-label">{t('contact.form.email')}</label>
                 </div>
                 <div className="form-group">
                   <input
                     type="text"
+                    id="subject"
                     name="subject"
-                    placeholder={t('contact.form.subject')}
+                    placeholder=" "
                     value={formData.subject}
                     onChange={handleInputChange}
                     className="form-field"
                     required
                   />
+                  <label htmlFor="subject" className="form-label">{t('contact.form.subject')}</label>
                 </div>
                 <div className="form-group">
                   <textarea
+                    id="message"
                     name="message"
-                    placeholder={t('contact.form.message')}
+                    placeholder=" "
                     value={formData.message}
                     onChange={handleInputChange}
                     className="form-field"
                     required
                   />
+                  <label htmlFor="message" className="form-label">{t('contact.form.message')}</label>
                 </div>
-                <Button variant="style1" type="submit">{t('contact.form.send')}</Button>
+                
+                {/*Submit Button */}
+                <Button variant="style1" type="submit" disabled={isSending}>{isSending ? (<>{t('contact.form.sending')}
+                  <span className="button-loading-spinner"/></>) : (t('contact.form.send'))}
+                </Button>
+
               </form>
             </div>
 
             {/* Right: Contact Information */}
-            <div className="contact-info-container">
+            <div className="contact-info-container" data-aos="fade-left">
               <h2 className="section-title">{t('contact.info.title')}</h2>
 
               <div className="contact-info-item">

@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { getAssetUrl } from '../../../utils/assets';
 import { ChatbotCard } from '../../ui/Card/chatbot';
 import './ChatbotButton.css';
@@ -12,24 +13,51 @@ const ChatbotButton: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [resetTrigger, setResetTrigger] = useState(0);
   const [showTeaser, setShowTeaser] = useState(false);
+  const [isTeaserDismissed, setIsTeaserDismissed] = useState(false);
+  const location = useLocation();
 
-  // Trigger teaser after 10 seconds
+  // Reset the dismissed state when the user navigates to a new page
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowTeaser(true);
-    }, 10000); // 10 seconds
+    setIsTeaserDismissed(false);
+  }, [location.pathname]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    const timers: NodeJS.Timeout[] = [];
+
+    // Hide and Stop the Loop if the chat is opened or the teaser is dismissed
+    if (isChatOpen || isTeaserDismissed) {
+      setShowTeaser(false);
+      return;
+    }
+
+    const teaserCycle = () => {
+      setShowTeaser(true);
+      const hideTimer = setTimeout(() => {
+        setShowTeaser(false);
+
+        // 15s hidden duration before showing the teaser again
+        const loopTimer = setTimeout(teaserCycle, 15000); // 15s hidden duration
+        timers.push(loopTimer);
+
+      }, 5000); // 5s visible duration
+      timers.push(hideTimer);
+    };
+
+    // Initial 3s delay before the first cycle starts.
+    const initialDelayTimer = setTimeout(teaserCycle, 3000);
+    timers.push(initialDelayTimer);
+
+    // Timer Cleanup Function
+    return () => timers.forEach(clearTimeout);
+  }, [isChatOpen, isTeaserDismissed]);
 
   // Listen for reset event from other components
   useEffect(() => {
     const handleResetChatbot = () => {
       setResetTrigger((prev) => prev + 1);
-      // Ensure chatbot is open when reset
       if (!isChatOpen) {
         setIsChatOpen(true);
-        setShowTeaser(false); // Hide teaser when chat opens
+        setShowTeaser(false);
       }
     };
 
@@ -48,7 +76,7 @@ const ChatbotButton: React.FC = () => {
     if (!isChatOpen) {
       // Open chatbot without resetting - preserve previous state
       setIsChatOpen(true);
-      setShowTeaser(false); // Hide teaser when chat opens
+      setShowTeaser(false)
     }
   };
 
@@ -65,12 +93,19 @@ const ChatbotButton: React.FC = () => {
     <>
       {!isChatOpen && showTeaser && (
         <div className="chatbot-teaser">
-          {t('common.chatbot.teaser')}
+          {(() => {
+            const teaserText = t('common.chatbot.teaser');
+            const parts = teaserText.split('👋');
+            return (
+              <>{parts[0]}<span className="waving-hand">👋</span>{parts[1]}</>
+            );
+          })()}
           <span
             className="chatbot-teaser-close"
             onClick={(e) => {
               e.stopPropagation();
               setShowTeaser(false);
+              setIsTeaserDismissed(true);
             }}
           >
             ×
