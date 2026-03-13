@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
 import SEO from '../../components/common/SEO';
 import './Sitemap.css';
 import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
@@ -56,7 +58,7 @@ const BackgroundShapes: React.FC = () => (
 );
 
 // --- 3D Gear Component ---
-const FloatingGear: React.FC = () => {
+const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
   const meshRef = React.useRef<THREE.Mesh>(null);
 
   // Procedurally generate a gear shape
@@ -87,15 +89,15 @@ const FloatingGear: React.FC = () => {
 
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.z += delta * 0.2; // Slow rotation
+      meshRef.current.rotation.z += delta * speed; // Custom rotation speed
       meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2; // Slight tilt
     }
   });
 
   return (
-    <mesh ref={meshRef} position={[3, 0, -5]}>
+    <mesh ref={meshRef} position={position} scale={scale}>
       <extrudeGeometry args={[gearShape, { depth: 0.5, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 }]} />
-      <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.2} transparent />
+      <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.15} transparent={true} />
     </mesh>
   );
 };
@@ -188,6 +190,18 @@ const Sitemap: React.FC<SitemapPageProps> = () => {
         title={tEn('sitemap.title')} 
         description={tEn('sitemap.subtitle')} 
       />
+      <BackgroundShapes />
+
+      <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none' }}>
+        <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
+          <ambientLight intensity={1} />
+          <pointLight position={[10, 10, 10]} intensity={1.5} />
+          <FloatingGear position={[8, 4, 0]} scale={0.8} speed={0.15} />
+          <FloatingGear position={[-10, -5, -2]} scale={1.2} speed={-0.1} />
+          <FloatingGear position={[5, -8, -5]} scale={0.6} speed={0.2} />
+        </Canvas>
+      </div>
+
       <section className="hero-section">
         <div className="sitemap-hero-container">
           <h1 className="sitemap-title">{t('sitemap.title')}</h1>

@@ -41,6 +41,7 @@ const Contact: React.FC<ContactPageProps> = () => {
 
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [isSending, setIsSending] = useState(false); // Used for Submit Button Loading Indicator
+  const [formError, setFormError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -49,6 +50,14 @@ const Contact: React.FC<ContactPageProps> = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError(null);
+
+    // Honeypot check
+    if (formData.company) {
+      console.warn('Bot detected via honeypot field');
+      return;
+    }
+
     setIsSending(true); // Start loading
     const recipient = 'info@kmti.com.ph'; // Company Email
     const subject = encodeURIComponent(formData.subject);
