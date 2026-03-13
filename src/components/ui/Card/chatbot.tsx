@@ -345,8 +345,8 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'ポジション': 'q3-available-positions', 'ポジション説明': 'q3-available-positions', '職務説明': 'q3-available-positions', '役職': 'q3-available-positions',
       'engineer position': 'q3-available-positions', 'cad position': 'q3-available-positions', 'admin position': 'q3-available-positions',
       'エンジニア職': 'q3-available-positions', 'cadポジション': 'q3-available-positions', '管理職': 'q3-available-positions',
-      'engineering job': 'q13-engineering-staff-requirements', 'design job': 'q13-engineering-staff-requirements',
-      'デザイン職': 'q3-available-positions',
+      
+      
       'available job positions': 'q3-available-positions', 'current job positions': 'q3-available-positions', 'job openings': 'q3-available-positions', 'positions hiring': 'q3-available-positions', 'jobs available': 'q3-available-positions', 'openings available': 'q3-available-positions',
       '利用可能なポジションは何ですか': 'q3-available-positions', '現在募集中のポジション': 'q3-available-positions', 'どのポジションが採用中': 'q3-available-positions',
       'what jobs are available': 'q3-available-positions', 'what positions are open': 'q3-available-positions',
@@ -359,6 +359,21 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'qualifications': 'q2-requirements', 'education required': 'q2-requirements', 'documents needed': 'q2-requirements', 'document required': 'q2-requirements',
       '資格': 'q2-requirements', '学歴要件': 'q2-requirements', '提出書類': 'q2-requirements',
       
+
+// engineering & Design Job Requirements
+      'engineering job': 'q13-engineering-staff-requirements', 'design job': 'q13-engineering-staff-requirements', 'engineering position': 'q13-engineering-staff-requirements', 'design position': 'q13-engineering-staff-requirements', 'engineering role': 'q13-engineering-staff-requirements', 'design role': 'q13-engineering-staff-requirements',
+      'エンジニアリング職': 'q13-engineering-staff-requirements', 'デザイン職': 'q13-engineering-staff-requirements', 'エンジニアリングポジション': 'q13-engineering-staff-requirements', 'デザインポジション': 'q13-engineering-staff-requirements', 'エンジニアリング役職': 'q13-engineering-staff-requirements', 'デザイン役職': 'q13-engineering-staff-requirements',
+      'engineering job requirements': 'q13-engineering-staff-requirements', 'design job requirements': 'q13-engineering-staff-requirements', 'engineering position requirements': 'q13-engineering-staff-requirements', 'design position requirements': 'q13-engineering-staff-requirements', 'engineering role requirements': 'q13-engineering-staff-requirements', 'design role requirements': 'q13-engineering-staff-requirements',
+      'エンジニアリング職の要件': 'q13-engineering-staff-requirements', 'デザイン職の要件': 'q13-engineering-staff-requirements', 'エンジニアリングポジションの要件': 'q13-engineering-staff-requirements', 'デザインポジションの要件': 'q13-engineering-staff-requirements', 'エンジニアリング役職の要件': 'q13-engineering-staff-requirements', 'デザイン役職の要件': 'q13-engineering-staff-requirements',
+      'engineering skills': 'q13-engineering-staff-requirements', 'design skills': 'q13-engineering-staff-requirements', 'engineering skill': 'q13-engineering-staff-requirements', 'design skill': 'q13-engineering-staff-requirements',
+      
+      // CAD Operator Skills
+      'cad operator': 'q9-cad-operator-skills', 'cad skills': 'q9-cad-operator-skills', 'cad skill': 'q9-cad-operator-skills', 'cad operator skills': 'q9-cad-operator-skills', 'cad operator skill': 'q9-cad-operator-skills', 'cad operators': 'q9-cad-operator-skills', 'cad operators skills': 'q9-cad-operator-skills',
+      'cadオペレーター': 'q9-cad-operator-skills', 'cadスキル': 'q9-cad-operator-skills', 'cadオペレーターのスキル': 'q9-cad-operator-skills', 'cadオペレータースキル': 'q9-cad-operator-skills', 'cadオペレータースキル要件': 'q9-cad-operator-skills', 'cad needed skill': 'q9-cad-operator-skills', 'cad operator needed skill': 'q9-cad-operator-skills',
+      'cad skilled': 'q9-cad-operator-skills', 'cad operator staff skills': 'q9-cad-operator-skills', 'cad operator skill requirements': 'q9-cad-operator-skills',
+      'cadオペレーターに必要なスキル': 'q9-cad-operator-skills',
+      
+// OJT Skills
       'ojt skills': 'q14-ojt-requirements', 'ojt skill': 'q14-ojt-requirements', 'ojt trainee skills': 'q14-ojt-requirements', 'trainee skills required': 'q14-ojt-requirements', 'ojt skill needed': 'q14-ojt-requirements',
       'ojt実習生スキル': 'q14-ojt-requirements',
       'ojt skill neededs': 'q14-ojt-requirements', 'ojt required skill': 'q14-ojt-requirements', 'ojt skilled': 'q14-ojt-requirements',
@@ -381,17 +396,17 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       '管理スキル要件': 'q16-admin-staff-requirements', '管理に必要なスキル': 'q16-admin-staff-requirements',
  
       // IT Skills & OJT
-      'it': 'q17-ojt-it-requirements', 'information technology': 'q17-ojt-it-requirements', 'it skills': 'q17-ojt-it-requirements', 'it skill': 'q17-ojt-it-requirements', 'it requirement': 'q17-ojt-it-requirements', 'it requirements': 'q17-ojt-it-requirements', 'skills needed for it': 'q17-ojt-it-requirements',
+      'it': 'q17-ojt-it-requirements', 'it ': 'q17-ojt-it-requirements', 'it requirement': 'q17-ojt-it-requirements', 'it requirements': 'q17-ojt-it-requirements',
       'IT': 'q17-ojt-it-requirements', 'IT スキル': 'q17-ojt-it-requirements', 'IT 技術': 'q17-ojt-it-requirements', 'IT要件': 'q17-ojt-it-requirements', '情報技術': 'q17-ojt-it-requirements',
-      'it ojt': 'q17-ojt-it-requirements', 'it training': 'q17-ojt-it-requirements', 'it internship': 'q17-ojt-it-requirements', 'it student training': 'q17-ojt-it-requirements',
+      'it ojt': 'q17-ojt-it-requirements', 'it internship': 'q17-ojt-it-requirements', 'it student training': 'q17-ojt-it-requirements',
       'IT OJT': 'q17-ojt-it-requirements', 'IT トレーニング': 'q17-ojt-it-requirements', 'IT 実習': 'q17-ojt-it-requirements',
       'programming': 'q17-ojt-it-requirements', 'coding': 'q17-ojt-it-requirements', 'software development': 'q17-ojt-it-requirements', 'web development': 'q17-ojt-it-requirements',
       'プログラミング': 'q17-ojt-it-requirements', 'コーディング': 'q17-ojt-it-requirements', 'ソフトウェア開発': 'q17-ojt-it-requirements', 'ウェブ開発': 'q17-ojt-it-requirements',
       'database': 'q17-ojt-it-requirements', 'network': 'q17-ojt-it-requirements', 'system administration': 'q17-ojt-it-requirements', 'system admin': 'q17-ojt-it-requirements',
       'データベース': 'q17-ojt-it-requirements', 'ネットワーク': 'q17-ojt-it-requirements', 'システム管理': 'q17-ojt-it-requirements', 'システム': 'q17-ojt-it-requirements',
-      'it staff': 'q17-ojt-it-requirements', 'it staff requirement': 'q17-ojt-it-requirements', 'it staff skills': 'q17-ojt-it-requirements', 'it technician': 'q17-ojt-it-requirements',
+      'it staff': 'q17-ojt-it-requirements', 'it staff requirement': 'q17-ojt-it-requirements', 'it staff ': 'q17-ojt-it-requirements', 'it technician': 'q17-ojt-it-requirements',
       'IT スタッフ': 'q17-ojt-it-requirements', 'IT 技術者': 'q17-ojt-it-requirements', 'IT サポート': 'q17-ojt-it-requirements',
-      'it skill needed': 'q17-ojt-it-requirements', 'it skills required': 'q17-ojt-it-requirements', 'it qualifications': 'q17-ojt-it-requirements',
+      'it needed': 'q17-ojt-it-requirements', 'it  required': 'q17-ojt-it-requirements', 'it qualifications': 'q17-ojt-it-requirements',
       'IT に必要なスキル': 'q17-ojt-it-requirements', 'IT スキル要件': 'q17-ojt-it-requirements', 'IT に必要な資格': 'q17-ojt-it-requirements',
 
 
@@ -599,10 +614,10 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'process flow': 'q22-services-workflow',
       
       // Q23 - Application Timeline
-      'application timeline': 'q23-application-timeline', 'hiring timeline': 'q23-application-timeline',
-      'duration': 'q23-application-timeline', 'days needed': 'q23-application-timeline', 'start date': 'q23-application-timeline', 'starting date': 'q23-application-timeline',
-      'fast hiring': 'q23-application-timeline', 'quick hiring': 'q23-application-timeline', 'rapid hiring': 'q23-application-timeline',
-      'interview duration': 'q23-application-timeline', 'one day interview': 'q23-application-timeline', 'fast track hiring': 'q23-application-timeline',
+      'application timeline': 'hiring-process', 'hiring timeline': 'hiring-process',
+      'duration': 'hiring-process', 'days needed': 'hiring-process', 'start date': 'hiring-process', 'starting date': 'hiring-process',
+      'fast hiring': 'hiring-process', 'quick hiring': 'hiring-process', 'rapid hiring': 'hiring-process',
+      'interview duration': 'hiring-process', 'one day interview': 'hiring-process', 'fast track hiring': 'hiring-process',
       
       // General - Company & About
       'location': 'location', 'located': 'location', 'locate': 'location', 'address': 'location', 'map': 'location', 'where': 'location', '住所': 'location', '場所': 'location', '地図': 'location',

@@ -786,14 +786,6 @@ const en = {
         ]
       },
 
-      // Hiring Process
-      "hiring-process": {
-        text: "The hiring process from the initial interview to final assessment usually takes about one day.",
-        actionButtons: [
-          { id: "hp1", text: "Back", action: "back", navigateAction: "careers" }
-        ]
-      },
-
       // Career Growth Opportunities
       "career-opportunities": {
         text: "We believe in continuous improvement. One of the great opportunities for career growth at KMTI is the chance to undergo training in Japan to develop technical skills.",
@@ -1187,8 +1179,8 @@ const en = {
       },
 
       // Application Timeline
-      "q23-application-timeline": {
-        text: "⏱️ KMTI APPLICATION TIMELINE:\n\n📅 TYPICAL HIRING PROCESS:\n\n🔵 DAY 1: INTERVIEW & ASSESSMENT\n• Full hiring process conducted in one day\n• Interview with HR and hiring manager\n• Technical assessment (if applicable)\n• Skills evaluation\n• Final interview rounds\n\n✅ QUICK TURNAROUND:\n• Most candidates receive feedback within 1-2 days\n• Faster process than typical companies\n• Efficient screening and decision-making\n• Commitment to timely communication\n\n📋 NEXT STEPS AFTER INTERVIEW:\n• Results notification (within 1-2 days)\n• Job offer (if selected)\n• Document submission (birth cert, medical exam, etc.)\n• Background verification\n\n💼 FROM SELECTION TO START DATE:\n• Final offer stage: 1-3 days\n• Document preparation: 3-5 days\n• Medical examination: 2-3 days\n• Final onboarding: 1-2 weeks\n• Start date: Usually within 2-3 weeks of selection\n\n⚡ WHY OUR PROCESS IS FAST:\n✅ Streamlined decision-making\n✅ Experienced HR team\n✅ Clear evaluation criteria\n✅ Efficient communication\n✅ No unnecessary delays\n\n💡 TIP: Be ready to start quickly if selected! We move fast!\n\nFor more details on timing, contact our HR team!",
+      "hiring-process": {
+        text: "⏱️ KMTI APPLICATION TIMELINE:\n\n📅 TYPICAL HIRING PROCESS:\n\n🔵 DAY 1: INTERVIEW & ASSESSMENT\n• Full hiring process conducted in one day\n• Interview with HR and hiring manager\n• Technical assessment (if applicable)\n• Skills evaluation\n• Final interview rounds\n\n 📋 NEXT STEPS AFTER INTERVIEW:\n• Results notification (within 1-2 days)\n• Job offer (if selected)\n• Document submission (Updated resume (CV), medical exam, etc.)\n• Background verification\n\n⚡ WHY OUR PROCESS IS FAST:\n✅ Streamlined decision-making\n✅ Experienced HR team\n✅ Clear evaluation criteria\n✅ Efficient communication\n✅ No unnecessary delays\n\n💡 TIP: Be ready to start quickly if selected! We move fast!\n\nFor more details on timing, contact our HR team!",
         actionButtons: [
           { id: "q23-1", text: "📞 Contact HR for Timeline", action: "back", navigateAction: "contact-hr" },
           { id: "q23-2", text: "📝 How to Apply", action: "back", navigateAction: "how-to-apply" },
