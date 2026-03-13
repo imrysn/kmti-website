@@ -1,12 +1,17 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+import SEO from '../../components/common/SEO';
 import './LegalAndCompliance.css';
 
 const LegalAndCompliance: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
 
   return (
     <div className="legal-page">
+      <SEO 
+        title={tEn('legal.page_title')} 
+        description={tEn('legal.privacy.intro')} 
+      />
       <div className="legal-container">
         <h1 className="legal-title">{t('legal.page_title')}</h1>
 

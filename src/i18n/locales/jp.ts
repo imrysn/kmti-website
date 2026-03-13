@@ -17,8 +17,11 @@ const jp = {
     learn_more: "詳細はこちら",
     view_more: "詳細を見る",
     chatbot: {
-      teaser: "こんにちは！KMTIアシスタントです👋 何かお手伝いしましょうか？"
-    }
+      teaser: "こんにちは！日下部・前野テック アシスタントです👋 何かお手伝いしましょうか？"
+    },
+    brand_full: "日下部・前野テック株式会社",
+    brand_abbr: "KMTI",
+    site_title: "日下部・前野テック株式会社"
   },
 
   // --- HOME PAGE ---
@@ -430,8 +433,15 @@ const jp = {
       controls: {
         rotate: "ドラッグで回転",
         zoom: "スクロールで拡大縮小",
-        pan: "右クリックでパン"
-      }
+        pan: "右クリックでパン",
+        pinch_zoom: "ピンチでズーム"
+      },
+      loading: "3Dモデルを読み込み中...",
+      back_to_projects: "プロジェクトに戻る",
+      try_again: "もう一度お試しください",
+      not_supported: "お使いのデバイスは3Dレンダリングをサポートしていない可能性があります。",
+      init_failed: "3Dレンダラーの初期化に失敗しました。",
+      loading_viewer: "3Dビューアーを起動中..."
     }
   },
 
@@ -518,12 +528,12 @@ const jp = {
     },
     apply: {
       title: "応募方法",
-      subtitle: "KMTIでエンジニアリングキャリアをスタートする準備はできましたか？以下の方法でご応募ください",
+      subtitle: "日下部・前野テックでエンジニアリングキャリアをスタートする準備はできましたか？以下の方法でご応募ください",
       visit: {
         title: "オフィスのご案内",
-        text: "履歴書を直接KMTIオフィスにご提出ください：",
+        text: "履歴書を直接オフィスにご提出ください：",
         address: {
-          line1: "Kusakabe Maeno Tech., Inc. Vital Industrial Prop. Inc.",
+          line1: "日下部・前野テック株式会社 Vital Industrial Prop. Inc.",
           line2: "Bldg. Unit 2-B. First Cavite Industrial Estate Langkaan 1,  ",
           line3: "Cavite, Dasmarinas City. (Near PLDT)"
         },
@@ -587,7 +597,7 @@ const jp = {
       description: "当社のAIアシスタントは、機械設計、組立、部品検査などのサービスに関するよくある質問にお答えし、<br />必要に応じてサポートチームへ直接つなぐことも可能です。",
       features: {
         f1: { title: "24/7 即時回答", text: "当社のサービス、キャリア・応募、各種手続きに関するよくある質問に、迅速にお答えします。" },
-        f2: { title: "スマートで役立つサポート", text: "当社のAIはKMTIの専門知識をもとに学習しており、正確かつ適切な情報を提供します" },
+        f2: { title: "スマートで役立つサポート", text: "当社のAIは日下部・前野テックの専門知識をもとに学習しており、正確かつ適切な情報を提供します" },
         f3: { title: "チームへ直接接続", text: "個別のサポートが必要な場合は、Facebook Messenger またはメールでチームと直接チャットしてください。" },
         f4: { title: "応募者向け", text: "採用に関するお問い合わせや応募状況の確認は、当社のFacebookページから、<br />またはLinkedInのキャリアページからご連絡ください。" }
       },
@@ -599,7 +609,9 @@ const jp = {
       email: "メールアドレス",
       subject: "件名",
       message: "メッセージ",
-      send: "メッセージを送信"
+      send: "メッセージを送信",
+      invalid_email: "有効なメールアドレスを入力してください。",
+      message_too_short: "10文字以上のメッセージを入力してください。"
     },
     info: {
       title: "連絡先情報",
@@ -615,11 +627,11 @@ const jp = {
   // ... CHATWITHUSRIGHTCARD ...
   chatbot_card: {
     header: {
-      name: "KMTI ボットアシスタント",
+      name: "日下部・前野テック ボットアシスタント",
       status: "オンライン"
     },
     body: {
-      greeting: "こんにちは。KMTI AIアシスタントです 👋 本日はどのようなご用件でしょうか。",
+      greeting: "こんにちは。日下部・前野テック AIアシスタントです 👋 本日はどのようなご用件でしょうか。",
       hr_message: "当社へのご応募にご興味はありますか？Facebookにて人事担当者とチャットでご相談いただけます。",
       fb_btn: "Facebookで私たちとチャットしましょう"
     },
@@ -628,7 +640,7 @@ const jp = {
       careers: "採用情報・応募",
       location: "事業所所在地",
       support: "お問い合わせ",
-      about: "KMTIについて"
+      about: "当社について"
     },
     footer: {
       placeholder: "メッセージを入力..."
@@ -637,11 +649,11 @@ const jp = {
 
       // .. GENERAL FLOW ...
       "greeting-response": {
-        text: "こんにちは！お会いできて嬉しいです。KMTIに関して何かお手伝いできることはありますか？",
+        text: "こんにちは！お会いできて嬉しいです。日下部・前野テックに関して何かお手伝いできることはありますか？",
         buttons: [
           { id: "gr1", text: "当社のサービス", action: "services" },
           { id: "gr2", text: "採用情報・応募", action: "careers" },
-          { id: "gr3", text: "KMTIについて", action: "about" }
+          { id: "gr3", text: "当社について", action: "about" }
         ]
       },
       "gratitude-response": {
@@ -666,13 +678,13 @@ const jp = {
         ]
       },
       "initial-greeting": {
-        text: "こんにちは。KMTI AIアシスタントです 👋 本日はどのようなご用件でしょうか。",
+        text: "こんにちは。日下部・前野テック AIアシスタントです 👋 本日はどのようなご用件でしょうか。",
         buttons: [
           { id: "ig1", text: "当社のサービス", action: "services" },
           { id: "ig2", text: "採用情報・応募", action: "careers" },
           { id: "ig3", text: "事業所所在地", action: "location" },
           { id: "ig4", text: "お問い合わせ", action: "support" },
-          { id: "ig5", text: "KMTIについて", action: "about" }
+          { id: "ig5", text: "当社について", action: "about" }
         ]
       },
       "facebook-teaser": {
@@ -688,7 +700,7 @@ const jp = {
           { id: "mm2", text: "採用情報・応募", action: "careers" },
           { id: "mm3", text: "事業所所在地", action: "location" },
           { id: "mm4", text: "お問い合わせ", action: "support" },
-          { id: "mm5", text: "KMTIについて", action: "about" }
+          { id: "mm5", text: "当社について", action: "about" }
         ],
         actionButtons: [
           { id: "mma1", text: "オペレーターと話す", action: "talk-to-human" },
@@ -702,7 +714,7 @@ const jp = {
           { id: "so2", text: "採用情報・応募", action: "careers" },
           { id: "so3", text: "事業所所在地", action: "location" },
           { id: "so4", text: "お問い合わせ", action: "support" },
-          { id: "so5", text: "KMTIについて", action: "about" }
+          { id: "so5", text: "当社について", action: "about" }
         ],
         actionButtons: [
           { id: "so6", text: "オペレーターと話す", action: "talk-to-human" }
@@ -751,7 +763,7 @@ const jp = {
 
       // ... CAREERS BRANCH ...
       careers: {
-        text: "kMTIへの参加に興味がありますか？私たちは常に、スキルと情熱を持った才能ある人材を求めています。何をお知りになりたいですか？",
+        text: "日下部・前野テックへの参加に興味がありますか？私たちは常に、スキルと情熱を持った才能ある人材を求めています。何をお知りになりたいですか？",
         buttons: [
           { id: "c1", text: "募集職種を見る", action: "view-positions" },
           { id: "c2", text: "応募方法", action: "how-to-apply" },

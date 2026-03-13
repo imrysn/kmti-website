@@ -1,5 +1,6 @@
 import { useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Layout from './components/common/Layout';
@@ -18,6 +19,38 @@ const LegalAndCompliance = lazy(() => import('./pages/LegalAndCompliance/LegalAn
 const Sitemap = lazy(() => import('./pages/Sitemap'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
+const LoadingFallback = () => (
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '50vh',
+    color: 'white'
+  }}>
+    <div>Loading...</div>
+  </div>
+);
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <Routes location={location} key={location.pathname}>
+      <Route path="/" element={<Home />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/services/:id" element={<Services />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/careers" element={<Careers />} />
+      <Route path="/sitemap" element={<Sitemap />} />
+      <Route path="/legal-and-compliance" element={<LegalAndCompliance />} />
+      <Route path="/home" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+};
+
 function App() {
   useEffect(() => {
     AOS.init({
@@ -30,41 +63,18 @@ function App() {
     return cleanup;
   }, []);
 
-  // Loading fallback component
-  const LoadingFallback = () => (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '50vh',
-      color: 'white'
-    }}>
-      <div>Loading...</div>
-    </div>
-  );
-
   return (
-    <Router>
-      <ScrollToTop />
-      <ScrollToTopButton />
-      <Layout>
-        <Suspense fallback={<LoadingFallback />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/:id" element={<Services />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/sitemap" element={<Sitemap />} />
-            <Route path="/legal-and-compliance" element={<LegalAndCompliance />} />
-            <Route path="/home" element={<Navigate to="/" replace />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </Layout>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <ScrollToTop />
+        <ScrollToTopButton />
+        <Layout>
+          <Suspense fallback={<LoadingFallback />}>
+            <AnimatedRoutes />
+          </Suspense>
+        </Layout>
+      </Router>
+    </HelmetProvider>
   );
 }
 

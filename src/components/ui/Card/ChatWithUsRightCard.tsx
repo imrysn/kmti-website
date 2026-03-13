@@ -2,9 +2,9 @@ import React from 'react';
 import { useTranslation } from 'react-i18next'; // Added for translation
 import './chatbot.css';
 import { getAssetUrl } from '../../../utils/assets';
-const defaultProfileImage = getAssetUrl('logo/profile.png');
-const facebookIcon = getAssetUrl('icons/facebook.png');
-const menuIcon = getAssetUrl('icons/menu-icon.png');
+const defaultProfileImage = getAssetUrl('logo/profile.webp');
+const facebookIcon = getAssetUrl('icons/facebook.webp');
+const menuIcon = getAssetUrl('icons/menu-icon.webp');
 import './ChatWithUsRightCard.css';
 import LazyImage from '../LazyImage/LazyImage';
 
@@ -27,7 +27,7 @@ const ChatWithUsRightCard: React.FC<ChatWithUsRightCardProps> = ({
           <div className="chatbot-card-header-avatar">
             <LazyImage
               src={profileImage || defaultProfileImage}
-              alt="KMTI Bot"
+              alt={`${t('common.brand_full')} Bot`}
               className="chatbot-card-header-avatar-img"
               loading="eager"
             />

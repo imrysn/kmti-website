@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './About.css';
 import '../Home/Home-iPhoneSE.css';
 import '../Home/iPhone12_13_14.css';
@@ -9,62 +10,64 @@ import '../Home/IphonePlus_Promax.css';
 import type { AboutPageProps } from './About.types';
 import { getAssetUrl } from '../../utils/assets';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
+import SEO from '../../components/common/SEO';
 
-const aboutBg = getAssetUrl('hero_background/about.png');
-const aboutCompany1 = getAssetUrl('about_page/aboutcompany1.png');
-const aboutCompany2 = getAssetUrl('about_page/aboutcomapny2.png');
-const aboutCompany3 = getAssetUrl('about_page/aboutcomapny3.png');
-const aboutCompany4 = getAssetUrl('about_page/aboutcomapny4.png');
-const meeting1 = getAssetUrl('about_page/meeting1.jpg');
-const meeting2 = getAssetUrl('about_page/meeting2.jpg');
+const aboutBg = getAssetUrl('hero_background/about.webp');
+const aboutCompany1 = getAssetUrl('about_page/aboutcompany1.webp');
+const aboutCompany2 = getAssetUrl('about_page/aboutcomapny2.webp');
+const aboutCompany3 = getAssetUrl('about_page/aboutcomapny3.webp');
+const aboutCompany4 = getAssetUrl('about_page/aboutcomapny4.webp');
+const meeting1 = getAssetUrl('about_page/meeting1.webp');
+const meeting2 = getAssetUrl('about_page/meeting2.webp');
 import Button from '../../components/ui/Button';
 import { OurStoryModal } from '../../components/ui/Modal/Modal';
 import Card from '../../components/ui/Card/Card';
 import { ManagementTeamCard, RelatedCompanyCard } from '../../components/ui/Card/Card';
 import { VisionIcon, MissionIcon, UserIcon } from '../../components/ui/Icons/ProjectIcons';
 
-const visionIcon = getAssetUrl('icons/vision-icon.png');
-const missionIcon = getAssetUrl('icons/mission-icon.png');
-const pauImage = getAssetUrl('management/pau.png');
-const michaelImage = getAssetUrl('management/michael.png');
-const siryuImage = getAssetUrl('management/siryu.png');
-const mennjoImage = getAssetUrl('management/mennjo.png');
-const teodyImage = getAssetUrl('management/teody.png');
-const shelaImage = getAssetUrl('management/shela.png');
-const erikImage = getAssetUrl('management/erik.png');
-const lorieImage = getAssetUrl('management/louie.png');
-const kerbyImage = getAssetUrl('management/kerby.png');
-const kissImage = getAssetUrl('management/kiss.png');
-const louieImage = getAssetUrl('management/lorie.png');
-const jethroImage = getAssetUrl('management/jethro.png');
-const joyceImage = getAssetUrl('management/joyce.png');
-const jcImage = getAssetUrl('management/jc.png');
-const jennyImage = getAssetUrl('management/jenny.png');
-const nylImage = getAssetUrl('management/nyl.png');
-const jonathanImage = getAssetUrl('management/jonathan.png');
-const noelImage = getAssetUrl('management/noel.png');
-const royImage = getAssetUrl('management/roy.png');
-const jojoImage = getAssetUrl('management/jojo.png');
-const zorenImage = getAssetUrl('management/ZOREN.png');
-const raineImage = getAssetUrl('management/RAINE.png');
-const sharmaineImage = getAssetUrl('management/SHARMAINE.png');
-const mgImage = getAssetUrl('management/MG.png');
-const matthewImage = getAssetUrl('management/MATTHEW.png');
+const visionIcon = getAssetUrl('icons/vision-icon.webp');
+const missionIcon = getAssetUrl('icons/mission-icon.webp');
+const pauImage = getAssetUrl('management/pau.webp');
+const michaelImage = getAssetUrl('management/michael.webp');
+const siryuImage = getAssetUrl('management/siryu.webp');
+const mennjoImage = getAssetUrl('management/mennjo.webp');
+const teodyImage = getAssetUrl('management/teody.webp');
+const shelaImage = getAssetUrl('management/shela.webp');
+const erikImage = getAssetUrl('management/erik.webp');
+const lorieImage = getAssetUrl('management/louie.webp');
+const kerbyImage = getAssetUrl('management/kerby.webp');
+const kissImage = getAssetUrl('management/kiss.webp');
+const louieImage = getAssetUrl('management/lorie.webp');
+const jethroImage = getAssetUrl('management/jethro.webp');
+const joyceImage = getAssetUrl('management/joyce.webp');
+const jcImage = getAssetUrl('management/jc.webp');
+const jennyImage = getAssetUrl('management/jenny.webp');
+const nylImage = getAssetUrl('management/nyl.webp');
+const jonathanImage = getAssetUrl('management/jonathan.webp');
+const noelImage = getAssetUrl('management/noel.webp');
+const royImage = getAssetUrl('management/roy.webp');
+const jojoImage = getAssetUrl('management/jojo.webp');
+const zorenImage = getAssetUrl('management/ZOREN.webp');
+const raineImage = getAssetUrl('management/RAINE.webp');
+const sharmaineImage = getAssetUrl('management/SHARMAINE.webp');
+const mgImage = getAssetUrl('management/MG.webp');
+const matthewImage = getAssetUrl('management/MATTHEW.webp');
 
-const ourPeople1 = getAssetUrl('about_page/ourpeople1.jpg');
-const ourPeople2 = getAssetUrl('about_page/ourpeople2.jpg');
-const ourPeople5 = getAssetUrl('about_page/ourpeople5.jpg');
-const ourPeople3 = getAssetUrl('about_page/k.png');
-const ourPeople4 = getAssetUrl('about_page/ourpeople4.png');
+const ourPeople1 = getAssetUrl('about_page/ourpeople1.webp');
+const ourPeople2 = getAssetUrl('about_page/ourpeople2.webp');
+const ourPeople5 = getAssetUrl('about_page/ourpeople5.webp');
+const ourPeople3 = getAssetUrl('about_page/k.webp');
+const ourPeople4 = getAssetUrl('about_page/ourpeople4.webp');
 
 
-const kemcoLogo = getAssetUrl('about_page/kemcoLogo.png');
-const nextengLogo = getAssetUrl('about_page/nextengLogo.png');
-const mgkLogo = getAssetUrl('about_page/mgkLogo.png');
+const kemcoLogo = getAssetUrl('about_page/kemcoLogo.webp');
+const nextengLogo = getAssetUrl('about_page/nextengLogo.webp');
+const mgkLogo = getAssetUrl('about_page/mgkLogo.webp');
 
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const timelineRef = useRef<HTMLDivElement>(null);
   const [isOurStoryModalOpen, setIsOurStoryModalOpen] = useState(false);
   const [isManagementTeamExpanded, setIsManagementTeamExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -104,8 +107,22 @@ const About: React.FC<AboutPageProps> = () => {
     }
   };
 
+  const tEn = i18n.getFixedT('en');
+
+  // Scroll animation for timeline
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"],
+  });
+
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
     <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})` } as React.CSSProperties}>
+      <SEO 
+        title={tEn('nav.about')} 
+        description={tEn('about.hero.subtitle')} 
+      />
       <section className="about-hero">
         <div className="about-hero-bg"></div>
         <div className="about-hero-overlay"></div>
@@ -156,7 +173,12 @@ const About: React.FC<AboutPageProps> = () => {
       <section className="about-history-section" data-aos="fade-up">
         <div className="about-history-container container">
           <h2 className="about-history-title">{t('about.history.title')}</h2>
-          <div className="about-history-timeline">
+          <div className="about-history-timeline" ref={timelineRef}>
+            {/* The animated center line */}
+            <motion.div 
+              className="about-history-timeline-line" 
+              style={{ scaleY, transformOrigin: "top" }} 
+            />
             {['item1', 'item2', 'item3', 'item_2017', 'item4', 'item5'].map((key, index) => (
               <div key={key} className={`about-history-item ${index % 2 === 0 ? 'left' : 'right'}`}>
                 <div className="about-history-content">

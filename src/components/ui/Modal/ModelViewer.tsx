@@ -1,7 +1,10 @@
 import React, { Suspense, useRef, useEffect, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { OrbitControls, useGLTF, useProgress } from '@react-three/drei';
 import * as THREE from 'three';
+import { motion, useAnimationControls } from 'framer-motion';
+import ErrorBoundary from '../../common/ErrorBoundary';
 
 // ─── 3D Cube Spinner ─────────────────────────────────────────────────────────
 const LoadingSpinner: React.FC = () => (
@@ -18,15 +21,34 @@ const LoadingSpinner: React.FC = () => (
 );
 
 // ─── Real-time fetch progress bar ───────────────────────────────────────────────
-// Reads from state (set by the fetch-stream download below) — actual bytes, not item completion.
-const LoadingProgress: React.FC<{ pct: number }> = ({ pct }) => (
-  <div className="mv-load-progress">
-    <div className="mv-load-bar">
-      <div className="mv-load-fill" style={{ width: `${pct}%` }} />
+// Uses framer-motion to smoothly animate to 99% and wait for the model to load
+const LoadingProgress: React.FC<{ isLoaded: boolean }> = ({ isLoaded }) => {
+  const { progress } = useProgress();
+  const controls = useAnimationControls();
+
+  useEffect(() => {
+    if (isLoaded) {
+      controls.start({ width: "100%", transition: { duration: 0.3 } });
+    } else {
+      // Smoothly animate towards the actual reported progress
+      const targetWidth = Math.max(1, progress) + "%";
+      controls.start({ width: targetWidth, transition: { duration: 0.2, ease: "easeOut" } });
+    }
+  }, [progress, isLoaded, controls]);
+
+  return (
+    <div className="mv-load-progress">
+      <div className="mv-load-bar">
+        <motion.div
+          className="mv-load-fill"
+          initial={{ width: "1%" }}
+          animate={controls}
+        />
+      </div>
+      <span className="mv-load-pct">{isLoaded ? 100 : Math.round(progress)}%</span>
     </div>
-    <span className="mv-load-pct">{pct}%</span>
-  </div>
-);
+  );
+};
 
 
 
@@ -40,15 +62,24 @@ interface ModelProps {
   isInteracting?: boolean;
   cameraPosition?: [number, number, number];
   cameraView?: string;
+  onCameraStateChange?: (isDefault: boolean) => void;
+  resetTrigger?: number;
 }
 
 const Model: React.FC<ModelProps> = ({
-  modelPath, modelScale = 3, onLoaded, isInteracting, cameraPosition, cameraView
+  modelPath, 
+  modelScale = 3, 
+  onLoaded, 
+  isInteracting, 
+  cameraPosition, 
+  cameraView,
+  onCameraStateChange,
+  resetTrigger
 }) => {
   const { scene } = useGLTF(modelPath);
   const modelRef = useRef<THREE.Group>(null);
   // Issue 2: invalidate() triggers a frame in demand mode
-  const { camera, controls, invalidate } = useThree();
+  const { camera, controls, invalidate, setFrameloop } = useThree();
   const [clonedScene, setClonedScene] = useState<THREE.Group | null>(null);
   const cameraInitializedRef = useRef(false);
   const targetPosition = useRef(new THREE.Vector3());
@@ -94,7 +125,8 @@ const Model: React.FC<ModelProps> = ({
         setClonedScene(clone);
 
         if (camera instanceof THREE.PerspectiveCamera && !cameraInitializedRef.current) {
-          camera.position.set(5, 3, 5);
+          const initPos = cameraPosition || [5, 3, 5];
+          camera.position.set(...initPos);
           camera.lookAt(0, 0, 0);
           camera.updateProjectionMatrix();
           cameraInitializedRef.current = true;
@@ -122,26 +154,42 @@ const Model: React.FC<ModelProps> = ({
   useEffect(() => {
     if (isInteracting && isTransitioning.current) {
       isTransitioning.current = false;
-      if (camera instanceof THREE.PerspectiveCamera) {
-        targetPosition.current.copy(camera.position);
+    }
+  }, [isInteracting]);
+
+  // Handle external reset trigger
+  useEffect(() => {
+    if (resetTrigger && resetTrigger > 0 && camera instanceof THREE.PerspectiveCamera) {
+      if (cameraPosition) {
+        targetPosition.current.set(...cameraPosition);
+        isTransitioning.current = true;
+        invalidate();
       }
     }
-  }, [isInteracting, camera]);
+  }, [resetTrigger, cameraPosition, camera, invalidate]);
+
+  // Dynamically configure frameloop to save battery when not rotating
+  useEffect(() => {
+    const shouldAutoRotate = !isInteracting && cameraView === 'isometric';
+    setFrameloop(shouldAutoRotate ? 'always' : 'demand');
+  }, [isInteracting, cameraView, setFrameloop]);
+
+  const lastIsDefault = useRef(true);
 
   useFrame(() => {
-    // Auto-rotate in isometric view — call invalidate() to keep requesting frames
+    // Auto-rotate in isometric view. 
+    // frameloop is 'always' here, so no need to spam invalidate()
     const shouldRotate =
       modelRef.current && !isInteracting && !isTransitioning.current && cameraView === 'isometric';
     if (shouldRotate) {
       modelRef.current!.rotation.y += 0.003;
-      invalidate();
     }
 
     // Camera lerp transition
     if (camera instanceof THREE.PerspectiveCamera && isTransitioning.current && !isInteracting) {
       if (typeof controls !== 'undefined' && controls !== null) {
         // Safe check for controls object to prevent crash if unmounted partway
-        const ctrl = controls as any;
+        const ctrl = controls as { target?: THREE.Vector3; update?: () => void };
 
         currentPosition.current.copy(camera.position);
         const distance = currentPosition.current.distanceTo(targetPosition.current);
@@ -164,6 +212,19 @@ const Model: React.FC<ModelProps> = ({
     } else if (controls && 'enableDamping' in controls && 'update' in controls) {
       (controls as { update: () => void }).update();
     }
+
+    // Check if camera has deviated from targets
+    if (camera instanceof THREE.PerspectiveCamera && controls && !isTransitioning.current) {
+      const ctrl = controls as { target?: THREE.Vector3 };
+      const isPosSame = camera.position.distanceTo(targetPosition.current) < 0.01;
+      const isTargetSame = ctrl.target ? ctrl.target.length() < 0.01 : true;
+      const isDefault = isPosSame && isTargetSame;
+      
+      if (isDefault !== lastIsDefault.current) {
+        lastIsDefault.current = isDefault;
+        onCameraStateChange?.(isDefault);
+      }
+    }
   });
 
   if (!clonedScene) return null;
@@ -183,85 +244,21 @@ interface ModelViewerProps {
   modelScale?: number;
   canvasRef?: React.RefObject<HTMLCanvasElement | null>;
   cameraView?: string;
-}
-
-const MAX_ERROR_RETRIES = 5;
-
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode; onRetry?: () => void; isMobile?: boolean },
-  { hasError: boolean; retryCount: number; gaveUp: boolean; lastError: string }
-> {
-  private retryTimer: ReturnType<typeof setTimeout> | null = null;
-
-  constructor(props: { children: React.ReactNode; onRetry?: () => void; isMobile?: boolean }) {
-    super(props);
-    this.state = { hasError: false, retryCount: 0, gaveUp: false, lastError: '' };
-  }
-
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    const { retryCount } = this.state;
-    console.error(`3D Viewer Error (attempt ${retryCount + 1}/${MAX_ERROR_RETRIES}):`, error, errorInfo);
-
-    // Store the error string for on-screen debugging on physical devices
-    this.setState({ lastError: error.message || String(error) });
-
-    if (retryCount >= MAX_ERROR_RETRIES) {
-      this.setState({ gaveUp: true });
-      return;
-    }
-
-    // Exponential backoff: 2s → 3s → 4.5s → 6.75s → 10s
-    const delay = Math.min(2000 * Math.pow(1.5, retryCount), 10000);
-    this.retryTimer = setTimeout(() => {
-      this.setState(prev => ({ hasError: false, retryCount: prev.retryCount + 1 }));
-      this.props.onRetry?.();
-    }, delay);
-  }
-
-  componentWillUnmount() {
-    if (this.retryTimer) clearTimeout(this.retryTimer);
-  }
-
-  render() {
-    if (this.state.gaveUp) {
-      return (
-        <div className="model-viewer-loading-overlay">
-          <div style={{ fontSize: '2rem', lineHeight: 1 }}>⚠️</div>
-          <p style={{ margin: '0.5rem 0 0', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
-            {this.props.isMobile
-              ? 'Your device may not support 3D rendering.'
-              : 'Failed to load the 3D viewer.'}
-          </p>
-          <button
-            className="camera-view-btn"
-            onClick={() => {
-              this.setState({ hasError: false, retryCount: 0, gaveUp: false, lastError: '' });
-              this.props.onRetry?.();
-            }}
-            style={{ marginTop: '1rem', width: 'auto', display: 'inline-block' }}
-          >
-            Try Again
-          </button>
-          {this.state.lastError && (
-            <p style={{ marginTop: '1rem', color: '#ffaaaa', fontSize: '0.75rem', maxWidth: '300px', wordWrap: 'break-word', textAlign: 'center' }}>
-              Debug: {this.state.lastError}
-            </p>
-          )}
-        </div>
-      );
-    }
-    if (this.state.hasError) return null;
-    return this.props.children;
-  }
+  onCameraStateChange?: (isDefault: boolean) => void;
+  resetTrigger?: number;
 }
 
 // ─── ModelViewer ──────────────────────────────────────────────────────────────
 
-const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvasRef, cameraView }) => {
+const ModelViewer: React.FC<ModelViewerProps> = ({ 
+  modelPath, 
+  modelScale, 
+  canvasRef, 
+  cameraView,
+  onCameraStateChange,
+  resetTrigger
+}) => {
+  const { t } = useTranslation();
   // Detect mobile-class devices (phones and small tablets up to 768px CSS width).
   // This drives GPU optimizations: low-power mode, no antialias, DPR=1, no shadows.
   const [isPhone] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
@@ -291,8 +288,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   const contextLossCountRef = useRef(0);
   const [gaveUpOnContext, setGaveUpOnContext] = useState(false);
 
-  // Fake progress bar that crawls to 99% over 60 seconds
-  const [downloadProgress, setDownloadProgress] = useState(0);
   const internalCanvasRef = useRef<HTMLCanvasElement>(null);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const MAX_CONTEXT_LOSSES = 3;
@@ -306,73 +301,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
     useGLTF.preload(modelPath);
   }, [modelPath]);
 
-  // ─── Dynamic 60s Progress Bar ───────────────────────────────────────────────
-  // Crawls non-linearly to 99% over 60 seconds to simulate natural loading speeds:
-  // bursts quickly, stalls on fake "heavy assets", bursts again, and rests at 99%.
-  // NOTE: remountKey intentionally excluded from deps — canvas remounts (context loss)
-  // should NOT reset the progress bar, only a model path change or load completion should.
-  useEffect(() => {
-    let active = true;
-
-    // Start at 1% so it doesn't look dead on quick cache reloads
-    if (active) setDownloadProgress(1);
-
-    if (isLoaded) {
-      if (active) setDownloadProgress(100);
-      return;
-    }
-
-    // [Time Elapsed %] -> [Progress %]
-    const keyframes = [
-      { t: 0.00, p: 1 },
-      { t: 0.05, p: 2 },    // 0-3s:   Crawls to 2% (Slow start)
-      { t: 0.15, p: 15 },   // 3-9s:   Bursts to 15% (Speeds up)
-      { t: 0.50, p: 35 },   // 9-30s:  Crawls slowly to 35% (Slows again)
-      { t: 0.70, p: 85 },   // 30-42s: Bursts to 85% (Speeds up)
-      { t: 1.00, p: 99 },   // 42-60s: Crawls to 99% (Slows down to wait)
-    ];
-
-    const durationMs = 60000;
-    const startTime = Date.now();
-
-    const tick = () => {
-
-      if (!active) return;
-      const elapsed = Date.now() - startTime;
-
-      if (elapsed >= durationMs) {
-        setDownloadProgress(99);
-        clearInterval(interval);
-        return;
-      }
-
-      const t = elapsed / durationMs;
-
-      // Find current keyframe segment
-      let i = 0;
-      while (i < keyframes.length - 1 && t >= keyframes[i + 1].t) {
-        i++;
-      }
-
-      const start = keyframes[i];
-      const end = keyframes[i + 1];
-
-      // Linear interpolate between the two keyframes
-      const segmentT = (t - start.t) / (end.t - start.t);
-      const currentP = start.p + (end.p - start.p) * segmentT;
-
-      setDownloadProgress(Math.max(1, Math.floor(currentP)));
-    };
-
-    tick(); // fire immediately
-    const interval = setInterval(tick, 200); // 200ms updates (5FPS) for smooth numbers
-
-    return () => {
-      active = false;
-      clearInterval(interval);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [modelPath, isLoaded]); // remountKey intentionally omitted — canvas remounts must not reset progress
+  // Note: The dynamic progress bar logic has been moved to the LoadingProgress component
+  // to leverage framer-motion and avoid main-thread blocking.
 
   // Hoisted from JSX to prevent 'Rendered fewer hooks' error when remountKey goes null
   const handleModelLoaded = useCallback(() => {
@@ -410,7 +340,6 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
   useEffect(() => {
     setIsLoaded(false);
     setIsInteracting(false);
-    setDownloadProgress(1);
     contextLossCountRef.current = 0;
     setGaveUpOnContext(false);
     if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
@@ -439,13 +368,12 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
       }, 800);
       return null;
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
   const handleContextLostRef = useRef(handleContextLost);
 
   // User reload: wipe Canvas, evict caches, restart process after delay
   const handleReload = useCallback(() => {
     setIsLoaded(false);
-    setDownloadProgress(1);
     contextLossCountRef.current = 0;
     setGaveUpOnContext(false);
 
@@ -469,15 +397,15 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
           <div style={{ fontSize: '2rem', lineHeight: 1 }}>⚠️</div>
           <p style={{ margin: '0.5rem 0 0', color: '#fff', textAlign: 'center', fontSize: '0.9rem' }}>
             {isPhone
-              ? 'Your device may not support 3D rendering.'
-              : 'Failed to initialize 3D renderer.'}
+              ? t('projects.viewer.not_supported')
+              : t('projects.viewer.init_failed')}
           </p>
           <button
             className="camera-view-btn"
             onClick={handleReload}
             style={{ marginTop: '1rem', width: 'auto', display: 'inline-block' }}
           >
-            Try Again
+            {t('projects.viewer.try_again')}
           </button>
         </div>
       )}
@@ -496,8 +424,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
         >
           <>
             <LoadingSpinner />
-            <p>Loading 3D Model...</p>
-            <LoadingProgress pct={downloadProgress} />
+            <p>{t('projects.viewer.loading')}</p>
+            <LoadingProgress isLoaded={isLoaded} />
           </>
         </div>
       )}
@@ -507,23 +435,28 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
         <div className="mv-hint" aria-hidden="true">
           {isPhone ? (
             <>
-              <span>👆 Drag to rotate</span>
+              <span>👆 {t('projects.viewer.controls.rotate')}</span>
               <span className="mv-hint-divider">·</span>
-              <span>🤏 Pinch to zoom</span>
+              <span>🤏 {t('projects.viewer.controls.pinch_zoom')}</span>
             </>
           ) : (
             <>
-              <span>🖱 Drag to rotate</span>
+              <span>🖱 {t('projects.viewer.controls.rotate')}</span>
               <span className="mv-hint-divider">·</span>
-              <span>Scroll to zoom</span>
+              <span>{t('projects.viewer.controls.zoom')}</span>
               <span className="mv-hint-divider">·</span>
-              <span>Right-click to pan</span>
+              <span>{t('projects.viewer.controls.pan')}</span>
             </>
           )}
         </div>
       )}
 
-      <ErrorBoundary isMobile={isPhone} onRetry={handleReload}>
+      <ErrorBoundary
+        isMobile={isPhone}
+        onRetry={handleReload}
+        fallbackMessage="Failed to load the 3D viewer."
+        fallbackMobileMessage="Your device may not support 3D rendering."
+      >
         {remountKey !== null && (
           <Canvas
             key={remountKey}
@@ -578,6 +511,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelPath, modelScale, canvas
                 isInteracting={isInteracting}
                 cameraPosition={getCameraPosition()}
                 cameraView={cameraView}
+                onCameraStateChange={onCameraStateChange}
+                resetTrigger={resetTrigger}
               />
             </Suspense>
 

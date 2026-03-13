@@ -9,6 +9,7 @@ import { ServicePageCard } from '../../components/ui/Card/Card';
 import Button from '../../components/ui/Button';
 import { getAssetUrl } from '../../utils/assets';
 import ServiceDetail from './ServiceDetail';
+import SEO from '../../components/common/SEO';
 import {
   CubeIcon,
   CubesIcon,
@@ -16,11 +17,11 @@ import {
   AssemblyIcon
 } from '../../components/ui/Icons/ProjectIcons';
 
-const servicesBg = getAssetUrl('hero_background/servicesbg.png');
-const icon3D = getAssetUrl('icons/cube.png');
-const icon2D = getAssetUrl('icons/cubes.png');
-const inspectionIcon = getAssetUrl('icons/parts-inspection-icon.png');
-const assemblyIcon = getAssetUrl('icons/machine-assembly-icon.png');
+const servicesBg = getAssetUrl('hero_background/servicesbg.webp');
+const icon3D = getAssetUrl('icons/cube.webp');
+const icon2D = getAssetUrl('icons/cubes.webp');
+const inspectionIcon = getAssetUrl('icons/parts-inspection-icon.webp');
+const assemblyIcon = getAssetUrl('icons/machine-assembly-icon.webp');
 
 const video3D = getAssetUrl('service_detail_image/service_3d.mp4');
 const videoInspection = getAssetUrl('service_detail_image/service_parts_inspection.mp4');
@@ -41,7 +42,8 @@ interface Service {
 
 
 const Services: React.FC<ServicesPageProps> = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
   const navigate = useNavigate();
   const { id } = useParams();
   const servicesNavRef = useRef<HTMLDivElement>(null);
@@ -94,6 +96,10 @@ const Services: React.FC<ServicesPageProps> = () => {
 
   return (
     <div className="services-page">
+      <SEO 
+        title={tEn('nav.services')} 
+        description={tEn('home.services.subtitle')} 
+      />
       <section className="services-hero">
         <div className="services-hero-bg-custom" style={{ backgroundImage: `url(${servicesBg})` }}></div>
         <div className="services-hero-overlay"></div>

@@ -18,7 +18,10 @@ const en = {
     view_more: "VIEW DETAILS",
     chatbot: {
       teaser: "Hi there! I’m KMTI Assistant 👋 How can I help?"
-    }
+    },
+    brand_full: "Kusakabe & Maeno Tech., Inc.",
+    brand_abbr: "KMTI",
+    site_title: "Kusakabe & Maeno Tech., Inc."
   },
 
   // --- HOME PAGE ---
@@ -410,7 +413,7 @@ const en = {
       subtitle_interactive: "Interactive 3D Model Viewer",
       subtitle_standard: "3D Model Viewer",
       unavailable_title: "3D MODEL NOT AVAILABLE YET",
-      unavailable_text: "The 3d model for this machine is currently being prepared. Please check back soon!",
+      unavailable_text: "The 3D model for this machine is currently being prepared. Please check back soon!",
       camera: {
         isometric: "Isometric",
         isometric_title: "Isometric View",
@@ -430,8 +433,15 @@ const en = {
       controls: {
         rotate: "Drag to rotate",
         zoom: "Scroll to zoom",
-        pan: "Right-click to pan"
-      }
+        pan: "Right-click to pan",
+        pinch_zoom: "Pinch to zoom"
+      },
+      loading: "Loading 3D Model...",
+      back_to_projects: "Back to Projects",
+      try_again: "Try Again",
+      not_supported: "Your device may not support 3D rendering.",
+      init_failed: "Failed to initialize 3D renderer.",
+      loading_viewer: "Loading 3D Viewer..."
     }
   },
 
@@ -518,12 +528,12 @@ const en = {
     },
     apply: {
       title: "HOW TO APPLY",
-      subtitle: "Ready to start your engineering careeer with KMTI? Here's how to get in touch with us.",
+      subtitle: "Ready to start your engineering career with Kusakabe & Maeno Tech., Inc.? Here's how to get in touch with us.",
       visit: {
         title: "VISIT OUR OFFICE",
-        text: "Submit your resume in person at our KMTI office:",
+        text: "Submit your resume in person at our office:",
         address: {
-          line1: "Kusakabe Maeno Tech., Inc. Vital Industrial Prop. Inc.",
+          line1: "Kusakabe & Maeno Tech., Inc. Vital Industrial Prop. Inc.",
           line2: "Bldg B. Unit 2-B. First Cavite Industrial Estate Langkaan 1,  ",
           line3: "Dasmariñas City, Cavite (Near PLDT)"
         },
@@ -587,7 +597,7 @@ const en = {
       description: "Our AI assistant can answer common questions about our services. Machine Design, Assembly, and Parts Inspection, and connect directly to our support team for real assistance.",
       features: {
         f1: { title: "24/7 Instant Answers:", text: "Get quick responses to FAQs about our services, careers & application, and processes." },
-        f2: { title: "Smart & Helpful:", text: "Our AI is trained on KMTI's expertise to provide accurate and relevant information." },
+        f2: { title: "Smart & Helpful:", text: "Our AI is trained on Kusakabe & Maeno Tech's expertise to provide accurate and relevant information." },
         f3: { title: "Direct Team Connection:", text: "Need personalized help? Chat instantly with our team through Facebook Messenger or email." },
         f4: { title: "For Applicants:", text: "For job inquiries or application updates, please reach us through our Facebook page or connect with us on LinkedIn via our Career Page." }
       },
@@ -599,7 +609,9 @@ const en = {
       email: "Your Email",
       subject: "Subject",
       message: "Message",
-      send: "SEND MESSAGE"
+      send: "SEND MESSAGE",
+      invalid_email: "Please enter a valid email address.",
+      message_too_short: "Please provide a more detailed message (at least 10 characters)."
     },
     info: {
       title: "Contact Information",
@@ -628,7 +640,7 @@ const en = {
       careers: "Careers & Application",
       location: "Office Location",
       support: "Contact Support",
-      about: "About KMTI"
+      about: "About Us"
     },
     footer: {
       placeholder: "Type a message..."
@@ -637,11 +649,11 @@ const en = {
 
       // ... GENERAL FLOW ... 
       "greeting-response": {
-        text: "Hello! It's great to see you. How can I help you regarding KMTI?",
+        text: "Hello! It's great to see you. How can I help you regarding Kusakabe & Maeno Tech?",
         buttons: [
           { id: "gr1", text: "Our Services", action: "services" },
           { id: "gr2", text: "Careers & Application", action: "careers" },
-          { id: "gr3", text: "About KMTI", action: "about" }
+          { id: "gr3", text: "About Us", action: "about" }
         ]
       },
       "gratitude-response": {
@@ -666,13 +678,13 @@ const en = {
         ]
       },
       "initial-greeting": {
-        text: "Hi there I'm KMTI Assistant 👋 How can I help you today?",
+        text: "Hi there! I'm KMTI Assistant 👋 How can I help you today?",
         buttons: [
           { id: "ig1", text: "Our Services", action: "services" },
           { id: "ig2", text: "Careers & Application", action: "careers" },
           { id: "ig3", text: "Office Location", action: "location" },
           { id: "ig4", text: "Contact Support", action: "support" },
-          { id: "ig5", text: "About KMTI", action: "about" }
+          { id: "ig5", text: "About Us", action: "about" }
         ]
       },
       "facebook-teaser": {
@@ -688,7 +700,7 @@ const en = {
           { id: "mm2", text: "Careers & Application", action: "careers" },
           { id: "mm3", text: "Office Location", action: "location" },
           { id: "mm4", text: "Contact Support", action: "support" },
-          { id: "mm5", text: "About KMTI", action: "about" }
+          { id: "mm5", text: "About Us", action: "about" }
         ],
         actionButtons: [
           { id: "mma1", text: "👤 Talk to a human", action: "talk-to-human" },
@@ -702,7 +714,7 @@ const en = {
           { id: "so2", text: "Careers & Application", action: "careers" },
           { id: "so3", text: "Office Location", action: "location" },
           { id: "so4", text: "Contact Support", action: "supoort" },
-          { id: "so5", text: "About KMTI", action: "about" }
+          { id: "so5", text: "About Us", action: "about" }
         ],
         actionButtons: [
           { id: "so6", text: "👤 Talk to a Human", action: "talk-to-human" }
@@ -752,7 +764,7 @@ const en = {
 
       // ... CAREERS BRANCH ...
       careers: {
-        text: "Interested in joining KMTI? We're always looking for skilled and passionate individuals. What would you like to know?",
+        text: "Interested in joining Kusakabe & Maeno Tech? We're always looking for skilled and passionate individuals. What would you like to know?",
         buttons: [
           { id: "c1", text: "View Open Positions", action: "view-positions" },
           { id: "c2", text: "How to Apply", action: "how-to-apply" },

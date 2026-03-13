@@ -1,30 +1,81 @@
 /**
- * Image queue pause/resume controls.
- *
- * These are used by Model3DViewerModal to throttle image loads while a heavy
- * GLB file is downloading. The actual per-image queueing has been removed —
- * images now use native browser lazy-loading. Only the pause/resume hooks
- * remain so ModelViewer can signal "heavy load in progress" if needed in
- * future optimizations.
+ * Global Intersection Observer for efficient image lazy loading.
+ * Replaces the native `loading="lazy"` which can be overly eager on mobile.
  */
+
+import { useEffect, useState } from 'react';
+
+// Single global observer to save memory
+let observer: IntersectionObserver | null = null;
+const callbacks = new Map<Element, (isIntersecting: boolean) => void>();
+
+function getObserver() {
+    if (typeof window === 'undefined') return null;
+    
+    if (!observer) {
+        observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const callback = callbacks.get(entry.target);
+                    if (callback && entry.isIntersecting) {
+                        callback(true);
+                        // Once intersected, we aggressively stop observing
+                        observer?.unobserve(entry.target);
+                        callbacks.delete(entry.target);
+                    }
+                });
+            },
+            {
+                root: null,
+                rootMargin: '200px', // Load images slightly before they enter the screen
+                threshold: 0.01
+            }
+        );
+    }
+    return observer;
+}
+
+export function useIntersectionObserver(
+    ref: React.RefObject<HTMLElement | null>,
+    isEager: boolean
+) {
+    const [isInView, setIsInView] = useState(isEager);
+
+    useEffect(() => {
+        if (isEager || isInView) return;
+
+        const target = ref.current;
+        if (!target) return;
+
+        const obs = getObserver();
+        if (obs) {
+            callbacks.set(target, setIsInView);
+            obs.observe(target);
+        }
+
+        return () => {
+            if (target && obs) {
+                obs.unobserve(target);
+                callbacks.delete(target);
+            }
+        };
+    }, [ref, isEager, isInView]);
+
+    return isInView;
+}
+
+// ---------------------------------------------------------
+// Legacy pause/resume compatibility for 3D Viewer
+// ---------------------------------------------------------
 
 let paused = false;
 
-/**
- * Pause image loading signals (currently a no-op placeholder).
- * Called by Model3DViewerModal when a 3D model starts loading.
- */
 export function pauseImageQueue() {
     paused = true;
 }
 
-/**
- * Resume image loading signals.
- * Called by Model3DViewerModal when a 3D model finishes loading.
- */
 export function resumeImageQueue() {
     paused = false;
 }
 
-// Keep paused accessible for potential future use
 export { paused };
