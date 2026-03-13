@@ -797,14 +797,6 @@ const jp = {
         ]
       },
 
-      // working schedule
-      "working-schedule": {
-        text: "当社の勤務スケジュールは圧縮勤務制を採用しております：\n勤務日：月曜日から金曜日\n勤務時間：\n• 月曜日から木曜日：午前7時～午後6時\n• 金曜日：午前7時～午後4時 ",
-        actionButtons: [
-          { id: "ws1", text: "今すぐ応募する", action: "apply" }
-        ]
-      },
-
       // contact HR
       "contact-hr": {
         text: "当社の人事チームへは下記よりご連絡いただけます：\n💌 info@kmti.com.ph\n☎️ (046)-413-4509\n💬 より迅速な対応をご希望の場合は、Facebook Messengerでメッセージをお送りください。",
@@ -815,6 +807,18 @@ const jp = {
         ]
       },
 
+
+      // Operating Hours
+      "working-schedule": {
+        copyable: true,
+        text: "当社の営業時間は以下の通りです：\n\n🕐 営業時間:\n• 月曜日～木曜日: 午前7時～午後6時\n• 金曜日: 午前7時～午後4時\n\n📍 所在地:\nVital Industrial Prop. Inc.\nBldg. B, Unit 2-B\nFirst Cavite Industrial Estate Langkaan 1\nDasmariñas City, Cavite 4126\nPhilippines\n\n営業時間内にお手伝いさせていただきます！",
+        actionButtons: [
+          { id: "q5-1", text: "📍 Googleマップで開く", action: "maps" },
+          { id: "q5-2", text: "📞 電話 (046) 413-4509", action: "call" },
+          { id: "q5-3", text: "メインメニューに戻る", action: "back", navigateAction: "main-menu" }
+        ]
+      },
+      
       // benefits
       "benefits": {
         text: "KMTIは競争力のある報酬と福利厚生を提供しています。内容は以下の通りです：\n• 競争力のある給与\n• 日本での研修機会\n• キャリアの成長と発展\n• 圧縮勤務スケジュール（月～金）\n• 専門能力開発プログラム",
@@ -856,7 +860,7 @@ const jp = {
 
       // OJT for Students
       "q8-ojt-student": {
-        text: "素晴らしい質問です！✨ はい、KMTIは学生向けのOJT（オン・ザ・ジョブ・トレーニング）を積極的に受け入れています！\n\n🎓 当社のOJTプログラムには以下が含まれます：\n• エンジニアリングOJT - 3Dモデリングおよび2D詳細設計\n• IT OJT - カスタムアプリケーションおよびソフトウェアソリューション\n\n📚 学べること：\n• 業界標準ツール（iCAD等）\n• 実践的なエンジニアリング実務\n• 実際のプロジェクトでの実践的な経験\n• 経験豊かなプロフェッショナルからのメンタリング\n\nOJTの具体的な要件と応募プロセスについては、当社の人事チームに直接お問い合わせください！",
+        text: "素晴らしい質問です！✨ はい、KMTIは学生向けのOJT（オン・ザ・ジョブ・トレーニング）を積極的に受け入れています！\n\n🎓 当社のOJTプログラムには以下が含まれます：\n• エンジニアリングOJT - 3Dモデリングおよび2D詳細設計\n• IT OJT - カスタムアプリケーション、ソフトウェアソリューション、ウェブ開発\n\n📚 学べること：\n• エンジニアリング：業界標準ツール（iCAD等）、実践的なエンジニアリング実務、実際のプロジェクトでの実践的な経験。\n• IT：ウェブ開発（React, TypeScript）、ソフトウェア開発（Python, C++）、データベース管理、ネットワーク管理。\n• すべての実習生は、経験豊富な専門家から指導を受けられます。\n\nOJTの具体的な要件と応募プロセスについては、当社の人事チームに直接お問い合わせください！",
         actionButtons: [
           { id: "q8-1", text: "📞 OJT詳細について人事部に連絡", action: "back", navigateAction: "contact-hr" },
           { id: "q8-2", text: "📍 当社事業所を訪問", action: "maps" },
@@ -866,10 +870,10 @@ const jp = {
 
       // CAD Operator Skills
       "q9-cad-operator-skills": {
-        text: "当社のCADオペレーターのポジションに大きな関心をお持ちですね！以下が必要な主要スキルです：\n\n🔧 CADオペレーター向けの必須スキル：\n• CADソフトウェア（iCAD、AutoCAD、Solidworks）の習得\n• 3Dモデリングと可視化\n• 技術図面と青写真の解釈\n• 細部への注意と正確性\n• 問題解決能力\n• エンジニアリング基準の知識\n\n💼 当社の採用職種とスキル要件：\n• CADオペレーター：CADソフトウェア、3Dモデリング、技術図面\n• エンジニアリングスタッフ：CAD設計、2D-3D変換、問題解決\n• エンジニアリングOJT：学習意欲、基本的なCAD知識\n• 事務スタッフ：MS Office、組織力、コミュニケーション\n\nあなたのスキルを活かして、当社のチームに参加しませんか？",
+        text: "CADオペレーターのポジションにご興味をお持ちいただきありがとうございます！必要な主要スキルは以下の通りです：\n\n🔧 CADオペレーターの必須スキル：\n• CADソフトウェア（iCAD、AutoCAD、Solidworks）の習熟\n• 3Dモデリングと可視化\n• 技術図面と設計図の解釈\n• 細部への注意と精度\n• 問題解決能力\n• エンジニアリング基準の知識\n\n💼 必須スキル：\n• CAD設計とモデリング\n• 2Dから3Dへの変換の専門知識\n• 技術図面の解釈\n• 細部への注意と精度\n• エンジニアリング基準とベストプラクティスの知識\n• チームでの協業能力\n\n✅ あれば尚可：\n• 機械または製造設計の経験\n• 品質保証プロセスの知識\n• 過去のOJTまたはインターンシップ経験\n• 日本語能力（ボーナス）\n\n💡 当社が提供するもの：\n• 競争力のある給与\n• スキル向上のための日本での研修\n• キャリア成長の機会\n• 経験豊富なエンジニアによる指導",
         actionButtons: [
           { id: "q9-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
-          { id: "q9-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q9-2", text: "🔎 全ての職種を見る", action: "back", navigateAction: "view-positions" },
           { id: "q9-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
         ]
       },
@@ -915,6 +919,16 @@ const jp = {
         ]
       },
 
+      // Engineering OJT
+      "q13-ojt-engineering": {
+        text: "エンジニアリングOJT（オン・ザ・ジョブ・トレーニング）プログラムにご興味ですか？以下がご応募条件です：\n\n🎓 エンジニアリングOJT実習生 - 必須要件：\n\n📋 必要な資格：\n• 工学系・技術系プログラムに在学中、または最近卒業\n• 高卒以上、または現在高等教育課程に在学中\n• 工学図面またはCAD概念の基本理解\n• 強い労働倫理と学習継続への取り組み\n\n💼 必須スキル：\n• 基本的なCAD知識（強い学習意欲があれば可）\n• 技術図面の読み方\n• 問題解決能力\n• 細部への注意と精密性\n• チームコラボレーション能力\n• 優れたコミュニケーション能力\n• 基本的な数学と空間認識能力\n\n✅ 重視する点：\n• 工学・製造への情熱\n• 実務的な技術経験を得たいという強い意思\n• 自発性と自主性\n• 信頼性と定時出勤\n• 尊敬と協力的な態度\n• 技術的指示を理解し実践できる能力\n• 精密設計・製造への興味\n\n📚 提供する研修：\n• 業界標準CADツール研修（iCAD、AutoCAD、Solidworks等）\n• 2D詳細設計技法と技術図面\n• 3Dモデリング・可視化\n• 部品検査・品質管理方法\n• 機械組立の基礎\n• 実プロジェクト経験\n• 経験豊かなエンジニアによるメンタリング\n• 精密工学における実務的スキル開発\n\n💡 技術分野重点：\n• CAD設計とモデリング\n• 2D-3D変換プロセス\n• 技術設計図の読み方・理解\n• 部品検査と検証\n• 製造プロセス\n\n⏱️ 期間：通常3～6ヶ月（個人の進捗とプロジェクト要件による）",
+        actionButtons: [
+          { id: "q13eng-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q13eng-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q13eng-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
       // OJT Requirements
       "q14-ojt-requirements": {
         text: "OJT（オン・ザ・ジョブ・トレーニング）プログラムにご興味ですか？以下がご応募条件です：\n\n🎓 OJT訓練生 - 必須要件：\n\n📋 必要な資格：\n• 現在工学系プログラムに在学中、または最近卒業\n• 高卒以上、または現在高等教育課程に在学中\n• 学習意欲が高い\n• 強い職業倫理と責任感\n\n💼 必須スキル：\n• 基本的なCAD知識（習得意思があれば可）\n• 問題解決能力\n• 細部への注意\n• チームコラボレーション能力\n• 構造的で専門的な環境での作業\n• 良好なコミュニケーションスキル\n\n✅ 重視する点：\n• エンジニアリング・技術への情熱\n• 実務的経験を得たいという強い意思\n• 自発性と自主性\n• 信頼性と時間厳守\n• 敬意あるで協力的な態度\n• 指示に従う能力\n\n📚 提供する研修：\n• 業界標準CADツール研修\n• 3Dモデリング・2D詳細設計技法\n• 実プロジェクト経験\n• 経験豊かな専門家によるメンタリング\n• 実務的スキル開発\n\n💡 期間：通常3～6ヶ月（個人の進捗による）",
@@ -942,6 +956,16 @@ const jp = {
           { id: "q16-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
           { id: "q16-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
           { id: "q16-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // IT Skills & OJT
+      "q17-ojt-it-requirements": {
+        text: "IT OJT（オンザジョブトレーニング）プログラムにご興味ですか？以下がご応募条件です：\n\n💻 IT OJT実習生 - 必須要件：\n\n📋 必要な資格：\n• IT/情報科学/コンピュータサイエンス専攻の在学生または卒業生\n• 高卒以上または短大・大学在学中\n• プログラミングの基本概念の理解または学ぶ意欲\n• 強い労働倫理と継続的な取り組み\n\n💼 必須スキル：\n• プログラミングの基礎知識（Python、Java、C++など）\n• 問題解決能力\n• 論理的思考と計算スキル\n• 細部への注意\n• チームコラボレーションスキル\n• 優れたコミュニケーション能力\n• データベースやネットワークの基礎知識（優遇）\n\n✅ 提供するもの：\n• ハンズオンのIT研修と実務経験\n• ソフトウェア開発、データベース管理、システム管理の研修\n• 経験豊富なIT専門家からのメンタリング\n• 実際のプロジェクト経験\n• 業界標準のツールと技術の習得\n• IT業界でのキャリアパス\n\n💡 技術分野：\n• プログラミングとソフトウェア開発\n• データベース管理（SQL、データベース）\n• ネットワーク管理とシステムセキュリティ\n• ウェブ開発\n• ITサポートとトラブルシューティング\n\n⏱️ 期間：通常3～6ヶ月（個人の進捗とプロジェクト要件による）\n\n🎯 重視する点：\n• 技術への情熱と学習意欲\n• 自発性と自主性\n• 信頼性と定時出勤\n• 尊敬と協力的な態度\n• 技術的指示を理解し実践できる能力\n• 継続的な学習マインドセット",
+        actionButtons: [
+          { id: "q17-1", text: "📝 今すぐ応募", action: "back", navigateAction: "how-to-apply" },
+          { id: "q17-2", text: "🔎 全職種を見る", action: "back", navigateAction: "view-positions" },
+          { id: "q17-3", text: "採用情報に戻る", action: "back", navigateAction: "careers" }
         ]
       },
 
@@ -1125,6 +1149,21 @@ const jp = {
           { id: "q23-3", text: "キャリアに戻る", action: "back", navigateAction: "careers" }
         ]
       }
+    },
+    qa_modal: {
+      title: "あなたの質問と回答",
+      close: "閉じる",
+      question_prefix: "質問",
+      answer_prefix: "回答",
+      show_more: "もっと見る",
+      show_less: "少なく表示",
+      no_questions: "まだ質問はありません。会話を始めましょう！",
+      processing: "処理中..."
+    },
+    personality_modes: {
+      formal: "フォーマル",
+      casual: "カジュアル",
+      motivational: "モチベーション"
     }
   },
 

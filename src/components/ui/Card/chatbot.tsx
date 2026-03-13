@@ -24,7 +24,8 @@ interface Message {
   content?: {
     text?: string;
     buttons?: ButtonOption[];
-    actionButtons?: ActionButton[];
+    actionButtons?: ActionButton[]
+    copyable?: boolean;
   };
   timestamp: Date;
 }
@@ -45,6 +46,109 @@ interface ActionButton {
   navigateAction?: string;
 }
 
+// New component for each Q&A item to fix the hook error
+const QAItem: React.FC<{ qa: { user: string; bot: string; }; index: number }> = ({ qa, index }) => {
+  const { t } = useTranslation();
+  const [expanded, setExpanded] = React.useState(false);
+  const isLongAnswer = qa.bot.length > 200;
+
+  return (
+    <div className="chatbot-qa-item">
+      <div className="chatbot-qa-question">
+        <strong>{t('chatbot_card.qa_modal.question_prefix')}{index + 1}:</strong> {qa.user}
+      </div>
+      <div className="chatbot-qa-answer">
+        <strong>{t('chatbot_card.qa_modal.answer_prefix')}:</strong>{' '}
+        {isLongAnswer && !expanded ? (
+          <>
+            {qa.bot.substring(0, 200)}...
+            <button
+              className="chatbot-qa-expand-btn"
+              onClick={() => setExpanded(true)}
+            >
+              {t('chatbot_card.qa_modal.show_more')}
+            </button>
+          </>
+        ) : (
+          <>
+            {qa.bot}
+            {isLongAnswer && expanded && (
+              <button
+                className="chatbot-qa-expand-btn"
+                onClick={() => setExpanded(false)}
+              >
+                {t('chatbot_card.qa_modal.show_less')}
+              </button>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// New component for each message bubble to manage its own state (like 'copied') and clean up the main component
+const MessageBubble: React.FC<{
+  msg: Message;
+  profileImage: string;
+  onButtonClick: (action: string, text: string) => void;
+  onActionButtonClick: (action: ActionButton) => void;
+}> = ({ msg, profileImage, onButtonClick, onActionButtonClick }) => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = () => {
+    if (msg.content?.text) {
+      navigator.clipboard.writeText(msg.content.text);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    }
+  };
+
+  return (
+    <div className={`chatbot-card-message-bubble ${msg.type === 'user' ? 'chatbot-card-message-user' : ''}`}>
+      {msg.type !== 'user' && (
+        <div className="chatbot-card-message-icon-left">
+          <LazyImage src={profileImage} alt="Bot" className="chatbot-card-message-bot-icon" />
+        </div>
+      )}
+      <div className={`chatbot-card-message-content ${msg.type === 'user' ? 'chatbot-card-message-content-user' : ''}`}>
+        {msg.type === 'typing' ? (
+          <div className="chatbot-card-typing-indicator"><span></span><span></span><span></span></div>
+        ) : (
+          <div className={`chatbot-card-message-text-content ${msg.type === 'user' ? 'chatbot-card-message-text-content-user' : ''}`}>
+            {msg.content?.text && (
+              <p>{msg.content.text}</p>
+            )}
+            {msg.content?.copyable && (
+              <button onClick={handleCopy} className="chatbot-copy-btn">
+                {isCopied ? '✅ Copied' : '📋 Copy'}
+              </button>
+            )}
+            {msg.content?.actionButtons && msg.content.actionButtons.length > 0 && (
+              <div className="chatbot-card-action-buttons">
+                {msg.content.actionButtons.map((btn) => (
+                  <button key={btn.id} className="chatbot-card-action-button chatbot-card-apply-button" onClick={() => onActionButtonClick(btn)}>
+                    <span className="chatbot-card-action-button-text">{btn.text}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+            {msg.content?.buttons && msg.content.buttons.length > 0 && (
+              <div className="chatbot-card-menu-buttons">
+                {msg.content.buttons.map((btn) => (
+                  <button key={btn.id} className="chatbot-card-menu-button chatbot-card-menu-button-clickable" onClick={() => onButtonClick(btn.action, btn.text)}>
+                    {btn.icon}<span className="chatbot-card-menu-button-text">{btn.text}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const ChatbotCard: React.FC<ChatbotCardProps> = ({
   profileImage,
   onFacebookClick,
@@ -58,11 +162,44 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
   const [messages, setMessages] = useState<Message[]>([]);
   const [isInitializing, setIsInitializing] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [personalityMode, setPersonalityMode] = useState<'formal' | 'casual' | 'motivational'>('casual');
+  const [questionCount, setQuestionCount] = useState(0);
+  const [showAllQA, setShowAllQA] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const initializationRef = useRef(false);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
   const hasInitializedRef = useRef(false);
+  const sessionStartTimeRef = useRef<Date>(new Date());
+
+  const logUnmatchedQuery = (input: string) => {
+    const existingLogs = JSON.parse(localStorage.getItem('chatbot-unmatched') || '[]');
+    existingLogs.push({ 
+      query: input, 
+      timestamp: new Date().toISOString(),
+      language: i18n.language 
+    });
+    localStorage.setItem('chatbot-unmatched', JSON.stringify(existingLogs));
+  };
+
+  const getPersonalityModifiedText = (text: string): string => {
+    if (personalityMode === 'formal') {
+      // This regex removes a wide range of emojis and symbols to maintain a formal tone.
+      const emojiRegex = /[😄🎉👋💼🔧📋✅💡🌟😂✨🎓📚📞📍🔙🔄👤✉️💬🔎🚀💰🏥💵🍽️🌏📈👥💡⏱️📅🔵💪😊🏛️1️⃣2️⃣3️⃣]/gu;
+      return text.replace(emojiRegex, '').replace(/  +/g, ' ').trim();
+    }
+    if (personalityMode === 'motivational') {
+      // Use a pool of translatable motivational quotes for variety.
+      const motivationalQuotes = t('chatbot_card.motivational_quotes', { returnObjects: true, defaultValue: [] }) as string[];
+      if (motivationalQuotes && motivationalQuotes.length > 0) {
+        const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+        return text + `\n\n${randomQuote}`;
+      }
+      // Fallback if quotes are not available for some reason.
+      return text + '\n\n✨ You\'ve got this! Keep exploring to find your perfect fit! 💪';
+    }
+    return text;
+  };
 
   // --- Reset Functionality ---
   useEffect(() => {
@@ -73,6 +210,9 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       hasInitializedRef.current = false;
       setMessages([]);
       setInputValue('');
+      setQuestionCount(0);
+      setShowAllQA(false);
+      sessionStartTimeRef.current = new Date();
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setIsInitializing(true);
@@ -135,15 +275,27 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
 
   // --- Keyword Matching (Word-Based Scoring) ---
   const matchInputToAction = (input: string): string | null => {
-    const normalized = input.toLowerCase().trim();
+    const normalizedInput = input.toLowerCase().trim();
+
+    // A set of common "stop words" to ignore during matching.
+    // This helps focus on the important parts of the user's query.
+    const stopWords = new Set([
+      'a', 'an', 'the', 'is', 'are', 'was', 'were', 'in', 'on', 'at', 'for', 'to', 'of', 'i', 'you', 'he', 'she', 'it', 'we', 'they',
+      'what', 'where', 'when', 'why', 'how', 'do', 'does', 'did', 'and', 'or', 'but', 'if', 'me', 'my', 'your', 'our', 'their',
+      'about', 'with', 'can', 'could', 'please', 'tell', 'give', 'show',
+      // Japanese stop words
+      'か', 'は', 'を', 'に', 'が', 'と', 'も', 'の', 'で', 'です', 'ます', 'ください', 'について', '教えて', '知りたい'
+    ]);
+
     const keywordMap: { [key: string]: string } = {
       // Services
       'services': 'services', 'service': 'services', 'our services': 'services', 'サービス': 'services', 'お客様向けサービス': 'services',
+      'tube mill': 'services', 'pipe mill': 'services', 'チューブミル': 'services', 'パイプミル': 'services',
       '3d modeling': '3d-modeling', '3d': '3d-modeling', 'modeling': '3d-modeling', '3dモデリング': '3d-modeling', '三次元モデリング': '3d-modeling',
       '2d detailing': '2d-detailing', '2d': '2d-detailing', 'detailing': '2d-detailing', '2d詳細設計': '2d-detailing', '二次元詳細設計': '2d-detailing',
       'parts inspection': 'parts-inspection', 'inspection': 'parts-inspection', 'parts': 'parts-inspection', '部品検査': 'parts-inspection', 'パーツ検査': 'parts-inspection',
       'machine assembly': 'machine-assembly', 'assembly': 'machine-assembly', 'machine': 'machine-assembly', '機械組立': 'machine-assembly', 'マシンアセンブリー': 'machine-assembly',
-      'tube mill': 'services', 'pipe mill': 'services', 'チューブミル': 'services', 'パイプミル': 'services',
+      
 
       // Greetings & Etiquette
       'hi': 'greeting-response', 'hello': 'greeting-response', 'hey': 'greeting-response', 'greetings': 'greeting-response',
@@ -160,15 +312,16 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
 
       // ======== CAREERS / APPLICANT QUESTIONS ========
       // General Career Questions
-      'careers': 'careers', 'career': 'careers', 'job': 'careers', 'jobs': 'careers', '採用': 'careers', '求人': 'careers','join': 'careers', 'joins': 'careers',
+      'careers': 'careers', 'career': 'careers', 'job': 'careers', 'jobs': 'careers','apply': 'careers', '採用': 'careers', '求人': 'careers','join': 'careers', 'joins': 'careers',
       'キャリア': 'careers', 'キャリア採用': 'careers', '職務': 'careers', '仕事': 'careers', '就職': 'careers',
       'hire': 'careers', 'hiring': 'careers', 'recruit': 'careers', 'recruitment': 'careers', '採用情報': 'careers',
       '雇用': 'careers', '採用活動': 'careers', '採用進行中': 'careers', 'リクルート': 'careers',
+      'work at kmti': 'careers', 'work with you': 'careers',
       'vacancy': 'careers', 'vacancies': 'careers', 'opening': 'careers', 'openings': 'careers', '空きポジション': 'careers',
       '求人情報': 'careers', '空いているポジション': 'careers', '募集中': 'careers', 'ポジション募集': 'careers',
       
       // Application Process
-      'apply': 'how-to-apply', 'apply now': 'how-to-apply', 'apply online': 'how-to-apply', 'application process': 'how-to-apply', '応募方法': 'how-to-apply',
+      'how to apply?': 'how-to-apply', 'apply now': 'how-to-apply', 'apply online': 'how-to-apply', 'application process': 'how-to-apply', '応募方法': 'how-to-apply',
       '応募手続き': 'how-to-apply', '申請方法': 'how-to-apply', 'オンライン申請': 'how-to-apply', 'どのように応募するか': 'how-to-apply',
       'submit resume': 'how-to-apply', 'submit application': 'how-to-apply', 'application submission': 'how-to-apply',
       'どこに提出': 'how-to-apply', '履歴書提出': 'how-to-apply', '申請提出': 'how-to-apply', '応募提出': 'how-to-apply',
@@ -192,10 +345,11 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'ポジション': 'q3-available-positions', 'ポジション説明': 'q3-available-positions', '職務説明': 'q3-available-positions', '役職': 'q3-available-positions',
       'engineer position': 'q3-available-positions', 'cad position': 'q3-available-positions', 'admin position': 'q3-available-positions',
       'エンジニア職': 'q3-available-positions', 'cadポジション': 'q3-available-positions', '管理職': 'q3-available-positions',
-      'engineering job': 'q3-available-positions', 'design job': 'q3-available-positions',
+      'engineering job': 'q13-engineering-staff-requirements', 'design job': 'q13-engineering-staff-requirements',
       'デザイン職': 'q3-available-positions',
       'available job positions': 'q3-available-positions', 'current job positions': 'q3-available-positions', 'job openings': 'q3-available-positions', 'positions hiring': 'q3-available-positions', 'jobs available': 'q3-available-positions', 'openings available': 'q3-available-positions',
       '利用可能なポジションは何ですか': 'q3-available-positions', '現在募集中のポジション': 'q3-available-positions', 'どのポジションが採用中': 'q3-available-positions',
+      'what jobs are available': 'q3-available-positions', 'what positions are open': 'q3-available-positions',
       'interested in specific field': 'q3-available-positions', 'interested in field': 'q3-available-positions', 'openings in field': 'q3-available-positions', 'positions in field': 'q3-available-positions', 'any available slots': 'q3-available-positions', 'available slots': 'q3-available-positions', 'any opening in': 'q3-available-positions',
       '特定分野に興味': 'q3-available-positions', '分野のポジション': 'q3-available-positions', 'スロット': 'q3-available-positions',
       
@@ -226,9 +380,30 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'admin skill requirements': 'q16-admin-staff-requirements', 'admin skills requirement': 'q16-admin-staff-requirements', 'admin skill needed': 'q16-admin-staff-requirements', 'admin required skill': 'q16-admin-staff-requirements', 'admin req': 'q16-admin-staff-requirements',
       '管理スキル要件': 'q16-admin-staff-requirements', '管理に必要なスキル': 'q16-admin-staff-requirements',
  
+      // IT Skills & OJT
+      'it': 'q17-ojt-it-requirements', 'information technology': 'q17-ojt-it-requirements', 'it skills': 'q17-ojt-it-requirements', 'it skill': 'q17-ojt-it-requirements', 'it requirement': 'q17-ojt-it-requirements', 'it requirements': 'q17-ojt-it-requirements', 'skills needed for it': 'q17-ojt-it-requirements',
+      'IT': 'q17-ojt-it-requirements', 'IT スキル': 'q17-ojt-it-requirements', 'IT 技術': 'q17-ojt-it-requirements', 'IT要件': 'q17-ojt-it-requirements', '情報技術': 'q17-ojt-it-requirements',
+      'it ojt': 'q17-ojt-it-requirements', 'it training': 'q17-ojt-it-requirements', 'it internship': 'q17-ojt-it-requirements', 'it student training': 'q17-ojt-it-requirements',
+      'IT OJT': 'q17-ojt-it-requirements', 'IT トレーニング': 'q17-ojt-it-requirements', 'IT 実習': 'q17-ojt-it-requirements',
+      'programming': 'q17-ojt-it-requirements', 'coding': 'q17-ojt-it-requirements', 'software development': 'q17-ojt-it-requirements', 'web development': 'q17-ojt-it-requirements',
+      'プログラミング': 'q17-ojt-it-requirements', 'コーディング': 'q17-ojt-it-requirements', 'ソフトウェア開発': 'q17-ojt-it-requirements', 'ウェブ開発': 'q17-ojt-it-requirements',
+      'database': 'q17-ojt-it-requirements', 'network': 'q17-ojt-it-requirements', 'system administration': 'q17-ojt-it-requirements', 'system admin': 'q17-ojt-it-requirements',
+      'データベース': 'q17-ojt-it-requirements', 'ネットワーク': 'q17-ojt-it-requirements', 'システム管理': 'q17-ojt-it-requirements', 'システム': 'q17-ojt-it-requirements',
+      'it staff': 'q17-ojt-it-requirements', 'it staff requirement': 'q17-ojt-it-requirements', 'it staff skills': 'q17-ojt-it-requirements', 'it technician': 'q17-ojt-it-requirements',
+      'IT スタッフ': 'q17-ojt-it-requirements', 'IT 技術者': 'q17-ojt-it-requirements', 'IT サポート': 'q17-ojt-it-requirements',
+      'it skill needed': 'q17-ojt-it-requirements', 'it skills required': 'q17-ojt-it-requirements', 'it qualifications': 'q17-ojt-it-requirements',
+      'IT に必要なスキル': 'q17-ojt-it-requirements', 'IT スキル要件': 'q17-ojt-it-requirements', 'IT に必要な資格': 'q17-ojt-it-requirements',
+
+
+      // Engineering OJT & Skills
+      'engineering ojt': 'q13-ojt-engineering', 'engineering training': 'q13-ojt-engineering', 'engineering internship': 'q13-ojt-engineering', 'engineering on-the-job training': 'q13-ojt-engineering', 'engineer trainee': 'q13-ojt-engineering',
+      'エンジニアOJT': 'q13-ojt-engineering', 'エンジニア実習': 'q13-ojt-engineering', '工学OJT': 'q13-ojt-engineering', '工学実習': 'q13-ojt-engineering', 'エンジニアトレーニング': 'q13-ojt-engineering',
+      'engineering ojt program': 'q13-ojt-engineering', 'engineering student training': 'q13-ojt-engineering', 'accepted engineering ojt': 'q13-ojt-engineering', 'accept engineering ojt': 'q13-ojt-engineering', 'accepting engineering ojt': 'q13-ojt-engineering', 'エンジニア学生訓練': 'q13-ojt-engineering', 'エンジニアオンザジョブトレーニング': 'q13-ojt-engineering', 'エンジニアojt要件': 'q13-ojt-engineering', 'エンジニアojt学生': 'q13-ojt-engineering',
+      'エンジニアojt受け入れ': 'q13-ojt-engineering', 'エンジニア学生実習': 'q13-ojt-engineering',
       
+      // Experience & Fresh Graduates
       'non work experiences': 'q6-non-work-experience', 'non work experience': 'q6-non-work-experience', 'no experience': 'q6-non-work-experience', 'fresh graduate': 'q6-non-work-experience', 'accept fresh grad': 'q6-non-work-experience', 'hire graduate': 'q6-non-work-experience', '未経験': 'q6-non-work-experience', '経験なし': 'q6-non-work-experience',
-      '職務経歴なし': 'q6-non-work-experience', 'キャリアなし': 'q6-non-work-experience', '経験不問': 'q6-non-work-experience',
+      '職務経歴なし': 'q6-non-work-experience', 'キャリアなし': 'q6-non-work-experience', '経験不問': 'q6-non-work-experience', 'experience needed': 'q6-non-work-experience',
       'entry level': 'q6-non-work-experience', 'beginner friendly': 'q6-non-work-experience', 'no prior experience': 'q6-non-work-experience',
       'エントリーレベル': 'q6-non-work-experience', '初心者向け': 'q6-non-work-experience', '以前の経験なし': 'q6-non-work-experience',
       'fresh grad': 'q10-fresh-grad-acceptance', 'new graduate': 'q10-fresh-grad-acceptance', 'graduate applicant': 'q10-fresh-grad-acceptance', 'fresh graduate hiring': 'q10-fresh-grad-acceptance', 'accept new grad': 'q10-fresh-grad-acceptance', '新卒': 'q10-fresh-grad-acceptance', 'フレッシュグラデュエート': 'q10-fresh-grad-acceptance', '新卒者': 'q10-fresh-grad-acceptance', '大学卒業': 'q10-fresh-grad-acceptance', '新卒採用': 'q10-fresh-grad-acceptance',
@@ -237,9 +412,9 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       // Work Schedule & Hours
       'work schedule': 'working-schedule', 'working schedule': 'working-schedule', 'hours': 'working-schedule', 'office hours': 'working-schedule', 'office time': 'working-schedule', '勤務スケジュール': 'working-schedule',
       '勤務時間': 'working-schedule', '作業時間': 'working-schedule', 'シフト': 'working-schedule',
-      'work hours': 'working-schedule', 'opening hours': 'q5-operating-hours', '営業時間': 'q5-operating-hours',
-      'operating hours': 'q5-operating-hours', 'business hours': 'q5-operating-hours', 'いつ開いて': 'q5-operating-hours',
-      'いつ営業': 'q5-operating-hours', '営業時間は': 'q5-operating-hours', '何時に開く': 'q5-operating-hours',
+      'work hours': 'working-schedule', 'opening hours': 'working-schedule', '営業時間': 'working-schedule',
+      'operating hours': 'working-schedule', 'business hours': 'working-schedule', 'いつ開いて': 'working-schedule',
+      'いつ営業': 'working-schedule', '営業時間は': 'working-schedule', '何時に開く': 'working-schedule',
       'work timing': 'working-schedule', 'starting time': 'working-schedule', 'ending time': 'working-schedule', 'shift': 'working-schedule',
       '開始時間': 'working-schedule', '終了時間': 'working-schedule',
       'flexible schedule': 'working-schedule', 'part time': 'working-schedule', 'full time': 'working-schedule', 'remote work': 'working-schedule',
@@ -248,7 +423,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'ハイブリッド': 'q12-work-setup', '在宅勤務': 'q12-work-setup', 'リモート': 'q12-work-setup', 'ハイブリッド設定': 'q12-work-setup', 'オフィス': 'q12-work-setup', 'オンサイト': 'q12-work-setup', '在宅勤務は利用可能': 'q12-work-setup',
       
       // Compensation & Benefits
-      'benefits': 'q21-detailed-benefits', 'compensation': 'q21-detailed-benefits', 'pay': 'q21-detailed-benefits', '福利厚生': 'q21-detailed-benefits',
+      'benefits': 'q21-detailed-benefits', 'compensation': 'q21-detailed-benefits', 'pay': 'q21-detailed-benefits', 'salary': 'q21-detailed-benefits', '福利厚生': 'q21-detailed-benefits',
       'メリット': 'q21-detailed-benefits', '給与': 'q21-detailed-benefits', '報酬': 'q21-detailed-benefits', '給与パッケージ': 'q21-detailed-benefits',
       'salary range': 'q21-detailed-benefits', 'wage': 'q21-detailed-benefits', 'paycheck': 'q21-detailed-benefits',
       '給与範囲': 'q21-detailed-benefits', '賃金': 'q21-detailed-benefits',
@@ -266,15 +441,19 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       '新入社員トレーニング': 'q11-new-employee-training', 'オンボーディング': 'q11-new-employee-training', '導入研修': 'q11-new-employee-training',
       'skills training': 'q11-new-employee-training', 'professional development': 'q11-new-employee-training', 'learning opportunity': 'q11-new-employee-training',
       'スキルトレーニング': 'q11-new-employee-training', 'プロフェッショナル開発': 'q11-new-employee-training', '学習機会': 'q11-new-employee-training',
-      'intern': 'training', 'internship': 'training', 'ojt training': 'q8-ojt-student', 'on-the-job training': 'q8-ojt-student', 'trainee': 'training',
+      'intern': 'training', 'internship': 'training',
+      
+      'ojt training': 'q8-ojt-student', 'on-the-job training': 'q8-ojt-student', 'trainee': 'training',
       'インターン': 'training', 'インターンシップ': 'training', '実習': 'training', '訓練生': 'training',
       'ojt program': 'q8-ojt-student', 'student training': 'q8-ojt-student','accepted ojt': 'q8-ojt-student', 'accept ojt': 'q8-ojt-student','accepting ojt': 'q8-ojt-student', '学生訓練': 'q8-ojt-student', 'オンザジョブトレーニング': 'q8-ojt-student', 'ojt要件': 'q8-ojt-student', 'ojt学生': 'q8-ojt-student',
       'ojt受け入れ': 'q8-ojt-student', '学生実習': 'q8-ojt-student',
+
+
       'japan training': 'q11-new-employee-training', 'overseas training': 'q11-new-employee-training',
       '日本研修': 'q11-new-employee-training', '海外研修': 'q11-new-employee-training', '短期研修': 'q11-new-employee-training',
       
       // Company Culture & Environment
-      'company culture': 'about', 'team': 'about', 'team environment': 'about', 'work environment': 'about',
+      'company culture': 'about', 'team': 'about', 'team environment': 'about', 'work environment': 'about', 'culture': 'about',
       '企業文化': 'about', 'チーム': 'about', 'チーム環境': 'about', '職場環境': 'about',
       'company atmosphere': 'about', 'company values': 'about', 'company mission': 'about',
       '企業雰囲気': 'about', '企業価値': 'about', '企業使命': 'about',
@@ -290,7 +469,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'long term': 'career-opportunities', 'future opportunity': 'career-opportunities', 'growth potential': 'career-opportunities',
       'キャリア成長': 'career-opportunities', 'キャリアパス': 'career-opportunities',
       
-      // Application Status
+      // Application Status & Timeline
       'application status': 'application-status', 'status': 'application-status', '進捗': 'application-status',
       'check my application': 'application-status', 'application result': 'application-status', 'application update': 'application-status',
       'decision time': 'application-status', 'result update': 'application-status',
@@ -336,7 +515,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'past projects': 'projects', 'completed work': 'projects', 'sample work': 'projects', 'reference': 'projects',
       'project example': 'projects', 'previous work': 'projects', 'showcase': 'projects',
       
-      // Process & Workflow
+      // Process, Workflow & Requirements (for clients)
       'workflow': 'process', 'steps': 'process', 'procedure': 'process', '流れ': 'process', '手順': 'process',
       'design process': 'process', 'production process': 'process', 'manufacturing process': 'process',
       'step by step': 'process', 'work process': 'process', 'method': 'process',
@@ -345,6 +524,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'quality': 'qualifications', 'quality control': 'qualifications',
       'standard': 'qualifications', 'certification': 'qualifications', 'certified': 'qualifications',
       'accuracy': 'qualifications', 'precision': 'qualifications', 'high quality': 'qualifications',
+      'project requirements': 'requirements', 'specifications': 'requirements', 'specs': 'requirements',
       '品質': 'qualifications', '認証': 'qualifications',
       
       // Consultation & Communication
@@ -363,7 +543,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'years experience': 'qualifications', 'years of experience': 'qualifications', 'track record': 'qualifications',
       
       // Confidentiality & Security
-      'confidential': 'qualifications', 'confidentiality': 'qualifications', 'secure': 'qualifications', 'security': 'qualifications',
+      'confidential': 'qualifications', 'confidentiality': 'qualifications', 'secure': 'qualifications', 'security': 'qualifications', 'ip protection': 'qualifications',
       'nda': 'qualifications', 'intellectual property': 'qualifications', 'privacy': 'qualifications', 'data protection': 'qualifications',
       '機密': 'qualifications', '秘密保持': 'qualifications',
       
@@ -436,42 +616,67 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'talk to human': 'talk-to-human', 'human': 'talk-to-human', 'person': 'talk-to-human', 'agent': 'talk-to-human', 'representative': 'talk-to-human', 'operator': 'talk-to-human', '担当者': 'talk-to-human', '人': 'talk-to-human', 'オペレーター': 'talk-to-human',
       'speak to someone': 'talk-to-human', 'real person': 'talk-to-human', 'live chat': 'talk-to-human'
     };
+    
+    // 1. Exact match (fastest and most accurate)
+    if (keywordMap[normalizedInput]) {
+      return keywordMap[normalizedInput];
+    }
 
-    // Exact match first
-    if (keywordMap[normalized]) return keywordMap[normalized];
+    // 2. Enhanced Scoring Logic for partial and multi-word matches
+    const inputWords = normalizedInput.split(/[\s,.\-?]+/).filter(w => w.length > 1 && !stopWords.has(w));
+    if (inputWords.length === 0) {
+      return null; // Input was only stop words or empty
+    }
 
-    // Word-based scoring: count how many words from the user input match keyword words
-    const inputWords = normalized.split(/\s+/).filter(w => w.length > 0);
-    let bestMatch: { action: string | null; score: number } = { action: null, score: 0 };
+    let bestMatch = { action: null as string | null, score: 0 };
 
     for (const [keyword, action] of Object.entries(keywordMap)) {
-      const keywordWords = keyword.split(/\s+/).filter(w => w.length > 0);
-      let matchedWords = 0;
+      const keywordWords = keyword.toLowerCase().split(/[\s,.\-?]+/).filter(w => w.length > 0 && !stopWords.has(w));
+      if (keywordWords.length === 0) continue;
 
-      // Count how many words from the keyword appear in the input
-      for (const kwWord of keywordWords) {
-        if (inputWords.includes(kwWord)) {
-          matchedWords++;
+      let matchedWordsCount = 0;
+      const matchedInputWords = new Set<string>();
+
+      // Check for matches, including partial/stem matches
+      for (const kw of keywordWords) {
+        for (const iw of inputWords) {
+          // Match if input word starts with keyword word (e.g., "apply" matches "applying")
+          // or if keyword word starts with input word (e.g., "applic" matches "application")
+          if (iw.startsWith(kw) || kw.startsWith(iw)) {
+            if (!matchedInputWords.has(iw)) {
+              matchedWordsCount++;
+              matchedInputWords.add(iw);
+            }
+          }
         }
       }
 
-      // Calculate score: prioritize complete matches, then by number of matched words, then keyword length
-      if (matchedWords > 0) {
-        const isCompleteMatch = matchedWords === keywordWords.length;
-        // Complete matches get a 1000 bonus, ensuring they're prioritized
-        const score = isCompleteMatch ? (1000 + matchedWords + keyword.length) : (matchedWords + keyword.length / 1000);
+      if (matchedWordsCount > 0) {
+        // Score calculation:
+        // - Relevance: How many of the keyword's words were found?
+        const relevance = matchedWordsCount / keywordWords.length;
+        // - Coverage: How much of the user's input is explained by the keyword?
+        const coverage = matchedWordsCount / inputWords.length;
+        // - Phrase Bonus: Give a significant boost if the keyword appears as a whole phrase.
+        const phraseBonus = normalizedInput.includes(keyword) ? 1.5 : 1.0;
 
+        // Combine scores. Relevance and Coverage are multiplied to favor keywords that are a good fit both ways.
+        const score = (relevance * coverage) * phraseBonus;
+        
         if (score > bestMatch.score) {
           bestMatch = { action, score };
         }
       }
     }
-
-    return bestMatch.action;
+    
+    // Only return a match if it has a reasonable confidence score (threshold can be tuned).
+    // This prevents matching on single, common words that appear in many keywords.
+    return bestMatch.score > 0.3 ? bestMatch.action : null;
   };
 
   const generateBotResponse = (action: string): Message => {
     const resBase = `chatbot_card.responses.${action}`;
+    const isCopyable = Boolean(t(`${resBase}.copyable`, { defaultValue: false }));
     const messageId = action === 'initial-greeting' ? 'greeting-1' : action === 'facebook-teaser' ? 'facebook-1' : `bot-${Date.now()}`;
 
     // Map SVGs to translated buttons based on action keys
@@ -485,12 +690,16 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       return btn;
     });
 
+    let responseText = t(`${resBase}.text`);
+    responseText = getPersonalityModifiedText(responseText);
+
     return {
       id: messageId,
       type: 'bot',
       content: {
-        text: t(`${resBase}.text`),
+        text: responseText,
         buttons: buttons.length > 0 ? buttons : undefined,
+        copyable: isCopyable,
         actionButtons: t(`${resBase}.actionButtons`, { returnObjects: true, defaultValue: [] }) as ActionButton[],
       },
       timestamp: new Date(),
@@ -500,7 +709,14 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
   const handleButtonClick = (action: string, buttonText: string) => {
     if (action === 'start-over') {
       window.dispatchEvent(new CustomEvent('reset-chatbot'));
-      setMessages([]); setInputValue(''); initializationRef.current = false; hasInitializedRef.current = false; setIsInitializing(true);
+      setMessages([]); 
+      setInputValue(''); 
+      setQuestionCount(0);
+      setShowAllQA(false);
+      sessionStartTimeRef.current = new Date();
+      initializationRef.current = false; 
+      hasInitializedRef.current = false; 
+      setIsInitializing(true);
       return;
     }
 
@@ -530,9 +746,18 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
 
   const handleInputSubmit = () => {
     if (!inputValue.trim()) return;
+    
+    // Increment question count
+    const newQuestionCount = questionCount + 1;
+    setQuestionCount(newQuestionCount);
+    
     const matched = matchInputToAction(inputValue);
-    if (matched) handleButtonClick(matched, inputValue);
-    else {
+    if (matched) {
+      handleButtonClick(matched, inputValue);
+    } else {
+      // Log unmatched query
+      logUnmatchedQuery(inputValue);
+      
       setMessages((prev) => [...prev, { id: `user-${Date.now()}`, type: 'user', content: { text: inputValue }, timestamp: new Date() }]);
       const tid = `typing-${Date.now()}`;
       setMessages((prev) => [...prev, { id: tid, type: 'typing', timestamp: new Date() }]);
@@ -584,56 +809,88 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
             </button>
           )}
         </div>
+
+
       </div>
 
+        {/* Personality Mode Toggle, Streak & Q&A Icon */}
+        <div className="chatbot-card-controls">
+          <select 
+            value={personalityMode} 
+            onChange={(e) => setPersonalityMode(e.target.value as 'formal' | 'casual' | 'motivational')}
+            className="chatbot-mode-selector"
+          >
+            <option value="formal">{t('chatbot_card.personality_modes.formal')}</option>
+            <option value="casual">{t('chatbot_card.personality_modes.casual')}</option>
+            <option value="motivational">{t('chatbot_card.personality_modes.motivational')}</option>
+          </select>
+          
+          {/* Q&A Icon Button */}
+          <button 
+            onClick={() => setShowAllQA(!showAllQA)}
+            className="chatbot-qa-icon-button"
+            data-count={questionCount > 0 ? questionCount.toString() : undefined}
+            data-state={showAllQA ? 'open' : 'closed'}
+            title={showAllQA ? 'Close Q&A' : `View Questions & Answers (${questionCount})`}
+          >
+            {showAllQA ? '✕' : '📋'}
+          </button>
+        </div>
+
+        
       <div className="chatbot-card-body" ref={bodyRef}>
         {messages.map((msg) => (
-          <div key={msg.id} className={`chatbot-card-message-bubble ${msg.type === 'user' ? 'chatbot-card-message-user' : ''}`}>
-            {msg.type !== 'user' && (
-              <div className="chatbot-card-message-icon-left">
-                <LazyImage src={profileImage || defaultProfileImage} alt="Bot" className="chatbot-card-message-bot-icon" />
-              </div>
-            )}
-            <div className={`chatbot-card-message-content ${msg.type === 'user' ? 'chatbot-card-message-content-user' : ''}`}>
-              {msg.type === 'typing' ? (
-                <div className="chatbot-card-typing-indicator"><span></span><span></span><span></span></div>
-              ) : (
-                <div className={`chatbot-card-message-text-content ${msg.type === 'user' ? 'chatbot-card-message-text-content-user' : ''}`}>
-                  {msg.content?.text && (
-                    <p style={{ margin: 0 }}>
-                      {msg.content.text.split('\n').map((line, i, arr) => (
-                        <React.Fragment key={i}>
-                          {(line.includes(':') && i === 0) ? <strong>{line}</strong> : line}
-                          {i < arr.length - 1 && <br />}
-                        </React.Fragment>
-                      ))}
-                    </p>
-                  )}
-                  {msg.content?.actionButtons && msg.content.actionButtons.length > 0 && (
-                    <div className="chatbot-card-action-buttons">
-                      {msg.content.actionButtons.map((btn) => (
-                        <button key={btn.id} className="chatbot-card-action-button chatbot-card-apply-button" onClick={() => handleActionButtonClick(btn)}>
-                          <span className="chatbot-card-action-button-text">{btn.text}</span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                  {msg.content?.buttons && msg.content.buttons.length > 0 && (
-                    <div className="chatbot-card-menu-buttons">
-                      {msg.content.buttons.map((btn) => (
-                        <button key={btn.id} className="chatbot-card-menu-button chatbot-card-menu-button-clickable" onClick={() => handleButtonClick(btn.action, btn.text)}>
-                          {btn.icon}<span className="chatbot-card-menu-button-text">{btn.text}</span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
+          <MessageBubble 
+            key={msg.id} 
+            msg={msg} 
+            profileImage={profileImage || defaultProfileImage}
+            onButtonClick={handleButtonClick}
+            onActionButtonClick={handleActionButtonClick}
+          />
         ))}
         <div ref={messagesEndRef} />
       </div>
+
+        {/* Q&A Viewer Modal */}
+        {showAllQA && (
+          <div className="chatbot-qa-modal">
+            <div className="chatbot-qa-modal-content">
+              <div className="chatbot-qa-modal-header">
+                <h3>📋 {t('chatbot_card.qa_modal.title')} ({questionCount})</h3>
+                <button 
+                  className="chatbot-qa-close-btn"
+                  onClick={() => setShowAllQA(false)}
+                  aria-label={t('chatbot_card.qa_modal.close') || 'Close'}
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="chatbot-qa-list">
+                {messages
+                  .filter((msg) => msg.type === 'user' || (msg.type === 'bot' && msg.content?.text))
+                  .reduce((acc: any[], msg, idx, arr) => {
+                    if (msg.type === 'user') {
+                      const nextBot = arr.find((m, i) => i > idx && m.type === 'bot');
+                      acc.push({ 
+                        user: msg.content?.text, 
+                        bot: nextBot?.content?.text || t('chatbot_card.qa_modal.processing')
+                      });
+                    }
+                    return acc;
+                  }, [])
+                  .map((qa, idx) => (
+                    <QAItem key={idx} qa={qa} index={idx} />
+                  ))
+                }
+                {messages.filter(m => m.type === 'user').length === 0 && (
+                  <div className="chatbot-qa-empty">
+                    {t('chatbot_card.qa_modal.no_questions')}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
       <div className="chatbot-card-footer">
         <input

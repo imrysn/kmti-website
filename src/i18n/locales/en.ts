@@ -798,13 +798,7 @@ const en = {
         ]
       },
 
-      // Working Schedule
-      "working-schedule": {
-        text: "Our company operates on a compressed work schedule:\nWork Days: Monday to Friday\nWork Hours:\n• Monday to Thursday: 7:00 AM - 6:00 PM\n• Friday: 7:00 AM -4:00 PM ",
-        actionButtons: [
-          { id: "ws1", text: "Apply Now", action: "apply" }
-        ]
-      },
+
 
       // Contact HR
       "contact-hr": {
@@ -878,7 +872,8 @@ const en = {
       
 
       // Operating Hours
-      "q5-operating-hours": {
+      "working-schedule": {
+        copyable: true,
         text: "Our office hours are:\n\n🕐 OFFICE HOURS:\n• Monday to Thursday: 7:00 AM - 6:00 PM\n• Friday: 7:00 AM - 4:00 PM\n\n📍 Location:\nVital Industrial Prop. Inc.\nBldg. B, Unit 2-B\nFirst Cavite Industrial Estate Langkaan 1\nDasmariñas City, Cavite 4126\nPhilippines\n\nWe're here to help during these hours!",
         actionButtons: [
           { id: "q5-1", text: "📍 Open in Google Maps", action: "maps" },
@@ -899,7 +894,7 @@ const en = {
 
       // OJT for Students
       "q8-ojt-student": {
-        text: "Excellent question! ✨ Yes, KMTI is actively accepting OJT (On-the-Job Training) for students!\n\n🎓 Our OJT Programs Include:\n• Engineering OJT - 3D Modeling and 2D detailing\n• IT OJT - Custom applications and software solutions\n\n📚 What You'll Learn:\n• Industry-standard tools (iCAD, etc.)\n• Real-world engineering practices\n• Hands-on experience with actual projects\n• Mentorship from experienced professionals\n\nFor specific OJT requirements and application process, please contact our HR team directly!",
+        text: "Excellent question! ✨ Yes, KMTI is actively accepting OJT (On-the-Job Training) for students!\n\n🎓 Our OJT Programs Include:\n• Engineering OJT - 3D Modeling and 2D detailing\n• IT OJT - Custom applications, software solutions, and web development\n\n📚 What You'll Learn:\n• Engineering: Industry-standard tools (iCAD, etc.), real-world engineering practices, and hands-on project experience.\n• IT: Web development (React, TypeScript), software development (Python, C++), database management, and network administration.\n• All trainees receive mentorship from experienced professionals.\n\nFor specific OJT requirements and application process, please contact our HR team directly!",
         actionButtons: [
           { id: "q8-1", text: "📞 Contact HR for OJT Details", action: "back", navigateAction: "contact-hr" },
           { id: "q8-2", text: "📍 Visit Our Office", action: "maps" },
@@ -958,6 +953,16 @@ const en = {
         ]
       },
 
+      // Engineering OJT
+      "q13-ojt-engineering": {
+        text: "Interested in our Engineering OJT (On-the-Job Training) program? Here's what we need:\n\n🎓 ENGINEERING OJT TRAINEE - KEY REQUIREMENTS:\n\n📋 ESSENTIAL QUALIFICATIONS:\n• Currently enrolled in or recently graduated from Engineering/Technical program\n• High school diploma or currently pursuing tertiary education\n• Basic understanding of engineering drawings or CAD concepts\n• Strong work ethic and commitment to learning\n\n💼 REQUIRED SKILLS:\n• Basic CAD knowledge (or strong willingness to learn)\n• Technical drawing interpretation\n• Problem-solving abilities\n• Attention to detail and precision\n• Team collaboration skills\n• Good communication skills\n• Basic math and spatial reasoning\n\n✅ WHAT WE LOOK FOR:\n• Passion for engineering and manufacturing\n• Eagerness to gain hands-on technical experience\n• Initiative and self-motivation\n• Reliability and punctuality\n• Respectful and cooperative attitude\n• Ability to follow technical instructions\n• Interest in precision design and fabrication\n\n📚 TRAINING PROVIDED:\n• Industry-standard CAD tools training (iCAD, AutoCAD, Solidworks)\n• 2D detailing techniques and technical drawing\n• 3D modeling and visualization\n• Parts inspection and quality assurance methods\n• Machine assembly fundamentals\n• Real-world project experience\n• Mentorship from experienced engineers\n• On-the-job skill development in precision engineering\n\n💡 TECHNICAL FOCUS AREAS:\n• CAD design and modeling\n• 2D-3D conversion processes\n• Technical blueprint interpretation\n• Parts inspection and verification\n• Manufacturing processes\n\n⏱️ Duration: Typically 3-6 months (subject to individual progress and project requirements)",
+        actionButtons: [
+          { id: "q13eng-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q13eng-2", text: "🔎 View All Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q13eng-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
       // OJT Requirements
       "q14-ojt-requirements": {
         text: "Interested in our OJT (On-the-Job Training) program? Here's what we need:\n\n🎓 OJT TRAINEE - KEY REQUIREMENTS:\n\n📋 ESSENTIAL QUALIFICATIONS:\n• Currently enrolled in or recently graduated from Technical/Engineering program\n• High school diploma or currently pursuing tertiary education\n• Willingness to learn and adapt\n• Strong work ethic and commitment\n\n💼 REQUIRED SKILLS:\n• Basic CAD knowledge (or willingness to learn)\n• Problem-solving abilities\n• Attention to detail\n• Team collaboration skills\n• Can work in a structured, professional environment\n• Good communication skills\n\n✅ WHAT WE LOOK FOR:\n• Passion for engineering and technology\n• Eagerness to gain hands-on experience\n• Initiative and self-motivation\n• Reliability and punctuality\n• Respectful and cooperative attitude\n• Ability to follow instructions\n\n📚 TRAINING PROVIDED:\n• Industry-standard CAD tools training\n• 3D modeling and 2D detailing techniques\n• Real-world project experience\n• Mentorship from experienced professionals\n• On-the-job skill development\n\n💡 Duration: Typically 3-6 months (subject to individual progress)",
@@ -985,6 +990,16 @@ const en = {
           { id: "q16-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
           { id: "q16-2", text: "🔎 View All Positions", action: "back", navigateAction: "view-positions" },
           { id: "q16-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
+        ]
+      },
+
+      // IT Skills & OJT
+      "q17-ojt-it-requirements": {
+        text: "Interested in our IT OJT (On-the-Job Training) program? Here's what we need:\n\n💻 IT OJT TRAINEE - KEY REQUIREMENTS:\n\n📋 ESSENTIAL QUALIFICATIONS:\n• Currently enrolled in or recently graduated from IT/Computer Science/Information Technology program\n• High school diploma or currently pursuing tertiary education\n• Basic understanding of programming concepts or willingness to learn\n• Strong work ethic and commitment\n\n💼 REQUIRED SKILLS:\n• Basic programming knowledge (Python, Java, C++, or similar)\n• Problem-solving abilities\n• Logical thinking and computational skills\n• Attention to detail\n• Team collaboration skills\n• Good communication skills\n• Foundational knowledge of databases or networks (preferred)\n\n✅ WHAT WE OFFER:\n• Hands-on IT training and experience\n• Training in software development, database management, or system administration\n• Mentorship from experienced IT professionals\n• Real-world project experience\n• Industry-standard tools and technologies\n• Career pathway in Information Technology\n\n💡 TECHNICAL AREAS:\n• Programming and Software Development\n• Database Management (SQL, databases)\n• Network Administration and System Security\n• Web Development\n• IT Support and Troubleshooting\n\n⏱️ Duration: Typically 3-6 months (subject to individual progress and project requirements)\n\n🎯 WE VALUE:\n• Passion for technology and learning\n• Initiative and self-motivation\n• Reliability and punctuality\n• Respectful and cooperative attitude\n• Ability to follow technical instructions\n• Continuous learning mindset",
+        actionButtons: [
+          { id: "q17-1", text: "📝 Apply Now", action: "back", navigateAction: "how-to-apply" },
+          { id: "q17-2", text: "🔎 View All Positions", action: "back", navigateAction: "view-positions" },
+          { id: "q17-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
         ]
       },
 
@@ -1062,7 +1077,8 @@ const en = {
 
       // ... MISC BRANCH ...
       location: {
-        text: "Our main office is located at:\n\nVital Industrial Prop. Inc. Bldg. B. Unit 2-B. First Cavite Industrial Estate Langkaan 1. Dasmariñas City, Cavite 4126 Philippines\nNeed Directions?",
+        copyable: true,
+        text: "Our main office is located at:\n\nVital Industrial Prop. Inc. Bldg. B. Unit 2-B. First Cavite Industrial Estate Langkaan 1. Dasmariñas City, Cavite 4126 Philippines\n\nNeed Directions?",
         actionButtons: [
           { id: "loc1", text: "Open in Google Maps", action: "maps" }
         ]
@@ -1167,6 +1183,21 @@ const en = {
           { id: "q23-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
         ]
       }
+    },
+    qa_modal: {
+      title: "Your Questions & Answers",
+      close: "Close",
+      question_prefix: "Q",
+      answer_prefix: "A",
+      show_more: "Show More",
+      show_less: "Show Less",
+      no_questions: "No questions yet. Start a conversation!",
+      processing: "Processing..."
+    },
+    personality_modes: {
+      formal: "Formal",
+      casual: "Casual",
+      motivational: "Motivational"
     }
   },
 
