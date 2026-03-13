@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Canvas, useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
+import SEO from '../../components/common/SEO';
 import './Sitemap.css';
 import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
 
@@ -102,7 +101,8 @@ const FloatingGear: React.FC = () => {
 };
 
 const Sitemap: React.FC<SitemapPageProps> = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tEn = i18n.getFixedT('en');
 
   const sitemapSections: SitemapSection[] = [
     {
@@ -184,18 +184,10 @@ const Sitemap: React.FC<SitemapPageProps> = () => {
 
   return (
     <div className="sitemap-page">
-      <BackgroundShapes />
-      
-      {/* 3D Gear Background Layer */}
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none', opacity: 0.6 }}>
-        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={1} />
-          <pointLight position={[-10, -10, -10]} intensity={0.5} />
-          <FloatingGear />
-        </Canvas>
-      </div>
-
+      <SEO 
+        title={tEn('sitemap.title')} 
+        description={tEn('sitemap.subtitle')} 
+      />
       <section className="hero-section">
         <div className="sitemap-hero-container">
           <h1 className="sitemap-title">{t('sitemap.title')}</h1>

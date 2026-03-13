@@ -45,6 +45,12 @@ const ChevronIcon: React.FC = () => (
   </svg>
 );
 
+const ResetIcon: React.FC = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 4V1L8 5L12 9V6C15.31 6 18 8.69 18 12C18 13.66 17.33 15.16 16.24 16.24L17.66 17.66C19.11 16.22 20 14.21 20 12C20 7.58 16.42 4 12 4ZM12 18C8.69 18 6 15.31 6 12C6 10.34 6.67 8.84 7.76 7.76L6.34 6.34C4.89 7.78 4 9.79 4 12C4 16.42 7.58 20 12 20V23L16 19L12 15V18Z" fill="currentColor" />
+  </svg>
+);
+
 interface ModelConfig {
   path: string | null;
   scale?: number;
@@ -106,7 +112,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
   // Issue 6: useCallback so this can be safely listed as a dep in useEffect below
   const startCameraHideTimer = useCallback(() => {
     if (cameraHideTimerRef.current) clearTimeout(cameraHideTimerRef.current);
-    cameraHideTimerRef.current = setTimeout(() => setIsCameraPanelVisible(false), 10000);
+    cameraHideTimerRef.current = setTimeout(() => setIsCameraPanelVisible(false), 5000);
   }, []);
 
   const handleCameraToggle = () => {
@@ -180,6 +186,9 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  const [isCameraDefault, setIsCameraDefault] = useState(true);
+  const [resetTrigger, setResetTrigger] = useState(0);
+
   if (!isOpen) return null;
 
   // Issue 1 Fix: Normalize lookup key to lowercase+trim — covers all casing variants with one map entry
@@ -188,6 +197,13 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
 
   // Issue 2 Fix: Unknown model shows "unavailable" placeholder instead of a blank modal
   const hasModel = modelConfig ? modelConfig.path !== null : false;
+
+  const handleReset = () => {
+    setResetTrigger(prev => prev + 1);
+    setIsCameraDefault(true);
+    // Also reset auto-hide timer
+    startCameraHideTimer();
+  };
 
   return (
     <div className="model-3d-modal-overlay" onClick={handleClose}>
@@ -202,7 +218,7 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
             <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="model-3d-modal-close-text">Back to Projects</span>
+          <span className="model-3d-modal-close-text">{t('projects.viewer.back_to_projects')}</span>
         </button>
 
         <div className="model-3d-modal-header">
@@ -220,13 +236,15 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
               <Suspense key={modelConfig.path} fallback={
                 <div className="model-viewer-loading-overlay">
                   <div className="model-viewer-spinner"></div>
-                  <p>Loading 3D Viewer...</p>
+                  <p>{t('projects.viewer.loading_viewer')}</p>
                 </div>
               }>
                 <ModelViewer
                   modelPath={modelConfig.path!}
                   modelScale={modelConfig.scale}
                   cameraView={cameraView}
+                  onCameraStateChange={setIsCameraDefault}
+                  resetTrigger={resetTrigger}
                 />
               </Suspense>
 
@@ -234,6 +252,16 @@ const Model3DViewerModal: React.FC<Model3DViewerModalProps> = ({
                 className={`camera-view-buttons${isMobile ? (isCameraPanelVisible ? ' cam-panel-visible' : ' cam-panel-hidden') : ''
                   }`}
               >
+                {!isCameraDefault && (
+                  <button
+                    className="camera-view-btn reset-btn"
+                    onClick={handleReset}
+                    title={t('projects.viewer.camera.reset_title', { defaultValue: 'Reset View' })}
+                    aria-label={t('projects.viewer.camera.reset_title', { defaultValue: 'Reset View' })}
+                  >
+                    <ResetIcon />
+                  </button>
+                )}
                 {(['isometric', 'front', 'back', 'left', 'right', 'top'] as CameraView[]).map((view) => (
                   <button
                     key={view}

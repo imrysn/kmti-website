@@ -52,6 +52,7 @@
     "globals": "^16.4.0",
     "mime-types": "^3.0.2",
     "prettier": "^3.6.2",
+    "sharp": "^0.34.5",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
     "vite": "^7.1.7",

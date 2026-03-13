@@ -946,6 +946,19 @@
   transform: scaleY(1);
 }
 
+/* Animated Filled Line */
+.about-history-timeline-line {
+  position: absolute;
+  width: 4px;
+  background-color: #51A2FF;
+  box-shadow: 0 0 10px rgba(81, 162, 255, 0.8);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+  z-index: 1; /* Below the dots which are z-index: 1, wait dots are z-index: 1 so we make line z-index: 0 but above ::after which defaults to auto usually */
+}
+
 .about-history-item {
   padding: 10px 20px;
   position: relative;

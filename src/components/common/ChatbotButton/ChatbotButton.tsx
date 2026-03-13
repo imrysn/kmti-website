@@ -6,7 +6,7 @@ import { ChatbotCard } from '../../ui/Card/chatbot';
 import './ChatbotButton.css';
 import LazyImage from '../../ui/LazyImage/LazyImage';
 
-const botIcon = getAssetUrl('icons/bot-icon.png');
+const botIcon = getAssetUrl('icons/bot-icon.webp');
 
 const ChatbotButton: React.FC = () => {
   const { t } = useTranslation();

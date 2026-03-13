@@ -3,6 +3,10 @@ import type { ErrorInfo, ReactNode } from 'react';
 
 interface Props {
   children?: ReactNode;
+  onRetry?: () => void;
+  fallbackMessage?: string;
+  fallbackMobileMessage?: string;
+  isMobile?: boolean;
 }
 
 interface State {
@@ -24,6 +28,15 @@ class ErrorBoundary extends Component<Props, State> {
     console.error("Uncaught error:", error, errorInfo);
   }
 
+  private handleRetry = () => {
+    this.setState({ hasError: false, error: undefined });
+    if (this.props.onRetry) {
+      this.props.onRetry();
+    } else {
+      window.location.reload();
+    }
+  };
+
   public render() {
     if (this.state.hasError) {
       return (
@@ -38,10 +51,14 @@ class ErrorBoundary extends Component<Props, State> {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          <h1>Something went wrong.</h1>
-          <p>We apologize for the inconvenience. Please try refreshing the page.</p>
+          <h1>{this.props.isMobile && this.props.fallbackMobileMessage ? '⚠️' : 'Something went wrong.'}</h1>
+          <p>{
+            this.props.isMobile && this.props.fallbackMobileMessage 
+              ? this.props.fallbackMobileMessage 
+              : (this.props.fallbackMessage || 'We apologize for the inconvenience. Please try refreshing the page.')
+          }</p>
           <button
-            onClick={() => window.location.reload()}
+            onClick={this.handleRetry}
             style={{
               marginTop: '1rem',
               padding: '0.5rem 1rem',
@@ -52,7 +69,7 @@ class ErrorBoundary extends Component<Props, State> {
               borderRadius: '4px'
             }}
           >
-            Refresh Page
+            {this.props.onRetry ? 'Try Again' : 'Refresh Page'}
           </button>
           {process.env.NODE_ENV === 'development' && this.state.error && (
             <pre style={{ marginTop: '2rem', textAlign: 'left', background: '#333', padding: '1rem', borderRadius: '4px', overflow: 'auto', maxWidth: '80%' }}>
