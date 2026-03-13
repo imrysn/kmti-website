@@ -610,8 +610,10 @@ const en = {
       subject: "Subject",
       message: "Message",
       send: "SEND MESSAGE",
-      invalid_email: "Please enter a valid email address.",
-      message_too_short: "Please provide a more detailed message (at least 10 characters)."
+      sending: "SENDING...",
+      success_title: "Message Sent Successfully!",
+      success_message: "Thank you for reaching out. We'll review your message and get back to you shortly via the email you provided.",
+      success_close_btn: "CLOSE"
     },
     info: {
       title: "Contact Information",

@@ -65,6 +65,34 @@ const bundlingMachineImage = getAssetUrl('image3D/bundling-machine.webp');
 const millingImage = getAssetUrl('image3D/milling.webp');
 const furnaceImage = getAssetUrl('image3D/furnace.webp');
 
+// Modal for Management Team image viewer
+interface ImageViewerModalProps {
+  isOpen: boolean;
+  src: string | null;
+  alt?: string;
+  caption?: string;
+  onClose: () => void;
+}
+
+export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src, alt = '', caption, onClose }) => {
+  useLockBodyScroll(isOpen);
+  if (!isOpen || !src) return null;
+
+  return (
+    <div className="service-modal-overlay" onClick={onClose}>
+      <div className="service-modal-content image-viewer-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="service-modal-close" onClick={onClose}>×</button>
+        <TransformWrapper>
+          <TransformComponent>
+            <LazyImage src={src} alt={alt} className="image-viewer-image" loading="eager" />
+          </TransformComponent>
+        </TransformWrapper>
+        {caption && <div className="image-viewer-caption">{caption}</div>}
+      </div>
+    </div>
+  );
+};
+
 const useLockBodyScroll = (isOpen: boolean) => {
   useEffect(() => {
     if (isOpen) {

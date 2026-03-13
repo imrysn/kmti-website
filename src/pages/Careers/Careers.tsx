@@ -329,7 +329,7 @@ const Careers: React.FC<CareersPageProps> = () => {
               </Button>
               <Button
                 variant="style2"
-                onClick={() => window.open('https://www.facebook.com', '_blank')}
+                onClick={() => window.open('https://www.facebook.com/kmti.com.ph/', '_blank')}
               >
                 {t('careers.ready.facebook')}
               </Button>

@@ -217,6 +217,7 @@ interface ManagementTeamCardProps {
   className?: string;
   isLarge?: boolean;
   fallbackNode?: React.ReactNode;
+  onClick?: () => void; 
 }
 
 export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
@@ -225,9 +226,14 @@ export const ManagementTeamCard: React.FC<ManagementTeamCardProps> = ({
   className = '',
   isLarge = false,
   fallbackNode,
+  onClick,
 }) => {
   return (
-    <div className={`management-team-card ${isLarge ? 'management-team-card-large' : ''} ${className}`}>
+    <div
+      className={`management-team-card ${isLarge ? 'management-team-card-large' : ''} ${className}`}
+      onClick={onClick}
+      style={{ cursor: onClick ? 'pointer' : 'default' }}
+    >
       <h3 className="management-team-card-role">{role}</h3>
       <LazyImage src={image} alt={role} wrapperClassName="management-team-card-image" fallbackNode={fallbackNode} />
     </div>

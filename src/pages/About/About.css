@@ -925,6 +925,25 @@
   bottom: 0;
   left: 50%;
   margin-left: -1px;
+  z-index: 0;
+}
+
+.about-history-timeline-progress {
+  position: absolute;
+  width: 2px;
+  background-color: #51A2FF;
+  top: 0;
+  left: 50%;
+  margin-left: -1px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+.about-history-section.aos-animate .about-history-timeline-progress {
+  transform: scaleY(1);
 }
 
 /* Animated Filled Line */
@@ -946,6 +965,7 @@
   background-color: inherit;
   width: 50%;
   box-sizing: border-box;
+  opacity: 0;
 }
 
 .about-history-item.left {
@@ -970,10 +990,17 @@
   top: 22px;
   border-radius: 50%;
   z-index: 1;
+  z-index: 2;
+  transition: background-color 0.5s ease 0.5s, transform 0.5s ease 0.5s;
 }
 
 .about-history-item.right::after {
   left: -8px;
+}
+
+.about-history-item.aos-animate::after {
+  background-color: #51A2FF;
+  transform: scale(1.2);
 }
 
 .about-history-content {
@@ -1195,7 +1222,9 @@
   }
 
   .about-vision-mission-grid {
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin: 0 10%;
   }
 
   .related-companies-grid {
@@ -1378,8 +1407,11 @@
   }
 
   .about-vision-mission-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 2rem;
+    margin-left: 0;
+    margin-right: 0
   }
 
   .about-management-team-title {
@@ -1555,9 +1587,9 @@
 
   /* Vision-mission grid remains 2 columns 1 row centered on mobile */
   .about-vision-mission-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     width: 100%;
-    gap: .5rem;
+    gap: 2rem;
     margin-left: 0;
     margin-right: 0;
   }
@@ -2063,11 +2095,11 @@
     gap: 1rem;
   }
 }
-
-/* History Timeline Responsive */
+/* History Timeline (Dots and Line) Responsive */
 @media screen and (max-width: 768px) {
-  .about-history-timeline::after {
-    left: 31px;
+  .about-history-timeline::after,
+  .about-history-timeline-progress {
+    left: 21px;
   }
 
   .about-history-item {
@@ -2083,7 +2115,7 @@
   }
 
   .about-history-item::after {
-    left: 23px !important;
+    left: 14px !important;
   }
 
   .about-history-section {
@@ -2103,7 +2135,8 @@
     margin-bottom: 2rem;
   }
 
-  .about-history-timeline::after {
+  .about-history-timeline::after,
+  .about-history-timeline-progress {
     left: 21px;
   }
 
