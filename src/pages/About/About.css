@@ -1835,7 +1835,7 @@
     text-indent: 0;
     /* Remove indent */
     line-height: 1.4;
-    text-align: center;
+    text-align: justify;
   }
 
   .related-company-card {

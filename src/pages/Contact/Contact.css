@@ -394,6 +394,7 @@
     font-size: 0.9rem;
     margin-bottom: 3rem;
     padding: 0 1rem;
+    text-align: justify;
   }
 
   .contact-options-container {
@@ -437,10 +438,12 @@
 
   .chat-with-us-description {
     font-size: 0.9rem;
+    text-align: justify;
   }
 
   .chat-with-us-features {
     gap: 1rem;
+    text-align: justify;
   }
 
   .chat-with-us-feature-title {

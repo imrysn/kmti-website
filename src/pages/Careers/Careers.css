@@ -531,6 +531,7 @@
   .meet-our-ojt-description {
     font-size: 1rem;
     margin-bottom: 3rem;
+    text-align: justify;
   }
 
   .ojt-grid {
@@ -869,6 +870,7 @@
 
   .meet-our-team-description {
     font-size: 0.9rem;
+    text-align: justify;
   }
 
   .how-to-apply-title {
