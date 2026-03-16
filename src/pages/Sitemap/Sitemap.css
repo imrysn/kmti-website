@@ -624,6 +624,24 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero-section,
+  .sitemap-hero-container {
+    position: relative !important;
+    
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    
+    height: auto !important;
+    min-height: auto !important;
+    
+    padding-top: 150px;
+    padding-bottom: 2rem;
+    
+    text-align: center;
+    display: block;
+  }
+
   .sitemap-title {
     font-size: 2.5rem;
   }
