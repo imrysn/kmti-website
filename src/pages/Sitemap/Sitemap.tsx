@@ -64,9 +64,9 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
   // Procedurally generate a gear shape
   const gearShape = React.useMemo(() => {
     const shape = new THREE.Shape();
-    const teeth = 8;
-    const outerRadius = 2.8;
-    const innerRadius = 2.2;
+    const teeth = 12;
+    const outerRadius = 3.2;
+    const innerRadius = 2.3;
     const holeRadius = 1;
 
     for (let i = 0; i < teeth * 2; i++) {
