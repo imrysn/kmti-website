@@ -2097,9 +2097,16 @@
 }
 /* History Timeline (Dots and Line) Responsive */
 @media screen and (max-width: 768px) {
-  .about-history-timeline::after,
-  .about-history-timeline-progress {
-    left: 21px;
+  .about-history-timeline::after {
+    left: 21px !important;
+  }
+
+  .about-history-timeline .about-history-timeline-progress {
+    left: 21px !important;
+  }
+
+  .about-history-timeline-line {
+    left: 21px !important;
   }
 
   .about-history-item {
@@ -2137,7 +2144,7 @@
 
   .about-history-timeline::after,
   .about-history-timeline-progress {
-    left: 21px;
+    left: 21px !important;
   }
 
   .about-history-item::after {
