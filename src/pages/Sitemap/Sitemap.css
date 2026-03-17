@@ -29,7 +29,7 @@
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(170, 210, 250, 0.3);
+  background: rgba(64, 80, 95, 0.3);
   animation: animateShapes 25s linear infinite;
   bottom: -150px; 
   border-radius: 0;
@@ -45,7 +45,7 @@
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(170, 210, 250, 0.3);
+  background: rgba(64, 80, 95, 0.3);
   animation: animateShapesTop 25s linear infinite;
   top: -150px;
   border-radius: 0;
