@@ -6,6 +6,8 @@ import { useTranslation, Trans } from 'react-i18next';
 import './Careers.css';
 import type { CareersPageProps } from './Careers.types';
 import { getAssetUrl } from '../../utils/assets';
+import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
 
 const careersBg = getAssetUrl('hero_background/careersbg.webp');
 const kmtiModel = getAssetUrl('hero_background/career_model.webp');
@@ -24,6 +26,108 @@ import {
 } from '../../components/ui/Icons/ProjectIcons';
 import Button from '../../components/ui/Button/Button';
 import { ApplyCard, WhyWorkWithUsCard, HowToApplyCard } from '../../components/ui/Card/Card';
+
+const BackgroundShapes: React.FC = () => (
+  <> {/* Bottom Shapes */}
+    <ul className="shapes-container" aria-hidden="true">
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+    </ul>
+    {/* Top Shapes */}
+    <ul className="shapes-container-top" aria-hidden="true">
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+    </ul>
+  </>
+);
+
+// --- 3D Gear Component ---
+const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
+  const meshRef = React.useRef<THREE.Mesh>(null);
+  const gearShape = React.useMemo(() => {
+    const shape = new THREE.Shape();
+    const teeth = 12;
+    const rOuter = 3.2;
+    const rInner = 2.3;
+    const holeRadius = 1;
+
+    // Start at inner radius (angle 0)
+    shape.moveTo(rInner, 0);
+
+    for (let i = 0; i < teeth; i++) {
+      const theta = (Math.PI * 2 * i) / teeth;
+      const step = (Math.PI * 2) / teeth;
+
+      // Create a trapezoidal tooth profile (Cog shape)
+      const aRise = theta + step * 0.15; // Start of rise
+      const aTop = theta + step * 0.35;  // End of flat top
+      const aFall = theta + step * 0.50; // End of fall
+      const aNext = theta + step;        // End of valley
+
+      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter); // Rise to outer
+      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);   // Move along outer
+      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner); // Fall to inner
+      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner); // Move along inner
+    }
+    shape.closePath();
+
+    const hole = new THREE.Path();
+    hole.absarc(0, 0, holeRadius, 0, Math.PI * 2, false);
+    shape.holes.push(hole);
+
+    return shape;
+  }, []);
+
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.z += delta * speed; // Custom rotation speed
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2; // Slight tilt
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={position} scale={scale}>
+      <extrudeGeometry args={[gearShape, { depth: 0.8, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 }]} />
+      <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.15} transparent={true} />
+    </mesh>
+  );
+};
 
 const Careers: React.FC<CareersPageProps> = () => {
   const navigate = useNavigate();
@@ -99,6 +203,17 @@ const Careers: React.FC<CareersPageProps> = () => {
   ];
 
   return (
+    <div className='careers-bg-wrapper'>
+      <BackgroundShapes />
+        <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+          <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
+            <ambientLight intensity={1} />
+            <pointLight position={[10, 10, 10]} intensity={1.5} />
+            <FloatingGear position={[8, 4, 0]} scale={0.8} speed={0.15} />
+            <FloatingGear position={[-10, -5, -2]} scale={1.2} speed={-0.1} />
+            <FloatingGear position={[5, -8, -5]} scale={0.6} speed={0.2} />
+          </Canvas>
+        </div>
     <div className="careers-page">
       <SEO 
         title={tEn('nav.careers')} 
@@ -337,6 +452,7 @@ const Careers: React.FC<CareersPageProps> = () => {
           </div>
         </div>
       </section>
+    </div>
     </div>
   );
 };
