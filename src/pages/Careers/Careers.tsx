@@ -137,7 +137,7 @@ const Careers: React.FC<CareersPageProps> = () => {
   const [activeOjtType, setActiveOjtType] = useState<'engineering' | 'it' | null>(null);
 
   const engineeringImages = ['ojt_10.webp', 'ojt_4.webp', 'ojt_6.webp', 'ojt_12.webp', 'ojt_13.webp', 'ojt_9.webp'];
-  const itImages = ['ojt_7.webp', 'ojt_8.webp', 'ojt_2.webp'];
+  const itImages = ['ojt_7.webp', 'ojt_8.webp', 'ojt_2.webp', 'ojt_14.webp', 'ojt_15.webp', 'ojt_16.webp'];
 
   const toggleOjt = (type: 'engineering' | 'it') => {
     setActiveOjtType(activeOjtType === type ? null : type);

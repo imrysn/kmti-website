@@ -7,6 +7,7 @@
   height: 100%;
   overflow: hidden;
   z-index: 1;
+  pointer-events: none;
 }
 
 .home-bg-wrapper {
@@ -14,10 +15,6 @@
   overflow: hidden;
   margin-top: -10rem;
   padding-top: 10rem;
-}
-.home-bg-wrapper > section {
-  position: relative;
-  z-index: 2;
 }
 
 .shape {
@@ -558,11 +555,15 @@
 .why-choose-us-section {
   margin-top: 4rem;
   margin-bottom: 4rem;
+  position: relative;
+  z-index: 10;
 }
 
 .services-section {
   padding-top: 4rem;
   padding-bottom: 4rem;
+  position: relative;
+  z-index: 10;
 }
 
 .home-page .services-grid {
@@ -578,12 +579,16 @@
 .vision-reality-section {
   padding-top: 4rem;
   padding-bottom: 4rem;
+  position: relative;
+  z-index: 10;
 }
 
 .about-section {
   padding-top: 4rem;
   padding-bottom: 4rem;
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
 .about-description {
@@ -616,6 +621,8 @@
   padding-top: 4rem;
   padding-bottom: 6rem;
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
 .cta-title {
@@ -652,6 +659,10 @@
 }
 
 @media (max-width: 1024px) {
+  .home-bg-wrapper {
+      position: relative;
+      top: 10px;
+  }
   .hero-title {
     font-size: 3.5rem;
   }
@@ -668,7 +679,7 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 100vh;
+    min-height: calc(100vh + 10rem);
     padding-top: 10rem;
   }
 
@@ -686,7 +697,11 @@
     .hero-section {
       padding-top: 8rem;
       padding-bottom: 9rem;
-      min-height: 100vh;
+      min-height: calc(100vh + 10rem);
+    }
+
+    .home-bg-wrapper {
+      margin-top: -7rem;
     }
 
     .hero-container {
@@ -827,7 +842,7 @@
     .hero-section {
       padding-top: 8rem;
       padding-bottom: 2rem;
-      min-height: 100vh;
+      min-height: calc(100vh + 10rem);
       height: auto;
       display: flex;
       align-items: center;

@@ -191,7 +191,6 @@ const Home: React.FC<HomePageProps> = () => {
 
   return (
     <div className='home-bg-wrapper'>
-      <BackgroundShapes />
         <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none' }}>
           <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
             <ambientLight intensity={1} />
@@ -202,6 +201,7 @@ const Home: React.FC<HomePageProps> = () => {
           </Canvas>
         </div>
     <div className="home-page">
+      <BackgroundShapes />
       <SEO 
         description={tEn('about.hero.subtitle')} 
       />
