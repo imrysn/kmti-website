@@ -547,6 +547,8 @@ body.services-page-active::-webkit-scrollbar {
   width: 100%;
   padding: 0;
   overflow-x: hidden;
+  position: relative;
+  z-index: 10;
 }
 
 .services-nav-label {
@@ -734,6 +736,8 @@ body.services-page-active::-webkit-scrollbar {
   padding-top: 6rem;
   padding-bottom: 6rem;
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
 .services-cta-container {
