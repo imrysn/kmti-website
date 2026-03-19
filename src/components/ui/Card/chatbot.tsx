@@ -7,6 +7,50 @@ import LazyImage from '../LazyImage/LazyImage';
 const defaultProfileImage = getAssetUrl('logo/profile.webp');
 const menuIcon = getAssetUrl('icons/menu-icon.webp');
 
+// Helper for fuzzy matching (Levenshtein Distance)
+// Returns the number of edits (insertions, deletions, substitutions) needed to turn 'a' into 'b'
+const levenshteinDistance = (a: string, b: string): number => {
+  // Make a the shorter string for optimization
+  if (a.length > b.length) {
+    [a, b] = [b, a];
+  }
+  
+  const m = a.length;
+  const n = b.length;
+  
+  // Use two rows instead of full matrix
+  let prevRow = Array(m + 1).fill(0).map((_, i) => i);
+  let currRow = Array(m + 1).fill(0);
+  
+  for (let i = 1; i <= n; i++) {
+    currRow[0] = i;
+    
+    for (let j = 1; j <= m; j++) {
+      const cost = a[j - 1] === b[i - 1] ? 0 : 1;
+      currRow[j] = Math.min(
+        prevRow[j] + 1,        // deletion
+        currRow[j - 1] + 1,    // insertion
+        prevRow[j - 1] + cost  // substitution
+      );
+    }
+    
+    [prevRow, currRow] = [currRow, prevRow];
+  }
+  
+  return prevRow[m];
+};
+
+// Detect language mixing and respond appropriately
+const detectLanguageMixing = (text: string): boolean => {
+  const japaneseChars = /[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/;
+  const englishChars = /[a-zA-Z]/;
+  
+  const hasJapanese = japaneseChars.test(text);
+  const hasEnglish = englishChars.test(text);
+  
+  return hasJapanese && hasEnglish;
+};
+
 interface ChatbotCardProps {
   profileImage?: string;
   onFacebookClick?: () => void;
@@ -165,6 +209,33 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
   const [personalityMode, setPersonalityMode] = useState<'formal' | 'casual' | 'motivational'>('casual');
   const [questionCount, setQuestionCount] = useState(0);
   const [showAllQA, setShowAllQA] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // Common questions pool for suggestions
+  const commonQuestions = t('chatbot_card.faq_suggestions', { 
+    returnObjects: true, 
+    defaultValue: [
+      'How do I apply for a job?',
+      'What services do you offer?',
+      'Where is your office located?',
+      'Do you accept OJT students?',
+      'What are the requirements?',
+      'What benefits do you provide?',
+      'How can I request a quote?',
+      'What is the project timeline?',
+      'Tell me about the hiring process',
+      'What is the working schedule?',
+      'Do you do 3D Modeling?',
+      'Do you offer Machine Assembly?',
+      'Do you accept fresh graduates?',
+      'Show me your projects'
+    ] 
+  }) as string[];
+
+  const filteredSuggestions = commonQuestions.filter(q => 
+    q.toLowerCase().includes(inputValue.toLowerCase())
+  ).slice(0, 5);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const initializationRef = useRef(false);
@@ -310,6 +381,12 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'bye': 'farewell-response', 'goodbye': 'farewell-response', 'see you': 'farewell-response', 'paalam': 'farewell-response', 'sayonara': 'farewell-response',
       'さようなら': 'farewell-response', 'じゃあね': 'farewell-response', 'またね': 'farewell-response', 'またあした': 'farewell-response',
 
+      // SKiils Requirements
+      'skill requirement' : 'application-requirement', 'skill requirements' : 'application-requirement', 'required skill' : 'application-requirement',
+
+      // Service Requirements
+      'service requirements' : 'requirements', 'service requirement' : 'requirements',
+
       // ======== CAREERS / APPLICANT QUESTIONS ========
       // General Career Questions
       'careers': 'careers', 'career': 'careers', 'job': 'careers', 'jobs': 'careers','apply': 'careers', '採用': 'careers', '求人': 'careers','join': 'careers', 'joins': 'careers',
@@ -321,7 +398,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       '求人情報': 'careers', '空いているポジション': 'careers', '募集中': 'careers', 'ポジション募集': 'careers',
       
       // Application Process
-      'how to apply?': 'how-to-apply', 'apply now': 'how-to-apply', 'apply online': 'how-to-apply', 'application process': 'how-to-apply', '応募方法': 'how-to-apply',
+      'how to apply?': 'how-to-apply','I want to apply': 'how-to-apply','how to apply': 'how-to-apply', 'apply now': 'how-to-apply', 'apply online': 'how-to-apply', 'application process': 'how-to-apply', '応募方法': 'how-to-apply',
       '応募手続き': 'how-to-apply', '申請方法': 'how-to-apply', 'オンライン申請': 'how-to-apply', 'どのように応募するか': 'how-to-apply',
       'submit resume': 'how-to-apply', 'submit application': 'how-to-apply', 'application submission': 'how-to-apply',
       'どこに提出': 'how-to-apply', '履歴書提出': 'how-to-apply', '申請提出': 'how-to-apply', '応募提出': 'how-to-apply',
@@ -361,7 +438,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       
 
 // engineering & Design Job Requirements
-      'engineering job': 'q13-engineering-staff-requirements', 'design job': 'q13-engineering-staff-requirements', 'engineering position': 'q13-engineering-staff-requirements', 'design position': 'q13-engineering-staff-requirements', 'engineering role': 'q13-engineering-staff-requirements', 'design role': 'q13-engineering-staff-requirements',
+      'engineering job': 'q13-engineering-staff-requirements','engineering skill requirement': 'q13-engineering-staff-requirements', 'design job': 'q13-engineering-staff-requirements', 'engineering position': 'q13-engineering-staff-requirements', 'design position': 'q13-engineering-staff-requirements', 'engineering role': 'q13-engineering-staff-requirements', 'design role': 'q13-engineering-staff-requirements',
       'エンジニアリング職': 'q13-engineering-staff-requirements', 'デザイン職': 'q13-engineering-staff-requirements', 'エンジニアリングポジション': 'q13-engineering-staff-requirements', 'デザインポジション': 'q13-engineering-staff-requirements', 'エンジニアリング役職': 'q13-engineering-staff-requirements', 'デザイン役職': 'q13-engineering-staff-requirements',
       'engineering job requirements': 'q13-engineering-staff-requirements', 'design job requirements': 'q13-engineering-staff-requirements', 'engineering position requirements': 'q13-engineering-staff-requirements', 'design position requirements': 'q13-engineering-staff-requirements', 'engineering role requirements': 'q13-engineering-staff-requirements', 'design role requirements': 'q13-engineering-staff-requirements',
       'エンジニアリング職の要件': 'q13-engineering-staff-requirements', 'デザイン職の要件': 'q13-engineering-staff-requirements', 'エンジニアリングポジションの要件': 'q13-engineering-staff-requirements', 'デザインポジションの要件': 'q13-engineering-staff-requirements', 'エンジニアリング役職の要件': 'q13-engineering-staff-requirements', 'デザイン役職の要件': 'q13-engineering-staff-requirements',
@@ -396,7 +473,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       '管理スキル要件': 'q16-admin-staff-requirements', '管理に必要なスキル': 'q16-admin-staff-requirements',
  
       // IT Skills & OJT
-      'it': 'q17-ojt-it-requirements', 'it ': 'q17-ojt-it-requirements', 'it requirement': 'q17-ojt-it-requirements', 'it requirements': 'q17-ojt-it-requirements',
+      'it relate': 'q17-ojt-it-requirements', 'it': 'q17-ojt-it-requirements','it related': 'q17-ojt-it-requirements', 'ojt for it': 'q17-ojt-it-requirements', 'it requirement': 'q17-ojt-it-requirements', 'it requirements': 'q17-ojt-it-requirements',
       'IT': 'q17-ojt-it-requirements', 'IT スキル': 'q17-ojt-it-requirements', 'IT 技術': 'q17-ojt-it-requirements', 'IT要件': 'q17-ojt-it-requirements', '情報技術': 'q17-ojt-it-requirements',
       'it ojt': 'q17-ojt-it-requirements', 'it internship': 'q17-ojt-it-requirements', 'it student training': 'q17-ojt-it-requirements',
       'IT OJT': 'q17-ojt-it-requirements', 'IT トレーニング': 'q17-ojt-it-requirements', 'IT 実習': 'q17-ojt-it-requirements',
@@ -438,16 +515,16 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'ハイブリッド': 'q12-work-setup', '在宅勤務': 'q12-work-setup', 'リモート': 'q12-work-setup', 'ハイブリッド設定': 'q12-work-setup', 'オフィス': 'q12-work-setup', 'オンサイト': 'q12-work-setup', '在宅勤務は利用可能': 'q12-work-setup',
       
       // Compensation & Benefits
-      'benefits': 'q21-detailed-benefits', 'compensation': 'q21-detailed-benefits', 'pay': 'q21-detailed-benefits', 'salary': 'q21-detailed-benefits', '福利厚生': 'q21-detailed-benefits',
-      'メリット': 'q21-detailed-benefits', '給与': 'q21-detailed-benefits', '報酬': 'q21-detailed-benefits', '給与パッケージ': 'q21-detailed-benefits',
-      'salary range': 'q21-detailed-benefits', 'wage': 'q21-detailed-benefits', 'paycheck': 'q21-detailed-benefits',
-      '給与範囲': 'q21-detailed-benefits', '賃金': 'q21-detailed-benefits',
-      'allowance': 'q21-detailed-benefits', 'bonus': 'q21-detailed-benefits', 'incentive': 'q21-detailed-benefits', 'perks': 'q21-detailed-benefits',
-      '手当': 'q21-detailed-benefits', 'ボーナス': 'q21-detailed-benefits', 'インセンティブ': 'q21-detailed-benefits', '福利': 'q21-detailed-benefits',
-      'insurance': 'q21-detailed-benefits', 'health insurance': 'q21-detailed-benefits', 'medical': 'q21-detailed-benefits', 'retirement plan': 'q21-detailed-benefits',
-      '保険': 'q21-detailed-benefits', '医療保険': 'q21-detailed-benefits', '健康保険': 'q21-detailed-benefits', '退職金': 'q21-detailed-benefits',
-      'transportation allowance': 'q21-detailed-benefits', 'meal allowance': 'q21-detailed-benefits', 'housing allowance': 'q21-detailed-benefits',
-      '交通費': 'q21-detailed-benefits', '食事手当': 'q21-detailed-benefits', '住宅手当': 'q21-detailed-benefits',
+      'benefits': 'benefits', 'compensation': 'benefits', 'pay': 'benefits', 'salary': 'benefits', '福利厚生': 'benefits',
+      'メリット': 'benefits', '給与': 'benefits', '報酬': 'benefits', '給与パッケージ': 'benefits',
+      'salary range': 'benefits', 'wage': 'benefits', 'paycheck': 'benefits',
+      '給与範囲': 'benefits', '賃金': 'benefits',
+      'allowance': 'benefits', 'bonus': 'benefits', 'incentive': 'benefits', 'perks': 'benefits',
+      '手当': 'benefits', 'ボーナス': 'benefits', 'インセンティブ': 'benefits', '福利': 'benefits',
+      'insurance': 'benefits', 'health insurance': 'benefits', 'medical': 'benefits', 'retirement plan': 'benefits',
+      '保険': 'benefits', '医療保険': 'benefits', '健康保険': 'benefits', '退職金': 'benefits',
+      'transportation allowance': 'benefits', 'meal allowance': 'benefits', 'housing allowance': 'benefits',
+      '交通費': 'benefits', '食事手当': 'benefits', '住宅手当': 'benefits',
       
       // Training & Development
       'training': 'training', 'development': 'training', '研修': 'training',
@@ -600,12 +677,12 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       'since 2014': 'q20-company-history', 'established 2014': 'q20-company-history', 'past events': 'q20-company-history', 'company journey': 'q20-company-history',
       
       // Q21 - Detailed Benefits
-      'detailed benefits': 'q21-detailed-benefits', 'all benefits': 'q21-detailed-benefits', 'comprehensive benefits': 'q21-detailed-benefits', 'full benefits': 'q21-detailed-benefits',
-      'sss': 'q21-detailed-benefits', 'pag ibig': 'q21-detailed-benefits', 'philhealth': 'q21-detailed-benefits',
-      'rice subsidy': 'q21-detailed-benefits', 'rice allowance': 'q21-detailed-benefits',
-      'employee benefits': 'q21-detailed-benefits',
-      'government benefits': 'q21-detailed-benefits', 'mandated benefits': 'q21-detailed-benefits', '福利厚生詳細': 'q21-detailed-benefits',
-      'monthly allowance': 'q21-detailed-benefits', 'yearly bonus': 'q21-detailed-benefits', 'vacation days': 'q21-detailed-benefits', 'leave benefits': 'q21-detailed-benefits',
+      'detailed benefits': 'benefits', 'all benefits': 'benefits', 'comprehensive benefits': 'benefits', 'full benefits': 'benefits',
+      'sss': 'benefits', 'pag ibig': 'benefits', 'philhealth': 'benefits',
+      'rice subsidy': 'benefits', 'rice allowance': 'benefits',
+      'employee benefits': 'benefits',
+      'government benefits': 'benefits', 'mandated benefits': 'benefits', '福利厚生詳細': 'benefits',
+      'monthly allowance': 'benefits', 'yearly bonus': 'benefits', 'vacation days': 'benefits', 'leave benefits': 'benefits',
       
       // Q22 - Services Workflow
       'service workflow': 'q22-services-workflow',
@@ -657,11 +734,26 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
         for (const iw of inputWords) {
           // Match if input word starts with keyword word (e.g., "apply" matches "applying")
           // or if keyword word starts with input word (e.g., "applic" matches "application")
+          // or if keyword word starts with input word (e.g., "applic" matches "application") 
+          let isMatch = false;
+
           if (iw.startsWith(kw) || kw.startsWith(iw)) {
             if (!matchedInputWords.has(iw)) {
               matchedWordsCount++;
               matchedInputWords.add(iw);
             }
+            isMatch = true;
+          } else if (iw.length >= 4 && kw.length >= 4) {
+            // Fuzzy match: Allow typos for words with 4+ characters
+            const dist = levenshteinDistance(iw, kw);
+            // Allow 1 error for medium words, 2 errors for long words
+            const threshold = iw.length > 5 ? 2 : 1;
+            if (dist <= threshold) isMatch = true;
+          }
+          
+          if (isMatch && !matchedInputWords.has(iw)) {
+            matchedWordsCount++;
+            matchedInputWords.add(iw);
           }
         }
       }
@@ -759,21 +851,30 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
     }, 1000);
   };
 
-  const handleInputSubmit = () => {
-    if (!inputValue.trim()) return;
+  const handleInputSubmit = (submittedText?: string) => {
+    const textToProcess = submittedText || inputValue;
+    if (!textToProcess.trim()) return;
     
+    // Check for mixed languages
+    if (detectLanguageMixing(textToProcess)) {
+      handleButtonClick('mixed-language-response', textToProcess);
+      setInputValue('');
+      setShowSuggestions(false);
+      return;
+    }
+
     // Increment question count
     const newQuestionCount = questionCount + 1;
     setQuestionCount(newQuestionCount);
     
-    const matched = matchInputToAction(inputValue);
+    const matched = matchInputToAction(textToProcess);
     if (matched) {
-      handleButtonClick(matched, inputValue);
+      handleButtonClick(matched, textToProcess);
     } else {
       // Log unmatched query
-      logUnmatchedQuery(inputValue);
+      logUnmatchedQuery(textToProcess);
       
-      setMessages((prev) => [...prev, { id: `user-${Date.now()}`, type: 'user', content: { text: inputValue }, timestamp: new Date() }]);
+      setMessages((prev) => [...prev, { id: `user-${Date.now()}`, type: 'user', content: { text: textToProcess }, timestamp: new Date() }]);
       const tid = `typing-${Date.now()}`;
       setMessages((prev) => [...prev, { id: tid, type: 'typing', timestamp: new Date() }]);
       setTimeout(() => {
@@ -782,6 +883,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
       }, 1000);
     }
     setInputValue('');
+    setShowSuggestions(false);
   };
 
   const handleActionButtonClick = (action: ActionButton) => {
@@ -908,12 +1010,34 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
         )}
 
       <div className="chatbot-card-footer">
+        {showSuggestions && filteredSuggestions.length > 0 && (
+          <div className="chatbot-input-suggestions">
+            {filteredSuggestions.map((suggestion, idx) => (
+              <div
+                key={idx}
+                className="chatbot-input-suggestion"
+                onClick={() => {
+                  setInputValue(suggestion);
+                  setShowSuggestions(false);
+                  handleInputSubmit(suggestion);
+                }}
+              >
+                {suggestion}
+              </div>
+            ))}
+          </div>
+        )}
         <input
           type="text"
           placeholder={t('chatbot_card.footer.placeholder')}
           className="chatbot-card-input"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            setShowSuggestions(true);
+          }}
+          onFocus={() => setShowSuggestions(true)}
+          onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
           onKeyPress={(e) => e.key === 'Enter' && handleInputSubmit()}
         />
         <div className="chatbot-card-menu-icon-wrapper chatbot-card-menu-icon-clickable" onClick={() => handleButtonClick('main-menu', 'Menu')}>

@@ -6,7 +6,8 @@ const en = {
     projects: "PROJECTS",
     about: "ABOUT US",
     careers: "CAREERS",
-    contact: "CONTACT US"
+    contact: "CONTACT US",
+    events: "EVENTS"
   },
 
   // --- COMMON ---
@@ -815,17 +816,7 @@ const en = {
           { id: "ch3", text: "Back", action: "back", navigateAction: "careers" }
         ]
       },
-
-      // Benefits
-      "benefits": {
-        text: "KMTI offers competetive compensation and benefits including:\n• Competetive salary\n• Training opportunities in Japan\n• Career growth and development\n• Compressed work schedule (Mon-Fri)\n• Professional development programs",
-        actionButtons: [
-          { id: "ben1", text: "Contact HR for Details", action: "back", navigateAction: "careers" },
-          { id: "ben2", text: "Back to Careers", action: "back", navigateAction: "careers" }
-        ]
-      },
-
-
+      
       // Application Requirements
       "application-requirement": {
         text: "Requirements vary by position, but generally include:\n• Relevant educational background\n• Technical skills (CAD, engineering)\n• Willingness to learn\n• Attention to detail\n• Team collaboration skills\n\nCheck specific positions for detailed requirements!",
@@ -1161,7 +1152,7 @@ const en = {
       },
 
       // Detailed Benefits
-      "q21-detailed-benefits": {
+      "benefits": {
         text: "💰 COMPREHENSIVE BENEFITS AT KMTI:\n\nWe're committed to taking care of our team so they can do their best work!\n\n🏥 MEDICAL & HEALTH BENEFITS:\n• Medical Insurance: 100% Company-paid for regular employees\n• SSS (Social Security System): Complete coverage\n• Pag-IBIG: Housing development fund\n• PhilHealth: National health insurance\n• All mandated statutory benefits included\n\n💵 COMPENSATION & PAY:\n• Competitive salary based on position\n• 13th Month Pay (mandated by Philippine labor law)\n• Guaranteed annual bonus\n• Performance-based incentives\n\n🍽️ ALLOWANCES & SUBSIDIES:\n• Transportation Allowance: Daily commute support\n• Meal Allowance: Food subsidy during work hours\n• Uniform Allowance: Professional attire provided\n• Rice Subsidy: Groceries support for regular employees\n\n🌏 TRAINING & DEVELOPMENT:\n• International Training: Opportunities to be deployed in Japan\n• On-the-Job Training: Continuous skill development\n• Professional Development Programs: Skill advancement\n• Mentorship: Guidance from experienced engineers\n• Technical Training: Industry-standard tools and techniques\n\n📈 CAREER GROWTH:\n• Stable, Long-Term Employment\n• Career advancement opportunities\n• Professional growth pathways\n• Leadership development programs\n• Opportunities within partner companies (Japan, Philippines)\n\n👥 WORKPLACE ENVIRONMENT:\n• Collaborative team culture\n• Inclusive work environment\n• Supportive management\n• Work-life balance\n• Compressed work schedule (Mon-Fri)\n\n✨ SPECIAL OPPORTUNITIES:\n• International exposure through Japan partnerships\n• Access to global manufacturing expertise\n• Skill development with world-class mentors\n• Contribution to cutting-edge engineering projects\n\n💡 We invest in our people's growth and future!",
         actionButtons: [
           { id: "q21-1", text: "📝 How to Apply", action: "back", navigateAction: "how-to-apply" },
@@ -1188,6 +1179,16 @@ const en = {
           { id: "q23-2", text: "📝 How to Apply", action: "back", navigateAction: "how-to-apply" },
           { id: "q23-3", text: "Back to Careers", action: "back", navigateAction: "careers" }
         ]
+      },
+      "mixed-language-response": {
+        text: "I noticed a mix of languages. To ensure I understand you correctly, could you please use either English or Japanese?",
+        buttons: [
+          { id: "ml1", text: "Back to Main Menu", action: "main-menu" }
+        ]
+      },
+      "unmatched_with_suggestions": {
+        "text": "I couldn't find an exact match for that. Did you mean one of these?",
+        "buttons": []
       }
     },
     qa_modal: {
@@ -1200,6 +1201,22 @@ const en = {
       no_questions: "No questions yet. Start a conversation!",
       processing: "Processing..."
     },
+    faq_suggestions: [
+      "How do I apply for a job?",
+      "What services do you offer?",
+      "Where is your office located?",
+      "Do you accept OJT students?",
+      "What are the requirements?",
+      "What benefits do you provide?",
+      "How can I request a quote?",
+      "What is the project timeline?",
+      "Tell me about the hiring process",
+      "What is the working schedule?",
+      "Do you do 3D Modeling?",
+      "Do you offer Machine Assembly?",
+      "Do you accept fresh graduates?",
+      "Show me your projects"
+    ],
     personality_modes: {
       formal: "Formal",
       casual: "Casual",
@@ -1274,6 +1291,34 @@ const en = {
       careers: "Join our team and build your career with us",
       legal: "Privacy policy, terms of service, and compliance information"
     }
+  }
+  ,
+
+  // ... EVENTS PAGE ...
+  events: {
+    page_title: "Company Events | KMTI",
+    meta_description: "Explore recent company events at KMTI, including team-building exercises, safety drills, and company-wide meetings.",
+    hero: {
+      title: "Company Events",
+      subtitle: "Building a strong, safe, and collaborative team culture."
+    },
+    exercise: {
+      title: "Team Exercise Routine",
+      description: "To promote health and wellness, our team engages in a morning exercise routine. This activity boosts energy, improves focus, and strengthens team bonds before the workday begins."
+    },
+    fire_drill: {
+      title: "Annual Fire Drill",
+      description: "Safety is our top priority. Our annual fire drill ensures that every team member is prepared to respond quickly and effectively in case of an emergency, reinforcing our commitment to a secure workplace."
+    },
+    meeting: {
+      title: "Company-Wide Meeting",
+      description: "Our regular company-wide meetings are essential for aligning our goals, sharing important updates, and celebrating our collective achievements. It's a time for open communication and strategic planning."
+    },
+    xmas_party: {
+      title: "Christmas Party",
+      description: "Celebrating the joy of the season, our annual Christmas party brings the team together for a time of fun, laughter, and appreciation. It's a chance to unwind, share memorable moments, and strengthen the bond that makes our workplace feel like family."
+    },
+
   }
 };
 

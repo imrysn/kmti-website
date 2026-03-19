@@ -485,6 +485,40 @@
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
+
+/* FAQ Auto-Suggestions */
+.chatbot-input-suggestions {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: #0F172B;
+  border: 1px solid #51A2FF;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.chatbot-input-suggestion {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(81, 162, 255, 0.2);
+  cursor: pointer;
+  color: #FFFFFF;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+}
+
+.chatbot-input-suggestion:hover {
+  background-color: rgba(81, 162, 255, 0.2);
+}
+
+.chatbot-input-suggestion:last-child {
+  border-bottom: none;
+}
+
 /* === NEW FEATURE STYLES === */
 
 /* Confetti Animation */
@@ -867,7 +901,7 @@
 }
 
 .chatbot-qa-question::before {
-  content: 'Q:';
+  content: '';
   color: #FFD700;
   font-weight: bold;
   font-size: 1rem;
@@ -884,7 +918,7 @@
 }
 
 .chatbot-qa-answer::before {
-  content: 'A:';
+  content: '';
   position: absolute;
   left: 0;
   color: #51A2FF;
