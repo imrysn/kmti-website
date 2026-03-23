@@ -32,7 +32,6 @@ const useImageSlideshow = (images: string[], interval = 3000) => {
   const [isPaused, setIsPaused] = useState(false);
   const imagesLength = images.length;
 
-  // Memoize callbacks to prevent unnecessary re-renders
   const goToSlide = useCallback((index: number) => {
     setCurrentIndex(index);
   }, []);
@@ -59,53 +58,111 @@ const useImageSlideshow = (images: string[], interval = 3000) => {
   };
 };
 
-// Memoized thumbnail component
-const ThumbnailItem = memo(({ 
-  src, 
-  index, 
-  isActive, 
-  onClick, 
-  onMouseEnter, 
+// Thumbnail container with up/down navigation
+const ThumbnailContainer = memo(({ 
+  images, 
+  currentIndex, 
+  onThumbnailClick,
+  onMouseEnter,
   onMouseLeave,
-  type = 'default' 
+  type = 'default'
 }: { 
-  src: string; 
-  index: number; 
-  isActive: boolean; 
-  onClick: () => void; 
-  onMouseEnter: () => void; 
+  images: string[];
+  currentIndex: number;
+  onThumbnailClick: (index: number) => void;
+  onMouseEnter: () => void;
   onMouseLeave: () => void;
   type?: 'default' | 'alt';
 }) => {
-  const className = type === 'alt' ? 'thumbnail-item-alt' : 'thumbnail-item';
-  
+  const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = 4;
+  const totalImages = images.length;
+
+  const handleUp = useCallback(() => {
+    setStartIndex((prev) => {
+      const newIndex = prev - 1;
+      return newIndex < 0 ? Math.max(0, totalImages - visibleCount) : newIndex;
+    });
+  }, [totalImages]);
+
+  const handleDown = useCallback(() => {
+    setStartIndex((prev) => {
+      const newIndex = prev + 1;
+      return newIndex > totalImages - visibleCount ? 0 : newIndex;
+    });
+  }, [totalImages]);
+
+  const visibleThumbnails = useMemo(() => {
+    const endIndex = Math.min(startIndex + visibleCount, totalImages);
+    return images.slice(startIndex, endIndex);
+  }, [images, startIndex, totalImages]);
+
+  const className = type === 'alt' ? 'thumbnail-container-alt' : 'thumbnail-container';
+  const buttonClassName = type === 'alt' ? 'nav-button-alt' : 'nav-button';
+
+  const showNavigation = totalImages > visibleCount;
+
   return (
-    <div
-      className={`${className} ${isActive ? 'active' : ''}`}
-      onClick={onClick}
+    <div 
+      className={className}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onTouchStart={onMouseEnter}
-      onTouchEnd={onMouseLeave}
-      role="button"
-      tabIndex={0}
-      aria-label={`Go to slide ${index + 1}`}
-      onKeyPress={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          onClick();
-        }
-      }}
     >
-      <LazyImage 
-        src={src} 
-        alt={`Thumbnail ${index + 1}`}
-        loading="lazy"
-      />
+      {showNavigation && (
+        <button 
+          className={buttonClassName}
+          onClick={handleUp}
+          aria-label="Previous thumbnails"
+        >
+          ↑
+        </button>
+      )}
+      
+      <div className={type === 'alt' ? 'thumbnails-list-alt' : 'thumbnails-list'}>
+        {visibleThumbnails.map((img, idx) => {
+          const actualIndex = startIndex + idx;
+          return (
+            <div
+              key={actualIndex}
+              className={`${type === 'alt' ? 'thumbnail-item-alt' : 'thumbnail-item'} ${actualIndex === currentIndex ? 'active' : ''}`}
+              onClick={() => onThumbnailClick(actualIndex)}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+              onTouchStart={onMouseEnter}
+              onTouchEnd={onMouseLeave}
+              role="button"
+              tabIndex={0}
+              aria-label={`Go to slide ${actualIndex + 1}`}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  onThumbnailClick(actualIndex);
+                }
+              }}
+            >
+              <LazyImage 
+                src={img} 
+                alt={`Thumbnail ${actualIndex + 1}`}
+                loading="lazy"
+              />
+            </div>
+          );
+        })}
+      </div>
+      
+      {showNavigation && (
+        <button 
+          className={buttonClassName}
+          onClick={handleDown}
+          aria-label="Next thumbnails"
+        >
+          ↓
+        </button>
+      )}
     </div>
   );
 });
 
-ThumbnailItem.displayName = 'ThumbnailItem';
+ThumbnailContainer.displayName = 'ThumbnailContainer';
 
 // Memoized dot component
 const DotIndicator = memo(({ 
@@ -153,7 +210,6 @@ const EventWithSlideshow = memo(({ event }: { event: Event }) => {
   const { currentIndex, goToSlide, pauseSlideshow, resumeSlideshow } = useImageSlideshow(event.images);
   const isLeftLayout = event.layout === 'left';
 
-  // Preload next image for smoother transitions
   useEffect(() => {
     const nextIndex = (currentIndex + 1) % event.images.length;
     const img = new Image();
@@ -161,26 +217,14 @@ const EventWithSlideshow = memo(({ event }: { event: Event }) => {
   }, [currentIndex, event.images]);
 
   const Thumbnails = useMemo(() => (
-    <div 
-      className={isLeftLayout ? 'right-thumbnails' : 'right-thumbnails-alt'}
+    <ThumbnailContainer
+      images={event.images}
+      currentIndex={currentIndex}
+      onThumbnailClick={goToSlide}
       onMouseEnter={pauseSlideshow}
       onMouseLeave={resumeSlideshow}
-      onTouchStart={pauseSlideshow}
-      onTouchEnd={resumeSlideshow}
-    >
-      {event.images.map((img, index) => (
-        <ThumbnailItem
-          key={index}
-          src={img}
-          index={index}
-          isActive={index === currentIndex}
-          onClick={() => goToSlide(index)}
-          onMouseEnter={pauseSlideshow}
-          onMouseLeave={resumeSlideshow}
-          type={isLeftLayout ? 'default' : 'alt'}
-        />
-      ))}
-    </div>
+      type={isLeftLayout ? 'default' : 'alt'}
+    />
   ), [event.images, currentIndex, goToSlide, pauseSlideshow, resumeSlideshow, isLeftLayout]);
 
   const Dots = useMemo(() => (
@@ -299,44 +343,29 @@ const Events: React.FC = () => {
     AOS.init({ 
       duration: 1000, 
       once: true,
-      disable: window.innerWidth < 768 // Disable on mobile for better performance
+      disable: window.innerWidth < 768
     });
     
-    // Cleanup AOS
     return () => {
       AOS.refreshHard();
     };
   }, []);
 
-  // Memoize event images to prevent recalculation
   const eventImages = useMemo<EventImageSet>(() => ({
-    exercise: [
-      getAssetUrl('about_page/aboutbg.webp'),
-      getAssetUrl('hero_background/team-building.jpg'),
-      getAssetUrl('hero_background/office-life.jpg'),
-      getAssetUrl('about_page/aboutbg.webp'),
-    ],
-    firedrill: [
-      getAssetUrl('hero_background/team-building.jpg'),
-      getAssetUrl('about_page/aboutbg.webp'),
-      getAssetUrl('hero_background/office-life.jpg'),
-      getAssetUrl('hero_background/team-building.jpg'),
-    ],
-    meeting: [
-      getAssetUrl('hero_background/office-life.jpg'),
-      getAssetUrl('about_page/aboutbg.webp'),
-      getAssetUrl('hero_background/team-building.jpg'),
-      getAssetUrl('hero_background/office-life.jpg'),
-    ],
-    xmas_party: [
-      getAssetUrl('hero_background/team-building.jpg'),
-      getAssetUrl('about_page/aboutbg.webp'),
-      getAssetUrl('hero_background/office-life.jpg'),
-      getAssetUrl('hero_background/team-building.jpg'),
-    ],
+    exercise: Array.from({ length: 4 }, (_, i) => 
+      getAssetUrl(`events/exercise_${i + 1}.webp`)
+    ),
+    firedrill: Array.from({ length: 12 }, (_, i) => 
+      getAssetUrl(`events/firedrill/firedrill_${i + 1}.webp`)
+    ),
+    meeting: Array.from({ length: 8 }, (_, i) => 
+      getAssetUrl(`events/meeting/meeting_${i + 1}.jpg`)
+    ),
+    xmas_party: Array.from({ length: 12 }, (_, i) => 
+      getAssetUrl(`events/xmas/xmas_party_${i + 1}.webp`)
+    ),
   }), []);
 
-  // Memoize events array
   const events = useMemo<Event[]>(() => [
     {
       id: 'exercise',
