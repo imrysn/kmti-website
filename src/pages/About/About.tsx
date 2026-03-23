@@ -180,14 +180,14 @@ const About: React.FC<AboutPageProps> = () => {
   const ourPeopleImages = [ourPeople1, ourPeople2, ourPeople3, ourPeople4, ourPeople5];
   const aboutCompanyImages = [aboutCompany1, aboutCompany2, aboutCompany3, aboutCompany4, meeting1, meeting2];
   
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [selectedTeamMember, setSelectedTeamMember] = useState<{ image: string; role: string } | null>(null);
   const openTeamMemberModal = (image: string, role: string) => {setSelectedTeamMember({ image, role });};
   const closeTeamMemberModal = () => setSelectedTeamMember(null);
 
    useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1024);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -359,8 +359,7 @@ const About: React.FC<AboutPageProps> = () => {
           <div className="about-management-team-grid">
             <ManagementTeamCard image={pauImage} role={t('about.management.roles.accounting')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(pauImage, t('about.management.roles.accounting')) : undefined} />
             <ManagementTeamCard image={michaelImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(michaelImage, t('about.management.roles.eng_mgr')) : undefined} />
-            <div className="management-team-card-placeholder"></div>
-            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} isLarge={true} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(siryuImage, t('about.management.roles.ceo')) : undefined} />
+            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(siryuImage, t('about.management.roles.ceo')) : undefined} />
             <ManagementTeamCard image={mennjoImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(mennjoImage, t('about.management.roles.eng_mgr')) : undefined} />
             <ManagementTeamCard image={teodyImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(teodyImage, t('about.management.roles.eng_sup')) : undefined} />
           </div>
