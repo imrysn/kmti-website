@@ -10,7 +10,6 @@ import LazyImage from '../../components/ui/LazyImage/LazyImage';
 
 // Types
 interface EventImageSet {
-  exercise: string[];
   firedrill: string[];
   meeting: string[];
   xmas_party: string[];
@@ -352,11 +351,8 @@ const Events: React.FC = () => {
   }, []);
 
   const eventImages = useMemo<EventImageSet>(() => ({
-    exercise: Array.from({ length: 4 }, (_, i) => 
-      getAssetUrl(`events/exercise_${i + 1}.webp`)
-    ),
-    firedrill: Array.from({ length: 12 }, (_, i) => 
-      getAssetUrl(`events/firedrill/firedrill_${i + 1}.webp`)
+    firedrill: Array.from({ length: 8 }, (_, i) => 
+      getAssetUrl(`events/firedrill/firedrill_${i + 1}.jpg`)
     ),
     meeting: Array.from({ length: 8 }, (_, i) => 
       getAssetUrl(`events/meeting/meeting_${i + 1}.jpg`)
@@ -367,15 +363,7 @@ const Events: React.FC = () => {
   }), []);
 
   const events = useMemo<Event[]>(() => [
-    {
-      id: 'exercise',
-      title: 'Exercise',
-      subTitle: 'Sub Title',
-      description: t('events.exercise.description'),
-      descriptionTitle: t('events.exercise.title'),
-      images: eventImages.exercise,
-      layout: 'left'
-    },
+
     {
       id: 'firedrill',
       title: 'Firedrill',
@@ -383,7 +371,7 @@ const Events: React.FC = () => {
       description: t('events.fire_drill.description'),
       descriptionTitle: t('events.fire_drill.title'),
       images: eventImages.firedrill,
-      layout: 'right'
+      layout: 'left'
     },
     {
       id: 'meeting',
@@ -392,7 +380,7 @@ const Events: React.FC = () => {
       description: t('events.meeting.description'),
       descriptionTitle: t('events.meeting.title'),
       images: eventImages.meeting,
-      layout: 'left'
+      layout: 'right'
     },
     {
       id: 'xmas_party',
@@ -401,7 +389,7 @@ const Events: React.FC = () => {
       description: t('events.xmas_party.description'),
       descriptionTitle: t('events.xmas_party.title'),
       images: eventImages.xmas_party,
-      layout: 'right'
+      layout: 'left'
     },
   ], [eventImages, t]);
 

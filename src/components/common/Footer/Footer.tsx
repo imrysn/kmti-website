@@ -6,7 +6,9 @@ import { getAssetUrl } from '../../../utils/assets';
 import { useVisitCounter } from '../../../hooks/useVisitCounter';
 import LazyImage from '../../ui/LazyImage/LazyImage';
 
-const footerLogo = getAssetUrl('logo/download1.webp');
+
+const footerLogo1st = getAssetUrl('logo/profile.webp');
+const footerLogo = getAssetUrl('logo/download.webp');
 const mapsIcon = getAssetUrl('icons/maps-icon.webp');
 const contactIcon = getAssetUrl('icons/contact.webp');
 const emailIcon = getAssetUrl('icons/email-icon.webp');
@@ -53,6 +55,7 @@ const Footer: React.FC = () => {
       <div className="footer__inner">
         <div className="footer__brand">
           <Link to="/" className="footer__logo" onClick={handleLogoClick}>
+             <LazyImage src={footerLogo1st} alt={`${t('common.brand_full')} footer logo`} />
             <LazyImage src={footerLogo} alt={`${t('common.brand_full')} footer logo`} />
           </Link>
           <p className="footer__desc">

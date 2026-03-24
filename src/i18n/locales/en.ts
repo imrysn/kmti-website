@@ -1299,12 +1299,8 @@ const en = {
     page_title: "Company Events | KMTI",
     meta_description: "Explore recent company events at KMTI, including team-building exercises, safety drills, and company-wide meetings.",
     hero: {
-      title: "Company Events",
-      subtitle: "Building a strong, safe, and collaborative team culture."
-    },
-    exercise: {
-      title: "Team Exercise Routine",
-      description: "To promote health and wellness, our team engages in a morning exercise routine. This activity boosts energy, improves focus, and strengthens team bonds before the workday begins."
+      title: "Company Events & Celebrations",
+      subtitle: "Building a strong, safe, and collaborative team culture through meaningful experiences, shared moments, and professional growth opportunities that bring our community closer together."
     },
     fire_drill: {
       title: "Annual Fire Drill",
