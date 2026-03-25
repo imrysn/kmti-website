@@ -1,5 +1,405 @@
-.about-page {
+.shapes-container,
+.shapes-container-top {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.about-bg-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-top: -10rem;
+  padding-top: 10rem;
+}
+
+.shape {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(64, 80, 95, 0.3);
+  animation: animateShapes 25s linear infinite;
+  bottom: -150px; 
+  border-radius: 0;
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.35 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.56,11C4.53,11.35 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.56,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.04 4.95,18.95L7.44,17.95C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.95L19.05,18.95C19.27,19.04 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.shape-top {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(64, 80, 95, 0.3);
+  animation: animateShapesTop 25s linear infinite;
+  top: -150px;
+  border-radius: 0;
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.35 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.56,11C4.53,11.35 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.56,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.04 4.95,18.95L7.44,17.95C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.95L19.05,18.95C19.27,19.04 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+/* Individual shape variations */
+.shape:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.shape:nth-child(3) {
+  left: 70%;
+  width: 100px;
+  height: 100px;
+  animation-delay: 4s;
+}
+
+.shape:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.shape:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.shape:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.shape:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.shape:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.shape:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.shape:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+
+.shape:nth-child(11) {
+  left: 55%;
+  width: 40px;
+  height: 40px;
+  animation-delay: 5s;
+  animation-duration: 28s;
+}
+
+.shape:nth-child(12) {
+  left: 15%;
+  width: 70px;
+  height: 70px;
+  animation-delay: 8s;
+}
+
+.shape:nth-child(13) {
+  left: 80%;
+  width: 30px;
+  height: 30px;
+  animation-delay: 12s;
+}
+
+.shape:nth-child(14) {
+  left: 5%;
+  width: 90px;
+  height: 90px;
+  animation-delay: 1s;
+  animation-duration: 22s;
+}
+
+.shape:nth-child(15) {
+  left: 90%;
+  width: 50px;
+  height: 50px;
+  animation-delay: 6s;
+}
+
+.shape:nth-child(16) {
+  left: 30%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 10s;
+  animation-duration: 40s;
+}
+
+.shape:nth-child(17) {
+  left: 60%;
+  width: 120px;
+  height: 120px;
+  animation-delay: 9s;
+}
+
+.shape:nth-child(18) {
+  left: 45%;
+  width: 35px;
+  height: 35px;
+  animation-delay: 14s;
+}
+
+.shape:nth-child(19) {
+  left: 28%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 11s;
+  animation-duration: 20s;
+}
+
+.shape:nth-child(20) {
+  left: 70%;
+  width: 100px;
+  height: 100px;
+  animation-delay: 0s;
+  animation-duration: 15s;
+}
+
+/* Individual top shape variations */
+.shape-top:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 1s;
+}
+
+.shape-top:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 3s;
+  animation-duration: 15s;
+}
+
+.shape-top:nth-child(3) {
+  left: 20%;
+  width: 120px;
+  height: 120px;
+  animation-delay: 5s;
+}
+
+.shape-top:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 2s;
+  animation-duration: 20s;
+}
+
+.shape-top:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 1s;
+}
+
+.shape-top:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 4s;
+}
+
+.shape-top:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 8s;
+}
+
+.shape-top:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 12s;
+  animation-duration: 40s;
+}
+
+.shape-top:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 3s;
+  animation-duration: 30s;
+}
+
+.shape-top:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 1s;
+  animation-duration: 15s;
+}
+
+.shape-top:nth-child(11) {
+  left: 55%;
+  width: 40px;
+  height: 40px;
+  animation-delay: 6s;
+  animation-duration: 30s;
+}
+
+.shape-top:nth-child(12) {
+  left: 15%;
+  width: 70px;
+  height: 70px;
+  animation-delay: 9s;
+}
+
+.shape-top:nth-child(13) {
+  left: 80%;
+  width: 30px;
+  height: 30px;
+  animation-delay: 13s;
+}
+
+.shape-top:nth-child(14) {
+  left: 5%;
+  width: 90px;
+  height: 90px;
+  animation-delay: 2s;
+  animation-duration: 25s;
+}
+
+.shape-top:nth-child(15) {
+  left: 90%;
+  width: 50px;
+  height: 50px;
+  animation-delay: 7s;
+}
+
+.shape-top:nth-child(16) {
+  left: 30%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 11s;
+  animation-duration: 42s;
+}
+
+.shape-top:nth-child(17) {
+  left: 60%;
+  width: 120px;
+  height: 120px;
+  animation-delay: 10s;
+}
+
+.shape-top:nth-child(18) {
+  left: 45%;
+  width: 35px;
+  height: 35px;
+  animation-delay: 15s;
+}
+
+.shape-top:nth-child(19) {
+  left: 28%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 12s;
+  animation-duration: 22s;
+}
+
+.shape-top:nth-child(20) {
+  left: 70%;
+  width: 100px;
+  height: 100px;
+  animation-delay: 1s;
+  animation-duration: 18s;
+}
+
+@keyframes animateShapes {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-3000px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes animateShapesTop {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(3000px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes animateIcons {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes animateIconsTop {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(1000px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.about-page {
+  position: relative;
+  margin-top: -10rem;
+  padding-top: 10rem;
+  z-index: 2;
 
   --about-hero-height-desktop: 100vh;
   --about-hero-height-tablet: 104vh;
@@ -75,7 +475,6 @@
 }
 
 .about-hero-overlay {
-
   background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   opacity: 0.8;
   position: absolute;
@@ -374,6 +773,43 @@
   text-align: center;
   transition: color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
+}
+
+.about-management-team-grid .management-team-card-role {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+  white-space: nowrap;
+}
+
+/* Target only the 3rd card (Center/CEO) in the main top grid on Desktop */
+@media (min-width: 1025px) {
+  .about-management-team-container > .about-management-team-grid > .management-team-card:nth-child(3) {
+    transform: scale(1.1);
+    height: fit-content;
+    bottom: 1rem;
+    z-index: 10;
+  }
+  
+  .about-management-team-container > .about-management-team-grid {
+    gap: 1.5rem;
+  }
+  
+  /* Pull the 2nd card closer to the scaled card */
+  .about-management-team-container > .about-management-team-grid > .management-team-card:nth-child(2) {
+    margin-right: -0.3rem;
+  }
+  
+  .about-management-team-container > .about-management-team-grid > .management-team-card:nth-child(3) {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
+
+  /* Pull the 4th card closer to the scaled card */
+  .about-management-team-container > .about-management-team-grid > .management-team-card:nth-child(4) {
+    margin-left: -0.3rem;
+  }
 }
 
 .about-management-team-container.expanded .about-see-more-link {
@@ -1082,8 +1518,8 @@
     display: flex;
     align-items: stretch;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 0 1rem;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
     box-sizing: border-box;
     width: 100%;
     flex-wrap: nowrap;
@@ -1218,7 +1654,23 @@
   }
 
   .about-company-grid {
-    gap: 4rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-company-images {
+    flex-direction: column;
+    align-items: center;
+    order: 1;
+  }
+
+  .about-company-content {
+    order: 2;
+    text-align: center;
+  }
+
+  .about-company-title {
+    font-size: 2.5rem;
   }
 
   .about-vision-mission-grid {
@@ -1237,13 +1689,14 @@
   }
 
   .about-management-team-grid {
-    gap: 0.6rem;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
     padding: 0 0.5rem;
   }
 
   /* Hide placeholder on smaller screens since large card becomes normal */
   .management-team-card-placeholder {
-    display: none;
+    display: none !important;
   }
 
   /* ALL cards (including large) become uniform size */
@@ -1259,7 +1712,7 @@
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0.5rem 0.5rem 0 0.5rem;
+    padding: 0.3rem 0.3rem 0 0.3rem;
     border-radius: 12px;
   }
 
@@ -1268,26 +1721,26 @@
     height: auto;
     min-height: unset;
     aspect-ratio: 3/4;
-    margin: 0.3rem 0 0 0;
+    margin: 0.2rem 0 0 0;
     object-fit: cover;
     object-position: center top;
     border-radius: 0 0 10px 10px;
   }
 
   .about-management-team-grid .management-team-card .management-team-card-role {
-    font-size: 0.55rem;
-    margin: 0.2rem 0;
+    font-size: 0.5rem;
+    margin: 0.15rem 0;
     line-height: 1.2;
   }
 
   /* Expanded rows - same uniform styling */
   .about-management-team-expanded-rows {
     margin-top: 1.5rem;
-    gap: 0.8rem;
+    gap: 0.5rem;
   }
 
   .about-management-team-expanded-rows .about-management-team-grid {
-    gap: 0.6rem;
+    gap: 0.5rem;
     padding: 0 0.5rem;
   }
 
@@ -1303,7 +1756,7 @@
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0.5rem 0.5rem 0 0.5rem !important;
+    padding: 0.3rem 0.3rem 0 0.3rem !important;
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-image {
@@ -1311,15 +1764,15 @@
     height: auto !important;
     min-height: unset !important;
     aspect-ratio: 3/4;
-    margin: 0.3rem 0 0 0 !important;
+    margin: 0.2rem 0 0 0 !important;
     object-fit: cover;
     object-position: center top;
     border-radius: 0 0 10px 10px;
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
-    font-size: 0.55rem !important;
-    margin: 0.2rem 0 !important;
+    font-size: 0.5rem !important;
+    margin: 0.15rem 0 !important;
   }
 
   .about-see-more-link {
@@ -1370,6 +1823,10 @@
 }
 
 @media (max-width: 768px) {
+  .about-bg-wrapper {
+    bottom: -50px;
+  }
+
   .about-hero {
     min-height: var(--about-hero-height-mobile);
     padding-top: 10rem;
@@ -1426,18 +1883,19 @@
   }
 
   .about-management-team-container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
   }
 
   .about-management-team-grid {
-    gap: 0.4rem;
-    padding: 0 0.25rem;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    padding: 0 0.1rem;
   }
 
   /* Hide placeholder since large card becomes normal */
   .management-team-card-placeholder {
-    display: none;
+    display: none !important;
   }
 
   /* ALL cards (including large) become uniform size */
@@ -1453,7 +1911,7 @@
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0.4rem 0.4rem 0 0.4rem;
+    padding: 0.2rem 0.2rem 0 0.2rem;
     border-radius: 10px;
   }
 
@@ -1462,27 +1920,28 @@
     height: auto;
     min-height: unset;
     aspect-ratio: 3/4;
-    margin: 0.25rem 0 0 0;
+    margin: 0.15rem 0 0 0;
     object-fit: cover;
     object-position: center top;
     border-radius: 0 0 8px 8px;
   }
 
   .about-management-team-grid .management-team-card .management-team-card-role {
-    font-size: 0.5rem;
-    margin: 0.15rem 0;
+    font-size: 0.8rem;
+    margin: 0.1rem 0;
     line-height: 1.2;
   }
 
   /* Expanded rows - same uniform styling */
   .about-management-team-expanded-rows {
     margin-top: 1.2rem;
-    gap: 0.6rem;
+    gap: 0.25rem;
   }
 
   .about-management-team-expanded-rows .about-management-team-grid {
-    gap: 0.4rem;
-    padding: 0 0.25rem;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    padding: 0 0.1rem;
   }
 
   .about-management-team-expanded-rows .management-team-card {
@@ -1497,7 +1956,7 @@
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0.4rem 0.4rem 0 0.4rem !important;
+    padding: 0.2rem 0.2rem 0 0.2rem !important;
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-image {
@@ -1505,15 +1964,15 @@
     height: auto !important;
     min-height: unset !important;
     aspect-ratio: 3/4;
-    margin: 0.25rem 0 0 0 !important;
+    margin: 0.15rem 0 0 0 !important;
     object-fit: cover;
     object-position: center top;
     border-radius: 0 0 8px 8px;
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
-    font-size: 0.5rem !important;
-    margin: 0.15rem 0 !important;
+    font-size: 0.8rem !important;
+    margin: 0.1rem 0 !important;
   }
 
   .about-see-more-link {
@@ -1596,12 +2055,16 @@
 }
 
 @media (max-width: 480px) {
+  .about-bg-wrapper {
+    margin-top: -12rem;
+  }
+
   .about-hero {
     min-height: var(--about-hero-height-small);
     padding-top: var(--about-hero-padding-top-small);
     padding-bottom: var(--about-hero-padding-bottom-mobile);
   }
-
+  
   .about-title {
     font-size: 2rem;
   }
@@ -1659,13 +2122,14 @@
   }
 
   .about-management-team-grid {
-    gap: 0.25rem;
-    padding: 0 0.1rem;
+    flex-wrap: nowrap;
+    gap: 0.15rem;
+    padding: 0;
   }
 
   /* Hide placeholder since large card becomes normal */
   .management-team-card-placeholder {
-    display: none;
+    display: none !important;
   }
 
   /* ALL cards (including large) become uniform size */
@@ -1681,7 +2145,7 @@
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0.3rem 0.3rem 0 0.3rem;
+    padding: 0.15rem 0.15rem 0 0.15rem;
     border-radius: 8px;
   }
 
@@ -1690,27 +2154,28 @@
     height: auto;
     min-height: unset;
     aspect-ratio: 3/4;
-    margin: 0.2rem 0 0 0;
+    margin: 0.1rem 0 0 0;
     object-fit: cover;
     object-position: center top;
     border-radius: 0 0 6px 6px;
   }
-
+  
   .about-management-team-grid .management-team-card .management-team-card-role {
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
     font-size: 0.4rem;
-    margin: 0.1rem 0;
-    line-height: 1.15;
   }
-
+  
   /* Expanded rows - same uniform styling */
   .about-management-team-expanded-rows {
     margin-top: 1rem;
-    gap: 0.5rem;
+    gap: 0.15rem;
   }
 
   .about-management-team-expanded-rows .about-management-team-grid {
-    gap: 0.25rem;
-    padding: 0 0.1rem;
+    flex-wrap: nowrap;
+    gap: 0.15rem;
+    padding: 0;
   }
 
   .about-management-team-expanded-rows .management-team-card {
@@ -1725,7 +2190,7 @@
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0.3rem 0.3rem 0 0.3rem !important;
+    padding: 0.15rem 0.15rem 0 0.15rem !important;
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-image {
@@ -1733,15 +2198,15 @@
     height: auto !important;
     min-height: unset !important;
     aspect-ratio: 3/4;
-    margin: 0.2rem 0 0 0 !important;
+    margin: 0.1rem 0 0 0 !important;
     object-fit: cover;
     object-position: center top;
     border-radius: 0 0 6px 6px;
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
-    font-size: 0.4rem !important;
-    margin: 0.1rem 0 !important;
+    font-size: 0.35rem !important;
+    margin: 0.05rem 0 !important;
   }
 
   .about-see-more-link {
@@ -1835,7 +2300,7 @@
     text-indent: 0;
     /* Remove indent */
     line-height: 1.4;
-    text-align: center;
+    text-align: justify;
   }
 
   .related-company-card {
@@ -1850,11 +2315,19 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 430px) {
   .about-history-title {
     font-size: 1.5rem;
     margin-bottom: 2rem;
     margin-top: -2rem;
+  }
+  .about-management-team-grid .management-team-card .management-team-card-role {
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+    font-size: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
   }
 }
 
@@ -1937,16 +2410,15 @@
   }
 
   .about-management-team-grid {
-    gap: 0.15rem;
-    padding: 0 0.05rem;
-    flex-wrap: wrap;
-    /* Allow wrapping */
-    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0.1rem;
+    padding: 0;
+    justify-content: space-between;
   }
 
   /* Hide placeholder since large card becomes normal */
   .management-team-card-placeholder {
-    display: none;
+    display: none !important;
   }
 
   /* ALL cards (including large) become uniform size */
@@ -1957,12 +2429,12 @@
     max-width: none !important;
     width: 0 !important;
     height: auto !important;
-    top: 0 !important;
-    left: auto !important;
+    top: 0 !important; /* Reset positioning for large card */
+    left: auto !important; /* Reset positioning for large card */
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0.2rem 0.2rem 0 0.2rem;
+    padding: 0.1rem 0.1rem 0 0.1rem;
     border-radius: 6px;
   }
 
@@ -1971,29 +2443,29 @@
     height: auto;
     min-height: unset;
     aspect-ratio: 3/4;
-    margin: 0.12rem 0 0 0;
+    margin: 0.1rem 0 0 0;
     object-fit: cover;
     object-position: center top;
     border-radius: 0 0 5px 5px;
   }
 
   .about-management-team-grid .management-team-card .management-team-card-role {
-    font-size: 0.32rem;
-    margin: 0.06rem 0;
+    font-size: 0.3rem;
     line-height: 1.1;
+    margin-top: -0.5rem;
+    margin-bottom: 0.3rem;
   }
 
   /* Expanded rows - same uniform styling */
   .about-management-team-expanded-rows {
     margin-top: 0.8rem;
-    gap: 0.4rem;
+    gap: 0.1rem;
   }
 
   .about-management-team-expanded-rows .about-management-team-grid {
-    gap: 0.15rem;
-    padding: 0 0.05rem;
-    flex-wrap: wrap;
-    /* Allow wrapping */
+    flex-wrap: nowrap;
+    gap: 0.1rem;
+    padding: 0;
   }
 
   .about-management-team-expanded-rows .management-team-card {
@@ -2008,7 +2480,7 @@
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0.2rem 0.2rem 0 0.2rem !important;
+    padding: 0.1rem 0.1rem 0 0.1rem !important;
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-image {
@@ -2016,15 +2488,15 @@
     height: auto !important;
     min-height: unset !important;
     aspect-ratio: 3/4;
-    margin: 0.12rem 0 0 0 !important;
+    margin: 0.1rem 0 0 0 !important;
     object-fit: cover;
     object-position: center top;
     border-radius: 0 0 5px 5px;
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
-    font-size: 0.32rem !important;
-    margin: 0.06rem 0 !important;
+    font-size: 0.3rem !important;
+    margin: 0.05rem 0 !important;
   }
 
   .about-see-more-link {
@@ -2097,9 +2569,16 @@
 }
 /* History Timeline (Dots and Line) Responsive */
 @media screen and (max-width: 768px) {
-  .about-history-timeline::after,
-  .about-history-timeline-progress {
-    left: 21px;
+  .about-history-timeline::after {
+    left: 21px !important;
+  }
+
+  .about-history-timeline .about-history-timeline-progress {
+    left: 21px !important;
+  }
+
+  .about-history-timeline-line {
+    left: 21px !important;
   }
 
   .about-history-item {
@@ -2128,7 +2607,40 @@
   }
 }
 
+@media (max-width: 450px) {
+  .about-bg-wrapper {
+    position: relative;
+    top: 70px;
+  }
+
+  .about-management-team-grid .management-team-card {
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem !important; /* Add bottom padding */
+    margin: 0 !important;
+  }
+  
+  .about-management-team-grid .management-team-card .management-team-card-role {
+    margin-top: 0.15rem !important; /* Reduce top margin */
+    font-size: 0.35rem !important; /* Slightly larger for readability */
+    white-space: nowrap !important; /* Allow text to wrap */
+  }
+  
+  .about-management-team-grid .management-team-card .management-team-card-image {
+    aspect-ratio: 3/4;
+    width: 100%;
+    height: auto;
+    margin: 0 0 0 0 !important; /* Remove top margin, keep bottom margin minimal */
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 6px 6px 4px 4px;
+    bottom: -5px;
+  }
+}
+
 @media (max-width: 375px) {
+  .about-page {
+    bottom: -31px;
+  }
+
   .about-history-item {
     padding-left: 50px;
     padding-right: 15px;
@@ -2137,7 +2649,7 @@
 
   .about-history-timeline::after,
   .about-history-timeline-progress {
-    left: 21px;
+    left: 21px !important;
   }
 
   .about-history-item::after {
@@ -2162,5 +2674,28 @@
     line-height: 1.5;
     font-weight: 400;
     /* Regular weight */
+  }
+
+  .about-management-team-grid .management-team-card {
+    padding: 0.1rem 0.1rem 0.15rem 0.1rem !important;
+  }
+  
+  .about-management-team-grid .management-team-card .management-team-card-role {
+    font-size: 0.4rem !important;
+    margin-top: 0.1rem !important;
+    margin-bottom: 0.1rem !important;
+    line-height: 1.1;
+  }
+  
+  .about-management-team-grid .management-team-card .management-team-card-image {
+    margin: 0 0 0.05rem 0 !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .about-management-team-grid .management-team-card .management-team-card-role {
+    font-size: 0.35rem !important;
+    white-space: normal;
+    word-break: break-word;
   }
 }

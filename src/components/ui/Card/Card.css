@@ -402,8 +402,8 @@
   top: -45px;
   left: 50%;
   transform: translateX(-50%);
-  width: auto;
-  height: auto;
+  height: 5rem; /* Change from 'auto' to 5rem to enlarge it slightly Note: 'auto makes the size fit to the screen' */
+  width: 5rem;  /* Change from 'auto' to 5rem to enlarge it slightly Note: 'auto makes the size fit to the screen' */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -944,6 +944,7 @@
 
   .projects-card-subtitle {
     font-size: 0.85rem;
+    text-align: justify;
   }
 }
 
@@ -1506,10 +1507,15 @@
    ============================================ */
 
 @media (max-width: 768px) {
+   .service-card-icon-container {
+    height: 4rem;
+    width: 4rem;
+  }
 
   /* WHY CHOOSE CARD */
   .why-choose-card {
     padding: 0.75rem;
+    min-width: 0;
   }
 
   .why-choose-card-icon-container {
@@ -1856,6 +1862,10 @@
 }
 
 @media (max-width: 480px) {
+  .service-card-icon-container {
+    height: 3rem;
+    width: 3rem;
+  }
 
   /* WHY WORK WITH US CARD - Small mobile 2 columns */
   .why-work-withus-card {

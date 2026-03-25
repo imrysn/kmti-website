@@ -1,5 +1,9 @@
 /* iPhone SE (375x667) Specific Fixes */
 @media screen and (max-width: 376px) and (max-height: 850px) {
+  .home-bg-wrapper {
+    position: relative;
+    top: 20px;
+  }
 
   .home-page {
     overflow-x: hidden;

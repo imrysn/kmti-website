@@ -29,11 +29,11 @@
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(170, 210, 250, 0.3);
+  background: rgba(64, 80, 95, 0.3);
   animation: animateShapes 25s linear infinite;
   bottom: -150px; 
   border-radius: 0;
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M19.4,11.29a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42Zm-4.24,4.24a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5ZM21.71,11.29a1,1,0,0,0-1.42,0l-1.41,1.41a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM8.54,3.71a1,1,0,0,0-1.42,0L5.71,5.12a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM3.71,15.46a1,1,0,0,0,0,1.42l1.41,1.41a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42l-.29-.29a1,1,0,0,0-1.42,0Z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.35 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.56,11C4.53,11.35 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.56,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.04 4.95,18.95L7.44,17.95C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.95L19.05,18.95C19.27,19.04 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>');
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -45,11 +45,11 @@
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(170, 210, 250, 0.3);
+  background: rgba(64, 80, 95, 0.3);
   animation: animateShapesTop 25s linear infinite;
   top: -150px;
   border-radius: 0;
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M19.4,11.29a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42Zm-4.24,4.24a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5ZM21.71,11.29a1,1,0,0,0-1.42,0l-1.41,1.41a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM8.54,3.71a1,1,0,0,0-1.42,0L5.71,5.12a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM3.71,15.46a1,1,0,0,0,0,1.42l1.41,1.41a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42l-.29-.29a1,1,0,0,0-1.42,0Z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.35 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.56,11C4.53,11.35 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.56,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.04 4.95,18.95L7.44,17.95C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.95L19.05,18.95C19.27,19.04 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>');
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -76,15 +76,6 @@
   width: 100px;
   height: 100px;
   animation-delay: 4s;
-  /* --- GEAR ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M19.4,11.29a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42Zm-4.24,4.24a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5ZM21.71,11.29a1,1,0,0,0-1.42,0l-1.41,1.41a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM8.54,3.71a1,1,0,0,0-1.42,0L5.71,5.12a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM3.71,15.46a1,1,0,0,0,0,1.42l1.41,1.41a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42l-.29-.29a1,1,0,0,0-1.42,0Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIcons;
 }
 
 .shape:nth-child(4) {
@@ -107,15 +98,6 @@
   width: 110px;
   height: 110px;
   animation-delay: 3s;
-  /* --- BOLT ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L13.47,21.38C12.55,21.93 11.45,21.93 10.53,21.38L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L10.53,2.62C11.45,2.07 12.55,2.07 13.47,2.62L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIcons;
 }
 
 .shape:nth-child(7) {
@@ -139,15 +121,6 @@
   height: 15px;
   animation-delay: 2s;
   animation-duration: 35s;
-  /* --- GEAR ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M19.4,11.29a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42Zm-4.24,4.24a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5ZM21.71,11.29a1,1,0,0,0-1.42,0l-1.41,1.41a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM8.54,3.71a1,1,0,0,0-1.42,0L5.71,5.12a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM3.71,15.46a1,1,0,0,0,0,1.42l1.41,1.41a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42l-.29-.29a1,1,0,0,0-1.42,0Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIcons;
 }
 
 .shape:nth-child(10) {
@@ -171,15 +144,6 @@
   width: 70px;
   height: 70px;
   animation-delay: 8s;
-  /* --- BOLT ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L13.47,21.38C12.55,21.93 11.45,21.93 10.53,21.38L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L10.53,2.62C11.45,2.07 12.55,2.07 13.47,2.62L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIcons;
 }
 
 .shape:nth-child(13) {
@@ -202,15 +166,6 @@
   width: 50px;
   height: 50px;
   animation-delay: 6s;
-  /* --- GEAR ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M19.4,11.29a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42Zm-4.24,4.24a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5ZM21.71,11.29a1,1,0,0,0-1.42,0l-1.41,1.41a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM8.54,3.71a1,1,0,0,0-1.42,0L5.71,5.12a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM3.71,15.46a1,1,0,0,0,0,1.42l1.41,1.41a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42l-.29-.29a1,1,0,0,0-1.42,0Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIcons;
 }
 
 .shape:nth-child(16) {
@@ -233,15 +188,6 @@
   width: 35px;
   height: 35px;
   animation-delay: 14s;
-  /* --- BOLT ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L13.47,21.38C12.55,21.93 11.45,21.93 10.53,21.38L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L10.53,2.62C11.45,2.07 12.55,2.07 13.47,2.62L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIcons;
 }
 
 .shape:nth-child(19) {
@@ -281,15 +227,6 @@
   width: 120px;
   height: 120px;
   animation-delay: 5s;
-  /* --- GEAR ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M19.4,11.29a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42Zm-4.24,4.24a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5ZM21.71,11.29a1,1,0,0,0-1.42,0l-1.41,1.41a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM8.54,3.71a1,1,0,0,0-1.42,0L5.71,5.12a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM3.71,15.46a1,1,0,0,0,0,1.42l1.41,1.41a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42l-.29-.29a1,1,0,0,0-1.42,0Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIconsTop;
 }
 
 .shape-top:nth-child(4) {
@@ -312,15 +249,6 @@
   width: 110px;
   height: 110px;
   animation-delay: 4s;
-  /* --- BOLT ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L13.47,21.38C12.55,21.93 11.45,21.93 10.53,21.38L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L10.53,2.62C11.45,2.07 12.55,2.07 13.47,2.62L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIconsTop;
 }
 
 .shape-top:nth-child(7) {
@@ -344,15 +272,6 @@
   height: 15px;
   animation-delay: 3s;
   animation-duration: 30s;
-  /* --- GEAR ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M19.4,11.29a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42Zm-4.24,4.24a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5ZM21.71,11.29a1,1,0,0,0-1.42,0l-1.41,1.41a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM8.54,3.71a1,1,0,0,0-1.42,0L5.71,5.12a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM3.71,15.46a1,1,0,0,0,0,1.42l1.41,1.41a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42l-.29-.29a1,1,0,0,0-1.42,0Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIconsTop;
 }
 
 .shape-top:nth-child(10) {
@@ -376,15 +295,6 @@
   width: 70px;
   height: 70px;
   animation-delay: 9s;
-  /* --- BOLT ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L13.47,21.38C12.55,21.93 11.45,21.93 10.53,21.38L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L10.53,2.62C11.45,2.07 12.55,2.07 13.47,2.62L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIconsTop;
 }
 
 .shape-top:nth-child(13) {
@@ -407,15 +317,6 @@
   width: 50px;
   height: 50px;
   animation-delay: 7s;
-  /* --- GEAR ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M19.4,11.29a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42Zm-4.24,4.24a1,1,0,0,0-1.42,0l-.29.29a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5ZM21.71,11.29a1,1,0,0,0-1.42,0l-1.41,1.41a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM8.54,3.71a1,1,0,0,0-1.42,0L5.71,5.12a1,1,0,0,0,0,1.42l.29.29a1,1,0,0,0,1.42,0l1.41-1.41a1,1,0,0,0,0-1.42ZM3.71,15.46a1,1,0,0,0,0,1.42l1.41,1.41a1,1,0,0,0,1.42,0l.29-.29a1,1,0,0,0,0-1.42l-.29-.29a1,1,0,0,0-1.42,0Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIconsTop;
 }
 
 .shape-top:nth-child(16) {
@@ -438,15 +339,6 @@
   width: 35px;
   height: 35px;
   animation-delay: 15s;
-  /* --- BOLT ICON --- */
-  background: transparent;
-  background-color: rgba(81, 162, 255, 0.15);
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L13.47,21.38C12.55,21.93 11.45,21.93 10.53,21.38L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L10.53,2.62C11.45,2.07 12.55,2.07 13.47,2.62L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  border-radius: 0;
-  animation-name: animateIconsTop;
 }
 
 .shape-top:nth-child(19) {
@@ -512,14 +404,13 @@
 .sitemap-page .hero-section {
   margin-top: -10rem;
   position: relative;
-  min-height: 60vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   background: transparent;
-  padding-top: 10rem;
-  padding-bottom: 4rem;
+  padding-top: 21rem;
 }
 
 .sitemap-hero-container {
@@ -624,6 +515,24 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero-section,
+  .sitemap-hero-container {
+    position: relative !important;
+    
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    
+    height: auto !important;
+    min-height: auto !important;
+    
+    padding-top: 150px;
+    padding-bottom: 2rem;
+    
+    text-align: center;
+    display: block;
+  }
+
   .sitemap-title {
     font-size: 2.5rem;
   }

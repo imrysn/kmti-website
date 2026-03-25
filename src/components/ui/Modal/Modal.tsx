@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { useTranslation, Trans } from 'react-i18next';
 import './Modal.css';
@@ -78,19 +79,22 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src,
   useLockBodyScroll(isOpen);
   if (!isOpen || !src) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content image-viewer-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
-        <TransformWrapper>
-          <TransformComponent>
-            <LazyImage src={src} alt={alt} className="image-viewer-image" loading="eager" />
-          </TransformComponent>
-        </TransformWrapper>
         {caption && <div className="image-viewer-caption">{caption}</div>}
+        <div className="image-viewer-image-container">
+          <LazyImage 
+            src={src} 
+            alt={alt} 
+            className="image-viewer-image" 
+            loading="eager"
+          />
+        </div>
       </div>
     </div>
-  );
+  , document.body);
 };
 
 const useLockBodyScroll = (isOpen: boolean) => {
@@ -145,7 +149,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
 
   if (!isOpen || !service) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -206,7 +210,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
         </div>
       </div>
     </div>
-  );
+  , document.body);
 };
 
 // --- OUR STORY MODAL ---
@@ -214,7 +218,7 @@ export const OurStoryModal: React.FC<{ isOpen: boolean; onClose: () => void }> =
   const { t } = useTranslation();
   useLockBodyScroll(isOpen);
   if (!isOpen) return null;
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content our-story-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -232,7 +236,7 @@ export const OurStoryModal: React.FC<{ isOpen: boolean; onClose: () => void }> =
         </div>
       </div>
     </div>
-  );
+  , document.body);
 };
 
 // --- MANAGEMENT TEAM MODAL ---
@@ -264,7 +268,7 @@ export const ManagementTeamModal: React.FC<{ isOpen: boolean; onClose: () => voi
     { image: jojoImage, key: 'utility' },
   ];
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content management-team-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -282,7 +286,7 @@ export const ManagementTeamModal: React.FC<{ isOpen: boolean; onClose: () => voi
         </div>
       </div>
     </div>
-  );
+  , document.body);
 };
 
 // --- PROJECT MODAL ---
@@ -318,7 +322,7 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; init
   const curr = displayProjects[idx] || displayProjects[0];
   if (!curr) return null; // Should not happen given existing data
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -374,7 +378,7 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; init
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 // --- LOOPER MODAL ---
 export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initialProjectKey?: string }> = ({ isOpen, onClose, initialProjectKey }) => {
@@ -407,7 +411,7 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
   const curr = displayItems[idx] || displayItems[0];
   if (!curr) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -463,7 +467,7 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- FORMING MODAL ---
@@ -476,7 +480,7 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -519,7 +523,7 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- STRIP ENTRY MODAL ---
@@ -553,7 +557,7 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
   const curr = displayItems[idx] || displayItems[0];
   if (!curr) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -609,7 +613,7 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- TRANSFER TABLE MODAL ---
@@ -638,7 +642,7 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
   ];
   const curr = items[idx];
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -684,7 +688,7 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- FINISHING LINE MODAL ---
@@ -713,7 +717,7 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
   ];
   const curr = items[idx];
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -759,7 +763,7 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- CUTOFF MODAL ---
@@ -772,7 +776,7 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -820,7 +824,7 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- FURNACE MODAL ---
@@ -833,7 +837,7 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -876,7 +880,7 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 export default ServiceModal;
