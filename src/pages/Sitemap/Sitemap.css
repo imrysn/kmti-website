@@ -404,14 +404,13 @@
 .sitemap-page .hero-section {
   margin-top: -10rem;
   position: relative;
-  min-height: 60vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 100%);
   background: transparent;
-  padding-top: 10rem;
-  padding-bottom: 4rem;
+  padding-top: 21rem;
 }
 
 .sitemap-hero-container {

@@ -1314,6 +1314,10 @@ body.services-page-active::-webkit-scrollbar {
 
 /* Mobile responsiveness for service sections */
 @media (max-width: 1024px) {
+  .services-hero {
+    height: 99.5vh;
+  }
+
   .service-section {
     padding: 4rem 0;
   }
@@ -1336,6 +1340,10 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 @media (max-width: 768px) {
+  .services-hero {
+    height: 103.8vh;
+  }
+
   .service-section {
     padding: 3rem 0;
   }
@@ -1371,6 +1379,10 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 @media (max-width: 480px) {
+  .services-hero {
+    height: 106vh;
+  }
+
   .service-section {
     padding: 2rem 2rem;
   }
@@ -1416,5 +1428,11 @@ body.services-page-active::-webkit-scrollbar {
   .service-section-carousel-dot {
     width: 8px;
     height: 8px;
+  }
+}
+
+@media (max-width: 375px) {
+  .services-page {
+    margin-top: 1rem;
   }
 }

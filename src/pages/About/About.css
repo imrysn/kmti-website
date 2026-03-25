@@ -775,6 +775,24 @@
   cursor: pointer;
 }
 
+.about-management-team-grid .management-team-card-role {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+}
+
+/* Target only the 3rd card (Center/CEO) in the main top grid on Desktop */
+@media (min-width: 1025px) {
+  .about-management-team-container > .about-management-team-grid > .management-team-card:nth-child(3) {
+    transform: scale(1.1);
+    height: fit-content;
+    padding-bottom: 0.7rem;
+    z-index: 10;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
 .about-management-team-container.expanded .about-see-more-link {
   margin-top: 8rem;
 }
@@ -2027,7 +2045,7 @@
     padding-top: var(--about-hero-padding-top-small);
     padding-bottom: var(--about-hero-padding-bottom-mobile);
   }
-
+  
   .about-title {
     font-size: 2rem;
   }
@@ -2126,8 +2144,9 @@
   .about-management-team-grid .management-team-card .management-team-card-role {
     line-height: 1.1;
     margin-bottom: 0.3rem;
+    font-size: 0.4rem;
   }
-
+  
   /* Expanded rows - same uniform styling */
   .about-management-team-expanded-rows {
     margin-top: 1rem;
