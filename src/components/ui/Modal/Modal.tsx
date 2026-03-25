@@ -83,12 +83,15 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src,
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content image-viewer-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
-        <TransformWrapper>
-          <TransformComponent>
-            <LazyImage src={src} alt={alt} className="image-viewer-image" loading="eager" />
-          </TransformComponent>
-        </TransformWrapper>
         {caption && <div className="image-viewer-caption">{caption}</div>}
+        <div className="image-viewer-image-container">
+          <LazyImage 
+            src={src} 
+            alt={alt} 
+            className="image-viewer-image" 
+            loading="eager"
+          />
+        </div>
       </div>
     </div>
   , document.body);
