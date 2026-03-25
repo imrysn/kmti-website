@@ -58,7 +58,6 @@
   50% { transform: scale(1.03); }
 }
 
-/* Enhanced Responsive Hero Content */
 .events-hero-content {
   position: relative;
   z-index: 2;
@@ -118,7 +117,7 @@
   box-sizing: border-box;
 }
 
-/* ================= LEFT LAYOUT STYLES (Image on Left) ================= */
+/* ================= LEFT LAYOUT STYLES ================= */
 .event-left {
   display: grid;
   grid-template-columns: 2.5fr 1fr;
@@ -146,19 +145,17 @@
   }
 }
 
-/* Left Content (Main) */
 .left-content {
   flex-direction: column;
   width: 100%;
 }
 
-/* Section Titles with Gradient Effect and Animation */
 .section-title-left {
   font-family: var(--font-family-heading);
   font-size: 3rem;
   font-weight: 600;
   text-align: left;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0;
   margin-top: 2rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-size: 200% auto;
@@ -179,7 +176,7 @@
   font-size: 3rem;
   font-weight: 600;
   text-align: right;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0;
   margin-top: 2rem;
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-size: 200% auto;
@@ -229,7 +226,139 @@
   transition: transform 0.3s ease;
 }
 
-/* Main Image Slideshow with Enhanced Effects */
+/* Title and Dropdown Layout */
+.title-and-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-and-dropdown-alt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Year Dropdown Styles */
+.year-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.year-dropdown-left {
+  align-self: flex-end;
+}
+
+.year-dropdown-right {
+  align-self: flex-end;
+}
+
+.year-dropdown-button-default,
+.year-dropdown-button-alt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-family-body);
+  letter-spacing: 0.3px;
+  min-width: 100px;
+}
+
+.year-dropdown-button-default:hover,
+.year-dropdown-button-alt:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.year-dropdown-button-default:active,
+.year-dropdown-button-alt:active {
+  transform: translateY(0);
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.year-dropdown-menu-default,
+.year-dropdown-menu-alt {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  min-width: 100%;
+  background: rgba(10, 20, 40, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 100;
+  animation: dropdownFadeIn 0.2s ease-out;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.year-dropdown-menu-default {
+  left: 0;
+}
+
+.year-dropdown-menu-alt {
+  right: 0;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.year-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1.2rem;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-family-body);
+  white-space: nowrap;
+}
+
+.year-dropdown-item:hover {
+  background: rgba(81, 162, 255, 0.2);
+  color: white;
+}
+
+.year-dropdown-item.active {
+  background: linear-gradient(135deg, #51A2FF, #FF5252);
+  color: white;
+}
+
+/* Main Image Slideshow */
 .main-image {
   height: 400px;
   border-radius: 18px;
@@ -241,6 +370,7 @@
   cursor: pointer;
   perspective: 1000px;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .main-image:hover {
@@ -307,7 +437,7 @@
   transform: scale(1.08);
 }
 
-/* Slider Controls - Enhanced Dots */
+/* Slider Controls */
 .slider-controls {
   display: flex;
   justify-content: center;
@@ -359,7 +489,6 @@
   }
 }
 
-/* Modern Dot Styles */
 .dot {
   width: 10px;
   height: 10px;
@@ -414,10 +543,11 @@
   }
 }
 
-/* Description with Enhanced Hover Effects */
+/* Description */
 .section-description {
   animation: descriptionFade 1s ease-out 0.3s both;
   width: 100%;
+  margin-top: 1rem;
 }
 
 @keyframes descriptionFade {
@@ -481,69 +611,22 @@
   border-bottom-color: rgba(81, 162, 255, 0.5);
 }
 
-/* Right layout description styles */
-.section-description-alt {
-  animation: descriptionFade 1s ease-out 0.3s both;
-  width: 100%;
-}
-
-.section-description-alt h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: white;
-  font-weight: 600;
-  letter-spacing: -0.3px;
-  line-height: 1.3;
-  position: relative;
-  display: inline-block;
-  transition: transform 0.3s ease;
-  word-wrap: break-word;
-}
-
-.section-description-alt p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  opacity: 0.9;
-  padding-bottom: 1rem;
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
-  font-weight: 300;
-  letter-spacing: 0.2px;
-  transition: all 0.3s ease;
-  word-wrap: break-word;
-}
-
-.section-description-alt h3::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  right: 0;
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, #51A2FF, #FF5252);
-  transition: width 0.4s ease, box-shadow 0.3s ease;
-}
-
-.section-description-alt:hover h3::after {
-  width: 80px;
-  box-shadow: 0 0 10px rgba(81, 162, 255, 0.8);
-}
-
-.section-description-alt h3:hover {
-  transform: translateX(5px);
-}
-
-.section-description-alt:hover p {
-  opacity: 1;
-  border-bottom-color: rgba(81, 162, 255, 0.5);
-}
-
-/* Thumbnail Container with Navigation */
+/* Thumbnail Container - Hidden Scrollbar */
 .thumbnail-container,
 .thumbnail-container-alt {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   position: relative;
+  width: 100%;
+  border-radius: 12px;
+  /* Hide scrollbar for all browsers */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.thumbnail-container::-webkit-scrollbar,
+.thumbnail-container-alt::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .thumbnails-list,
@@ -551,81 +634,66 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.thumbnails-list::-webkit-scrollbar,
-.thumbnails-list-alt::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
-
-/* Navigation Buttons */
-.nav-button,
-.nav-button-alt {
-  background: linear-gradient(135deg, rgba(81, 162, 255, 0.2), rgba(255, 82, 82, 0.2));
-  border: 1px solid rgba(81, 162, 255, 0.5);
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  height: 32px;
-  transition: all 0.2s ease;
 }
 
-.nav-button:hover,
-.nav-button-alt:hover {
-  background: linear-gradient(135deg, rgba(81, 162, 255, 0.4), rgba(255, 82, 82, 0.4));
-  transform: none;
-  box-shadow: 0 0 8px rgba(81, 162, 255, 0.5);
-  border-color: rgba(81, 162, 255, 0.8);
-}
-
-.thumbnail-item {
-  height: 165px;
+.thumbnail-item,
+.thumbnail-item-alt {
   width: 100%;
   border-radius: 14px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   position: relative;
   border: 2px solid transparent;
+  flex-shrink: 0;
 }
 
-.thumbnail-item.active {
+.thumbnail-item.active,
+.thumbnail-item-alt.active {
   border: 3px solid transparent;
   background: linear-gradient(white, white) padding-box,
               linear-gradient(135deg, #51A2FF, #FF5252) border-box;
   box-shadow: 0 0 20px rgba(81, 162, 255, 0.5);
-  transform: none;
+  transform: scale(1.02);
 }
 
-.thumbnail-item img {
+.thumbnail-item img,
+.thumbnail-item-alt img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: none;
+  transition: transform 0.3s ease;
 }
 
-.thumbnail-item:hover {
-  transform: none;
+.thumbnail-item:hover img,
+.thumbnail-item-alt:hover img {
+  transform: scale(1.05);
+}
+
+.thumbnail-item:hover,
+.thumbnail-item-alt:hover {
   box-shadow: 0 12px 28px rgba(81, 162, 255, 0.4);
+  transform: translateY(-2px);
 }
 
-/* ================= RIGHT LAYOUT STYLES ================= */
+@media (min-width: 901px) {
+  .thumbnail-item,
+  .thumbnail-item-alt {
+    height: 165px;
+  }
+}
+
+@media (max-width: 900px) {
+  .thumbnail-container,
+  .thumbnail-container-alt {
+    display: none !important;
+  }
+}
+
+/* Right Layout */
 .event-right {
   display: grid;
   grid-template-columns: 1fr 2.5fr;
@@ -653,45 +721,12 @@
   }
 }
 
-.thumbnail-item-alt {
-  height: 165px;
-  width: 100%;
-  border-radius: 14px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  border: 2px solid transparent;
-}
-
-.thumbnail-item-alt.active {
-  border: 3px solid transparent;
-  background: linear-gradient(white, white) padding-box,
-              linear-gradient(135deg, #51A2FF, #FF5252) border-box;
-  box-shadow: 0 0 20px rgba(81, 162, 255, 0.5);
-  transform: none;
-}
-
-.thumbnail-item-alt img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: none;
-}
-
-.thumbnail-item-alt:hover {
-  transform: none;
-  box-shadow: 0 12px 28px rgba(81, 162, 255, 0.4);
-}
-
 .left-content-alt {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-/* Main Image Alt */
 .main-image-alt {
   height: 400px;
   border-radius: 18px;
@@ -703,6 +738,7 @@
   cursor: pointer;
   perspective: 1000px;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .main-image-alt:hover {
@@ -727,8 +763,7 @@
   left: 100%;
 }
 
-/* ================= ENHANCED RESPONSIVE DESIGN ================= */
-/* Tablet and Small Desktop (901px - 1200px) */
+/* Responsive Design */
 @media (max-width: 1200px) {
   .events-container {
     padding: 2rem 1.5rem 0;
@@ -744,11 +779,9 @@
     height: 350px;
   }
   
- 
   .events-hero {
     padding: 15rem 1rem 6rem;
     min-height: 101vh;
-    
   }
   
   .events-hero-content h1 {
@@ -760,8 +793,6 @@
   }
 }
 
-
-/* Tablet (769px - 900px) */
 @media (max-width: 900px) {
   .event-left,
   .event-right {
@@ -775,13 +806,11 @@
     transform: translateX(0);
   }
 
-  /* Hide thumbnails on tablet and mobile */
   .thumbnail-container,
   .thumbnail-container-alt {
     display: none !important;
   }
 
-  /* Adjust main image for better mobile display */
   .main-image,
   .main-image-alt {
     height: 350px;
@@ -789,7 +818,6 @@
     margin-top: 0.5rem;
   }
 
-  /* Ensure slider controls are visible and well-positioned */
   .slider-controls,
   .slider-controls-alt {
     display: flex;
@@ -818,13 +846,10 @@
     width: 28px;
   }
 
-  /* Adjust description */
-  .section-description,
-  .section-description-alt {
+  .section-description {
     margin-top: 1rem;
   }
 
-  /* Ensure text alignment is consistent for both layouts on tablet */
   .section-title-left,
   .section-titles-alt {
     font-size: 2.2rem;
@@ -834,15 +859,6 @@
   
   .section-titles-alt {
     align-self: flex-start;
-  }
-
-  .section-description-alt {
-    text-align: left;
-  }
-
-  .section-description-alt h3::after {
-    right: auto;
-    left: 0;
   }
   
   .events-hero {
@@ -861,9 +877,40 @@
   .events-hero-content p {
     font-size: 1.1rem;
   }
+
+  /* Keep title and dropdown side by side on mobile */
+  .title-and-dropdown,
+  .title-and-dropdown-alt {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .year-dropdown-left,
+  .year-dropdown-right {
+    align-self: auto;
+  }
+  
+  .year-dropdown-button-default,
+  .year-dropdown-button-alt {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    min-width: 90px;
+  }
+  
+  .year-dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Adjust title size on smaller screens */
+  .section-title-left,
+  .section-titles-alt {
+    font-size: 1.8rem;
+  }
 }
 
-/* Mobile Large (481px - 768px) */
 @media (max-width: 768px) {
   .events-container {
     padding: 1.5rem 1rem 0;
@@ -871,8 +918,7 @@
   
   .section-title-left,
   .section-titles-alt {
-    font-size: 2rem;
-    margin-top: 1rem;
+    font-size: 1.8rem;
   }
   
   .main-image,
@@ -880,13 +926,11 @@
     height: 300px;
   }
   
-  .section-description h3,
-  .section-description-alt h3 {
+  .section-description h3 {
     font-size: 1.6rem;
   }
   
-  .section-description p,
-  .section-description-alt p {
+  .section-description p {
     font-size: 1rem;
     line-height: 1.6;
   }
@@ -926,13 +970,19 @@
   .dot-alt.active {
     width: 24px;
   }
+
+  /* Keep title and dropdown side by side on mobile */
+  .title-and-dropdown,
+  .title-and-dropdown-alt {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
-/* Mobile Medium (381px - 480px) */
 @media (max-width: 600px) {
   .section-title-left,
   .section-titles-alt {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   
   .main-image,
@@ -940,13 +990,11 @@
     height: 250px;
   }
   
-  .section-description h3,
-  .section-description-alt h3 {
+  .section-description h3 {
     font-size: 1.4rem;
   }
   
-  .section-description p,
-  .section-description-alt p {
+  .section-description p {
     font-size: 0.95rem;
     line-height: 1.5;
   }
@@ -974,9 +1022,53 @@
   .dot-alt.active {
     width: 20px;
   }
+
+  .year-dropdown-button-default,
+  .year-dropdown-button-alt {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    min-width: 80px;
+  }
+  
+  .year-dropdown-item {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Keep title and dropdown side by side on very small screens */
+  .title-and-dropdown,
+  .title-and-dropdown-alt {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  
+  .section-title-left,
+  .section-titles-alt {
+    font-size: 1.4rem;
+  }
 }
 
-/* Mobile Small (up to 380px) */
+@media (max-width: 480px) {
+  .year-dropdown-button-default,
+  .year-dropdown-button-alt {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+  
+  .year-dropdown-item {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .section-title-left,
+  .section-titles-alt {
+    font-size: 1.3rem;
+  }
+}
+
 @media (max-width: 380px) {
   .events-container {
     padding: 1rem 0.75rem 0;
@@ -984,7 +1076,7 @@
   
   .section-title-left,
   .section-titles-alt {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   
   .main-image,
@@ -992,13 +1084,11 @@
     height: 200px;
   }
   
-  .section-description h3,
-  .section-description-alt h3 {
+  .section-description h3 {
     font-size: 1.2rem;
   }
   
-  .section-description p,
-  .section-description-alt p {
+  .section-description p {
     font-size: 0.9rem;
     line-height: 1.4;
   }
@@ -1033,9 +1123,28 @@
     width: 18px;
     height: 6px;
   }
+  
+  /* Keep title and dropdown side by side on extra small screens */
+  .title-and-dropdown,
+  .title-and-dropdown-alt {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .section-title-left,
+  .section-titles-alt {
+    font-size: 1.1rem;
+  }
+  
+  .year-dropdown-button-default,
+  .year-dropdown-button-alt {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+    min-width: 65px;
+  }
 }
 
-/* Landscape orientation optimization */
 @media (max-height: 600px) and (orientation: landscape) {
   .events-hero {
     padding: 8rem 1rem 3rem;
@@ -1057,22 +1166,6 @@
   }
 }
 
-/* For larger screens, ensure thumbnails maintain proper sizing */
-@media (min-width: 901px) {
-  .thumbnail-item,
-  .thumbnail-item-alt {
-    height: 165px;
-    width: 100%;
-  }
-  
-  .thumbnails-list,
-  .thumbnails-list-alt {
-    overflow-y: visible;
-    overflow-x: visible;
-  }
-}
-
-/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .thumbnail-item:hover,
   .thumbnail-item-alt:hover,
@@ -1092,38 +1185,31 @@
   }
 }
 
-/* Smooth transitions for all interactive elements */
 button, 
 .thumbnail-item, 
 .thumbnail-item-alt,
 .dot,
 .dot-alt,
 .main-image,
-.main-image-alt {
+.main-image-alt,
+.year-dropdown-button-default,
+.year-dropdown-button-alt {
   will-change: transform;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Prevent content shift on mobile */
 * {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Improved touch targets for mobile */
 @media (max-width: 768px) {
   .dot,
   .dot-alt {
     min-width: 8px;
     min-height: 8px;
   }
-  
-  .nav-button,
-  .nav-button-alt {
-    min-height: 40px;
-  }
 }
 
-/* Scroll-triggered Animations */
 [data-aos] {
   pointer-events: none;
 }
@@ -1132,19 +1218,16 @@ button,
   pointer-events: auto;
 }
 
-/* Smooth Scroll Behavior */
 html {
   scroll-behavior: smooth;
 }
 
-/* Enhanced font rendering */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-/* Loading Animation for Images */
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
@@ -1160,12 +1243,10 @@ html {
   animation: shimmer 2s infinite;
 }
 
-/* Additional Enhanced Effects */
 .event-section {
   will-change: transform, opacity;
 }
 
-/* Remove glow effect for active elements */
 .thumbnail-item.active::after,
 .thumbnail-item-alt.active::after {
   display: none;
