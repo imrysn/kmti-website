@@ -464,7 +464,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, #677bd4 0%, #3957c4 50%, #020618 135%);
+  background: linear-gradient(720deg, #020618 0%, #3957c4 50%, #8294e7 135%);
   opacity: 0.8;
   z-index: 1;
 }
