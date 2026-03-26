@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import SEO from '../../components/common/SEO';
 import './Sitemap.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
 
 const BackgroundShapes: React.FC = () => (

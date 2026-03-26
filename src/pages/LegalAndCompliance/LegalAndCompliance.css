@@ -64,7 +64,7 @@
   font-family: var(--font-family-body);
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.7);
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
 }
 
@@ -261,6 +261,21 @@
   
   .legal-section-title {
     font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .legal-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .legal-title {
+    font-size: 1.5rem;
+  }
+  .legal-subtitle {
+    font-size: 0.9rem;
   }
 }
 

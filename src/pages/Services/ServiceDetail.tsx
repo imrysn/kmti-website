@@ -3,6 +3,7 @@ import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './ServiceDetail.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import Button from '../../components/ui/Button';
 import { motion } from 'framer-motion';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';

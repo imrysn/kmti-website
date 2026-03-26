@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Services.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import type { ServicesPageProps } from './Services.types';
 import { smoothScrollToElement } from '../../utils/smoothScroll';
 import { ServicePageCard } from '../../components/ui/Card/Card';

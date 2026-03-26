@@ -3,6 +3,7 @@ import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import SEO from '../../components/common/SEO';
 import { useTranslation, Trans } from 'react-i18next';
 import './Contact.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import type { ContactPageProps } from './Contact.types';
 import { getAssetUrl } from '../../utils/assets';
 import { ContactOptionCard } from '../../components/ui/Card/Card';

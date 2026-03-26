@@ -6,6 +6,7 @@ import './Home-iPhoneSE.css';
 import './iPhone12_13_14.css';
 import './IphonePlus_Promax.css';
 import './AndroidStandard.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import type { HomePageProps } from './Home.types';
 import { getAssetUrl } from '../../utils/assets';
 import SEO from '../../components/common/SEO';

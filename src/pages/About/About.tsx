@@ -7,6 +7,7 @@ import '../Home/Home-iPhoneSE.css';
 import '../Home/iPhone12_13_14.css';
 import '../Home/AndroidStandard.css';
 import '../Home/IphonePlus_Promax.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import type { AboutPageProps } from './About.types';
 import { getAssetUrl } from '../../utils/assets';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';

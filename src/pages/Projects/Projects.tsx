@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import './Projects.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import type { ProjectsPageProps } from './Projects.types';
 import Button from '../../components/ui/Button/Button';
 import { useProjectModals } from '../../hooks/useProjectModals';

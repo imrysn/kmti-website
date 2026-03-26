@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SEO from '../../components/common/SEO';
 import './LegalAndCompliance.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 
