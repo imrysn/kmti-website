@@ -63,6 +63,16 @@
 @media (min-width: 1200px) {
   .image-viewer-modal-content {
     max-width: 45%;
+    margin: 20rem;
+  }
+
+  .image-viewer-caption {
+    font-size: 2rem;
+  }
+
+  .image-viewer-image {
+    max-height: 48vh;
+    margin-bottom: -3rem;
   }
 }
 
@@ -70,6 +80,16 @@
 @media (max-width: 1199px) and (min-width: 1025px) {
   .image-viewer-modal-content {
     max-width: 55%;
+    margin: 12rem;
+  }
+
+  .image-viewer-caption {
+    font-size: 2rem;
+  }
+
+  .image-viewer-image {
+    max-height: 48vh;
+    margin-bottom: -3rem;
   }
 }
 
@@ -98,7 +118,7 @@
   }
   
   .image-viewer-caption {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 0.75rem;
   }
   
@@ -112,11 +132,11 @@
   .image-viewer-modal-content {
     max-width: 88%;
     padding: 1.25rem 1.25rem 0.5rem 1.25rem;
-    margin: 0;
+    margin: 7rem;
   }
   
   .image-viewer-caption {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
   }
   
   .image-viewer-image {
@@ -129,11 +149,11 @@
   .image-viewer-modal-content {
     max-width: 92%;
     padding: 1rem 1rem 0.5rem 1rem;
-    margin: 0;
+    margin: 4rem;
   }
   
   .image-viewer-caption {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
   
@@ -147,11 +167,11 @@
   .image-viewer-modal-content {
     max-width: 95%;
     padding: 0.875rem 0.875rem 0.375rem 0.875rem;
-    margin: 0;
+    margin: 2rem;
   }
   
   .image-viewer-caption {
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     margin-bottom: 0.4rem;
   }
   
@@ -176,14 +196,6 @@
   .image-viewer-image {
     max-height: 35vh;
   }
-}
-
-/* optionally enhance the card hover on mobile */
-.management-team-card {
-  transition: transform .2s;
-}
-.management-team-card:hover {
-  transform: scale(1.02);
 }
 
 .service-modal-overlay {

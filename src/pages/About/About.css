@@ -776,7 +776,7 @@
 }
 
 .about-management-team-grid .management-team-card-role {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.5px;
   margin-top: 0.5rem;
@@ -792,6 +792,10 @@
     z-index: 10;
   }
   
+  .about-management-team-container > .about-management-team-grid > .management-team-card:nth-child(3) .management-team-card-role {
+    font-size: 1.5rem;
+  }
+
   .about-management-team-container > .about-management-team-grid {
     gap: 1.5rem;
   }
@@ -1927,7 +1931,7 @@
   }
 
   .about-management-team-grid .management-team-card .management-team-card-role {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
     margin: 0.1rem 0;
     line-height: 1.2;
   }
@@ -1971,7 +1975,7 @@
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
-    font-size: 0.8rem !important;
+    font-size: 0.5rem !important;
     margin: 0.1rem 0 !important;
   }
 
@@ -2051,6 +2055,18 @@
     gap: 2rem;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+@media (max-width: 690px) {
+  .about-management-team-grid .management-team-card .management-team-card-role {
+    font-size: 0.35rem !important; /* Slightly larger for readability */
+  }
+}
+
+@media (max-width: 550px) {
+  .about-management-team-grid .management-team-card .management-team-card-role {
+    font-size: 0.25rem !important; /* Slightly larger for readability */
   }
 }
 
@@ -2205,7 +2221,7 @@
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
-    font-size: 0.35rem !important;
+    font-size: 0.2rem !important;
     margin: 0.05rem 0 !important;
   }
 
@@ -2324,10 +2340,8 @@
   .about-management-team-grid .management-team-card .management-team-card-role {
     line-height: 1.1;
     margin-bottom: 0.3rem;
-    font-size: 0.3rem;
+    font-size: 0.1rem;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
   }
 }
 
@@ -2450,7 +2464,7 @@
   }
 
   .about-management-team-grid .management-team-card .management-team-card-role {
-    font-size: 0.3rem;
+    font-size: 0.1rem;
     line-height: 1.1;
     margin-top: -0.5rem;
     margin-bottom: 0.3rem;
@@ -2495,7 +2509,7 @@
   }
 
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
-    font-size: 0.3rem !important;
+    font-size: 0.1rem !important;
     margin: 0.05rem 0 !important;
   }
 
@@ -2543,7 +2557,7 @@
   }
 
   .about-management-team-container .management-team-modal-grid .management-team-card-large .management-team-card-role {
-    font-size: 1rem;
+    font-size: 0.1rem;
   }
 
   .our-people-subtitle {
@@ -2620,7 +2634,7 @@
   
   .about-management-team-grid .management-team-card .management-team-card-role {
     margin-top: 0.15rem !important; /* Reduce top margin */
-    font-size: 0.35rem !important; /* Slightly larger for readability */
+    font-size: 0.25rem !important; /* Slightly larger for readability */
     white-space: nowrap !important; /* Allow text to wrap */
   }
   
@@ -2681,10 +2695,10 @@
   }
   
   .about-management-team-grid .management-team-card .management-team-card-role {
-    font-size: 0.4rem !important;
+    font-size: 3px !important;
     margin-top: 0.1rem !important;
     margin-bottom: 0.1rem !important;
-    line-height: 1.1;
+    line-height: 1;
   }
   
   .about-management-team-grid .management-team-card .management-team-card-image {
