@@ -1345,6 +1345,7 @@
     font-size: 0.5rem;
     margin: 0.15rem 0;
     line-height: 1.2;
+    margin-bottom: -0.2rem !important;
   }
 
   /* Expanded rows - same uniform styling */
@@ -1387,6 +1388,7 @@
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
     font-size: 0.5rem !important;
     margin: 0.15rem 0 !important;
+    margin-bottom: -0.2rem !important;
   }
 
   .about-see-more-link {
@@ -1544,6 +1546,7 @@
     font-size: 0.5rem;
     margin: 0.1rem 0;
     line-height: 1.2;
+    margin-bottom: -0.2rem !important;
   }
 
   /* Expanded rows - same uniform styling */
@@ -1587,6 +1590,7 @@
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
     font-size: 0.5rem !important;
     margin: 0.1rem 0 !important;
+    margin-bottom: -0.2rem !important;
   }
 
   .about-see-more-link {
@@ -1833,6 +1837,7 @@
   .about-management-team-expanded-rows .management-team-card .management-team-card-role {
     font-size: 0.2rem !important;
     margin: 0.05rem 0 !important;
+    margin-bottom: -0.2rem !important;
   }
 
   .about-see-more-link {
