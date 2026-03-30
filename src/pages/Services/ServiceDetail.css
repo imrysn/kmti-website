@@ -182,6 +182,7 @@
 .service-detail-media {
   position: relative;
   min-height: 400px;
+  z-index: 1;
 }
 
 .service-detail-carousel {

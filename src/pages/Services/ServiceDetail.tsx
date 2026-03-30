@@ -28,6 +28,16 @@ const assemblyImage2 = getAssetUrl('service_detail_image/assembly2modal.webp');
 const assemblyImage3 = getAssetUrl('service_detail_image/assmebly3mpdal.webp'); // Note: retained original typo in filename from source
 const assemblyImage4 = getAssetUrl('service_detail_image/assembly4modal.webp');
 const assemblyImage5 = getAssetUrl('service_detail_image/assembly5modal.webp');
+const assemblyImage6 = getAssetUrl('service_detail_image/assembly6modal.webp');
+const assemblyImage7 = getAssetUrl('service_detail_image/assembly7modal.webp');
+const assemblyImage8 = getAssetUrl('service_detail_image/assembly8modal.webp');
+const assemblyImage9 = getAssetUrl('service_detail_image/assembly9modal.webp');
+const assemblyImage10 = getAssetUrl('service_detail_image/assembly10modal.webp');
+const assemblyImage11 = getAssetUrl('service_detail_image/assembly11modal.webp');
+const assemblyImage12 = getAssetUrl('service_detail_image/assembly12modal.webp');
+const assemblyImage13 = getAssetUrl('service_detail_image/assembly13modal.webp');
+const assemblyImage14 = getAssetUrl('service_detail_image/assembly14modal.webp');
+const assemblyImage15 = getAssetUrl('service_detail_image/assembly15modal.webp');
 
 const BackgroundShapes: React.FC = () => (
   <> {/* Bottom Shapes */}
@@ -155,7 +165,9 @@ const ServiceDetail: React.FC = () => {
       case '3d': return [modalImage1, modalImage2];
       case '2d': return [modalImage2D];
       case 'inspection': return [inspectionImage1, inspectionImage2, inspectionImage3, inspectionImage4, inspectionImage5];
-      case 'assembly': return [assemblyImage1, assemblyImage2, assemblyImage3, assemblyImage4, assemblyImage5];
+      case 'assembly': return [assemblyImage1, assemblyImage2, assemblyImage3, assemblyImage4, assemblyImage5, 
+        assemblyImage6, assemblyImage7, assemblyImage8, assemblyImage9, assemblyImage10, 
+        assemblyImage11, assemblyImage12, assemblyImage13, assemblyImage14, assemblyImage15];
       default: return [];
     }
   };
