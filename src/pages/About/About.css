@@ -1958,6 +1958,9 @@
     font-size: 0.1rem;
     white-space: nowrap;
   }
+  .about-page .about-cta-section {
+    margin-bottom: 5rem;
+  }
 }
 
 @media (max-width: 375px) {

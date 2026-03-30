@@ -909,9 +909,39 @@ textarea.form-field {
   line-height: 1.3;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1260px) {
   .lang-jp .contact-page .hero-title {
-    font-size: 2.8rem;
-    /* Reduced from global 4rem to prevent overflow */
+    font-size: 1.8rem !important;
+  }
+}
+
+@media (max-width: 854px) {
+  .lang-jp .contact-page .hero-title {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 695px) {
+  .lang-jp .contact-page .hero-title {
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .lang-jp .contact-page .hero-title {
+    font-size: 1rem !important;
+  }
+  .lang-jp .contact-page .contact-hero-description {
+    font-size: 0.7rem !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .lang-jp .contact-page .hero-title {
+    font-size: 0.8rem !important;
+    text-wrap: unset;
+  }
+  .lang-jp .contact-page .contact-hero-description {
+    font-size: 0.6rem !important;
   }
 }
