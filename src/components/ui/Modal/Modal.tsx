@@ -39,6 +39,7 @@ const jonathanImage = getAssetUrl('management/jonathan.webp');
 const noelImage = getAssetUrl('management/noel.webp');
 const royImage = getAssetUrl('management/roy.webp');
 const jojoImage = getAssetUrl('management/jojo.webp');
+const profileLogo = getAssetUrl('logo/profile.webp');
 import { ManagementTeamCard } from '../Card/Card';
 import Button from '../Button/Button';
 import Model3DViewerModal from './Model3DViewerModal';
@@ -81,17 +82,26 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src,
 
   return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
-      <div className="service-modal-content image-viewer-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="service-modal-close" onClick={onClose}>×</button>
-        {caption && <div className="image-viewer-caption">{caption}</div>}
-        <div className="image-viewer-image-container">
-          <LazyImage 
-            src={src} 
-            alt={alt} 
-            className="image-viewer-image" 
-            loading="eager"
-          />
+      <div className="image-viewer-modal-content" onClick={(e) => e.stopPropagation()}>
+        
+        <div className="image-viewer-bg-logo">
+          <img src={profileLogo} alt="Background Watermark"/>
         </div>
+
+        <button className="image-viewer-close-btn" onClick={onClose} aria-label="Close modal">
+          <span>&times;</span>
+        </button>
+
+        <div className="image-viewer-circle-container">
+          <LazyImage src={src} alt={alt} className="image-viewer-profile-img" loading="eager"/>
+          <div className="image-viewer-inner-gradient"></div>
+        </div>
+
+        <div className="image-viewer-info">
+          <h2 className="image-viewer-position">{caption}</h2>
+          <p className="image-viewer-company">Kusakabe & Maeno Tech., Inc.</p>
+        </div>
+        
       </div>
     </div>
   , document.body);
