@@ -81,10 +81,14 @@ const en = {
         milling: { title: "MILLING CUTOFF MACHINE", desc: "Milling Cut-off Machine uses two milling saws to cut pipes and structural sections to length (round, square, and rectangular). ", cat: "CUT OFF" },
         furnace: { title: "GLASS FURNACE", desc: "A glass furnace is a specialized industrial oven designed to heat raw materials like (sand, soda ash, and limestone) to extremely high temperatures until they melt into liquid glass. ", cat: "FURNACE" },
         bundling: { title: "BUNDLING MACHINE", desc: "High speed tube pipe bundling and strapping machines take the tube directly from the mill and pack the tube ready for transport or delivery.", cat: "FINISHING EQUIPMENT" },
-        binding: { title: "BINDING MACHINE", desc: "Binding Machine used to bind finished products ready for delivery.", cat: "FINISHING EQUIPMENT" },
+        binding: { title: "BINDING MACHINE", desc: "Binding Machine used to bind finished products ready for delivery.", cat: "FINISHING EQUIPMENT" }, 
         horizontal: { title: "HORIZONTAL LOOPER MACHINE", desc: "Horizontal loopers store strip material on a horizontal rotary table. Where space is available, this is the most efficient and cost-effective method of storing strip without causing surface damage. There are two main types: the Spiral Accumulator and the Free Loop Accumulator.", cat: "LOOPER" },
         uncoiler: { title: "UNCOILER MACHINE", desc: "The uncoiler safely holds the coil of strip and enables the strip to be unstrapped and presented to the strap peeling and leveling equipment.", cat: "STRIP ENTRY" },
-        leveler: { title: "LEVELER MACHINE", desc: "Leveling machines are used to level metal strips in throughput, e.g. In a cut-to-length line or to level single metal sheets of parts.", cat: "STRIP ENTRY" }
+        leveler: { title: "LEVELER MACHINE", desc: "Leveling machines are used to level metal strips in throughput, e.g. In a cut-to-length line or to level single metal sheets of parts.", cat: "STRIP ENTRY" },
+        air_piping: { title: "AIR PIPING", desc: "", cat: "PIPING" },
+        air_piping_1: { title: "AIR PIPING", desc: "", cat: "PIPING" },
+        hydraulic_piping: { title: "HYDRAULIC PIPING", desc: "", cat: "PIPING" },
+        hydraulic_piping_1: { title: "HYDRAULIC PIPING", desc: "", cat: "PIPING" },
       }
     },
     cta: {
@@ -408,7 +412,31 @@ const en = {
         title: "Glass Furnace",
         category: "FURNACE",
         description: "A glass furnace is a specialized industrial oven designed to heat raw materials like (sand, soda ash, and limestone) to extremely high temperatures until they melt into liquid glass."
-      }
+      },
+      air_piping: {
+        title: "AIR PIPING",
+        category: "PIPING",
+        // description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        // advantages: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      air_piping_1: {
+        title: "AIR PIPING 1",
+        category: "PIPING",
+        // description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        // advantages: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      hydraulic_piping: {
+        title: "HYDRAULIC PIPING",
+        category: "PIPING",
+        // description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        // advantages: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      hydraulic_piping_1: {
+        title: "HYDRAULIC PIPING 1",
+        category: "PIPING",
+        // description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        // advantages: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
     },
     viewer: {
       subtitle_interactive: "Interactive 3D Model Viewer",

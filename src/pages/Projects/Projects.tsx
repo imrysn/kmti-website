@@ -8,7 +8,7 @@ import Button from '../../components/ui/Button/Button';
 import { useProjectModals } from '../../hooks/useProjectModals';
 
 import { ProjectsCard } from '../../components/ui/Card/Card';
-import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal } from '../../components/ui/Modal/Modal';
+import { ProjectModal, LooperModal, FormingModal, StripEntryModal, TransferTableLineModal, FinishingLineModal, CutOffModal, FurnaceModal, PipingModal} from '../../components/ui/Modal/Modal';
 import Model3DViewerModal from '../../components/ui/Modal/Model3DViewerModal';
 import SEO from '../../components/common/SEO';
 import * as THREE from 'three';
@@ -35,6 +35,10 @@ const finishingImage = getAssetUrl('image3D/finishing.webp');
 const finishingLineImage = getAssetUrl('image3D/finishingLine.webp');
 const millingImage = getAssetUrl('image3D/milling.webp');
 const furnaceImage = getAssetUrl('image3D/furnace.webp');
+const airpipingImage = getAssetUrl('image3D/airpiping.webp');
+const airpiping1Image = getAssetUrl('image3D/airpiping_1.webp');
+const hydraulic_pipingImage = getAssetUrl('image3D/hydraulic_piping.webp');
+const hydraulic_piping1Image = getAssetUrl('image3D/hydraulic_piping_1.webp');
 
 interface ProjectItem {
   id: number;
@@ -157,6 +161,8 @@ const Projects: React.FC<ProjectsPageProps> = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
+
+  const [isPipingModalOpen, setIsPipingModalOpen] = useState(false);
 
   // Filter State
   const [activeCategoryKey, setActiveCategoryKey] = useState('ALL');
@@ -333,6 +339,46 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       image: furnaceImage,
       link: '#',
     },
+    {
+      id: 15,
+      internalTitle: 'AIR PIPING',
+      key: 'air_piping',
+      title: t('home.projects.items.air_piping.title'),
+      description: t('home.projects.items.air_piping.desc'),
+      category: t('home.projects.items.air_piping.cat'),
+      categoryKey: 'piping',
+      image: airpipingImage,
+      link: '#',
+    },
+    {
+      id: 16,
+      internalTitle: 'AIR PIPING 1',
+      key: 'air_piping_1',
+      title: t('home.projects.items.air_piping_1.title'),
+      description: t('home.projects.items.air_piping_1.desc'),
+      category: t('home.projects.items.air_piping_1.cat'),
+      categoryKey: 'piping',
+      image: airpiping1Image,
+      link: '#',
+    },
+    {
+      id: 17,
+      internalTitle: 'HYDRAULIC PIPING',
+      key: 'hydraulic_piping',
+      title: t('home.projects.items.hydraulic_piping.title'),
+      description: t('home.projects.items.hydraulic_piping.desc'),
+      category: t('home.projects.items.hydraulic_piping.cat'),
+      categoryKey: 'piping',
+      image: hydraulic_pipingImage,
+      link: '#',
+    },
+    {
+      id: 18,
+      internalTitle: 'HYDRAULIC PIPING 1',
+      key: 'hydraulic_piping_1',
+      title: t('home.projects.items.hydraulic_piping_1.title'),
+      description: t('home.projects.items.hydraulic_piping_1.desc'), category: t('home.projects.items.hydraulic_piping_1.cat'), categoryKey: 'piping', image: hydraulic_piping1Image, link: '#',
+    },
   ], [t]);
 
   // Randomized projects list (memoized to prevent reshuffling on every render)
@@ -366,33 +412,35 @@ const Projects: React.FC<ProjectsPageProps> = () => {
   const currentProjects = filteredProjects.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
 
-  // Handler helper
-  const handleProjectClick = (project: ProjectItem) => {
-    const { internalTitle, key } = project;
-    // Set selected key if available
-    if (key) {
-      setSelectedProjectKey(key);
-    }
+// Handler helper
+const handleProjectClick = (project: ProjectItem) => {
+  const { internalTitle, key } = project;
+  // Set selected key if available
+  if (key) {
+    setSelectedProjectKey(key);
+  }
 
-    // Modal Opening Logic
-    if (['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(internalTitle)) {
-      setIsProjectModalOpen(true);
-    } else if (['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE', 'VERTICAL LOOPER'].includes(internalTitle)) {
-      setIsLooperModalOpen(true);
-    } else if (internalTitle === 'FORMING AND SIZING MACHINE') {
-      setIsFormingModalOpen(true);
-    } else if (['SHEAR WELDER MACHINE', 'UNCOILER MACHINE', 'LEVELER MACHINE'].includes(internalTitle)) {
-      setIsStripEntryModalOpen(true);
-    } else if (internalTitle === 'FINISHING TABLE') {
-      setIsTransferTableLineModalOpen(true);
-    } else if (internalTitle === 'FINISHING LINE') {
-      setIsFinishingLineModalOpen(true);
-    } else if (internalTitle === 'MILLING CUTOFF MACHINE') {
-      setIsCutOffModalOpen(true);
-    } else if (internalTitle === 'FURNACE') {
-      setIsFurnaceModalOpen(true);
-    }
-  };
+  // Modal Opening Logic
+  if (['DEDIMPLER & FACER', 'BUNDLING MACHINE', 'BINDING MACHINE'].includes(internalTitle)) {
+    setIsProjectModalOpen(true);
+  } else if (['LOOPER MACHINE', 'HORIZONTAL LOOPER MACHINE', 'VERTICAL LOOPER'].includes(internalTitle)) {
+    setIsLooperModalOpen(true);
+  } else if (internalTitle === 'FORMING AND SIZING MACHINE') {
+    setIsFormingModalOpen(true);
+  } else if (['SHEAR WELDER MACHINE', 'UNCOILER MACHINE', 'LEVELER MACHINE'].includes(internalTitle)) {
+    setIsStripEntryModalOpen(true);
+  } else if (internalTitle === 'FINISHING TABLE') {
+    setIsTransferTableLineModalOpen(true);
+  } else if (internalTitle === 'FINISHING LINE') {
+    setIsFinishingLineModalOpen(true);
+  } else if (internalTitle === 'MILLING CUTOFF MACHINE') {
+    setIsCutOffModalOpen(true);
+  } else if (internalTitle === 'FURNACE') {
+    setIsFurnaceModalOpen(true);
+  } else if (['AIR PIPING', 'AIR PIPING 1', 'HYDRAULIC PIPING', 'HYDRAULIC PIPING 1'].includes(internalTitle)) {
+    setIsPipingModalOpen(true);
+  }
+};
 
   return (
     <div className='projects-bg-wrapper'>
@@ -450,7 +498,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
                 key={project.id}
                 image={project.image}
                 title={project.title}
-                subtitle={project.description}
+                subtitle={project.description || '\u00A0'} // logical OR and non-breaking space to prevent layout issue about empty UI elements(To keep consistent spacing).
                 category={project.category}
                 linkText={t('common.view_more')}
                 linkHref={project.link}
@@ -492,6 +540,7 @@ const Projects: React.FC<ProjectsPageProps> = () => {
       <FinishingLineModal isOpen={isFinishingLineModalOpen} onClose={closeModals} />
       <CutOffModal isOpen={isCutOffModalOpen} onClose={closeModals} />
       <FurnaceModal isOpen={isFurnaceModalOpen} onClose={closeModals} />
+      <PipingModal isOpen={isPipingModalOpen} initialProjectKey={selectedProjectKey} onClose={() => { setIsPipingModalOpen(false); closeModals(); }}  />
 
       {/* 3D Model Viewer Modal */}
       <Model3DViewerModal

@@ -43,6 +43,9 @@ const finishingImage = getAssetUrl('image3D/finishing.webp');
 const finishingLineImage = getAssetUrl('image3D/finishingLine.webp');
 const millingImage = getAssetUrl('image3D/milling.webp');
 const furnaceImage = getAssetUrl('image3D/furnace.webp');
+const air_pipingImages = getAssetUrl('image3D/airpiping_1.webp');
+const hydraulic_pipingImage = getAssetUrl('image3D/hydraulic_piping.webp');
+
 
 const BackgroundShapes: React.FC = () => (
   <> {/* Bottom Shapes */}
@@ -185,7 +188,9 @@ const Home: React.FC<HomePageProps> = () => {
     { id: 5, title: t('home.projects.items.furnace.title'), description: t('home.projects.items.furnace.desc'), category: t('home.projects.items.furnace.cat'), image: furnaceImage, link: '/projects?project=furnace' },
     { id: 6, title: t('home.projects.items.line.title'), description: t('home.projects.items.line.desc'), category: t('home.projects.items.line.cat'), image: finishingLineImage, link: '/projects?project=finishing-line' },
     { id: 7, title: t('home.projects.items.milling.title'), description: t('home.projects.items.milling.desc'), category: t('home.projects.items.milling.cat'), image: millingImage, link: '/projects?project=milling-cutoff-machine' },
-    { id: 8, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage, link: '/projects?project=dedimpler-and-facer' },
+    { id: 8, title: t('home.projects.items.air_piping_1.title'), description: t('home.projects.items.air_piping_1.desc'), category: t('home.projects.items.air_piping_1.cat'), image: air_pipingImages, link: '/projects?project=air_piping_1'},
+    { id: 9, title: t('home.projects.items.hydraulic_piping.title'), description: t('home.projects.items.hydraulic_piping.desc'), category: t('home.projects.items.hydraulic_piping.cat'), image: hydraulic_pipingImage, link: '/projects?project=hydraulic-piping'},
+    { id: 10, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage, link: '/projects?project=dedimpler-and-facer' }
   ];
 
   const tEn = i18n.getFixedT('en');

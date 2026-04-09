@@ -83,7 +83,11 @@ const jp = {
         binding: { title: "バインディング", desc: "完成品を出荷準備のために結束するために使用されるバインディング。", cat: "仕上げ設備" },
         horizontal: { title: "水平ルーパー", desc: "水平ルーパーは、ストリップ材を水平回転テーブル上に収納します。設置スペースが確保できる場合、表面を傷つけることなくストリップ材を保管する最も効率的で経済的な方法です", cat: "ルーパー" },
         uncoiler: { title: "アンコイラー", desc: "アンコイラーは、コイルを安全に保持し、ストリップを帯から解きほぐしてストラップ剥離・平坦化装置に供給できるようにします。", cat: "ストリップエントリー" },
-        leveler: { title: "レベラー", desc: "レベラー、金属ストリップをスループットで平坦化するために使用されます。例として、定尺切断ラインでの使用や、部品用の単枚金属板の平坦化があります。", cat: "ストリップエントリー" }
+        leveler: { title: "レベラー", desc: "レベラー、金属ストリップをスループットで平坦化するために使用されます。例として、定尺切断ラインでの使用や、部品用の単枚金属板の平坦化があります。", cat: "ストリップエントリー" },
+        air_piping: { title: "エア配管", desc: "", cat: "配管" },
+        air_piping_1: { title: "エア配管", desc: "", cat: "配管" },
+        hydraulic_piping: { title: "油圧配管", desc: "", cat: "配管" },
+        hydraulic_piping_1: { title: "油圧配管", desc: "", cat: "配管" },
       }
     },
     cta: {
@@ -407,7 +411,31 @@ const jp = {
         title: "溶解炉",
         category: "溶解炉",
         description: "溶解炉、大量のガラスを溶融するために使用されます。ガラス表面に炎をあてて加熱し、燃焼空気の再生加熱も行います。"
-      }
+      },
+      air_piping: {
+        title: "エア配管",
+        category: "配管",
+        // description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        // advantages: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      air_piping_1: {
+        title: "エア配管",
+        category: "配管",
+        // description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        // advantages: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      hydraulic_piping: {
+        title: "油圧配管",
+        category: "配管",
+        // description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        // advantages: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      hydraulic_piping_1: {
+        title: "油圧配管",
+        category: "配管",
+        // description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        // advantages: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
     },
     viewer: {
       subtitle_interactive: "インタラクティブ3Dモデルビューアー",

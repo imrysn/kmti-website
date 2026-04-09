@@ -23,6 +23,9 @@ const shearWelderModel = getAssetUrl('compressed_glb/shearwelder.glb');
 const uncoilerModel = getAssetUrl('compressed_glb/uncoiler.glb');
 const levelerModel = getAssetUrl('compressed_glb/leveler.glb');
 const furnaceModel = getAssetUrl('compressed_glb/furnace.glb');
+const airpiping1Model = getAssetUrl('compressed_glb/airpiping_1.glb');
+const hydraulicpipingModel = getAssetUrl('compressed_glb/Hydraulic_piping.glb');
+const hydraulicpiping1Model = getAssetUrl('compressed_glb/Hydraulic_piping_1.glb');
 
 // --- SVG ICONS ---
 const ModalBoxIcon: React.FC = () => (
@@ -81,6 +84,9 @@ const MODEL_MAP: { [key: string]: ModelConfig } = {
   'finishing line': { path: null, scale: 5 },
   'air blow': { path: airBlowModel, scale: 5 },
   'vertical looper': { path: null, scale: 5 },
+  'air piping 1': { path: airpiping1Model, scale: 5 },
+  'hydraulic piping': { path: hydraulicpipingModel, scale: 5 },
+  'hydraulic piping 1': { path: hydraulicpiping1Model, scale: 5 },
 };
 
 export type CameraView = 'isometric' | 'front' | 'back' | 'left' | 'right' | 'top';

@@ -66,6 +66,10 @@ const transferLifterImage = getAssetUrl('image3D/transfer-table-lifter.webp');
 const bundlingMachineImage = getAssetUrl('image3D/bundling-machine.webp');
 const millingImage = getAssetUrl('image3D/milling.webp');
 const furnaceImage = getAssetUrl('image3D/furnace.webp');
+const airpipingImage = getAssetUrl('image3D/airpiping.webp');
+const airpiping1Image = getAssetUrl('image3D/airpiping_1.webp');
+const hydraulic_pipingImage = getAssetUrl('image3D/hydraulic_piping.webp');
+const hydraulic_piping1Image = getAssetUrl('image3D/hydraulic_piping_1.webp');
 
 // Modal for Management Team image viewer
 interface ImageViewerModalProps {
@@ -879,6 +883,91 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
             <button className="project-modal-thumbnail active">
               <LazyImage src={curr.image} className="project-modal-thumbnail-image" alt="thumb" />
             </button>
+          </div>
+          <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
+        </div>
+      </div>
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
+    </div>
+  , document.body);
+};
+
+// --- PIPING MODAL ---
+export const PipingModal: React.FC<{ isOpen: boolean; onClose: () => void; initialProjectKey?: string }> = ({ isOpen, onClose, initialProjectKey }) => {
+  const { t } = useTranslation();
+
+  const allItems = [
+    { image: airpipingImage, key: 'air_piping', modelKey: 'Air Piping' },
+    { image: airpiping1Image, key: 'air_piping_1', modelKey: 'Air Piping 1' },
+    { image: hydraulic_pipingImage, key: 'hydraulic_piping', modelKey: 'Hydraulic Piping' },
+    { image: hydraulic_piping1Image, key: 'hydraulic_piping_1', modelKey: 'Hydraulic Piping 1' }
+  ];
+
+  const [idx, setIdx] = useState(0);
+  const [is3D, setIs3D] = useState(false);
+
+  useLockBodyScroll(isOpen);
+
+  // Filter items if a key is provided
+  const displayItems = initialProjectKey
+    ? allItems.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
+    : allItems;
+
+  useEffect(() => {
+    if (isOpen) {
+      setIdx(0);
+    }
+  }, [isOpen, initialProjectKey]);
+
+  if (!isOpen) return null;
+
+  const curr = displayItems[idx] || displayItems[0];
+  if (!curr) return null;
+
+  return createPortal(
+    <div className="service-modal-overlay" onClick={onClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="service-modal-close" onClick={onClose}>×</button>
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <TransformWrapper>
+              <TransformComponent>
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="piping"
+                  loading="eager"
+                />
+              </TransformComponent>
+            </TransformWrapper>
+          </div>
+          <div className="project-modal-right">
+            <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
+            <p className="project-modal-category">{t(`projects.modal_items.${curr.key}.category`)}</p>
+            {/* <div className="project-modal-section">
+              <h3 className="project-modal-section-title">{t('projects.modal.labels.desc')}</h3>
+              <p className="project-modal-section-text">{t(`projects.modal_items.${curr.key}.description`)}</p>
+            </div>
+            {t(`projects.modal_items.${curr.key}.advantages`) && (
+              <div className="project-modal-section">
+                <h3 className="project-modal-section-title">{t('projects.modal.labels.adv')}</h3>
+                <p className="project-modal-section-text">{t(`projects.modal_items.${curr.key}.advantages`)}</p>
+              </div>
+            )} */}
+          </div>
+        </div>
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails">
+            {displayItems.map((p, i) => (
+              <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
+                <LazyImage src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
+              </button>
+            ))}
           </div>
           <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
         </div>
