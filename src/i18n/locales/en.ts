@@ -17,6 +17,7 @@ const en = {
     view_project: "VIEW PROJECT",
     learn_more: "LEARN MORE",
     view_more: "VIEW DETAILS",
+    click_to_view: "CLICK TO VIEW",
     chatbot: {
       teaser: "Hi there! I’m KMTI Assistant 👋 How can I help?"
     },
@@ -192,6 +193,52 @@ const en = {
     },
     back_to_services: "← Back to Services",
     zoom_instruction: "Scroll to zoom • Drag to pan",
+    drag_to_rotate: "DRAG TO ROTATE",
+    showcase: {
+      back_text: "From Vision",
+      front_text_fill: "to Reality",
+      front_text_stroke: "to Reality",
+      description: "We provide comprehensive engineering and design solutions that transform ideas into fully functional systems. From initial concept to final assembly, our team ensures precision, efficiency, and quality at every stage.",
+      tags: {
+        row1: ["3D Modeling", "2D Detailing"],
+        row2: ["Parts Inspection", "Machine Assembly"]
+      },
+      right_card: {
+        title_3d: "3D",
+        subtitle_3d: "Modeling",
+        title_2d: "2D",
+        subtitle_2d: "Detailing"
+      }
+    },
+
+    // NEW: Expertise Section Title
+    expertise: {
+      title: "OUR EXPERTISE"
+    },
+
+    // NEW: Motion Analysis Section
+    motion_analysis: {
+      title: "MOTION ANALYSIS",
+      playing: "PLAYING",
+      badge_labels: {
+        motion1: "MOTION 1",
+        motion2: "MOTION 2",
+        motion3: "MOTION 3",
+        motion4: "MOTION 4",
+        motion5: "MOTION 5",
+        motion6: "MOTION 6",
+        motion7: "MOTION 7",
+        motion8: "MOTION 8"
+      },
+      benefits: [
+        "Identify and resolve mechanical issues early in the design process",
+        "Optimize kinematics and dynamics of machinery",
+        "Validate and test control systems thoroughly",
+        "Enhance overall system performance and reliability",
+        "Improve efficiency and reduce wear and tear"
+      ]
+    },
+    
 
     modal: {
       detailed_desc: {
@@ -230,12 +277,28 @@ const en = {
       inspection: {
         title: "Parts Inspection",
         short_desc: "We perform parts inspection using precise measuring tools and 3D scanners to guarantee dimensional accuracy.",
-        detailed_desc: "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepencies from the design on the actual parts."
+        detailed_desc: "We support inspection of parts fabricated from our design to ensure quality of parts before they send it for assembly. Fabricated parts undergoes series of test and inspection, using high-tech devices to ensure all aspect of the part is accurate and high quality. We also send members from our team to inspection site to do quality checking making sure there is no discrepencies from the design on the actual parts.",
+        gallery_title: "Parts Inspection Gallery",
+        checklist: [
+          "Design Validation",
+          "Fabrication Inspection",
+          "Measurement Analysis",
+          "Engineering Inspection",
+          "Final Quality Check"
+        ]
       },
       assembly: {
         title: "Machine Assembly",
         short_desc: "From component integration to full machine assembly, we ensure mechanical, electrical, and pneumatic systems meet industrial standards.",
-        detailed_desc: "In collaboration with our business partners, Kusakabe & Machinery Co., Ltd. and Maeno Giken Inc. two of the industry’s most well-known pioneers and leaders, we provide precision machine assembly services. We ensure that all equipment is of high quality and delivers top-notch performance, carefully assembled, tested, and ready to support productive business operations."
+        detailed_desc: "In collaboration with our business partners, Kusakabe & Machinery Co., Ltd. and Maeno Giken Inc. two of the industry’s most well-known pioneers and leaders, we provide precision machine assembly services. We ensure that all equipment is of high quality and delivers top-notch performance, carefully assembled, tested, and ready to support productive business operations.",
+        gallery_title: "Machine Assembly Gallery",
+        checklist: [
+          "Strategic Partnership",
+          "Trusted Collaboration",
+          "High Quality Standards",
+          "Reliable Solutions",
+          "Advanced Technology"
+        ]
       }
     },
     workflow: {
