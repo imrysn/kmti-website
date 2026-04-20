@@ -925,7 +925,6 @@ body.services-page-active::-webkit-scrollbar {
 .svc-expertise__card:hover .svc-expertise__logo,
 .svc-expertise__card:hover .svc-expertise__overlay {
   opacity: 0;
-  transform: translateY(10px);
   pointer-events: none;
 }
 
