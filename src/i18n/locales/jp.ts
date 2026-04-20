@@ -192,7 +192,6 @@ const jp = {
     },
     back_to_services: "← サービス一覧に戻る",
     zoom_instruction: "スクロールでズーム • ドラッグでパン",
-    drag_to_rotate: "ドラッグして回転",
     showcase: {
       back_text: "ビジョンより",
       front_text_fill: "現実へ",

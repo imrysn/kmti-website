@@ -193,7 +193,6 @@ const en = {
     },
     back_to_services: "← Back to Services",
     zoom_instruction: "Scroll to zoom • Drag to pan",
-    drag_to_rotate: "DRAG TO ROTATE",
     showcase: {
       back_text: "From Vision",
       front_text_fill: "to Reality",
