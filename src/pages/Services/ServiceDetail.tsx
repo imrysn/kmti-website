@@ -345,7 +345,6 @@ const ServiceDetail: React.FC = () => {
                 </motion.div>
               )}
 
-              {/* For 3D and 2D - show images on the right */}
               {(serviceKey === '3d' || serviceKey === '2d') && (
                 <motion.div
                   className="service-detail-media"
@@ -369,7 +368,6 @@ const ServiceDetail: React.FC = () => {
               )}
             </div>
 
-            {/* 3D Carousel Gallery for Inspection and Assembly */}
             {(serviceKey === 'inspection' || serviceKey === 'assembly') && galleryImages.length > 0 && (
               <motion.div
                 className="carousel-3d-gallery-wrapper"

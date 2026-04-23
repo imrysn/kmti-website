@@ -203,31 +203,6 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
-
-        <div className="carousel-dots">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              className={`dot ${index === activeIndex ? 'active' : ''}`}
-              onClick={() => {
-                if (!isAnimating && index !== activeIndex) {
-                  setIsAnimating(true);
-                  clearAnimationTimeout();
-                  if (autoRotateTimeoutRef.current) {
-                    clearTimeout(autoRotateTimeoutRef.current);
-                    autoRotateTimeoutRef.current = null;
-                  }
-                  setActiveIndex(index);
-                  animationTimeoutRef.current = window.setTimeout(() => {
-                    setIsAnimating(false);
-                    animationTimeoutRef.current = null;
-                  }, 400);
-                }
-              }}
-              aria-label={`Go to image ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
 
       {/* Lightbox Modal */}

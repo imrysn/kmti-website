@@ -297,20 +297,20 @@ body.services-page-active::-webkit-scrollbar {
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    transparent 40%,
-    black 45%,
-    black 80%,
-    transparent 85%,
+    transparent 35%,
+    black 50%,
+    black 85%,
+    transparent 95%,
     transparent 100%
   );
   
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    transparent 40%,
-    black 45%,
-    black 80%,
-    transparent 85%,
+    transparent 45%,
+    black 50%,
+    black 85%,
+    transparent 95%,
     transparent 100%
   );
 }
@@ -356,17 +356,17 @@ body.services-page-active::-webkit-scrollbar {
   -webkit-mask-image: linear-gradient(
     to right,
     black 0%,
-    black 30%,
-    black 45%,
-    transparent 50%
+    black 60%,
+    black 65%,
+    transparent 80%
   );
   
   mask-image: linear-gradient(
     to right,
     black 0%,
-    black 30%,
-    black 45%,
-    transparent 50%
+    black 60%,
+    black 65%,
+    transparent 75%
   );
 }
 
@@ -409,32 +409,31 @@ body.services-page-active::-webkit-scrollbar {
 /* Trigger text animations */
 .svc-showcase.reveal.active .svc-showcase__bgtext-back {
   animation: slideInLeftText 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 1.5s;
+  animation-delay: 2.5s;
 }
 
 .svc-showcase.reveal.active .svc-showcase__bgtext-front {
   animation: slideInRightText 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 1.5s;
+  animation-delay: 2.5s;
 }
 
 /* ================= CENTER 3D FIGURE ================= */
 .svc-showcase__center {
   position: absolute;
-  top: 57%;
+  top: 45%;
   left: 55%;
   transform: translate(-50%, -50%);
   z-index: 3;
 }
 
-.svc-showcase__center--3d {
+	.svc-showcase__center--3d {
   width: 1000px;
   height: 900px;
   max-width: 95vw;
-  max-height: 85vh;
+  max-height: 100vh;
   cursor: grab;
   margin: 0;
   padding: 0;
-  overflow: visible;
 }
 
 .svc-showcase__center--3d:active {
@@ -531,13 +530,13 @@ body.services-page-active::-webkit-scrollbar {
 .svc-showcase.reveal.active .svc-showcase__desc {
   opacity: 0.9;
   transform: translateX(0);
-  transition-delay: 2.4s;
+  transition-delay: 3s;
 }
 
 .svc-showcase.reveal.active .svc-showcase__tags {
   opacity: 0.75;
   transform: translateY(0);
-  transition-delay: 2.4s;
+  transition-delay: 3s;
 }
 
 /* ================= RIGHT ================= */
@@ -567,7 +566,7 @@ body.services-page-active::-webkit-scrollbar {
 .svc-showcase.reveal.active .svc-showcase__right {
   opacity: 1;
   transform: translateY(-50%) scale(1);
-  transition-delay: 2.4s;
+  transition-delay: 3s;
 }
 
 .svc-showcase__card:hover {
@@ -1046,7 +1045,7 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 .svc-motion__container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -1069,7 +1068,7 @@ body.services-page-active::-webkit-scrollbar {
 /* LAYOUT */
 .svc-motion__layout {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2.3fr 1fr;
   gap: 2rem;
 }
 
@@ -1080,19 +1079,18 @@ body.services-page-active::-webkit-scrollbar {
   gap: 2rem;
 }
 
-/* MAIN CARD */
 .svc-motion__main-card {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
   height: 500px;
+  width: 950px;
   border: 2px solid transparent;
   background: linear-gradient(#111, #111) padding-box,
               linear-gradient(180deg, #2157EE, #DF0515) border-box;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-/* VIDEO STYLE */
 .svc-motion__video {
   width: 100%;
   height: 100%;
@@ -1104,13 +1102,33 @@ body.services-page-active::-webkit-scrollbar {
   opacity: 0;
 }
 
-/* Controls Overlay */
+.svc-motion__badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.6);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: white;
+  z-index: 3;
+  backdrop-filter: blur(5px);
+}
+
+.svc-motion__main-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ================= CONTROLS ================= */
 .svc-motion__controls-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(2, 6, 24, 0.95), transparent);
   padding: 3rem 1.5rem 1.5rem;
   display: flex;
   align-items: center;
@@ -1118,7 +1136,8 @@ body.services-page-active::-webkit-scrollbar {
   opacity: 0;
   transform: translateY(100%);
   transition: all 0.3s ease;
-  z-index: 10;
+  z-index: 5;
+  background: linear-gradient(to top, rgba(10, 20, 40, 1), transparent);
 }
 
 .svc-motion__main-card:hover .svc-motion__controls-overlay {
@@ -1126,7 +1145,7 @@ body.services-page-active::-webkit-scrollbar {
   transform: translateY(0);
 }
 
-/* Play/Pause Button */
+/* PLAY BUTTON */
 .svc-motion__play-pause-btn {
   background: rgba(255,255,255,0.2);
   border: 1px solid rgba(255,255,255,0.3);
@@ -1149,7 +1168,7 @@ body.services-page-active::-webkit-scrollbar {
   transform: scale(1.1);
 }
 
-/* Duration Text */
+/* TIME */
 .svc-motion__duration {
   color: white;
   font-size: 0.85rem;
@@ -1157,10 +1176,9 @@ body.services-page-active::-webkit-scrollbar {
   background: rgba(0,0,0,0.5);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Seek Bar */
+/* SEEK */
 .svc-motion__seek-bar {
   flex: 1;
   height: 4px;
@@ -1177,190 +1195,65 @@ body.services-page-active::-webkit-scrollbar {
   border-radius: 50%;
   background: #51A2FF;
   cursor: pointer;
-  box-shadow: 0 0 5px rgba(81, 162, 255, 0.8);
 }
 
-.svc-motion__seek-bar::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
+/* ================= RIGHT GRID ================= */
+.svc-motion__right-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0.5rem;
+  height: 95%;
 }
 
-.svc-motion__main-card::after,
-.svc-motion__small-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(10, 20, 40, 0.6),
-    transparent
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* ================= RIGHT ================= */
-.svc-motion__right {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  cursor: pointer;
-  max-height: 750px;
-  overflow-y: auto;
-  padding-right: 0.5rem;
-  scrollbar-width: thin;
-  scrollbar-color: #51A2FF transparent;
-}
-
-/* SMALL CARDS */
-.svc-motion__small-card {
-  flex-shrink: 0;
+.svc-motion__mini-card {
   position: relative;
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
+  cursor: pointer;
   border: 2px solid transparent;
-  height: 230px;
-  background: linear-gradient(#ff0000, #111) padding-box,
-              linear-gradient(180deg, #2157EE, #DF0515) border-box;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.5;
+  transition: all 0.25s ease;
+  min-width: 300px;
 }
 
-.svc-motion__small-card:hover {
-  transform: translateX(8px);
-  opacity: 1;
-  box-shadow: 0 0 20px rgba(81, 162, 255, 0.4);
-}
-
-.svc-motion__small-card.active {
-  opacity: 1;
-  background: linear-gradient(#111, #111) padding-box,
-              linear-gradient(180deg, #51A2FF, #51A2FF) border-box;
-  box-shadow: 0 0 25px rgba(81, 162, 255, 0.6);
-}
-
-.svc-motion__small-card img {
+.svc-motion__mini-card video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* BADGE */
-.svc-motion__badge {
+.svc-motion__mini-overlay {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.6);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  color: white;
-  z-index: 2;
-  backdrop-filter: blur(5px);
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* PLAY BUTTON */
 .svc-motion__play {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: white;
   z-index: 2;
-  pointer-events: none;
-  background: rgba(0,0,0,0.3);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.svc-motion__small-card:hover .svc-motion__play {
+  background: rgba(0,0,0,0.25);
   opacity: 1;
+  transition: all 0.25s ease;
 }
 
-/* PLAYING INDICATOR */
-.svc-motion__playing-indicator {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-  padding: 0.5rem 1rem;
-  border-radius: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  animation: fadeInScale 0.3s ease-out;
-  white-space: nowrap;
+.svc-motion__mini-card:hover {
+  transform: scale(1.05);
+  z-index: 5;
 }
 
-.svc-motion__playing-indicator {
-  animation: smartFadeIn 0.3s ease-out;
-}
-
-@keyframes smartFadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.svc-motion__playing-text {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: white;
-  text-transform: uppercase;
-  text-shadow: 0 0 5px rgba(81, 162, 255, 0.5);
-}
-
-.svc-motion__playing-dot {
-  width: 8px;
-  height: 8px;
-  background-color: white;
-  border-radius: 50%;
-  display: inline-block;
-  animation: pulse 1.5s ease-in-out infinite;
-  box-shadow: 0 0 10px rgba(81, 162, 255, 0.8);
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(0.8);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(0.8);
-    opacity: 1;
-  }
-}
-
-.svc-motion__small-card.active:hover .svc-motion__playing-indicator {
-  opacity: 0;
-  transition: opacity 0.2s ease;
+.svc-motion__mini-card:hover .svc-motion__play {
+  background: rgba(0,0,0,0.4);
 }
 
 /* ================= BULLETS ================= */
-
 .svc-motion__list {
   list-style: none;
   padding: 0;
@@ -1377,26 +1270,30 @@ body.services-page-active::-webkit-scrollbar {
   font-size: 1rem;
 }
 
-/* CHECK ICON */
 .svc-motion__list li::before {
   content: "✔";
   position: absolute;
   left: 0;
   color: #6aa6ff;
-  font-size: 1.1rem;
-}
-
-/* ================= HOVER ================= */
-
-.svc-motion__small-card:hover img,
-.svc-motion__main-card:hover img {
-  transform: scale(1.05);
-  transition: transform 0.4s ease;
 }
 
 /* ============================================
-   Motion Analysis Responsive Queries
+   Motion Analysis Responsive
    ============================================ */
+@media (max-width: 1200px) {
+  .svc-motion__layout {
+    grid-template-columns: 1.8fr 1fr;
+  }
+
+  .svc-motion__main-card {
+    width: 100%;
+    height: 420px;
+  }
+
+  .svc-motion__right-grid {
+    gap: 0.7rem;
+  }
+}
 
 @media (max-width: 1024px) {
   .svc-motion {
@@ -1404,39 +1301,34 @@ body.services-page-active::-webkit-scrollbar {
   }
 
   .svc-motion__title {
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
 
   .svc-motion__layout {
     grid-template-columns: 1.5fr 1fr;
-    gap: 1.5rem;
+    gap: 1.2rem;
   }
 
   .svc-motion__main-card {
-    height: 420px;
+    height: 380px;
   }
 
-  .svc-motion__small-card {
-    height: 180px;
+  .svc-motion__mini-card {
+    min-width: unset;
   }
 
   .svc-motion__list li {
-    font-size: 1.4rem;
+    font-size: 0.95rem;
   }
 
   .svc-motion__controls-overlay {
     padding: 1.5rem 1rem 1rem;
-    gap: 0.8rem;
   }
 
   .svc-motion__play-pause-btn {
     width: 36px;
     height: 36px;
     font-size: 1rem;
-  }
-
-  .svc-motion__duration {
-    font-size: 0.8rem;
   }
 }
 
@@ -1448,6 +1340,10 @@ body.services-page-active::-webkit-scrollbar {
   .svc-motion__title {
     font-size: 2.2rem;
     margin-bottom: 2rem;
+  }
+
+  .svc-motion__right-grid .svc-motion__badge {
+    display: none;
   }
 
   .svc-motion__layout {
@@ -1462,80 +1358,34 @@ body.services-page-active::-webkit-scrollbar {
 
   .svc-motion__main-card {
     order: 1;
-    height: 380px;
+    height: 360px;
+    width: 100%;
   }
 
-  .svc-motion__right {
+  .svc-motion__right-grid {
     order: 2;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 0.5rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-  }
-
-  /* Custom scrollbar for horizontal scrolling */
-  .svc-motion__right::-webkit-scrollbar {
-    height: 4px;
-  }
-
-  .svc-motion__right::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-  }
-
-  .svc-motion__right::-webkit-scrollbar-thumb {
-    background: #51A2FF;
-    border-radius: 2px;
-  }
-
-  .svc-motion__small-card {
-    flex: 0 0 auto;
-    min-width: 220px;
-    height: 160px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 90px);
+    gap: 0.6rem;
   }
 
   .svc-motion__list {
     order: 3;
-    margin-top: 0.5rem;
     gap: 0.6rem;
   }
 
   .svc-motion__list li {
-    font-size: 1.3rem;
-  }
-
-  .svc-motion__controls-overlay {
-    padding: 1rem 0.8rem 0.8rem;
-    gap: 0.6rem;
-  }
-
-  .svc-motion__play-pause-btn {
-    width: 32px;
-    height: 32px;
     font-size: 0.9rem;
-  }
-
-  .svc-motion__duration {
-    font-size: 0.75rem;
-  }
-
-  .svc-motion__seek-bar {
-    height: 3px;
   }
 
   .svc-motion__playing-indicator {
     padding: 0.4rem 0.8rem;
   }
-  
+
   .svc-motion__playing-text {
-    font-size: 0.7rem;
-    letter-spacing: 1px;
+    font-size: 0.65rem;
   }
-  
+
   .svc-motion__playing-dot {
     width: 6px;
     height: 6px;
@@ -1555,13 +1405,39 @@ body.services-page-active::-webkit-scrollbar {
     height: 300px;
   }
 
-  .svc-motion__small-card {
-    min-width: 200px;
-    height: 140px;
+  .svc-motion__right-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.5rem;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
   }
 
-  .svc-motion__list li {
-    font-size: 0.9rem;
+  .svc-motion__right-grid::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .svc-motion__right-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .svc-motion__right-grid::-webkit-scrollbar-thumb {
+    background: #51A2FF;
+    border-radius: 10px;
+  }
+
+  .svc-motion__mini-card {
+    flex: 0 0 auto;
+    width: 160px;
+    height: 100px;
+  }
+
+  .svc-motion__play {
+    font-size: 1.5rem;
   }
 
   .svc-motion__controls-overlay {
@@ -1582,20 +1458,15 @@ body.services-page-active::-webkit-scrollbar {
   .svc-motion__seek-bar {
     height: 3px;
   }
-
-  .svc-motion__seek-bar::-webkit-slider-thumb {
-    width: 10px;
-    height: 10px;
-  }
 }
 
 @media (max-width: 430px) {
   .svc-motion {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .svc-motion__title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .svc-motion__main-card {
@@ -1603,10 +1474,8 @@ body.services-page-active::-webkit-scrollbar {
     border-radius: 14px;
   }
 
-  .svc-motion__small-card {
-    min-width: 180px;
-    height: 120px;
-    border-radius: 12px;
+  .svc-motion__right-grid {
+    grid-template-rows: repeat(4, 70px);
   }
 
   .svc-motion__badge {
@@ -1615,47 +1484,21 @@ body.services-page-active::-webkit-scrollbar {
   }
 
   .svc-motion__play {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .svc-motion__list li {
-    font-size: 0.85rem;
-    padding-left: 24px;
-  }
-
-  .svc-motion__controls-overlay {
-    padding: 0.6rem 0.5rem 0.5rem;
-    gap: 0.4rem;
-  }
-
-  .svc-motion__play-pause-btn {
-    width: 24px;
-    height: 24px;
-    font-size: 0.7rem;
-  }
-
-  .svc-motion__duration {
-    font-size: 0.6rem;
-  }
-
-  .svc-motion__seek-bar {
-    height: 2px;
-  }
-
-  .svc-motion__seek-bar::-webkit-slider-thumb {
-    width: 8px;
-    height: 8px;
+    font-size: 0.8rem;
   }
 
   .svc-motion__playing-indicator {
     padding: 0.3rem 0.6rem;
   }
-  
+
   .svc-motion__playing-text {
     font-size: 0.6rem;
-    letter-spacing: 0.5px;
   }
-  
+
   .svc-motion__playing-dot {
     width: 5px;
     height: 5px;
@@ -1663,56 +1506,30 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 @media (max-width: 375px) {
-  .svc-motion {
-    padding: 2.5rem 0.8rem;
+  .svc-motion__main-card {
+    height: 210px;
+  }
+
+  .svc-motion__right-grid {
+    grid-template-rows: repeat(4, 65px);
   }
 
   .svc-motion__title {
-    font-size: 1.7rem;
-  }
-
-  .svc-motion__main-card {
-    height: 200px;
-  }
-
-  .svc-motion__small-card {
-    min-width: 160px;
-    height: 110px;
-  }
-
-  .svc-motion__list li {
-    font-size: 0.8rem;
-  }
-
-  .svc-motion__controls-overlay {
-    padding: 0.5rem 0.4rem 0.4rem;
-    gap: 0.3rem;
-  }
-
-  .svc-motion__play-pause-btn {
-    width: 22px;
-    height: 22px;
-    font-size: 0.65rem;
-  }
-
-  .svc-motion__duration {
-    font-size: 0.55rem;
+    font-size: 1.6rem;
   }
 }
 
-/* Touch device improvements */
+/* ================== TOUCH DEVICES ================== */
 @media (hover: none) and (pointer: coarse) {
   .svc-motion__controls-overlay {
     opacity: 1;
     transform: translateY(0);
     background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    padding: 1rem 0.8rem 0.8rem;
   }
 
   .svc-motion__play-pause-btn {
     width: 40px;
     height: 40px;
-    font-size: 1.2rem;
   }
 
   .svc-motion__seek-bar {

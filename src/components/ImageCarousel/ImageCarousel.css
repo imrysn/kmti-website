@@ -307,49 +307,6 @@
 }
 
 /* ========================= */
-/*  DOTS INDICATOR           */
-/* ========================= */
-.carousel-dots {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 16px;
-  z-index: 15;
-  padding: 12px 20px;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-  border-radius: 50px;
-}
-
-.dot {
-  width: 32px;
-  height: 4px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.4);
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  padding: 0;
-}
-
-.dot.active {
-  width: 48px;
-  background: #51A2FF;
-}
-
-.dot:hover {
-  transform: scaleY(1.5);
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.dot.active:hover {
-  background: #51A2FF;
-  transform: scaleY(1.5);
-}
-
-/* ========================= */
 /*  LIGHTBOX STYLES */
 /* ========================= */
 .lightbox-overlay {
@@ -842,15 +799,6 @@
     padding: 8px 16px;
   }
   
-  .dot {
-    width: 24px;
-    height: 3px;
-  }
-  
-  .dot.active {
-    width: 36px;
-  }
-  
   /* Lightbox mobile */
   .lightbox-image-container {
     padding: 60px 50px;
@@ -941,14 +889,6 @@
     padding: 6px 12px;
   }
   
-  .dot {
-    width: 15px;
-  }
-  
-  .dot.active {
-    width: 25px;
-  }
-  
   /* Lightbox small mobile */
   .lightbox-image-container {
     padding: 50px 30px;
@@ -1014,20 +954,5 @@
 
   .view-indicator span {
     display: none;
-  }
-}
-
-@media (max-width: 375px) {
-  .carousel-dots {
-    gap: 8px;
-    padding: 6px 12px;
-  }
-  
-  .dot {
-    width: 10px;
-  }
-  
-  .dot.active {
-    width: 20px;
   }
 }

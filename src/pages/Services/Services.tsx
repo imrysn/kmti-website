@@ -14,7 +14,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 
 // Preload the model for better performance
-useGLTF.preload('/compressed_glb/shearwelder.glb');
+useGLTF.preload('/compressed_glb/Hydraulic_piping.glb');
 
 const servicesBg = getAssetUrl('hero_background/servicesbg.webp');
 const icon3D = getAssetUrl('icons/cube.webp');
@@ -158,39 +158,34 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
 };
 
 // 3D Figure Component - Showcase Section
-const ShearWelderModel: React.FC<{ 
-  scale?: number; 
+const HydraulicPipingModel: React.FC<{
+  scale?: number;
   rotation?: [number, number, number];
   position?: [number, number, number];
-}> = ({ 
-  scale = 2.2,
-  rotation = [0, -0.4, 0],
-  position = [0, 0.7, 0]
+}> = ({
+  scale = 0.12,
+  rotation = [0, -0.2, 0],
+  position = [0, 5, 0]
 }) => {
   const groupRef = useRef<THREE.Group>(null);
-  const { scene } = useGLTF('/compressed_glb/shearwelder.glb');
+  const { scene } = useGLTF('/compressed_glb/Hydraulic_piping.glb');
   
   // Animation state
   const [isInView, setIsInView] = useState(false);
   const [animationStarted, setAnimationStarted] = useState(false);
   const animationProgress = useRef(0);
-  const animationSpeed = 0.007; // Speed of animation once triggered
+  const animationSpeed = 0.007;
   
-  // Clone and center the model using bounding box
   const centeredModel = useMemo(() => {
     const clonedScene = scene.clone();
     
-    // Compute the bounding box of the entire model
     const boundingBox = new THREE.Box3().setFromObject(clonedScene);
     
-    // Get the center of the bounding box
     const center = new THREE.Vector3();
     boundingBox.getCenter(center);
     
-    // Create a group to hold the centered model
     const group = new THREE.Group();
     
-    // Move the model so its geometric center is at the group's origin
     clonedScene.position.set(-center.x, -center.y, -center.z);
     
     group.add(clonedScene);
@@ -198,7 +193,6 @@ const ShearWelderModel: React.FC<{
     return group;
   }, [scene]);
   
-  // Set up Intersection Observer to detect when showcase section is in view
   useEffect(() => {
     const showcaseSection = document.querySelector('.svc-showcase');
     if (!showcaseSection) return;
@@ -211,7 +205,7 @@ const ShearWelderModel: React.FC<{
           }
         });
       },
-      { threshold: 0.3 } // Trigger when 30% of section is visible
+      { threshold: 0.3 }
     );
     
     observer.observe(showcaseSection);
@@ -499,35 +493,33 @@ const Services: React.FC<ServicesPageProps> = () => {
             {/* CENTER 3D MODEL */}
             <div className="svc-showcase__center svc-showcase__center--3d">
               <Canvas 
-                camera={{ position: [0, 0.5, 7], fov: 32 }}
-                style={{ background: 'transparent' }}
-                gl={{ preserveDrawingBuffer: true, alpha: true }}
+                camera={{ position: [15, 40, 55], fov: 60 }}
+                onCreated={({ camera }) => {
+                  camera.lookAt(0, 0, 0);
+                }}
               >
                 <ambientLight intensity={0.5} />
-                <directionalLight position={[5, 5, 5]} intensity={1.5} />
-                <directionalLight position={[-5, 3, -5]} intensity={1.5} />
-                <pointLight position={[2, 3, 4]} intensity={1} />
-                <pointLight position={[-2, 1, -3]} intensity={0.5} color="#51A2FF" />
+                <directionalLight position={[5, 10, 5]} intensity={1.5} />
+                <directionalLight position={[-5, 5, -5]} intensity={1.5} />
+                <pointLight position={[2, 5, 4]} intensity={1} />
+                <pointLight position={[-2, 3, -3]} intensity={0.5} color="#51A2FF" />
                 
                 <Suspense fallback={null}>
-                  <ShearWelderModel 
-                    scale={1.5}
-                    rotation={[0, -0.4, 0]}
-                    position={[0, 0.5, 0]}
+                  <HydraulicPipingModel 
+                    scale={0.12}
+                    rotation={[0, -0.2, 0]}
+                    position={[0, 0, 0]}
                   />
                 </Suspense>
                 
                 <OrbitControls 
                   enableZoom={false}
-                  enablePan={false}
-                  minDistance={4}
-                  maxDistance={10}
-                  autoRotate={false}
-                  enableDamping={true}
-                  dampingFactor={0.05}
-                  target={[0, 0.2, 0]}
+                  enablePan={false} 
                   minPolarAngle={Math.PI / 2}
                   maxPolarAngle={Math.PI / 2}
+                  enableRotate={true}
+                  rotateSpeed={0.8}
+                  zoomSpeed={1.5}
                 />
               </Canvas>
             </div>
@@ -701,28 +693,40 @@ const Services: React.FC<ServicesPageProps> = () => {
                 </ul>
               </div>
               {/* RIGHT SIDE */}
-              <div className="svc-motion__right">
-                {motionsData.map((item, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className={`svc-motion__small-card ${i === activeIndex ? 'active' : ''}`}
-                      onClick={() => handleMotionChange(i)}
-                    >
-                      <span className="svc-motion__badge">
-                        {t(`services.motion_analysis.badge_labels.motion${i + 1}`)}
-                      </span>
-                      <video src={item.video} muted playsInline preload="metadata" className="svc-motion__video"/>
-                      <div className="svc-motion__play">▶</div>
-                      {i === activeIndex && (
-                        <div className="svc-motion__playing-indicator">
-                          <span className="svc-motion__playing-text">{t('services.motion_analysis.playing')}</span>
-                          <span className="svc-motion__playing-dot"></span>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+              <div className="svc-motion__right-grid">
+                  {motionsData
+                      .filter((_, i) => i !== activeIndex)
+                      .map((item, i) => {
+                      return (
+                      <div
+                        key={i}
+                        className="svc-motion__mini-card"
+                        onClick={() => handleMotionChange(
+                          motionsData.findIndex(m => m === item)
+                        )}
+                      >
+                        {/* VIDEO */}
+                        <video src={item.video} muted playsInline preload="metadata" />
+
+                        {/* GRADIENT OVERLAY */}
+                        <div className="svc-motion__mini-overlay" />
+
+                        {/* BADGE */}
+                        <span className="svc-motion__badge">
+                          {
+                            t(
+                              `services.motion_analysis.badge_labels.motion${
+                                motionsData.findIndex(m => m === item) + 1
+                              }`
+                            )
+                          }
+                        </span>
+
+                        {/* PLAY BUTTON */}
+                        <div className="svc-motion__play">▶</div>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </div>
