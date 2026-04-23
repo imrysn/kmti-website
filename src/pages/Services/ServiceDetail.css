@@ -43,7 +43,7 @@
   font-family: var(--font-family-body);
   font-size: 1.2rem;
   color: #B8BFC8;
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
   text-align: center;
 }
@@ -78,9 +78,7 @@
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1rem;
-  white-space: pre-line;
-  text-align: justify;
-  text-indent: 2rem;
+  max-width: 700px;
 }
 
 /* WORKFLOW */
@@ -308,50 +306,6 @@
   font-family: var(--font-family-body);
 }
 
-/* Masonry Gallery Wrapper */
-.masonry-gallery-wrapper {
-  margin-top: 2rem;
-  padding: 1rem 0;
-  position: relative;
-  z-index: 10;
-}
-
-.gallery-section-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  font-family: var(--font-family-heading);
-  line-height: 1.2;
-  background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF5252 60%, #FF5252 100%);
-  background-clip: text;
-  color: transparent;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .masonry-gallery-wrapper {
-    margin-top: 1.5rem;
-    padding: 0.75rem 0;
-  }
-
-  .gallery-section-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .masonry-gallery-wrapper {
-    margin-top: 1rem;
-  }
-
-  .gallery-section-title {
-    font-size: 1.25rem;
-  }
-}
-
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .service-detail-grid {
@@ -439,7 +393,6 @@
 
   .service-detail-description {
     font-size: 0.9rem;
-    text-indent: 1.5rem;
     margin-bottom: 0.5rem;
   }
 
@@ -540,6 +493,46 @@
 
   .step-name {
     font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .service-detail-subtitle {
+    font-size: 1.1rem;
+  }
+  .service-detail-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 414px) {
+  .service-detail-description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .service-detail-subtitle {
+    font-size: 1rem;
+  }
+  .service-detail-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .service-detail-subtitle {
+    font-size: 1rem;
+  }
+  .service-detail-description {
+    font-size: 0.9rem;
+    word-spacing: 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .service-detail-description {
+    font-size: 0.9rem;
   }
 }
 

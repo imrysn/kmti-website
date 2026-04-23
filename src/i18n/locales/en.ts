@@ -290,7 +290,6 @@ const en = {
         title: "Machine Assembly",
         short_desc: "From component integration to full machine assembly, we ensure mechanical, electrical, and pneumatic systems meet industrial standards.",
         detailed_desc: "In collaboration with our business partners, Kusakabe & Machinery Co., Ltd. and Maeno Giken Inc. two of the industry’s most well-known pioneers and leaders, we provide precision machine assembly services. We ensure that all equipment is of high quality and delivers top-notch performance, carefully assembled, tested, and ready to support productive business operations.",
-        gallery_title: "Machine Assembly Gallery",
         checklist: [
           "Strategic Partnership",
           "Trusted Collaboration",

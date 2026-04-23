@@ -92,10 +92,10 @@
 }
 
 .contact-page .hero-title {
+  font-size: 2.8rem !important;
   margin-top: 19rem;
   margin-bottom: 0.5rem;
   text-transform: none;
-  /* Inherits h1 global */
 }
 
 .contact-page .hero-title br {

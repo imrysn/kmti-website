@@ -10,7 +10,7 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import { getAssetUrl } from '../../utils/assets';
 import SEO from '../../components/common/SEO';
-import MasonryGallery from '../../components/MasonryGallery/MasonryGallery';
+import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -204,14 +204,14 @@ const ServiceDetail: React.FC = () => {
   };
 
   // Checklist items based on service
-const getChecklistItems = () => {
-  if (serviceKey === 'inspection') {
-    return t('services.items.inspection.checklist', { returnObjects: true }) as string[];
-  } else if (serviceKey === 'assembly') {
-    return t('services.items.assembly.checklist', { returnObjects: true }) as string[];
-  }
-  return [];
-};
+  const getChecklistItems = () => {
+    if (serviceKey === 'inspection') {
+      return t('services.items.inspection.checklist', { returnObjects: true }) as string[];
+    } else if (serviceKey === 'assembly') {
+      return t('services.items.assembly.checklist', { returnObjects: true }) as string[];
+    }
+    return [];
+  };
 
   const checklistItems = getChecklistItems();
 
@@ -369,22 +369,18 @@ const getChecklistItems = () => {
               )}
             </div>
 
+            {/* 3D Carousel Gallery for Inspection and Assembly */}
             {(serviceKey === 'inspection' || serviceKey === 'assembly') && galleryImages.length > 0 && (
               <motion.div
-                className="masonry-gallery-wrapper"
+                className="carousel-3d-gallery-wrapper"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <h3 className="gallery-section-title">
-                  {t(`services.items.${serviceKey}.gallery_title`)}
-                </h3>
-                <MasonryGallery 
-                  images={galleryImages}
-                  columns={4}
-                  gap={8}
-                />
+                <div className="carousel-3d-container-wrapper">
+                  <ImageCarousel images={galleryImages}/>
+                </div>
               </motion.div>
             )}
           </section>

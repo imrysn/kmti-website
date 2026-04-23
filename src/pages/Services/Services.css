@@ -485,7 +485,7 @@ body.services-page-active::-webkit-scrollbar {
   left: 8%;
   top: 55%;
   transform: translateY(-50%);
-  max-width: 350px;
+  max-width: 370px;
   color: white;
   text-align: justify;
   z-index: 5;
@@ -544,7 +544,7 @@ body.services-page-active::-webkit-scrollbar {
 .svc-showcase__right {
   position: absolute;
   right: 8%;
-  top: 82%;
+  top: 78%;
   transform: translateY(-50%);
   z-index: 5;
   opacity: 0;
@@ -764,6 +764,9 @@ body.services-page-active::-webkit-scrollbar {
     top: 85%;
     left: 50%;
   }
+  .svc-showcase__desc{
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 430px) {
@@ -779,7 +782,7 @@ body.services-page-active::-webkit-scrollbar {
     top: 30%;
   }
   .svc-showcase__left {
-    top: 60%;
+    top: 55%;
     left: 7.5%;
     max-width: 350px;
   }
@@ -803,8 +806,8 @@ body.services-page-active::-webkit-scrollbar {
   }
   .svc-showcase__left {
     top: 75%;
-    left: 10%;
-    max-width: 300px;
+    left: 8%;
+    max-width: 310px;
     height: 200px;
   }
   .svc-showcase__desc {
@@ -822,7 +825,7 @@ body.services-page-active::-webkit-scrollbar {
 }
 
 .svc-expertise__container {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -845,7 +848,7 @@ body.services-page-active::-webkit-scrollbar {
 .svc-expertise__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .svc-expertise__card {
@@ -905,8 +908,8 @@ body.services-page-active::-webkit-scrollbar {
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   z-index: 3;
   padding: 6px;
   border-radius: 10px;

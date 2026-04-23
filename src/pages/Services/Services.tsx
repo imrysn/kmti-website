@@ -503,7 +503,7 @@ const Services: React.FC<ServicesPageProps> = () => {
                 style={{ background: 'transparent' }}
                 gl={{ preserveDrawingBuffer: true, alpha: true }}
               >
-                <ambientLight intensity={0.3} />
+                <ambientLight intensity={0.5} />
                 <directionalLight position={[5, 5, 5]} intensity={1.5} />
                 <directionalLight position={[-5, 3, -5]} intensity={1.5} />
                 <pointLight position={[2, 3, 4]} intensity={1} />
