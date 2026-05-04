@@ -1,11 +1,12 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useRef } from 'react';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './ServiceDetail.css';
 import '../../styles/BackgroundShapes.css';
 import Button from '../../components/ui/Button';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import { getAssetUrl } from '../../utils/assets';
@@ -150,6 +151,31 @@ const ServiceDetail: React.FC = () => {
   const tEn = i18n.getFixedT('en');
   const navigate = useNavigate();
 
+  // Refs for scroll-triggered animations
+  const backButtonRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const sectionTitleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const mediaRef = useRef(null);
+  const carouselRef = useRef(null);
+  const checklistRightRef = useRef(null);
+  const workflowTitleRef = useRef(null);
+  const workflowStepsRef = useRef(null);
+  const subsectionsRef = useRef(null);
+
+  const isBackButtonInView = useInView(backButtonRef, { once: true, amount: 0.1 });
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.1 });
+  const isSubtitleInView = useInView(subtitleRef, { once: true, amount: 0.1 });
+  const isSectionTitleInView = useInView(sectionTitleRef, { once: true, amount: 0.1 });
+  const isDescriptionInView = useInView(descriptionRef, { once: true, amount: 0.2 });
+  const isMediaInView = useInView(mediaRef, { once: true, amount: 0.2 });
+  const isCarouselInView = useInView(carouselRef, { once: true, amount: 0.2 });
+  const isChecklistRightInView = useInView(checklistRightRef, { once: true, amount: 0.2 });
+  const isWorkflowTitleInView = useInView(workflowTitleRef, { once: true, amount: 0.1 });
+  const isWorkflowStepsInView = useInView(workflowStepsRef, { once: true, amount: 0.2 });
+  const isSubsectionsInView = useInView(subsectionsRef, { once: true, amount: 0.2 });
+
   const getServiceKey = (urlId: string | undefined): string | null => {
     switch (urlId) {
       case '3d-modeling': return '3d';
@@ -188,22 +214,35 @@ const ServiceDetail: React.FC = () => {
 
   if (!serviceKey) return null;
 
-  const containerVariants = {
+  const fadeUpVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.6, ease: "easeOut" }
+    },
+  };
+
+  const fadeUpStaggerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
       },
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  const fadeUpItemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.5, ease: "easeOut" }
+    },
   };
 
-  // Checklist items based on service
   const getChecklistItems = () => {
     if (serviceKey === 'inspection') {
       return t('services.items.inspection.checklist', { returnObjects: true }) as string[];
@@ -218,7 +257,7 @@ const ServiceDetail: React.FC = () => {
   return (
     <div className='all-services-bg-wrapper'>
       <BackgroundShapes />
-      <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+      <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', isolation: 'isolate'}}>
         <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
           <ambientLight intensity={1} />
           <pointLight position={[10, 10, 10]} intensity={1.5} />
@@ -232,50 +271,83 @@ const ServiceDetail: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.5 }}
       >
         <SEO 
           title={tEn(`services.items.${serviceKey}.title`)} 
           description={tEn(`services.items.${serviceKey}.short_desc`)} 
         />
         <div className="container">
-          <div className="service-detail-back-wrapper">
+          {/* Back Button - Individual fade-up */}
+          <motion.div 
+            ref={backButtonRef}
+            className="service-detail-back-wrapper"
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate={isBackButtonInView ? "visible" : "hidden"}
+          >
             <Button variant="style2" onClick={() => navigate('/services')}>
               {t('services.back_to_services')}
             </Button>
-          </div>
+          </motion.div>
 
+          {/* Header Section */}
           <div className="service-detail-header">
-            <h1 className="service-detail-title">{t(`services.items.${serviceKey}.title`)}</h1>
-            <p className="service-detail-subtitle">{t(`services.items.${serviceKey}.short_desc`)}</p>
+            <motion.h1 
+              ref={titleRef}
+              className="service-detail-title"
+              variants={fadeUpVariants}
+              initial="hidden"
+              animate={isTitleInView ? "visible" : "hidden"}
+            >
+              {t(`services.items.${serviceKey}.title`)}
+            </motion.h1>
+            <motion.p 
+              ref={subtitleRef}
+              className="service-detail-subtitle"
+              variants={fadeUpVariants}
+              initial="hidden"
+              animate={isSubtitleInView ? "visible" : "hidden"}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {t(`services.items.${serviceKey}.short_desc`)}
+            </motion.p>
           </div>
 
           <section className="service-detail-content-section">
             <div className="service-detail-grid">
-              <motion.div
-                className="service-detail-text"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              >
-                <h2 className="service-detail-section-title">
+              <div className="service-detail-text">
+                <motion.h2 
+                  ref={sectionTitleRef}
+                  className="service-detail-section-title"
+                  variants={fadeUpVariants}
+                  initial="hidden"
+                  animate={isSectionTitleInView ? "visible" : "hidden"}
+                >
                   {t(`services.items.${serviceKey}.section_title`, { defaultValue: t(`services.items.${serviceKey}.title`) })}
-                </h2>
-                <p className="service-detail-description">{t(`services.items.${serviceKey}.detailed_desc`)}</p>
+                </motion.h2>
+                
+                <motion.p 
+                  ref={descriptionRef}
+                  className="service-detail-description"
+                  variants={fadeUpVariants}
+                  initial="hidden"
+                  animate={isDescriptionInView ? "visible" : "hidden"}
+                >
+                  {t(`services.items.${serviceKey}.detailed_desc`)}
+                </motion.p>
 
                 {(serviceKey === 'inspection' || serviceKey === 'assembly') && checklistItems.length > 0 && (
                   <motion.div
                     className="service-checklist-mobile"
-                    variants={containerVariants}
+                    variants={fadeUpStaggerVariants}
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
+                    animate={isDescriptionInView ? "visible" : "hidden"}
                   >
                     <ul className="checklist-simple">
                       {checklistItems.map((item, index) => (
-                        <motion.li key={index} variants={itemVariants}>
-                          <span className="check-icon">✓</span>
+                        <motion.li key={index} variants={fadeUpItemVariants}>
+                          <span className="check-icon">🗹</span>
                           <span>{item}</span>
                         </motion.li>
                       ))}
@@ -284,17 +356,26 @@ const ServiceDetail: React.FC = () => {
                 )}
 
                 {(serviceKey === '3d' || serviceKey === '2d') && (
-                  <motion.div
-                    className="service-detail-workflow"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                  >
-                    <h3 className="service-detail-workflow-title">{t('services.workflow.title')}</h3>
-                    <div className="workflow-steps">
+                  <div className="service-detail-workflow">
+                    <motion.h3 
+                      ref={workflowTitleRef}
+                      className="service-detail-workflow-title"
+                      variants={fadeUpVariants}
+                      initial="hidden"
+                      animate={isWorkflowTitleInView ? "visible" : "hidden"}
+                    >
+                      {t('services.workflow.title')}
+                    </motion.h3>
+                    
+                    <motion.div 
+                      ref={workflowStepsRef}
+                      className="workflow-steps"
+                      variants={fadeUpStaggerVariants}
+                      initial="hidden"
+                      animate={isWorkflowStepsInView ? "visible" : "hidden"}
+                    >
                       {['inquiry', 'reference', 'modeling', 'detailing', 'design', 'fabrication', 'delivery'].map((step, index) => (
-                        <motion.div key={step} className={`workflow-step ${index < 7 ? 'active' : ''}`} variants={itemVariants}>
+                        <motion.div key={step} className={`workflow-step ${index < 7 ? 'active' : ''}`} variants={fadeUpItemVariants}>
                           <div className="step-number">{index + 1}</div>
                           <div className="step-content">
                             <span className="step-name">{t(`services.workflow.steps.${step}`)}</span>
@@ -302,42 +383,42 @@ const ServiceDetail: React.FC = () => {
                           {index < 6 && <div className="step-connector">↓</div>}
                         </motion.div>
                       ))}
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </div>
                 )}
 
                 {serviceKey === '2d' && (
                   <motion.div
+                    ref={subsectionsRef}
                     className="service-detail-subsections"
-                    variants={containerVariants}
+                    variants={fadeUpStaggerVariants}
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
+                    animate={isSubsectionsInView ? "visible" : "hidden"}
                   >
-                    <motion.div className="service-detail-subsection" variants={itemVariants}>
+                    <motion.div className="service-detail-subsection" variants={fadeUpItemVariants}>
                       <h3 className="service-detail-subsection-title">{t('services.items.2d.section_titles.checking')}</h3>
                       <p className="service-detail-subsection-text">{t('services.items.2d.section_desc.checking')}</p>
                     </motion.div>
-                    <motion.div className="service-detail-subsection" variants={itemVariants}>
+                    <motion.div className="service-detail-subsection" variants={fadeUpItemVariants}>
                       <h3 className="service-detail-subsection-title">{t('services.items.2d.section_titles.qualifications')}</h3>
                       <p className="service-detail-subsection-text">{t('services.items.2d.section_desc.qualifications')}</p>
                     </motion.div>
                   </motion.div>
                 )}
-              </motion.div>
+              </div>
 
               {(serviceKey === 'inspection' || serviceKey === 'assembly') && checklistItems.length > 0 && (
                 <motion.div
+                  ref={checklistRightRef}
                   className="service-checklist-right desktop-checklist"
-                  variants={containerVariants}
+                  variants={fadeUpStaggerVariants}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
+                  animate={isChecklistRightInView ? "visible" : "hidden"}
                 >
                   <ul className="checklist-simple">
                     {checklistItems.map((item, index) => (
-                      <motion.li key={index} variants={itemVariants}>
-                        <span className="check-icon">✓</span>
+                      <motion.li key={index} variants={fadeUpItemVariants}>
+                        <span className="check-icon">🗹</span>
                         <span>{item}</span>
                       </motion.li>
                     ))}
@@ -347,11 +428,11 @@ const ServiceDetail: React.FC = () => {
 
               {(serviceKey === '3d' || serviceKey === '2d') && (
                 <motion.div
+                  ref={mediaRef}
                   className="service-detail-media"
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                  variants={fadeUpVariants}
+                  initial="hidden"
+                  animate={isMediaInView ? "visible" : "hidden"}
                 >
                   <div className="service-detail-gallery">
                     {images.map((img, i) => (
@@ -370,14 +451,17 @@ const ServiceDetail: React.FC = () => {
 
             {(serviceKey === 'inspection' || serviceKey === 'assembly') && galleryImages.length > 0 && (
               <motion.div
+                ref={carouselRef}
                 className="carousel-3d-gallery-wrapper"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate={isCarouselInView ? "visible" : "hidden"}
               >
                 <div className="carousel-3d-container-wrapper">
-                  <ImageCarousel images={galleryImages}/>
+                  <ImageCarousel 
+                    images={galleryImages}
+                    duplicateForVisibility={serviceKey === 'inspection'}
+                  />
                 </div>
               </motion.div>
             )}

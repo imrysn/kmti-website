@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useMemo, Suspense } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Services.css';
-import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
+import '../../styles/BackgroundShapes.css';
 import type { ServicesPageProps } from './Services.types';
 import { smoothScrollToElement } from '../../utils/smoothScroll';
 import Button from '../../components/ui/Button';
@@ -47,7 +47,6 @@ const motionsData = [
   { label: "MOTION 8", video: motion8 },
 ];
 
-
 interface Service {
   id: number;
   title: string;
@@ -58,7 +57,7 @@ interface Service {
 }
 
 const BackgroundShapes: React.FC = () => (
-  <> {/* Bottom Shapes */}
+  <>
     <ul className="shapes-container" aria-hidden="true">
       <li className="shape" />
       <li className="shape" />
@@ -81,7 +80,6 @@ const BackgroundShapes: React.FC = () => (
       <li className="shape" />
       <li className="shape" />
     </ul>
-    {/* Top Shapes */}
     <ul className="shapes-container-top" aria-hidden="true">
       <li className="shape-top" />
       <li className="shape-top" />
@@ -170,7 +168,6 @@ const HydraulicPipingModel: React.FC<{
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/compressed_glb/Hydraulic_piping.glb');
   
-  // Animation state
   const [isInView, setIsInView] = useState(false);
   const [animationStarted, setAnimationStarted] = useState(false);
   const animationProgress = useRef(0);
@@ -178,18 +175,12 @@ const HydraulicPipingModel: React.FC<{
   
   const centeredModel = useMemo(() => {
     const clonedScene = scene.clone();
-    
     const boundingBox = new THREE.Box3().setFromObject(clonedScene);
-    
     const center = new THREE.Vector3();
     boundingBox.getCenter(center);
-    
     const group = new THREE.Group();
-    
     clonedScene.position.set(-center.x, -center.y, -center.z);
-    
     group.add(clonedScene);
-    
     return group;
   }, [scene]);
   
@@ -209,13 +200,9 @@ const HydraulicPipingModel: React.FC<{
     );
     
     observer.observe(showcaseSection);
-    
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
   
-  // Start animation when section comes into view
   useEffect(() => {
     if (isInView && !animationStarted) {
       setAnimationStarted(true);
@@ -223,19 +210,16 @@ const HydraulicPipingModel: React.FC<{
     }
   }, [isInView, animationStarted]);
   
-  // Animation loop
   useFrame(() => {
     if (!groupRef.current) return;
     
     if (!animationStarted) {
-      // Model stays hidden until animation starts
       groupRef.current.position.set(position[0] - 0.5, position[1] - 1.5, -10);
       groupRef.current.rotation.y = Math.PI + 0.5;
       groupRef.current.scale.setScalar(scale * 0.5);
       return;
     }
     
-    // Update animation progress
     if (animationProgress.current < 1) {
       animationProgress.current = Math.min(animationProgress.current + animationSpeed, 1);
     }
@@ -243,22 +227,16 @@ const HydraulicPipingModel: React.FC<{
     const progress = animationProgress.current;
     const easeOut = 1 - Math.pow(1 - progress, 3);
     
-    // START POSITION: Far back, rotated away
     const startZ = -10;
     const startY = position[1] - 1.5;
     const startX = position[0] - 0.5;
-    const startRotation = Math.PI + 0.5; // Start from back/side
+    const startRotation = Math.PI + 0.5;
     const startScale = 0.5;
     
-    // Interpolate from start to target
     groupRef.current.position.x = startX + (position[0] - startX) * easeOut;
     groupRef.current.position.y = startY + (position[1] - startY) * easeOut;
     groupRef.current.position.z = startZ + (0 - startZ) * easeOut;
-    
-    // Rotate from start rotation to target rotation (clockwise spin)
     groupRef.current.rotation.y = startRotation + (rotation[1] - startRotation) * easeOut;
-    
-    // Scale fade in
     groupRef.current.scale.setScalar(scale * (startScale + (1 - startScale) * easeOut));
   });
   
@@ -277,10 +255,38 @@ const Services: React.FC<ServicesPageProps> = () => {
   const servicesNavRef = useRef<HTMLDivElement>(null);
   const previousId = useRef(id);
 
+  // Refs for scroll-triggered animations
+  const heroRef = useRef(null);
+  const expertiseRef = useRef(null);
+  const motionRef = useRef(null);
+
+  // State for scroll animations
+  const [isExpertiseInView, setIsExpertiseInView] = useState(false);
+  const [isMotionInView, setIsMotionInView] = useState(false);
+
+  // Set up Intersection Observers for simultaneous fade-up
+  useEffect(() => {
+    const options = { threshold: 0.15, triggerOnce: true };
+    
+    const expertiseObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsExpertiseInView(true);
+    }, options);
+    const motionObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsMotionInView(true);
+    }, options);
+    
+    if (expertiseRef.current) expertiseObserver.observe(expertiseRef.current);
+    if (motionRef.current) motionObserver.observe(motionRef.current);
+    
+    return () => {
+      expertiseObserver.disconnect();
+      motionObserver.disconnect();
+    };
+  }, []);
+
   const [activeIndex, setActiveIndex] = useState(0);
   const activeMotion = motionsData[activeIndex];
   
-  // Video control states
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
@@ -288,7 +294,6 @@ const Services: React.FC<ServicesPageProps> = () => {
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  // Video control functions
   const togglePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -300,7 +305,6 @@ const Services: React.FC<ServicesPageProps> = () => {
     }
   };
 
-  // Enhanced motion change with fade transition
   const handleMotionChange = (index: number) => {
     if (index === activeIndex || isChanging) return;
     
@@ -331,7 +335,6 @@ const Services: React.FC<ServicesPageProps> = () => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  // Video event listeners
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -362,7 +365,6 @@ const Services: React.FC<ServicesPageProps> = () => {
     };
   }, [activeMotion.video]);
 
-  // Reset play state when video changes
   useEffect(() => {
     setIsPlaying(true);
     setCurrentTime(0);
@@ -392,7 +394,6 @@ const Services: React.FC<ServicesPageProps> = () => {
 
   useScrollReveal();
 
-  // Scroll to nav tabs when id changes (navigation between grid and detail)
   useEffect(() => {
     if (previousId.current !== id) {
       smoothScrollToElement(servicesNavRef.current, 1200);
@@ -451,13 +452,19 @@ const Services: React.FC<ServicesPageProps> = () => {
           title={tEn('nav.services')} 
           description={tEn('home.services.subtitle')} 
         />
-        <section className="services-hero">
+        
+        {/* Hero Section */}
+        <section ref={heroRef} className="services-hero">
           <div className="services-hero-bg-custom" style={{ backgroundImage: `url(${servicesBg})` }}></div>
           <div className="services-hero-overlay"></div>
           <div className="services-hero-container container">
             <div className="services-hero-content">
-              <h1 className="services-title">{t('services.hero.title')}</h1>
-              <p className="services-subtitle">{t('services.hero.subtitle')}</p>
+              <h1 className="services-title">
+                {t('services.hero.title')}
+              </h1>
+              <p className="services-subtitle">
+                {t('services.hero.subtitle')}
+              </p>
               <div className="services-hero-button">
                 <Button variant="style2" onClick={() => smoothScrollToElement(servicesNavRef.current, 1200)}>{t('services.hero.cta')}</Button>
               </div>
@@ -565,8 +572,8 @@ const Services: React.FC<ServicesPageProps> = () => {
           </div>
         </section>
 
-        {/* ----- New Services Grid Section ----- */}
-        <section className="svc-expertise reveal">
+        {/* ----- Expertise Section ----- */}
+        <section ref={expertiseRef} className="svc-expertise reveal">
           <div className="svc-expertise__container">
             <div className="svc-expertise__title-wrap">
               <h2 className="svc-expertise__title">
@@ -575,9 +582,8 @@ const Services: React.FC<ServicesPageProps> = () => {
             </div>
 
             <div className="svc-expertise__grid">
-              {services.map((s) => {
-                const videoRef = React.useRef<HTMLVideoElement | null>(null);
-
+              {services.map((s, index) => {
+                const videoRefLocal = React.useRef<HTMLVideoElement | null>(null);
                 const keyMap =
                   s.id === 1 ? '3d' :
                   s.id === 2 ? '2d' :
@@ -595,27 +601,32 @@ const Services: React.FC<ServicesPageProps> = () => {
                 };
 
                 const handleMouseEnter = () => {
-                  videoRef.current?.play();
+                  videoRefLocal.current?.play();
                 };
 
                 const handleMouseLeave = () => {
-                  if (videoRef.current) {
-                    videoRef.current.pause();
-                    videoRef.current.currentTime = 0;
+                  if (videoRefLocal.current) {
+                    videoRefLocal.current.pause();
+                    videoRefLocal.current.currentTime = 0;
                   }
                 };
 
                 return (
                   <div
                     key={s.id}
-                    className="svc-expertise__card reveal-delay"
+                    className="svc-expertise__card"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     onClick={() => navigate(`/services/${getSlug(s.id)}`)}
+                    style={{
+                      opacity: isExpertiseInView ? 1 : 0,
+                      transform: isExpertiseInView ? 'translateY(0)' : 'translateY(60px)',
+                      transition: `opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1)`,
+                      transitionDelay: isExpertiseInView ? `${index * 0.1}s` : '0s'
+                    }}
                   >
-                    {/* VIDEO */}
                     <video
-                      ref={videoRef}
+                      ref={videoRefLocal}
                       src={s.video}
                       muted
                       loop
@@ -624,16 +635,13 @@ const Services: React.FC<ServicesPageProps> = () => {
                       className="svc-expertise__video"
                     />
                     
-                    {/* OVERLAY */}
                     <div className="svc-expertise__overlay" />
 
-                    {/* CONTENT */}
                     <div className="svc-expertise__content">
                       <h3>{t(`services.items.${keyMap}.title`)}</h3>
                       <p>{s.description}</p>
                     </div>
 
-                    {/* ICON */}
                     <img src={s.icon} alt="icon" className="svc-expertise__logo" />
                   </div>
                 );
@@ -641,17 +649,32 @@ const Services: React.FC<ServicesPageProps> = () => {
             </div>
           </div>
         </section>
-        
-        <section className="svc-motion reveal">
+
+        {/* ----- Motion Analysis Section ----- */}
+        <section ref={motionRef} className="svc-motion reveal">
           <div className="svc-motion__container">
             <div className="svc-motion__title-wrap">
               <h2 className="svc-motion__title">{t('services.motion_analysis.title')}</h2>
             </div>
-            <div className="svc-motion__layout">
+            
+            <div 
+              className="svc-motion__layout"
+              style={{
+                opacity: isMotionInView ? 1 : 0,
+                transform: isMotionInView ? 'translateY(0)' : 'translateY(60px)',
+                transition: `opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1)`,
+                transitionDelay: isMotionInView ? '0.2s' : '0s'
+              }}
+            >
               {/* LEFT SIDE */}
               <div className="svc-motion__left">
-                {/* BIG CARD with Controls */}
-                <div className="svc-motion__main-card">
+                <div 
+                  className="svc-motion__main-card"
+                  style={{
+                    transition: `opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1)`,
+                    transitionDelay: isMotionInView ? '0s' : '0s'
+                  }}
+                >
                   <span className="svc-motion__badge">
                     {t(`services.motion_analysis.badge_labels.motion${activeIndex + 1}`)}
                   </span>
@@ -664,7 +687,6 @@ const Services: React.FC<ServicesPageProps> = () => {
                     playsInline 
                     className={`svc-motion__video ${isChanging ? 'changing' : ''}`}
                   />
-                  {/* Video Controls Overlay */}
                   <div className="svc-motion__controls-overlay">
                     <button 
                       className="svc-motion__play-pause-btn"
@@ -685,53 +707,63 @@ const Services: React.FC<ServicesPageProps> = () => {
                     />
                   </div>
                 </div>
-                {/* BULLETS */}
+                
                 <ul className="svc-motion__list">
                   {(t('services.motion_analysis.benefits', { returnObjects: true }) as string[]).map((benefit, idx) => (
-                    <li key={idx}>{benefit}</li>
+                    <li 
+                      key={idx}
+                      style={{
+                        opacity: isMotionInView ? 1 : 0,
+                        transform: isMotionInView ? 'translateX(0)' : 'translateX(-30px)',
+                        transition: `opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)`,
+                        transitionDelay: isMotionInView ? `${0.3 + idx * 0.05}s` : '0s'
+                      }}
+                    >
+                      {benefit}
+                    </li>
                   ))}
                 </ul>
               </div>
-              {/* RIGHT SIDE */}
+              
+              {/* RIGHT SIDE - Playlist */}
               <div className="svc-motion__right-grid">
-                  {motionsData
-                      .filter((_, i) => i !== activeIndex)
-                      .map((item, i) => {
-                      return (
-                      <div
-                        key={i}
-                        className="svc-motion__mini-card"
-                        onClick={() => handleMotionChange(
-                          motionsData.findIndex(m => m === item)
-                        )}
-                      >
-                        {/* VIDEO */}
-                        <video src={item.video} muted playsInline preload="metadata" />
-
-                        {/* GRADIENT OVERLAY */}
-                        <div className="svc-motion__mini-overlay" />
-
-                        {/* BADGE */}
-                        <span className="svc-motion__badge">
-                          {
-                            t(
-                              `services.motion_analysis.badge_labels.motion${
-                                motionsData.findIndex(m => m === item) + 1
-                              }`
-                            )
-                          }
-                        </span>
-
-                        {/* PLAY BUTTON */}
+                {motionsData.map((item, idx) => {
+                  const isActive = idx === activeIndex;
+                  return (
+                    <div
+                      key={idx}
+                      className={`svc-motion__mini-card ${isActive ? 'active' : ''}`}
+                      onClick={() => handleMotionChange(idx)}
+                      style={{
+                        opacity: isMotionInView ? 1 : 0,
+                        transform: isMotionInView ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
+                        transition: `opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)`,
+                        transitionDelay: isMotionInView ? `${0.1 + idx * 0.06}s` : '0s'
+                      }}
+                    >
+                      <video src={item.video} muted playsInline preload="metadata" />
+                      <div className="svc-motion__mini-overlay" />
+                      <span className="svc-motion__badge">
+                        {t(`services.motion_analysis.badge_labels.motion${idx + 1}`)}
+                      </span>
+                      {isActive && (
+                        <div className="svc-motion__playing-indicator">
+                          <span className="svc-motion__playing-dot"></span>
+                          <span className="svc-motion__playing-text">{t('services.motion_analysis.playing')}</span>
+                        </div>
+                      )}
+                      {!isActive && (
                         <div className="svc-motion__play">▶</div>
-                      </div>
-                    );
-                  })}
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
         </section>
 
+        {/* CTA Section */}
         <section className="services-cta-section reveal">
           <div className="services-cta-container container">
             <h2 className="services-cta-title">{t('services.footer_cta.title')}</h2>

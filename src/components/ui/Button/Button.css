@@ -84,6 +84,7 @@ button.btn.btn-style1:hover:not(:disabled)::before {
 
 button.btn.btn-style2 {
   background-color: rgba(29, 41, 61, 0.4) !important;
+  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.7) !important;
   border: 1px solid white !important;
   border-radius: 15px !important;
 }

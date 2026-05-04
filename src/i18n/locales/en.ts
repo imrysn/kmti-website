@@ -193,6 +193,7 @@ const en = {
     },
     back_to_services: "← Back to Services",
     zoom_instruction: "Scroll to zoom • Drag to pan",
+
     showcase: {
       back_text: "From Vision",
       front_text_fill: "to Reality",
@@ -210,12 +211,12 @@ const en = {
       }
     },
 
-    // NEW: Expertise Section Title
+    // Expertise Section Title
     expertise: {
       title: "OUR EXPERTISE"
     },
 
-    // NEW: Motion Analysis Section
+    // Motion Analysis Section
     motion_analysis: {
       title: "MOTION ANALYSIS",
       playing: "PLAYING",
@@ -240,6 +241,9 @@ const en = {
     
 
     modal: {
+      back_to_services_details: "Back to Services Details",
+      services_details_zoom_instruction: "Scroll to zoom • Drag to pan",
+
       detailed_desc: {
         "3d": "By converting client 3D models, we can easily identify potential errors or interferences. Throughout this process, we collaborate closely with our clients to make any necessary design corrections. Once the 3D model is finalized and approved, we proceed to 2D detailing. We continue refining the design until it meets your full satisfaction before moving on to the final detailing stage.",
         "2d": "Detailing is a critical part of the design process, as it contains nearly all the information required for construction—materials, dimensions, and essential technical instructions. We pay close attention to every aspect of the design, supported by an efficient workflow that ensures high quality while meeting time requirements. Consultation plays a key role at every stage of the project, ensuring clients remain involved throughout the process and that all outcomes align with their vision, minimizing the need for revisions caused by miscommunication.",
