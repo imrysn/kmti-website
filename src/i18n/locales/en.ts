@@ -1387,13 +1387,14 @@ const en = {
   }
   ,
 
+
   // ... EVENTS PAGE ...
   events: {
     page_title: "Company Events | KMTI",
     meta_description: "Explore recent company events at KMTI, including team-building exercises, safety drills, and company-wide meetings.",
     hero: {
       title: "Company Events & Celebrations",
-      subtitle: "Building a strong, safe, and collaborative team culture through meaningful experiences, shared moments, and professional growth opportunities that bring our community closer together."
+      subtitle: "Creating a collaborative team culture where meaningful experiences and growth opportunities bring us closer together."
     },
     fire_drill: {
       title: "Annual Fire Drill",
@@ -1406,6 +1407,11 @@ const en = {
     xmas_party: {
       title: "Christmas Party",
       description: "Celebrating the joy of the season, our annual Christmas party brings the team together for a time of fun, laughter, and appreciation. It's a chance to unwind, share memorable moments, and strengthen the bond that makes our workplace feel like family."
+    },
+
+    outing: {
+      title: "Team Outing",
+      description: "A fun-filled day away from the office, bringing the team together for bonding activities and creating lasting memories."
     },
 
   }

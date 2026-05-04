@@ -239,7 +239,7 @@ const ChatbotCard: React.FC<ChatbotCardProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const initializationRef = useRef(false);
-  const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
+  const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
   const hasInitializedRef = useRef(false);
   const sessionStartTimeRef = useRef<Date>(new Date());
 

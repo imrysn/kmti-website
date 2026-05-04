@@ -281,7 +281,7 @@
 }
 
 .about-management-team-container {
-  max-width: 1000px;
+  max-width: 1650px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 0;
@@ -312,14 +312,12 @@
 }
 
 .about-management-team-grid {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 2rem;
   padding: 0 2rem;
   box-sizing: border-box;
   width: 100%;
-  flex-wrap: nowrap;
   position: relative;
 }
 
@@ -333,14 +331,12 @@
 
 .about-management-team-expanded-rows .about-management-team-grid {
   margin-top: 0;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 2rem;
   padding: 0 2rem;
   box-sizing: border-box;
   width: 100%;
-  flex-wrap: nowrap;
   position: relative;
 }
 
@@ -1129,14 +1125,12 @@
   }
 
   .about-management-team-grid {
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.5rem;
     padding: 0 0.5rem;
     box-sizing: border-box;
     width: 100%;
-    flex-wrap: nowrap;
   }
 
   /* Hide placeholder since large card becomes normal */
@@ -1147,10 +1141,8 @@
   /* ALL cards (including large) become uniform flexible size */
   .about-management-team-grid .management-team-card {
     position: relative !important;
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
     max-width: none !important;
-    width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -1185,16 +1177,16 @@
   }
 
   .about-management-team-expanded-rows .about-management-team-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
     padding: 0 1rem;
   }
 
   .about-management-team-expanded-rows .management-team-card {
     position: relative !important;
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
     max-width: none !important;
-    width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -1320,6 +1312,7 @@
     min-width: 0 !important;
     max-width: none !important;
     width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -1365,6 +1358,7 @@
     min-width: 0 !important;
     max-width: none !important;
     width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -1504,7 +1498,8 @@
   }
 
   .about-management-team-grid {
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.25rem;
     padding: 0 0.1rem;
   }
@@ -1517,10 +1512,8 @@
   /* ALL cards (including large) become uniform size */
   .about-management-team-grid .management-team-card {
     position: relative !important;
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
     max-width: none !important;
-    width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -1556,17 +1549,16 @@
   }
 
   .about-management-team-expanded-rows .about-management-team-grid {
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.25rem;
     padding: 0 0.1rem;
   }
 
   .about-management-team-expanded-rows .management-team-card {
     position: relative !important;
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
     max-width: none !important;
-    width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -1752,7 +1744,8 @@
   }
 
   .about-management-team-grid {
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.15rem;
     padding: 0;
   }
@@ -1765,10 +1758,8 @@
   /* ALL cards (including large) become uniform size */
   .about-management-team-grid .management-team-card {
     position: relative !important;
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
     max-width: none !important;
-    width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -1803,17 +1794,16 @@
   }
 
   .about-management-team-expanded-rows .about-management-team-grid {
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.15rem;
     padding: 0;
   }
 
   .about-management-team-expanded-rows .management-team-card {
     position: relative !important;
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
     max-width: none !important;
-    width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -2042,7 +2032,8 @@
   }
 
   .about-management-team-grid {
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.1rem;
     padding: 0;
     justify-content: space-between;
@@ -2056,10 +2047,8 @@
   /* ALL cards (including large) become uniform size */
   .about-management-team-grid .management-team-card {
     position: relative !important;
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
     max-width: none !important;
-    width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important; /* Reset positioning for large card */
     left: auto !important; /* Reset positioning for large card */
@@ -2095,17 +2084,16 @@
   }
 
   .about-management-team-expanded-rows .about-management-team-grid {
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.1rem;
     padding: 0;
   }
 
   .about-management-team-expanded-rows .management-team-card {
     position: relative !important;
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
     max-width: none !important;
-    width: 0 !important;
+    width: 100% !important;
     height: auto !important;
     top: 0 !important;
     left: auto !important;
@@ -2259,6 +2247,7 @@
   .about-management-team-grid .management-team-card .management-team-card-image {
     aspect-ratio: 3/4;
     width: 100%;
+    position: relative;
     height: auto;
     margin: 0 0 0 0 !important; /* Remove top margin, keep bottom margin minimal */
     object-fit: cover;

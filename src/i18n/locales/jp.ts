@@ -1318,36 +1318,30 @@ const jp = {
       today_visit: "本日",
       yesterday_visit: "昨日",
       publication_date: "2026年1月日"
-    }
-  },
-
-  not_found: {
-    title: "ページが見つかりません",
-    message: "お探しのページは削除されたか、URLが変更された可能性があります。",
-    back_home: "ホームに戻る"
-  },
-
-  // ..... SITEMAP PAGE .....
-  sitemap: {
-    title: "サイトマップ",
-    subtitle: "すべてのページを見つけて、ウェブサイトを簡単にナビゲートできます",
-    legal_compliance: "法務・コンプライアンス",
-    sections: {
-      main_pages: "メインページ",
-      services: "サービス",
-      projects: "プロジェクト",
-      company: "会社情報"
     },
-    descriptions: {
-      home: "当社のエンジニアリングソリューションと専門知識をご覧ください",
-      about: "当社の会社、チーム、歴史について学ぶ",
-      contact: "当社のチームにお問い合わせください",
-      services: "包括的なエンジニアリングサービスをご覧ください",
-      projects: "完成したプロジェクトのポートフォリオをご覧ください",
-      careers: "当社のチームに参加し、キャリアを築きましょう",
-      legal: "プライバシーポリシー、利用規約、コンプライアンス情報"
+    // --- EVENTS PAGE ---
+    events: {
+      page_title: "会社イベント | KMTI",
+      hero: {
+        title: "会社のイベントと祝事",
+        subtitle: "有意義な体験、共有された瞬間、そして私たちのコミュニティをより身近にする専門的な成長の機会を通じて、強力で安全、かつ協力的なチーム文化を構築します。"
+      },
+      fire_drill: {
+        title: "年次消防訓練"
+      },
+      meeting: {
+        title: "全社ミーティング"
+      },
+      xmas_party: {
+        title: "クリスマスパーティー"
+      },
+      outing: {
+        title: "社員旅行"
+      }
     }
   }
 };
+
+
 
 export default jp;
