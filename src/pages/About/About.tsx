@@ -51,7 +51,7 @@ const royImage = getAssetUrl('management/roy.webp');
 const jojoImage = getAssetUrl('management/jojo.webp');
 const zorenImage = getAssetUrl('management/ZOREN.webp');
 const raineImage = getAssetUrl('management/RAINE.webp');
-const sharmaineImage = getAssetUrl('management/SHARMAINE.webp');
+
 const mgImage = getAssetUrl('management/MG.webp');
 const matthewImage = getAssetUrl('management/MATTHEW.webp');
 
@@ -391,7 +391,7 @@ const About: React.FC<AboutPageProps> = () => {
                 <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(jojoImage, t('about.management.roles.utility')) : undefined} />
                 <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(mgImage, t('about.management.roles.staff')) : undefined} />
                 <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(zorenImage, t('about.management.roles.staff')) : undefined} />
-                <ManagementTeamCard image={sharmaineImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(sharmaineImage, t('about.management.roles.staff')) : undefined} />
+                
                 <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(matthewImage, t('about.management.roles.staff')) : undefined} />
               </div>
             </div>
