@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState, useMemo, Suspense } from 'react';
+// Services.tsx - Performance Optimized (Preserving all UI/class names)
+import React, { useRef, useEffect, useState, useMemo, Suspense, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Services.css';
@@ -56,54 +57,34 @@ interface Service {
   video?: string;
 }
 
-const BackgroundShapes: React.FC = () => (
-  <>
-    <ul className="shapes-container" aria-hidden="true">
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-      <li className="shape" />
-    </ul>
-    <ul className="shapes-container-top" aria-hidden="true">
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-      <li className="shape-top" />
-    </ul>
-  </>
-);
+const BackgroundShapes: React.FC = () => {
+  const shapes = useMemo(() => {
+    const items = [];
+    for (let i = 0; i < 20; i++) {
+      items.push(<li key={`shape-${i}`} className="shape" />);
+    }
+    return items;
+  }, []);
+
+  const shapesTop = useMemo(() => {
+    const items = [];
+    for (let i = 0; i < 20; i++) {
+      items.push(<li key={`shape-top-${i}`} className="shape-top" />);
+    }
+    return items;
+  }, []);
+
+  return (
+    <>
+      <ul className="shapes-container" aria-hidden="true">
+        {shapes}
+      </ul>
+      <ul className="shapes-container-top" aria-hidden="true">
+        {shapesTop}
+      </ul>
+    </>
+  );
+};
 
 // --- 3D Gear Component ---
 const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
@@ -140,6 +121,16 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
     return shape;
   }, []);
 
+  const geometry = useMemo(() => {
+    return new THREE.ExtrudeGeometry(gearShape, { 
+      depth: 0.8, 
+      bevelEnabled: true, 
+      bevelSize: 0.1, 
+      bevelThickness: 0.1,
+      steps: 1
+    });
+  }, [gearShape]);
+
   useFrame((state, delta) => {
     if (meshRef.current) {
       meshRef.current.rotation.z += delta * speed;
@@ -148,8 +139,7 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
   });
 
   return (
-    <mesh ref={meshRef} position={position} scale={scale}>
-      <extrudeGeometry args={[gearShape, { depth: 0.8, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 }]} />
+    <mesh ref={meshRef} position={position} scale={scale} geometry={geometry}>
       <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.15} transparent={true} />
     </mesh>
   );
@@ -193,10 +183,11 @@ const HydraulicPipingModel: React.FC<{
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
+            observer.disconnect();
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.1, rootMargin: '100px' }
     );
     
     observer.observe(showcaseSection);
@@ -247,6 +238,64 @@ const HydraulicPipingModel: React.FC<{
   );
 };
 
+const OptimizedVideo = React.forwardRef<HTMLVideoElement, {
+  src: string;
+  className?: string;
+  style?: React.CSSProperties;
+  muted?: boolean;
+  loop?: boolean;
+  playsInline?: boolean;
+  autoPlay?: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  preload?: string;
+}>(({ src, className, style, ...props }, ref) => {
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' } // Load when within 300px of viewport
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  if (!shouldLoad) {
+    return (
+      <div 
+        ref={containerRef} 
+        className={className} 
+        style={{ ...style, backgroundColor: 'rgba(15, 23, 43, 0.3)' }} 
+      />
+    );
+  }
+
+  return (
+    <div ref={containerRef} className={className} style={style}>
+      <video
+        ref={ref}
+        src={src}
+        className={className}
+        style={style}
+        {...props}
+      />
+    </div>
+  );
+});
+
+OptimizedVideo.displayName = 'OptimizedVideo';
+
 const Services: React.FC<ServicesPageProps> = () => {
   const { t, i18n } = useTranslation();
   const tEn = i18n.getFixedT('en');
@@ -264,24 +313,26 @@ const Services: React.FC<ServicesPageProps> = () => {
   const [isExpertiseInView, setIsExpertiseInView] = useState(false);
   const [isMotionInView, setIsMotionInView] = useState(false);
 
-  // Set up Intersection Observers for simultaneous fade-up
   useEffect(() => {
-    const options = { threshold: 0.15, triggerOnce: true };
+    const options = { threshold: 0.15, rootMargin: '50px' };
     
-    const expertiseObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setIsExpertiseInView(true);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === expertiseRef.current) {
+            setIsExpertiseInView(true);
+          }
+          if (entry.target === motionRef.current) {
+            setIsMotionInView(true);
+          }
+        }
+      });
     }, options);
-    const motionObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setIsMotionInView(true);
-    }, options);
     
-    if (expertiseRef.current) expertiseObserver.observe(expertiseRef.current);
-    if (motionRef.current) motionObserver.observe(motionRef.current);
+    if (expertiseRef.current) observer.observe(expertiseRef.current);
+    if (motionRef.current) observer.observe(motionRef.current);
     
-    return () => {
-      expertiseObserver.disconnect();
-      motionObserver.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -294,7 +345,7 @@ const Services: React.FC<ServicesPageProps> = () => {
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const togglePlayPause = () => {
+  const togglePlayPause = useCallback(() => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
@@ -303,9 +354,9 @@ const Services: React.FC<ServicesPageProps> = () => {
       }
       setIsPlaying(!isPlaying);
     }
-  };
+  }, [isPlaying]);
 
-  const handleMotionChange = (index: number) => {
+  const handleMotionChange = useCallback((index: number) => {
     if (index === activeIndex || isChanging) return;
     
     setIsChanging(true);
@@ -318,22 +369,22 @@ const Services: React.FC<ServicesPageProps> = () => {
       
       setTimeout(() => setIsChanging(false), 50);
     }, 300);
-  };
+  }, [activeIndex, isChanging]);
 
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (videoRef.current && duration) {
       const seekTime = (parseFloat(e.target.value) / 100) * duration;
       videoRef.current.currentTime = seekTime;
       setCurrentTime(seekTime);
       setProgress(parseFloat(e.target.value));
     }
-  };
+  }, [duration]);
 
-  const formatTime = (time: number) => {
+  const formatTime = useCallback((time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  };
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -373,19 +424,19 @@ const Services: React.FC<ServicesPageProps> = () => {
 
   const useScrollReveal = () => {
     useEffect(() => {
-      const elements = document.querySelectorAll('.reveal');
-
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('active');
+              observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.15 }
+        { threshold: 0.15, rootMargin: '100px' }
       );
 
+      const elements = document.querySelectorAll('.reveal');
       elements.forEach((el) => observer.observe(el));
 
       return () => observer.disconnect();
@@ -401,25 +452,25 @@ const Services: React.FC<ServicesPageProps> = () => {
     previousId.current = id;
   }, [id]);
 
-  const services: Service[] = [
+  const services: Service[] = useMemo(() => [
     { id: 1, title: '3D Modeling', description: t('services.items.3d.short_desc'), icon: icon3D, image: '', video: video3D },
     { id: 2, title: '2D Detailing', description: t('services.items.2d.short_desc'), icon: icon2D, image: '', video: video2D },
     { id: 3, title: 'Parts Inspection', description: t('services.items.inspection.short_desc'), icon: inspectionIcon, image: '', video: videoInspection },
     { id: 4, title: 'Machine Assembly', description: t('services.items.assembly.short_desc'), icon: assemblyIcon, image: '', video: videoAssembly },
-  ];
+  ], [t]);
 
-  const serviceTabs = [
+  const serviceTabs = useMemo(() => [
     t('services.items.3d.title'),
     t('services.items.2d.title'),
     t('services.items.inspection.title'),
     t('services.items.assembly.title')
-  ];
+  ], [t]);
 
-  const handleTabClick = (_: string, index: number) => {
+  const handleTabClick = useCallback((_: string, index: number) => {
     const slugs = ['3d-modeling', '2d-detailing', 'parts-inspection', 'machine-assembly'];
     const slug = slugs[index % slugs.length];
     navigate(`/services/${slug}`);
-  };
+  }, [navigate]);
 
   useEffect(() => {
     document.documentElement.classList.add('services-page-active');
@@ -439,7 +490,11 @@ const Services: React.FC<ServicesPageProps> = () => {
     <div className='services-bg-wrapper'>
       <BackgroundShapes />
       <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none' }}>
-        <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
+        <Canvas 
+          camera={{ position: [0, 0, 15], fov: 50 }}
+          dpr={[1, 1.5]}
+          performance={{ min: 0.3 }}
+        >
           <ambientLight intensity={1} />
           <pointLight position={[10, 10, 10]} intensity={1.5} />
           <FloatingGear position={[8, 4, 0]} scale={0.8} speed={0.15} />
@@ -501,6 +556,8 @@ const Services: React.FC<ServicesPageProps> = () => {
             <div className="svc-showcase__center svc-showcase__center--3d">
               <Canvas 
                 camera={{ position: [15, 40, 55], fov: 60 }}
+                dpr={[1, 1.5]}
+                performance={{ min: 0.5 }}
                 onCreated={({ camera }) => {
                   camera.lookAt(0, 0, 0);
                 }}
@@ -601,7 +658,12 @@ const Services: React.FC<ServicesPageProps> = () => {
                 };
 
                 const handleMouseEnter = () => {
-                  videoRefLocal.current?.play();
+                  if (videoRefLocal.current) {
+                    const playPromise = videoRefLocal.current.play();
+                    if (playPromise !== undefined) {
+                      playPromise.catch(() => {});
+                    }
+                  }
                 };
 
                 const handleMouseLeave = () => {
@@ -625,9 +687,9 @@ const Services: React.FC<ServicesPageProps> = () => {
                       transitionDelay: isExpertiseInView ? `${index * 0.1}s` : '0s'
                     }}
                   >
-                    <video
+                    <OptimizedVideo
                       ref={videoRefLocal}
-                      src={s.video}
+                      src={s.video || ''}
                       muted
                       loop
                       playsInline
@@ -729,6 +791,7 @@ const Services: React.FC<ServicesPageProps> = () => {
               <div className="svc-motion__right-grid">
                 {motionsData.map((item, idx) => {
                   const isActive = idx === activeIndex;
+                  
                   return (
                     <div
                       key={idx}
