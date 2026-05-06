@@ -670,6 +670,27 @@ const jp = {
     }
   },
 
+  sitemap: {
+    title: "サイトマップ",
+    subtitle: "すべてのページを表示し、簡単にナビゲートできます",
+    legal_compliance: "法務・コンプライアンス",
+    sections: {
+      main_pages: "メインページ",
+      services: "サービス",
+      projects: "プロジェクト",
+      company: "会社情報"
+    },
+    descriptions: {
+      home: "当社のエンジニアリングソリューションと専門知識をご覧ください",
+      about: "当社について、チーム、歴史を学ぶ",
+      contact: "当社チームにお問い合わせください",
+      services: "総合的なエンジニアリングサービスを探る",
+      projects: "完成したプロジェクトのポートフォリオをご覧ください",
+      careers: "当社のチームに参加し、キャリアを築きましょう",
+      legal: "プライバシーポリシー、利用規約、コンプライアンス情報"
+    }
+  },
+  
   // ... contact us page ...
   contact: {
     hero: {
