@@ -6,7 +6,7 @@ import './Home-iPhoneSE.css';
 import './iPhone12_13_14.css';
 import './IphonePlus_Promax.css';
 import './AndroidStandard.css';
-import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
+import '../../styles/BackgroundShapes.css';
 import type { HomePageProps } from './Home.types';
 import { getAssetUrl } from '../../utils/assets';
 import SEO from '../../components/common/SEO';
@@ -48,7 +48,7 @@ const hydraulic_pipingImage = getAssetUrl('image3D/hydraulic_piping.webp');
 
 
 const BackgroundShapes: React.FC = () => (
-  <> {/* Bottom Shapes */}
+  <>
     <ul className="shapes-container" aria-hidden="true">
       <li className="shape" />
       <li className="shape" />
@@ -71,7 +71,6 @@ const BackgroundShapes: React.FC = () => (
       <li className="shape" />
       <li className="shape" />
     </ul>
-    {/* Top Shapes */}
     <ul className="shapes-container-top" aria-hidden="true">
       <li className="shape-top" />
       <li className="shape-top" />
@@ -97,7 +96,6 @@ const BackgroundShapes: React.FC = () => (
   </>
 );
 
-// --- 3D Gear Component ---
 const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
   const meshRef = React.useRef<THREE.Mesh>(null);
   const gearShape = React.useMemo(() => {
@@ -107,23 +105,21 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
     const rInner = 2.3;
     const holeRadius = 1;
 
-    // Start at inner radius (angle 0)
     shape.moveTo(rInner, 0);
 
     for (let i = 0; i < teeth; i++) {
       const theta = (Math.PI * 2 * i) / teeth;
       const step = (Math.PI * 2) / teeth;
 
-      // Create a trapezoidal tooth profile (Cog shape)
-      const aRise = theta + step * 0.15; // Start of rise
-      const aTop = theta + step * 0.35;  // End of flat top
-      const aFall = theta + step * 0.50; // End of fall
-      const aNext = theta + step;        // End of valley
+      const aRise = theta + step * 0.15;
+      const aTop = theta + step * 0.35;
+      const aFall = theta + step * 0.50;
+      const aNext = theta + step;
 
-      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter); // Rise to outer
-      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);   // Move along outer
-      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner); // Fall to inner
-      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner); // Move along inner
+      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter);
+      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);
+      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner);
+      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner);
     }
     shape.closePath();
 
@@ -136,8 +132,8 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
 
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.z += delta * speed; // Custom rotation speed
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2; // Slight tilt
+      meshRef.current.rotation.z += delta * speed;
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
     }
   });
 

@@ -285,7 +285,7 @@ const Careers: React.FC<CareersPageProps> = () => {
           </div>
           <div className="meet-our-team-image-wrapper">
             <LazyImage
-              src={getAssetUrl('about_page/ourpeople4.webp')}
+              src={getAssetUrl('about_page/about_page_ourpeople4.webp')}
               alt={`${t('common.brand_abbr')} Team`}
               className="meet-our-team-image"
               fallbackNode={<div className="team-photo-fallback"><UserIcon /></div>}

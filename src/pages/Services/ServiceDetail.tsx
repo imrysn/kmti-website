@@ -286,7 +286,7 @@ const ServiceDetail: React.FC = () => {
             initial="hidden"
             animate={isBackButtonInView ? "visible" : "hidden"}
           >
-            <Button variant="style2" onClick={() => navigate('/services')}>
+            <Button variant="style2" onClick={() => navigate('/services#expertise')}>
               {t('services.back_to_services')}
             </Button>
           </motion.div>

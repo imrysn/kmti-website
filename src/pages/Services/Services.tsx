@@ -481,6 +481,15 @@ const Services: React.FC<ServicesPageProps> = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (window.location.hash === '#expertise') {
+      const el = document.getElementById('expertise');
+      if (el) {
+        smoothScrollToElement(el, 800);
+      }
+    }
+  }, []);
+
   // If on a detail page, render only the ServiceDetail component
   if (id) {
     return <ServiceDetail />;
@@ -630,7 +639,7 @@ const Services: React.FC<ServicesPageProps> = () => {
         </section>
 
         {/* ----- Expertise Section ----- */}
-        <section ref={expertiseRef} className="svc-expertise reveal">
+        <section ref={expertiseRef} className="svc-expertise reveal" id="expertise">
           <div className="svc-expertise__container">
             <div className="svc-expertise__title-wrap">
               <h2 className="svc-expertise__title">

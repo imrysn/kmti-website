@@ -164,6 +164,16 @@ const Projects: React.FC<ProjectsPageProps> = () => {
 
   const [isPipingModalOpen, setIsPipingModalOpen] = useState(false);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const projectParam = params.get('project');
+    
+    if (projectParam === 'air_piping_1' || projectParam === 'hydraulic-piping') {
+      setSelectedProjectKey(projectParam);
+      setIsPipingModalOpen(true);
+    }
+  }, []);
+
   // Filter State
   const [activeCategoryKey, setActiveCategoryKey] = useState('ALL');
 

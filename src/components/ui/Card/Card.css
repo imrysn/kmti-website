@@ -614,6 +614,9 @@
    ============================================ */
 
 .project-card-link {
+  position: relative;
+  z-index: 100 !important;
+  pointer-events: auto !important;
   font-family: var(--font-family-body);
   color: #51a2ff;
   font-size: 0.9rem;

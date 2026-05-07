@@ -557,7 +557,12 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
 
   // Filter items if a key is provided
   const displayItems = initialProjectKey
-    ? allItems.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
+    ? allItems.filter(p => {
+        const normalizedKey = p.key.replace(/-/g, '_').toUpperCase();
+        const normalizedModel = p.modelKey.replace(/-/g, '_').replace(/\s/g, '_').toUpperCase();
+        const normalizedInitial = initialProjectKey.replace(/-/g, '_').toUpperCase();
+        return normalizedKey === normalizedInitial || normalizedModel === normalizedInitial;
+      })
     : allItems;
 
   useEffect(() => {
@@ -913,9 +918,13 @@ export const PipingModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
 
   useLockBodyScroll(isOpen);
 
-  // Filter items if a key is provided
   const displayItems = initialProjectKey
-    ? allItems.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
+    ? allItems.filter(p => {
+        const normalizedKey = p.key.replace(/-/g, '_').toUpperCase();
+        const normalizedModel = p.modelKey.replace(/-/g, '_').replace(/\s/g, '_').toUpperCase();
+        const normalizedInitial = initialProjectKey.replace(/-/g, '_').toUpperCase();
+        return normalizedKey === normalizedInitial || normalizedModel === normalizedInitial;
+      })
     : allItems;
 
   useEffect(() => {
@@ -949,16 +958,6 @@ export const PipingModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
           <div className="project-modal-right">
             <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
             <p className="project-modal-category">{t(`projects.modal_items.${curr.key}.category`)}</p>
-            {/* <div className="project-modal-section">
-              <h3 className="project-modal-section-title">{t('projects.modal.labels.desc')}</h3>
-              <p className="project-modal-section-text">{t(`projects.modal_items.${curr.key}.description`)}</p>
-            </div>
-            {t(`projects.modal_items.${curr.key}.advantages`) && (
-              <div className="project-modal-section">
-                <h3 className="project-modal-section-title">{t('projects.modal.labels.adv')}</h3>
-                <p className="project-modal-section-text">{t(`projects.modal_items.${curr.key}.advantages`)}</p>
-              </div>
-            )} */}
           </div>
         </div>
         <div className="project-modal-thumbnails-section">
