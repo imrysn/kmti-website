@@ -24,14 +24,16 @@ const Navbar: React.FC = () => {
   const navListRef = React.useRef<HTMLUListElement>(null);
   const linkRefs = React.useRef<(HTMLLIElement | null)[]>([]);
 
-  const navLinks = useMemo(() => [
+  const navLinks = useMemo(() => ([
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
     { path: '/services', label: t('nav.services') },
     { path: '/projects', label: t('nav.projects') },
     { path: '/careers', label: t('nav.careers') },
+    // Conditionally add the Events link only for English
+    ...(i18n.language === 'en' ? [{ path: '/events', label: t('nav.events') }] : []),
     { path: '/contact', label: t('nav.contact') },
-  ], [t]);
+  ]), [t, i18n.language]);
 
   // key function to determine if a link is active based on current path
   const isActivePath = (linkPath: string, currentPath: string) => {

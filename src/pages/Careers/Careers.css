@@ -1,8 +1,16 @@
+.careers-bg-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-top: -10rem;
+  padding-top: 10rem;
+}
+
 .careers-page {
   width: 100%;
   min-height: 100vh;
   color: white;
-  overflow: visible;
+  margin-top: -5rem;
+  padding-top: 5rem;
 }
 
 .careers-page .hero-section {
@@ -474,126 +482,6 @@
   object-fit: cover;
 }
 
-@media (max-width: 1024px) {
-  .ojt-cards-grid {
-    gap: 1.5rem;
-  }
-
-  .ojt-grid {
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .ojt-cards-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 2rem auto;
-  }
-
-  .ojt-card {
-    padding: 2rem;
-  }
-
-  .ojt-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .ojt-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .ojt-carousel-container {
-    padding: 0;
-  }
-
-  .ojt-carousel-nav {
-    display: none;
-  }
-}
-
-@media (max-width: 1024px) {
-  .ojt-grid {
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .meet-our-ojt-title {
-    font-size: 2.2rem;
-  }
-
-  .meet-our-ojt-description {
-    font-size: 1rem;
-    margin-bottom: 3rem;
-  }
-
-  .ojt-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 1024px) {
-  .why-work-withus-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .meet-our-team-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .meet-our-team-content {
-    order: 1;
-  }
-
-  .meet-our-team-image-wrapper {
-    order: 2;
-  }
-}
-
-@media (max-width: 768px) {
-  .why-work-withus-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .why-work-withus-title {
-    font-size: 2rem;
-  }
-
-  .meet-our-team-title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .why-work-withus-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.85rem;
-  }
-}
-
-@media (max-width: 375px) {
-  .why-work-withus-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .how-to-apply-grid {
-    width: 100%;
-    gap: 0.2rem;
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
 
 .how-to-apply-section {
   padding: 5rem 0;
@@ -641,18 +529,6 @@
   margin-right: 15%;
 }
 
-@media (min-width: 481px) {
-  .how-to-apply-grid .how-to-apply-card:first-child {
-    margin-right: 0;
-    margin-left: auto;
-  }
-
-  .how-to-apply-grid .how-to-apply-card:last-child {
-    margin-left: 0;
-    margin-right: auto;
-  }
-}
-
 .ready-to-join-section {
   text-align: center;
   max-width: 800px;
@@ -686,35 +562,73 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 1024px) {
+  .careers-page .hero-section {
+    background-size: cover !important;
+    background-position: center !important;
+    animation: none !important;
+    min-height: 105vh;
+  }
+
+  .careers-page .hero-content {
+    margin-left: 4rem;
+  }
+
+  .careers-page .hero-title {
+    font-size: 4rem;
+  }
+
+  .careers-page .careers-hero-description {
+    font-size: 1.5rem;
+  }
+
+  .careers-hero-model {
+    margin-right: 10rem;
+    bottom: -5rem;
+  }
+
+  .why-work-withus-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .meet-our-team-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .meet-our-team-content {
+    order: 1;
+  }
+
+  .meet-our-team-image-wrapper {
+    order: 2;
+  }
+
+  .ojt-cards-grid {
+    gap: 1.5rem;
+  }
+
+  .ojt-grid {
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .careers-hero-model {
-    max-width: 80%;
-    height: auto;
-    max-height: 40vh;
-    right: -20%;
-    bottom: 0;
-    opacity: 0.4;
+    bottom: -7rem;
   }
 
   .careers-page .hero-section {
     background-size: cover !important;
     background-position: center !important;
     animation: none !important;
-    min-height: 100vh;
+    min-height: 110vh;
     padding-top: 16rem;
     padding-bottom: 4rem;
   }
 
-  .careers-page .hero-content {
-    margin-left: 0;
-    margin-top: 0;
-    text-align: left;
-    padding-top: 0;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    max-width: 50%;
-    z-index: 3;
-    position: relative;
+  .careers-page .hero-content { 
+    margin-top: -20rem;
   }
 
   .careers-page .hero-title {
@@ -733,10 +647,10 @@
 
   .careers-page .hero-buttons {
     justify-content: flex-start;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
   }
-
+  
   .careers-page .hero-buttons button {
     width: 100%;
     max-width: 200px;
@@ -787,6 +701,55 @@
     width: 100%;
     max-width: 300px;
   }
+
+  .why-work-withus-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .why-work-withus-title {
+    font-size: 2rem;
+  }
+
+  .meet-our-team-title {
+    font-size: 2rem;
+  }
+
+  .meet-our-ojt-title {
+    font-size: 2.2rem;
+  }
+
+  .meet-our-ojt-description {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    text-align: justify;
+  }
+  
+  .ojt-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 2rem auto;
+  }
+
+  .ojt-card {
+    padding: 2rem;
+  }
+
+  .ojt-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 481px) {
+  .how-to-apply-grid .how-to-apply-card:first-child {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .how-to-apply-grid .how-to-apply-card:last-child {
+    margin-left: 0;
+    margin-right: auto;
+  }
 }
 
 @media (max-width: 480px) {
@@ -805,21 +768,11 @@
     background-size: cover !important;
     background-position: center !important;
     animation: none !important;
-    min-height: 100vh;
-    padding-top: 14rem;
-    padding-bottom: 3rem;
+    min-height: 110vh;
   }
 
   .careers-page .hero-content {
-    text-align: left;
-    margin-left: 0;
-    margin-top: 0;
-    padding-top: 0;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    max-width: 100%;
-    z-index: 3;
-    position: relative;
+    margin-left: 1rem;
   }
 
   .careers-page .hero-title {
@@ -829,8 +782,8 @@
     margin-bottom: 1rem;
   }
 
-  .careers-hero-description {
-    font-size: 0.85rem;
+  .careers-page .careers-hero-description {
+    font-size: 1rem;
     text-align: left;
     line-height: 1.5;
     margin-bottom: 1.5rem;
@@ -869,6 +822,7 @@
 
   .meet-our-team-description {
     font-size: 0.9rem;
+    text-align: justify;
   }
 
   .how-to-apply-title {
@@ -893,5 +847,141 @@
     gap: 1.5rem;
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .why-work-withus-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .ojt-carousel-container {
+    padding: 0;
+  }
+
+  .ojt-carousel-nav {
+    display: none;
+  }
+  .ojt-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 412px) {
+
+  .careers-page .hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+    padding: 0;
+    margin-bottom: 1rem;
+    
+  }
+
+  .careers-hero-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .careers-page .hero-buttons {
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .careers-page .hero-buttons button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .careers-positions-title {
+    font-size: 1.8rem;
+  }
+
+  .careers-positions-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .why-work-withus-title {
+    font-size: 1.8rem;
+  }
+
+  .why-work-withus-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .meet-our-team-title {
+    font-size: 1.8rem;
+  }
+
+  .meet-our-team-description {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+
+  .how-to-apply-title {
+    font-size: 1.8rem;
+  }
+
+  .how-to-apply-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .ready-to-join-title {
+    font-size: 1.8rem;
+  }
+
+  .ready-to-join-description {
+    font-size: 0.9rem;
+  }
+
+  .how-to-apply-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .why-work-withus-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .ojt-carousel-container {
+    padding: 0;
+  }
+
+  .ojt-carousel-nav {
+    display: none;
+  }
+  .ojt-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 375px) {
+  .why-work-withus-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .how-to-apply-grid {
+    width: 100%;
+    gap: 0.2rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .careers-hero-model {
+    max-width: 60%;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  .careers-page .hero-title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    padding: 0;
+    margin-bottom: 1rem;
   }
 }

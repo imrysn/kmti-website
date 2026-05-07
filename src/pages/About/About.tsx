@@ -7,10 +7,13 @@ import '../Home/Home-iPhoneSE.css';
 import '../Home/iPhone12_13_14.css';
 import '../Home/AndroidStandard.css';
 import '../Home/IphonePlus_Promax.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import type { AboutPageProps } from './About.types';
 import { getAssetUrl } from '../../utils/assets';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import SEO from '../../components/common/SEO';
+import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
 
 const aboutBg = getAssetUrl('hero_background/about.webp');
 const aboutCompany1 = getAssetUrl('about_page/aboutcompany1.webp');
@@ -49,7 +52,7 @@ const royImage = getAssetUrl('management/roy.webp');
 const jojoImage = getAssetUrl('management/jojo.webp');
 const zorenImage = getAssetUrl('management/ZOREN.webp');
 const raineImage = getAssetUrl('management/RAINE.webp');
-const sharmaineImage = getAssetUrl('management/SHARMAINE.webp');
+
 const mgImage = getAssetUrl('management/MG.webp');
 const matthewImage = getAssetUrl('management/MATTHEW.webp');
 
@@ -64,6 +67,108 @@ const kemcoLogo = getAssetUrl('about_page/kemcoLogo.webp');
 const nextengLogo = getAssetUrl('about_page/nextengLogo.webp');
 const mgkLogo = getAssetUrl('about_page/mgkLogo.webp');
 
+const BackgroundShapes: React.FC = () => (
+  <> {/* Bottom Shapes */}
+    <ul className="shapes-container" aria-hidden="true">
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+    </ul>
+    {/* Top Shapes */}
+    <ul className="shapes-container-top" aria-hidden="true">
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+    </ul>
+  </>
+);
+
+// --- 3D Gear Component ---
+const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
+  const meshRef = React.useRef<THREE.Mesh>(null);
+  const gearShape = React.useMemo(() => {
+    const shape = new THREE.Shape();
+    const teeth = 12;
+    const rOuter = 3.2;
+    const rInner = 2.3;
+    const holeRadius = 1;
+
+    // Start at inner radius (angle 0)
+    shape.moveTo(rInner, 0);
+
+    for (let i = 0; i < teeth; i++) {
+      const theta = (Math.PI * 2 * i) / teeth;
+      const step = (Math.PI * 2) / teeth;
+
+      // Create a trapezoidal tooth profile (Cog shape)
+      const aRise = theta + step * 0.15; // Start of rise
+      const aTop = theta + step * 0.35;  // End of flat top
+      const aFall = theta + step * 0.50; // End of fall
+      const aNext = theta + step;        // End of valley
+
+      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter); // Rise to outer
+      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);   // Move along outer
+      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner); // Fall to inner
+      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner); // Move along inner
+    }
+    shape.closePath();
+
+    const hole = new THREE.Path();
+    hole.absarc(0, 0, holeRadius, 0, Math.PI * 2, false);
+    shape.holes.push(hole);
+
+    return shape;
+  }, []);
+
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.z += delta * speed; // Custom rotation speed
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2; // Slight tilt
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={position} scale={scale}>
+      <extrudeGeometry args={[gearShape, { depth: 0.8, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 }]} />
+      <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.15} transparent={true} />
+    </mesh>
+  );
+};
+
 const About: React.FC<AboutPageProps> = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -76,14 +181,14 @@ const About: React.FC<AboutPageProps> = () => {
   const ourPeopleImages = [ourPeople1, ourPeople2, ourPeople3, ourPeople4, ourPeople5];
   const aboutCompanyImages = [aboutCompany1, aboutCompany2, aboutCompany3, aboutCompany4, meeting1, meeting2];
   
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [selectedTeamMember, setSelectedTeamMember] = useState<{ image: string; role: string } | null>(null);
   const openTeamMemberModal = (image: string, role: string) => {setSelectedTeamMember({ image, role });};
   const closeTeamMemberModal = () => setSelectedTeamMember(null);
 
    useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1024);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -132,6 +237,17 @@ const About: React.FC<AboutPageProps> = () => {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
+    <div className='about-bg-wrapper'>
+      <BackgroundShapes />
+        <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none' }}>
+          <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
+            <ambientLight intensity={1} />
+            <pointLight position={[10, 10, 10]} intensity={1.5} />
+            <FloatingGear position={[8, 4, 0]} scale={0.8} speed={0.15} />
+            <FloatingGear position={[-10, -5, -2]} scale={1.2} speed={-0.1} />
+            <FloatingGear position={[5, -8, -5]} scale={0.6} speed={0.2} />
+          </Canvas>
+        </div>
     <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})` } as React.CSSProperties}>
       <SEO 
         title={tEn('nav.about')} 
@@ -244,8 +360,7 @@ const About: React.FC<AboutPageProps> = () => {
           <div className="about-management-team-grid">
             <ManagementTeamCard image={pauImage} role={t('about.management.roles.accounting')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(pauImage, t('about.management.roles.accounting')) : undefined} />
             <ManagementTeamCard image={michaelImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(michaelImage, t('about.management.roles.eng_mgr')) : undefined} />
-            <div className="management-team-card-placeholder"></div>
-            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} isLarge={true} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(siryuImage, t('about.management.roles.ceo')) : undefined} />
+            <ManagementTeamCard image={siryuImage} role={t('about.management.roles.ceo')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(siryuImage, t('about.management.roles.ceo')) : undefined} />
             <ManagementTeamCard image={mennjoImage} role={t('about.management.roles.eng_mgr')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(mennjoImage, t('about.management.roles.eng_mgr')) : undefined} />
             <ManagementTeamCard image={teodyImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(teodyImage, t('about.management.roles.eng_sup')) : undefined} />
           </div>
@@ -277,7 +392,7 @@ const About: React.FC<AboutPageProps> = () => {
                 <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(jojoImage, t('about.management.roles.utility')) : undefined} />
                 <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(mgImage, t('about.management.roles.staff')) : undefined} />
                 <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(zorenImage, t('about.management.roles.staff')) : undefined} />
-                <ManagementTeamCard image={sharmaineImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(sharmaineImage, t('about.management.roles.staff')) : undefined} />
+                
                 <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(matthewImage, t('about.management.roles.staff')) : undefined} />
               </div>
             </div>
@@ -371,6 +486,7 @@ const About: React.FC<AboutPageProps> = () => {
         caption={selectedTeamMember?.role}
         onClose={closeTeamMemberModal}
       />
+    </div>
     </div>
   );
 };

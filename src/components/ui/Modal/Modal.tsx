@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { useTranslation, Trans } from 'react-i18next';
 import './Modal.css';
@@ -38,6 +39,7 @@ const jonathanImage = getAssetUrl('management/jonathan.webp');
 const noelImage = getAssetUrl('management/noel.webp');
 const royImage = getAssetUrl('management/roy.webp');
 const jojoImage = getAssetUrl('management/jojo.webp');
+const profileLogo = getAssetUrl('logo/profile.webp');
 import { ManagementTeamCard } from '../Card/Card';
 import Button from '../Button/Button';
 import Model3DViewerModal from './Model3DViewerModal';
@@ -64,6 +66,10 @@ const transferLifterImage = getAssetUrl('image3D/transfer-table-lifter.webp');
 const bundlingMachineImage = getAssetUrl('image3D/bundling-machine.webp');
 const millingImage = getAssetUrl('image3D/milling.webp');
 const furnaceImage = getAssetUrl('image3D/furnace.webp');
+const airpipingImage = getAssetUrl('image3D/airpiping.webp');
+const airpiping1Image = getAssetUrl('image3D/airpiping_1.webp');
+const hydraulic_pipingImage = getAssetUrl('image3D/hydraulic_piping.webp');
+const hydraulic_piping1Image = getAssetUrl('image3D/hydraulic_piping_1.webp');
 
 // Modal for Management Team image viewer
 interface ImageViewerModalProps {
@@ -78,19 +84,31 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, src,
   useLockBodyScroll(isOpen);
   if (!isOpen || !src) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
-      <div className="service-modal-content image-viewer-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="service-modal-close" onClick={onClose}>×</button>
-        <TransformWrapper>
-          <TransformComponent>
-            <LazyImage src={src} alt={alt} className="image-viewer-image" loading="eager" />
-          </TransformComponent>
-        </TransformWrapper>
-        {caption && <div className="image-viewer-caption">{caption}</div>}
+      <div className="image-viewer-modal-content" onClick={(e) => e.stopPropagation()}>
+        
+        <div className="image-viewer-bg-logo">
+          <img src={profileLogo} alt="Background Watermark"/>
+        </div>
+
+        <button className="image-viewer-close-btn" onClick={onClose} aria-label="Close modal">
+          <span>&times;</span>
+        </button>
+
+        <div className="image-viewer-circle-container">
+          <LazyImage src={src} alt={alt} className="image-viewer-profile-img" loading="eager"/>
+          <div className="image-viewer-inner-gradient"></div>
+        </div>
+
+        <div className="image-viewer-info">
+          <h2 className="image-viewer-position">{caption}</h2>
+          <p className="image-viewer-company">Kusakabe & Maeno Tech., Inc.</p>
+        </div>
+        
       </div>
     </div>
-  );
+  , document.body);
 };
 
 const useLockBodyScroll = (isOpen: boolean) => {
@@ -145,7 +163,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
 
   if (!isOpen || !service) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -206,7 +224,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
         </div>
       </div>
     </div>
-  );
+  , document.body);
 };
 
 // --- OUR STORY MODAL ---
@@ -214,7 +232,7 @@ export const OurStoryModal: React.FC<{ isOpen: boolean; onClose: () => void }> =
   const { t } = useTranslation();
   useLockBodyScroll(isOpen);
   if (!isOpen) return null;
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content our-story-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -232,7 +250,7 @@ export const OurStoryModal: React.FC<{ isOpen: boolean; onClose: () => void }> =
         </div>
       </div>
     </div>
-  );
+  , document.body);
 };
 
 // --- MANAGEMENT TEAM MODAL ---
@@ -264,7 +282,7 @@ export const ManagementTeamModal: React.FC<{ isOpen: boolean; onClose: () => voi
     { image: jojoImage, key: 'utility' },
   ];
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content management-team-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -282,7 +300,7 @@ export const ManagementTeamModal: React.FC<{ isOpen: boolean; onClose: () => voi
         </div>
       </div>
     </div>
-  );
+  , document.body);
 };
 
 // --- PROJECT MODAL ---
@@ -318,7 +336,7 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; init
   const curr = displayProjects[idx] || displayProjects[0];
   if (!curr) return null; // Should not happen given existing data
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -374,7 +392,7 @@ export const ProjectModal: React.FC<{ isOpen: boolean; onClose: () => void; init
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 // --- LOOPER MODAL ---
 export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initialProjectKey?: string }> = ({ isOpen, onClose, initialProjectKey }) => {
@@ -407,7 +425,7 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
   const curr = displayItems[idx] || displayItems[0];
   if (!curr) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -463,7 +481,7 @@ export const LooperModal: React.FC<{ isOpen: boolean; onClose: () => void; initi
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- FORMING MODAL ---
@@ -476,7 +494,7 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -519,7 +537,7 @@ export const FormingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- STRIP ENTRY MODAL ---
@@ -539,7 +557,12 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
 
   // Filter items if a key is provided
   const displayItems = initialProjectKey
-    ? allItems.filter(p => p.key.toUpperCase() === initialProjectKey.toUpperCase() || p.modelKey.toUpperCase() === initialProjectKey.toUpperCase())
+    ? allItems.filter(p => {
+        const normalizedKey = p.key.replace(/-/g, '_').toUpperCase();
+        const normalizedModel = p.modelKey.replace(/-/g, '_').replace(/\s/g, '_').toUpperCase();
+        const normalizedInitial = initialProjectKey.replace(/-/g, '_').toUpperCase();
+        return normalizedKey === normalizedInitial || normalizedModel === normalizedInitial;
+      })
     : allItems;
 
   useEffect(() => {
@@ -553,7 +576,7 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
   const curr = displayItems[idx] || displayItems[0];
   if (!curr) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -609,7 +632,7 @@ export const StripEntryModal: React.FC<{ isOpen: boolean; onClose: () => void; i
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- TRANSFER TABLE MODAL ---
@@ -638,7 +661,7 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
   ];
   const curr = items[idx];
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -684,7 +707,7 @@ export const TransferTableLineModal: React.FC<{ isOpen: boolean; onClose: () => 
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- FINISHING LINE MODAL ---
@@ -713,7 +736,7 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
   ];
   const curr = items[idx];
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -759,7 +782,7 @@ export const FinishingLineModal: React.FC<{ isOpen: boolean; onClose: () => void
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- CUTOFF MODAL ---
@@ -772,7 +795,7 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -820,7 +843,7 @@ export const CutOffModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
 };
 
 // --- FURNACE MODAL ---
@@ -833,7 +856,7 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="service-modal-overlay" onClick={onClose}>
       <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="service-modal-close" onClick={onClose}>×</button>
@@ -876,7 +899,86 @@ export const FurnaceModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
         modelKey={curr.modelKey}
       />
     </div>
-  );
+  , document.body);
+};
+
+// --- PIPING MODAL ---
+export const PipingModal: React.FC<{ isOpen: boolean; onClose: () => void; initialProjectKey?: string }> = ({ isOpen, onClose, initialProjectKey }) => {
+  const { t } = useTranslation();
+
+  const allItems = [
+    { image: airpipingImage, key: 'air_piping', modelKey: 'Air Piping' },
+    { image: airpiping1Image, key: 'air_piping_1', modelKey: 'Air Piping 1' },
+    { image: hydraulic_pipingImage, key: 'hydraulic_piping', modelKey: 'Hydraulic Piping' },
+    { image: hydraulic_piping1Image, key: 'hydraulic_piping_1', modelKey: 'Hydraulic Piping 1' }
+  ];
+
+  const [idx, setIdx] = useState(0);
+  const [is3D, setIs3D] = useState(false);
+
+  useLockBodyScroll(isOpen);
+
+  const displayItems = initialProjectKey
+    ? allItems.filter(p => {
+        const normalizedKey = p.key.replace(/-/g, '_').toUpperCase();
+        const normalizedModel = p.modelKey.replace(/-/g, '_').replace(/\s/g, '_').toUpperCase();
+        const normalizedInitial = initialProjectKey.replace(/-/g, '_').toUpperCase();
+        return normalizedKey === normalizedInitial || normalizedModel === normalizedInitial;
+      })
+    : allItems;
+
+  useEffect(() => {
+    if (isOpen) {
+      setIdx(0);
+    }
+  }, [isOpen, initialProjectKey]);
+
+  if (!isOpen) return null;
+
+  const curr = displayItems[idx] || displayItems[0];
+  if (!curr) return null;
+
+  return createPortal(
+    <div className="service-modal-overlay" onClick={onClose}>
+      <div className="service-modal-content project-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="service-modal-close" onClick={onClose}>×</button>
+        <div className="project-modal-body">
+          <div className="project-modal-left">
+            <TransformWrapper>
+              <TransformComponent>
+                <LazyImage
+                  src={curr.image}
+                  className="project-modal-main-image project-modal-zoomable-image"
+                  alt="piping"
+                  loading="eager"
+                />
+              </TransformComponent>
+            </TransformWrapper>
+          </div>
+          <div className="project-modal-right">
+            <h2 className="project-modal-title">{t(`projects.modal_items.${curr.key}.title`)}</h2>
+            <p className="project-modal-category">{t(`projects.modal_items.${curr.key}.category`)}</p>
+          </div>
+        </div>
+        <div className="project-modal-thumbnails-section">
+          <div className="project-modal-thumbnails">
+            {displayItems.map((p, i) => (
+              <button key={i} className={`project-modal-thumbnail ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)}>
+                <LazyImage src={p.image} className="project-modal-thumbnail-image" alt="thumb" />
+              </button>
+            ))}
+          </div>
+          <Button variant="style1" onClick={() => setIs3D(true)}>{t('projects.modal.view_3d')}</Button>
+        </div>
+      </div>
+      <Model3DViewerModal
+        isOpen={is3D}
+        onClose={() => setIs3D(false)}
+        modelTitle={t(`projects.modal_items.${curr.key}.title`)}
+        modelKey={curr.modelKey}
+      />
+    </div>
+  , document.body);
 };
 
 export default ServiceModal;

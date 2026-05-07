@@ -55,6 +55,7 @@
 .footer__logo {
   display: flex;
   align-items: center;
+  gap: 0;
   margin-bottom: 0.5rem;
   text-decoration: none;
   cursor: pointer;
@@ -64,7 +65,15 @@
   width: auto;
   height: 56px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 0;
+}
+
+.footer__logo img:first-child {
+  margin-right: -4.5rem;
+}
+
+.footer__logo img:last-child {
+  margin-left: 0;
 }
 
 .footer__desc {
@@ -232,6 +241,42 @@
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
+@media (max-width: 1280px) {
+  .footer__inner {
+    gap: 2rem;
+  }
+
+  .footer__desc {
+    font-size: 0.85rem;
+  }
+
+  .footer__col-title {
+    font-size: 0.95rem;
+  }
+
+  .footer__link {
+    font-size: 0.85rem;
+  }
+
+  .footer__contact-item {
+    font-size: 0.8rem;
+  }
+
+  .footer__bottom {
+    font-size: 0.8rem;
+  }
+
+  .footer__logo img {
+    height: 52px;
+  }
+
+  .footer__logo img:first-child {
+    margin-right: -3.5rem;
+  }
+}
+
+
+
 
 @media (max-width: 1024px) {
   .footer__inner {
@@ -257,7 +302,17 @@
   .footer__bottom {
     font-size: 0.8rem;
   }
+
+  .footer__logo img {
+    height: 52px;
+  }
+
+  .footer__logo img:first-child {
+    margin-right: -2rem;
+  }
 }
+
+
 
 @media (max-width: 768px) {
   .footer {
@@ -295,6 +350,10 @@
 
   .footer__logo img {
     height: 50px;
+  }
+
+  .footer__logo img:first-child {
+    margin-right: -3.5rem;
   }
 
   .footer__desc {
@@ -393,6 +452,10 @@
 
   .footer__logo img {
     height: 44px;
+  }
+
+  .footer__logo img:first-child {
+    margin-right: -3rem;
   }
 
   .footer__desc {

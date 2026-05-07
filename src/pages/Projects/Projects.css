@@ -1,3 +1,10 @@
+.projects-bg-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-top: -10rem;
+  padding-top: 10rem;
+}
+
 .projects-page {
   width: 100%;
 
@@ -24,7 +31,6 @@
    ============================================ */
 
 .projects-hero {
-
   margin-top: -10rem;
   padding-top: var(--projects-hero-padding-top-desktop);
   padding-bottom: var(--projects-hero-padding-bottom-desktop);
@@ -264,9 +270,7 @@
    ---------------------------------------- */
 @media (max-width: 1024px) {
   .projects-hero {
-    min-height: var(--projects-hero-height-tablet) !important;
-    padding-top: var(--projects-hero-padding-top-desktop) !important;
-    padding-bottom: var(--projects-hero-padding-bottom-desktop) !important;
+    height: 100vh;
   }
 
   .projects-title {
@@ -284,12 +288,7 @@
    ---------------------------------------- */
 @media (max-width: 768px) {
   .projects-hero {
-    min-height: var(--projects-hero-height-mobile) !important;
-    padding-top: var(--projects-hero-padding-top-mobile) !important;
-    padding-bottom: var(--projects-hero-padding-bottom-mobile) !important;
-    background-size: cover;
-    background-position: center;
-    animation: none;
+    height: 110vh;
   }
 
   .projects-hero-container {
@@ -340,6 +339,10 @@
    CUSTOMIZABLE: Small Mobile (480px and below)
    ---------------------------------------- */
 @media (max-width: 480px) {
+  .projects-bg-wrapper{
+    bottom: 1rem;
+  }
+
   .projects-hero {
     min-height: var(--projects-hero-height-small) !important;
     padding-top: var(--projects-hero-padding-top-small) !important;

@@ -119,14 +119,13 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
     };
   }, [cardWidth]);
 
-  // Native touch event listeners with passive: false to allow preventDefault
   useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
     const handleNativeTouchMove = (e: TouchEvent) => {
       if (!isSwiping.current) return;
-      e.preventDefault(); // This works with passive: false
+      e.preventDefault();
     };
 
     carousel.addEventListener('touchmove', handleNativeTouchMove, { passive: false });
@@ -171,10 +170,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
     isSwiping.current = true;
   };
 
-  const handleTouchMove = () => {
-    // preventDefault is handled by native event listener
-    // This handler is kept for compatibility but doesn't need to do anything
-  };
+  const handleTouchMove = () => {};
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!isSwiping.current) return;
@@ -185,14 +181,10 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
     const minSwipeDistance = 20;
     const maxVerticalDistance = 100;
 
-    // Only trigger swipe if horizontal movement is greater than vertical
-    // and exceeds minimum swipe distance
     if (Math.abs(deltaX) > minSwipeDistance && Math.abs(deltaY) < maxVerticalDistance) {
       if (deltaX > 0) {
-        // Swipe left - go to next
         goToNext();
       } else {
-        // Swipe right - go to previous
         goToPrevious();
       }
     }

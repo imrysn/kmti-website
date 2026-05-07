@@ -1,36 +1,180 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './ServiceDetail.css';
+import '../../styles/BackgroundShapes.css';
 import Button from '../../components/ui/Button';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import { getAssetUrl } from '../../utils/assets';
 import SEO from '../../components/common/SEO';
+import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 
-// Import images (using R2)
+import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
+
+// Import images (only for 3D and 2D)
 const modalImage1 = getAssetUrl('service_detail_image/3Dmodal1.webp');
 const modalImage2 = getAssetUrl('service_detail_image/3Dmodal2.webp');
 const modalImage2D = getAssetUrl('service_detail_image/2Dmodal.webp');
-const inspectionImage1 = getAssetUrl('service_detail_image/inspection1modal.webp');
-const inspectionImage2 = getAssetUrl('service_detail_image/inspection2modal.webp');
-const inspectionImage3 = getAssetUrl('service_detail_image/inspection3modal.webp');
-const inspectionImage4 = getAssetUrl('service_detail_image/inspection4modal.webp');
-const inspectionImage5 = getAssetUrl('service_detail_image/inspection5modal.webp');
-const assemblyImage1 = getAssetUrl('service_detail_image/assembly1modal.webp');
-const assemblyImage2 = getAssetUrl('service_detail_image/assembly2modal.webp');
-const assemblyImage3 = getAssetUrl('service_detail_image/assmebly3mpdal.webp'); // Note: retained original typo in filename from source
-const assemblyImage4 = getAssetUrl('service_detail_image/assembly4modal.webp');
-const assemblyImage5 = getAssetUrl('service_detail_image/assembly5modal.webp');
+
+const inspectionGalleryImages = [
+  getAssetUrl('service_detail_image/inspection1modal.webp'),
+  getAssetUrl('service_detail_image/inspection2modal.webp'),
+  getAssetUrl('service_detail_image/inspection3modal.webp'),
+  getAssetUrl('service_detail_image/inspection4modal.webp'),
+  getAssetUrl('service_detail_image/inspection5modal.webp'),
+];
+
+const assemblyGalleryImages = [
+  getAssetUrl('service_detail_image/assembly1modal.webp'),
+  getAssetUrl('service_detail_image/assembly2modal.webp'),
+  getAssetUrl('service_detail_image/assmebly3modal.webp'),
+  getAssetUrl('service_detail_image/assembly4modal.webp'),
+  getAssetUrl('service_detail_image/assembly5modal.webp'),
+  getAssetUrl('service_detail_image/assembly6modal.webp'),
+  getAssetUrl('service_detail_image/assembly7modal.webp'),
+  getAssetUrl('service_detail_image/assembly8modal.webp'),
+  getAssetUrl('service_detail_image/assembly9modal.webp'),
+  getAssetUrl('service_detail_image/assembly10modal.webp'),
+  getAssetUrl('service_detail_image/assembly11modal.webp'),
+  getAssetUrl('service_detail_image/assembly12modal.webp'),
+  getAssetUrl('service_detail_image/assembly13modal.webp'),
+  getAssetUrl('service_detail_image/assembly14modal.webp'),
+  getAssetUrl('service_detail_image/assembly15modal.webp'),
+];
+
+const BackgroundShapes: React.FC = () => (
+  <>
+    <ul className="shapes-container" aria-hidden="true">
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+    </ul>
+    <ul className="shapes-container-top" aria-hidden="true">
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+    </ul>
+  </>
+);
+
+const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
+  const meshRef = React.useRef<THREE.Mesh>(null);
+  const gearShape = React.useMemo(() => {
+    const shape = new THREE.Shape();
+    const teeth = 12;
+    const rOuter = 3.2;
+    const rInner = 2.3;
+    const holeRadius = 1;
+
+    shape.moveTo(rInner, 0);
+
+    for (let i = 0; i < teeth; i++) {
+      const theta = (Math.PI * 2 * i) / teeth;
+      const step = (Math.PI * 2) / teeth;
+
+      const aRise = theta + step * 0.15;
+      const aTop = theta + step * 0.35;
+      const aFall = theta + step * 0.50;
+      const aNext = theta + step;
+
+      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter);
+      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);
+      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner);
+      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner);
+    }
+    shape.closePath();
+
+    const hole = new THREE.Path();
+    hole.absarc(0, 0, holeRadius, 0, Math.PI * 2, false);
+    shape.holes.push(hole);
+
+    return shape;
+  }, []);
+
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.z += delta * speed;
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={position} scale={scale}>
+      <extrudeGeometry args={[gearShape, { depth: 0.8, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 }]} />
+      <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.15} transparent={true} />
+    </mesh>
+  );
+};
 
 const ServiceDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { t, i18n } = useTranslation();
   const tEn = i18n.getFixedT('en');
   const navigate = useNavigate();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Refs for scroll-triggered animations
+  const backButtonRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const sectionTitleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const mediaRef = useRef(null);
+  const carouselRef = useRef(null);
+  const checklistRightRef = useRef(null);
+  const workflowTitleRef = useRef(null);
+  const workflowStepsRef = useRef(null);
+  const subsectionsRef = useRef(null);
+
+  const isBackButtonInView = useInView(backButtonRef, { once: true, amount: 0.1 });
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.1 });
+  const isSubtitleInView = useInView(subtitleRef, { once: true, amount: 0.1 });
+  const isSectionTitleInView = useInView(sectionTitleRef, { once: true, amount: 0.1 });
+  const isDescriptionInView = useInView(descriptionRef, { once: true, amount: 0.2 });
+  const isMediaInView = useInView(mediaRef, { once: true, amount: 0.2 });
+  const isCarouselInView = useInView(carouselRef, { once: true, amount: 0.2 });
+  const isChecklistRightInView = useInView(checklistRightRef, { once: true, amount: 0.2 });
+  const isWorkflowTitleInView = useInView(workflowTitleRef, { once: true, amount: 0.1 });
+  const isWorkflowStepsInView = useInView(workflowStepsRef, { once: true, amount: 0.2 });
+  const isSubsectionsInView = useInView(subsectionsRef, { once: true, amount: 0.2 });
 
   const getServiceKey = (urlId: string | undefined): string | null => {
     switch (urlId) {
@@ -48,14 +192,19 @@ const ServiceDetail: React.FC = () => {
     switch (key) {
       case '3d': return [modalImage1, modalImage2];
       case '2d': return [modalImage2D];
-      case 'inspection': return [inspectionImage1, inspectionImage2, inspectionImage3, inspectionImage4, inspectionImage5];
-      case 'assembly': return [assemblyImage1, assemblyImage2, assemblyImage3, assemblyImage4, assemblyImage5];
       default: return [];
     }
   };
 
   const images = serviceKey ? getImages(serviceKey) : [];
-  const isCarousel = serviceKey === 'inspection' || serviceKey === 'assembly';
+
+  const getGalleryImages = () => {
+    if (serviceKey === 'inspection') return inspectionGalleryImages;
+    if (serviceKey === 'assembly') return assemblyGalleryImages;
+    return [];
+  };
+
+  const galleryImages = getGalleryImages();
 
   useEffect(() => {
     if (!serviceKey) {
@@ -63,193 +212,263 @@ const ServiceDetail: React.FC = () => {
     }
   }, [serviceKey, navigate]);
 
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    if (isCarousel && images.length > 1 && !isPaused) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % images.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [isCarousel, images.length, isPaused]);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
   if (!serviceKey) return null;
 
-  // Animation variants for staggering children
-  const containerVariants = {
+  const fadeUpVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.6, ease: "easeOut" }
+    },
+  };
+
+  const fadeUpStaggerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
       },
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  const fadeUpItemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.5, ease: "easeOut" }
+    },
   };
 
+  const getChecklistItems = () => {
+    if (serviceKey === 'inspection') {
+      return t('services.items.inspection.checklist', { returnObjects: true }) as string[];
+    } else if (serviceKey === 'assembly') {
+      return t('services.items.assembly.checklist', { returnObjects: true }) as string[];
+    }
+    return [];
+  };
+
+  const checklistItems = getChecklistItems();
 
   return (
-    <motion.div
-      className="service-detail-page"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <SEO 
-        title={tEn(`services.items.${serviceKey}.title`)} 
-        description={tEn(`services.items.${serviceKey}.short_desc`)} 
-      />
-      <div className="container">
-        <div className="service-detail-back-wrapper">
-          <Button variant="style2" onClick={() => navigate('/services')}>
-            {t('services.back_to_services')}
-          </Button>
-        </div>
+    <div className='all-services-bg-wrapper'>
+      <BackgroundShapes />
+      <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', isolation: 'isolate'}}>
+        <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
+          <ambientLight intensity={1} />
+          <pointLight position={[10, 10, 10]} intensity={1.5} />
+          <FloatingGear position={[8, 4, 0]} scale={0.8} speed={0.15} />
+          <FloatingGear position={[-10, -5, -2]} scale={1.2} speed={-0.1} />
+          <FloatingGear position={[5, -8, -5]} scale={0.6} speed={0.2} />
+        </Canvas>
+      </div>
+      <motion.div
+        className="service-detail-page"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <SEO 
+          title={tEn(`services.items.${serviceKey}.title`)} 
+          description={tEn(`services.items.${serviceKey}.short_desc`)} 
+        />
+        <div className="container">
+          {/* Back Button - Individual fade-up */}
+          <motion.div 
+            ref={backButtonRef}
+            className="service-detail-back-wrapper"
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate={isBackButtonInView ? "visible" : "hidden"}
+          >
+            <Button variant="style2" onClick={() => navigate('/services#expertise')}>
+              {t('services.back_to_services')}
+            </Button>
+          </motion.div>
 
-        <div className="service-detail-header">
-          <h1 className="service-detail-title">{t(`services.items.${serviceKey}.title`)}</h1>
-          <p className="service-detail-subtitle">{t(`services.items.${serviceKey}.short_desc`)}</p>
-        </div>
-
-        <section className="service-detail-content-section">
-          <div className="service-detail-grid">
-            <motion.div
-              className="service-detail-text"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+          {/* Header Section */}
+          <div className="service-detail-header">
+            <motion.h1 
+              ref={titleRef}
+              className="service-detail-title"
+              variants={fadeUpVariants}
+              initial="hidden"
+              animate={isTitleInView ? "visible" : "hidden"}
             >
-              <h2 className="service-detail-section-title">
-                {t(`services.items.${serviceKey}.section_title`, { defaultValue: t(`services.items.${serviceKey}.title`) })}
-              </h2>
-              <p className="service-detail-description">{t(`services.items.${serviceKey}.detailed_desc`)}</p>
+              {t(`services.items.${serviceKey}.title`)}
+            </motion.h1>
+            <motion.p 
+              ref={subtitleRef}
+              className="service-detail-subtitle"
+              variants={fadeUpVariants}
+              initial="hidden"
+              animate={isSubtitleInView ? "visible" : "hidden"}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {t(`services.items.${serviceKey}.short_desc`)}
+            </motion.p>
+          </div>
+
+          <section className="service-detail-content-section">
+            <div className="service-detail-grid">
+              <div className="service-detail-text">
+                <motion.h2 
+                  ref={sectionTitleRef}
+                  className="service-detail-section-title"
+                  variants={fadeUpVariants}
+                  initial="hidden"
+                  animate={isSectionTitleInView ? "visible" : "hidden"}
+                >
+                  {t(`services.items.${serviceKey}.section_title`, { defaultValue: t(`services.items.${serviceKey}.title`) })}
+                </motion.h2>
+                
+                <motion.p 
+                  ref={descriptionRef}
+                  className="service-detail-description"
+                  variants={fadeUpVariants}
+                  initial="hidden"
+                  animate={isDescriptionInView ? "visible" : "hidden"}
+                >
+                  {t(`services.items.${serviceKey}.detailed_desc`)}
+                </motion.p>
+
+                {(serviceKey === 'inspection' || serviceKey === 'assembly') && checklistItems.length > 0 && (
+                  <motion.div
+                    className="service-checklist-mobile"
+                    variants={fadeUpStaggerVariants}
+                    initial="hidden"
+                    animate={isDescriptionInView ? "visible" : "hidden"}
+                  >
+                    <ul className="checklist-simple">
+                      {checklistItems.map((item, index) => (
+                        <motion.li key={index} variants={fadeUpItemVariants}>
+                          <span className="check-icon">🗹</span>
+                          <span>{item}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+
+                {(serviceKey === '3d' || serviceKey === '2d') && (
+                  <div className="service-detail-workflow">
+                    <motion.h3 
+                      ref={workflowTitleRef}
+                      className="service-detail-workflow-title"
+                      variants={fadeUpVariants}
+                      initial="hidden"
+                      animate={isWorkflowTitleInView ? "visible" : "hidden"}
+                    >
+                      {t('services.workflow.title')}
+                    </motion.h3>
+                    
+                    <motion.div 
+                      ref={workflowStepsRef}
+                      className="workflow-steps"
+                      variants={fadeUpStaggerVariants}
+                      initial="hidden"
+                      animate={isWorkflowStepsInView ? "visible" : "hidden"}
+                    >
+                      {['inquiry', 'reference', 'modeling', 'detailing', 'design', 'fabrication', 'delivery'].map((step, index) => (
+                        <motion.div key={step} className={`workflow-step ${index < 7 ? 'active' : ''}`} variants={fadeUpItemVariants}>
+                          <div className="step-number">{index + 1}</div>
+                          <div className="step-content">
+                            <span className="step-name">{t(`services.workflow.steps.${step}`)}</span>
+                          </div>
+                          {index < 6 && <div className="step-connector">↓</div>}
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  </div>
+                )}
+
+                {serviceKey === '2d' && (
+                  <motion.div
+                    ref={subsectionsRef}
+                    className="service-detail-subsections"
+                    variants={fadeUpStaggerVariants}
+                    initial="hidden"
+                    animate={isSubsectionsInView ? "visible" : "hidden"}
+                  >
+                    <motion.div className="service-detail-subsection" variants={fadeUpItemVariants}>
+                      <h3 className="service-detail-subsection-title">{t('services.items.2d.section_titles.checking')}</h3>
+                      <p className="service-detail-subsection-text">{t('services.items.2d.section_desc.checking')}</p>
+                    </motion.div>
+                    <motion.div className="service-detail-subsection" variants={fadeUpItemVariants}>
+                      <h3 className="service-detail-subsection-title">{t('services.items.2d.section_titles.qualifications')}</h3>
+                      <p className="service-detail-subsection-text">{t('services.items.2d.section_desc.qualifications')}</p>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </div>
+
+              {(serviceKey === 'inspection' || serviceKey === 'assembly') && checklistItems.length > 0 && (
+                <motion.div
+                  ref={checklistRightRef}
+                  className="service-checklist-right desktop-checklist"
+                  variants={fadeUpStaggerVariants}
+                  initial="hidden"
+                  animate={isChecklistRightInView ? "visible" : "hidden"}
+                >
+                  <ul className="checklist-simple">
+                    {checklistItems.map((item, index) => (
+                      <motion.li key={index} variants={fadeUpItemVariants}>
+                        <span className="check-icon">🗹</span>
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
 
               {(serviceKey === '3d' || serviceKey === '2d') && (
                 <motion.div
-                  className="service-detail-workflow"
-                  variants={containerVariants}
+                  ref={mediaRef}
+                  className="service-detail-media"
+                  variants={fadeUpVariants}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
+                  animate={isMediaInView ? "visible" : "hidden"}
                 >
-                  <h3 className="service-detail-workflow-title">{t('services.workflow.title')}</h3>
-                  <div className="workflow-steps">
-                    {['inquiry', 'reference', 'modeling', 'detailing', 'design', 'fabrication', 'delivery'].map((step, index) => (
-                      <motion.div key={step} className={`workflow-step ${index < 7 ? 'active' : ''}`} variants={itemVariants}>
-                        <div className="step-number">{index + 1}</div>
-                        <div className="step-content">
-                          <span className="step-name">{t(`services.workflow.steps.${step}`)}</span>
-                        </div>
-                        {index < 6 && <div className="step-connector">↓</div>}
-                      </motion.div>
+                  <div className="service-detail-gallery">
+                    {images.map((img, i) => (
+                      <div key={i} className="service-detail-zoom-wrapper">
+                        <TransformWrapper initialScale={1} minScale={1} maxScale={4}>
+                          <TransformComponent wrapperClass="zoom-wrapper" contentClass="zoom-content">
+                            <LazyImage src={img} alt={`${serviceKey} ${i}`} className="service-detail-static-image" loading="eager" />
+                          </TransformComponent>
+                        </TransformWrapper>
+                      </div>
                     ))}
                   </div>
                 </motion.div>
               )}
+            </div>
 
-              {serviceKey === '2d' && (
-                <motion.div
-                  className="service-detail-subsections"
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <motion.div className="service-detail-subsection" variants={itemVariants}>
-                    <h3 className="service-detail-subsection-title">{t('services.items.2d.section_titles.checking')}</h3>
-                    <p className="service-detail-subsection-text">{t('services.items.2d.section_desc.checking')}</p>
-                  </motion.div>
-                  <motion.div className="service-detail-subsection" variants={itemVariants}>
-                    <h3 className="service-detail-subsection-title">{t('services.items.2d.section_titles.qualifications')}</h3>
-                    <p className="service-detail-subsection-text">{t('services.items.2d.section_desc.qualifications')}</p>
-                  </motion.div>
-                </motion.div>
-              )}
-            </motion.div>
-
-            <motion.div
-              className="service-detail-media"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            >
-              {isCarousel ? (
-                <div
-                  className="service-detail-carousel"
-                  onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
-                >
-                  {images.map((img, i) => (
-                    <LazyImage
-                      key={i}
-                      src={img}
-                      alt={`${serviceKey} ${i}`}
-                      wrapperClassName={`service-detail-image ${i === currentImageIndex ? 'active' : ''}`}
-                    />
-                  ))}
-
-                  {images.length > 1 && (
-                    <>
-                      <button className="carousel-arrow prev" onClick={(e) => { e.stopPropagation(); prevImage(); }}>
-                        &#10094;
-                      </button>
-                      <button className="carousel-arrow next" onClick={(e) => { e.stopPropagation(); nextImage(); }}>
-                        &#10095;
-                      </button>
-                    </>
-                  )}
+            {(serviceKey === 'inspection' || serviceKey === 'assembly') && galleryImages.length > 0 && (
+              <motion.div
+                ref={carouselRef}
+                className="carousel-3d-gallery-wrapper"
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate={isCarouselInView ? "visible" : "hidden"}
+              >
+                <div className="carousel-3d-container-wrapper">
+                  <ImageCarousel 
+                    images={galleryImages}
+                    duplicateForVisibility={serviceKey === 'inspection'}
+                  />
                 </div>
-              ) : (
-                <div className="service-detail-gallery">
-                  <div className="zoom-instruction-overlay">
-                    <svg className="zoom-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-                      <path d="M16 16L21 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                      <path d="M11 8V14M8 11H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                    <span className="zoom-instruction-text">{t('services.zoom_instruction', { defaultValue: 'Scroll to zoom • Drag to pan' })}</span>
-                  </div>
-                  {images.map((img, i) => (
-                    <div key={i} className="service-detail-zoom-wrapper">
-                      <TransformWrapper
-                        initialScale={1}
-                        minScale={1}
-                        maxScale={4}
-                      >
-                        <TransformComponent wrapperClass="zoom-wrapper" contentClass="zoom-content">
-                          <LazyImage
-                            src={img}
-                            alt={`${serviceKey} ${i}`}
-                            className="service-detail-static-image"
-                            loading="eager"
-                          />
-                        </TransformComponent>
-                      </TransformWrapper>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          </div>
-        </section>
-      </div>
-    </motion.div>
+              </motion.div>
+            )}
+          </section>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 

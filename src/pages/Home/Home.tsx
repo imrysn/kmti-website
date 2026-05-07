@@ -6,12 +6,15 @@ import './Home-iPhoneSE.css';
 import './iPhone12_13_14.css';
 import './IphonePlus_Promax.css';
 import './AndroidStandard.css';
+import '../../styles/BackgroundShapes.css';
 import type { HomePageProps } from './Home.types';
 import { getAssetUrl } from '../../utils/assets';
 import SEO from '../../components/common/SEO';
 import Button from '../../components/ui/Button/Button';
 import Card, { ServiceCard } from '../../components/ui/Card/Card';
 import ProjectCarousel from '../../components/ui/ProjectCarousel/ProjectCarousel';
+import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {
   PrecisionIcon,
   InnovationIcon,
@@ -40,6 +43,107 @@ const finishingImage = getAssetUrl('image3D/finishing.webp');
 const finishingLineImage = getAssetUrl('image3D/finishingLine.webp');
 const millingImage = getAssetUrl('image3D/milling.webp');
 const furnaceImage = getAssetUrl('image3D/furnace.webp');
+const air_pipingImages = getAssetUrl('image3D/airpiping_1.webp');
+const hydraulic_pipingImage = getAssetUrl('image3D/hydraulic_piping.webp');
+
+
+const BackgroundShapes: React.FC = () => (
+  <>
+    <ul className="shapes-container" aria-hidden="true">
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+      <li className="shape" />
+    </ul>
+    <ul className="shapes-container-top" aria-hidden="true">
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+      <li className="shape-top" />
+    </ul>
+  </>
+);
+
+const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
+  const meshRef = React.useRef<THREE.Mesh>(null);
+  const gearShape = React.useMemo(() => {
+    const shape = new THREE.Shape();
+    const teeth = 12;
+    const rOuter = 3.2;
+    const rInner = 2.3;
+    const holeRadius = 1;
+
+    shape.moveTo(rInner, 0);
+
+    for (let i = 0; i < teeth; i++) {
+      const theta = (Math.PI * 2 * i) / teeth;
+      const step = (Math.PI * 2) / teeth;
+
+      const aRise = theta + step * 0.15;
+      const aTop = theta + step * 0.35;
+      const aFall = theta + step * 0.50;
+      const aNext = theta + step;
+
+      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter);
+      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);
+      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner);
+      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner);
+    }
+    shape.closePath();
+
+    const hole = new THREE.Path();
+    hole.absarc(0, 0, holeRadius, 0, Math.PI * 2, false);
+    shape.holes.push(hole);
+
+    return shape;
+  }, []);
+
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.z += delta * speed;
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={position} scale={scale}>
+      <extrudeGeometry args={[gearShape, { depth: 0.8, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 }]} />
+      <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.15} transparent={true} />
+    </mesh>
+  );
+};
 
 const Home: React.FC<HomePageProps> = () => {
   const navigate = useNavigate();
@@ -80,39 +184,49 @@ const Home: React.FC<HomePageProps> = () => {
     { id: 5, title: t('home.projects.items.furnace.title'), description: t('home.projects.items.furnace.desc'), category: t('home.projects.items.furnace.cat'), image: furnaceImage, link: '/projects?project=furnace' },
     { id: 6, title: t('home.projects.items.line.title'), description: t('home.projects.items.line.desc'), category: t('home.projects.items.line.cat'), image: finishingLineImage, link: '/projects?project=finishing-line' },
     { id: 7, title: t('home.projects.items.milling.title'), description: t('home.projects.items.milling.desc'), category: t('home.projects.items.milling.cat'), image: millingImage, link: '/projects?project=milling-cutoff-machine' },
-    { id: 8, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage, link: '/projects?project=dedimpler-and-facer' },
+    { id: 8, title: t('home.projects.items.air_piping_1.title'), description: t('home.projects.items.air_piping_1.desc'), category: t('home.projects.items.air_piping_1.cat'), image: air_pipingImages, link: '/projects?project=air_piping_1'},
+    { id: 9, title: t('home.projects.items.hydraulic_piping.title'), description: t('home.projects.items.hydraulic_piping.desc'), category: t('home.projects.items.hydraulic_piping.cat'), image: hydraulic_pipingImage, link: '/projects?project=hydraulic-piping'},
+    { id: 10, title: t('home.projects.items.dedimpler.title'), description: t('home.projects.items.dedimpler.desc'), category: t('home.projects.items.dedimpler.cat'), image: dedemplerImage, link: '/projects?project=dedimpler-and-facer' }
   ];
 
   const tEn = i18n.getFixedT('en');
 
   return (
+    <div className='home-bg-wrapper'>
+        <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none' }}>
+          <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
+            <ambientLight intensity={1} />
+            <pointLight position={[10, 10, 10]} intensity={1.5} />
+            <FloatingGear position={[8, 4, 0]} scale={0.8} speed={0.15} />
+            <FloatingGear position={[-10, -5, -2]} scale={1.2} speed={-0.1} />
+            <FloatingGear position={[5, -8, -5]} scale={0.6} speed={0.2} />
+          </Canvas>
+        </div>
     <div className="home-page">
+      <BackgroundShapes />
       <SEO 
         description={tEn('about.hero.subtitle')} 
       />
-      <section key={animationKey} className="hero-section">
-        <div className="hero-bg-custom" style={{ backgroundImage: `url(${homeBg})` }}></div>
-        <div className="hero-overlay"></div>
-        <div className="hero-container container">
-          <div className={`hero-content ${i18n.language === 'jp' ? 'lang-jp' : ''}`}>
-            <h1 className={`hero-title ${i18n.language === 'jp' ? 'lang-jp' : ''}`}>
-              {t('home.hero.title').split('\n').map((line, i) => (
-                <React.Fragment key={i}>
-                  {line}
-                  <br />
-                </React.Fragment>
-              ))}
-            </h1>
-            <div className="hero-buttons">
-              <Button variant="style1" onClick={navigateToContact}>{t('common.contact_us')}</Button>
-              <Button variant="style2" onClick={navigateToProjects}>{t('common.view_projects')}</Button>
+        <section key={animationKey} className="hero-section">
+          <div className="hero-bg-custom" style={{ backgroundImage: `url(${homeBg})` }}></div>
+          <div className="hero-overlay"></div>
+          <div className="hero-container container">
+            <div className={`hero-content ${i18n.language === 'jp' ? 'lang-jp' : ''}`}>
+              <h1 className={`hero-title ${i18n.language === 'jp' ? 'lang-jp' : ''}`}>
+                {t('home.hero.title').split('\n').map((line, i) => (
+                  <React.Fragment key={i}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))}
+              </h1>
+              <div className="hero-buttons">
+                <Button variant="style1" onClick={navigateToContact}>{t('common.contact_us')}</Button>
+                <Button variant="style2" onClick={navigateToProjects}>{t('common.view_projects')}</Button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-
-
+        </section>
       <section className="services-section" data-aos="fade-up">
         <div className="section-container container">
           <h2 className="section-title">{t('home.services.title')}</h2>
@@ -181,8 +295,9 @@ const Home: React.FC<HomePageProps> = () => {
             <Button variant="style2" onClick={navigateToContact}>{t('common.contact_us')}</Button>
           </div>
         </div>
-      </section>
+      </section> 
     </div>
+    </div> 
   );
 };
 

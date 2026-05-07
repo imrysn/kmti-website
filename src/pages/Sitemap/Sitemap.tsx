@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import SEO from '../../components/common/SEO';
 import './Sitemap.css';
+import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
 import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
 
 const BackgroundShapes: React.FC = () => (
@@ -60,23 +61,30 @@ const BackgroundShapes: React.FC = () => (
 // --- 3D Gear Component ---
 const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
   const meshRef = React.useRef<THREE.Mesh>(null);
-
-  // Procedurally generate a gear shape
   const gearShape = React.useMemo(() => {
     const shape = new THREE.Shape();
-    const teeth = 8;
-    const outerRadius = 2.8;
-    const innerRadius = 2.2;
+    const teeth = 12;
+    const rOuter = 3.2;
+    const rInner = 2.3;
     const holeRadius = 1;
 
-    for (let i = 0; i < teeth * 2; i++) {
-      const angle = (Math.PI * 2 * i) / (teeth * 2);
-      const radius = i % 2 === 0 ? outerRadius : innerRadius;
-      if (i === 0) {
-        shape.moveTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
-      } else {
-        shape.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
-      }
+    // Start at inner radius (angle 0)
+    shape.moveTo(rInner, 0);
+
+    for (let i = 0; i < teeth; i++) {
+      const theta = (Math.PI * 2 * i) / teeth;
+      const step = (Math.PI * 2) / teeth;
+
+      // Create a trapezoidal tooth profile (Cog shape)
+      const aRise = theta + step * 0.15; // Start of rise
+      const aTop = theta + step * 0.35;  // End of flat top
+      const aFall = theta + step * 0.50; // End of fall
+      const aNext = theta + step;        // End of valley
+
+      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter); // Rise to outer
+      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);   // Move along outer
+      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner); // Fall to inner
+      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner); // Move along inner
     }
     shape.closePath();
 
@@ -96,7 +104,7 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
 
   return (
     <mesh ref={meshRef} position={position} scale={scale}>
-      <extrudeGeometry args={[gearShape, { depth: 0.5, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 }]} />
+      <extrudeGeometry args={[gearShape, { depth: 0.8, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 }]} />
       <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.15} transparent={true} />
     </mesh>
   );

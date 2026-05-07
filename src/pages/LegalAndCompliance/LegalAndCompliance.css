@@ -1,72 +1,297 @@
+/* Keep existing background styles */
+.shapes-container,
+.shapes-container-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* New dedicated wrapper for shapes to handle overflow without breaking sticky sidebar */
+.legal-shapes-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.legal-compliance-bg-wrapper {
+  position: relative;
+  margin-top: -10rem;
+  padding-top: 10rem;
+  min-height: 100vh;
+}
+
+/* Page Layout */
 .legal-page {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   color: white;
-  padding-top: 8rem;
+  padding-top: 6rem;
   padding-bottom: 5rem;
+  z-index: 2; /* Ensures content is above the 3D gears (which are z-index: 1) */
 }
 
-.legal-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem;
+/* Header */
+.legal-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 0 1rem;
 }
 
 .legal-title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #51A2FF 0%, #ffffff 50%, #51A2FF 100%);
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.legal-subtitle {
+  font-family: var(--font-family-body);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Main Grid Layout */
+.legal-layout-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 4rem;
+  max-width: 1600px;
+  width: 95%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  align-items: start;
+}
+
+/* Sidebar Navigation */
+.legal-sidebar {
+  position: sticky;
+  top: 140px; /* Adjust based on your header height */
+  background: rgba(15, 23, 43, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(81, 162, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.legal-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.legal-nav-title {
+  font-family: var(--font-family-heading);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  padding-left: 0.75rem;
+}
+
+.legal-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: var(--font-family-body);
+  font-size: 0.95rem;
+  border-left: 3px solid transparent;
+}
+
+.legal-nav-link svg {
+  color: #51A2FF;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.legal-nav-link:hover {
+  background: rgba(81, 162, 255, 0.1);
+  color: white;
+  transform: translateX(5px);
+}
+
+.legal-nav-link:hover svg {
+  transform: scale(1.1);
+}
+
+/* Active State for Sidebar Links */
+.legal-nav-link.active {
+  background: rgba(81, 162, 255, 0.15);
+  color: #fff;
+  border-left: 3px solid #51A2FF;
   font-weight: 500;
 }
 
-.legal-section {
-  margin-bottom: 4rem;
-  background: rgba(255, 255, 255, 0.03);
+
+/* Content Area */
+.legal-content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Cards */
+.legal-card {
+  background: rgba(15, 23, 43, 0.3); /* Dark glass effect */
+  backdrop-filter: blur(10px);
   padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(81, 162, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-margin-top: 120px; /* Ensures anchor links don't land under header */
+}
+
+.legal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(81, 162, 255, 0.1);
+  border-color: rgba(81, 162, 255, 0.4);
+}
+
+.legal-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(81, 162, 255, 0.2);
+  padding-bottom: 1rem;
+}
+
+.legal-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(81, 162, 255, 0.1);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #51A2FF;
 }
 
 .legal-section-title {
   font-family: var(--font-family-heading);
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: #51A2FF;
-  border-bottom: 1px solid rgba(81, 162, 255, 0.3);
-  padding-bottom: 1rem;
+  color: white;
+  margin: 0;
   font-weight: 500;
 }
 
 .legal-content {
   font-family: var(--font-family-body);
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
 }
 
 .legal-content p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.legal-content ul {
-  padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
+.legal-content p:last-child {
+  margin-bottom: 0;
 }
 
-.legal-content li {
-  margin-bottom: 0.5rem;
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .legal-sidebar {
+    display: none;
+  }
+  .legal-card {
+    min-width: 910px;
+  }
+}
+
+@media (max-width: 912px) {
+  .legal-card {
+    min-width: 810px;
+  }
+}
+
+@media (max-width: 900px) {
+  .legal-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .legal-sidebar {
+    position: relative;
+    top: 0;
+    margin-bottom: 1rem;
+  }
+  .legal-card {
+    min-width: 320px;
+  }
 }
 
 @media (max-width: 768px) {
   .legal-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
-
-  .legal-section {
+  
+  .legal-layout-grid {
+    padding: 0 1rem;
+  }
+  
+  .legal-card {
     padding: 1.5rem;
   }
-
+  
   .legal-section-title {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
   }
+}
+
+@media (max-width: 640px) {
+  .legal-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .legal-title {
+    font-size: 1.5rem;
+  }
+  .legal-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 345px) {
+  .legal-card {
+    min-width: 200px;
+  }
+}
+
+/* Re-include Animations for Shapes if not imported elsewhere */
+@keyframes animateShapes {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-3000px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes animateShapesTop {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(3000px) rotate(720deg); opacity: 0; }
 }

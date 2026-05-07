@@ -1,45 +1,179 @@
-/* About Page - Our Management Team*/
+/* About Page - Our Management Team */
 .image-viewer-modal-content {
-  max-width: 50%;
-  max-height: 70vh;
-  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: rgba(16, 25, 46, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: rem 2rem;
+  width: 90%;
+  max-width: 650px;
+  height: auto;
+  min-height: 750px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.808);
+  animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.image-viewer-image {
-  width: 50%;
+/* Background Watermark Logo */
+.image-viewer-bg-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 550px;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.image-viewer-bg-logo img {
+  width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto;
 }
 
-.image-viewer-caption {
+.image-viewer-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 2rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.image-viewer-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(90deg);
+}
+
+.image-viewer-circle-container {
+  position: relative;
+  width: 420px;
+  height: 520px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 5.5rem;
+  margin-bottom: 2.5rem;
+  z-index: 1;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.image-viewer-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-viewer-inner-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(16, 25, 46, 0.4), transparent);
+  pointer-events: none;
+}
+
+.image-viewer-info {
   text-align: center;
-  color: white;
-  margin-top: 1rem;
+  z-index: 2;
+}
+
+.image-viewer-position {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
   font-family: var(--font-family-heading);
-  font-size: 1.25rem;
-  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.image-viewer-company {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.5rem;
+  font-family: var(--font-family-body);
   letter-spacing: 1px;
 }
 
-@media (max-width: 768px) {
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 1024px) {
   .image-viewer-modal-content {
-    max-width: 80%;
+    min-height: 650px;
   }
-  .image-viewer-image {
-    width: 100%;
-  }
-  .image-viewer-caption {
-    font-size: 1rem;
+  .image-viewer-circle-container {
+    width: 350px;
+    height: 500px;
   }
 }
 
-/* optionally enhance the card hover on mobile */
-.management-team-card {
-  transition: transform .2s;
+@media (max-width: 630px) {
+  .image-viewer-modal-content {
+    width: 92%;
+    min-height: auto;
+    padding: 4rem 1.5rem 3rem 1.5rem;
+  }
+
+  .image-viewer-circle-container {
+    width: 75vw; 
+    height: 90vw;
+    max-width: 300px;
+    max-height: 400px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .image-viewer-position {
+    font-size: 1.8rem;
+  }
+
+  .image-viewer-company {
+    font-size: 1.1rem;
+  }
+
+  .image-viewer-bg-logo {
+    width: 110%;
+  }
 }
-.management-team-card:hover {
-  transform: scale(1.02);
+
+@media (max-width: 400px) {
+  .image-viewer-circle-container {
+    width: 65vw;
+    height: 80vw;
+  }
+
+  .image-viewer-position {
+    font-size: 1.5rem;
+  }
+
+  .image-viewer-close-btn {
+    top: 1rem;
+    right: 1rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1.5rem;
+  }
 }
 
 .service-modal-overlay {
@@ -54,7 +188,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 11000;
   animation: fadeIn 0.3s ease;
 }
 
@@ -66,7 +200,7 @@
   to {
     opacity: 1;
   }
-}
+} */
 
 /* ============================================
    INVISIBLE SCROLLBAR FOR ALL MODALS
