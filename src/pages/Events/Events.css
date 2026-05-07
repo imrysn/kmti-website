@@ -389,6 +389,10 @@ button.btn.btn-event:hover .arrow-icon {
   color: rgba(255, 255, 255, 0.95);
 }
 
+.event-carousel-section .dropdown-value {
+  color: #87BFFF;
+}
+
 .event-carousel-section .dropdown-trigger:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);

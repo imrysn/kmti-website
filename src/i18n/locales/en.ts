@@ -1325,17 +1325,18 @@ const en = {
       services: "SERVICES",
       contact: "CONTACT US"
     },
-    links: {
-      home: "Home",
-      services: "Services",
-      projects: "Projects",
-      about: "About Us",
-      contact: "Contact Us",
-      careers: "Careers",
-      legal: "Legal & Compliance",
-      privacy: "Privacy Policy",
-      terms: "Terms of Services"
-    },
+  links: {
+    home: "Home",
+    services: "Services",
+    projects: "Projects",
+    about: "About Us",
+    contact: "Contact Us",
+    careers: "Careers",
+    events: "Events",
+    legal: "Legal & Compliance",
+    privacy: "Privacy Policy",
+    terms: "Terms of Services"
+  },
 
 
     service_items: {

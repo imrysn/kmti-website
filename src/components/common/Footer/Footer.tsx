@@ -76,9 +76,9 @@ const Footer: React.FC = () => {
               <Link to="/services" className="footer__link" onClick={(e) => handleFooterLinkClick('/services', e)}>{t('footer.links.services')}</Link>
               <Link to="/projects" className="footer__link" onClick={(e) => handleFooterLinkClick('/projects', e)}>{t('footer.links.projects')}</Link>
               <Link to="/careers" className="footer__link" onClick={(e) => handleFooterLinkClick('/careers', e)}>{t('footer.links.careers')}</Link>
-              {i18n.language === 'en' && (
-                <Link to="/events" className="footer__link" onClick={(e) => handleFooterLinkClick('/events', e)}>{t('nav.events')}</Link>
-              )}
+               {i18n.language === 'en' && (
+                 <Link to="/events" className="footer__link" onClick={(e) => handleFooterLinkClick('/events', e)}>{t('footer.links.events')}</Link>
+               )}
               <Link to="/contact" className="footer__link" onClick={(e) => handleFooterLinkClick('/contact', e)}>{t('footer.links.contact')}</Link>
 
             </div>
