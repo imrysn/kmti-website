@@ -372,7 +372,7 @@ const About: React.FC<AboutPageProps> = () => {
                 <ManagementTeamCard image={erikImage} role={t('about.management.roles.eng_tl')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(erikImage, t('about.management.roles.eng_tl')) : undefined} />
                 <ManagementTeamCard image={louieImage} role={t('about.management.roles.eng_atl')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(louieImage, t('about.management.roles.eng_atl')) : undefined} />
                 <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(shelaImage, t('about.management.roles.eng_sup')) : undefined} />
-                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.it_staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(kerbyImage, t('about.management.roles.it_staff')) : undefined} />
+                <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(mgImage, t('about.management.roles.staff')) : undefined} />
               </div>
               <div className="about-management-team-grid">
                 <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(royImage, t('about.management.roles.driver')) : undefined} />
@@ -390,9 +390,8 @@ const About: React.FC<AboutPageProps> = () => {
               </div>
               <div className="about-management-team-grid">
                 <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(jojoImage, t('about.management.roles.utility')) : undefined} />
-                <ManagementTeamCard image={mgImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(mgImage, t('about.management.roles.staff')) : undefined} />
-                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(zorenImage, t('about.management.roles.staff')) : undefined} />
-                
+                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.it_staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(kerbyImage, t('about.management.roles.it_staff')) : undefined} />                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(zorenImage, t('about.management.roles.staff')) : undefined} />
+
                 <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(matthewImage, t('about.management.roles.staff')) : undefined} />
               </div>
             </div>
