@@ -113,6 +113,7 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
 const Sitemap: React.FC<SitemapPageProps> = () => {
   const { t, i18n } = useTranslation();
   const tEn = i18n.getFixedT('en');
+  const isEnglish = i18n.language === 'en';
 
   const sitemapSections: SitemapSection[] = [
     {
@@ -162,7 +163,13 @@ const Sitemap: React.FC<SitemapPageProps> = () => {
           path: '/services/machine-assembly',
           label: t('home.services.items.assembly.title'),
           description: t('home.services.items.assembly.desc')
-        }
+        },
+        // Only show Events in English
+        ...(isEnglish ? [{
+          path: '/events',
+          label: t('nav.events'),
+          description: t('sitemap.descriptions.events')
+        }] : [])
       ]
     },
     {

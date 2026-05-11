@@ -1383,7 +1383,8 @@ const en = {
       services: "Explore our comprehensive engineering services",
       projects: "View our portfolio of completed projects",
       careers: "Join our team and build your career with us",
-      legal: "Privacy policy, terms of service, and compliance information"
+      legal: "Privacy policy, terms of service, and compliance information",
+      events: "Explore recent company events including team-building activities, safety drills, and celebrations"
     }
   }
   ,

@@ -1,4 +1,4 @@
-// Services.tsx - Performance Optimized (Preserving all UI/class names)
+// Services.tsx - Performance Optimized with Draco Compression (Preserving all UI/class names)
 import React, { useRef, useEffect, useState, useMemo, Suspense, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -14,8 +14,12 @@ import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 
-// Preload the model for better performance
-useGLTF.preload('/compressed_glb/Hydraulic_piping.glb');
+// Configure global Draco decoder path
+useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+// For local files: useGLTF.setDecoderPath('/draco/');
+
+// Preload the Draco-compressed model
+useGLTF.preload('/compressed_glb/Services3D_HP_Compressed.glb');
 
 const servicesBg = getAssetUrl('hero_background/servicesbg.webp');
 const icon3D = getAssetUrl('icons/cube.webp');
@@ -122,13 +126,15 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
   }, []);
 
   const geometry = useMemo(() => {
-    return new THREE.ExtrudeGeometry(gearShape, { 
+    const geo = new THREE.ExtrudeGeometry(gearShape, { 
       depth: 0.8, 
       bevelEnabled: true, 
       bevelSize: 0.1, 
       bevelThickness: 0.1,
       steps: 1
     });
+    geo.computeBoundingSphere();
+    return geo;
   }, [gearShape]);
 
   useFrame((state, delta) => {
@@ -138,14 +144,21 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
     }
   });
 
+  // Cleanup geometry on unmount
+  useEffect(() => {
+    return () => {
+      geometry.dispose();
+    };
+  }, [geometry]);
+
   return (
-    <mesh ref={meshRef} position={position} scale={scale} geometry={geometry}>
+    <mesh ref={meshRef} position={position} scale={scale} geometry={geometry} frustumCulled={false}>
       <meshStandardMaterial color="#51A2FF" metalness={0.7} roughness={0.3} opacity={0.15} transparent={true} />
     </mesh>
   );
 };
 
-// 3D Figure Component - Showcase Section
+// 3D Figure Component - Showcase Section (Optimized with Draco)
 const HydraulicPipingModel: React.FC<{
   scale?: number;
   rotation?: [number, number, number];
@@ -156,21 +169,38 @@ const HydraulicPipingModel: React.FC<{
   position = [0, 5, 0]
 }) => {
   const groupRef = useRef<THREE.Group>(null);
-  const { scene } = useGLTF('/compressed_glb/Hydraulic_piping.glb');
+  
+  // Load Draco-compressed model
+  const { scene } = useGLTF('/compressed_glb/Services3D_HP_Compressed.glb');
   
   const [isInView, setIsInView] = useState(false);
   const [animationStarted, setAnimationStarted] = useState(false);
   const animationProgress = useRef(0);
   const animationSpeed = 0.007;
-  
+
   const centeredModel = useMemo(() => {
+    if (!scene) return null;
+    
     const clonedScene = scene.clone();
+    
+    clonedScene.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        if (child.geometry) {
+          child.geometry.computeBoundingSphere();
+          child.geometry.computeBoundingBox();
+        }
+        child.frustumCulled = true;
+      }
+    });
+    
+    // Center the model
     const boundingBox = new THREE.Box3().setFromObject(clonedScene);
     const center = new THREE.Vector3();
     boundingBox.getCenter(center);
     const group = new THREE.Group();
     clonedScene.position.set(-center.x, -center.y, -center.z);
     group.add(clonedScene);
+    
     return group;
   }, [scene]);
   
@@ -230,6 +260,15 @@ const HydraulicPipingModel: React.FC<{
     groupRef.current.rotation.y = startRotation + (rotation[1] - startRotation) * easeOut;
     groupRef.current.scale.setScalar(scale * (startScale + (1 - startScale) * easeOut));
   });
+  
+  // Don't render until in view
+  if (!isInView) {
+    return null;
+  }
+  
+  if (!centeredModel) {
+    return null;
+  }
   
   return (
     <group ref={groupRef}>
@@ -503,6 +542,11 @@ const Services: React.FC<ServicesPageProps> = () => {
           camera={{ position: [0, 0, 15], fov: 50 }}
           dpr={[1, 1.5]}
           performance={{ min: 0.3 }}
+          gl={{ 
+            powerPreference: "high-performance",
+            antialias: false,
+            stencil: false,
+          }}
         >
           <ambientLight intensity={1} />
           <pointLight position={[10, 10, 10]} intensity={1.5} />
@@ -567,6 +611,12 @@ const Services: React.FC<ServicesPageProps> = () => {
                 camera={{ position: [15, 40, 55], fov: 60 }}
                 dpr={[1, 1.5]}
                 performance={{ min: 0.5 }}
+                gl={{ 
+                  powerPreference: "high-performance",
+                  antialias: false,
+                  alpha: true,
+                  preserveDrawingBuffer: false,
+                }}
                 onCreated={({ camera }) => {
                   camera.lookAt(0, 0, 0);
                 }}
