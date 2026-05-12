@@ -764,7 +764,7 @@ button.btn.btn-event:hover .arrow-icon {
 
   .events-intro-section {
     max-width: 65rem;
-    margin-top: 4rem;
+    margin-top: -2rem;
   }
   
   .intro-title {
@@ -797,6 +797,7 @@ button.btn.btn-event:hover .arrow-icon {
   
   .event-carousel-section .carousel-title {
     font-size: 3.3rem;
+    margin-top: -5rem;
   }
   
   .event-carousel-section .carousel-description {
@@ -809,6 +810,7 @@ button.btn.btn-event:hover .arrow-icon {
   
   .event-carousel-section .carousel-container {
     height: 400px;
+    margin-bottom: -5rem;
   }
   
   .event-carousel-section .carousel-track {
@@ -819,7 +821,7 @@ button.btn.btn-event:hover .arrow-icon {
     width: 430px;
     height: 430px;
     margin-left: -210px;
-    margin-top: -240px;
+    margin-top: -270px;
   }
   
   .event-carousel-section .dropdown-menu {
@@ -834,7 +836,7 @@ button.btn.btn-event:hover .arrow-icon {
     width: 70px;
     height: 70px;
     font-size: 3rem;
-    top: 45%;
+    top: 55%;
   }
   
   .event-carousel-section .carousel-nav.left {
@@ -843,6 +845,10 @@ button.btn.btn-event:hover .arrow-icon {
   
   .event-carousel-section .carousel-nav.right {
     right: -40px;
+  }
+  
+  .events-intro-section span {
+    display: none;
   }
 }
 
@@ -986,7 +992,7 @@ button.btn.btn-event:hover .arrow-icon {
 
   .events-intro-section {
     max-width: 60rem;
-    margin-top: 4rem;
+    margin-top: -2rem;
   }
   
   .intro-title {
@@ -1019,6 +1025,7 @@ button.btn.btn-event:hover .arrow-icon {
   
   .event-carousel-section .carousel-title {
     font-size: 2.9rem;
+    margin-top: -8rem;
   }
   
   .event-carousel-section .carousel-description {
@@ -1037,13 +1044,13 @@ button.btn.btn-event:hover .arrow-icon {
     width: 430px;
     height: 430px;
     margin-left: -210px;
-    margin-top: -240px;
+    margin-top: -280px;
   }
   
   .event-carousel-section .carousel-nav {
     width: 60px;
     height: 60px;
-    top: 45%;
+    top: 50%;
   }
   
   .event-carousel-section .carousel-nav.left {
@@ -1077,7 +1084,7 @@ button.btn.btn-event:hover .arrow-icon {
 
   .events-intro-section {
     max-width: 60rem;
-    margin-top: 4rem;
+    margin-top: -2rem;
   }
   
   .intro-title {
@@ -1128,13 +1135,13 @@ button.btn.btn-event:hover .arrow-icon {
     width: 430px;
     height: 430px;
     margin-left: -210px;
-    margin-top: -240px;
+    margin-top: -270px;
   }
   
   .event-carousel-section .carousel-nav {
     width: 60px;
     height: 60px;
-    top: 45%;
+    top: 50%;
   }
   
   .event-carousel-section .carousel-nav.left {
@@ -1168,7 +1175,7 @@ button.btn.btn-event:hover .arrow-icon {
 
   .events-intro-section {
     max-width: 60rem;
-    margin-top: 4rem;
+    margin-top: -2rem;
   }
   
   .intro-title {
@@ -1272,7 +1279,7 @@ button.btn.btn-event:hover .arrow-icon {
 
   .events-intro-section {
     max-width: 60rem;
-    margin-top: 4rem;
+    margin-top: -2rem;
   }
   
   .intro-title {
@@ -1308,6 +1315,10 @@ button.btn.btn-event:hover .arrow-icon {
     width: 25rem;
     margin-left: -2.6rem;
   }
+
+  .event-carousel-section:not(:first-child) .carousel-title {
+    margin-top: -12rem;
+  }
   
   .event-carousel-section .carousel-description {
     font-size: .9rem;
@@ -1319,7 +1330,7 @@ button.btn.btn-event:hover .arrow-icon {
     width: 325px;
     height: 430px;
     margin-left: -160px;
-    margin-top: -240px;
+    margin-top: -300px;
   }
   
   .event-carousel-section .carousel-nav {
@@ -1360,7 +1371,7 @@ button.btn.btn-event:hover .arrow-icon {
   
   .events-intro-section {
     max-width: 60rem;
-    margin-top: 4rem;
+    margin-top: -2rem;
   }
   
   .intro-title {
@@ -1409,7 +1420,7 @@ button.btn.btn-event:hover .arrow-icon {
     width: 315px;
     height: 400px;
     margin-left: -157px;
-    margin-top: -240px;
+    margin-top: -300px;
   }
   
   .event-carousel-section .dropdown-item {
@@ -1420,7 +1431,7 @@ button.btn.btn-event:hover .arrow-icon {
     width: 45px;
     height: 45px;
     font-size: 2rem;
-    top: 45%;
+    top: 40%;
   }
   
   .event-carousel-section .carousel-nav.left {
@@ -1454,7 +1465,7 @@ button.btn.btn-event:hover .arrow-icon {
 
   .events-intro-section {
     max-width: 60rem;
-    margin-top: 4rem;
+    margin-top: -4rem;
   }
   
   .intro-title {
@@ -1505,12 +1516,15 @@ button.btn.btn-event:hover .arrow-icon {
     height: 67rem;
     animation: none;
   }
-  
 
-    .event-carousel-section .carousel-title {
+  .event-carousel-section .carousel-title {
     font-size: 2rem;
     width: 20rem;
     margin-left: -1rem
+  }
+
+  .event-carousel-section:not(:first-child) .carousel-title {
+    margin-top: -8rem;
   }
   
   .event-carousel-section .carousel-description {
@@ -1563,7 +1577,7 @@ button.btn.btn-event:hover .arrow-icon {
 
   .events-intro-section {
     max-width: 60rem;
-    margin-top: 4rem;
+    margin-top: -4rem;
   }
   
   .intro-title {
@@ -1601,6 +1615,10 @@ button.btn.btn-event:hover .arrow-icon {
     margin-left: -2rem
   }
   
+  .event-carousel-section:not(:first-child) .carousel-title {
+    margin-top: -11rem;
+}
+
   .event-carousel-section .carousel-description {
     font-size: .9rem;
     width: 23rem;
@@ -1616,7 +1634,7 @@ button.btn.btn-event:hover .arrow-icon {
     width: 280px;
     height: 400px;
     margin-left: -140px;
-    margin-top: -240px;
+    margin-top: -300px;
   }
   
   .event-carousel-section .dropdown-item {
@@ -1627,7 +1645,7 @@ button.btn.btn-event:hover .arrow-icon {
     width: 40px;
     height: 40px;
     font-size: 1.7rem;
-    top: 45%;
+    top: 40%;
   }
   
   .event-carousel-section .carousel-nav.left {
@@ -1643,7 +1661,7 @@ button.btn.btn-event:hover .arrow-icon {
 @media (max-width: 360px) {
   .events-hero {
     padding: 19rem 0rem 4rem;
-    min-height: 122vh;
+    min-height: 125vh;
   }
   
   .events-hero-content h1 {
@@ -1652,6 +1670,11 @@ button.btn.btn-event:hover .arrow-icon {
   
   .events-hero-content p {
     font-size: 0.95rem;
+  }
+
+  .events-intro-section {
+    max-width: 60rem;
+    margin-top: 1rem;
   }
 
   .hero-background {

@@ -611,6 +611,15 @@
   .ojt-grid {
     gap: 1.5rem;
   }
+
+  .meet-our-ojt-title {
+    font-size: 2rem;
+    margin-top: -5rem;
+  }
+
+  .careers-positions-title {
+    margin-top: -8rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -716,7 +725,8 @@
   }
 
   .meet-our-ojt-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+    margin-top: -6rem;
   }
 
   .meet-our-ojt-description {
@@ -866,8 +876,18 @@
   }
 }
 
-@media (max-width: 412px) {
+@media (max-width: 420px) {
+.meet-our-ojt-title {
+    font-size: 1.8rem;
+    margin-top: -10rem;
+  }
 
+.careers-positions-title {
+    margin-top: -5rem;
+  }
+}
+
+@media (max-width: 412px) {
   .careers-page .hero-title {
     font-size: 2rem;
     line-height: 1.2;
@@ -957,6 +977,17 @@
   .ojt-grid {
     grid-template-columns: 1fr;
   }
+
+  .meet-our-ojt-title {
+    font-size: 1.8rem;
+    margin-top: -8rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .careers-positions-title {
+    margin-top: -5rem;
+  }
 }
 
 @media (max-width: 375px) {
@@ -983,5 +1014,10 @@
     line-height: 1.2;
     padding: 0;
     margin-bottom: 1rem;
+  }
+
+  .meet-our-ojt-title {
+    font-size: 1.5rem;
+    margin-top: -11rem;
   }
 }

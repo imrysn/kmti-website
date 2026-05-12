@@ -362,7 +362,7 @@
     max-width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    word-break: break-word; /* Force breaking for long words */
+    word-break: break-word;
     white-space: normal;
     text-align: center;
   }
@@ -394,9 +394,14 @@
     margin: 0 auto;
     width: 100%;
   }
-
+  
   .chat-with-us-content {
     gap: 3rem;
+  }
+
+  .chat-with-us-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 
@@ -672,11 +677,139 @@
 }
 
 @media (max-width: 375px) {
+  .contact-page .hero-section {
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+    min-height: auto;
+  }
+
+  .contact-page .hero-container {
+    margin-top: 0;
+    padding: 0 0.75rem;
+    bottom: auto;
+  }
+
+  .contact-page .hero-title {
+    font-size: 1.35rem !important;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .contact-hero-description {
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .contact-page .or-divider-description {
+    font-size: 0.7rem;
+  }
+
   .contact-options-grid {
     grid-template-columns: 1fr;
     gap: 0.85rem;
     max-width: 100%;
     padding: 0 1rem;
+  }
+  
+  .get-in-touch-section {
+    padding: 3rem 1rem;
+  }
+  
+  .contact-form-container {
+    padding: 1.25rem;
+  }
+  
+  .section-title {
+    font-size: 1.35rem;
+  }
+  
+  .map-section {
+    height: 280px;
+  }
+  
+  .chat-with-us-section {
+    padding: 2rem 1rem;
+  }
+  
+  .chat-with-us-title {
+    font-size: 1.35rem;
+  }
+  
+  .chat-with-us-description {
+    font-size: 0.85rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 360px) {
+  .contact-page .hero-section {
+    padding-top: 1rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .contact-page .hero-title {
+    font-size: 1.25rem !important;
+  }
+
+  .contact-hero-description {
+    font-size: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .contact-options-grid {
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+    margin-top: -3rem !important;
+  }
+  
+  /* Form fixes */
+  .contact-form-container {
+    padding: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+  }
+  
+  .form-field {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .form-label {
+    font-size: 0.85rem;
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+  
+  /* Map fixes */
+  .map-section {
+    height: 250px;
+  }
+  
+  /* Chat section fixes */
+  .chat-with-us-title {
+    font-size: 1.25rem;
+  }
+  
+  .chat-with-us-feature-title {
+    font-size: 0.85rem;
+  }
+  
+  .chat-with-us-feature-text {
+    font-size: 0.75rem;
+  }
+  
+  .chat-with-us-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .chat-with-us-icon {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -684,17 +817,21 @@
    GET IN TOUCH SECTION (NEW)
    ============================================ */
 .get-in-touch-section {
-  padding: 6rem 0;
+  padding: 6rem 2rem;
   background-color: var(--color-background);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .get-in-touch-grid {
   display: grid;
   grid-template-columns: 1.8fr 1.2fr;
-  /* Form takes more space */
   gap: 5rem;
   align-items: start;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -703,10 +840,11 @@
   padding: 2.5rem;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .section-title {
-  /* Inherits h2 global */
   font-family: var(--font-family-heading);
   margin-bottom: 2rem;
   color: white;
@@ -717,6 +855,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  width: 100%;
 }
 
 .form-group {
@@ -724,6 +863,7 @@
   flex-direction: column;
   gap: 0.5rem;
   position: relative;
+  width: 100%;
 }
 
 .form-label {
@@ -738,40 +878,23 @@
   z-index: 1;
 }
 
-.form-field:focus + .form-label::before,
-.form-field:not(:placeholder-shown) + .form-label::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -0.25rem;
-  right: -0.25rem;
-  bottom: 0;
-  background-color: var(--color-background); /* Match your page background */
-  z-index: -1;
-  border-radius: 4px;
+.form-field {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  color: white;
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.form-field:focus + .form-label,
-.form-field:not(:placeholder-shown) + .form-label {
-  top: -0.75rem;
-  left: 0.75rem;
-  font-size: 0.85rem;
-  color: #51A2FF;
-  padding: 0 0.25rem;
-}
-
-.form-field:focus + .form-label,
-.form-field:not(:placeholder-shown) + .form-label {
-  top: -0.75rem;
-  left: 0.75rem;
-  font-size: 0.85rem;
-  color: #51A2FF;
-  padding: 0 0.25rem;
-  text-shadow: 
-    -1px -1px 0 var(--color-background, #000),
-    1px -1px 0 var(--color-background, #000),
-    -1px 1px 0 var(--color-background, #000),
-    1px 1px 0 var(--color-background, #000);
+.form-field:focus {
+  outline: none;
+  border-color: #51A2FF;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .form-field:focus + .form-label,
@@ -786,23 +909,6 @@
   backdrop-filter: blur(4px);
 }
 
-.form-field {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 1rem;
-  color: white;
-  font-family: var(--font-family-body);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.form-field:focus {
-  outline: none;
-  border-color: #51A2FF;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
 textarea.form-field {
   min-height: 150px;
   resize: vertical;
@@ -812,12 +918,14 @@ textarea.form-field {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
 }
 
 .contact-info-item {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+  width: 100%;
 }
 
 .contact-info-icon-wrapper {
@@ -881,13 +989,16 @@ textarea.form-field {
   height: 100%;
   border: 0;
   filter: grayscale(100%) invert(92%) contrast(83%);
-  /* Custom gray map style */
 }
 
 @media (max-width: 768px) {
   .get-in-touch-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+  
+  .get-in-touch-section {
+    padding: 4rem 1.5rem;
   }
 
   .contact-form-container {
@@ -896,6 +1007,12 @@ textarea.form-field {
 
   .map-section {
     height: 400px;
+  }
+  
+  .contact-form-container,
+  .contact-info-container {
+    margin: 0 auto;
+    width: 100%;
   }
 }
 
