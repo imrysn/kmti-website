@@ -206,6 +206,7 @@
 
 .why-work-withus-section {
   padding: 5rem 0;
+  overflow: hidden;
 }
 
 .why-work-withus-container {
@@ -214,6 +215,7 @@
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
+  overflow: visible;
 }
 
 .why-work-withus-title {
@@ -246,6 +248,7 @@
   grid-template-columns: repeat(3, 2fr);
   gap: 1.5rem;
   align-items: stretch;
+  overflow: visible;
 }
 
 .meet-our-team-section {
@@ -589,6 +592,7 @@
 
   .why-work-withus-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 
   .meet-our-team-container {
@@ -676,6 +680,7 @@
   .why-work-withus-container {
     padding-left: 1rem;
     padding-right: 1rem;
+    overflow: visible;
   }
 
   .meet-our-team-container {
@@ -714,6 +719,8 @@
   .why-work-withus-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    overflow: visible;
+    max-width: 100%;
   }
 
   .why-work-withus-title {
@@ -859,9 +866,16 @@
     margin-right: 0;
   }
 
+  .why-work-withus-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    overflow: visible;
+  }
+
   .why-work-withus-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.85rem;
+    overflow: visible;
   }
 
   .ojt-carousel-container {
@@ -965,6 +979,7 @@
   .why-work-withus-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.85rem;
+    overflow: visible;
   }
 
   .ojt-carousel-container {
@@ -994,6 +1009,7 @@
   .why-work-withus-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
+    overflow: visible;
   }
 
   .how-to-apply-grid {

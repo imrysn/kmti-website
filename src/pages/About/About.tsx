@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import './About.css';
 import '../Home/Home-iPhoneSE.css';
 import '../Home/iPhone12_13_14.css';
@@ -186,18 +185,81 @@ const About: React.FC<AboutPageProps> = () => {
   const openTeamMemberModal = (image: string, role: string) => {setSelectedTeamMember({ image, role });};
   const closeTeamMemberModal = () => setSelectedTeamMember(null);
 
-   useEffect(() => {
+  const [scaleY, setScaleY] = useState(0);
+
+  useEffect(() => {
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', () => setTimeout(setVH, 100));
+    
+    return () => {
+      window.removeEventListener('resize', setVH);
+      window.removeEventListener('orientationchange', setVH);
+    };
+  }, []);
+
+  // Native scroll handler
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+      const rect = timelineRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const timelineHeight = timelineRef.current.offsetHeight;
+      const progress = (windowHeight - rect.top) / (windowHeight + timelineHeight);
+      setScaleY(Math.max(0, Math.min(1, progress)));
+    };
+
+    handleScroll();
+    setTimeout(handleScroll, 100);
+    setTimeout(handleScroll, 500);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
+  // THIS IS THE FIX: Ensure page is scrollable on load
+  useEffect(() => {
+    // Force body/html to be scrollable
+    document.body.style.overflow = 'auto';
+    document.body.style.height = 'auto';
+    document.documentElement.style.overflow = 'auto';
+    
+    // Force resize to recalculate layout
+    window.dispatchEvent(new Event('resize'));
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 300);
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 800);
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 1500);
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1024);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (isManagementTeamExpanded) {
+      const timer = setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isManagementTeamExpanded]);
   
   const navigateToContact = () => navigate('/contact');
   const navigateToProjects = () => navigate('/projects');
 
-  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % ourPeopleImages.length);
@@ -219,25 +281,23 @@ const About: React.FC<AboutPageProps> = () => {
     const newState = !isManagementTeamExpanded;
     setIsManagementTeamExpanded(newState);
     if (!newState) {
-      setTimeout(() => {
-        const section = document.querySelector('.about-management-team-section');
-        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const section = document.querySelector('.about-management-team-section');
+          if (section) {
+            const yOffset = -80;
+            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }, 150);
+      });
     }
   };
 
   const tEn = i18n.getFixedT('en');
 
-  // Scroll animation for timeline
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start center", "end center"],
-  });
-
-  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
-    <div className='about-bg-wrapper'>
+    <div className='about-bg-wrapper' style={{ minHeight: '100vh', overflow: 'visible' }}>
       <BackgroundShapes />
         <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none' }}>
           <Canvas camera={{ position: [0, 0, 15], fov: 50 }}>
@@ -248,7 +308,7 @@ const About: React.FC<AboutPageProps> = () => {
             <FloatingGear position={[5, -8, -5]} scale={0.6} speed={0.2} />
           </Canvas>
         </div>
-    <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})` } as React.CSSProperties}>
+    <div className="about-page" style={{ '--about-bg-image': `url(${aboutBg})`, minHeight: '100vh', overflow: 'visible' } as React.CSSProperties}>
       <SEO 
         title={tEn('nav.about')} 
         description={tEn('about.hero.subtitle')} 
@@ -304,10 +364,9 @@ const About: React.FC<AboutPageProps> = () => {
         <div className="about-history-container container">
           <h2 className="about-history-title">{t('about.history.title')}</h2>
           <div className="about-history-timeline" ref={timelineRef}>
-            {/* The animated center line */}
-            <motion.div 
+            <div 
               className="about-history-timeline-line" 
-              style={{ scaleY, transformOrigin: "top" }} 
+              style={{ transform: `scaleY(${scaleY})`, transformOrigin: "top" }} 
             />
             {['item1', 'item2', 'item3', 'item_2017', 'item4', 'item5'].map((key, index) => (
               <div
@@ -372,7 +431,7 @@ const About: React.FC<AboutPageProps> = () => {
                 <ManagementTeamCard image={erikImage} role={t('about.management.roles.eng_tl')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(erikImage, t('about.management.roles.eng_tl')) : undefined} />
                 <ManagementTeamCard image={louieImage} role={t('about.management.roles.eng_atl')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(louieImage, t('about.management.roles.eng_atl')) : undefined} />
                 <ManagementTeamCard image={shelaImage} role={t('about.management.roles.eng_sup')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(shelaImage, t('about.management.roles.eng_sup')) : undefined} />
-                <ManagementTeamCard image={mgImage} role={t('about.management.roles.it_staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(mgImage, t('about.management.roles.staff')) : undefined} />
+                <ManagementTeamCard image={mgImage} role={t('about.management.roles.it_staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(mgImage, t('about.management.roles.it_staff')) : undefined} />
               </div>
               <div className="about-management-team-grid">
                 <ManagementTeamCard image={royImage} role={t('about.management.roles.driver')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(royImage, t('about.management.roles.driver')) : undefined} />
@@ -390,8 +449,7 @@ const About: React.FC<AboutPageProps> = () => {
               </div>
               <div className="about-management-team-grid">
                 <ManagementTeamCard image={jojoImage} role={t('about.management.roles.utility')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(jojoImage, t('about.management.roles.utility')) : undefined} />
-                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(kerbyImage, t('about.management.roles.it_staff')) : undefined} />                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(zorenImage, t('about.management.roles.staff')) : undefined} />
-
+                <ManagementTeamCard image={kerbyImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(kerbyImage, t('about.management.roles.staff')) : undefined} />                <ManagementTeamCard image={zorenImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(zorenImage, t('about.management.roles.staff')) : undefined} />
                 <ManagementTeamCard image={matthewImage} role={t('about.management.roles.staff')} fallbackNode={<UserIcon />} className={isMobile ? 'clickable' : ''} onClick={isMobile ? () => openTeamMemberModal(matthewImage, t('about.management.roles.staff')) : undefined} />
               </div>
             </div>

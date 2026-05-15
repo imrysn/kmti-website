@@ -1,8 +1,9 @@
 .about-bg-wrapper {
   position: relative;
-  overflow: hidden;
+  overflow: visible !important;
   margin-top: -10rem;
   padding-top: 10rem;
+  min-height: auto;
 }
 
 .about-page {
@@ -10,6 +11,8 @@
   margin-top: -10rem;
   padding-top: 10rem;
   z-index: 2;
+  overflow: visible !important;
+  min-height: auto;
 
   --about-hero-height-desktop: 100vh;
   --about-hero-height-tablet: 104vh;
@@ -1963,7 +1966,6 @@
   .about-title {
     font-size: 1.75rem;
     font-weight: 600;
-    /* Slightly bold */
     margin-bottom: 0.5rem;
   }
 
@@ -1971,7 +1973,6 @@
     font-size: 0.85rem;
     margin-bottom: 0.25rem;
     font-weight: 400;
-    /* Regular weight */
     font-style: normal;
   }
 
@@ -2003,7 +2004,6 @@
     font-size: 0.85rem;
     line-height: 1.6;
     font-weight: 400;
-    /* Regular weight */
   }
 
   .about-company-button {
@@ -2014,7 +2014,6 @@
     padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
     width: 100%;
-    /* Full width button */
   }
 
   .about-management-team-title,
@@ -2039,19 +2038,17 @@
     justify-content: space-between;
   }
 
-  /* Hide placeholder since large card becomes normal */
   .management-team-card-placeholder {
     display: none !important;
   }
 
-  /* ALL cards (including large) become uniform size */
   .about-management-team-grid .management-team-card {
     position: relative !important;
     max-width: none !important;
     width: 100% !important;
     height: auto !important;
-    top: 0 !important; /* Reset positioning for large card */
-    left: auto !important; /* Reset positioning for large card */
+    top: 0 !important;
+    left: auto !important;
     right: auto !important;
     transform: none !important;
     margin: 0 !important;
@@ -2234,14 +2231,14 @@
   }
 
   .about-management-team-grid .management-team-card {
-    padding: 0.2rem 0.2rem 0.2rem 0.2rem !important; /* Add bottom padding */
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem !important;
     margin: 0 !important;
   }
   
   .about-management-team-grid .management-team-card .management-team-card-role {
-    margin-top: 0.15rem !important; /* Reduce top margin */
-    font-size: 0.25rem !important; /* Slightly larger for readability */
-    white-space: nowrap !important; /* Allow text to wrap */
+    margin-top: 0.15rem !important;
+    font-size: 0.25rem !important;
+    white-space: nowrap !important;
   }
   
   .about-management-team-grid .management-team-card .management-team-card-image {
@@ -2249,7 +2246,7 @@
     width: 100%;
     position: relative;
     height: auto;
-    margin: 0 0 0 0 !important; /* Remove top margin, keep bottom margin minimal */
+    margin: 0 0 0 0 !important;
     object-fit: cover;
     object-position: center top;
     border-radius: 6px 6px 4px 4px;
@@ -2258,8 +2255,8 @@
 }
 
 @media (max-width: 375px) {
-  .about-page {
-    bottom: -31px;
+  .about-hero {
+    height: 130vh !important;   
   }
 
   .about-history-item {
@@ -2318,5 +2315,80 @@
     font-size: 0.35rem !important;
     white-space: normal;
     word-break: break-word;
+  }
+}
+
+@media (max-width: 375px) and (min-height: 800px) {
+  .about-hero {
+   height: 125vh !important;   
+  }
+
+  .about-company-images {
+    margin-top: 8rem !important;
+  }
+}
+
+/* ============================================
+   SCROLL SMOOTHING FIXES
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overscroll-behavior-y: auto;
+}
+
+.about-history-timeline-line {
+  pointer-events: none;
+  will-change: transform;
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  .about-bg-wrapper {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+  }
+}
+
+/* ============================================
+   IPHONE IMAGE STRETCH/ZOOM FIX
+   ============================================ */
+.management-team-card-image,
+.about-company-image,
+.our-people-image {
+  touch-action: manipulation;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .management-team-card-image {
+    object-fit: cover !important;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  .management-team-card {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .about-company-image,
+  .our-people-image {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
+    touch-action: manipulation;
   }
 }

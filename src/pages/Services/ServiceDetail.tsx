@@ -349,7 +349,6 @@ const ServiceDetail: React.FC = () => {
                     <ul className="checklist-simple">
                       {checklistItems.map((item, index) => (
                         <motion.li key={index} variants={fadeUpItemVariants}>
-                          <span className="check-icon">🗹</span>
                           <span>{item}</span>
                         </motion.li>
                       ))}
@@ -420,7 +419,6 @@ const ServiceDetail: React.FC = () => {
                   <ul className="checklist-simple">
                     {checklistItems.map((item, index) => (
                       <motion.li key={index} variants={fadeUpItemVariants}>
-                        <span className="check-icon">🗹</span>
                         <span>{item}</span>
                       </motion.li>
                     ))}

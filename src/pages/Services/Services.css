@@ -1216,13 +1216,31 @@
   font-size: 1.2rem;
 }
 
+/* Box */
 .svc-motion__list li::before {
-  content: "🗹";
+  content: "";
   position: absolute;
   left: 10px;
-  font-size: 2rem;
-  bottom: -10px;
-  color: #6aa6ff;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border: 2px solid #6aa6ff;
+  border-radius: 4px;
+  background-color: rgba(106, 166, 255, 0.1);
+}
+
+/* Checkmark */
+.svc-motion__list li::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-65%) rotate(45deg);
+  width: 6px;
+  height: 12px;
+  border-bottom: 2.5px solid #6aa6ff;
+  border-right: 2.5px solid #6aa6ff;
 }
 
 /* ============================================
@@ -1270,9 +1288,16 @@
     padding-left: 40px;
   }
 
-  .svc-motion__list li::before  {
-    font-size: 1.5rem;
-    margin-bottom: 3px;
+  .svc-motion__list li::before {
+    width: 20px;
+    height: 20px;
+    left: 8px;
+  }
+
+  .svc-motion__list li::after {
+    width: 5px;
+    height: 10px;
+    left: 15px;
   }
 
   .svc-motion__controls-overlay {
@@ -1307,7 +1332,9 @@
   }
 
   .svc-motion__left {
-    display: contents;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .svc-motion__main-card {
@@ -1333,8 +1360,15 @@
     padding-left: 40px;
   }
 
-  .svc-motion__list li::before  {
-    font-size: 1.5rem;
+  .svc-motion__list li::before {
+    width: 18px;
+    height: 18px;
+  }
+
+  .svc-motion__list li::after {
+    width: 4px;
+    height: 9px;
+    left: 15px;
   }
 
   .svc-motion__playing-indicator {
@@ -1469,12 +1503,22 @@
   .svc-motion__list li {
     font-size: 0.7rem;
     padding-left: 30px;
-    text-wrap: nowrap;
   }
 
-  .svc-motion__list li::before  {
-    font-size: 1rem;
-    margin-bottom: 6px;
+  .svc-motion__list li::before {
+    width: 16px;
+    height: 16px;
+    border-width: 1.5px;
+    left: 6px;
+    border-radius: 3px;
+  }
+
+  .svc-motion__list li::after {
+    width: 4px;
+    height: 8px;
+    left: 12px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
   }
 }
 
@@ -1482,12 +1526,17 @@
   .svc-motion__list li {
     font-size: 0.65rem;
     padding-left: 30px;
-    text-wrap: unset;
   }
 
-  .svc-motion__list li::before  {
-    font-size: 1rem;
-    margin-bottom: 6px;
+  .svc-motion__list li::before {
+    width: 15px;
+    height: 15px;
+  }
+
+  .svc-motion__list li::after {
+    width: 3px;
+    height: 7px;
+    left: 12px;
   }
 }
 
@@ -1506,14 +1555,23 @@
 
   .svc-motion__list li {
     font-size: 0.6rem;
-    padding-left: 20px;
-    text-wrap: nowrap;
+    padding-left: 25px;
   }
 
-  .svc-motion__list li::before  {
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-    left: 0;
+  .svc-motion__list li::before {
+    width: 14px;
+    height: 14px;
+    left: 4px;
+    border-width: 1.5px;
+    border-radius: 2px;
+  }
+
+  .svc-motion__list li::after {
+    width: 3px;
+    height: 6px;
+    left: 10px;
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
   }
 }
 

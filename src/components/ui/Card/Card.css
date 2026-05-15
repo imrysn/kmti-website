@@ -451,7 +451,7 @@
   line-height: 1.6;
   margin-bottom: 1rem;
   margin-top: 0.5rem;
-  width: 110%;
+  width: 100%;
   text-align: center;
 }
 
@@ -601,7 +601,7 @@
   margin-right: 0;
   margin-top: 0;
   text-align: center;
-  width: 101%;
+  width: 100%;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
@@ -2325,4 +2325,63 @@
 
 .lang-jp .management-team-card-role {
   font-weight: 500 !important;
+}
+
+/* ============================================
+   IPHONE IMAGE STRETCH/ZOOM FIX
+   ============================================ */
+.management-team-card-image {
+  object-fit: cover !important;
+  object-position: center top !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 320px !important;
+  max-height: none !important;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* iPhone-specific overrides */
+@supports (-webkit-touch-callout: none) {
+  .management-team-card {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+  }
+
+  .management-team-card-image {
+    aspect-ratio: auto !important;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  .about-company-image,
+  .our-people-image {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    image-rendering: -webkit-optimize-contrast;
+    touch-action: manipulation;
+  }
+}
+
+.management-team-card-large .management-team-card-image {
+  height: 450px !important;
+  min-height: unset !important;
+}
+
+@media (max-width: 768px) {
+  .management-team-card-image {
+    min-height: auto !important;
+    height: auto !important;
+    aspect-ratio: 3/4 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .management-team-card-image {
+    height: auto !important;
+    min-height: unset !important;
+  }
 }

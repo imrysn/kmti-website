@@ -5,11 +5,11 @@ import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import SEO from '../../components/common/SEO';
 import './Sitemap.css';
-import '../../styles/BackgroundShapes.css'; // Global CSS for Background Animated Shape
+import '../../styles/BackgroundShapes.css';
 import type { SitemapPageProps, SitemapSection } from './Sitemap.types';
 
 const BackgroundShapes: React.FC = () => (
-  <> {/* Bottom Shapes */}
+  <>
     <ul className="shapes-container" aria-hidden="true">
       <li className="shape" />
       <li className="shape" />
@@ -32,7 +32,6 @@ const BackgroundShapes: React.FC = () => (
       <li className="shape" />
       <li className="shape" />
     </ul>
-    {/* Top Shapes */}
     <ul className="shapes-container-top" aria-hidden="true">
       <li className="shape-top" />
       <li className="shape-top" />
@@ -58,7 +57,6 @@ const BackgroundShapes: React.FC = () => (
   </>
 );
 
-// --- 3D Gear Component ---
 const FloatingGear: React.FC<{ position: [number, number, number], scale?: number, speed?: number }> = ({ position, scale = 1, speed = 0.2 }) => {
   const meshRef = React.useRef<THREE.Mesh>(null);
   const gearShape = React.useMemo(() => {
@@ -68,23 +66,21 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
     const rInner = 2.3;
     const holeRadius = 1;
 
-    // Start at inner radius (angle 0)
     shape.moveTo(rInner, 0);
 
     for (let i = 0; i < teeth; i++) {
       const theta = (Math.PI * 2 * i) / teeth;
       const step = (Math.PI * 2) / teeth;
 
-      // Create a trapezoidal tooth profile (Cog shape)
-      const aRise = theta + step * 0.15; // Start of rise
-      const aTop = theta + step * 0.35;  // End of flat top
-      const aFall = theta + step * 0.50; // End of fall
-      const aNext = theta + step;        // End of valley
+      const aRise = theta + step * 0.15;
+      const aTop = theta + step * 0.35;
+      const aFall = theta + step * 0.50;
+      const aNext = theta + step;
 
-      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter); // Rise to outer
-      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);   // Move along outer
-      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner); // Fall to inner
-      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner); // Move along inner
+      shape.lineTo(Math.cos(aRise) * rOuter, Math.sin(aRise) * rOuter);
+      shape.lineTo(Math.cos(aTop) * rOuter, Math.sin(aTop) * rOuter);
+      shape.lineTo(Math.cos(aFall) * rInner, Math.sin(aFall) * rInner);
+      shape.lineTo(Math.cos(aNext) * rInner, Math.sin(aNext) * rInner);
     }
     shape.closePath();
 
@@ -97,8 +93,8 @@ const FloatingGear: React.FC<{ position: [number, number, number], scale?: numbe
 
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.z += delta * speed; // Custom rotation speed
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2; // Slight tilt
+      meshRef.current.rotation.z += delta * speed;
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
     }
   });
 
@@ -164,7 +160,6 @@ const Sitemap: React.FC<SitemapPageProps> = () => {
           label: t('home.services.items.assembly.title'),
           description: t('home.services.items.assembly.desc')
         },
-        // Only show Events in English
         ...(isEnglish ? [{
           path: '/events',
           label: t('nav.events'),
@@ -217,7 +212,7 @@ const Sitemap: React.FC<SitemapPageProps> = () => {
         </Canvas>
       </div>
 
-      <section className="hero-section">
+      <section className="sitemap-hero-section">
         <div className="sitemap-hero-container">
           <h1 className="sitemap-title">{t('sitemap.title')}</h1>
           <p className="sitemap-subtitle">{t('sitemap.subtitle')}</p>

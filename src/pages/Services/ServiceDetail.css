@@ -237,9 +237,44 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.50rem 0;
+  padding: 0.75rem 0;
   color: rgba(255, 255, 255, 0.9);
   font-size: 1rem;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 35px;
+}
+
+/* Box */
+.checklist-simple li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border: 2px solid #51A2FF;
+  border-radius: 4px;
+  background-color: rgba(81, 162, 255, 0.1);
+  flex-shrink: 0;
+}
+
+/* Checkmark */
+.checklist-simple li::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-65%) rotate(45deg);
+  width: 6px;
+  height: 12px;
+  border-bottom: 2.5px solid #51A2FF;
+  border-right: 2.5px solid #51A2FF;
+}
+
+.check-icon {
+  display: none;
 }
 
 /* ZOOM INSTRUCTION OVERLAY */
@@ -279,57 +314,48 @@
     transform: translateY(0);
   }
 }
-
-.checklist-simple {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.checklist-simple li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.75rem 0;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.check-icon {
-  font-size: 1.5rem;
-  color: #51A2FF;
-  flex-shrink: 0;
-  display: inline-block;
-  font-weight: normal;
-  line-height: 1;
-}
-
-.checklist-simple li:hover .check-icon {
-  transform: scale(1.1);
-  transition: transform 0.2s ease;
-}
 @media (max-width: 768px) {
   .checklist-simple li {
     font-size: 0.9rem;
     padding: 0.5rem 0;
-    gap: 0.6rem;
+    padding-left: 30px;
   }
   
-  .check-icon {
-    font-size: 1rem;
+  .checklist-simple li::before {
+    width: 18px;
+    height: 18px;
+    border-width: 1.5px;
+    border-radius: 3px;
+  }
+  
+  .checklist-simple li::after {
+    width: 5px;
+    height: 9px;
+    left: 5px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
   }
 }
 
 @media (max-width: 480px) {
   .checklist-simple li {
     font-size: 0.85rem;
-    gap: 0.5rem;
-    padding: 0.4rem 0;
+    padding-left: 28px;
   }
 
-  .check-icon {
-    font-size: 0.9rem;
+  .checklist-simple li::before {
+    width: 16px;
+    height: 16px;
+    border-width: 1.5px;
+    border-radius: 3px;
+  }
+  
+  .checklist-simple li::after {
+    width: 4px;
+    height: 8px;
+    left: 4px;
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
   }
 }
 
@@ -398,6 +424,25 @@
     max-width: 500px;
     margin: 0 auto;
   }
+
+  .checklist-simple li {
+    padding-left: 30px;
+  }
+
+  .checklist-simple li::before {
+    width: 18px;
+    height: 18px;
+    border-width: 1.5px;
+    border-radius: 3px;
+  }
+
+  .checklist-simple li::after {
+    width: 5px;
+    height: 9px;
+    left: 7px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -449,10 +494,22 @@
   .checklist-simple li {
     font-size: 0.9rem;
     padding: 0.5rem 0;
+    padding-left: 30px;
   }
   
-  .check-icon {
-    font-size: 1rem;
+  .checklist-simple li::before {
+    width: 18px;
+    height: 18px;
+    border-width: 1.5px;
+    border-radius: 3px;
+  }
+  
+  .checklist-simple li::after {
+    width: 5px;
+    height: 9px;
+    left: 7px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
   }
 
   .workflow-steps {
@@ -530,10 +587,22 @@
     font-size: 0.85rem;
     gap: 0.5rem;
     padding: 0.4rem 0;
+    padding-left: 28px;
   }
 
-  .check-icon {
-    font-size: 0.9rem;
+  .checklist-simple li::before {
+    width: 16px;
+    height: 16px;
+    border-width: 1.5px;
+    border-radius: 3px;
+  }
+  
+  .checklist-simple li::after {
+    width: 4px;
+    height: 8px;
+    left: 4px;
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
   }
 
   .step-content {
@@ -552,6 +621,21 @@
   }
   .service-detail-description {
     font-size: 1rem;
+  }
+
+  .checklist-simple li {
+    padding-left: 26px;
+  }
+
+  .checklist-simple li::before {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .checklist-simple li::after {
+    width: 3.5px;
+    height: 7px;
+    left: 6px;
   }
 }
 
@@ -577,6 +661,26 @@
   .service-detail-description {
     font-size: 0.9rem;
     word-spacing: 5px;
+  }
+
+  .checklist-simple li {
+    font-size: 0.8rem;
+    padding-left: 25px;
+  }
+
+  .checklist-simple li::before {
+    width: 14px;
+    height: 14px;
+    border-width: 1.5px;
+    border-radius: 2px;
+  }
+  
+  .checklist-simple li::after {
+    width: 3px;
+    height: 6px;
+    left: 6px;
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
   }
 }
 
