@@ -8,6 +8,8 @@ import './Events.css';
 import { getAssetUrl } from '../../utils/assets';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
 
+const eventHeroBg = getAssetUrl('hero_background/Event.webp');
+
 interface YearOption {
   year: string;
   label: string;
@@ -334,16 +336,9 @@ const EventsCarousel: React.FC = () => {
   // Initialize infinite images with multiple copies for seamless scrolling
   useEffect(() => {
     const copies = [
-      ...originalGalleryImages, 
-      ...originalGalleryImages, 
-      ...originalGalleryImages,
-      ...originalGalleryImages,
-      ...originalGalleryImages,
-      ...originalGalleryImages,
-      ...originalGalleryImages,
-      ...originalGalleryImages,
-      ...originalGalleryImages,
-      ...originalGalleryImages
+      ...originalGalleryImages, // Set 1 (Previous)
+      ...originalGalleryImages, // Set 2 (Middle/View)
+      ...originalGalleryImages  // Set 3 (Next)
     ];
     const imagesWithIndex = copies.map((img, idx) => ({
       ...img,
@@ -359,7 +354,7 @@ const EventsCarousel: React.FC = () => {
       const cardWidth = 470;
       const gap = 30;
       const oneSetWidth = (cardWidth + gap) * originalGalleryImages.length;
-      const targetScroll = oneSetWidth * 4;
+      const targetScroll = oneSetWidth; // Start at the beginning of the second set
       galleryRef.current.scrollLeft = targetScroll;
       setInitialScrollSet(true);
     }
@@ -391,13 +386,13 @@ const EventsCarousel: React.FC = () => {
       const cardWidth = 470;
       const gap = 30;
       const oneSetWidth = (cardWidth + gap) * originalGalleryImages.length;
-      const middlePosition = oneSetWidth * 4;
+      const middlePosition = oneSetWidth;
       
       // SLIDE TO THE LEFT - INCREASE scrollLeft (content moves left)
       let newScrollLeft = gallery.scrollLeft + (slideSpeed * deltaTime);
       
       // When reaching the end, jump back to middle position for infinite loop
-      if (newScrollLeft >= gallery.scrollWidth - gallery.clientWidth - 200) {
+      if (newScrollLeft >= oneSetWidth * 2) {
         gallery.scrollLeft = middlePosition;
         newScrollLeft = middlePosition;
       } 
@@ -502,13 +497,13 @@ const EventsCarousel: React.FC = () => {
     const cardWidth = 470;
     const gap = 30;
     const oneSetWidth = (cardWidth + gap) * originalGalleryImages.length;
-    const middlePosition = oneSetWidth * 4;
+    const middlePosition = oneSetWidth;
     
-    if (gallery.scrollLeft >= gallery.scrollWidth - oneSetWidth * 2) {
+    if (gallery.scrollLeft >= oneSetWidth * 2) {
       gallery.scrollLeft = middlePosition;
     }
-    else if (gallery.scrollLeft <= oneSetWidth) {
-      gallery.scrollLeft = middlePosition;
+    else if (gallery.scrollLeft <= 0) {
+      gallery.scrollLeft = oneSetWidth;
     }
   }, [originalGalleryImages.length]);
 
@@ -633,7 +628,12 @@ const EventsCarousel: React.FC = () => {
         {/* HERO SECTION - NO scroll trigger on hero content */}
         <section className="events-hero">
           <div className="hero-overlay"></div>
-          <div className="hero-background" role="img" aria-label="Events hero background"></div>
+          <div 
+            className="hero-background" 
+            role="img" 
+            aria-label="Events hero background"
+            style={{ backgroundImage: `url(${eventHeroBg})` }}
+          ></div>
 
           <div className="events-hero-content">
             <h1>
@@ -729,7 +729,7 @@ const EventsCarousel: React.FC = () => {
               >
                 {infiniteImages.map((image, index) => (
                   <div key={`${image.originalIndex}-${index}`} className="intro-gallery-card">
-                    <img src={image.src} alt={image.alt} draggable={false} />
+                    <LazyImage src={image.src} alt={image.alt} />
                   </div>
                 ))}
               </div>
