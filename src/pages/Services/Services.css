@@ -254,9 +254,14 @@
   animation: flowGradient 6s linear infinite;
 }
 
-@keyframes flowGradient {
-  0% { background-position: 100% 50%; }
-  100% { background-position: 250% 50%; }
+.svc-showcase__text-fill,
+.svc-showcase__back-text-fill {
+  animation-play-state: paused !important;
+}
+
+.svc-showcase.reveal.active .svc-showcase__text-fill,
+.svc-showcase.reveal.active .svc-showcase__back-text-fill {
+  animation-play-state: running !important;
 }
 
 /* ================= TEXT ANIMATIONS (BACK & FRONT) ================= */
@@ -312,7 +317,7 @@
   width: 100% !important;
   height: 100% !important;
   outline: none;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+  filter: none;
   display: block;
 }
 
@@ -427,7 +432,6 @@
   color: white;
   text-align: center;
   width: 140px;
-  backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
 
@@ -589,6 +593,10 @@
   }
   .svc-showcase__desc{
     font-size: 1rem;
+  }
+  .svc-showcase__text-fill,
+  .svc-showcase__back-text-fill {
+    animation: none;
   }
 }
 

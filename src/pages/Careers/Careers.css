@@ -1086,7 +1086,7 @@
 
 @media (max-width: 375px) and (max-height: 667px) {
   .careers-page .hero-content {
-    margin-left: 1rem !important;
+    margin-left: 0.4rem !important;
     margin-right: auto !important;
     padding-left: 0.875rem !important;
     max-width: 400px !important;

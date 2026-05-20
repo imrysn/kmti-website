@@ -17,7 +17,13 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
 
 // Preload the 3D Figure
-useGLTF.preload('/compressed_glb/Hydraulic_piping.glb');
+const link = document.createElement('link');
+link.rel = 'preload';
+link.as = 'fetch';
+link.href = '/compressed_glb/Hydraulic_piping.glb';
+link.setAttribute('fetchpriority', 'low');
+link.crossOrigin = 'anonymous';
+document.head.appendChild(link);
 
 const servicesBg = getAssetUrl('hero_background/servicesbg.webp');
 const icon3D = getAssetUrl('icons/cube.webp');
@@ -522,7 +528,7 @@ const Services: React.FC<ServicesPageProps> = () => {
       <div className="sitemap-3d-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none' }}>
         <Canvas 
           camera={{ position: [0, 0, 15], fov: 50 }}
-          dpr={[1, 1.5]}
+          dpr={[0.5, 0.8]}
           performance={{ min: 0.3 }}
           gl={{ 
             powerPreference: "high-performance",
@@ -572,8 +578,9 @@ const Services: React.FC<ServicesPageProps> = () => {
 
             <div className="svc-showcase__center svc-showcase__center--3d">
               <Canvas 
+                shadows={false}
                 camera={{ position: [15, 40, 55], fov: isMobile ? 70 : 60 }}
-                dpr={[1, 1.5]}
+                dpr={[0.8, 1.2]}
                 performance={{ min: 0.5 }}
                 gl={{ 
                   powerPreference: "high-performance",
@@ -609,8 +616,10 @@ const Services: React.FC<ServicesPageProps> = () => {
                   minPolarAngle={Math.PI / 2}
                   maxPolarAngle={Math.PI / 2}
                   enableRotate={true}
-                  rotateSpeed={isMobile ? 0.5 : 0.8}
+                  rotateSpeed={isMobile ? 0.3 : 0.5}
                   zoomSpeed={1.5}
+                  enableDamping={true}
+                  dampingFactor={0.05}
                 />
               </Canvas>
             </div>
