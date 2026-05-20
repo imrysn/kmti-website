@@ -1084,6 +1084,16 @@
   }
 }
 
+@media (max-width: 375px) and (max-height: 812px) {
+  .careers-page .hero-content {
+    margin-left: -0.5rem !important;
+  }
+
+  .careers-page .hero-title {
+    font-size: 1.8rem !important;
+  }
+}
+
 @media (max-width: 375px) and (max-height: 667px) {
   .careers-page .hero-content {
     margin-left: 0.4rem !important;
