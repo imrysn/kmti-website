@@ -1215,3 +1215,18 @@
     font-size: 0.85rem !important;
   }
 }
+
+@supports (-webkit-touch-callout: none) {
+  .about-management-team-grid .management-team-card .management-team-card-image {
+    aspect-ratio: 3/4 !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    height: auto !important;
+    min-height: unset !important;
+  }
+  
+  .about-management-team-grid .management-team-card {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+  }
+}

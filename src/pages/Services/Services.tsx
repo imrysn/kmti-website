@@ -139,10 +139,12 @@ const HydraulicPipingModel: React.FC<{
   scale?: number;
   rotation?: [number, number, number];
   position?: [number, number, number];
+  isMobile?: boolean;
 }> = ({
   scale = 0.12,
   rotation = [0, -0.2, 0],
-  position = [0, 5, 0]
+  position = [0, 5, 0],
+  isMobile = false,
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/compressed_glb/Hydraulic_piping.glb');
@@ -193,9 +195,9 @@ const HydraulicPipingModel: React.FC<{
   useEffect(() => {
     if (isInView && !animationStarted) {
       setAnimationStarted(true);
-      animationProgress.current = 0;
+      animationProgress.current = isMobile ? 1 : 0;
     }
-  }, [isInView, animationStarted]);
+  }, [isInView, animationStarted, isMobile]);
   
   useFrame((_state, _delta) => {
     if (!groupRef.current) return;
@@ -207,6 +209,14 @@ const HydraulicPipingModel: React.FC<{
       return;
     }
     
+    if (isMobile) {
+      groupRef.current.position.set(...position);
+      groupRef.current.rotation.set(...rotation);
+      groupRef.current.scale.setScalar(scale);
+      return;
+    }
+    
+    // Desktop animation
     const speed = window.innerWidth < 768 ? 0.015 : 0.007;
     
     if (animationProgress.current < 1) {
@@ -589,6 +599,7 @@ const Services: React.FC<ServicesPageProps> = () => {
                     scale={0.12}
                     rotation={[0, -0.2, 0]}
                     position={[0, 0, 0]}
+                    isMobile={isMobile}
                   />
                 </Suspense>
                 

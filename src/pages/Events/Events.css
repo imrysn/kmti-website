@@ -1557,8 +1557,9 @@ button.btn.btn-event:hover .arrow-icon {
 /* 375px and below */
 @media (max-width: 375px) {
   .events-hero {
-    padding: 18rem 0rem 4rem;
-    min-height: 125vh;
+    margin-top: 1rem;
+    padding-bottom: 10rem;
+    min-height: 110vh;
   }
   
   .events-hero-content h1 {
@@ -1660,7 +1661,7 @@ button.btn.btn-event:hover .arrow-icon {
 @media (max-width: 360px) {
   .events-hero {
     padding: 19rem 0rem 4rem;
-    min-height: 125vh;
+    min-height: 110vh;
   }
   
   .events-hero-content h1 {

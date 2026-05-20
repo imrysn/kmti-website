@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LazyImage from '../../components/ui/LazyImage/LazyImage';
 import SEO from '../../components/common/SEO';
 import { useNavigate } from 'react-router-dom';
@@ -136,12 +136,40 @@ const Careers: React.FC<CareersPageProps> = () => {
   const tEn = i18n.getFixedT('en');
 
   const [activeOjtType, setActiveOjtType] = useState<'engineering' | 'it' | null>(null);
+  const [ojtCarouselIndex, setOjtCarouselIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const engineeringImages = ['ojt_10.webp', 'ojt_4.webp', 'ojt_6.webp', 'ojt_12.webp', 'ojt_13.webp', 'ojt_9.webp'];
   const itImages = ['ojt_7.webp', 'ojt_8.webp', 'ojt_2.webp', 'ojt_14.webp', 'ojt_15.webp', 'ojt_16.webp'];
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Reset carousel index when OJT type changes
+  useEffect(() => {
+    setOjtCarouselIndex(0);
+  }, [activeOjtType]);
+
   const toggleOjt = (type: 'engineering' | 'it') => {
     setActiveOjtType(activeOjtType === type ? null : type);
+  };
+
+  const handleOjtCarouselPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const images = activeOjtType === 'engineering' ? engineeringImages : itImages;
+    setOjtCarouselIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleOjtCarouselNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const images = activeOjtType === 'engineering' ? engineeringImages : itImages;
+    setOjtCarouselIndex((prev) => (prev + 1) % images.length);
   };
 
   const navigateToAbout = () => {
@@ -326,7 +354,8 @@ const Careers: React.FC<CareersPageProps> = () => {
 
           {activeOjtType && (
             <div className="ojt-grid-expanded" key={activeOjtType}>
-              <div className="ojt-grid">
+              {/* Desktop Grid (visible on screens > 768px) */}
+              <div className="ojt-grid ojt-grid-desktop">
                 {(activeOjtType === 'engineering' ? engineeringImages : itImages).map((img, idx) => (
                   <div className="ojt-image-wrapper" key={idx}>
                     <LazyImage
@@ -337,6 +366,65 @@ const Careers: React.FC<CareersPageProps> = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Mobile Carousel (visible on screens ≤ 768px) */}
+              {isMobile && (
+                <div className="ojt-carousel">
+                  <div className="ojt-carousel-container">
+                    <button 
+                      className="ojt-carousel-nav ojt-carousel-prev" 
+                      onClick={handleOjtCarouselPrev}
+                      aria-label="Previous image"
+                    >
+                      ‹
+                    </button>
+                    
+                    <div className="ojt-carousel-viewport">
+                      <div className="ojt-carousel-track">
+                        {(activeOjtType === 'engineering' ? engineeringImages : itImages).map((img, idx) => (
+                          <div
+                            key={idx}
+                            className={`ojt-carousel-slide ${idx === ojtCarouselIndex ? 'active' : ''}`}
+                            style={{
+                              transform: `translateX(${(idx - ojtCarouselIndex) * 100}%)`,
+                              opacity: idx === ojtCarouselIndex ? 1 : 0,
+                              transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease'
+                            }}
+                          >
+                            <div className="ojt-carousel-image-wrapper">
+                              <LazyImage
+                                src={getAssetUrl(`ojt/${img}`)}
+                                alt="OJT Program"
+                                className="ojt-carousel-image"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <button 
+                      className="ojt-carousel-nav ojt-carousel-next" 
+                      onClick={handleOjtCarouselNext}
+                      aria-label="Next image"
+                    >
+                      ›
+                    </button>
+                  </div>
+                  
+                  {/* Carousel Indicators */}
+                  <div className="ojt-carousel-indicators">
+                    {(activeOjtType === 'engineering' ? engineeringImages : itImages).map((_, idx) => (
+                      <button
+                        key={idx}
+                        className={`ojt-carousel-dot ${idx === ojtCarouselIndex ? 'active' : ''}`}
+                        onClick={() => setOjtCarouselIndex(idx)}
+                        aria-label={`Go to image ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
