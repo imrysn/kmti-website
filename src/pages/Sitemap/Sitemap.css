@@ -6,13 +6,13 @@
   background: linear-gradient(180deg, #020618 5%, #3957c4 50%, #020618 100%);
 }
 
-.sitemap-page > .hero-section,
+.sitemap-page > .sitemap-hero-section,
 .sitemap-page > .sitemap-content {
   position: relative;
   z-index: 2;
 }
 
-.sitemap-page .hero-section {
+.sitemap-page .sitemap-hero-section {
   margin-top: -10rem;
   position: relative;
   min-height: 50vh;
@@ -128,7 +128,7 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .sitemap-page .hero-section {
+  .sitemap-page .sitemap-hero-section {
     padding-top: 10rem;
   }
   .sitemap-subtitle {
@@ -141,20 +141,16 @@
 }
 
 @media (max-width: 768px) {
-  .hero-section,
+  .sitemap-hero-section,
   .sitemap-hero-container {
     position: relative !important;
-    
     top: auto !important;
     left: auto !important;
     transform: none !important;
-    
     height: auto !important;
     min-height: auto !important;
-    
     padding-top: 150px;
     padding-bottom: 8rem;
-    
     text-align: center;
     display: block;
   }
@@ -218,16 +214,16 @@
   }
 
   .sitemap-subtitle {
-    margin-bottom: 20rem;
+    margin-bottom: 10rem;
   }
 }
 
 @media (max-width: 365px) {
   .sitemap-title {
-    margin-top: 10rem;
+    margin-top: 1rem;
   }
 
   .sitemap-subtitle {
-    margin-bottom: 22rem;
+    margin-bottom: 10rem;
   }
 }

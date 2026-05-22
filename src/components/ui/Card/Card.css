@@ -451,7 +451,7 @@
   line-height: 1.6;
   margin-bottom: 1rem;
   margin-top: 0.5rem;
-  width: 110%;
+  width: 100%;
   text-align: center;
 }
 
@@ -601,7 +601,7 @@
   margin-right: 0;
   margin-top: 0;
   text-align: center;
-  width: 101%;
+  width: 100%;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
@@ -870,16 +870,22 @@
 /* 1 card per row on small screens (480px and below) - Desktop size cards */
 @media (max-width: 480px) {
   .projects-card-grid {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 1.5rem !important;
-    justify-items: center !important;
+    width: 100% !important;
   }
 
   .projects-card {
     max-width: 320px !important;
     width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     padding: 1.5rem !important;
     padding-top: 2rem !important;
+    box-sizing: border-box !important;
   }
 
   .projects-card-image-container {
@@ -893,29 +899,68 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 390px) {
   .projects-card-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1.25rem !important;
-    justify-items: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .projects-card {
-    max-width: 300px !important;
-    width: 100% !important;
+    max-width: 100% !important;
+    width: calc(100% - 2rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 1rem !important;
+    padding-top: 1.5rem !important;
+  }
+
+  .projects-card-image-container {
+    height: 180px !important;
+    min-height: 180px !important;
+    max-height: 180px !important;
+  }
+
+  .projects-card-image {
+    max-height: 180px !important;
+  }
+}
+
+@media (max-width: 375px) {
+   .projects-card-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.25rem !important;
+  }
+
+  .projects-card {
+    max-width: 100% !important;
+    width: calc(100% - 1.5rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
 @media (max-width: 320px) {
   .projects-card-grid {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 1rem !important;
-    justify-items: center !important;
   }
 
   .projects-card {
-    max-width: 280px !important;
-    width: 100% !important;
+    max-width: 100% !important;
+    width: calc(100% - 1rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   /* Projects Card Label - Consistent position */
@@ -2325,4 +2370,88 @@
 
 .lang-jp .management-team-card-role {
   font-weight: 500 !important;
+}
+
+/* ============================================
+   IPHONE IMAGE STRETCH/ZOOM FIX
+   ============================================ */
+.management-team-card-image {
+  object-fit: cover !important;
+  object-position: center top !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 320px !important;
+  display: block !important;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .management-team-card {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+  }
+
+  .management-team-card-image {
+    aspect-ratio: unset !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    image-rendering: auto !important;
+    object-fit: cover !important;
+    min-height: 320px !important;
+  }
+
+  .management-team-card-large .management-team-card-image {
+    height: 450px !important;
+    min-height: unset !important;
+  }
+
+  .about-company-image,
+  .our-people-image {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    image-rendering: auto;
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 1024px) {
+  @supports (-webkit-touch-callout: none) {
+    .management-team-card-image {
+      min-height: auto !important;
+      height: auto !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .management-team-card-image {
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
+  @supports (-webkit-touch-callout: none) {
+    .management-team-card-image {
+      aspect-ratio: 3/4 !important;
+      height: auto !important;
+      min-height: unset !important;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .management-team-card-image {
+    height: auto !important;
+    min-height: unset !important;
+  }
+  
+  @supports (-webkit-touch-callout: none) {
+    .management-team-card-image {
+      aspect-ratio: 3/4 !important;
+      height: auto !important;
+      min-height: unset !important;
+    }
+  }
 }

@@ -150,7 +150,17 @@ const Home: React.FC<HomePageProps> = () => {
   const { t, i18n } = useTranslation();
   const [animationKey, setAnimationKey] = useState(0);
 
+  // Fix: Reset everything when component mounts (navigating from any page)
   useEffect(() => {
+    // Reset scroll position
+    window.scrollTo(0, 0);
+    
+    // Force a reflow to clear any inherited styles
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Trigger reflow
+    document.body.style.display = '';
+    
+    // Reset animation key to force hero section remount
     setAnimationKey(prev => prev + 1);
   }, []);
 

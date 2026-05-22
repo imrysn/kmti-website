@@ -145,7 +145,7 @@ const en = {
         eng_sup: "ENGINEERING SUPERVISOR",
         eng_tl: "ENGINEERING TEAM LEADER",
         eng_atl: "ENGINEERING ASSISTANT TL",
-        it_staff: "ENGINEERING IT / STAFF",
+        it_staff: "ENGINEERING / IT STAFF",
         staff_so: "ENGINEERING STAFF / SO",
         staff: "ENGINEERING STAFF",
         admin_staff: "ADMIN STAFF / PCO",
@@ -1383,7 +1383,8 @@ const en = {
       services: "Explore our comprehensive engineering services",
       projects: "View our portfolio of completed projects",
       careers: "Join our team and build your career with us",
-      legal: "Privacy policy, terms of service, and compliance information"
+      legal: "Privacy policy, terms of service, and compliance information",
+      events: "Explore recent company events including team-building activities, safety drills, and celebrations"
     }
   }
   ,

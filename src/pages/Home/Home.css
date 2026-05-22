@@ -29,15 +29,12 @@
   left: 0;
   width: 100%;
   height: auto;
-  /* Compensate for top position */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
   will-change: transform;
   animation: heroBackgroundZoom 20s linear infinite;
-  /* Slowed down slightly for elegance */
-
 }
 
 /* Extend background to top of viewport */
@@ -97,7 +94,6 @@
 }
 
 .hero-title {
-  /* Font properties inherited from h1 global */
   color: white;
   margin-top: 1.8rem;
   margin-bottom: 3rem;
@@ -134,7 +130,6 @@
 .home-page .section-title {
   font-family: var(--font-family-heading);
   font-size: 3rem;
-  /* Explicitly set size instead of inheriting */
   font-weight: 600;
   text-align: center;
   margin-bottom: 0.8rem;
@@ -142,7 +137,6 @@
   background: linear-gradient(90deg, #51A2FF 0%, #51A2FF 40%, #FF8C8C 60%, #FF5252 100%);
   background-clip: text;
   -webkit-background-clip: text;
-  /* Ensure webkit compatibility */
   color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -153,7 +147,6 @@
   font-family: var(--font-family-body);
   font-size: 1rem;
   font-weight: 400;
-  /* Regular weight */
   text-align: center;
   margin-bottom: 0rem;
   color: rgba(255, 255, 255, 0.8);
@@ -205,7 +198,6 @@
   font-family: var(--font-family-body);
   font-size: 1rem;
   font-weight: 300;
-  /* Regular weight */
   color: #bec6cf;
   line-height: 1.7;
   max-width: 1070px;
@@ -263,8 +255,20 @@
    ============================================ */
 @media (max-width: 1024px) {
   .home-bg-wrapper {
-      position: relative;
+    position: relative;
+    margin-top: -10rem;
+    padding-top: 10rem;
   }
+  
+  .home-page {
+    position: relative;
+  }
+
+  .hero-section {
+    margin-top: -10rem;
+    padding-top: 4rem;
+  }
+
   .hero-title {
     font-size: 3.5rem;
   }
@@ -301,13 +305,31 @@
 
 @media (max-width: 768px) {
   .home-bg-wrapper {
-      position: relative;
+    position: relative;
+    margin-top: -10rem;
+    padding-top: 10rem;
+  }
+
+  .home-page {
+    position: relative;
+    top: 50px;
   }
 
   .home-page .hero-section {
-    padding-top: 20rem;
-    padding-bottom: 15rem;
-    min-height: calc(100vh + 10rem);
+    margin-top: -10rem;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    min-height: 100vh;
+  }
+
+  .hero-bg-custom {
+    top: -10rem;
+  }
+
+  .hero-section::before {
+    top: -10rem;
+    height: 10rem;
+    display: block;
   }
 
   .hero-title {
@@ -325,12 +347,53 @@
 }
 
 @media (max-width: 480px) {
-  .home-page .hero-title {
+  .home-bg-wrapper {
+    margin-top: -10rem;
+    padding-top: 10rem;
+  }
+
+  .home-page .hero-section {
+    margin-top: -10rem;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+    min-height: 105vh;
+  }
+
+  .hero-bg-custom {
+    top: -10rem;
+  }
+
+  .hero-section::before {
+    top: -10rem;
+    height: 10rem;
+    display: block;
+  }
+
+  .hero-title {
     font-size: 2.5rem;
   }
 
   .home-page .services-section .services-grid {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 375px) {
+  .home-page .hero-section {
+    margin-top: -10rem;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+    min-height: 105vh;
+  }
+
+  .hero-bg-custom {
+    top: -10rem;
+  }
+
+  .hero-section::before {
+    top: -10rem;
+    height: 10rem;
+    display: block;
   }
 }
 
@@ -346,4 +409,30 @@
 
 .hero-title.lang-jp br {
   display: none;
+}
+
+@media (max-width: 375px) {
+  .hero-title.lang-jp {
+    white-space: normal;
+    font-size: 1rem;
+    line-height: 1.3;
+    max-width: 100%;
+  }
+  
+  .hero-title.lang-jp br {
+    display: inline;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-title.lang-jp {
+    white-space: normal;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    max-width: 100%;
+  }
+  
+  .hero-title.lang-jp br {
+    display: inline;
+  }
 }

@@ -623,6 +623,16 @@ body.lightbox-open {
     width: 14px;
     height: 14px;
   }
+
+  .lightbox-close {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
+    min-width: 48px;
+    top: 1.5rem;
+    left: 1.5rem;
+  }
 }
 
 @media (max-width: 650px) {
@@ -721,10 +731,13 @@ body.lightbox-open {
   }
   
   .lightbox-close {
-    top: 10px;
-    left: 10px;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    min-width: 44px;
+    top: 1rem;
+    left: 1rem;
   }
   
   .lightbox-close .title-text {

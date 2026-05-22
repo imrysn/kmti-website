@@ -286,7 +286,9 @@ const ServiceDetail: React.FC = () => {
             initial="hidden"
             animate={isBackButtonInView ? "visible" : "hidden"}
           >
-            <Button variant="style2" onClick={() => navigate('/services#expertise')}>
+           <Button variant="style2" onClick={() => {
+              navigate('/services', { state: { scrollToExpertise: true } });
+            }}>
               {t('services.back_to_services')}
             </Button>
           </motion.div>
@@ -347,7 +349,6 @@ const ServiceDetail: React.FC = () => {
                     <ul className="checklist-simple">
                       {checklistItems.map((item, index) => (
                         <motion.li key={index} variants={fadeUpItemVariants}>
-                          <span className="check-icon">🗹</span>
                           <span>{item}</span>
                         </motion.li>
                       ))}
@@ -418,7 +419,6 @@ const ServiceDetail: React.FC = () => {
                   <ul className="checklist-simple">
                     {checklistItems.map((item, index) => (
                       <motion.li key={index} variants={fadeUpItemVariants}>
-                        <span className="check-icon">🗹</span>
                         <span>{item}</span>
                       </motion.li>
                     ))}

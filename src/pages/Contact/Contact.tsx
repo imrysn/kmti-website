@@ -402,16 +402,17 @@ const Contact: React.FC<ContactPageProps> = () => {
         </div>
       </section>
 
-      <section className="map-section">        <div className="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3866.352676143054!2d120.92803157603589!3d14.2909297845814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d57cb66c03e7%3A0x560ff11b54224aeb!2sKusakabe%20%26%20Maeno%20Tech.%2C%20Inc.!5e0!3m2!1sen!2sph!4v1768366988662!5m2!1sen!2sph"
-          className="map-frame"
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title={`${t('common.brand_abbr')} Office Location`}
-        ></iframe>
-      </div>
+      <section className="map-section">
+        <div className="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3866.352676143054!2d120.92803157603589!3d14.2909297845814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d57cb66c03e7%3A0x560ff11b54224aeb!2sKusakabe%20%26%20Maeno%20Tech.%2C%20Inc.!5e0!3m2!1sen!2sph!4v1768366988662!5m2!1sen!2sph"
+            className="map-frame"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title={`${t('common.brand_abbr')} Office Location`}
+          ></iframe>
+        </div>
       </section>
 
       <div className="or-divider-container">
