@@ -11,7 +11,7 @@ import ServiceDetail from './ServiceDetail';
 import SEO from '../../components/common/SEO';
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { OrbitControls, useGLTF, Html } from '@react-three/drei';
 
 // Configure global Draco decoder path
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
@@ -130,13 +130,20 @@ const FloatingGear: React.FC<{ position: [number, number, number]; scale?: numbe
   );
 };
 
-// --- Loading Fallback ---
+// --- Loading Fallback (Showcase 3D Figure)---
 const ModelLoadingFallback: React.FC = () => {
   return (
-    <mesh position={[0, 0, 0]}>
-      <cylinderGeometry args={[1, 1.5, 3, 8]} />
-      <meshStandardMaterial color="#51A2FF" wireframe={true} opacity={0.3} transparent={true} />
-    </mesh>
+    <Html
+      center
+      style={{
+        pointerEvents: 'none',
+        userSelect: 'none',
+      }}
+    >
+      <div className="svc-showcase__loader">
+        <div className="svc-showcase__loader-spinner"></div>
+      </div>
+    </Html>
   );
 };
 
