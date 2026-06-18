@@ -76,7 +76,7 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 - **Modal System**: Detailed project views with smooth animations
 
 ### 👥 About Us Page
-![About Us](./src/assets/readme_screenshots/about-us-page.jpg)
+![About Us](./src/assets/readme_screenshots/about-us-page.png)
 
 - **Company Story**: Comprehensive company history and values
 - **Management Team**: Interactive team member profiles
@@ -92,7 +92,7 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 - **Direct Application**: LinkedIn integration for easy apply
 
 ### 📞 Contact Page
-![Contact](./src/assets/readme_screenshots/contact-us-page.jpg)
+![Contact](./src/assets/readme_screenshots/contact-us-page.png)
 
 - **Contact Form**: Email integration for inquiries
 - **Google Maps**: Embedded map showing exact office location
