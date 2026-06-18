@@ -99,6 +99,21 @@ This is the official website for **KMTI (Kusakabe & Maeno Tech., Inc.)**, a lead
 - **Multiple Contact Methods**: Email, phone, social media links
 - **Chatbot Access**: Direct access to AI assistant
 
+### 🗓️ Events Page
+![Events](./src/assets/readme_screenshots/events-page.jpg)
+
+- **Interactive Event Carousel**: 3D cover flow style carousel for each event category
+- **Auto-Sliding Gallery**: Infinite scrolling image gallery for event previews
+- **Year Filtering**: Dropdown to view events categorized by different years
+- **Smooth Animations**: High-performance scroll-triggered fade-up animations
+- **Hero Section**: Background image with CTA button for smooth scrolling navigation
+
+### ⚖️ Legal & Compliance Page
+- **3D Background Elements**: Floating animated gears rendered with React Three Fiber
+- **ScrollSpy Navigation**: Interactive sidebar that highlights the current section
+- **Smooth Scrolling**: Seamless navigation between privacy, terms, and compliance sections
+- **Card Layout**: Clean, structured presentation of legal documents
+
 ### 🤖 AI Chatbot Assistant
 
 - **Contextual Responses**: Intelligent FAQ system
@@ -177,8 +192,10 @@ kmti-website/
 │   │   ├── About/            # About Us page
 │   │   ├── Careers/          # Careers page
 │   │   ├── Contact/          # Contact page
+│   │   ├── Events/           # Events page
 │   │   ├── Home/             # Homepage
 │   │   ├── LegalAndCompliance/ # Legal page
+│   │   ├── NotFound/         # 404 Error page
 │   │   ├── Projects/         # Projects showcase
 │   │   ├── Services/         # Services overview
 │   │   └── Sitemap/          # Sitemap page
